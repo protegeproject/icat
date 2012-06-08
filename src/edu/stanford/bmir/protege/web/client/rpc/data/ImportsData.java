@@ -7,8 +7,9 @@ import java.util.ArrayList;
  * @author Jennifer Vendetti <vendetti@stanford.edu>
  */
 public class ImportsData implements Serializable {
+    private static final long serialVersionUID = 3114870825267420445L;
 
-	private String name;
+    private String name;
 	private ArrayList<ImportsData> imports = new ArrayList<ImportsData>();
 
 	public ImportsData() {
@@ -26,11 +27,11 @@ public class ImportsData implements Serializable {
 		this.name = name;
 	}
 
-	public ArrayList getImports() {
+	public ArrayList<ImportsData> getImports() {
 		return imports;
 	}
 
-	public void setImports(ArrayList imports) {
+	public void setImports(ArrayList<ImportsData> imports) {
 		this.imports = imports;
 	}
 	

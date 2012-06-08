@@ -10,6 +10,6 @@ public interface ProjectConfigurationService extends RemoteService {
 
 	public ProjectConfiguration getProjectConfiguration(String projectName, String userName);
 
-	public Boolean saveProjectConfiguration(String projectName, String userName, ProjectConfiguration config);
-	
+	public void saveProjectConfiguration(String projectName, String userName, ProjectConfiguration config);
+
 }

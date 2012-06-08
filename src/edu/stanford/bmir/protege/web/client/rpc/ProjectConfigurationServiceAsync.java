@@ -7,7 +7,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.layout.ProjectConfiguration
 public interface ProjectConfigurationServiceAsync {
 
 	void getProjectConfiguration(String projectName, String userName, AsyncCallback<ProjectConfiguration> cb);
-	
-	void saveProjectConfiguration(String projectName, String userName, ProjectConfiguration config, AsyncCallback<Boolean> cb);
-	
+
+	void saveProjectConfiguration(String projectName, String userName, ProjectConfiguration config, AsyncCallback<Void> cb);
+
 }

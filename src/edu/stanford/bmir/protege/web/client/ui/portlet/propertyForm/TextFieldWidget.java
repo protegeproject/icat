@@ -1,6 +1,6 @@
 package edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm;
 
-import edu.stanford.bmir.protege.web.client.util.Project;
+import edu.stanford.bmir.protege.web.client.model.Project;
 
 
 public class TextFieldWidget extends AbstractFieldWidget {

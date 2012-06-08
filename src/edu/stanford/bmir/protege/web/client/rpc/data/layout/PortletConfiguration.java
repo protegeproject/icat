@@ -1,21 +1,20 @@
 package edu.stanford.bmir.protege.web.client.rpc.data.layout;
 
 import java.io.Serializable;
-import java.util.Map;
 
-public class PortletConfiguration implements Serializable {
+public class PortletConfiguration extends GenericConfiguration implements Serializable {
 
 	private static final long serialVersionUID = -1067323872900631937L;
-	
+
 	private String name;
 	private int height;
 	private int width;
-	private Map<String, Object> properties;
-		
+	private String index;
+
 	public PortletConfiguration() {
-		this.name = "unnamed"; 
+		this.name = "unnamed";
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -34,22 +33,44 @@ public class PortletConfiguration implements Serializable {
 	public void setWidth(int width) {
 		this.width = width;
 	}
+	public String getIndex() {
+        return index;
+    }
 
-	public void setProperties(Map<String, Object> properties) {
-		this.properties = properties;
+	public int getIndexAsInt() {
+	    if (index == null) {
+	        return 0;
+	    }
+	    try {
+	       return Integer.valueOf(index);
+	    } catch (NumberFormatException e) {
+	        return 0;
+	    }
 	}
 
-	public Map<String, Object> getProperties() {
-		return properties;
+	public void setIndex(String index) {
+        this.index = index;
+    }
+
+	@Override
+	public boolean equals(Object obj) {
+	    if (!(obj instanceof PortletConfiguration)) {
+	        return false;
+	    }
+	   PortletConfiguration pc2 = (PortletConfiguration) obj;
+	   boolean success = name.equals(pc2.getName());
+	   if (pc2.getIndex() == null && index == null) {
+	       return success;
+	   }
+	   if (index != null) {
+	       success = success && index.equals(pc2.getIndex());
+	   }
+	   return success;
 	}
 
-/*
-	public void setPropertyToValue(List<PropertyToValue> propertyToValue) {
-		this.propertyToValue = propertyToValue;
+	@Override
+	public int hashCode() {
+	    return name.hashCode() + (index != null ? index.hashCode() : 0);
 	}
 
-	public List<PropertyToValue> getPropertyToValue() {
-		return propertyToValue;
-	}
-	*/	
 }

@@ -1,21 +1,23 @@
-; Fri Sep 11 15:14:41 PDT 2009
+; Fri Jul 02 16:00:08 PDT 2010
 ; 
-;+ (version "3.4.2")
-;+ (build "Build 541")
+;+ (version "3.4.4")
+;+ (build "Build 580")
 
 ([metaproject_Class0] of  User
 
 	(group [metaproject_Instance_0])
 	(name "Csongor Nyulas")
-	(password "csongor"))
+	(password "fc31e1e527224b8819358c8c7de26db0")
+	(salt "f31290896d4576db"))
 
 ([metaproject_Class1] of  User
 
 	(group [metaproject_Instance_0])
 	(name "Samson Tu")
-	(password "samson"))
+	(password "fe83f7198cae4ed1e9065cbc9d04b33c")
+	(salt "cb67da39cf045f47"))
 
-([metaproject_Class10000] of  Operation
+([metaproject_Class10000] of  ServerAppliedOperation
 
 	(description "The operation of shutting down the server.")
 	(name "ShutdownServer"))
@@ -24,41 +26,43 @@
 
 	(group [metaproject_Instance_0])
 	(name "Dilvan Moreira")
-	(password "dilvan"))
+	(password "bda0d06e2e6b6516c73cbf33035cd1a0")
+	(salt "3071102d65b0b679"))
 
-([metaproject_Class2] of  Operation
+([metaproject_Class2] of  ProjectAppliedOperation
 
 	(description "The operation of displaying the project in the project list.\n\nThis is used to control the projects displayed when a user connects to a server.")
 	(name "DisplayInProjectList"))
 
-([metaproject_Class20000] of  User
+([metaproject_Class20000] of  ServerAppliedOperation
 
-	(group [metaproject_Instance_0])
-	(name "webprotege")
-	(password "webprotege"))
+	(description "This  operation allows a user to make alterations to his credentials.  This privilege should probably only be  used by fake users representing server processes.")
+	(name "Delegate"))
 
 ([metaproject_Class20003] of  Group
 
 	(description "The group of adminsitrators of the Protege server.")
-	(member [metaproject_Class20008])
+	(member
+		[metaproject_Class20008]
+		[metaproject_Class30001])
 	(name "AdminGroup"))
 
-([metaproject_Class20004] of  Operation
+([metaproject_Class20004] of  ServerAppliedOperation
 
 	(description "A super-right: a user who has this right can kill other users' sessions, stop and start server projects without having these rights set for each ptoject individually.")
 	(name "AdministerServer"))
 
-([metaproject_Class20005] of  Operation
+([metaproject_Class20005] of  ServerAppliedOperation
 
 	(description "The operation of killing another user's session.")
 	(name "KillOtherUserSession"))
 
-([metaproject_Class20006] of  Operation
+([metaproject_Class20006] of  ServerAppliedOperation
 
 	(description "The operation of starting a (previously stopped) server project.")
 	(name "StartRemoteProject"))
 
-([metaproject_Class20007] of  Operation
+([metaproject_Class20007] of  ServerAppliedOperation
 
 	(description "The operation of stopping/closing a running server project.")
 	(name "StopRemoteProject"))
@@ -70,11 +74,14 @@
 		[metaproject_Instance_0]
 		[metaproject_Class20003])
 	(name "Admin")
-	(password "admin"))
+	(password "0235b8f25cacfecdb0adb560c95da1a9")
+	(salt "0b209d16f20a5dac"))
 
 ([metaproject_Class20009] of  Server
 
-	(allowedGroupOperation [metaproject_Class20010])
+	(allowedGroupOperation
+		[metaproject_Class20010]
+		[metaproject_Class30003])
 	(description "The server on which the policies apply.\nCurrent implementaion does not take into account the hostname, so all the policies (allowed group operations) are applied to this one instance.")
 	(name "MyServer"))
 
@@ -93,21 +100,48 @@
 	(allowedGroup [metaproject_Instance_0])
 	(allowedOperation [metaproject_Class2]))
 
-([metaproject_Class30000] of  Project
+([metaproject_Class30000] of  GroupAppliedOperation
+
+	(description "The operation of adding or removing users to a group. (not enforced)")
+	(name "EditGroup"))
+
+([metaproject_Class30001] of  User
+
+	(group
+		[metaproject_Instance_0]
+		[metaproject_Class30002]
+		[metaproject_Class20003])
+	(name "webprotege")
+	(password "f7bcce407455edd3befd66e6405da28d")
+	(salt "574c25cbabe1feed"))
+
+([metaproject_Class30002] of  Group
+
+	(member [metaproject_Class30001])
+	(name "WebProtegeGroup"))
+
+([metaproject_Class30003] of  GroupOperation
+
+	(allowedGroup [metaproject_Class30002])
+	(allowedOperation [metaproject_Class20000]))
+
+([metaproject_Class40000] of  Project
 
 	(allowedGroupOperation
 		[metaproject_Instance_10008]
 		[metaproject_Class3])
-	(description "This is the description of the Family History project, which was sent to me by Martin since it contains SWRL rules!")
-	(location "projects/familyHistory22Clean/FamilyHistory22Clean.pprj")
-	(name "Family History")
+	(description "Frames project")
+	(location "projects/newspaper/newspaper.pprj")
+	(name "Newspaper")
+	(owner [metaproject_Instance_10005]))
+
+([metaproject_Class40001] of  Project
+
+	(allowedGroupOperation [metaproject_Instance_10008])
+	(description "The annotation project for Collaborative Pizza")
+	(location "projects/collaborativePizza/annotation_collaborativePizza.owl.pprj")
+	(name "Collaborative Pizza Annotations")
 	(owner [metaproject_Instance_10006]))
-
-([metaproject_Class30001] of  User
-
-	(group [metaproject_Instance_0])
-	(name "Mike Uehara-Bingen")
-	(password "plaintext"))
 
 ([metaproject_Instance_0] of  Group
 
@@ -123,7 +157,6 @@
 		[metaproject_Class1]
 		[metaproject_Class10001]
 		[metaproject_Class20008]
-		[metaproject_Class20000]
 		[metaproject_Class30001])
 	(name "World"))
 
@@ -132,46 +165,52 @@
 	(allowedGroupOperation
 		[metaproject_Instance_10008]
 		[metaproject_Class3])
-	(description "Frames project")
-	(location "projects/newspaper/newspaper.pprj")
-	(name "Newspaper")
+	(description "The ICD pre-alpha draft")
+	(location "projects/icd/ICD.pprj")
+	(name "ICD")
 	(owner [metaproject_Instance_10005]))
 
 ([metaproject_Instance_10002] of  User
 
 	(group [metaproject_Instance_0])
 	(name "Guest")
-	(password "guest"))
+	(password "d376e3cdc24b4fdfbe012b28b7114d46")
+	(salt "db699848b1a45b2c"))
 
 ([metaproject_Instance_10003] of  User
 
 	(group [metaproject_Instance_0])
 	(name "Jennifer Vendetti")
-	(password "jenny"))
+	(password "c4985f0ea03cd107a973590af106d667")
+	(salt "abe3c5a657a429b3"))
 
 ([metaproject_Instance_10004] of  User
 
 	(group [metaproject_Instance_0])
 	(name "Natasha Noy")
-	(password "natalia"))
+	(password "5255d56b90b79cdd93acd5894ee55709")
+	(salt "8b2c9745dd21d0a9"))
 
 ([metaproject_Instance_10005] of  User
 
 	(group [metaproject_Instance_0])
 	(name "Ray Fergerson")
-	(password "claudia"))
+	(password "2f659e40c792b01f6caa9d4fa3ca99c6")
+	(salt "57d803513a2f468e"))
 
 ([metaproject_Instance_10006] of  User
 
 	(group [metaproject_Instance_0])
 	(name "Tania Tudorache")
-	(password "tania"))
+	(password "9c83beacd15689a57a2c993f5b0a570a")
+	(salt "391cfea10ef1406a"))
 
 ([metaproject_Instance_10007] of  User
 
 	(group [metaproject_Instance_0])
 	(name "Timothy Redmond")
-	(password "troglodyte"))
+	(password "af10c84508bd08042aad6ea1d88c6206")
+	(salt "5dd198d580069580"))
 
 ([metaproject_Instance_10008] of  GroupOperation
 
@@ -232,17 +271,17 @@
 ([metaproject_Instance_40001] of  Project
 
 	(allowedGroupOperation [metaproject_Instance_10008])
-	(description "The annotation project for Collaborative Pizza")
-	(location "projects/collaborativePizza/annotation_collaborativePizza.owl.pprj")
-	(name "Collaborative Pizza Annotations")
+	(description "annotation prj of ICD")
+	(location "projects/icd/annotation_ICD.pprj")
+	(name "ICD annotation")
 	(owner [metaproject_Instance_10006]))
 
-([nci_metaproject_Instance_60009] of  Operation
+([nci_metaproject_Instance_60009] of  ProjectAppliedOperation
 
 	(description "The operation of reading an ontology project.\n\nThis controls who can open a remote project.")
 	(name "Read"))
 
-([nci_metaproject_Instance_60010] of  Operation
+([nci_metaproject_Instance_60010] of  ProjectAppliedOperation
 
 	(description "The operation of writing to an ontology project.\n\n(Enforcement not implemented yet)")
 	(name "Write"))

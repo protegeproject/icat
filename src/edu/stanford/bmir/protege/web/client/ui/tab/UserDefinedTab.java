@@ -1,8 +1,8 @@
 package edu.stanford.bmir.protege.web.client.ui.tab;
 
+import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.TabConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.EntityPortlet;
-import edu.stanford.bmir.protege.web.client.util.Project;
 
 /**
  * A user defined tab. The user can compose her own tab and fill it

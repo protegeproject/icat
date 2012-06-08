@@ -2,8 +2,8 @@ package edu.stanford.bmir.protege.web.client.ui.ontology.metadata;
 
 import java.util.ArrayList;
 
+import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
-import edu.stanford.bmir.protege.web.client.util.Project;
 
 /**
  * @author Jennifer Vendetti
@@ -22,7 +22,7 @@ public class MetricsPortlet extends AbstractEntityPortlet {
 		metricsGrid.setEntity(_currentEntity);
 	}
 	
-	public void intialize() {
+	public void initialize() {
 		setTitle("Ontology Metrics for " + project.getProjectName());
 		
 		metricsGrid = new MetricsGrid(project);

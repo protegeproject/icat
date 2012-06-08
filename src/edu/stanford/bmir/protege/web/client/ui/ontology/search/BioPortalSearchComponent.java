@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.http.client.URL;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.gwtext.client.core.EventObject;
+import com.gwtext.client.core.Position;
 import com.gwtext.client.data.FieldDef;
 import com.gwtext.client.data.Record;
 import com.gwtext.client.data.RecordDef;
@@ -12,10 +15,13 @@ import com.gwtext.client.data.Store;
 import com.gwtext.client.data.StringFieldDef;
 import com.gwtext.client.data.XmlReader;
 import com.gwtext.client.widgets.Button;
+import com.gwtext.client.widgets.Component;
 import com.gwtext.client.widgets.MessageBox;
+import com.gwtext.client.widgets.Panel;
 import com.gwtext.client.widgets.Toolbar;
 import com.gwtext.client.widgets.ToolbarButton;
 import com.gwtext.client.widgets.ToolbarTextItem;
+import com.gwtext.client.widgets.Window;
 import com.gwtext.client.widgets.event.ButtonListenerAdapter;
 import com.gwtext.client.widgets.form.Field;
 import com.gwtext.client.widgets.form.TextField;
@@ -26,356 +32,798 @@ import com.gwtext.client.widgets.grid.ColumnModel;
 import com.gwtext.client.widgets.grid.GridPanel;
 import com.gwtext.client.widgets.grid.Renderer;
 import com.gwtext.client.widgets.grid.event.GridCellListenerAdapter;
+import com.gwtext.client.widgets.layout.FitLayout;
 
+import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
+import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.BioPortalReferenceData;
 import edu.stanford.bmir.protege.web.client.rpc.data.BioPortalSearchData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
-import edu.stanford.bmir.protege.web.client.util.Project;
+import edu.stanford.bmir.protege.web.client.rpc.data.NotesData;
+import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
+import edu.stanford.bmir.protege.web.client.ui.ontology.notes.NoteInputPanel;
+import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.ReferenceFieldWidget;
+import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public class BioPortalSearchComponent extends GridPanel {
 
-	//private static String DEFAULT_BIOPORTAL_VISUALIZE_URL = "http://bioportal.bioontology.org/visualize/";
-	private static String DEFAULT_BIOPORTAL_VISUALIZE_URL = "http://stage.bioontology.org/visualize/";
-	//private static String DEFAULT_BIOPORTAL_ONTOLOGY_URL = "http://bioportal.bioontology.org/ontologies/";
-	private static String DEFAULT_BIOPORTAL_ONTOLOGY_URL = "http://stage.bioontology.org/ontologies/";
-	//private static String DEFAULT_BIOPORTAL_SEARCH_URL_PREFIX = "http://rest.bioontology.org/bioportal/search/"; //production
-	private static String DEFAULT_BIOPORTAL_SEARCH_URL = "http://ncbo-core-stage1.stanford.edu/bioportal/search/"; //stage
-	private static String DEFAULT_BIOPORTAL_SEARCH_ONE_PAGE_OPTION = "pagesize=10&pagenum=1";
-	
-	private static String BIOPORTAL_RECORD_TYPE_PREFERRED_NAME = "RECORD_TYPE_PREFERRED_NAME";
+    private Project project;
+    private EntityData currentEntity;
+    private EntityData property;
 
-	private static String CONFIG_PROPERTY_CREATE_REFERENCE_AS_CLASS = "create_reference_as_class";
-	private static String CONFIG_PROPERTY_REFERENCE_CLASS = "reference_class";
-	private static String CONFIG_PROPERTY_REFERENCE_PROPERTY = "reference_property";
-	private static String CONFIG_PROPERTY_BIOPORTAL_BASE_URL = "bioportal_base_url";
-	private static String CONFIG_PROPERTY_BIOPORTAL_SEARCH_URL = "bioportal_search_url";
-	private static String CONFIG_PROPERTY_SEARCH_ONTOLOGY_IDS = "search_ontology_ids";
-	private static String CONFIG_PROPERTY_SEARCH_ONE_PAGE_OPTION = "search_one_page_option";
-	
-	public static final String BP_ONTOLOGY_STR = "ontologies";
-	public static final String BP_VISUALIZE_STR = "visualize";
+    private Map<String, Object> configPropertiesMap;
+    private Store store;
 
-	protected Project project;
-	protected Map<String, Object> configPropertiesMap;
-	protected EntityData _currentEntity;
-	protected Store store;
-	protected boolean searchAll = false;
-	protected TextField searchStringTextField;
-	protected ToolbarButton searchButton;
-	protected ToolbarButton searchAllButton;
-	protected ToolbarTextItem searchCountText;
-	protected boolean ignoreSearchAllPressed; 
+    private TextField searchStringTextField;
+    private ToolbarButton searchButton;
+    private ToolbarButton searchAllButton;
+    private ToolbarButton createDNFRefButton;
+    private ToolbarTextItem searchCountText;
 
-	public BioPortalSearchComponent(Project project) {
-		this.project = project;
-		createGrid();
-	}
+    private boolean ignoreSearchAllPressed = false;
+    private boolean searchAll = false;
+    private boolean replaceExisting = false;
+    private final boolean isSingleValued;
 
-	public void setConfigProperties(Map<String, Object> configPropertiesMap) {
-		if (configPropertiesMap != null) {
-			this.configPropertiesMap = configPropertiesMap;
-		}
-		else {
-			GWT.log("The argument passed to setConfigurationProperties should not be null!", new NullPointerException("configPropertiesMap is null"));
-			this.configPropertiesMap = new HashMap<String, Object>();
-		}
-	}
-	
-	private void createGrid() {								
-		XmlReader reader = new XmlReader("searchBean", new RecordDef(
-				new FieldDef[]{
-						new StringFieldDef("contents"),
-						new StringFieldDef("recordType"),
-						new StringFieldDef("ontologyDisplayLabel"),
-						new StringFieldDef("ontologyVersionId"),
-						new StringFieldDef("conceptIdShort"),
-				}
-		));
-
-		store = new Store(reader);                 
-
-		//setup column model         
-		ColumnConfig contentsCol = new ColumnConfig("Contents", "contents");
-		contentsCol.setId("contents");
-		ColumnConfig recordTypeCol = new ColumnConfig("Found in", "recordType");
-		ColumnConfig ontologyCol = new ColumnConfig("Ontology", "ontologyDisplayLabel");
-		ColumnConfig importCol = new ColumnConfig(" ", "importLink");
-
-		recordTypeCol.setWidth(70);
-		ontologyCol.setWidth(150);
-		importCol.setWidth(60);
-		
-		contentsCol.setRenderer(new Renderer() {
-			public String render(Object value, CellMetadata cellMetadata,
-					Record record, int rowIndex, int colNum, Store store) {
-				return "<a href= \"" + getBioPortalVisualizeURL() + record.getAsString("ontologyVersionId") + "/" +
-				record.getAsString("conceptIdShort") + "\" target=_blank>" + record.getAsString("contents") + "</a>";
-			}        	 
-		});
-
-		recordTypeCol.setRenderer(new Renderer() {
-			public String render(Object value, CellMetadata cellMetadata,
-					Record record, int rowIndex, int colNum, Store store) {
-				String type = record.getAsString("recordType");
-				if (type.equals(BIOPORTAL_RECORD_TYPE_PREFERRED_NAME)) {
-					return "Preferred Name";
-				} else {
-					return "Name";
-				}
-			}        	 
-		});
-		recordTypeCol.setHidden(true);
-
-		ontologyCol.setRenderer(new Renderer() {
-			public String render(Object value, CellMetadata cellMetadata,
-					Record record, int rowIndex, int colNum, Store store) {
-				return "<a href= \"" + getBioPortalOntologyURL() + record.getAsString("ontologyVersionId") +
-				"\" target=_blank>" + record.getAsString("ontologyDisplayLabel") + "</a>";
-			}
-		});                  
-
-		importCol.setRenderer(new Renderer() {
-			public String render(Object value, CellMetadata cellMetadata,
-					final Record record, int rowIndex, int colNum, Store store) {
-				// the return string may contain ONLY ONE HTML TAG before the text, 
-				// otherwise GridCellListener would not receive the onClick event!
-				return "<DIV style=\"color:#1542bb;text-decoration:underline;font-weight:bold\">Import</DIV>";
-			}
-		});
-		importCol.setSortable(false);
-		
-		ColumnConfig[] columnConfigs = {
-				contentsCol,
-				recordTypeCol,                 
-				ontologyCol,
-				importCol
-		};
-
-		ColumnModel columnModel = new ColumnModel(columnConfigs);
-		columnModel.setDefaultSortable(true);
-		
-		setHeight(200);
-		setStore(store);
-		setColumnModel(columnModel);      
-		setAutoWidth(true);
-		stripeRows(true);
-		setAutoExpandColumn("contents");    
-		
-		addGridCellListener(new GridCellListenerAdapter() {
-			public void onCellClick(GridPanel grid, int rowIndex, int colindex, 
-					EventObject e) {			
-				if (grid.getColumnModel().getDataIndex(colindex).equals("importLink")) {
-					Record record = grid.getStore().getAt(rowIndex);
-					onImport(record);
-				}			
-			}
-		});		
-
-		searchStringTextField = new TextField();
-		searchStringTextField.addListener(new TextFieldListenerAdapter () {
-			@Override
-			public void onSpecialKey(Field field, EventObject e) {
-				if (e.getKey() == EventObject.ENTER) {
-					reload();
-				}
-			}
-		});
-		searchStringTextField.setWidth(250);
-		
-		searchButton = new ToolbarButton("<font color='#1542bb'><b><u>Search in BioPortal</u></b></font>");
-		searchButton.addListener(new ButtonListenerAdapter () {
-			@Override
-			public void onClick(Button button, EventObject e) {
-				reload();
-			}
-		});
-
-		Toolbar topToolbar = new Toolbar();
-		topToolbar.addText("&nbsp<i>Search for concept</i>:&nbsp&nbsp");
-		topToolbar.addElement(searchStringTextField.getElement());
-		topToolbar.addSpacer();
-		topToolbar.addButton(searchButton);
-		setTopToolbar(topToolbar);
-
-		searchAllButton = new ToolbarButton("Show all search results");
-		searchAllButton.setEnableToggle(true);
-		searchAllButton.addListener(new ButtonListenerAdapter () {
-			@Override
-			public void onToggle(Button button, boolean pressed) {
-				searchAll = pressed;
-				if (!ignoreSearchAllPressed) {
-					reload();
-				}
-			}
-		});
-		
-		searchCountText = new ToolbarTextItem("No results");
-		
-		Toolbar toolbar = new Toolbar();
-		toolbar.addItem(searchCountText);
-		toolbar.addFill();
-		toolbar.addButton(searchAllButton);
-		setBottomToolbar(toolbar);
-				
-	}
+    private String currentValue; //TODO: logic is inverted - should not be here but in the widget; import should call a callback
 
 
-	private void onImport(Record record) {
-		String ontologyVersionId = record.getAsString("ontologyVersionId");
-		String conceptId = record.getAsString("conceptIdShort");
-		String ontologyName = record.getAsString("ontologyDisplayLabel");
-		String preferredName = record.getAsString("contents");//TODO check if preferred name is always the same as contents. Otherwise, read the preferred_name, too 
-		importReference(ontologyVersionId, conceptId, ontologyName, preferredName);
-	}
+    public BioPortalSearchComponent(Project project, boolean isSingleValued) {
+        this(project, null, new PropertyEntityData(null), isSingleValued);
+    }
+
+    public BioPortalSearchComponent(Project project, ReferenceFieldWidget referenceFieldWidget,
+            PropertyEntityData referenceProperty, boolean isSingleValued) {
+        this.project = project;
+        this.isSingleValued = isSingleValued;
+        createGrid();
+    }
+
+    public void setConfigProperties(Map<String, Object> configPropertiesMap) {
+        if (configPropertiesMap != null) {
+            this.configPropertiesMap = configPropertiesMap;
+        } else {
+            GWT.log("The argument passed to setConfigurationProperties should not be null!", new NullPointerException(
+                    "configPropertiesMap is null"));
+            this.configPropertiesMap = new HashMap<String, Object>();
+        }
+    }
+
+    private void createGrid() {
+        XmlReader reader = new XmlReader("searchBean", new RecordDef(new FieldDef[] { new StringFieldDef("contents"),
+                new StringFieldDef("recordType"), new StringFieldDef("ontologyDisplayLabel"),
+                new StringFieldDef("ontologyVersionId"), new StringFieldDef("preferredName"), new StringFieldDef("conceptIdShort"),
+                new StringFieldDef("conceptId")}));
+
+        store = new Store(reader);
+
+        //setup column model
+        ColumnConfig conceptIdShortCol = new ColumnConfig("Id", "conceptIdShort");
+        ColumnConfig preferredNameCol = new ColumnConfig("Preferred Name", "preferredName");
+        preferredNameCol.setId("preferredName");
+        ColumnConfig contentsCol = new ColumnConfig("Matched content", "contents");
+        ColumnConfig recordTypeCol = new ColumnConfig("Found in", "recordType");
+        ColumnConfig ontologyCol = new ColumnConfig("Ontology", "ontologyDisplayLabel");
+        ColumnConfig detailsCol = new ColumnConfig(" ", "viewDetails");
+        ColumnConfig graphCol = new ColumnConfig(" ", "viewGraph");
+        ColumnConfig importCol = new ColumnConfig(" ", "importLink");
+
+        recordTypeCol.setWidth(100);
+        ontologyCol.setWidth(150);
+        detailsCol.setWidth(25);
+        graphCol.setWidth(30);
+        importCol.setWidth(60);
+
+        preferredNameCol.setRenderer(new Renderer() {
+            public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum,
+                    Store store) {
+                String text = record.getAsString("preferredName");
+                return "<span class=\"bp-search-pref-name\">" + text +"</span>";
+            }
+        });
+
+        contentsCol.setRenderer(new Renderer() {
+            public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum,
+                    Store store) {
+                String text = record.getAsString("contents");
+                return "<span class=\"bp-search-contents\">" + text +"</span>";
+            }
+        });
+
+        conceptIdShortCol.setRenderer(new Renderer() {
+            public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum,
+                    Store store) {
+                return "<a href= \"" + getBioPortalVisualizeURL() + record.getAsString("ontologyVersionId") + "/"
+                + "?conceptid=" + URL.encodeComponent(record.getAsString("conceptIdShort")) + "\" target=\"_blank\">"
+                + UIUtil.getShortName(record.getAsString("conceptIdShort")) + "</a>";
+            }
+        });
 
 
-	public EntityData getEntity() {
-		return _currentEntity;
-	}
-	
-	public void setEntity(EntityData newEntity) {		
-		if (_currentEntity != null &&_currentEntity.equals(newEntity)) {
-			return;
-		}
-		searchAll = false;
-		ignoreSearchAllPressed = true;
-		searchAllButton.setPressed(false);
-		ignoreSearchAllPressed = false;
-		searchCountText.setText("No results");
-		_currentEntity = newEntity;		
-		
-		searchStringTextField.setValue(_currentEntity.getBrowserText());
-		reload();
-	}
+        recordTypeCol.setRenderer(new Renderer() {
+            public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum,
+                    Store store) {
+                String type = BioPortalConstants.getRecordTypePrintText(record.getAsString("recordType"));
+                return "<span class=\"bp-search-rec-type\">" + type +"</span>";
+            }
+        });
 
-	protected void reload() { 
-		store.removeAll();
-		
-		if (searchStringTextField.getText() != null) {
-			getEl().mask("Loading search results", true);
-			BioPortalSearchData bpSearchData = new BioPortalSearchData();
-			assert configPropertiesMap != null : "configPropertiesMap should have been initialized!";
-			bpSearchData.setBpSearchUrl(getBioPortalSearchURL());
-			bpSearchData.setSearchOntologyIds((String) configPropertiesMap.get(CONFIG_PROPERTY_SEARCH_ONTOLOGY_IDS));
-			bpSearchData.setSearchPageOption(getBioPortalSearchPageOption(searchAll));
-			OntologyServiceManager.getInstance().getBioPortalSearchContent(project.getProjectName(), 
-					searchStringTextField.getText(), bpSearchData, new GetSearchURLContentHandler());
-		}
-	}	
+        ontologyCol.setRenderer(new Renderer() {
+            public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum,
+                    Store store) {
+                return "<a href= \"" + getBioPortalOntologyURL() + record.getAsString("ontologyVersionId")
+                        + "\" target=\"_blank\">" + record.getAsString("ontologyDisplayLabel") + "</a>";
+            }
+        });
 
-	private String getBioPortalOntologyURL() {
-		String res = DEFAULT_BIOPORTAL_ONTOLOGY_URL;
-		if (configPropertiesMap != null) {
-			res = (String) configPropertiesMap.get(CONFIG_PROPERTY_BIOPORTAL_BASE_URL);
-			if (res != null) {
-				res = res + BP_ONTOLOGY_STR + "/";
-			}
-			else {
-				res = DEFAULT_BIOPORTAL_ONTOLOGY_URL;
-			}
-		}
-		
-		return res;
-	}
+        detailsCol.setRenderer(new Renderer() {
+            public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum,
+                    Store store) {
+                return "<img src=\"images/details.png\"></img>";
+            }
 
-	private String getBioPortalVisualizeURL() {
-		String res = DEFAULT_BIOPORTAL_VISUALIZE_URL;
-		if (configPropertiesMap != null) {
-			res = (String) configPropertiesMap.get(CONFIG_PROPERTY_BIOPORTAL_BASE_URL);
-			if (res != null) {
-				res = res + BP_VISUALIZE_STR + "/";
-			}
-			else {
-				res = DEFAULT_BIOPORTAL_VISUALIZE_URL;
-			}
-		}
-		
-		return res;
-	}
-	
-	private String getBioPortalSearchURL() {
-		String res = DEFAULT_BIOPORTAL_SEARCH_URL;
-		if (configPropertiesMap != null) {
-			res = (String) configPropertiesMap.get(CONFIG_PROPERTY_BIOPORTAL_SEARCH_URL);
-			if (res != null) {
-				//TODO activate this see if we decide to use the BASE url above, also for the search
-				//res = res + BP_SEARCH_STR + "/";  
-			}
-			else {
-				res = DEFAULT_BIOPORTAL_SEARCH_URL;
-			}
-		}
-		
-		return res;
-	}
-	
-	private String getBioPortalSearchPageOption(boolean all) {
-		if (all) {
-			//do not restrict search pages
-			return null;
-		}
-		String res = DEFAULT_BIOPORTAL_SEARCH_ONE_PAGE_OPTION;
-		if (configPropertiesMap != null) {
-			res = (String) configPropertiesMap.get(CONFIG_PROPERTY_SEARCH_ONE_PAGE_OPTION);
-			if (res == null) {
-				res = DEFAULT_BIOPORTAL_SEARCH_ONE_PAGE_OPTION;
-			}
-		}
-		
-		return res;
-	}
-	
-	private void importReference(String ontologyVersionId, String conceptId, String ontologyName, String preferredName) {
-		GWT.log("onImportReference", null);
-		//MessageBox.alert("Importing from " + getBioPortalOntologyURL() + ontologyVersionId);
-		BioPortalReferenceData bpRefData = new BioPortalReferenceData();
-		assert configPropertiesMap != null : "configPropertiesMap should have been initialized!";
-		bpRefData.setCreateAsClass((Boolean) configPropertiesMap.get(CONFIG_PROPERTY_CREATE_REFERENCE_AS_CLASS));
-		bpRefData.setReferenceClassName((String) configPropertiesMap.get(CONFIG_PROPERTY_REFERENCE_CLASS));
-		bpRefData.setReferencePropertyName((String) configPropertiesMap.get(CONFIG_PROPERTY_REFERENCE_PROPERTY));
-		bpRefData.setBpBaseUrl((String) configPropertiesMap.get(CONFIG_PROPERTY_BIOPORTAL_BASE_URL));
-		bpRefData.setConceptId(conceptId);
-		bpRefData.setOntologyVersionId(ontologyVersionId);
-		bpRefData.setOntologyName(ontologyName);
-		bpRefData.setPreferredName(preferredName);
-		OntologyServiceManager.getInstance().importBioPortalConcept(project.getProjectName(), 
-				_currentEntity.getName(), bpRefData, getImportBioPortalConceptHandler());
-	}							
+        });
 
-	class GetSearchURLContentHandler extends AbstractAsyncHandler<String> {
-		@Override
-		public void handleFailure(Throwable caught) {
-			getEl().unmask();
-			GWT.log("Could not retrive BioPortal search results for " + _currentEntity, null);			
-		}
+        graphCol.setRenderer(new Renderer() {
+            public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum,
+                    Store store) {
+                return "<img src=\"images/graph.png\"></img>";
+            }
 
-		@Override
-		public void handleSuccess(String searchXml) {
-			getEl().unmask();			
-			store.loadXmlData(searchXml, true);
-			searchCountText.setText(store.getTotalCount() + " results.");
-		}
-	}
-	
-	protected AbstractAsyncHandler<Boolean> getImportBioPortalConceptHandler() {
-		return new ImportBioPortalConceptHandler();
-	}
-	
-	class ImportBioPortalConceptHandler extends AbstractAsyncHandler<Boolean> {
-		@Override
-		public void handleFailure(Throwable caught) {
-			getEl().unmask();
-			GWT.log("Could not import BioPortal concept for " + _currentEntity, null);			
-			MessageBox.alert("Import operation failed!");
-		}
-		
-		@Override
-		public void handleSuccess(Boolean success) {
-			getEl().unmask();			
- 			MessageBox.alert(success ? "Import operation done!" : "Import operation DID NOT SUCCEDED!");
-			
-		}
-	}
+        });
+
+        importCol.setRenderer(new Renderer() {
+            public String render(Object value, CellMetadata cellMetadata, final Record record, int rowIndex,
+                    int colNum, Store store) {
+                // the return string may contain ONLY ONE HTML TAG before the text,
+                // otherwise GridCellListener would not receive the onClick event!
+                return "<DIV style=\"color:#1542bb;text-decoration:underline;font-weight:bold\">Import</DIV>";
+            }
+        });
+        importCol.setSortable(false);
+
+        ColumnConfig[] columnConfigs = { conceptIdShortCol, preferredNameCol, recordTypeCol, contentsCol, ontologyCol, detailsCol, graphCol, importCol };
+
+        ColumnModel columnModel = new ColumnModel(columnConfigs);
+        columnModel.setDefaultSortable(true);
+
+        setHeight(200);
+        setStore(store);
+        setColumnModel(columnModel);
+        setAutoWidth(true);
+        stripeRows(true);
+        setAutoExpandColumn("preferredName");
+
+        addGridCellListener(new GridCellListenerAdapter() {
+            @Override
+            public void onCellClick(GridPanel grid, int rowIndex, int colindex, EventObject e) {
+                if (grid.getColumnModel().getDataIndex(colindex).equals("importLink")) {
+                    if (UIUtil.confirmOperationAllowed(project)) {
+                        Record record = grid.getStore().getAt(rowIndex);
+                        onImportReference(record);
+                    }
+                } else if (grid.getColumnModel().getDataIndex(colindex).equals("viewDetails")) {
+                    Record record = grid.getStore().getAt(rowIndex);
+                    onViewDetails(record);
+                } else if (grid.getColumnModel().getDataIndex(colindex).equals("viewGraph")) {
+                    Record record = grid.getStore().getAt(rowIndex);
+                    onViewGraph(record);
+                }
+            }
+        });
+
+        searchStringTextField = new TextField();
+        searchStringTextField.addListener(new TextFieldListenerAdapter() {
+            @Override
+            public void onSpecialKey(Field field, EventObject e) {
+                if (e.getKey() == EventObject.ENTER) {
+                    reload();
+                }
+            }
+        });
+        searchStringTextField.setWidth(250);
+
+        searchButton = new ToolbarButton(createLinkFont("Search in BioPortal", false));
+        searchButton.addListener(new ButtonListenerAdapter() {
+            @Override
+            public void onClick(Button button, EventObject e) {
+                reload();
+            }
+        });
+
+        Toolbar topToolbar = new Toolbar();
+        topToolbar.addText("&nbsp<i>Search for concept</i>:&nbsp&nbsp");
+        topToolbar.addElement(searchStringTextField.getElement());
+        topToolbar.addSpacer();
+        topToolbar.addButton(searchButton);
+        setTopToolbar(topToolbar);
+
+        searchAllButton = new ToolbarButton(createLinkFont(BioPortalConstants.SHOW_ALL_BUTTON_TEXT, false));
+        searchAllButton.setEnableToggle(true);
+        searchAllButton.addListener(new ButtonListenerAdapter() {
+            @Override
+            public void onToggle(Button button, boolean pressed) {
+                searchAll = pressed;
+                if (!ignoreSearchAllPressed) {
+                    reload();
+                }
+            }
+        });
+
+        createDNFRefButton = new ToolbarButton(createLinkFont(BioPortalConstants.DNF_BUTTON_TEXT, false));
+        createDNFRefButton.addListener(new ButtonListenerAdapter() {
+            @Override
+            public void onClick(Button button, EventObject e) {
+                onLeaveAComment();
+            }
+        });
+
+        searchCountText = new ToolbarTextItem("No results");
+
+        Toolbar toolbar = new Toolbar();
+        toolbar.addItem(searchCountText);
+        toolbar.addButton(searchAllButton);
+        toolbar.addFill();
+        toolbar.addButton(createDNFRefButton);
+        setBottomToolbar(toolbar);
+
+    }
+
+    private String createLinkFont(String text, boolean alert) {
+        final String blue_link = "#1542bb";
+        final String red_link = "#bb4215";
+
+        return "<font color='" + (alert ? red_link : blue_link) + "'><b><u>" + text + "</u></b></font>";
+    }
+
+    protected void onImportReference(Record record) {
+        BioPortalReferenceData bpRefData = createBioPortalReferenceDataFromRecord(record);
+        if(replaceExisting && isSingleValued){
+            EntityData oldValueEntityData = new EntityData(currentValue);
+            OntologyServiceManager.getInstance().replaceExternalReference(project.getProjectName(), currentEntity.getName(), bpRefData,
+                    oldValueEntityData, GlobalSettings.getGlobalSettings().getUserName(),
+                    getReplaceReferenceApplyToString(bpRefData, oldValueEntityData),
+                    getImportBioPortalConceptHandler());
+        } else {
+            OntologyServiceManager.getInstance().createExternalReference(project.getProjectName(), currentEntity.getName(), bpRefData,
+                    GlobalSettings.getGlobalSettings().getUserName(),
+                    getImportReferenceApplyToString(bpRefData),
+                    getImportBioPortalConceptHandler());
+            replaceExisting = true;
+
+        }
+    }
+
+    protected String getImportReferenceApplyToString(BioPortalReferenceData bpRefData) {
+        return UIUtil.getAppliedToTransactionString("Imported reference for " + UIUtil.getDisplayText(currentEntity) +
+                " and property " + UIUtil.getDisplayText(getProperty()) +". Reference: " + bpRefData.getPreferredName() + ", code: " + bpRefData.getConceptId(),
+                getEntity().getName());
+    }
+
+    /*
+     * TODO: The apply to string has to be fixed, when we refactor his class.
+     * It should show the old value, but currently we only have the old value full name which is not user friendly.
+     * This code should not be here, but in the external reference grid, where we have access to all the info.
+     */
+    protected String getReplaceReferenceApplyToString(BioPortalReferenceData bpRefData, EntityData oldValue) {
+        return UIUtil.getAppliedToTransactionString("Replaced reference for " + getEntity().getBrowserText() +
+                 " New reference: " + bpRefData.getPreferredName() + ", code: " + bpRefData.getConceptId(),
+                getEntity().getName());
+    }
+
+
+    private void onViewDetails(Record record) {
+        GWT.log("onViewDetails", null);
+        final Window window = new Window();
+        window.setWidth(550);
+        window.setHeight(500);
+        window.setLayout(new FitLayout());
+        final Panel panel = new Panel();
+        panel.setAutoScroll(true);
+        window.add(panel);
+        window.show();
+        panel.getEl().mask("Loading details...");
+
+        BioPortalSearchData bpSearchData = new BioPortalSearchData();
+        initBioPortalSearchData(bpSearchData);
+        BioPortalReferenceData bpRefData = createBioPortalReferenceDataFromRecord(record);
+
+        OntologyServiceManager.getInstance().getBioPortalSearchContentDetails(project.getProjectName(), bpSearchData,
+                bpRefData, new AsyncCallback<String>() {
+                    public void onFailure(Throwable caught) {
+                        panel.getEl().unmask();
+                        window.close();
+                        MessageBox.alert("Getting details from server failed. Please try it later.<BR>"
+                                + "Reason for failure: " + caught.getMessage());
+                    }
+
+                    public void onSuccess(String result) {
+                        panel.getEl().unmask();
+                        panel.setHtml(result);
+                    }
+                });
+    }
+
+    private void onViewGraph(Record record) {
+        GWT.log("onViewGraph", null);
+        Window window = new Window();
+        window.setWidth(800);
+        window.setHeight(550);
+        String ontologyVersionId = record.getAsString("ontologyVersionId");
+        String conceptIdShort = record.getAsString("conceptIdShort");
+        String bpRestBaseUrl = getBioPortalRestBaseURL();
+        window.add(getViewGraphContent(ontologyVersionId, conceptIdShort, bpRestBaseUrl));
+        window.show();
+    }
+
+    private Component getViewGraphContent(String ontologyVersionId, String conceptIdShort, String bpRestBaseUrl) {
+        Panel html = new Panel();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<html><body>");
+        stringBuilder.append("<iframe " + "width=\"770\" " + "height=\"520\" " + "frameborder=\"0\" "
+                + "scrolling=\"no\" " + "marginwidth=\"0\" " + "marginheight=\"0\" "
+                + "src=\"http://keg.cs.uvic.ca/ncbo/flexviz/BasicFlexoViz.html" + "?ontology=");
+        stringBuilder.append(ontologyVersionId);
+        stringBuilder.append("&virtual=false");
+        stringBuilder.append("&nodeid=");
+        stringBuilder.append(URL.encodeComponent(conceptIdShort));
+        stringBuilder.append("&show=Neighborhood");
+        stringBuilder.append("&server=");
+        stringBuilder.append(bpRestBaseUrl);
+        stringBuilder.append("\">" + "</iframe></body></html>");
+        /* */
+        html.setHtml(stringBuilder.toString());
+        return html;
+    }
+
+    public static String replaceSpaces(String text) {
+        return text.replaceAll(" ", "%20");
+    }
+
+    private void onLeaveAComment() {
+        createReferenceIfUserComments(project);
+    }
+
+    public EntityData getEntity() {
+        return currentEntity;
+    }
+
+    public void setEntity(EntityData newEntity) {
+        setEntity(newEntity, true);
+    }
+
+    public void setEntity(EntityData newEntity, boolean refreshUI) {
+        if (currentEntity != null && currentEntity.equals(newEntity)) {
+            return;
+        }
+        searchAll = false;
+        ignoreSearchAllPressed = true;
+        searchAllButton.setPressed(false);
+        ignoreSearchAllPressed = false;
+        searchCountText.setText("No results");
+        currentEntity = newEntity;
+
+        String defSearchString = (String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_DEFAULT_SEARCH_STRING);
+        if (defSearchString == null) {
+            searchStringTextField.setValue(currentEntity.getBrowserText());
+        } else if (defSearchString.equals(DefaultSearchStringTypeEnum.None.toString())) {
+            searchStringTextField.setValue("");
+        } else if (defSearchString.equals(DefaultSearchStringTypeEnum.Entity.toString())) {
+            searchStringTextField.setValue(currentEntity.getBrowserText());
+        } else if (defSearchString.startsWith(DefaultSearchStringTypeEnum.Property.toString())) {
+            /* TODO get the name of the property of the  entity that we wish to display
+            String propName = defSearchString.substring(DefaultSearchStringType.Property.toString().length());
+            if (propName.equals("BrowserText")) {
+                searchStringTextField.setValue(_entity.getBrowserText());
+            } else if () {
+                ....
+            }
+            */
+        } else {
+            searchStringTextField.setValue(defSearchString);
+        }
+        if (refreshUI) {
+            reload();
+        }
+    }
+
+    public EntityData getProperty() {
+        return property;
+    }
+
+    public void setProperty(EntityData property) {
+        this.property = property;
+    }
+
+    public void setReplaceExisting(boolean replace) {
+        replaceExisting = replace;
+    }
+
+    public void setCurrentValue(String currentValue) {
+        this.currentValue = currentValue;
+    }
+
+    protected void reload() {
+        store.removeAll();
+
+        String searchString = searchStringTextField.getText();
+        if (searchString != null && searchString.length() > 0) {
+            getEl().mask("Loading search results", true);
+            if (configPropertiesMap != null) {
+                BioPortalSearchData bpSearchData = new BioPortalSearchData();
+                initBioPortalSearchData(bpSearchData);
+                OntologyServiceManager.getInstance().getBioPortalSearchContent(project.getProjectName(), searchString,
+                        bpSearchData, new GetSearchURLContentHandler());
+            } else {
+                GWT.log("configPropertiesMap should have been initialized!", new Exception(
+                        "reload() method called before configPropertiesMap has been initialized."));
+            }
+        }
+    }
+
+    private void initBioPortalSearchData(BioPortalSearchData bpSearchData) {
+        bpSearchData.setBpRestBaseUrl(getBioPortalRestBaseURL());
+        bpSearchData.setBpSearchUrl(getBioPortalSearchURL());
+        bpSearchData.setSearchOntologyIds((String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_SEARCH_ONTOLOGY_IDS));
+        bpSearchData.setSearchOptions(getBioPortalSearchOptions());
+        bpSearchData.setSearchPageOption(getBioPortalSearchPageOption(searchAll));
+    }
+
+    private String getBioPortalRestBaseURL() {
+        String res = BioPortalConstants.DEFAULT_BIOPORTAL_REST_BASE_URL;
+        if (configPropertiesMap != null) {
+            res = (String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_BIOPORTAL_REST_BASE_URL);
+            if (res == null) {
+                res = BioPortalConstants.DEFAULT_BIOPORTAL_REST_BASE_URL;
+            }
+        }
+
+        return res;
+    }
+
+    private String getBioPortalOntologyURL() {
+        String res = BioPortalConstants.DEFAULT_BIOPORTAL_ONTOLOGY_URL;
+        if (configPropertiesMap != null) {
+            res = (String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_BIOPORTAL_BASE_URL);
+            if (res != null) {
+                res = res + BioPortalConstants.BP_ONTOLOGY_STR + "/";
+            } else {
+                res = BioPortalConstants.DEFAULT_BIOPORTAL_ONTOLOGY_URL;
+            }
+        }
+
+        return res;
+    }
+
+    private String getBioPortalVisualizeURL() {
+        String res = BioPortalConstants.DEFAULT_BIOPORTAL_VISUALIZE_URL;
+        if (configPropertiesMap != null) {
+            res = (String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_BIOPORTAL_BASE_URL);
+            if (res != null) {
+                res = res + BioPortalConstants.BP_VISUALIZE_STR + "/";
+            } else {
+                res = BioPortalConstants.DEFAULT_BIOPORTAL_VISUALIZE_URL;
+            }
+        }
+
+        return res;
+    }
+
+    private String getBioPortalSearchURL() {
+        String res = BioPortalConstants.DEFAULT_BIOPORTAL_SEARCH_URL;
+        if (configPropertiesMap != null) {
+            //TODO activate this see if we decide to use the REST BASE url above, also for the search
+            //res = getBioPortalRestBaseURL() + BP_SEARCH_STR + "/";
+
+            res = (String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_BIOPORTAL_SEARCH_URL);
+            if (res == null) {
+                res = BioPortalConstants.DEFAULT_BIOPORTAL_SEARCH_URL;
+            }
+        }
+
+        return res;
+    }
+
+    private String getBioPortalSearchOptions() {
+        String res = "";
+        if (configPropertiesMap != null) {
+            res = (String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_SEARCH_OPTIONS);
+            if (res == null) {
+                res = "";
+            }
+        }
+
+        return res;
+    }
+
+    private String getBioPortalSearchPageOption(boolean all) {
+        if (all) {
+            //do not restrict search pages
+            return null;
+        }
+        String res = BioPortalConstants.DEFAULT_BIOPORTAL_SEARCH_ONE_PAGE_OPTION;
+        if (configPropertiesMap != null) {
+            res = (String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_SEARCH_ONE_PAGE_OPTION);
+            if (res == null) {
+                res = BioPortalConstants.DEFAULT_BIOPORTAL_SEARCH_ONE_PAGE_OPTION;
+            }
+        }
+
+        return res;
+    }
+
+    public void createReferenceIfUserComments(final Project project) {
+
+        final Window window = new Window();
+        window.setTitle("Comment on reference");
+        window.setWidth(600);
+        window.setHeight(350);
+        window.setMinWidth(300);
+        window.setMinHeight(250);
+        window.setLayout(new FitLayout());
+        window.setPaddings(5);
+        window.setButtonAlign(Position.CENTER);
+
+        //window.setCloseAction(Window.HIDE);
+        window.setPlain(true);
+
+        EntityData refInstance = null; //refInstance is not created at this point
+
+        final NoteInputPanel nip = new NoteInputPanel(project, "Enter a comment about this reference (optional):",
+                false, refInstance, window, new AsyncCallback<NotesData>() {
+                    public void onFailure(Throwable caught) {
+                        if (caught != null) {
+                            MessageBox.alert(caught.getMessage());
+                        }
+                    }
+
+                    public void onSuccess(NotesData note) {
+                        if (note != null
+                                && ((note.getSubject() != null && note.getSubject().length() > 0) || (note.getBody() != null && note
+                                        .getBody().length() > 0))) {
+                            createDNFReference(note);
+                        }
+                    }
+                });
+        window.add(nip);
+
+        window.show();
+        nip.getMainComponentForFocus().focus();
+    }
+
+    public void createDNFReference(NotesData note) {
+        GWT.log("onCreateDNFReference", null);
+        BioPortalReferenceData bpRefData = new BioPortalReferenceData();
+
+        initBioPortalReferenceData(bpRefData);
+
+        bpRefData.setBpUrl(null);
+        bpRefData.setConceptId(BioPortalConstants.DNF_CONCEPT_ID);
+        bpRefData.setConceptIdShort(BioPortalConstants.DNF_CONCEPT_ID_SHORT);
+        bpRefData.setOntologyVersionId(null);
+        bpRefData.setOntologyName(null);
+        bpRefData.setPreferredName(BioPortalConstants.DNF_CONCEPT_LABEL);
+        bpRefData.setBpUrl(null);//do not use the BP rest URL to find out more information about this concept
+        OntologyServiceManager.getInstance().createExternalReference(
+                project.getProjectName(),
+                currentEntity.getName(),
+                bpRefData,
+                GlobalSettings.getGlobalSettings().getUserName(),
+                UIUtil.getAppliedToTransactionString("Create a 'Did not find' reference on "
+                        + getEntity().getBrowserText() + " "
+                        + (String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_REFERENCE_PROPERTY), getEntity().getName()),
+                getCreateDNFConceptHandler(note));
+    }
+
+    public void createReference(String ontologyVersionId, String conceptId, String conceptIdShort, String preferredName, String url) {
+        GWT.log("onCreateReference", null);
+        BioPortalReferenceData bpRefData = new BioPortalReferenceData();
+
+        initBioPortalReferenceData(bpRefData);
+
+        bpRefData.setBpUrl(url);
+        bpRefData.setConceptId(conceptId);
+        bpRefData.setConceptIdShort(conceptIdShort);
+        bpRefData.setOntologyVersionId(ontologyVersionId);
+        bpRefData.setOntologyName(null);
+        bpRefData.setPreferredName(preferredName);
+        bpRefData.setBpUrl(null);//do not use the BP rest URL to find out more information about this concept
+        OntologyServiceManager.getInstance().createExternalReference(
+                project.getProjectName(),
+                currentEntity.getName(),
+                bpRefData,
+                GlobalSettings.getGlobalSettings().getUserName(),
+                UIUtil.getAppliedToTransactionString("Created reference on " + getEntity().getBrowserText() + " "
+                        + (String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_REFERENCE_PROPERTY), getEntity().getName()),
+                getCreateManualreferenceHandler());
+    }
+
+    public void replaceReference(String ontologyVersionId, String conceptId, String conceptIdShort, String preferredName, String url, String oldInstanceName) {
+        GWT.log("onCreateReference", null);
+        BioPortalReferenceData bpRefData = new BioPortalReferenceData();
+
+        initBioPortalReferenceData(bpRefData);
+
+        bpRefData.setBpUrl(url);
+        bpRefData.setConceptId(conceptId);
+        bpRefData.setConceptIdShort(conceptIdShort);
+        bpRefData.setOntologyVersionId(ontologyVersionId);
+        bpRefData.setOntologyName(null);
+        bpRefData.setPreferredName(preferredName);
+        bpRefData.setBpUrl(null);//do not use the BP rest URL to find out more information about this concept
+
+        EntityData oldValueEntityData = new EntityData(oldInstanceName);
+        OntologyServiceManager.getInstance().replaceExternalReference(
+                project.getProjectName(),
+                currentEntity. getName(),
+                bpRefData,
+                oldValueEntityData,
+                GlobalSettings.getGlobalSettings().getUserName(),
+                UIUtil.getAppliedToTransactionString("Created reference on " + getEntity().getBrowserText() + " "
+                        + (String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_REFERENCE_PROPERTY), getEntity().getName()),
+                getCreateManualreferenceHandler());
+    }
+
+    private BioPortalReferenceData createBioPortalReferenceDataFromRecord(Record record) {
+        String ontologyVersionId = record.getAsString("ontologyVersionId");
+        String conceptId = record.getAsString("conceptId");
+        String conceptIdShort = record.getAsString("conceptIdShort");
+        String ontologyName = record.getAsString("ontologyDisplayLabel");
+        String preferredName = record.getAsString("preferredName");
+
+        BioPortalReferenceData bpRefData = new BioPortalReferenceData();
+
+        initBioPortalReferenceData(bpRefData);
+
+        String url = getBioPortalVisualizeURL() + ontologyVersionId + "/?conceptid=" + URL.encodeComponent(conceptId);
+        bpRefData.setBpUrl(url);
+
+        bpRefData.setConceptId(conceptId);
+        bpRefData.setConceptIdShort(conceptIdShort);
+        bpRefData.setOntologyVersionId(ontologyVersionId);
+        bpRefData.setOntologyName(ontologyName);
+        bpRefData.setPreferredName(preferredName);
+        bpRefData.setBpRestBaseUrl(getBioPortalRestBaseURL());
+
+        return bpRefData;
+    }
+
+    private void initBioPortalReferenceData(BioPortalReferenceData bpRefData) {
+        bpRefData.setReferenceClassName((String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_REFERENCE_CLASS));
+        bpRefData.setReferencePropertyName((String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_REFERENCE_PROPERTY));
+        bpRefData.setUrlPropertyName((String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_URL_PROPERTY));
+        bpRefData.setOntologyNamePropertyName((String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_ONTOLOGY_NAME_PROPERTY));
+        bpRefData.setOntologyNameAltPropertyName((String) configPropertiesMap
+                .get(BioPortalConstants.CONFIG_PROPERTY_ONTOLOGY_NAME_ALT_PROPERTY));
+        bpRefData.setOntologyIdPropertyName((String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_ONTOLGY_ID_PROPERTY));
+        bpRefData.setConceptIdPropertyName((String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_CONCEPT_ID_PROPERTY));
+        bpRefData
+                .setConceptIdAltPropertyName((String) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_CONCEPT_ID_ALT_PROPERTY));
+        bpRefData.setPreferredLabelPropertyName((String) configPropertiesMap
+                .get(BioPortalConstants.CONFIG_PROPERTY_PREFERRED_LABEL_PROPERTY));
+
+        bpRefData.setImportFromOriginalOntology(getImportFromOriginalOntology());
+    }
+
+    public boolean getImportFromOriginalOntology() {
+        Boolean b = (Boolean) configPropertiesMap.get(BioPortalConstants.CONFIG_PROPERTY_IMPORT_FROM_ORIGINAL_ONTOLOGY);
+        return b == null ? BioPortalConstants.DEFAULT_IMPORT_FROM_ORIGINAL_ONTOLOGIES : b.booleanValue();
+    }
+
+    class GetSearchURLContentHandler extends AbstractAsyncHandler<String> {
+        @Override
+        public void handleFailure(Throwable caught) {
+            if (getEl() != null) { //how can it be null?
+                getEl().unmask();
+            }
+            GWT.log("Could not retrive BioPortal search results for " + currentEntity, null);
+        }
+
+        @Override
+        public void handleSuccess(String searchXml) {
+            if (getEl() != null) { //how can it be null?
+                getEl().unmask();
+            }
+            store.loadXmlData(searchXml, true);
+            searchCountText.setText(store.getTotalCount() + " / " + extractNumResultsTotal(searchXml) + " results shown.");
+            searchAllButton.setText(createLinkFont(BioPortalConstants.SHOW_ALL_BUTTON_TEXT,
+                    !searchAllButton.isPressed() && extractNumPages(searchXml)>1));
+            createDNFRefButton.setText(createLinkFont(BioPortalConstants.DNF_BUTTON_TEXT, store.getTotalCount() == 0));
+        }
+
+        private int extractNumPages(final String searchXml) {
+        	return extractAttributeValue(searchXml, BioPortalConstants.XML_ELEMENT_NUM_PAGES);
+        }
+
+        private int extractNumResultsTotal(final String searchXml) {
+        	return extractAttributeValue(searchXml, BioPortalConstants.XML_ELEMENT_NUM_RESULTS_TOTAL);
+        }
+
+        private int extractAttributeValue(final String searchXml, final String attrName) {
+            final String start_el = "<" + attrName + ">";
+            final String end_el = "</" + attrName + ">";
+            int res = 0;
+            //This is a hacky solution in order to avoid the overhead of using the XML parser.
+            int start_idx = searchXml.indexOf(start_el);
+            if (start_idx >= 0) {
+                int val_idx = start_idx + start_el.length();
+                int end_idx = searchXml.indexOf(end_el, val_idx);
+                if (end_idx >= 0) {
+                    res = Integer.parseInt(searchXml.substring(val_idx, end_idx));
+                }
+            }
+            return res;
+        }
+    }
+
+    protected AbstractAsyncHandler<EntityData> getImportBioPortalConceptHandler() {
+        return new ImportBioPortalConceptHandler();
+    }
+
+    class ImportBioPortalConceptHandler extends AbstractAsyncHandler<EntityData> {
+        @Override
+        public void handleFailure(Throwable caught) {
+            getEl().unmask();
+            GWT.log("Could not import BioPortal concept for " + currentEntity, null);
+            MessageBox.alert("Import operation failed!");
+        }
+
+        @Override
+        public void handleSuccess(EntityData refInstance) {
+            getEl().unmask();
+            MessageBox.alert(refInstance != null ? "Import operation SUCCEDED! Reference instance: " + refInstance
+                    : "Import operation DID NOT SUCCEDED!");
+        }
+    }
+
+    protected AbstractAsyncHandler<EntityData> getCreateManualreferenceHandler() {
+        return new CreateManualreferenceHandler();
+    }
+
+    class CreateManualreferenceHandler extends AbstractAsyncHandler<EntityData> {
+        @Override
+        public void handleFailure(Throwable caught) {
+            getEl().unmask();
+            GWT.log("Could not create manual reference for " + currentEntity, null);
+            MessageBox.alert("Reference creation failed!");
+        }
+
+        @Override
+        public void handleSuccess(EntityData refInstance) {
+            getEl().unmask();
+            MessageBox.alert(refInstance != null ? "Reference creation SUCCEDED! Reference instance: " + refInstance
+                    : "Reference creation DID NOT SUCCEDED!");
+        }
+    }
+
+    protected AbstractAsyncHandler<EntityData> getCreateDNFConceptHandler(NotesData note) {
+        return new CreateDNFConceptHandler(note);
+    }
+
+    class CreateDNFConceptHandler extends AbstractAsyncHandler<EntityData> {
+        private NotesData note;
+
+        public CreateDNFConceptHandler(NotesData note) {
+            this.note = note;
+        }
+
+        @Override
+        public void handleFailure(Throwable caught) {
+            getEl().unmask();
+            GWT.log("Could not create DNF reference for " + currentEntity, null);
+            MessageBox.alert("Reference creation failed!");
+        }
+
+        @Override
+        public void handleSuccess(EntityData refInstance) {
+            getEl().unmask();
+            MessageBox.alert(refInstance != null ? "Reference creation SUCCEDED! Reference instance: " + refInstance
+                    : "Reference creation DID NOT SUCCEDED!");
+            this.note.setAnnotatedEntity(refInstance);
+            ReferenceFieldWidget.addUserComment(project, note);
+        }
+    }
 }

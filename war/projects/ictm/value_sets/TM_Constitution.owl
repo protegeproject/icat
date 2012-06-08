@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns="http://who.int/ictm/constitution#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:ictm="http://who.int/ictm#"
+  xml:base="http://who.int/ictm/constitution">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="TM817085">
+    <ictm:titleEnglish xml:lang="en">yang deficiency diathesis </ictm:titleEnglish>
+    <ictm:titleChinese xml:lang="cn">阳虚质</ictm:titleChinese>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >yang deficiency diathesis  / 阳虚质</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817086">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dual qi and blood deficiency diathesis  / 气血两虚质</rdfs:label>
+    <ictm:titleEnglish xml:lang="en">dual qi and blood deficiency diathesis </ictm:titleEnglish>
+    <ictm:titleChinese xml:lang="cn">气血两虚质</ictm:titleChinese>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817069">
+    <ictm:titleChinese xml:lang="cn">偏阴质</ictm:titleChinese>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >preponderated yin constitution  / 偏阴质</rdfs:label>
+    <ictm:titleEnglish xml:lang="en">preponderated yin constitution </ictm:titleEnglish>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817083">
+    <ictm:titleEnglish xml:lang="en">phlegm-dampness diathesis</ictm:titleEnglish>
+    <ictm:titleChinese xml:lang="cn"> 痰湿质</ictm:titleChinese>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >phlegm-dampness diathesis /  痰湿质</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817067">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >balanced yin-yang constitution  / 阴阳平和质</rdfs:label>
+    <ictm:titleChinese xml:lang="cn">阴阳平和质</ictm:titleChinese>
+    <ictm:titleEnglish xml:lang="en">balanced yin-yang constitution </ictm:titleEnglish>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817084">
+    <ictm:titleEnglish xml:lang="en">yin deficiency diathesis </ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >yin deficiency diathesis  / 阴虚质</rdfs:label>
+    <ictm:titleChinese xml:lang="cn">阴虚质</ictm:titleChinese>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817068">
+    <ictm:titleEnglish xml:lang="en">preponderated yang constitution </ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >preponderated yang constitution  / 偏阳质</rdfs:label>
+    <ictm:titleChinese xml:lang="cn">偏阳质</ictm:titleChinese>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817082">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >blood stasis diathesis  / 血瘀质</rdfs:label>
+    <ictm:titleChinese xml:lang="cn">血瘀质</ictm:titleChinese>
+    <ictm:titleEnglish xml:lang="en">blood stasis diathesis </ictm:titleEnglish>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817081">
+    <ictm:titleChinese xml:lang="cn">阴寒质</ictm:titleChinese>
+    <ictm:titleEnglish xml:lang="en">yin-cold diathesis </ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >yin-cold diathesis  / 阴寒质</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817077">
+    <ictm:titleEnglish xml:lang="en">person of taiyang</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >person of taiyang</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817071">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >fire-featured person</rdfs:label>
+    <ictm:titleEnglish xml:lang="en">fire-featured person</ictm:titleEnglish>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817072">
+    <ictm:titleEnglish xml:lang="en">earth-featured person</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >earth-featured person</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817078">
+    <ictm:titleEnglish xml:lang="en">person of shaoyang</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >person of shaoyang</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817080">
+    <ictm:titleEnglish xml:lang="en">yang-heat diathesis </ictm:titleEnglish>
+    <ictm:titleChinese xml:lang="cn">阳热质</ictm:titleChinese>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >yang-heat diathesis  / 阳热质</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817070">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >wood-featured person / 木形之人</rdfs:label>
+    <ictm:definitionChinese xml:lang="cn">具有木行属性体质的人。皮肤色苍，头小，肩背宽大，身直，手足小；有才智，好劳心，少力，多忧劳于事；耐受春夏，秋冬易感邪而病。其大角之人谦让和蔼，左(少)角之人随和顺从，钅犬角之人勇于上进，判角之人刚直不阿。</ictm:definitionChinese>
+    <ictm:titleEnglish xml:lang="en">wood-featured person</ictm:titleEnglish>
+    <ictm:titleChinese xml:lang="cn">木形之人</ictm:titleChinese>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817079">
+    <ictm:titleEnglish xml:lang="en">balanced yin-yang constitution</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >balanced yin-yang constitution</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817074">
+    <ictm:titleEnglish xml:lang="en">water-featured person</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >water-featured person</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817073">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >metal-featured person</rdfs:label>
+    <ictm:titleEnglish xml:lang="en">metal-featured person</ictm:titleEnglish>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817075">
+    <ictm:titleChinese xml:lang="cn">太阴之人</ictm:titleChinese>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >person of taiyin / 太阴之人</rdfs:label>
+    <ictm:definitionChinese xml:lang="cn">多阴无阳体质的人，贪而不仁，貌似谦恭，内心险恶，好内恶出，喜怒不形于色，不识时务，只知利已，后发制人。</ictm:definitionChinese>
+    <ictm:titleEnglish xml:lang="en">person of taiyin</ictm:titleEnglish>
+  </owl:Class>
+  <owl:Class rdf:ID="TM817076">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >person of shaoyin</rdfs:label>
+    <ictm:titleEnglish xml:lang="en">person of shaoyin</ictm:titleEnglish>
+  </owl:Class>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#titleKorean">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Title Korean</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#titleChinese">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Title Chinese</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#titleJapanese">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Title Japanese</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#definitionKorean">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition Korean</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#definitionJapanese">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition Japanese</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#titleEnglish">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Title English</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#definitionEnglish">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition English</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#definitionChinese">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition Chinese</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#originalCode">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Original Code</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#originalProperty">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Original Source</rdfs:label>
+  </owl:AnnotationProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4.5, Build 600)  http://protege.stanford.edu -->

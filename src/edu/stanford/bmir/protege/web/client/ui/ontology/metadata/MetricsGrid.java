@@ -1,7 +1,6 @@
 package edu.stanford.bmir.protege.web.client.ui.ontology.metadata;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.gwtext.client.data.ArrayReader;
@@ -15,11 +14,11 @@ import com.gwtext.client.widgets.grid.ColumnConfig;
 import com.gwtext.client.widgets.grid.ColumnModel;
 import com.gwtext.client.widgets.grid.GridPanel;
 
+import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.MetricData;
-import edu.stanford.bmir.protege.web.client.util.Project;
 
 /**
  * @author Jennifer Vendetti <vendetti@stanford.edu>
@@ -95,21 +94,18 @@ public class MetricsGrid extends GridPanel {
 				new GetMetrics());
 	}
 	
-	class GetMetrics extends AbstractAsyncHandler {
+	class GetMetrics extends AbstractAsyncHandler<List<MetricData>> {
 
 		public void handleFailure(Throwable caught) {
 			GWT.log("RPC error getting ontology metrics", caught);
 		}
 
-		public void handleSuccess(Object result) {
-			ArrayList metrics = (ArrayList) result;
-			Iterator iterator = metrics.iterator();
-			while (iterator.hasNext()) {
-				MetricData metric = (MetricData) iterator.next();
+		public void handleSuccess(List<MetricData> result) {
+			for (MetricData data : result) {
 				Record record = recordDef.createRecord(new Object[] {
-						metric.getMetricName(), metric.getMetricValue() });
+				        data.getMetricName(), data.getMetricValue() });
 				store.add(record);
-			}
+			}			
 			
 			/*
 			 * Metrics grid will not refresh properly w/out these lines.

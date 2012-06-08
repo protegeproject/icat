@@ -5,10 +5,12 @@ public enum ValueType { //TODO: fix cases - problem with mapping bw value type p
 	Symbol,
 	Literal,
 	Integer,
-	Float,	
-	Date, 
+	Float,
+	Date,
 	Boolean,
 	Instance, //TODO: hack change back
+	Cls,
+	Property,
 	Any
 }
 
