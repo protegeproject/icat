@@ -1,0 +1,2957 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:p1="http://www.autism.stanford.edu/assessment-result.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.autism.stanford.edu/CA_CHARGE_Medical_History.owl">
+  <owl:Ontology rdf:about="http://www.autism.stanford.edu/CA_CHARGE_PhysicalExam.owl">
+    <owl:imports rdf:resource="http://www.autism.stanford.edu/assessment-result.owl"/>
+  </owl:Ontology>
+  <owl:Class/>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#charge_physicalexam_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ears</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#charge_physicalexam_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eyes</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Header">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#charge_physicalexam_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Header</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Head">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Head</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#charge_physicalexam_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Nose">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nose</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#charge_physicalexam_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#charge_physicalexam_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Mouth/Oral Region</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Genito_Urinary">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#charge_physicalexam_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Genito-Urinary</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#charge_physicalexam_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Skin, Hair"</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Maxilla_and_Mandible">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#charge_physicalexam_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Maxilla and Mandible</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Neurological</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#charge_physicalexam_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#charge_physicalexam_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cardiopulmonary</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Limbs</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#charge_physicalexam_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neck__Thorax__Back">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Neck, Thorax, Back"</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#charge_physicalexam_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Abdomen">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Abdomen</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#charge_physicalexam_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#charge_physicalexam_item">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/assessment-result.owl#autism_ontology_datatype_property"/>
+  </owl:DatatypeProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_microdonita">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Microdontia</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_nose_root">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nasal Root</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Broad;Narrow;Normal;NE</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Nose"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_extraocmovedesc">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Extraocular Movements - Describe</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neck_kyphosis">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Kyphosis</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neck__Thorax__Back"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_lipsprominent">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Prominent Lips</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_genito_micropencm">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Micropenis - Length in cm</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Genito_Urinary"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_epifold">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Epicanthal Folds</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_genito_cryptoris">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Genito_Urinary"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cryptorchidism</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_bruits">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bruits</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_lfronthair">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Low Frontal Hairline</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neck_supnip">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neck__Thorax__Back"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Supernumerary Nipples</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_periorfull">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Periorbital Fullness</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_irispattern">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Iris Patterning</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Brushfield Spots;Lisch Nodules;Fine/Porous;Heterochromasia;Stellate;Pale Blue;None;NE</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_preaurpitstype">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Left;Right;Bilateral</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >51</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Preauricular Pits</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_preaurtagstype">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Left;Right;Bilateral</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Preauricular Tags</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >51</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_auxfreck">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Axillary Freckling</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_interview_date">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Interview Date</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >MM/dd/yyyy;MM/dd/yyyy HH:mm Z</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Header"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_maxilla_malarhypop">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Malar Hypoplasia</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Maxilla_and_Mandible"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_muscle">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Muscle Tone</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Normal;Hypertonic;Hypotonic;Mixed;NE</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_maxilla_microgan">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Micrognanthia</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Maxilla_and_Mandible"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_maxilla_maxilhypop">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Maxilla_and_Mandible"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Maxillary Hypoplasia</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_head_frontalboss">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Head"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Frontal Bossing</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_neurofib">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Neurofibromas</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_widthright">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ear Width(Right) - in cm</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neck_comments">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neck__Thorax__Back"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_hyperpigdis">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hyperpigmentation - Distribution</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_cafe">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Café-au-lait</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neck_peccarinatum">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neck__Thorax__Back"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Pectus Carinatum</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_cuppingtype">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ear Cupping</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Left;Right;Bilateral</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >51</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_phillencm">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Philtrum Length - in cm </rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtrtricne">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NE</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DTR Triceps - Not Examined</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtrbicleft">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1;2;3;4</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DTR Biceps - Left</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_poly">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Polydactyly</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_nystagmus">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nystagmus</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_indexgreatthird">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >*Index &gt; 3rd finger</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_nose_lengthpercen">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nasal Length - in percentage</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Nose"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtrstrll">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Strength LL</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1;2;3;4;5</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_footlenright">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Foot Length(Right) - in cm</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_smiledescribe">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Symmetry of Smile - Describe</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_polysite">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Polydactyly - Site</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_fissSlant">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Up;Down;Normal</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Palpebral Fissure Slant </rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_preaurpits">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Preauricular Pits</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_lenleft">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ear Length(Left) - in cm</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_cornealOpacity">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Corneal Opacity</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_subcutaneous">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Subcutaneous Nodules</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_genito_anterioranus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Anterior Anus</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Genito_Urinary"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_ehypop">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Enamal Hypoplasia</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_lenpercen">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ear Length - percentage</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_outcanthalpercen">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Outer Canthal Distance - in percentage</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_highacrched">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >High Arched Palate</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_bifid">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bifid Uvula</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_maxilla_progan">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Maxilla_and_Mandible"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Prognanthia</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_widthpercen">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ear Width - percentage</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_leftfinerlen">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Third Finger Length(Left) - in cm</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_thinupperlip">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Thin Upper Lip</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_nose_lengthcm">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Nose"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nasal Length - in cm</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_smile">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Normal;Abnormal;NE</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Symmetry of Smile</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neck_webbed">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neck__Thorax__Back"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Webbed Neck</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_phillenpercen">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Philtrum Length - in percentage</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_lefthandlen">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hand Length(Left) - in cm</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_pulses">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Normal;Decreased;Bounding</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Pulses</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_cyanosis">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cyanosis</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_colobomata">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Colobomata</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_nose_anteverted">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Anteverted Nostrils</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Nose"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_lobe">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Free;Attached;Notches;NE</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ear Lobe</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtrstrlu">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1;2;3;4;5</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Strength LU</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_eyebrowflair">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Medial Eyebrow Flair</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_comments">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_genito_macroor">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Macroorchidism</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Genito_Urinary"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_ptosis">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ptosis</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_syndacsite">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Syndactyly - Site</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_prominenteye">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Prominent Eyes</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_microglossia">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Microglossia</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_abdomen_splenom">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Splenomegally</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Abdomen"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_hypopigmen">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hypopigmentation</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_rythm">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Rhythm</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Regular;Irregularly Irregular;Regularly Irregular</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_clino">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Clinodactyly</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_incanthalcm">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Inner Canthal Distance - in cm</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_hair">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fine;Course;Thick;Fragile;Kinky;Curly</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hair Type</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_extraocmove">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Normal;Abnormal;NE</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Extraocular Movements</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_comments">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_genito_hyposp">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hypospadious</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Genito_Urinary"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_genito_micropen">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Micropenis</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Genito_Urinary"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_head_occiput">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Flat;Normal;Prominent;NE</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Head"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Occiput</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_heartsound">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >None;Gallop;Rub;Other;NE</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Extra Heart Sounds</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_maxilla_comments">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Maxilla_and_Mandible"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_eczema">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eczema</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_preaurtags">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Preauricular Tags</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_fisslenpercen">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Palpebral Fissure Length - in percentage</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_camptodac">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Camptodactyly</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_rotatedegreesna">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NE</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ear rotation (degrees) - Not applicable</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_SRC_Subject_ID">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The sites subject identification</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Header"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_interpupillarypercen">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Interpupillary Distance - in percentage</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtrstrru">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1;2;3;4;5</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Strength RU</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_abdomen_hepatom">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hepatomegally</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Abdomen"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_palmarcrease">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Single Palmar Crease</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_murmur">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Murmur</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_head_desc">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Head"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Abnormal Head Shape - Describe</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_footlenleft">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Foot Length(Left) - in cm</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_bruitssite">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bruits - Site</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_head_circumna">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Head Circumference(in cm) - Not Applicable</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NE</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Head"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtrpatne">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NE</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DTR Patella - Not Examined</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_camptodacsite">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Camptodactyly - Site</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_head_faciala">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Facial Asymmetry</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Head"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_head_hypoplasia">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Head"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Midface Hypoplasia</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neck_scoliosis">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Scoliosis</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neck__Thorax__Back"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_gaitdescribe">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Gait - Describe</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtrpatright">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DTR Patella - Right</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1;2;3;4</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_fisslenright">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Palpebral Fissure Length (Right) - in cm</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_abstragustype">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Absent Tragus</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >51</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Left;Right;Bilateral</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtrstrrl">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Strength RL</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1;2;3;4;5</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_edema">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Edema of Hands or Feet</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_murmurtime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Murmur Timing</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_rightfinerlen">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Third Finger Length</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_brachy">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Brachydactyly</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neck_scaral">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neck__Thorax__Back"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sacral Dimple/Hair Tuft</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_palmarcreasetype">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Right;Left;Bilateral</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Single Palmar Crease - Type</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_nystagmustype">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >51</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Vertical;Horizontal</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nystagmus - Type</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtrpatleft">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1;2;3;4</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DTR Patella - Left</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_fingerpadstype">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Right;Left;Bilateral</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Prominent Finger Pads</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neck_pecexcavatum">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Pectus Excavatum</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neck__Thorax__Back"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_pupredreflex">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Pupillary Red Reflex</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_genito_other">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Genito_Urinary"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_genito_cryptor">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Genito_Urinary"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Right;Left;Bilateral</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cryptorchidism</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_cafenum">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Café-au-lait - Number</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_nailhypoptype">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >RU;LU;RL;LL</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nail Hypoplasia - Type</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_discolored">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Discolored/Mottled</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_nose_other">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Nose"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_synophrys">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Synophrys</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_comments">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_genito_macroorvolume">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Macroorchidism - Volume in ml</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Genito_Urinary"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_pallor">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Pallor</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_jointhyperextensite">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Joint Hyperextensibility - Site</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_hypopigmendis">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hypopigmentation - Distribution</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_adsounds">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Adventitial sounds</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtrtricright">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1;2;3;4</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DTR Triceps - Right</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_nose_hypoplasic">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hypoplasic Nares</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Nose"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_nose_bridge">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Nose"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Prominent;Depressed;Broad;Normal;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nasal Bridge</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_nailhypop">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nail Hypoplasia</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_Strabismus">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Strabismus</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_comments">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_jointhyperexten">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Joint Hyperextensibility</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_clinosite">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Clinodactyly - Site</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_resprate">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Normal;Tachypnea</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Respiratory Rate</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_head_other">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Head"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtrtricleft">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DTR Triceps - Left</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1;2;3;4</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtrbicne">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NE</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DTR Biceps - Not Examined</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_teeth">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Supernumerary Teeth</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_bp">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Blood Pressure</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >High;Low;Normal;NE </p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_jointlimitations">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Joint Limitations/Contractures</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_handlenpersen">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hand Length - in percentage</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_heartrate">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tachy;Brady;Normal;NE</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Heart Rate</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtrbicright">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DTR Biceps - Right </rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1;2;3;4</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_other">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_genito_ambigous">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Genito_Urinary"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ambigous Genitalia</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_abdomen_tender">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tenderness</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Abdomen"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_hyperpig">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hyperpigmentation</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_finerlenpercen">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Third Finger Length - in percentage</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_macroglossia">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Macroglossia</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_shagreen">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Shagreen Spots</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_involunmove">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;Abnormal;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Involuntary Movement</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_footlenpercen">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Foot Length - percentage</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_fingerpads">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Prominent Finger Pads</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_widthleft">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ear Width(Left) - in cm</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_accmuscleuse">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Accessory Muscle Use</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_genito_micropenpercen">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Genito_Urinary"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Micropenis - Length in percentage</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_syndac">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Syndactyly</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_abstragus">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Absent Tragus</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_philflat">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Philtrum flat at rest</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_absntlashes">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Absent Lashes or Eyebrows</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_respratecount">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Respiratory Rate - Count</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_incanthalpercen">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Inner Canthal Distance - in percentage</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_ashleaf">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ash Leaf Spots</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_bpnum">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Blood Pressure - BP Count</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_lenright">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ear Length(Right) - in cm</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtrankleright">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DTR Ankle - Right</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1;2;3;4</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_comment">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neck_widenip">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neck__Thorax__Back"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Wide Spaced Nipples</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_downturnmouth">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Downturned Corners Mouth</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_interpupillarycm">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Interpupillary Distance - in cm</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_gait">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Gait</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Normal;Abnormal;NE</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_skin_lposthair">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Skin__Hair"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Low Posterior Hairline</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_abdomen_other">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Abdomen"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_placement">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >High;Low;Normal;NE </p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ear Placement</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_cupping">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ear Cupping</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtrankleleft">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1;2;3;4</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DTR Ankle - Left</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_ear_rotatedegrees">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Ears"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ear rotation (degrees)</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_outcanthalcm">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Outer Canthal Distance - in cm</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_involunmovedesc">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Involuntary Movement - Describe</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_heartratenum">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Heart Rate - Count</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_head_shape">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Abnormal head shape</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Head"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_comments">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_oral_dfusedteeth">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NE</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Mouth.Oral_Region"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fused Teeth</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_neuro_dtranklene">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NE</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DTR Ankle - Not Examined</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Neurological"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_cardio_grade">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >I;II;III;IV;V;VI</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Murmur in Grade</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Cardiopulmonary"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_righthandlen">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hand Length(Right) - in cm</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_head_circum">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Head"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Head Circumference(in cm)</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_jointlimitationssite">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Joint Limitations/Contractures - Site</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_comments_misc">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Miscellaneous comments on study, interview, methodology relevant to this form data </rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Header"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_nose_tip">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nasal Tip</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Flat;Bifid;Cleft;Upturned;Normal</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Nose"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_limb_brachytype">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Limbs"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >RU;LU;RL;LL</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Brachydactyly - Type</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#SubjectKey">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Header"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The NDAR Global Unique Identifier  (GUID) for subjects which identifies a subject in NDAR. A GUID retrieved from the NDAR GUID system.  The GUID consists of a prefix, GUID pattern, and check character. The prefix chosen for this system is NDAR. For the GUID a pattern is AANNNAA, where A represents alphabetic and N represents numerical characters. The check character can be numerical or alphabetic. An example of GUID for a valid subject is NDARCJ743PV3</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GUID should exist in the GUID System</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_fissSlantDegree">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Palpebral Fissure Slant - Approximant Degrees</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Charge_physicalexam_eyes_fisslenleft">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_PhysicalExam.owl#Eyes"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Palpebral Fissure Length (Left) - in cm</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:FunctionalProperty>
+  <rdf:Description>
+    <rdfs:subClassOf rdf:resource="http://www.autism.stanford.edu/assessment-result.owl#Assessment_result"/>
+  </rdf:Description>
+  <rdf:Description>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Charge PhysicalExam</rdfs:label>
+  </rdf:Description>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 513)  http://protege.stanford.edu -->

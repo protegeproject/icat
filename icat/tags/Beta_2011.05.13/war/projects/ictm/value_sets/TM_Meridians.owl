@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns="http://who.int/ictm/meridians#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:ictm="http://who.int/ictm#"
+  xml:base="http://who.int/ictm/meridians">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="TM3316701">
+    <ictm:definitionKorean xml:lang="kr">기경팔맥(奇經八脈)의 하나. 족소음경(足少陰經)에서 분출되어 연곡(然谷)의 뒤 조해(照海)혈에서 비롯되며 내과(內踝)를 지나 위로 대퇴부 안쪽을 따라서 음기(陰器)로 진입되며, 다시 위로 흉부를 지나 결분(缺盆)에 이르고 인영(人迎)의 앞으로 나와 관부(觀部)에 이르러 목내자(目內眥)에 속하여, 족태양(足太陽), 양교맥(陽蹻脈)과 합하여 위로 행한다.</ictm:definitionKorean>
+    <ictm:titleKorean xml:lang="kr">음교맥</ictm:titleKorean>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yin Heel (Vessel) Meridian / 음교맥</rdfs:label>
+    <ictm:titleEnglish xml:lang="en">Yin Heel (Vessel) Meridian</ictm:titleEnglish>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316690">
+    <ictm:titleKorean xml:lang="kr">수태양소장경</ictm:titleKorean>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Small Intestine Meridian (SI) / 手太阳小肠经 / 수태양소장경</rdfs:label>
+    <ictm:synonymEnglish xml:lang="en">Small intestine meridian of hand taiyang </ictm:synonymEnglish>
+    <ictm:titleEnglish xml:lang="en">Small Intestine Meridian (SI)</ictm:titleEnglish>
+    <ictm:titleChinese xml:lang="cn">手太阳小肠经</ictm:titleChinese>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316700">
+    <ictm:definitionKorean xml:lang="kr">기경팔맥(奇經八脈)의 하나. 옆구리의 장문(章門)혈 부위에서 시작하여 허리를 한바퀴 돌면서 몸통을 지나는 모든 경맥을 띠처럼 묶어준다. 헛배가 부르고 마치 물 속에 앉은 감이 나며 여자는 하복통증과 월경부조·대하가 생긴다. 대맥(帶脈)에는 담경(膽經)의 대맥, 오추, 유도 혈 등 교회혈을 가지고 있다.</ictm:definitionKorean>
+    <ictm:titleKorean xml:lang="kr">대맥</ictm:titleKorean>
+    <ictm:titleEnglish xml:lang="en">Belt (Vessel) Meridian</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Belt (Vessel) Meridian / 대맥</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316702">
+    <ictm:titleEnglish xml:lang="en">Yang Heel (Vessel) Meridian</ictm:titleEnglish>
+    <ictm:definitionKorean xml:lang="kr">기경팔맥(奇經八脈)의 하나. 순행노선은 근중(根中)에서 비롯되어 족외과(足外踝)를 따라 위로 행하여 협륵(脇肋)과 견갑부(肩甲部) 외측을 지나 면협(面頰) 부위를 따라 목내자(目內眥)에 이르고, 족태양경(足太陽經)과 음교맥(陰蹻脈)과 만나며, 목을 따라 위로 이마를 지나 올라가서 풍지(風池)혈로 들어가며 풍부(風府)혈이 있는 곳으로부터 뇌로 들어간다.</ictm:definitionKorean>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yang Heel (Vessel) Meridian / 양교맥</rdfs:label>
+    <ictm:titleKorean xml:lang="kr">양교맥</ictm:titleKorean>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316699">
+    <ictm:titleEnglish xml:lang="en">Thoroughfare (Vessel) Meridian</ictm:titleEnglish>
+    <ictm:titleKorean xml:lang="kr">충맥</ictm:titleKorean>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Thoroughfare (Vessel) Meridian / 충맥</rdfs:label>
+    <ictm:definitionKorean xml:lang="kr">기경팔맥(奇經八脈)의 하나. 이 맥은 아랫배에서 시작하여 아래로 내려가서 회음부로 나오고, 위로 향하여 등골의 속으로 흐르며, 그 중에서 밖으로 흐르는 것은 기충(氣衝)혈 부위를 지나 족소음신경(足少陰腎經)과 만나고, 배의 양쪽을 따라 위로 인후(咽喉)에 이르고 입술을 휘감는다.</ictm:definitionKorean>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316687">
+    <ictm:titleChinese xml:lang="cn">足阳明胃经</ictm:titleChinese>
+    <ictm:definitionKorean xml:lang="kr">십이정경의 하나. 승읍(承泣)에서 기시하여 여태（厲兌)에서 종지하고 신경정신질환, 소화기계질환 등을 다스린다. 위(胃)에 속(屬)하고 비(脾)에 락(絡)한다.</ictm:definitionKorean>
+    <ictm:titleEnglish xml:lang="en">Stomach Meridian (ST)</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Stomach Meridian (ST) / 足阳明胃经 / 족양명위경</rdfs:label>
+    <ictm:synonymEnglish xml:lang="en">Stomach meridian of foot yangming, Yangming Meridian</ictm:synonymEnglish>
+    <ictm:titleKorean xml:lang="kr">족양명위경</ictm:titleKorean>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316689">
+    <ictm:titleKorean xml:lang="kr">수소음심경</ictm:titleKorean>
+    <ictm:synonymEnglish xml:lang="en">Heart meridian of hand shaoyin </ictm:synonymEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Heart Meridian (HT) / 手少阴心经 / 수소음심경</rdfs:label>
+    <ictm:titleChinese xml:lang="cn">手少阴心经</ictm:titleChinese>
+    <ictm:titleEnglish xml:lang="en">Heart Meridian (HT)</ictm:titleEnglish>
+    <ictm:definitionKorean xml:lang="kr">십이정경의 하나. 극천(極泉)에서 기시하여 소충(少衝)에서 종지하는 경맥. 순환기계 질환, 신경정신 질환 등을 다스린다. </ictm:definitionKorean>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316688">
+    <ictm:definitionKorean xml:lang="kr">십이정경의 하나. 은백(隱白)에서 기시하여 대포(大包)에서 종지하고 소화기계 질환, 비뇨생식기계 질환을 잘 다스린다. 비(脾)에 속(屬)하고 위(胃)에 락(絡)한다.</ictm:definitionKorean>
+    <ictm:synonymEnglish xml:lang="en">Spleen meridian of foot taiyin </ictm:synonymEnglish>
+    <ictm:titleEnglish xml:lang="en">Spleen Meridian (SP)</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Spleen Meridian (SP) / 足太阴脾经 / 족태음비경</rdfs:label>
+    <ictm:titleKorean xml:lang="kr">족태음비경</ictm:titleKorean>
+    <ictm:titleChinese xml:lang="cn">足太阴脾经</ictm:titleChinese>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316686">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Large Intestine Meridian (LI) / 手阳明大肠经 / 수양명대장경</rdfs:label>
+    <ictm:definitionKorean xml:lang="kr">십이정경의 하나. 상양(商陽)에서 기시사여 영향(迎香)에서 종지하는 경맥. 신경정신 질환, 열성질환, 위장 및 복부기관 질환을 잘 다스린다. 대장(大腸)에 속(屬)하고 폐(肺)에 락(絡)한다.</ictm:definitionKorean>
+    <ictm:synonymEnglish xml:lang="en">Large intestine meridian of hand yangming </ictm:synonymEnglish>
+    <ictm:titleChinese xml:lang="cn">手阳明大肠经</ictm:titleChinese>
+    <ictm:titleKorean xml:lang="kr">수양명대장경</ictm:titleKorean>
+    <ictm:titleEnglish xml:lang="en">Large Intestine Meridian (LI)</ictm:titleEnglish>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316685">
+    <ictm:titleEnglish xml:lang="en">Lung Meridian (LU)</ictm:titleEnglish>
+    <ictm:synonymEnglish xml:lang="en">Lung meridian of hand taiyin </ictm:synonymEnglish>
+    <ictm:titleChinese xml:lang="cn">手太阴肺经</ictm:titleChinese>
+    <ictm:titleKorean xml:lang="kr">수태음폐경</ictm:titleKorean>
+    <ictm:definitionKorean xml:lang="kr">십이정경의 하나. 중부(中府)에서 기시하여 소상(少商)에서 종지하는 경맥으로 호흡기계 질환을 잘 다스린다. 폐(肺)에 속(屬)하고 대장(大腸)에 락(絡)한다.</ictm:definitionKorean>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Lung Meridian (LU) / 手太阴肺经 / 수태음폐경</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316698">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Conception (Vessel) Meridian (CV) / 임맥</rdfs:label>
+    <ictm:titleEnglish xml:lang="en">Conception (Vessel) Meridian (CV)</ictm:titleEnglish>
+    <ictm:definitionKorean xml:lang="kr">기경팔맥(奇經八脈) 중의 하나. 회음(會陰)에서 기시하여 승장(承漿)에서 종지하는 경맥으로 남자의 내결칠산(內結七疝)과 여자의 대하가취(帶下痂聚) 등의 질환을 다스린다.</ictm:definitionKorean>
+    <ictm:titleKorean xml:lang="kr">임맥</ictm:titleKorean>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316704">
+    <ictm:definitionKorean xml:lang="kr">기경팔맥(奇經八脈)의 하나. 이 맥의 흐름은 여러 양경이 만나는 곳에서부터 시작하는데 맥기(脈氣)는 족태양경(足太陽經)의 금문(金門)혈 부위에서 출발하여 다리의 바깥쪽을 따라 올라가서 장골관절 부위를 지나 옆구리의 뒤쪽으로부터 어깨로 올라가서 앞이마에 이르고, 다시 목 뒤로 가서 독맥(督脈)과 만난다.</ictm:definitionKorean>
+    <ictm:titleEnglish xml:lang="en">Yang Link (Vessel) Meridian</ictm:titleEnglish>
+    <ictm:titleKorean xml:lang="kr">양유맥</ictm:titleKorean>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yang Link (Vessel) Meridian / 양유맥</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316703">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yin Link (Vessel) Meridian / 음유맥</rdfs:label>
+    <ictm:titleEnglish xml:lang="en">Yin Link (Vessel) Meridian</ictm:titleEnglish>
+    <ictm:titleKorean xml:lang="kr">음유맥</ictm:titleKorean>
+    <ictm:definitionKorean xml:lang="kr">기경팔맥(奇經八脈)의 하나. 여러 음경(陰經)이 만나는 곳에서 시작되어, 그 맥(脈)은 족소음경(足少陰經)의 축빈(築賓)혈에서부터 출발하고 위로 다리의 안쪽을 따라 올라가 아랫배로 들어가고 옆구리를 따라 흐르면서 가슴과 횡격막으로 올라가서 목구멍을 끼고 흐르며, 임맥의 천돌(天突)혈 및 염천(廉泉)혈과 만나 위로 앞머리 꼭대기에 이르러 끝을 맺음.</ictm:definitionKorean>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316691">
+    <ictm:titleChinese xml:lang="cn">足太阳膀胱经</ictm:titleChinese>
+    <ictm:titleEnglish xml:lang="en">Bladder Meridian (BL)</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bladder Meridian (BL) / 足太阳膀胱经 / 족태양방광경</rdfs:label>
+    <ictm:titleKorean xml:lang="kr">족태양방광경</ictm:titleKorean>
+    <ictm:synonymEnglish xml:lang="en">Bladder meridian of foot taiyang, Taiyang Meridian </ictm:synonymEnglish>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316692">
+    <ictm:definitionKorean xml:lang="kr">십이정경의 하나. 용천(湧泉)에서 기시하여 수부(兪府)에서 종지하고 신경정신질환, 비뇨생식질환을 잘 치료하는 경락. 신(腎)에 속(屬)하고 방광(膀胱)에 락(絡)한다.</ictm:definitionKorean>
+    <ictm:titleEnglish xml:lang="en">Kidney Meridian</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Kidney Meridian / 足少阴肾经 / 족소음신경</rdfs:label>
+    <ictm:titleKorean xml:lang="kr">족소음신경</ictm:titleKorean>
+    <ictm:synonymEnglish xml:lang="en">Kidney meridian of foot shaoyin </ictm:synonymEnglish>
+    <ictm:titleChinese xml:lang="cn">足少阴肾经</ictm:titleChinese>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316697">
+    <ictm:definitionKorean xml:lang="kr">기경팔맥의 하나. 이 맥은 소복(小腹)의 안쪽에서 비롯되어 아래 회음부로 나가 뒤로 향하여 척주 안쪽을 따라 직상한 후 풍부혈(風府穴) 부위에서 뇌부(腦部)로 진입하여 전정(顚頂)으로 상행한 다음 전액(前額)의 정중선을 따라 콧등 아래에 이른다. 독맥에 병변이 발생하면 주로 척주강직(脊柱强直)․각궁반장(角弓反張)․두중통(頭重痛)․항강(項强)․현훈(眩暈)․전간(癲癎)․융폐(癃閉)․유뇨(遺尿)․치질(痔疾)․부녀불임(婦女不姙) 등의 증상이 나타난다.</ictm:definitionKorean>
+    <ictm:titleEnglish xml:lang="en">Governor (Vessel) Meridian (GV)</ictm:titleEnglish>
+    <ictm:titleKorean xml:lang="kr">독맥</ictm:titleKorean>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Governor (Vessel) Meridian (GV) / 독맥</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316694">
+    <ictm:synonymEnglish xml:lang="en">Sanjiao (Triple Energizer) meridian of hand shaoyang </ictm:synonymEnglish>
+    <ictm:titleChinese xml:lang="cn">手少阳三焦经</ictm:titleChinese>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sanjiao (Triple Energizer) Meridian (TE) / 手少阳三焦经 / 수소양삼초경</rdfs:label>
+    <ictm:titleEnglish xml:lang="en">Sanjiao (Triple Energizer) Meridian (TE)</ictm:titleEnglish>
+    <ictm:definitionKorean xml:lang="kr">십이정경(十二正經) 중 하나로서 관충(關衝)에서 기시하여 사죽공(絲竹空)에서 종지하는 경맥. 신경정신(神經精神) 질환, 열성병(熱性病), 측두부(側頭部), 안(眼), 이(耳) 질환 등을 다스린다.</ictm:definitionKorean>
+    <ictm:titleKorean xml:lang="kr">수소양삼초경</ictm:titleKorean>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316695">
+    <ictm:titleKorean xml:lang="kr">족소양담경</ictm:titleKorean>
+    <ictm:titleChinese xml:lang="cn">足少阳胆经</ictm:titleChinese>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Gallbladder Meridian (GB) / 足少阳胆经 / 족소양담경</rdfs:label>
+    <ictm:definitionKorean xml:lang="kr">십이경맥의 하나. 눈외자에서 시작하여 신체의 측면을 지나 넷째 발가락까지 견결된 경맥. 담에 속하고 간에 락한다</ictm:definitionKorean>
+    <ictm:titleEnglish xml:lang="en">Gallbladder Meridian (GB)</ictm:titleEnglish>
+    <ictm:synonymEnglish xml:lang="en">Gallbladder meridian of foot shaoyang </ictm:synonymEnglish>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316696">
+    <ictm:titleChinese xml:lang="cn">足厥阴肝经</ictm:titleChinese>
+    <ictm:titleEnglish xml:lang="en">Liver Meridian (LR)</ictm:titleEnglish>
+    <ictm:titleKorean xml:lang="kr">족궐음간경</ictm:titleKorean>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Liver Meridian (LR) / 足厥阴肝经 / 족궐음간경</rdfs:label>
+    <ictm:synonymEnglish xml:lang="en">Liver meridian of foot jueyin </ictm:synonymEnglish>
+    <ictm:definitionKorean xml:lang="kr">십이정경(十二正經) 중 하나. 대돈(大敦)에서 기시하여 기문(期門)에서 종지하고 신경정신(神經精神)질환, 비뇨생식기(泌尿生殖器)질환, 소복(小腹)질환, 간담(肝膽)질환, 근육(筋肉)질환 등을 다스린다.</ictm:definitionKorean>
+  </owl:Class>
+  <owl:Class rdf:ID="TM3316693">
+    <ictm:definitionKorean xml:lang="kr">십이정경(十二正經) 중 하나로 천지(天池)에서 기시하여 중충(中衝)에서 종지하고 신경정신(神經精神) 질환, 순환기계(循環器系) 질환 등을 다스리는 경맥.</ictm:definitionKorean>
+    <ictm:synonymEnglish xml:lang="en">Pericardium meridian of hand jueyin </ictm:synonymEnglish>
+    <ictm:titleEnglish xml:lang="en">Pericardium Meridian (PC)</ictm:titleEnglish>
+    <ictm:titleKorean xml:lang="kr">수궐음심포경</ictm:titleKorean>
+    <ictm:titleChinese xml:lang="cn">手厥阴心包经</ictm:titleChinese>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Pericardium Meridian (PC) / 手厥阴心包经 / 수궐음심포경</rdfs:label>
+  </owl:Class>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#titleKorean">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Title Korean</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#titleChinese">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Title Chinese</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#originalSource">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Original Source</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#titleJapanese">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Title Japanese</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#definitionKorean">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition Korean</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#definitionJapanese">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition Japanese</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#titleEnglish">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Title English</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#definitionEnglish">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition English</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#synonymEnglish">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Synonym English</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#definitionChinese">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition Chinese</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#originalCode">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Original Code</rdfs:label>
+  </owl:AnnotationProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4.5, Build 600)  http://protege.stanford.edu -->

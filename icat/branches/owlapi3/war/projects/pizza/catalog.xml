@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog id="file:/Users/dilvan/Documents/workspace/web-protege-owlapi/war/projects/pizza/" prefer="public" xml:base="file:/Users/dilvan/Documents/workspace/web-protege-owlapi/war/projects/pizza/" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri name="http://www.co-ode.org/ontologies/pizza/2005/10/18/pizza.owl" uri="pizza.owl"/>
+</catalog>

@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ProtegeTestSuite" verbose="1">
+	<test name="TestNG-Tests">
+		<classes>
+			<class
+				name="edu.stanford.bmir.protege.web.server.WatchedEntitiesCacheTest"></class>
+			<class name="client.TestUnitProtege"></class>
+		</classes>
+	</test>
+	<test name="JUnit-Tests (Example)" junit="true">
+		<classes>
+			<class name="client.JUnitExample"></class>
+		</classes>
+	</test>
+</suite>

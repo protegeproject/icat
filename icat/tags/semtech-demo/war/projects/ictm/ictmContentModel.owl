@@ -1,0 +1,2255 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:bp="http://bioportal.bioontology.org#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:icd="http://who.int/icd#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns="http://who.int/ictm#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://who.int/ictm">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://who.int/icd/contentModel"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="ZangFuOrgansTerm">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="TraditionalTherapyTerm"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="LungOrLargeIntestine">
+    <rdfs:subClassOf rdf:resource="#ZangFuOrgansTerm"/>
+  </owl:Class>
+  <owl:Class rdf:ID="FactorBasedDiagnosisTerm">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#TraditionalTherapyTerm"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://who.int/icd#ExclusionTerm"/>
+  <owl:Class rdf:ID="PatternsOfQi">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="PatternsOfQiBloodFluidsTerm"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="FourConstitutionTypesTerm">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#TraditionalTherapyTerm"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AspectPatternsTerm">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#TraditionalTherapyTerm"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="TripleEtiologyDoctrine">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#TraditionalTherapyTerm"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="TraditionalTheoryClinicalDescriptionSection">
+    <rdfs:subClassOf rdf:resource="http://who.int/icd#ICDSection"/>
+  </owl:Class>
+  <owl:Class rdf:ID="DeficiencyOrExcess">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="YinOrYang"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="ExteriorOrInterior"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="ColdOrHeat"/>
+    </owl:disjointWith>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >虚実</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#FactorBasedDiagnosisTerm"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="EndopathicFactors">
+    <rdfs:subClassOf rdf:resource="#TripleEtiologyDoctrine"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SpleenOrStomach">
+    <rdfs:subClassOf rdf:resource="#ZangFuOrgansTerm"/>
+  </owl:Class>
+  <owl:Class rdf:about="#ColdOrHeat">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#YinOrYang"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#ExteriorOrInterior"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#DeficiencyOrExcess"/>
+    <rdfs:subClassOf rdf:resource="#FactorBasedDiagnosisTerm"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >寒熱</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="LiverOrGallBladder">
+    <rdfs:subClassOf rdf:resource="#ZangFuOrgansTerm"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ThreeRegionsTerm">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#TraditionalTherapyTerm"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#ExteriorOrInterior">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >表裏</rdfs:label>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#YinOrYang"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#DeficiencyOrExcess"/>
+    <owl:disjointWith rdf:resource="#ColdOrHeat"/>
+    <rdfs:subClassOf rdf:resource="#FactorBasedDiagnosisTerm"/>
+  </owl:Class>
+  <owl:Class rdf:ID="TraditionalMedicineCausalFactorAndRiskFactorSection">
+    <rdfs:subClassOf rdf:resource="http://who.int/icd#ICDSection"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SixStagesOfDiseaseTransformationTerm">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#TraditionalTherapyTerm"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#PatternsOfQiBloodFluidsTerm">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#TraditionalTherapyTerm"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://who.int/icd#CausalMechanismAndRiskFactorsSection"/>
+  <owl:Class rdf:ID="PatternsOfBlood">
+    <rdfs:subClassOf rdf:resource="#PatternsOfQiBloodFluidsTerm"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://who.int/icd#DefinitionSection"/>
+  <owl:Class rdf:about="#YinOrYang">
+    <rdfs:subClassOf rdf:resource="#FactorBasedDiagnosisTerm"/>
+    <owl:disjointWith rdf:resource="#ExteriorOrInterior"/>
+    <owl:disjointWith rdf:resource="#DeficiencyOrExcess"/>
+    <owl:disjointWith rdf:resource="#ColdOrHeat"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://who.int/icd#ClinicalDescriptionSection"/>
+  <owl:Class rdf:ID="Retired"/>
+  <owl:Class rdf:ID="NonEndoOrExopathicFactors">
+    <rdfs:subClassOf rdf:resource="#TripleEtiologyDoctrine"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://who.int/icd#InclusionTerm"/>
+  <owl:Class rdf:ID="ExopathicFactors">
+    <rdfs:subClassOf rdf:resource="#TripleEtiologyDoctrine"/>
+  </owl:Class>
+  <owl:Class rdf:about="#TraditionalTherapyTerm">
+    <rdfs:subClassOf rdf:resource="http://who.int/icd#ReferenceTerm"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PatternsOfFluid">
+    <rdfs:subClassOf rdf:resource="#PatternsOfQiBloodFluidsTerm"/>
+  </owl:Class>
+  <owl:Class rdf:ID="KidneyOrUrinaryBladder">
+    <rdfs:subClassOf rdf:resource="#ZangFuOrgansTerm"/>
+  </owl:Class>
+  <owl:Class rdf:ID="HeartOrSmallIntestines">
+    <rdfs:subClassOf rdf:resource="#ZangFuOrgansTerm"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="heartOrSmallIntestines">
+    <rdfs:range rdf:resource="#HeartOrSmallIntestines"/>
+    <rdfs:subPropertyOf>
+      <owl:FunctionalProperty rdf:ID="zangFuOrgans"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="liverOrGallBladder">
+    <rdfs:subPropertyOf>
+      <owl:FunctionalProperty rdf:about="#zangFuOrgans"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#LiverOrGallBladder"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="yinOrYang">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="factorBasedDiagnosis"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#YinOrYang"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="coldOrHeat">
+    <rdfs:label xml:lang="en">寒热</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#ColdOrHeat"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#factorBasedDiagnosis"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="kidneyOrUrinaryBladder">
+    <rdfs:subPropertyOf>
+      <owl:FunctionalProperty rdf:about="#zangFuOrgans"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#KidneyOrUrinaryBladder"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="codes">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://who.int/icd#DefinitionSection"/>
+          <owl:Class rdf:about="http://who.int/icd#ExclusionTerm"/>
+          <owl:Class rdf:about="http://who.int/icd#InclusionTerm"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >codes from other coding systems</rdfs:comment>
+    <rdfs:range rdf:resource="http://who.int/icd#ReferenceTerm"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="exteriorOrInterior">
+    <rdfs:range rdf:resource="#ExteriorOrInterior"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#factorBasedDiagnosis"/>
+    </rdfs:subPropertyOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#factorBasedDiagnosis">
+    <rdfs:range rdf:resource="#FactorBasedDiagnosisTerm"/>
+    <rdfs:domain rdf:resource="#TraditionalTheoryClinicalDescriptionSection"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="ICTMProperty"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="sixStagesOfDiseaseTransformation">
+    <rdfs:domain rdf:resource="#TraditionalTheoryClinicalDescriptionSection"/>
+    <rdfs:range rdf:resource="#SixStagesOfDiseaseTransformationTerm"/>
+    <rdfs:subPropertyOf rdf:resource="#ICTMProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="fourConstitutionTypes">
+    <rdfs:domain rdf:resource="#TraditionalTheoryClinicalDescriptionSection"/>
+    <rdfs:subPropertyOf rdf:resource="#ICTMProperty"/>
+    <rdfs:range rdf:resource="#FourConstitutionTypesTerm"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="lungOrLargeIntestine">
+    <rdfs:range rdf:resource="#LungOrLargeIntestine"/>
+    <rdfs:subPropertyOf>
+      <owl:FunctionalProperty rdf:about="#zangFuOrgans"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="endopathicFactors">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="tripleEtiologyDoctrine"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#EndopathicFactors"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="nonEndoOrExopathicFactors">
+    <rdfs:range rdf:resource="#NonEndoOrExopathicFactors"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#tripleEtiologyDoctrine"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="patternsOfFluid">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="patternsOfQiBloodFluids"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#PatternsOfFluid"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="spleenOrStomach">
+    <rdfs:range rdf:resource="#SpleenOrStomach"/>
+    <rdfs:subPropertyOf>
+      <owl:FunctionalProperty rdf:about="#zangFuOrgans"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#tripleEtiologyDoctrine">
+    <rdfs:range rdf:resource="#TripleEtiologyDoctrine"/>
+    <rdfs:domain rdf:resource="#TraditionalMedicineCausalFactorAndRiskFactorSection"/>
+    <rdfs:subPropertyOf rdf:resource="#ICTMProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="patternsOfBlood">
+    <rdfs:range rdf:resource="#PatternsOfBlood"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#patternsOfQiBloodFluids"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#patternsOfQiBloodFluids">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Patterns of Qi Blood and Fluids</rdfs:label>
+    <rdfs:range rdf:resource="#PatternsOfQiBloodFluidsTerm"/>
+    <rdfs:subPropertyOf rdf:resource="#ICTMProperty"/>
+    <rdfs:domain rdf:resource="#TraditionalTheoryClinicalDescriptionSection"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="aspectPatterns">
+    <rdfs:domain rdf:resource="#TraditionalTheoryClinicalDescriptionSection"/>
+    <rdfs:range rdf:resource="#AspectPatternsTerm"/>
+    <rdfs:subPropertyOf rdf:resource="#ICTMProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="exopathicFactors">
+    <rdfs:range rdf:resource="#ExopathicFactors"/>
+    <rdfs:subPropertyOf rdf:resource="#tripleEtiologyDoctrine"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="threeRegions">
+    <rdfs:range rdf:resource="#ThreeRegionsTerm"/>
+    <rdfs:subPropertyOf rdf:resource="#ICTMProperty"/>
+    <rdfs:domain rdf:resource="#TraditionalTheoryClinicalDescriptionSection"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="deficiencyOrExcess">
+    <rdfs:range rdf:resource="#DeficiencyOrExcess"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#factorBasedDiagnosis"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="patternsOfQi">
+    <rdfs:range rdf:resource="#PatternsOfQi"/>
+    <rdfs:subPropertyOf rdf:resource="#patternsOfQiBloodFluids"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="herb">
+    <rdfs:subPropertyOf rdf:resource="http://who.int/icd#treatment"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="formula">
+    <rdfs:subPropertyOf rdf:resource="http://who.int/icd#treatment"/>
+  </owl:ObjectProperty>
+  <owl:FunctionalProperty rdf:about="#zangFuOrgans">
+    <rdfs:subPropertyOf rdf:resource="#ICTMProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#TraditionalTheoryClinicalDescriptionSection"/>
+    <rdfs:range rdf:resource="#ZangFuOrgansTerm"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="codeSystem">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://who.int/icd#CodedTerm"/>
+  </owl:FunctionalProperty>
+  <PatternsOfFluid rdf:ID="FluidHumourDepletion">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fluid-humor depletion 虧損津液</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fluid-humor depletion 虧損津液</rdfs:label>
+  </PatternsOfFluid>
+  <ColdOrHeat rdf:ID="ColdAbdominalColic">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cold abdominal colic 寒疝</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cold abdominal colic 寒疝</rdfs:label>
+  </ColdOrHeat>
+  <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_55">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Headache</icd:label>
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >25064002</icd:id>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Headache 25064002</rdfs:label>
+  </icd:SignsAndSymptomsTerm>
+  <icd:SignsAndSymptomsTerm rdf:ID="M25.5_Arthralgi_a">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >M25.5 Arthralgia</rdfs:label>
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20057255</icd:id>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >M25.5 Arthralgia</icd:label>
+  </icd:SignsAndSymptomsTerm>
+  <icd:BodySystemTerm rdf:ID="BodySystemTerm_2">
+    <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >RespiratorySystem</bp:shortTermId>
+    <ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Body System</ontologyId>
+    <termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://who.int/bodysystem.owl#RespiratorySystem</termId>
+    <url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://bioportal.bioontology.org/visualize/42651/?conceptid=http%3A%2F%2Fwho.int%2Fbodysystem.owl%23RespiratorySystem</url>
+    <label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Respiratory System</label>
+    <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >42651</bp:ontologyId>
+    <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Body System</bp:ontologyLabel>
+  </icd:BodySystemTerm>
+  <rdf:Description rdf:about="http://who.int/icd#riskFactor">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://who.int/icd#CausalMechanismAndRiskFactorsSection"/>
+          <owl:Class rdf:about="#TraditionalMedicineCausalFactorAndRiskFactorSection"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain rdf:resource="http://who.int/icd#CausalMechanismAndRiskFactorsSection"/>
+  </rdf:Description>
+  <PatternsOfQi rdf:ID="QiStagnation">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Qi Stagnation 氣滯</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Qi Stagnation 氣滯</icd:label>
+  </PatternsOfQi>
+  <HeartOrSmallIntestines rdf:ID="Heart">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Heart 心</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Heart 心</rdfs:label>
+  </HeartOrSmallIntestines>
+  <ColdOrHeat rdf:ID="Heat">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Heat 熱証</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Heat 熱証</icd:label>
+  </ColdOrHeat>
+  <EndopathicFactors rdf:ID="MelancholyEndopathicFactors">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Melancholy</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Melancholy</rdfs:label>
+  </EndopathicFactors>
+  <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_56">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fatigue</icd:label>
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >39126000</icd:id>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fatigue 39126000</rdfs:label>
+  </icd:SignsAndSymptomsTerm>
+  <icd:SignsAndSymptomsTerm rdf:ID="Runny_Nose_397811005">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Runny Nose 397811005</rdfs:label>
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >397811005</icd:id>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Runny Nose 39781100 5</icd:label>
+  </icd:SignsAndSymptomsTerm>
+  <EndopathicFactors rdf:ID="AnxietyEndopathicFactors">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Anxiety</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Anxiety</rdfs:label>
+  </EndopathicFactors>
+  <NonEndoOrExopathicFactors rdf:ID="DrowningOtherFactors">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Drowning</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Drowning</rdfs:label>
+  </NonEndoOrExopathicFactors>
+  <NonEndoOrExopathicFactors rdf:ID="FatigueOtherFactors">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fatigue</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fatigue</rdfs:label>
+  </NonEndoOrExopathicFactors>
+  <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_53">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Chills 43724002</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Chills</icd:label>
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >43724002</icd:id>
+  </icd:SignsAndSymptomsTerm>
+  <AspectPatternsTerm rdf:ID="NutrientAspectPattern">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nutrient aspect pattern 證営分</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nutrient aspect pattern 證営分</icd:label>
+  </AspectPatternsTerm>
+  <rdf:Description rdf:about="http://who.int/icd#causalFactor">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://who.int/icd#CausalMechanismAndRiskFactorsSection"/>
+          <owl:Class rdf:about="#TraditionalMedicineCausalFactorAndRiskFactorSection"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain rdf:resource="http://who.int/icd#CausalMechanismAndRiskFactorsSection"/>
+  </rdf:Description>
+  <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_54">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Generalized Body Aches 82991003</rdfs:label>
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >82991003</icd:id>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Generalized Body Aches</icd:label>
+  </icd:SignsAndSymptomsTerm>
+  <PatternsOfQi rdf:ID="QiDepression">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Qi Depression 気鬱</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Qi Depression 気鬱</rdfs:label>
+  </PatternsOfQi>
+  <PatternsOfFluid rdf:ID="HumorCollapse">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Humor Collapse 亡液</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Humor Collapse 亡液</icd:label>
+  </PatternsOfFluid>
+  <EndopathicFactors rdf:ID="TerrorEndopathicFactors">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Terror</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Terror</icd:label>
+  </EndopathicFactors>
+  <PatternsOfQi rdf:ID="QiBlock">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Qi Block (convulsion ) 気閉</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Qi Block (convulsion ) 気閉</icd:label>
+  </PatternsOfQi>
+  <ExopathicFactors rdf:ID="DampnessExopathicFactor">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dampness</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dampness</icd:label>
+  </ExopathicFactors>
+  <ColdOrHeat rdf:ID="IrritableHeatSensationInHandAndFoot">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Irritable heat sensation in hand and foot 手足煩熱</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Irritable heat sensation in hand and foot 手足煩熱</rdfs:label>
+  </ColdOrHeat>
+  <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_51">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cough</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cough 4972700</rdfs:label>
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >4972700</icd:id>
+  </icd:SignsAndSymptomsTerm>
+  <owl:AnnotationProperty rdf:ID="url"/>
+  <SpleenOrStomach rdf:ID="Spleen">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Spleen 脾</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Spleen 脾</rdfs:label>
+  </SpleenOrStomach>
+  <LiverOrGallBladder rdf:ID="Liver">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Liver 肝</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Liver 肝</rdfs:label>
+  </LiverOrGallBladder>
+  <icd:DefinitionSection rdf:ID="Influenza_A_H1N1">
+    <icd:investigations>
+      <icd:InvestigationTerm rdf:ID="InvestigationTerm_27">
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >12717000</bp:shortTermId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Viral culture</icd:label>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=12717000</icd:url>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >12717000</icd:termId>
+      </icd:InvestigationTerm>
+    </icd:investigations>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_12">
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >397811005</bp:shortTermId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Rhinorrhea</icd:label>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >397811005</icd:termId>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=397811005</icd:url>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_14">
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >139126000</bp:shortTermId>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >139126000</icd:termId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Fatigue</icd:label>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=139126000</icd:url>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_17">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Malaise</icd:label>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >367391008</bp:shortTermId>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >367391008</icd:termId>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=367391008</icd:url>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <icd:hasType rdf:resource="http://who.int/icd#Disease_Type"/>
+    <coldOrHeat>
+      <ColdOrHeat rdf:ID="Cold">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Cold 寒證</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Cold 寒證</icd:label>
+      </ColdOrHeat>
+    </coldOrHeat>
+    <icd:proximalRiskFactor>
+      <icd:RiskFactorTerm rdf:ID="RiskFactorTerm_8">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Individuals with a chronic health condition</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Individuals with a chronic health condition</icd:label>
+      </icd:RiskFactorTerm>
+    </icd:proximalRiskFactor>
+    <icd:selectedMobilityImpact rdf:resource="http://who.int/icd#FunctionalImpactTerm_d4501"/>
+    <icd:investigations>
+      <icd:InvestigationTerm rdf:ID="InvestigationTerm_29">
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >86651002</icd:termId>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=86651002</icd:url>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >86651002</bp:shortTermId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Pulse fast</icd:label>
+      </icd:InvestigationTerm>
+    </icd:investigations>
+    <icd:definition>
+      <icd:DefinitionTerm rdf:ID="DefinitionTerm_31">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Acute febrile respiratory illness. Virus subtype Influenza A, virus strain H1N1 of swine origin affecting humans.</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Acute febrile respiratory illness. Virus subtype Influenza A, virus strain H1N1 of swine origin affecting humans.</rdfs:label>
+      </icd:DefinitionTerm>
+    </icd:definition>
+    <icd:immediateRiskFactor>
+      <icd:RiskFactorTerm rdf:ID="RiskFactorTerm_3">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Direct exposure: healthcare workers.</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Direct exposure: healthcare workers.</rdfs:label>
+      </icd:RiskFactorTerm>
+    </icd:immediateRiskFactor>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_18">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Acute pain</icd:label>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >274663001</bp:shortTermId>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >274663001</icd:termId>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=274663001</icd:url>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <icd:selectedHouseholdActivitiesImpact rdf:resource="http://who.int/icd#FunctionalImpactTerm_d660"/>
+    <rdfs:subClassOf>
+      <icd:TermSection rdf:ID="ICTMCategory">
+        <rdf:type rdf:resource="http://who.int/icd#LinearizationSection"/>
+        <rdf:type rdf:resource="http://who.int/icd#TreatmentSection"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <rdf:type rdf:resource="http://who.int/icd#DefinitionSection"/>
+        <rdf:type rdf:resource="http://who.int/icd#DiagnosticCriteriaSection"/>
+        <rdf:type rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdf:type rdf:resource="#TraditionalMedicineCausalFactorAndRiskFactorSection"/>
+        <rdf:type rdf:resource="#TraditionalTheoryClinicalDescriptionSection"/>
+        <icd:icdTitle>
+          <icd:TitleTerm rdf:ID="TitleTerm_1">
+            <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >ICTM Categories</icd:label>
+          </icd:TitleTerm>
+        </icd:icdTitle>
+        <rdf:type rdf:resource="http://who.int/icd#ClinicalDescriptionSection"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DomainConcept"/>
+      </icd:TermSection>
+    </rdfs:subClassOf>
+    <codes>
+      <icd:ReferenceTerm rdf:ID="CodedTerm_33">
+        <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >4784</icd:id>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Influenza 時行感冒</icd:label>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >KCDMICD10</bp:ontologyLabel>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Influenza 時行感冒 KCDMICD10; 4784</rdfs:label>
+      </icd:ReferenceTerm>
+    </codes>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_20">
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=49727002</icd:url>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >49727002</icd:termId>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Cough</icd:label>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >49727002</bp:shortTermId>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_22">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Fever</icd:label>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=386661006</icd:url>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >386661006</icd:termId>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >386661006</bp:shortTermId>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <icd:bodyPart>
+      <icd:BodyPartTerm rdf:ID="BodyPartTerm_10">
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42122</bp:ontologyId>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42122/?conceptid=20139000</icd:url>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >20139000</bp:shortTermId>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >20139000</icd:termId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Structure of respiratory system</icd:label>
+      </icd:BodyPartTerm>
+    </icd:bodyPart>
+    <icd:inclusion>
+      <icd:InclusionTerm rdf:ID="InclusionTerm_36">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >風寒束肺証 Pattern of windcold fettering the lung</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >風寒束肺証 Pattern of windcold fettering the lung</icd:label>
+      </icd:InclusionTerm>
+    </icd:inclusion>
+    <icd:synonym>
+      <icd:SynonymTerm rdf:ID="SynonymTerm_34">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Swine Flu</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Swine Flu</icd:label>
+      </icd:SynonymTerm>
+    </icd:synonym>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_23">
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >57676002</icd:termId>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=57676002</icd:url>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >57676002</bp:shortTermId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Joint pain</icd:label>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <deficiencyOrExcess>
+      <DeficiencyOrExcess rdf:ID="Excess">
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        ></rdfs:comment>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Excess 實證</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Excess 實證</rdfs:label>
+      </DeficiencyOrExcess>
+    </deficiencyOrExcess>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <icd:investigations>
+      <icd:InvestigationTerm rdf:ID="InvestigationTerm_26">
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=127797006</icd:url>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >127797006</icd:termId>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Indirect tissue immunofluorescence procedure</icd:label>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >127797006</bp:shortTermId>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+      </icd:InvestigationTerm>
+    </icd:investigations>
+    <icd:linearization>
+      <rdf:Description rdf:about="http://who.int/icd#TestIsIncludedSlotLinearization">
+        <icd:linearizationView rdf:resource="http://who.int/icd#PrimaryCare"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        ></rdfs:label>
+        <icd:linearizationSortingLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >1</icd:linearizationSortingLabel>
+      </rdf:Description>
+    </icd:linearization>
+    <rdf:type rdf:resource="http://who.int/icd#DiagnosticCriteriaSection"/>
+    <icd:causalFactor>
+      <icd:CausalFactorTerm rdf:ID="CausalFactorTerm_1">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >swine-origin influenza A (H1N1)</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >swine-origin influenza A (H1N1)</rdfs:label>
+      </icd:CausalFactorTerm>
+    </icd:causalFactor>
+    <icd:proximalRiskFactor>
+      <icd:RiskFactorTerm rdf:ID="RiskFactorTerm_7">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Older adults (&gt; 65 years old)</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Older adults (&gt; 65 years old)</rdfs:label>
+      </icd:RiskFactorTerm>
+    </icd:proximalRiskFactor>
+    <rdf:type rdf:resource="http://who.int/icd#TermSection"/>
+    <icd:investigations>
+      <icd:InvestigationTerm rdf:ID="InvestigationTerm_25">
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >???</bp:shortTermId>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >???</icd:termId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >R00.8 Floating pulse</icd:label>
+      </icd:InvestigationTerm>
+    </icd:investigations>
+    <rdf:type rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:ID="LinearizationSpecification_12">
+        <icd:linearizationView rdf:resource="http://who.int/icd#Research"/>
+        <icd:linearizationSortingLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >4</icd:linearizationSortingLabel>
+        <icd:isIncludedInLinearization rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >true</icd:isIncludedInLinearization>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:ID="LinearizationSpecification_13">
+        <icd:linearizationSortingLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >5</icd:linearizationSortingLabel>
+        <icd:isIncludedInLinearization rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >false</icd:isIncludedInLinearization>
+        <icd:linearizationView rdf:resource="http://who.int/icd#Speciality_Adaptation_Mental_Health"/>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_13">
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >43724002</bp:shortTermId>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >43724002</icd:termId>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=43724002</icd:url>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Chill</icd:label>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <formula>
+      <icd:TreatmentTerm rdf:ID="TreatmentTerm_44">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Ephedra Decoction 麻黄湯</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Ephedra Decoction 麻黄湯</icd:label>
+      </icd:TreatmentTerm>
+    </formula>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_16">
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=75125004</icd:url>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Chills and fever</icd:label>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >75125004</bp:shortTermId>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >75125004</icd:termId>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <herb>
+      <icd:TreatmentTerm rdf:ID="Glycyrrhizae_Radix">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Glycyrrhizae Radix</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Glycyrrhizae Radix</rdfs:label>
+      </icd:TreatmentTerm>
+    </herb>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_15">
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=25064002</icd:url>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >25064002</icd:termId>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Headache</icd:label>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >25064002</bp:shortTermId>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <herb>
+      <icd:TreatmentTerm rdf:ID="Cinnamomi_Cortex">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Cinnamomi Cortex</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Cinnamomi Cortex</icd:label>
+      </icd:TreatmentTerm>
+    </herb>
+    <rdf:type rdf:resource="#TraditionalTheoryClinicalDescriptionSection"/>
+    <icd:bodySystem>
+      <icd:BodySystemTerm rdf:ID="BodySystemTerm_9">
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42651</bp:ontologyId>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Body System</icd:ontologyId>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://who.int/bodysystem.owl#RespiratorySystem</icd:termId>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Body System</bp:ontologyLabel>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Respiratory System</icd:label>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42651/?conceptid=http%3A%2F%2Fwho.int%2Fbodysystem.owl%23RespiratorySystem</icd:url>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >RespiratorySystem</bp:shortTermId>
+      </icd:BodySystemTerm>
+    </icd:bodySystem>
+    <codes>
+      <icd:ReferenceTerm rdf:ID="CodedTerm_32">
+        <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >3.1.8</icd:id>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >WPOR</bp:ontologyLabel>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Influenza 時行感冒 WPOR 3.1.8</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Influenza 時行感冒</icd:label>
+      </icd:ReferenceTerm>
+    </codes>
+    <exteriorOrInterior>
+      <ExteriorOrInterior rdf:ID="Exterior">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exterior 表證</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Exterior 表證</icd:label>
+      </ExteriorOrInterior>
+    </exteriorOrInterior>
+    <codes>
+      <icd:ReferenceTerm rdf:ID="KCDM_code">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Influenza 時行感冒</icd:label>
+        <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >E06.05</icd:id>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Influenza 時行感冒 KCDM code; E06.05</rdfs:label>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >KCDM code</bp:ontologyLabel>
+      </icd:ReferenceTerm>
+    </codes>
+    <codes>
+      <icd:ReferenceTerm rdf:ID="CodedTerm_45">
+        <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >672</icd:id>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Influenza 時行感冒</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Influenza 時行感冒  KCDM-ID; 672</rdfs:label>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >KCDM-ID</bp:ontologyLabel>
+      </icd:ReferenceTerm>
+    </codes>
+    <icd:immediateRiskFactor>
+      <icd:RiskFactorTerm rdf:ID="RiskFactorTerm_2">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Direct exposure: o family members o healthcare workers.</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Direct exposure: family members</rdfs:label>
+      </icd:RiskFactorTerm>
+    </icd:immediateRiskFactor>
+    <yinOrYang>
+      <YinOrYang rdf:ID="Yang">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Yang 陽證</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Yang 陽證</icd:label>
+      </YinOrYang>
+    </yinOrYang>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_19">
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Generalized aches and pains</icd:label>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >82991003</icd:termId>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=82991003</icd:url>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >82991003</bp:shortTermId>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <threeRegions>
+      <ThreeRegionsTerm rdf:ID="UpperRegion">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Upper region 上焦</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Upper region 上焦</icd:label>
+      </ThreeRegionsTerm>
+    </threeRegions>
+    <herb>
+      <icd:TreatmentTerm rdf:ID="TreatmentTerm_43">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Ephedrae Herba</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Ephedrae Herba</icd:label>
+      </icd:TreatmentTerm>
+    </herb>
+    <sixStagesOfDiseaseTransformation>
+      <SixStagesOfDiseaseTransformationTerm rdf:ID="TaiYangStage">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Tai Yang Stage 太陽病</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Tai Yang Stage 太陽病</icd:label>
+      </SixStagesOfDiseaseTransformationTerm>
+    </sixStagesOfDiseaseTransformation>
+    <icd:icdTitle>
+      <icd:TitleTerm rdf:ID="en">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Influenza A (H1N1)</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Influenza A (H1N1)</icd:label>
+      </icd:TitleTerm>
+    </icd:icdTitle>
+    <icd:investigations>
+      <icd:InvestigationTerm rdf:ID="InvestigationTerm_28">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Direct tissue immunofluorescence procedure</icd:label>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >127796002</bp:shortTermId>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >127796002</icd:termId>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=127796002</icd:url>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+      </icd:InvestigationTerm>
+    </icd:investigations>
+    <icd:inclusion>
+      <icd:InclusionTerm rdf:ID="InclusionTerm_37">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >外感風寒表実証 Exterior cold excess pattern</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >外感風寒表実証 Exterior cold excess pattern</rdfs:label>
+      </icd:InclusionTerm>
+    </icd:inclusion>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:ID="LinearizationSpecification_49">
+        <icd:linearizationSortingLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >8</icd:linearizationSortingLabel>
+        <icd:linearizationView rdf:resource="http://who.int/icd#Specialty_Adaptation_Paediatrics"/>
+        <icd:isIncludedInLinearization rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >false</icd:isIncludedInLinearization>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:ID="LinearizationSpecification_17">
+        <icd:linearizationView rdf:resource="http://who.int/icd#Specialty_Adaptation_Dermatology"/>
+        <icd:isIncludedInLinearization rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >false</icd:isIncludedInLinearization>
+        <icd:linearizationSortingLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >9</icd:linearizationSortingLabel>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <rdf:type rdf:resource="http://who.int/icd#ClinicalDescriptionSection"/>
+    <icd:selectedSelfCareImpact rdf:resource="http://who.int/icd#FunctionalImpactTerm_d560"/>
+    <icd:proximalRiskFactor>
+      <icd:RiskFactorTerm rdf:ID="RiskFactorTerm_5">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Pregnant women</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Pregnant women</icd:label>
+      </icd:RiskFactorTerm>
+    </icd:proximalRiskFactor>
+    <rdf:type rdf:resource="http://who.int/icd#TreatmentSection"/>
+    <icd:proximalRiskFactor>
+      <icd:RiskFactorTerm rdf:ID="RiskFactorTerm_6">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Women up to 2 weeks postpartum</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Women up to 2 weeks postpartum</rdfs:label>
+      </icd:RiskFactorTerm>
+    </icd:proximalRiskFactor>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:ID="LinearizationSpecification_10">
+        <icd:isIncludedInLinearization rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >true</icd:isIncludedInLinearization>
+        <icd:linearizationSortingLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >2</icd:linearizationSortingLabel>
+        <icd:linearizationView rdf:resource="http://who.int/icd#Mortality"/>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:ID="LinearizationSpecification_11">
+        <icd:linearizationView rdf:resource="http://who.int/icd#Morbidity"/>
+        <icd:isIncludedInLinearization rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >true</icd:isIncludedInLinearization>
+        <icd:linearizationSortingLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >3</icd:linearizationSortingLabel>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <icd:selectedHouseholdActivitiesImpact rdf:resource="http://who.int/icd#FunctionalImpactTerm_d640"/>
+    <icd:selectedHouseholdActivitiesImpact rdf:resource="http://who.int/icd#FunctionalImpactTerm_d630"/>
+    <patternsOfFluid>
+      <PatternsOfFluid rdf:ID="WaterRetention">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Water Retention 水毒</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Water Retention 水毒</rdfs:label>
+      </PatternsOfFluid>
+    </patternsOfFluid>
+    <icd:investigations>
+      <icd:InvestigationTerm rdf:ID="InvestigationTerm_24">
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >???</bp:shortTermId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >R00.8 Tight pulse</icd:label>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >???</icd:termId>
+      </icd:InvestigationTerm>
+    </icd:investigations>
+    <zangFuOrgans>
+      <LungOrLargeIntestine rdf:ID="Lung">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >The Lung 肺</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >The Lung 肺</icd:label>
+      </LungOrLargeIntestine>
+    </zangFuOrgans>
+    <patternsOfQiBloodFluids rdf:resource="#WaterRetention"/>
+    <rdf:type rdf:resource="#TraditionalMedicineCausalFactorAndRiskFactorSection"/>
+    <herb>
+      <icd:TreatmentTerm rdf:ID="TreatmentTerm_42">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Armeniacae Semen</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Armeniacae Semen</rdfs:label>
+      </icd:TreatmentTerm>
+    </herb>
+    <lungOrLargeIntestine rdf:resource="#Lung"/>
+    <rdf:type rdf:resource="http://who.int/icd#LinearizationSection"/>
+    <icd:inclusion>
+      <icd:InclusionTerm rdf:ID="InclusionTerm_38">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >外感風寒表虚証 Exterior cold deficiency pattern</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >外感風寒表虚証 Exterior cold deficiency pattern</rdfs:label>
+      </icd:InclusionTerm>
+    </icd:inclusion>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:ID="LinearizationSpecification_47">
+        <icd:linearizationSortingLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >6</icd:linearizationSortingLabel>
+        <icd:isIncludedInLinearization rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >false</icd:isIncludedInLinearization>
+        <icd:linearizationView rdf:resource="http://who.int/icd#Specialty_Adaptation_Neurology"/>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:ID="LinearizationSpecification_48">
+        <icd:isIncludedInLinearization rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >false</icd:isIncludedInLinearization>
+        <icd:linearizationSortingLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >7</icd:linearizationSortingLabel>
+        <icd:linearizationView rdf:resource="http://who.int/icd#Specialty_Adaptation_Musculoskeletal"/>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <icd:icdCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >None</icd:icdCode>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_21">
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Pain in throat</icd:label>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42789</bp:ontologyId>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >162397003</bp:shortTermId>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42789/?conceptid=162397003</icd:url>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >162397003</icd:termId>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <icd:inclusion>
+      <icd:InclusionTerm rdf:ID="InclusionTerm_35">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >麻黄湯証 Maoto Sho</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >麻黄湯証 Maoto Sho</icd:label>
+      </icd:InclusionTerm>
+    </icd:inclusion>
+    <icd:bodyPart>
+      <icd:BodyPartTerm rdf:ID="BodyPartTerm_11">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Entire respiratory system</icd:label>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42122/?conceptid=278197002</icd:url>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >278197002</icd:termId>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >278197002</bp:shortTermId>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42122</bp:ontologyId>
+      </icd:BodyPartTerm>
+    </icd:bodyPart>
+    <icd:selectedSelfCareImpact rdf:resource="http://who.int/icd#FunctionalImpactTerm_d550"/>
+    <icd:proximalRiskFactor>
+      <icd:RiskFactorTerm rdf:ID="RiskFactorTerm_4">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Young children (&lt; 2 years old)</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Young children (&lt; 2 years old)</icd:label>
+      </icd:RiskFactorTerm>
+    </icd:proximalRiskFactor>
+  </icd:DefinitionSection>
+  <icd:BodyPartTerm rdf:ID="BodyPartTerm_41">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Structure of Respiratory System (Body Structure)</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Structure of Respiratory System (Body Structure)</icd:label>
+  </icd:BodyPartTerm>
+  <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_52">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sore Throat</icd:label>
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >267102003</icd:id>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sore Throat 267102003</rdfs:label>
+  </icd:SignsAndSymptomsTerm>
+  <PatternsOfBlood rdf:ID="BloodHeat">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Blood Heat 血熱</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Blood Heat 血熱</icd:label>
+  </PatternsOfBlood>
+  <PatternsOfFluid rdf:ID="DamageToFluid">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Damage to Fluid 傷津</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Damage to Fluid 傷津</icd:label>
+  </PatternsOfFluid>
+  <PatternsOfQi rdf:ID="QiFall">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Qi fall 気陥</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Qi fall 気陥</rdfs:label>
+  </PatternsOfQi>
+  <SixStagesOfDiseaseTransformationTerm rdf:ID="YangMingStage">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yang Ming Stage 陽明病</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yang Ming Stage 陽明病</icd:label>
+  </SixStagesOfDiseaseTransformationTerm>
+  <icd:ClinicalDescriptionSection rdf:ID="DiabetesMellitus">
+    <herb>
+      <icd:TreatmentTerm rdf:ID="Zizyphi_Fructus">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Zizyphi Fructus</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Zizyphi Fructus</icd:label>
+      </icd:TreatmentTerm>
+    </herb>
+    <icd:exclusion>
+      <icd:ExclusionTerm rdf:ID="ExclusionTerm_21">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >(in):Postsurgial hypoinsulinaenmia (E89.1)</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >(in):Postsurgial hypoinsulinaenmia (E89.1)</icd:label>
+      </icd:ExclusionTerm>
+    </icd:exclusion>
+    <icd:exclusion>
+      <icd:ExclusionTerm rdf:ID="ExclusionTerm_19">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >(in):glycosuria: NOS (R81)</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >(in):glycosuria: NOS (R81)</icd:label>
+      </icd:ExclusionTerm>
+    </icd:exclusion>
+    <icd:synonym>
+      <icd:SynonymTerm rdf:ID="SynonymTerm_9">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Diabetes</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Diabetes</icd:label>
+      </icd:SynonymTerm>
+    </icd:synonym>
+    <icd:exclusion>
+      <icd:ExclusionTerm rdf:ID="ExclusionTerm_18">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >(in):pregnancy, childbirth and the puerperium(O24.)</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >(in):pregnancy, childbirth and the puerperium(O24.)</rdfs:label>
+      </icd:ExclusionTerm>
+    </icd:exclusion>
+    <icd:bodySystem>
+      <icd:BodySystemTerm rdf:ID="BodySystemTerm_6">
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Body System</bp:ontologyLabel>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42651/?conceptid=http%3A%2F%2Fwho.int%2Fbodysystem.owl%23CirculatorySystem</icd:url>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Body System</icd:ontologyId>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >CirculatorySystem</bp:shortTermId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Circulatory System (Cardiovascular System)</icd:label>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://who.int/bodysystem.owl#CirculatorySystem</icd:termId>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42651</bp:ontologyId>
+      </icd:BodySystemTerm>
+    </icd:bodySystem>
+    <icd:exclusion>
+      <icd:ExclusionTerm rdf:ID="ExclusionTerm_14">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >(in):Malnutrition-related (E5)</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >(in):Malnutrition-related (E5)</rdfs:label>
+      </icd:ExclusionTerm>
+    </icd:exclusion>
+    <herb>
+      <icd:TreatmentTerm rdf:ID="Astragali_Radix">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Astragali Radix</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Astragali Radix</rdfs:label>
+      </icd:TreatmentTerm>
+    </herb>
+    <rdf:type rdf:resource="http://who.int/icd#DefinitionSection"/>
+    <rdf:type rdf:resource="#TraditionalMedicineCausalFactorAndRiskFactorSection"/>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_2">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Weight loss</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Weight loss</icd:label>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <icd:bodyPart>
+      <icd:BodyPartTerm rdf:ID="BodyPartTerm_8">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Beta cell</icd:label>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >???</bp:shortTermId>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >???</icd:termId>
+      </icd:BodyPartTerm>
+    </icd:bodyPart>
+    <coldOrHeat rdf:resource="#Cold"/>
+    <icd:synonym>
+      <icd:SynonymTerm rdf:ID="SynonymTerm_10">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Diabetic</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Diabetic</rdfs:label>
+      </icd:SynonymTerm>
+    </icd:synonym>
+    <exteriorOrInterior>
+      <ExteriorOrInterior rdf:ID="Interior">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Interior 裏證</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Interior 裏證</icd:label>
+      </ExteriorOrInterior>
+    </exteriorOrInterior>
+    <herb rdf:resource="#Cinnamomi_Cortex"/>
+    <threeRegions>
+      <ThreeRegionsTerm rdf:ID="LowerRegion">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Lower region 下焦</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Lower region 下焦</icd:label>
+      </ThreeRegionsTerm>
+    </threeRegions>
+    <sixStagesOfDiseaseTransformation>
+      <SixStagesOfDiseaseTransformationTerm rdf:ID="TaiYinStage">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >TaiYin Stage 太陰病</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >TaiYin Stage 太陰病</icd:label>
+      </SixStagesOfDiseaseTransformationTerm>
+    </sixStagesOfDiseaseTransformation>
+    <rdf:type rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+    <codes>
+      <icd:ReferenceTerm rdf:ID="CodedTerm_26">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >糖尿病</icd:label>
+        <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >8847</icd:id>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >KCDMICD10</bp:ontologyLabel>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >糖尿病  KCDMICD10; 8847</rdfs:label>
+      </icd:ReferenceTerm>
+    </codes>
+    <deficiencyOrExcess>
+      <DeficiencyOrExcess rdf:ID="Deficiency">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Defiency 虚證</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Defiency 虚證</icd:label>
+      </DeficiencyOrExcess>
+    </deficiencyOrExcess>
+    <rdf:type rdf:resource="#TraditionalTheoryClinicalDescriptionSection"/>
+    <icd:inclusion>
+      <icd:InclusionTerm rdf:ID="InclusionTerm_25">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >消渴傳變證 CDM-ICD10; 8835 KCDM-ID; 1156 KCDM code; F75.05</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >消渴傳變證 CDM-ICD10; 8835 KCDM-ID; 1156 KCDM code; F75.05</rdfs:label>
+      </icd:InclusionTerm>
+    </icd:inclusion>
+    <icd:linearization rdf:resource="#LinearizationSpecification_11"/>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_3">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Fatigue</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Fatigue</rdfs:label>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_1">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Polydipsia</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Polydipsia</icd:label>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:ID="LinearizationSpecification_15">
+        <icd:linearizationSortingLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >7</icd:linearizationSortingLabel>
+        <icd:linearizationView rdf:resource="http://who.int/icd#Specialty_Adaptation_Musculoskeletal"/>
+        <icd:isIncludedInLinearization rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >true</icd:isIncludedInLinearization>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <icd:signsAndSymptoms>
+      <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_25">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Polyuria</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Polyuria</icd:label>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        ></rdfs:comment>
+      </icd:SignsAndSymptomsTerm>
+    </icd:signsAndSymptoms>
+    <icd:synonym>
+      <icd:SynonymTerm rdf:ID="SynonymTerm_29">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Congenital diabetes</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Congenital diabetes</rdfs:label>
+      </icd:SynonymTerm>
+    </icd:synonym>
+    <herb>
+      <icd:TreatmentTerm rdf:ID="Paeoniae_Radix">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Paeoniae Radix</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Paeoniae Radix</rdfs:label>
+      </icd:TreatmentTerm>
+    </herb>
+    <icd:investigations>
+      <icd:InvestigationTerm rdf:ID="InvestigationTerm_4">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Impaired glucose tolerance</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Impaired glucose tolerance</rdfs:label>
+      </icd:InvestigationTerm>
+    </icd:investigations>
+    <icd:synonym>
+      <icd:SynonymTerm rdf:ID="SynonymTerm_11">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Diabetes Mellitus</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Diabetes Mellitus</icd:label>
+      </icd:SynonymTerm>
+    </icd:synonym>
+    <herb rdf:resource="#Glycyrrhizae_Radix"/>
+    <rdfs:subClassOf rdf:resource="#ICTMCategory"/>
+    <codes>
+      <icd:ReferenceTerm rdf:ID="CodedTerm_27">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >糖尿病</icd:label>
+        <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >1157</icd:id>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >糖尿病  KCDM-ID; 1157</rdfs:label>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >KCDM-ID</bp:ontologyLabel>
+      </icd:ReferenceTerm>
+    </codes>
+    <rdf:type rdf:resource="http://who.int/icd#DiagnosticCriteriaSection"/>
+    <rdf:type rdf:resource="http://who.int/icd#TermSection"/>
+    <icd:bodySystem>
+      <icd:BodySystemTerm rdf:ID="BodySystemTerm_5">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Metabolic System</icd:label>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://who.int/bodysystem.owl#MetabolicSystem</icd:termId>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Body System</bp:ontologyLabel>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42651</bp:ontologyId>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42651/?conceptid=http%3A%2F%2Fwho.int%2Fbodysystem.owl%23MetabolicSystem</icd:url>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Body System</icd:ontologyId>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >MetabolicSystem</bp:shortTermId>
+      </icd:BodySystemTerm>
+    </icd:bodySystem>
+    <icd:icdTitle>
+      <icd:TitleTerm rdf:ID="TitleTerm_18">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Type 1 diabetes mellitus</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Type 1 diabetes mellitus</rdfs:label>
+      </icd:TitleTerm>
+    </icd:icdTitle>
+    <icd:icdCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >E10</icd:icdCode>
+    <icd:exclusion>
+      <icd:ExclusionTerm rdf:ID="ExclusionTerm_20">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >(in):Impaired glucose tolerance (R73.0)</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >(in):Impaired glucose tolerance (R73.0)</icd:label>
+      </icd:ExclusionTerm>
+    </icd:exclusion>
+    <icd:exclusion>
+      <icd:ExclusionTerm rdf:ID="ExclusionTerm_17">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >(in):Neonatal (P70.2)</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >(in):Neonatal (P70.2)</icd:label>
+      </icd:ExclusionTerm>
+    </icd:exclusion>
+    <icd:inclusion>
+      <icd:InclusionTerm rdf:ID="InclusionTerm_1">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >消渴 CDM-ICD10; 8763 KCDM-ID; 1150 KCDM code; F75</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >消渴 CDM-ICD10; 8763 KCDM-ID; 1150 KCDM code; F75</rdfs:label>
+      </icd:InclusionTerm>
+    </icd:inclusion>
+    <yinOrYang rdf:resource="#Yang"/>
+    <icd:inclusion>
+      <icd:InclusionTerm rdf:ID="InclusionTerm_24">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >食亦 CDM-ICD10; 8823 KCDM-ID; 1155 KCDM code; F75.04</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >食亦 CDM-ICD10; 8823 KCDM-ID; 1155 KCDM code; F75.04</rdfs:label>
+      </icd:InclusionTerm>
+    </icd:inclusion>
+    <herb>
+      <icd:TreatmentTerm rdf:ID="Zingiberis_Rhizoma">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Zingiberis Rhizoma</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Zingiberis Rhizoma</rdfs:label>
+      </icd:TreatmentTerm>
+    </herb>
+    <icd:linearization rdf:resource="#LinearizationSpecification_12"/>
+    <threeRegions>
+      <ThreeRegionsTerm rdf:ID="MiddleRegion">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Middle region 中焦</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Middle region 中焦</rdfs:label>
+      </ThreeRegionsTerm>
+    </threeRegions>
+    <icd:definition>
+      <icd:DefinitionTerm rdf:ID="DefinitionTerm_19">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Diabetes mellitus type 1 is a chronic hyperglycaemia due to lack of insuline, due to destruction of the beta cells of the pancreas by auto immune processes.</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Diabetes mellitus type 1 is a chronic hyperglycaemia due to lack of insuline, due to destruction of the beta cells of the pancreas by auto immune processes.</rdfs:label>
+      </icd:DefinitionTerm>
+    </icd:definition>
+    <icd:synonym>
+      <icd:SynonymTerm rdf:ID="SynonymTerm_12">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >黄耆建中湯証/Ougikenchu-to</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >黄耆建中湯証/Ougikenchu-to</rdfs:label>
+      </icd:SynonymTerm>
+    </icd:synonym>
+    <icd:linearization rdf:resource="http://who.int/icd#TestIsIncludedSlotLinearization"/>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:ID="LinearizationSpecification_16">
+        <icd:isIncludedInLinearization rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >true</icd:isIncludedInLinearization>
+        <icd:linearizationView rdf:resource="http://who.int/icd#Specialty_Adaptation_Paediatrics"/>
+        <icd:linearizationSortingLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >8</icd:linearizationSortingLabel>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <icd:hasType rdf:resource="http://who.int/icd#Disease_Type"/>
+    <rdf:type rdf:resource="http://who.int/icd#LinearizationSection"/>
+    <icd:linearization rdf:resource="#LinearizationSpecification_13"/>
+    <icd:linearization rdf:resource="#LinearizationSpecification_17"/>
+    <icd:linearization rdf:resource="#LinearizationSpecification_10"/>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:ID="LinearizationSpecification_14">
+        <icd:linearizationSortingLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >6</icd:linearizationSortingLabel>
+        <icd:linearizationView rdf:resource="http://who.int/icd#Specialty_Adaptation_Neurology"/>
+        <icd:isIncludedInLinearization rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >true</icd:isIncludedInLinearization>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <formula>
+      <icd:TreatmentTerm rdf:ID="TOhgikenchu-to">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Ohgikenchu-to/黄耆建中湯</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Ohgikenchu-to/黄耆建中湯</rdfs:label>
+      </icd:TreatmentTerm>
+    </formula>
+    <rdf:type rdf:resource="http://who.int/icd#TreatmentSection"/>
+    <icd:bodySystem>
+      <icd:BodySystemTerm rdf:ID="BodySystemTerm_4">
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://who.int/bodysystem.owl#EndocrineSystem</icd:termId>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42651</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Body System</bp:ontologyLabel>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Endocrine System</icd:label>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42651/?conceptid=http%3A%2F%2Fwho.int%2Fbodysystem.owl%23EndocrineSystem</icd:url>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >EndocrineSystem</bp:shortTermId>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Body System</icd:ontologyId>
+      </icd:BodySystemTerm>
+    </icd:bodySystem>
+    <icd:inclusion>
+      <icd:InclusionTerm rdf:ID="InclusionTerm_22">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >胃熱證 CDM-ICD10; 3635 KCDM-ID; 476 KCDM code; D18</rdfs:label>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >胃熱證 CDM-ICD10; 3635 KCDM-ID; 476 KCDM code; D18</icd:label>
+      </icd:InclusionTerm>
+    </icd:inclusion>
+    <icd:bodyPart>
+      <icd:BodyPartTerm rdf:ID="BodyPartTerm_7">
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</icd:ontologyId>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >181277001</icd:termId>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >SNOMED Clinical Terms</bp:ontologyLabel>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42122</bp:ontologyId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Entire pancreas</icd:label>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >181277001</bp:shortTermId>
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42122/?conceptid=181277001</icd:url>
+      </icd:BodyPartTerm>
+    </icd:bodyPart>
+    <threeRegions rdf:resource="#UpperRegion"/>
+    <codes>
+      <icd:ReferenceTerm rdf:ID="CodedTerm_28">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >糖尿病 KCDM code; F76</rdfs:label>
+        <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >F76</icd:id>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >KCDM code</bp:ontologyLabel>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >糖尿病</icd:label>
+      </icd:ReferenceTerm>
+    </codes>
+    <patternsOfQiBloodFluids>
+      <PatternsOfQi rdf:ID="QiDeficiency">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Qi Deficiency 気虚</icd:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Qi Deficiency 気虚</rdfs:label>
+      </PatternsOfQi>
+    </patternsOfQiBloodFluids>
+  </icd:ClinicalDescriptionSection>
+  <PatternsOfQi rdf:ID="QiCounterflow">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Qi Counterflow 気逆</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Qi Counterflow 気逆</icd:label>
+  </PatternsOfQi>
+  <ExteriorOrInterior rdf:ID="ExteriorAndInterior">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Half-exterior, half-interior 半表半裏</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Half-exterior, half-interior 半表半裏</icd:label>
+  </ExteriorOrInterior>
+  <DeficiencyOrExcess rdf:ID="BetweenDeficiencyAndExcess">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Between deficiency and excess 虚実中間証</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Between deficiency and excess 虚実中間証</rdfs:label>
+  </DeficiencyOrExcess>
+  <icd:BodyPartTerm rdf:ID="BodyPartTerm_24">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Beta cell</rdfs:label>
+  </icd:BodyPartTerm>
+  <NonEndoOrExopathicFactors rdf:ID="DietOtherFactors">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Diet</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Diet</rdfs:label>
+  </NonEndoOrExopathicFactors>
+  <SixStagesOfDiseaseTransformationTerm rdf:ID="JueYinStage">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jue Yin Stage 厥陰病</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jue Yin Stage 厥陰病</icd:label>
+  </SixStagesOfDiseaseTransformationTerm>
+  <NonEndoOrExopathicFactors rdf:ID="PhlegmOtherFactors">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Phlegm</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Phlegm</icd:label>
+  </NonEndoOrExopathicFactors>
+  <owl:AnnotationProperty rdf:ID="label"/>
+  <icd:BodyPartTerm rdf:ID="BodyPartTerm_23">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Pancreas</rdfs:label>
+  </icd:BodyPartTerm>
+  <AspectPatternsTerm rdf:ID="QiAspectPattern">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Qi aspect pattern 氣分證</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Qi aspect pattern 氣分證</rdfs:label>
+  </AspectPatternsTerm>
+  <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_50">
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >386661006</icd:id>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fever 386661006</rdfs:label>
+  </icd:SignsAndSymptomsTerm>
+  <AspectPatternsTerm rdf:ID="DefenceAspectPattern">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Defense aspect pattern 證衛分</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Defense aspect pattern 證衛分</icd:label>
+  </AspectPatternsTerm>
+  <icd:BodySystemTerm rdf:ID="BodySystemTerm_39">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Respiratory System</rdfs:label>
+  </icd:BodySystemTerm>
+  <KidneyOrUrinaryBladder rdf:ID="UrinaryBladder">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Urinary Bladder 膀胱</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Urinary Bladder 膀胱</rdfs:label>
+  </KidneyOrUrinaryBladder>
+  <EndopathicFactors rdf:ID="AngerEndopathicFactors">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Anger</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Anger</icd:label>
+  </EndopathicFactors>
+  <PatternsOfQi rdf:ID="QiCollapse">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Qi Collapse 気脱</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Qi Collapse 気脱</rdfs:label>
+  </PatternsOfQi>
+  <KidneyOrUrinaryBladder rdf:ID="Kidney">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Kidney 腎</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Kidney 腎</icd:label>
+  </KidneyOrUrinaryBladder>
+  <owl:AnnotationProperty rdf:ID="ontologyId"/>
+  <EndopathicFactors rdf:ID="JoyEndopathicFactors">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Joy</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Joy</icd:label>
+  </EndopathicFactors>
+  <ExopathicFactors rdf:ID="DrynessExopathicFactor">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dryness</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dryness</rdfs:label>
+  </ExopathicFactors>
+  <EndopathicFactors rdf:ID="FearEndopathicFactors">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fear</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fear</rdfs:label>
+  </EndopathicFactors>
+  <icd:SignsAndSymptomsTerm rdf:ID="SignsAndSymptomsTerm_60">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R688 Chill and fever</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R688 Chill and fever</icd:label>
+  </icd:SignsAndSymptomsTerm>
+  <rdf:Description rdf:about="http://who.int/icd#bodySystem">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://who.int/icd#ClinicalDescriptionSection"/>
+          <owl:Class rdf:about="#TraditionalTheoryClinicalDescriptionSection"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain rdf:resource="http://who.int/icd#ClinicalDescriptionSection"/>
+  </rdf:Description>
+  <SixStagesOfDiseaseTransformationTerm rdf:ID="ShaoYangStage">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Shao Yang Stage 少陽病</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Shao Yang Stage 少陽病</icd:label>
+  </SixStagesOfDiseaseTransformationTerm>
+  <FourConstitutionTypesTerm rdf:ID="LesserYangPerson">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Lesser yang person 少陽人</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Lesser yang person 少陽人</icd:label>
+  </FourConstitutionTypesTerm>
+  <FourConstitutionTypesTerm rdf:ID="GreaterYinPerson">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Greater yin person 太陰人</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Greater yin person 太陰人</rdfs:label>
+  </FourConstitutionTypesTerm>
+  <ColdOrHeat rdf:ID="SevereColdnessOfExtremities">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Severe coldness of extremities 厥冷</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Severe coldness of extremities 厥冷</icd:label>
+  </ColdOrHeat>
+  <ColdOrHeat rdf:ID="BetweenHeatAndCold">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Between heat and cold 寒中間証</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Between heat and cold 寒中間証</icd:label>
+  </ColdOrHeat>
+  <PatternsOfBlood rdf:ID="BloodCounterflow">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Blood Counterflow 血逆</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Blood Counterflow 血逆</rdfs:label>
+  </PatternsOfBlood>
+  <icd:InvestigationTerm rdf:about="#127796002">
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >127796002</icd:id>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Direct Immunofluorescence 127796002</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Direct Immunofluorescence</icd:label>
+  </icd:InvestigationTerm>
+  <ExopathicFactors rdf:ID="WindExopathicFactor">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Wind</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Wind</rdfs:label>
+  </ExopathicFactors>
+  <icd:BodyPartTerm rdf:ID="BodyPartTerm_40">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Entire Respiratory System (Body Structure)</rdfs:label>
+  </icd:BodyPartTerm>
+  <AspectPatternsTerm rdf:ID="BloodAspectPattern">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Blood aspect pattern 血分證</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Blood aspect pattern 血分證</icd:label>
+  </AspectPatternsTerm>
+  <ExopathicFactors rdf:ID="HeatExopathicFactor">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Heat</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Heat</icd:label>
+  </ExopathicFactors>
+  <icd:InvestigationTerm rdf:about="#12717000">
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >12717000</icd:id>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Viral Culture 12717000</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Viral Culture</icd:label>
+  </icd:InvestigationTerm>
+  <TraditionalMedicineCausalFactorAndRiskFactorSection rdf:about="http://who.int/icd#ICDCategory">
+    <rdf:type rdf:resource="#TraditionalTheoryClinicalDescriptionSection"/>
+  </TraditionalMedicineCausalFactorAndRiskFactorSection>
+  <ColdOrHeat rdf:ID="UpperBodyHeatAndLowerBodyCold">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Upper body heat and lower body cold 寒上熱下</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Upper body heat and lower body cold 寒上熱下</rdfs:label>
+  </ColdOrHeat>
+  <icd:InvestigationTerm rdf:ID="InvestigationTerm_67">
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >WPRO2.4.32</icd:id>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R00.0 Rapid pulse 20071976</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R00.0 Rapid pulse 20071976 WPRO2.4.32</rdfs:label>
+  </icd:InvestigationTerm>
+  <PatternsOfBlood rdf:ID="StagnantBlood">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Stagnant Blood 瘀血</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Stagnant Blood 瘀血</icd:label>
+  </PatternsOfBlood>
+  <PatternsOfBlood rdf:ID="BloodDeficiency">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Blood Deficiency 血虚</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Blood Deficiency 血虚</icd:label>
+  </PatternsOfBlood>
+  <FourConstitutionTypesTerm rdf:ID="GreaterYangPerson">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Greater yang person 太陽人</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Greater yang person 太陽人</rdfs:label>
+  </FourConstitutionTypesTerm>
+  <PatternsOfBlood rdf:ID="BloodCollapse">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Blood Collapse 血脱</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Blood Collapse 血脱</icd:label>
+  </PatternsOfBlood>
+  <owl:AnnotationProperty rdf:ID="termId"/>
+  <icd:InvestigationTerm rdf:ID="InvestigationTerm_66">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R00.8 Tight pulse</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R00.8 Tight pulse WPRO2.4.42</rdfs:label>
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >WPRO2.4.42</icd:id>
+  </icd:InvestigationTerm>
+  <icd:BodySystemTerm rdf:ID="BodySystemTerm_21">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Metabolic system</rdfs:label>
+  </icd:BodySystemTerm>
+  <rdf:Description rdf:about="http://who.int/icd#diseaseCausingAgent">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://who.int/icd#CausalMechanismAndRiskFactorsSection"/>
+          <owl:Class rdf:about="#TraditionalMedicineCausalFactorAndRiskFactorSection"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain rdf:resource="http://who.int/icd#CausalMechanismAndRiskFactorsSection"/>
+  </rdf:Description>
+  <NonEndoOrExopathicFactors rdf:ID="BeastsAndInsectsOtherFactors">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Breast and Insect</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Breast and Insect</rdfs:label>
+  </NonEndoOrExopathicFactors>
+  <SpleenOrStomach rdf:ID="Stomach">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Stomach 胃</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Stomach 胃</icd:label>
+  </SpleenOrStomach>
+  <ExopathicFactors rdf:ID="ColdExopathicFactor">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cold</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cold</icd:label>
+  </ExopathicFactors>
+  <LiverOrGallBladder rdf:ID="GallBladder">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Gallbladder 胆</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Gallbladder 胆</icd:label>
+  </LiverOrGallBladder>
+  <FourConstitutionTypesTerm rdf:ID="LesserYinPerson">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Lesser yin person 少陰人</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Lesser yin person 少陰人</icd:label>
+  </FourConstitutionTypesTerm>
+  <icd:InvestigationTerm rdf:ID="InvestigationTerm_65">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R00.8 Floating pulse WPRO2.4.29</rdfs:label>
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >WPRO2.4.29</icd:id>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R00.8 Floating pulse</icd:label>
+  </icd:InvestigationTerm>
+  <icd:BodySystemTerm rdf:ID="BodySystemTerm_22">
+    <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Circulatory system</bp:ontologyLabel>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Circulatory system</rdfs:label>
+  </icd:BodySystemTerm>
+  <icd:SignsAndSymptomsTerm rdf:about="#20058669">
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20058669</icd:id>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R52.0 Acute pain</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R52.0 Acute pain</icd:label>
+  </icd:SignsAndSymptomsTerm>
+  <ExopathicFactors rdf:ID="SummerHeatExopathicFactor">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Summer Heat</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Summer Heat</rdfs:label>
+  </ExopathicFactors>
+  <LungOrLargeIntestine rdf:ID="LargeIntestine">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Large Intestine 大腸</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Large Intestine 大腸</icd:label>
+  </LungOrLargeIntestine>
+  <SixStagesOfDiseaseTransformationTerm rdf:ID="DestroyedStage">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Destroyed Stage 壞病</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Destroyed Stage 壞病</icd:label>
+  </SixStagesOfDiseaseTransformationTerm>
+  <NonEndoOrExopathicFactors rdf:ID="TraumaOtherFactors">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Trauma</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Trauma</icd:label>
+  </NonEndoOrExopathicFactors>
+  <owl:DeprecatedClass rdf:about="#0_d291c9c9_7f45_4283_9c39_b11c93afadab">
+    <rdf:type rdf:resource="http://who.int/icd#ClinicalDescriptionSection"/>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:about="#6_d291c9c9_7f45_4283_9c39_b11c93afadab">
+        <icd:linearizationView rdf:resource="http://who.int/icd#PrimaryCare"/>
+        <icd:linearizationParent rdf:resource="#ICTMCategory"/>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <rdf:type rdf:resource="http://who.int/icd#TermSection"/>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:about="#5_d291c9c9_7f45_4283_9c39_b11c93afadab">
+        <icd:linearizationParent rdf:resource="#ICTMCategory"/>
+        <icd:linearizationView rdf:resource="http://who.int/icd#Morbidity"/>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <yinOrYang>
+      <YinOrYang rdf:ID="Yin">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Yin 陰證</rdfs:label>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        ></rdfs:comment>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Yin 陰證</icd:label>
+      </YinOrYang>
+    </yinOrYang>
+    <rdf:type rdf:resource="http://who.int/icd#TreatmentSection"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:about="#8_d291c9c9_7f45_4283_9c39_b11c93afadab">
+        <icd:linearizationView rdf:resource="http://who.int/icd#Research"/>
+        <icd:linearizationParent rdf:resource="#ICTMCategory"/>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <icd:icdTitle>
+      <icd:TitleTerm rdf:about="#10_d291c9c9_7f45_4283_9c39_b11c93afadab">
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Test 1</icd:label>
+      </icd:TitleTerm>
+    </icd:icdTitle>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:about="#7_d291c9c9_7f45_4283_9c39_b11c93afadab">
+        <icd:linearizationView rdf:resource="http://who.int/icd#Mortality"/>
+        <icd:linearizationParent rdf:resource="#ICTMCategory"/>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <deficiencyOrExcess rdf:resource="#Deficiency"/>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:about="#3_d291c9c9_7f45_4283_9c39_b11c93afadab">
+        <icd:linearizationParent rdf:resource="#ICTMCategory"/>
+        <icd:linearizationView rdf:resource="http://who.int/icd#Specialty_Adaptation_Musculoskeletal"/>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <rdf:type rdf:resource="http://who.int/icd#LinearizationSection"/>
+    <rdf:type rdf:resource="http://who.int/icd#DefinitionSection"/>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:about="#1_d291c9c9_7f45_4283_9c39_b11c93afadab">
+        <icd:linearizationParent rdf:resource="#ICTMCategory"/>
+        <icd:linearizationView rdf:resource="http://who.int/icd#Specialty_Adaptation_Dermatology"/>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:about="#9_d291c9c9_7f45_4283_9c39_b11c93afadab">
+        <icd:linearizationView rdf:resource="http://who.int/icd#Specialty_Adaptation_Neurology"/>
+        <icd:linearizationParent rdf:resource="#ICTMCategory"/>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <rdf:type rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+    <coldOrHeat rdf:resource="#Cold"/>
+    <rdf:type rdf:resource="http://who.int/icd#DiagnosticCriteriaSection"/>
+    <rdf:type rdf:resource="#TraditionalMedicineCausalFactorAndRiskFactorSection"/>
+    <rdf:type rdf:resource="#TraditionalTheoryClinicalDescriptionSection"/>
+    <rdfs:subClassOf rdf:resource="#Retired"/>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:about="#2_d291c9c9_7f45_4283_9c39_b11c93afadab">
+        <icd:linearizationView rdf:resource="http://who.int/icd#Speciality_Adaptation_Mental_Health"/>
+        <icd:linearizationParent rdf:resource="#ICTMCategory"/>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <icd:linearization>
+      <icd:LinearizationSpecification rdf:about="#4_d291c9c9_7f45_4283_9c39_b11c93afadab">
+        <icd:linearizationView rdf:resource="http://who.int/icd#Specialty_Adaptation_Paediatrics"/>
+        <icd:linearizationParent rdf:resource="#ICTMCategory"/>
+      </icd:LinearizationSpecification>
+    </icd:linearization>
+    <exteriorOrInterior rdf:resource="#Exterior"/>
+    <icd:bodySystem>
+      <icd:BodySystemTerm rdf:ID="BodySystemTerm_3">
+        <icd:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://bioportal.bioontology.org/visualize/42651/?conceptid=http%3A%2F%2Fwho.int%2Fbodysystem.owl%23EndocrineSystem</icd:url>
+        <icd:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Body System</icd:ontologyId>
+        <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Body System</bp:ontologyLabel>
+        <bp:ontologyId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >42651</bp:ontologyId>
+        <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Endocrine System</icd:label>
+        <bp:shortTermId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >EndocrineSystem</bp:shortTermId>
+        <icd:termId rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >http://who.int/bodysystem.owl#EndocrineSystem</icd:termId>
+      </icd:BodySystemTerm>
+    </icd:bodySystem>
+  </owl:DeprecatedClass>
+  <SixStagesOfDiseaseTransformationTerm rdf:ID="ShaoYinStage">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Shao Yin Stage 少陰病</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Shao Yin Stage 少陰病</icd:label>
+  </SixStagesOfDiseaseTransformationTerm>
+  <rdf:Description rdf:about="http://who.int/icd#bodyPart">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://who.int/icd#ClinicalDescriptionSection"/>
+          <owl:Class rdf:about="#TraditionalTheoryClinicalDescriptionSection"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain rdf:resource="http://who.int/icd#ClinicalDescriptionSection"/>
+  </rdf:Description>
+  <HeartOrSmallIntestines rdf:ID="SmallIntestines">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Small Intestine 小腸</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Small Intestine 小腸</icd:label>
+  </HeartOrSmallIntestines>
+  <icd:InvestigationTerm rdf:ID="InvestigationTerm_63">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Immunofluorescence</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Immunofluorescence 127797006</rdfs:label>
+    <icd:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >127797006</icd:id>
+  </icd:InvestigationTerm>
+  <icd:SignsAndSymptomsTerm rdf:ID="Malaise_36739100_8">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Malaise 367391008</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Malaise 367391008</rdfs:label>
+  </icd:SignsAndSymptomsTerm>
+  <PatternsOfBlood rdf:ID="BloodCold">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Blood Cold 血寒</rdfs:label>
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Blood Cold 血寒</icd:label>
+  </PatternsOfBlood>
+  <icd:BodySystemTerm rdf:ID="BodySystemTerm_20">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Endocrine system</rdfs:label>
+    <bp:ontologyLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Endocrine system</bp:ontologyLabel>
+  </icd:BodySystemTerm>
+  <EndopathicFactors rdf:ID="GriefEndopathicFactors">
+    <icd:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Grief</icd:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Grief</rdfs:label>
+  </EndopathicFactors>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4.4, Build 579)  http://protege.stanford.edu -->

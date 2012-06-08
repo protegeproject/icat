@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:protege-dc="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://www.nbirn.net/birnlex/1.1/OBO_annotation_properties.owl#"
+    xmlns:core="http://www.w3.org/2004/02/skos/core#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xml:base="http://www.nbirn.net/birnlex/1.1/OBO_annotation_properties.owl">
+  <owl:Ontology rdf:about="">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >These are annotation properties the BIRN OTF expects will be shared by the community, not limited to the specific ontology development needs of BIRN.  This current ontology is a proposal to be reviewed by the OBO Foundry participants and developers of other OBO Foundry ontologies - e.g., OBI, PaTO, GO, etc..</rdfs:comment>
+    <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The BIRN Ontology Task Force</dc:creator>
+    <modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2006-10-07</modifiedDate>
+    <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OBO Annotation Properties (BIRN derived)</dc:title>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1.1</owl:versionInfo>
+    <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
+    <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core/owl-dl/skos-core-owl-dl.owl"/>
+    <createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2006-10-07</createdDate>
+  </owl:Ontology>
+  <owl:AnnotationProperty rdf:ID="pendingObjectRelationNote">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A note describing a known relation in which this class participates that is beyond pure subsumptive is_a relations.  Is a type of skos:editorialNote</core:definition>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="pendingFunctionalRelationNote">
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A note describing a known functional/process/occurant relation in which this class participates that is beyond pure subsumptive is_a relation.  Is a type of pending_object_relation_note.</core:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="tempDefinition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >a definition specifically declared to be temporary and in the midst of more detailed curation efforts. Is a type of skos_definition.</core:definition>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="definitionSource">
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The source authority for an externally derived definition</core:definition>
+    <rdfs:range>
+      <owl:DataRange>
+        <owl:oneOf rdf:parseType="Resource">
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >UMLS</rdf:first>
+          <rdf:rest rdf:parseType="Resource">
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Wikipedia</rdf:first>
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+          </rdf:rest>
+        </owl:oneOf>
+      </owl:DataRange>
+    </rdfs:range>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="modifiedDate">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <core:definition xml:lang="en-US">the date when a class was last altered. Is a type of dc_date.</core:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="synonym">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A lexical variant carrying the same latent semantic value. Is a type of skos_altLabel.</core:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="externalSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Class derived from an external knowledge source</core:definition>
+    <rdfs:range>
+      <owl:DataRange>
+        <owl:oneOf rdf:parseType="Resource">
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >OBR</rdf:first>
+          <rdf:rest rdf:parseType="Resource">
+            <rdf:rest rdf:parseType="Resource">
+              <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >Simple Bio Upper Ontology</rdf:first>
+              <rdf:rest rdf:parseType="Resource">
+                <rdf:rest rdf:parseType="Resource">
+                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >SNOMED</rdf:first>
+                  <rdf:rest rdf:parseType="Resource">
+                    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >FMA</rdf:first>
+                    <rdf:rest rdf:parseType="Resource">
+                      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                      <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                      >UMLS</rdf:first>
+                    </rdf:rest>
+                  </rdf:rest>
+                </rdf:rest>
+                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >MeSH</rdf:first>
+              </rdf:rest>
+            </rdf:rest>
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Biodynamic Ontology</rdf:first>
+          </rdf:rest>
+        </owl:oneOf>
+      </owl:DataRange>
+    </rdfs:range>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="termDerviedFrom">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Indicates a term derives from an external source but has been substantially altered from that source.  Is a type of skos_history_note.</core:definition>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="taxonomicCommonName">
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >This is the common name label frequently used to indicate a particular, species-level taxonomic group.</core:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="sourceIndirection">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An indication of an external source from which this class is a direct subclass.  Is a type of skos_editorial_note.</core:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:AnnotationProperty>
+  <owl:DataRange>
+    <owl:oneOf rdf:parseType="Resource">
+      <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+      >raw import</rdf:first>
+      <rdf:rest rdf:parseType="Resource">
+        <rdf:rest rdf:parseType="Resource">
+          <rdf:rest rdf:parseType="Resource">
+            <rdf:rest rdf:parseType="Resource">
+              <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >curation complete</rdf:first>
+              <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:rest>
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >uncurated</rdf:first>
+          </rdf:rest>
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >graph position temporary</rdf:first>
+        </rdf:rest>
+        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >definition incomplete</rdf:first>
+      </rdf:rest>
+    </owl:oneOf>
+  </owl:DataRange>
+  <owl:AnnotationProperty rdf:ID="misspelling">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >an incorrect spelling of either the preferred label or a synonym. Is a type of skos_hiddenLabel.</core:definition>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="altDefinition">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >an additional, non-normative definition included while the curation status of a class is still pending. Is a type of skos_definition.</core:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <core:editorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >use of this property is discouraged.  A well defined ontology class cannot allow for alternative definitions.  This temporary_definition field should be used, when a definition is still pending full OBO definition status.</core:editorialNote>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="acronym">
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A synonym consisting of a sequence of letters typically taken from the beginning of words of which either the preferred label or another synonym are composed. Is a type of skos_altLabel.</core:definition>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="pendingActionNote">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >TODO</synonym>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <core:definition xml:lang="en">A note describing known tasks associate with a class that remain to be 
+    performed. This property should include a date in parenthesis to record 
+    when this pending action was first recognized as necessary.  Is a type of skos:editorialNote</core:definition>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="abbrev">
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A synonym that is a shortened version of either the preferred lexical label of one of its synonyms</core:definition>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A lexical variant carrying the same latent semantic value. Is a type of skos_altLabel.</core:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="createdDate">
+    <core:definition xml:lang="en-US">The date when a class was added to the file. Is a type of dc_date.</core:definition>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="externalSourceId">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >This field is to maintain the link back to an external source (see the externalSource property).</core:definition>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="externallySourcedDefinition">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >This is a class definition derived AS IS from an external, community knowledge resource. Is a type of skos_definition.</core:definition>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="definingCitation">
+    <modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2007-03-09</modifiedDate>
+    <createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
+    >2007-03-09</createdDate>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A namespace-specified ID for a record in a citation database that provides a fundamental definition for an ontology class</core:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="oboDefinition">
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >This is a class definition meeting the non-circular and Aristotelean requirements given by the OBO Foundry principles. Is a type of skos_definition.</core:definition>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <core:editorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >It also will likely include the related Aristotelean genus-differentia approach to applying this manner of definition construction as used now (as of 2006) in The Gene Ontology.</core:editorialNote>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="antiquated">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A lexical variant carrying the same latent semantic value.</core:definition>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A synonym no longer in common use. Is a type of skos_altLabel.</core:definition>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="curator">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >contributed to the properties, assertions, and other content associated with this class. Is a type of dc_contributor.</core:definition>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="misnomer">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >incorrect term often found mistakenly used to refer to this class. Is a type of skos_hiddenLabel.</core:definition>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="pendingMereotopologicalRelationNote">
+    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A note describing a known mereotopological spatial relation in which this class participates that is beyond pure subsumptive is_a relation.  Is a type of pending_object_relation_note.</core:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:AnnotationProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.3, Build 372)  http://protege.stanford.edu -->

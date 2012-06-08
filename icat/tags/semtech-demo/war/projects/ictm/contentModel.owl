@@ -1,0 +1,2978 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY iceci "http://who.int/iceci/iceci.owl#" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY bp "http://bioportal.bioontology.org#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
+    <!ENTITY xsp "http://www.owl-ontologies.com/2005/08/07/xsp.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://who.int/icd#"
+     xml:base="http://who.int/icd/contentModel"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:bp="http://bioportal.bioontology.org#"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:iceci="http://who.int/iceci/iceci.owl#">
+    <owl:Ontology rdf:about=""/>
+    <LifeCycleConditionTerm rdf:about="http://who.int/icd#AbortionSCTerm">
+        <bp:ontologyId rdf:datatype="&xsd;string">42122</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >SNOMED Clinical Terms</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">70317007</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">Abortion</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >SNOMED Clinical Terms</ontologyId>
+        <termId rdf:datatype="&xsd;string">70317007</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/42122/?id=70317007</url>
+    </LifeCycleConditionTerm>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#activitiesDescriptor">
+        <rdfs:domain rdf:resource="http://who.int/icd#ExternalCauseSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#externalCauseDimension"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#activityWhenInjured">
+        <rdfs:domain rdf:resource="http://who.int/icd#ExternalCauseSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#externalCauseDimension"/>
+    </owl:ObjectProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#adminInfo">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#CodedTerm"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Use as Underlying cause code, legal restrictions (country specific), etc.
+Administrative information like &quot;may be coded as underlying cause&quot;, &quot;may be used for morbidity coding&quot;, &quot;rare disease&quot; and others.</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <TemporalPropertyValueSet rdf:about="http://who.int/icd#adolescence">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Adolescence {13-18 yo}</rdfs:label>
+    </TemporalPropertyValueSet>
+    <InstanceTemplate rdf:about="http://who.int/icd#adolescenceTermTemplate">
+        <rdf:type rdf:resource="http://who.int/icd#TemporalPropertiesTerm"/>
+        <temporalRange rdf:resource="http://who.int/icd#adolescence"/>
+    </InstanceTemplate>
+    <TemporalPropertyValueSet rdf:about="http://who.int/icd#adult">
+        <rdfs:label rdf:datatype="&xsd;string">Adult {25-64 yo</rdfs:label>
+    </TemporalPropertyValueSet>
+    <TemporalPropertiesTerm rdf:about="http://who.int/icd#adultTermTemplate">
+        <rdf:type rdf:resource="http://who.int/icd#InstanceTemplate"/>
+        <temporalRange rdf:resource="http://who.int/icd#adult"/>
+    </TemporalPropertiesTerm>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#agent"/>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#ageRangeIsDefinitional">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#TemporalPropertiesTerm"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#ageRangeIsGenerallyTrue">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#TemporalPropertiesTerm"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >true if the disease occurs generally in that population (i.e. measles in children)</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:FunctionalProperty>
+    <ExclusionTermType rdf:about="http://who.int/icd#also_code">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >A type 2 excludes note represents &quot;Not included here&quot;. An excludes2 note indicates that the condition excluded is not part of the condition it is excluded from but a patient may have both conditions at the same time. When an Excludes2 note appears under a code it is acceptable to use both the code and the excluded code together. (Note: From ICD10CM)</rdfs:comment>
+    </ExclusionTermType>
+    <TemporalPropertyValueSet rdf:about="http://who.int/icd#antenatal">
+        <rdfs:comment rdf:datatype="&xsd;string"></rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Antenatal - (in utero) {-40 - 0 weeks}</rdfs:label>
+    </TemporalPropertyValueSet>
+    <InstanceTemplate rdf:about="http://who.int/icd#antenatalTermTemplate">
+        <rdf:type rdf:resource="http://who.int/icd#TemporalPropertiesTerm"/>
+        <temporalRange rdf:resource="http://who.int/icd#antenatal"/>
+    </InstanceTemplate>
+    <owl:Class rdf:about="http://who.int/icd#AuditorySystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#BodySystemsValueSet"/>
+        <rdfs:label rdf:datatype="&xsd;string">Auditory System</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#AutonomicNervousSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#NervousSystem"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Autonomic Nervous System</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#baseExclusion">
+        <rdfs:domain rdf:resource="http://who.int/icd#TermSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">base exclusion</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#ExclusionTerm"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#baseInclusion">
+        <rdfs:domain rdf:resource="http://who.int/icd#TermSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">base inclusion</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#SynonymTerm"/>
+    </owl:ObjectProperty>
+    <LifeCycleConditionTerm rdf:about="http://who.int/icd#BirthSCTerm">
+        <bp:ontologyId rdf:datatype="&xsd;string">42122</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >SNOMED Clinical Terms</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">3950001</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">Birth</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >SNOMED Clinical Terms</ontologyId>
+        <termId rdf:datatype="&xsd;string">3950001</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/42122/?id=3950001</url>
+    </LifeCycleConditionTerm>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#bodyPart">
+        <rdfs:domain rdf:resource="http://who.int/icd#ClinicalDescriptionSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">bodyPart</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#BodyPartTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#BodyPartTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ClinicalDescriptionTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string">5.2 Body Part</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#bodySystem">
+        <rdfs:domain rdf:resource="http://who.int/icd#ClinicalDescriptionSection"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Should this also be a term?!</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">bodySystem</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#BodySystemTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#BodySystemsValueSet">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ValueSet"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#BodySystemTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ClinicalDescriptionTerm"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >The termId should be the id coming from this ontology form the body systems value set</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">5.1 Body System</rdfs:label>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="&bp;ontologyId">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class rdf:about="http://who.int/icd#ExternalReference"/>
+                    <owl:Class rdf:about="http://who.int/icd#ReferenceTerm"/>
+                    <owl:Class rdf:about="http://who.int/icd#SelectedMobilityImpact"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >This is the BioPortal ontology id, e.g., &quot;40403&quot;</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="&bp;ontologyLabel">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class rdf:about="http://who.int/icd#ExternalReference"/>
+                    <owl:Class rdf:about="http://who.int/icd#ReferenceTerm"/>
+                    <owl:Class rdf:about="http://who.int/icd#SelectedMobilityImpact"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="&bp;shortTermId">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >This is the BioPortal short term id, e.g. &quot;12345&quot; or  &quot;p1:Pizza&quot;</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:TransitiveProperty rdf:about="http://who.int/icd#broader">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#CodedTerm"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Note by Alan Rector about why using Broader/Narrower:
+
+This is more than a labelling issue. It is highly substantive.
+
+* Superclass/Subclass means that every member of the superclass is a member of the
+
+subclass. This is a logical relation with logical criteria.
+
+* Broader_than/Narrower_than is a linguistic, or more properly information retrieval
+
+term, that means that the broader items should be retrieved, or browsed to
+
+when the narrow terms are requested.
+
+Example. In a thesaurus, &quot;Aortic valve&quot; might be &quot;narrower than&quot; &quot;Heart&quot;. However,
+
+&quot;Aortic Valve&quot; is not a subclass/kind of &quot;heart&quot;. Librarians and information retrieval
+
+specialists use &quot;Broader than&quot;/&quot;narrower than&quot; specifically to avoid the implications of
+
+Superclass/Subclass and to emphasise that the relation should not be used for inheritance
+
+or other logical functions, but only for navigation and browsing. Everything true of all
+
+members of a superclass is true of all members of a subclass. There is no implication that
+
+things true of members of a broader class are also true of the narrower class.</rdfs:comment>
+        <rdfs:range rdf:resource="http://who.int/icd#CodedTerm"/>
+    </owl:TransitiveProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#causalFactor">
+        <rdfs:domain rdf:resource="http://who.int/icd#CausalMechanismAndRiskFactorsSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#CausalFactorTerm"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#mechanism"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#CausalFactorTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#CausalPropertyTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >7.3 Causal Mechanism</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#CausalMechanismAndRiskFactorsSection">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ICDSection"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >CausalMechanismAndRiskFactorsSection</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#CausalPropertyTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DefiningTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >7 Causal Property</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#CentralNervousSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#NervousSystem"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Central Nervous System</rdfs:label>
+    </owl:Class>
+    <EtiologyTypeTerm rdf:about="http://who.int/icd#Chemical"/>
+    <TemporalPropertyValueSet rdf:about="http://who.int/icd#children_above_5">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Child above 5 {6 -12 yo}</rdfs:label>
+    </TemporalPropertyValueSet>
+    <TemporalPropertyValueSet rdf:about="http://who.int/icd#children_under_5">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Child under 5 {1 -5 yo}</rdfs:label>
+    </TemporalPropertyValueSet>
+    <TemporalPropertiesTerm rdf:about="http://who.int/icd#childrenAbove5TermTemplate">
+        <rdf:type rdf:resource="http://who.int/icd#InstanceTemplate"/>
+        <temporalRange rdf:resource="http://who.int/icd#children_above_5"/>
+    </TemporalPropertiesTerm>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#childrenAndYouthImpact">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#functionalImpact"/>
+    </owl:ObjectProperty>
+    <TemporalPropertiesTerm rdf:about="http://who.int/icd#childrenUnder5TermTemplate">
+        <rdf:type rdf:resource="http://who.int/icd#InstanceTemplate"/>
+        <temporalRange rdf:resource="http://who.int/icd#children_under_5"/>
+    </TemporalPropertiesTerm>
+    <owl:Class rdf:about="http://who.int/icd#CirculatorySystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#BodySystemsValueSet"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Circulatory System (Cardiovascular System)</rdfs:label>
+    </owl:Class>
+    <owl:DatatypeProperty rdf:about="http://who.int/icd#citation">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class rdf:about="http://who.int/icd#ExternalDefinitionTerm"/>
+                    <owl:Class rdf:about="http://who.int/icd#GenomicLinkageTerm"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:label rdf:datatype="&xsd;string">citation</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#clamlContent">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#Term"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#clamlKind">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#DefinitionSection"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#ClamlReference">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DomainConcept"/>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#clamlReferences">
+        <rdfs:domain rdf:resource="http://who.int/icd#Term"/>
+        <rdfs:range rdf:resource="http://who.int/icd#ClamlReference"/>
+    </owl:ObjectProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#clamlUsage">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class rdf:about="http://who.int/icd#ClamlReference"/>
+                    <owl:Class rdf:about="http://who.int/icd#DefinitionSection"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#ClinicalDescriptionSection">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ICDSection"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >ClinicalDescriptionSection</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#ClinicalDescriptionTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DefiningTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >5 Clinical Description</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#CodedTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#IdentifiableClass"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#LiniearizationEntity"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >A type of ICD11_Linearization_Entity that holds the traditional ICD legacy code.</rdfs:comment>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#codingHint">
+        <rdfs:domain rdf:resource="http://who.int/icd#ICD10NotesAndHintsSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">codingHint</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#ICD10NotesTerm"/>
+    </owl:ObjectProperty>
+    <owl:DatatypeProperty rdf:about="http://who.int/icd#comment">
+        <rdfs:domain rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string">comment</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#communicationImpact">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#functionalImpact"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#counterMeasureDescriptor">
+        <rdfs:domain rdf:resource="http://who.int/icd#ExternalCauseSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#externalCauseDimension"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#counterPartInCollision">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#transportDimension"/>
+    </owl:ObjectProperty>
+    <SeverityScaleTerm rdf:about="http://who.int/icd#DefaultMildModerateSevereScale">
+        <severityTerm rdf:resource="http://who.int/icd#Mild"/>
+        <severityTerm rdf:resource="http://who.int/icd#Moderate"/>
+        <severityTerm rdf:resource="http://who.int/icd#Severe"/>
+    </SeverityScaleTerm>
+    <owl:Class rdf:about="http://who.int/icd#DefiningTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#Term"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Defining Terms contributes toward specifying the meaning of the ICD category</rdfs:comment>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#definition">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#DefinitionSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">definition</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#DefinitionTerm"/>
+    </owl:FunctionalProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#definitionPrefilled">
+        <rdfs:domain rdf:resource="http://who.int/icd#DefinitionSection"/>
+        <owl:inverseOf rdf:resource="http://who.int/icd#is_prefilled_definition_of"/>
+        <rdfs:range rdf:resource="http://who.int/icd#ExternalDefinitionTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#DefinitionSection">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ICDSection"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >DefinitionSection</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#DefinitionTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#LanguageTerm"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Definition of ICD category</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >3. Textual Definition</rdfs:label>
+    </owl:Class>
+    <owl:DatatypeProperty rdf:about="http://who.int/icd#definitionType">
+        <rdfs:domain rdf:resource="http://who.int/icd#ExternalDefinitionTerm"/>
+        <rdfs:range>
+            <owl:DataRange>
+                <owl:oneOf>
+                    <rdf:List>
+                        <rdf:first rdf:datatype="&xsd;string">prefilled</rdf:first>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
+                    </rdf:List>
+                </owl:oneOf>
+            </owl:DataRange>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#description">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#SeverityTerm"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#diagnosticCriteria">
+        <rdfs:domain rdf:resource="http://who.int/icd#DiagnosticCriteriaSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#DiagnosticCriteriaTerm"/>
+    </owl:ObjectProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#diagnosticCriteriaRule">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#DiagnosticCriteriaTerm"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#DiagnosticCriteriaSection">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ICDSection"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#DiagnosticCriteriaTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DefiningTerm"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >13 Diagnostic Criterion</rdfs:label>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#diagnosticCriteriaText">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#DiagnosticCriteriaTerm"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#DigestiveSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#BodySystemsValueSet"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Digestive System</rdfs:label>
+    </owl:Class>
+    <Type rdf:about="http://who.int/icd#Disease_Type">
+        <rdfs:label rdf:datatype="&xsd;string">Disease</rdfs:label>
+    </Type>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#diseaseCausingAgent">
+        <rdfs:domain rdf:resource="http://who.int/icd#CausalMechanismAndRiskFactorsSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#DiseaseCausingAgentTerm"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#agent"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#DiseaseCausingAgentTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#CausalPropertyTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string">7.2 Agent</rdfs:label>
+    </owl:Class>
+    <Type rdf:about="http://who.int/icd#Disorder_Or_SyndromeType">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Disorder/Syndrome</rdfs:label>
+    </Type>
+    <RiskFactorQualifier rdf:about="http://who.int/icd#Distal"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#distalRiskFactor">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#riskFactor"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#DomainConcept">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ICD11Entity"/>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#editorialStatus">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#ICDSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#EditorialStatusValueSet"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#editorialStatusCausalMechanism">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#CausalMechanismAndRiskFactorsSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#editorialStatus"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#editorialStatusClinicalDescription">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#ClinicalDescriptionSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#editorialStatus"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#editorialStatusDefinition">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#DefinitionSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#editorialStatus"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#editorialStatusDiagnosticCriteria">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#DiagnosticCriteriaSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#editorialStatus"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#editorialStatusFunctionalImpact">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#editorialStatus"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#editorialStatusICD10Notes">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#ICD10NotesAndHintsSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#editorialStatus"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#editorialStatusLinearization">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#LinearizationSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#editorialStatus"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#editorialStatusSnomedRef">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#SnomedReferenceSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#editorialStatus"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#editorialStatusTerm">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#TermSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#editorialStatus"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#EditorialStatusValueSet">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://who.int/icd#In_Conflict"/>
+                    <rdf:Description rdf:about="http://who.int/icd#Prefilled"/>
+                    <rdf:Description rdf:about="http://who.int/icd#RSG_Approved"/>
+                    <rdf:Description rdf:about="http://who.int/icd#TAG_Approved"/>
+                    <rdf:Description rdf:about="http://who.int/icd#Under_Discussion"/>
+                    <rdf:Description rdf:about="http://who.int/icd#WHO_Approved"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ValueSet"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#EndocrineSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#BodySystemsValueSet"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Endocrine System</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#EtiologyTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#Obsolete"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string">EtiologyTerm</rdfs:label>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#etiologyType">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#CausalMechanismAndRiskFactorsSection"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Fill in with Roberts list
+Range is not correct, but we&apos;ll leave it this way in this version</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">etiologyType</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#EtiologyTypeTerm"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#EtiologyTypeTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#Obsolete"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Same as &quot;Mechanism&quot; in UML view?</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#EvidenceLevel">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://who.int/icd#Expert_Opinion"/>
+                    <rdf:Description rdf:about="http://who.int/icd#Systematic_Review_of_Literature_AND_Formalized_Peer_Review_Consensus"/>
+                    <rdf:Description rdf:about="http://who.int/icd#Systematic_Review_of_Literature_OR_Formalized_Peer_Review_Consensus"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ValueSet"/>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#evidenceLevel">
+        <rdfs:domain rdf:resource="http://who.int/icd#ClinicalDescriptionTerm"/>
+        <rdfs:range rdf:resource="http://who.int/icd#EvidenceLevel"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#exclusion">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class rdf:about="http://who.int/icd#CodedTerm"/>
+                    <owl:Class rdf:about="http://who.int/icd#TermSection"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >legacy  exclusion</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#ExclusionTerm"/>
+    </owl:ObjectProperty>
+    <owl:DatatypeProperty rdf:about="http://who.int/icd#exclusion_type">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Added for backward compatibility</rdfs:comment>
+    </owl:DatatypeProperty>
+    <owl:Class rdf:about="http://who.int/icd#ExclusionTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#LanguageTerm"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#LiniearizationEntity"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >4.2 Exclusion Term</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#ExclusionTermType">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://who.int/icd#also_code"/>
+                    <rdf:Description rdf:about="http://who.int/icd#rule_out"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ValueSet"/>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#exclusionType">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#ExclusionTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string">exclusionType</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#ExclusionTermType"/>
+    </owl:FunctionalProperty>
+    <EvidenceLevel rdf:about="http://who.int/icd#Expert_Opinion"/>
+    <Type rdf:about="http://who.int/icd#Exposure_To_External_Causes_Or_Injuries">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >External Causes/Injuries</rdfs:label>
+    </Type>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#externalCauseDimension">
+        <rdfs:range rdf:resource="http://who.int/icd#ExternalCauseTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#ExternalCauseSection">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ICDSection"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#ExternalCauseTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DefiningTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >14 External Cause</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#ExternalDefinitionTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#LanguageTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >External Definition</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#ExternalReference"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#externalReference">
+        <rdfs:domain rdf:resource="http://who.int/icd#SnomedReferenceSection"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >externalReference</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#SnomedReferenceTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#FemaleGenitalSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#GenitourinarySystem"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Female Genital System</rdfs:label>
+    </owl:Class>
+    <GenderConditionTerm rdf:about="http://who.int/icd#FemaleSCTerm">
+        <bp:ontologyId rdf:datatype="&xsd;string">42122</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >SNOMED Clinical Terms</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">248152002</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">Female</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >SNOMED Clinical Terms</ontologyId>
+        <termId rdf:datatype="&xsd;string">248152002</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/42122/?id=248152002</url>
+    </GenderConditionTerm>
+    <owl:Class rdf:about="http://who.int/icd#FullySpecifiedName">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#LanguageTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Fully Specified Name</rdfs:label>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#fullySpecifiedName">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#DefinitionSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#FullySpecifiedName"/>
+    </owl:FunctionalProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#functionalImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >functionalImpact</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#FunctionalImpactTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#FunctionalImpactSection">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ICDSection"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >FunctionalImpactSection</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#FunctionalImpactTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DefiningTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >10 Functional Property (aka Function Impact)</rdfs:label>
+    </owl:Class>
+    <SelectedUnderstandingImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d110">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d110</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">d110. Watching</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d110</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d110</url>
+    </SelectedUnderstandingImpact>
+    <SelectedUnderstandingImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d115">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d115</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">d115. Listening</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d115</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d115</url>
+    </SelectedUnderstandingImpact>
+    <SelectedUnderstandingImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d130-d155">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d130-d155</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d130-d155. Basic learning</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Not the same as Style Guilde d130-155</rdfs:comment>
+    </SelectedUnderstandingImpact>
+    <SelectedChildrenAndYouthImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d140">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d140</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d140. Learning to read</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d140</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d140</url>
+    </SelectedChildrenAndYouthImpact>
+    <SelectedChildrenAndYouthImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d145">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d145</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d145. Learning to write</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d145</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d145</url>
+    </SelectedChildrenAndYouthImpact>
+    <SelectedChildrenAndYouthImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d150">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d150</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d150. Learning to calculate</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d150</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d150</url>
+    </SelectedChildrenAndYouthImpact>
+    <SelectedUnderstandingImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d160">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d160</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d160. Focusing attention</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d160</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d160</url>
+    </SelectedUnderstandingImpact>
+    <SelectedUnderstandingImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d166">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d166</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">d166. Reading</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d166</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d166</url>
+    </SelectedUnderstandingImpact>
+    <SelectedUnderstandingImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d170">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d170</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">d170. Writing</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d170</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d170</url>
+    </SelectedUnderstandingImpact>
+    <SelectedUnderstandingImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d172">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d172</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d172. Calculating</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d172</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d172</url>
+    </SelectedUnderstandingImpact>
+    <SelectedUnderstandingImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d175">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d175</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d175. Solving problems</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d175</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d175</url>
+    </SelectedUnderstandingImpact>
+    <SelectedLifeManagementActivitiesImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d210">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d210</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d210. Undertaking a single task</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d210</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d210</url>
+    </SelectedLifeManagementActivitiesImpact>
+    <SelectedLifeManagementActivitiesImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d220">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d220</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d220. Undertaking multiple tasks</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d220</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d220</url>
+    </SelectedLifeManagementActivitiesImpact>
+    <SelectedLifeManagementActivitiesImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d230">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d230</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d230. Carrying out daily routine</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d230</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d230</url>
+    </SelectedLifeManagementActivitiesImpact>
+    <SelectedLifeManagementActivitiesImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d240">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d240</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d240. Handling stress and other psychological demands</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d240</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d240</url>
+    </SelectedLifeManagementActivitiesImpact>
+    <SelectedChildrenAndYouthImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d310-d325">
+        <rdf:type rdf:resource="http://who.int/icd#SelectedCommunicationImpact"/>
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d310-d325</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d310-d325. Communicating - receiving</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <rdfs:comment rdf:datatype="&xsd;string"></rdfs:comment>
+    </SelectedChildrenAndYouthImpact>
+    <SelectedCommunicationImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d330">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d330</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">d330. Speaking</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d330</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d330</url>
+    </SelectedCommunicationImpact>
+    <SelectedChildrenAndYouthImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d335">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d335</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d335. Producing nonverbal messages</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d335</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d335</url>
+    </SelectedChildrenAndYouthImpact>
+    <SelectedCommunicationImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d3500">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d3500</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d3500. Starting a conversation</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d3500</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d3500</url>
+    </SelectedCommunicationImpact>
+    <SelectedCommunicationImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d3501">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d3501</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d3501. Sustaining a conversation</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d3501</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d3501</url>
+    </SelectedCommunicationImpact>
+    <SelectedMobilityImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d4104">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d4104</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">d4104. Standing</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d4104</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d4104</url>
+    </SelectedMobilityImpact>
+    <SelectedMobilityImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d4105">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d4105</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">d4105. Bending</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d4105</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d4105</url>
+    </SelectedMobilityImpact>
+    <SelectedMobilityImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d4154">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d4154</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d4154. Maintaining a standing position</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d4154</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d4154</url>
+    </SelectedMobilityImpact>
+    <SelectedMobilityImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d420">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d420</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d420. Transferring oneself</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d420</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d420</url>
+    </SelectedMobilityImpact>
+    <SelectedMobilityImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d430">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d430</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d430. Lifting and carrying objects</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d430</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d430</url>
+    </SelectedMobilityImpact>
+    <SelectedMobilityImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d440">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d440</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d440. Fine hand use</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d440</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d440</url>
+    </SelectedMobilityImpact>
+    <SelectedMobilityImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d445">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d445</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d445. Hand and arm use</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d445</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d445</url>
+    </SelectedMobilityImpact>
+    <SelectedMobilityImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d4500">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d4500</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d4500. Walking short distances</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d4500</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d4500</url>
+    </SelectedMobilityImpact>
+    <SelectedMobilityImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d4501">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d4501</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d4501. Walking long distances</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d4501</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d4501</url>
+    </SelectedMobilityImpact>
+    <SelectedMobilityImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d455_d4303">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d455_d4303</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d455. Moving around or d4303. Carrying on shoulders, hip and back</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >A component of Vigorous activity or d4303. Carrying on shoulders, hip and back</rdfs:comment>
+    </SelectedMobilityImpact>
+    <SelectedMobilityImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d4600">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d4600</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d4600. Moving around within the home</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d4600</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d4600</url>
+    </SelectedMobilityImpact>
+    <SelectedMobilityImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d4602">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d4602</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d4602. Moving around outside the home and other buildings</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d475</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d475</url>
+    </SelectedMobilityImpact>
+    <SelectedMobilityImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d470">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d470</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d470. Using transportation</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d470</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d470</url>
+    </SelectedMobilityImpact>
+    <SelectedMobilityImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d475">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d475</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">d475. Driving</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d475</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d475</url>
+    </SelectedMobilityImpact>
+    <SelectedSelfCareImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d510">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d510</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d510. Washing oneself</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d510</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d510</url>
+    </SelectedSelfCareImpact>
+    <SelectedSelfCareImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d520">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d520</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d520. Caring for body parts</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d520</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d520</url>
+    </SelectedSelfCareImpact>
+    <SelectedSelfCareImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d5300">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d5300</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d5300. Regulating urination</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d5300</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d5300</url>
+    </SelectedSelfCareImpact>
+    <SelectedSelfCareImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d5301">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d5301</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d5301. Regulating defecation</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d5301</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d5301</url>
+    </SelectedSelfCareImpact>
+    <SelectedSelfCareImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d540">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d540</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">d540. Dressing</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d540</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d540</url>
+    </SelectedSelfCareImpact>
+    <SelectedSelfCareImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d550">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d550</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">d550. Eating</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d550</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d550</url>
+    </SelectedSelfCareImpact>
+    <SelectedSelfCareImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d560">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d560</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">d560. Drinking</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d560</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d560</url>
+    </SelectedSelfCareImpact>
+    <SelectedSelfCareImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d570">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d570</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d570. Looking after one&apos;s health</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d570</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d570</url>
+    </SelectedSelfCareImpact>
+    <SelectedHouseHoldActivitiesImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d620">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d620</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d620. Acquisition of goods and services</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d620</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d620</url>
+    </SelectedHouseHoldActivitiesImpact>
+    <SelectedHouseHoldActivitiesImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d630">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d630</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d630. Preparing meals</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d630</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d630</url>
+    </SelectedHouseHoldActivitiesImpact>
+    <SelectedHouseHoldActivitiesImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d640">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d640</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d640. Doing housework</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d640</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d640</url>
+    </SelectedHouseHoldActivitiesImpact>
+    <SelectedHouseHoldActivitiesImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d660">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d660</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d660. Assisting others</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d660</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d660</url>
+    </SelectedHouseHoldActivitiesImpact>
+    <SelectedInterpersonalRelationsImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d7200_d7500">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d7200_d7500</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d7200. Forming relationships or d7500. Informal relationships with friends</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+    </SelectedInterpersonalRelationsImpact>
+    <SelectedInterpersonalRelationsImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d730">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d730</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d730. Relating with strangers</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d730</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d730</url>
+    </SelectedInterpersonalRelationsImpact>
+    <SelectedInterpersonalRelationsImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d740_d750">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d740_d750</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d740. Formal relationships or d750. Informal social relationships</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+    </SelectedInterpersonalRelationsImpact>
+    <SelectedInterpersonalRelationsImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d760">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d760</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d760. Family relationships</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d760</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d760</url>
+    </SelectedInterpersonalRelationsImpact>
+    <SelectedInterpersonalRelationsImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d7702">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d7702</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d7702. Sexual relationships</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d7702</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d7702</url>
+    </SelectedInterpersonalRelationsImpact>
+    <SelectedSchoolActivitiesImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d820">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d820</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d820. School education</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d820</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d820</url>
+    </SelectedSchoolActivitiesImpact>
+    <SelectedChildrenAndYouthImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d8201">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d8201</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >Attending school</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+    </SelectedChildrenAndYouthImpact>
+    <SelectedChildrenAndYouthImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d8202">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d335</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">Taking exams</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+    </SelectedChildrenAndYouthImpact>
+    <SelectedSchoolActivitiesImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d825">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d825</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d825. Vocational training</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d825</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d825</url>
+    </SelectedSchoolActivitiesImpact>
+    <SelectedSchoolActivitiesImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d830">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d830</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d830. Higher education</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d830</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d830</url>
+    </SelectedSchoolActivitiesImpact>
+    <SelectedWorkAndEconomicLifeActivitiesImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d8450">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d8450</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d8450. Seeking employment</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d8450</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d8450</url>
+    </SelectedWorkAndEconomicLifeActivitiesImpact>
+    <SelectedWorkAndEconomicLifeActivitiesImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d8451">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d8451</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d8451. Maintaining a job</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d8451</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d8451</url>
+    </SelectedWorkAndEconomicLifeActivitiesImpact>
+    <SelectedWorkAndEconomicLifeActivitiesImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d850">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d850</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d850. Remunerative employment</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d850</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d850</url>
+    </SelectedWorkAndEconomicLifeActivitiesImpact>
+    <SelectedWorkAndEconomicLifeActivitiesImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d860">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d860</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d860. Basic economic transactions</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d860</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d860</url>
+    </SelectedWorkAndEconomicLifeActivitiesImpact>
+    <SelectedSocialParticipationImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d910">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d910</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d910. Community life</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d910</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d910</url>
+    </SelectedSocialParticipationImpact>
+    <SelectedSocialParticipationImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d920">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d920</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d920. Recreation and leisure</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d920</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d920</url>
+    </SelectedSocialParticipationImpact>
+    <SelectedChildrenAndYouthImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d9200_d880">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d9200_d880</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >Playing with others</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+    </SelectedChildrenAndYouthImpact>
+    <SelectedSocialParticipationImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d9201">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d9201</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">d9201. Sports</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d9201</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d9201</url>
+    </SelectedSocialParticipationImpact>
+    <SelectedSocialParticipationImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d9205">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d9205</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d9205. Socializing</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d9205</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d9205</url>
+    </SelectedSocialParticipationImpact>
+    <SelectedSocialParticipationImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d940">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d940</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d940. Human rights</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d940</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d940</url>
+    </SelectedSocialParticipationImpact>
+    <SelectedSocialParticipationImpact rdf:about="http://who.int/icd#FunctionalImpactTerm_d950">
+        <bp:ontologyId rdf:datatype="&xsd;string">40865</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">d950</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >d950. Political life and citizenship</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >International Classification of Functioning, Disability and Health (ICF)</ontologyId>
+        <termId rdf:datatype="&xsd;string"
+            >http://who.int/icf#d950</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/40865/?id=d950</url>
+    </SelectedSocialParticipationImpact>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#gender">
+        <rdfs:domain rdf:resource="http://who.int/icd#SpecificConditionSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#GenderConditionTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#GenderConditionTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#SpecificConditionTerm"/>
+    </owl:Class>
+    <EtiologyTypeTerm rdf:about="http://who.int/icd#Genetic"/>
+    <owl:Class rdf:about="http://who.int/icd#GenitourinarySystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#BodySystemsValueSet"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Genitourinary System</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#genomicLinkage">
+        <rdfs:domain rdf:resource="http://who.int/icd#CausalMechanismAndRiskFactorsSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">genomicLinkage</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#GenomicLinkageTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#GenomicLinkageTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#CausalPropertyTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >7.4 Genomic Characteristics</rdfs:label>
+    </owl:Class>
+    <TemporalPropertyValueSet rdf:about="http://who.int/icd#geriatric">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Geriatric {&gt;65 yo}</rdfs:label>
+    </TemporalPropertyValueSet>
+    <InstanceTemplate rdf:about="http://who.int/icd#geriatricTermTemplate">
+        <rdf:type rdf:resource="http://who.int/icd#TemporalPropertiesTerm"/>
+        <temporalRange rdf:resource="http://who.int/icd#geriatric"/>
+    </InstanceTemplate>
+    <owl:Class rdf:about="http://who.int/icd#HaematopoieticSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#HaemolymphoidSystem"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Haematopoietic System</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#HaemolymphoidSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#BodySystemsValueSet"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Haemolymphoid System</rdfs:label>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#hasICDCategory">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#CodedTerm"/>
+        <rdfs:range rdf:resource="http://who.int/icd#ICDSection"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#hasSeverityScale">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >specifies which standard severity scale corresponds to the ICD category</rdfs:comment>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#hasType">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#DefinitionSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#Type"/>
+    </owl:FunctionalProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#householdActivitiesImpact">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#lifeActivitiesImpact"/>
+    </owl:ObjectProperty>
+    <EtiologyTypeTerm rdf:about="http://who.int/icd#Iatrogenic"/>
+    <owl:Class rdf:about="http://who.int/icd#ICD10NotesAndHintsSection">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ICDSection"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >check what else needs to be added</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >ICD10NotesAndHintsSection</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#ICD10NotesTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#Term"/>
+        <rdfs:label rdf:datatype="&xsd;string">ICD10NotesTerm</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#ICD11Entity">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >At the toplevel, the iCAT ICD11 content model is divided into three parts: 
+(1) DomainConcept consisting of the concepts related to the definition of ICD categories. 
+(2) ValueSet consisting of enumerations of values that constitue some of the value domains of ICD properties
+(3) An information model of ICDCategory consisting of a number of ICDSections.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#ICDCategory">
+        <rdf:type rdf:resource="http://who.int/icd#LinearizationSection"/>
+        <rdf:type rdf:resource="http://who.int/icd#DiagnosticCriteriaSection"/>
+        <rdf:type rdf:resource="http://who.int/icd#TermSection"/>
+        <rdf:type rdf:resource="http://who.int/icd#TreatmentSection"/>
+        <rdf:type rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdf:type rdf:resource="http://who.int/icd#DefinitionSection"/>
+        <rdf:type rdf:resource="http://who.int/icd#ClinicalDescriptionSection"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DomainConcept"/>
+        <icdTitle rdf:resource="http://who.int/icd#TitleTerm_2"/>
+        <rdfs:label rdf:datatype="&xsd;string">ICDCategory</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#icdCategory">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class rdf:about="http://who.int/icd#ExclusionTerm"/>
+                    <owl:Class rdf:about="http://who.int/icd#InclusionTerm"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >The list of ICD categories that correspond to an exclusion or inclusion  term</rdfs:comment>
+        <rdfs:range rdf:resource="http://who.int/icd#ICDSection"/>
+    </owl:ObjectProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#icdCode">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#DefinitionSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">ICDcode</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#icdRefCode">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#ClamlReference"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#ICDSection">
+        <rdfs:subClassOf rdf:resource="&owl;Class"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ICD11Entity"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >not happy with the &quot;Section&quot; postfix</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >ICD11 Information Model</rdfs:label>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#icdTitle">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#DefinitionSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">ICDtitle</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#TitleTerm"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#id">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class rdf:about="http://who.int/icd#DefinitionSection"/>
+                    <owl:Class rdf:about="http://who.int/icd#ICDCategory"/>
+                    <owl:Class rdf:about="http://who.int/icd#IdentifiableClass"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >This is the internal id of a category or term (could be split in two or three other ids)</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">id</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#IdentifiableClass">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DomainConcept"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >IdentifiableClass</rdfs:label>
+    </owl:Class>
+    <RiskFactorQualifier rdf:about="http://who.int/icd#Immediate"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#immediateRiskFactor">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#riskFactor"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#ImmuneSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#HaemolymphoidSystem"/>
+        <rdfs:label rdf:datatype="&xsd;string">Immune System</rdfs:label>
+    </owl:Class>
+    <EditorialStatusValueSet rdf:about="http://who.int/icd#In_Conflict"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#inclusion">
+        <rdfs:domain rdf:resource="http://who.int/icd#TermSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">legay inclusion</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#InclusionTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#InclusionTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#LanguageTerm"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class rdf:about="http://who.int/icd#ICDCategory"/>
+                    <owl:Class rdf:about="http://who.int/icd#SynonymTerm"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#LiniearizationEntity"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Exemplers of the category</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >4.1 Inclusion Term</rdfs:label>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#inclusionType">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#InclusionTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string">inclusionType</rdfs:label>
+        <rdfs:range>
+            <owl:DataRange>
+                <owl:oneOf>
+                    <rdf:List>
+                        <rdf:first rdf:datatype="&xsd;string">subclass</rdf:first>
+                        <rdf:rest>
+                            <rdf:List>
+                                <rdf:first rdf:datatype="&xsd;string">synonym</rdf:first>
+                                <rdf:rest rdf:resource="&rdf;nil"/>
+                            </rdf:List>
+                        </rdf:rest>
+                    </rdf:List>
+                </owl:oneOf>
+            </owl:DataRange>
+        </rdfs:range>
+    </owl:FunctionalProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#index">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class rdf:about="http://who.int/icd#CodedTerm"/>
+                    <owl:Class rdf:about="http://who.int/icd#TermSection"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >legacy index term</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#IndexTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#IndexTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#LiniearizationEntity"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#LanguageTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string">Index Term</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#IndexTermType">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://who.int/icd#NarrowTerm"/>
+                    <rdf:Description rdf:about="http://who.int/icd#Synonym"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ValueSet"/>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#indexTermType">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#IndexTerm"/>
+        <rdfs:range rdf:resource="http://who.int/icd#IndexTermType"/>
+    </owl:FunctionalProperty>
+    <TemporalPropertyValueSet rdf:about="http://who.int/icd#infancy">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Infancy  {29-365 days}</rdfs:label>
+    </TemporalPropertyValueSet>
+    <InstanceTemplate rdf:about="http://who.int/icd#infancyTermTemplate">
+        <rdf:type rdf:resource="http://who.int/icd#TemporalPropertiesTerm"/>
+        <temporalRange rdf:resource="http://who.int/icd#infancy"/>
+    </InstanceTemplate>
+    <EtiologyTypeTerm rdf:about="http://who.int/icd#Infectious"/>
+    <owl:Class rdf:about="http://who.int/icd#InstanceTemplate"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#intent">
+        <rdfs:domain rdf:resource="http://who.int/icd#ExternalCauseSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#externalCauseDimension"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#intentDescriptor">
+        <rdfs:domain rdf:resource="http://who.int/icd#ExternalCauseSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#externalCauseDimension"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#InteriorCodedTerm">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:complementOf>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://who.int/icd#inclusion"/>
+                        <owl:someValuesFrom rdf:resource="http://who.int/icd#Term"/>
+                    </owl:Restriction>
+                </owl:complementOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#CodedTerm"/>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#interpersonalRelationsImpact">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#functionalImpact"/>
+    </owl:ObjectProperty>
+    <GenderConditionTerm rdf:about="http://who.int/icd#IntersexSCTerm">
+        <bp:ontologyId rdf:datatype="&xsd;string">42122</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >SNOMED Clinical Terms</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">237821001</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">Hermaphrodism</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >SNOMED Clinical Terms</ontologyId>
+        <termId rdf:datatype="&xsd;string">237821001</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/42122/?id=237821001</url>
+    </GenderConditionTerm>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#introduction">
+        <rdfs:domain rdf:resource="http://who.int/icd#ICD10NotesAndHintsSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">introduction</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#ICD10NotesTerm"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#investigations">
+        <rdfs:domain rdf:resource="http://who.int/icd#ClinicalDescriptionSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">investigations</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#InvestigationTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#InvestigationTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#Manifestation_Attribute"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Same as &quot;Diagnotic_Finding&quot; in UML view?</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">6.2 Finding</rdfs:label>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#is_prefilled_definition_of">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#ExternalDefinitionTerm"/>
+        <owl:inverseOf rdf:resource="http://who.int/icd#definitionPrefilled"/>
+        <rdfs:range rdf:resource="http://who.int/icd#DefinitionSection"/>
+    </owl:FunctionalProperty>
+    <ReferenceSource rdf:about="http://who.int/icd#ISBN"/>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#isDefinitional">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class rdf:about="http://who.int/icd#DefiningTerm"/>
+                    <owl:Class rdf:about="http://who.int/icd#EtiologyTerm"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:label rdf:datatype="&xsd;string">isDefinitional</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#isIncludedInLinearization">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#LinearizationSpecification"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >True if the ICD category is included in the linearization</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:FunctionalProperty>
+    <owl:DatatypeProperty rdf:about="http://who.int/icd#kind">
+        <rdfs:domain rdf:resource="http://who.int/icd#CodedTerm"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Intended to be used for specifying the kind of category: chapter, block or single category.</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#label">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class rdf:about="http://who.int/icd#ExternalReference"/>
+                    <owl:Class rdf:about="http://who.int/icd#LanguageTerm"/>
+                    <owl:Class rdf:about="http://who.int/icd#SelectedMobilityImpact"/>
+                    <owl:Class rdf:about="http://who.int/icd#Term"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:label rdf:datatype="&xsd;string">label</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#language">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#LanguageTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string">lanugage</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#LanguageTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#Term"/>
+        <rdfs:label rdf:datatype="&xsd;string">LanguageTerm</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#LeafCodedTerm">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://who.int/icd#narrower"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#CodedTerm"/>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#level">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#SeverityTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string">level</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#lifeActivitiesImpact">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#functionalImpact"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#lifeCycle">
+        <rdfs:domain rdf:resource="http://who.int/icd#SpecificConditionSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#LifeCycleConditionTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#LifeCycleConditionTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#SpecificConditionTerm"/>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#lifeManagementActivitiesImpact">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#lifeActivitiesImpact"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#Linearization">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#LiniearizationEntity"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >This is the manifestation of ICD 11 in publishable form. Note, this is the first time that a Coded Element, in the historical tradition of the ICD codes, appears. It is a kind of linearization entity, comprising a Coded Term. However, this Coded Term links back to an Entity ID, which traces its lineage to the cloud layer and the ontology layer. Thus, stomach cancer as a Coded Term would correspond to related concepts at the Category Level and the Ontology Level. Nevertheless, a given linearization may assign different ICD codes in this current model. This is highly controversial, and we will need to address this question. For example, in a primary care linearization, stomach cancer might have been ICD code of I12.34. Whereas in a mortality linearization, the code might be P45.56. Similarly in a morbidity classification the same concept might be Q98.76. The implication is that the Coded Term is a subset of the Linearization rather than that of the Category Layer. However the linkage to the Category Layer occurs through the Entity ID. It is at the Linearization Layer that concepts of inclusions, index terms, exclusions come to the fore. These again all derived from the structures and hierarchies associated with the category layer.</rdfs:comment>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#linearization">
+        <rdfs:domain rdf:resource="http://who.int/icd#LinearizationSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#LinearizationSpecification"/>
+    </owl:ObjectProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#linearizationParent">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#LinearizationSpecification"/>
+        <rdfs:range rdf:resource="http://who.int/icd#ICDSection"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#LinearizationSection">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ICDSection"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >LinearizationSection</rdfs:label>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#linearizationSortingLabel">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#LinearizationSpecification"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#LinearizationSpecification">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#LiniearizationEntity"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#LinearizationView">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://who.int/icd#Morbidity"/>
+                    <rdf:Description rdf:about="http://who.int/icd#Mortality"/>
+                    <rdf:Description rdf:about="http://who.int/icd#PrimaryCare"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ValueSet"/>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#linearizationView">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class rdf:about="http://who.int/icd#Linearization"/>
+                    <owl:Class rdf:about="http://who.int/icd#LinearizationSpecification"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://who.int/icd#LinearizationView"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#LiniearizationEntity">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DomainConcept"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >A type of ICD11_Entity that is used to represent all entities related to publications, such as CodedTerm (traditional ICD category with ICD legacy code), Index Term, Synonym, Inclusion Term and Exclusion Term (two types).</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#LiteratureReference">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DomainConcept"/>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#literatureReference">
+        <rdfs:domain rdf:resource="http://who.int/icd#ClinicalDescriptionTerm"/>
+        <rdfs:range rdf:resource="http://who.int/icd#LiteratureReference"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#MaleGenitalSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#GenitourinarySystem"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Male Genital System</rdfs:label>
+    </owl:Class>
+    <GenderConditionTerm rdf:about="http://who.int/icd#MaleSCTerm">
+        <bp:ontologyId rdf:datatype="&xsd;string">42122</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >SNOMED Clinical Terms</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">248153007</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">Male</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >SNOMED Clinical Terms</ontologyId>
+        <termId rdf:datatype="&xsd;string">248153007</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/42122/?id=248153007</url>
+    </GenderConditionTerm>
+    <owl:Class rdf:about="http://who.int/icd#Manifestation_Attribute">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DefiningTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >6 Manifestation Property</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#mechanism"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#mechanismOfInjury">
+        <rdfs:domain rdf:resource="http://who.int/icd#ExternalCauseSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#externalCauseDimension"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#mechanism"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#MentalSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#BodySystemsValueSet"/>
+        <rdfs:label rdf:datatype="&xsd;string">Mental System</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#MetabolicSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#BodySystemsValueSet"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Metabolic System</rdfs:label>
+    </owl:Class>
+    <SeverityTerm rdf:about="http://who.int/icd#Mild"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#mobilityImpact">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#functionalImpact"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#modeOfTransport">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#transportDimension"/>
+    </owl:ObjectProperty>
+    <SeverityTerm rdf:about="http://who.int/icd#Moderate"/>
+    <LinearizationView rdf:about="http://who.int/icd#Morbidity">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >A specific Linearization_View for morbidity purpose.</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">Morbidity</rdfs:label>
+        <sortingCode rdf:datatype="&xsd;string">1</sortingCode>
+    </LinearizationView>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#morbidityLinearization"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#morbidityParent"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#morbiditySubclasses"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#morphologicallyAbnormalStructure">
+        <rdfs:domain rdf:resource="http://who.int/icd#ClinicalDescriptionSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#MorphologicallyAbnormalStructureTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#MorphologicallyAbnormalStructureTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ClinicalDescriptionTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >5.3 Morphologically Abnormal Structure</rdfs:label>
+    </owl:Class>
+    <LinearizationView rdf:about="http://who.int/icd#Mortality">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >A specific Linearization_View for mortality purpose.</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">Mortality</rdfs:label>
+        <sortingCode rdf:datatype="&xsd;string">2</sortingCode>
+    </LinearizationView>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#mortalityLinearization"/>
+    <owl:Class rdf:about="http://who.int/icd#MotoricSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#NervousSystem"/>
+        <rdfs:label rdf:datatype="&xsd;string">Motoric System</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#MuscularSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#MusculoskeletalSystem"/>
+        <rdfs:label rdf:datatype="&xsd;string">Muscular System</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#MusculoskeletalSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#BodySystemsValueSet"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Musculoskeletal System</rdfs:label>
+    </owl:Class>
+    <owl:TransitiveProperty rdf:about="http://who.int/icd#narrower">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#CodedTerm"/>
+        <rdfs:range rdf:resource="http://who.int/icd#CodedTerm"/>
+    </owl:TransitiveProperty>
+    <IndexTermType rdf:about="http://who.int/icd#NarrowTerm"/>
+    <TemporalPropertyValueSet rdf:about="http://who.int/icd#neonatal">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Newborn neonatal {1-28 days}</rdfs:label>
+    </TemporalPropertyValueSet>
+    <InstanceTemplate rdf:about="http://who.int/icd#neonatalTermTemplate">
+        <rdf:type rdf:resource="http://who.int/icd#TemporalPropertiesTerm"/>
+        <temporalRange rdf:resource="http://who.int/icd#neonatal"/>
+    </InstanceTemplate>
+    <EtiologyTypeTerm rdf:about="http://who.int/icd#Neoplastic"/>
+    <owl:Class rdf:about="http://who.int/icd#NervousSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#BodySystemsValueSet"/>
+        <rdfs:label rdf:datatype="&xsd;string">Nervous System</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#note">
+        <rdfs:domain rdf:resource="http://who.int/icd#ICD10NotesAndHintsSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">note</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#ICD10NotesTerm"/>
+    </owl:ObjectProperty>
+    <EtiologyTypeTerm rdf:about="http://who.int/icd#Nutritional"/>
+    <owl:Class rdf:about="http://who.int/icd#NutritionalSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#BodySystemsValueSet"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Nutritional System</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#objectOrSubstanceProducingInjury">
+        <rdfs:domain rdf:resource="http://who.int/icd#ExternalCauseSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#agent"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#externalCauseDimension"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#Obsolete"/>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#ontologyId">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >This is either the full URI of the ontology (ontology name), or some short name, if full URI does not exist</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">ontologyId</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#otherChildrenAndYouthImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#childrenAndYouthImpact"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#otherCommunicationImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#FunctionalImpactTerm"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#communicationImpact"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#otherHouseholdActivitiesImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#householdActivitiesImpact"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#otherInterpersonalRelationsImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#interpersonalRelationsImpact"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#otherLifeManagementActivitiesImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#FunctionalImpactTerm"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#lifeManagementActivitiesImpact"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#otherMobilityImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#mobilityImpact"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#otherSchoolActivitiesImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#schoolActivitiesImpact"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#otherSelfCareImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#selfCareImpact"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#otherSocialParticipationImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#socialParticipationImpact"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#otherUnderstandingImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#understandingImpact"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#otherWorkActivitiesImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#workActivitiesImpact"/>
+    </owl:ObjectProperty>
+    <EtiologyTypeTerm rdf:about="http://who.int/icd#Paraneoplastic"/>
+    <owl:Class rdf:about="http://who.int/icd#ParasympatheticNervousSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#AutonomicNervousSystem"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Parasympathetic Nervous System</rdfs:label>
+    </owl:Class>
+    <TemporalPropertyValueSet rdf:about="http://who.int/icd#perinatal">
+        <rdfs:comment rdf:datatype="&xsd;string">range</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Birth (Perinatal) {0}</rdfs:label>
+    </TemporalPropertyValueSet>
+    <InstanceTemplate rdf:about="http://who.int/icd#perinatalTermTemplate">
+        <rdf:type rdf:resource="http://who.int/icd#TemporalPropertiesTerm"/>
+        <temporalRange rdf:resource="http://who.int/icd#perinatal"/>
+    </InstanceTemplate>
+    <owl:Class rdf:about="http://who.int/icd#PeripheralNervousSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#NervousSystem"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Peripheral Nervous System</rdfs:label>
+    </owl:Class>
+    <EtiologyTypeTerm rdf:about="http://who.int/icd#Physical"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#placeOfOccurrence">
+        <rdfs:domain rdf:resource="http://who.int/icd#ExternalCauseSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#externalCauseDimension"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#placeOfOccurrenceDescriptor">
+        <rdfs:domain rdf:resource="http://who.int/icd#ExternalCauseSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#externalCauseDimension"/>
+    </owl:ObjectProperty>
+    <ReferenceSource rdf:about="http://who.int/icd#PMID"/>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#preferred">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#ICD10NotesAndHintsSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">preferred</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#ICD10NotesTerm"/>
+    </owl:FunctionalProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#preferredLong">
+        <rdfs:domain rdf:resource="http://who.int/icd#ICD10NotesAndHintsSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">preferredLong</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#ICD10NotesTerm"/>
+    </owl:ObjectProperty>
+    <EditorialStatusValueSet rdf:about="http://who.int/icd#Prefilled"/>
+    <LifeCycleConditionTerm rdf:about="http://who.int/icd#PregnantSCTerm">
+        <bp:ontologyId rdf:datatype="&xsd;string">42122</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >SNOMED Clinical Terms</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">77386006</bp:shortTermId>
+        <label rdf:datatype="&xsd;string"
+            >Patient currently pregnant</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >SNOMED Clinical Terms</ontologyId>
+        <termId rdf:datatype="&xsd;string">77386006</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/42122/?id=77386006</url>
+    </LifeCycleConditionTerm>
+    <LinearizationView rdf:about="http://who.int/icd#PrimaryCare">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >A specific Linearization_View for primary care purpose.</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">Primary Care</rdfs:label>
+        <sortingCode rdf:datatype="&xsd;string">3</sortingCode>
+    </LinearizationView>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#primaryCareLinearization"/>
+    <RiskFactorQualifier rdf:about="http://who.int/icd#Proximal"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#proximalRiskFactor">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#riskFactor"/>
+    </owl:ObjectProperty>
+    <Type rdf:about="http://who.int/icd#Reason_For_Encounter">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Reason for Encounter</rdfs:label>
+    </Type>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#referenceID">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#LiteratureReference"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#ReferenceSource">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ValueSet"/>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#referenceSource">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#LiteratureReference"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >PMID, ISBN, URL, or other sources of information</rdfs:comment>
+        <rdfs:range rdf:resource="http://who.int/icd#ReferenceSource"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#ReferenceTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#Term"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >A type of ICD11_Entity that plays a role to hook the logical definitions from external vocabularies such as SNOMED CT, HUGO or ICF while it also plays a role for value set binding to those characteristics used to describe a clinical criteria, e.g. using &quot;CD_Anatomical_Site&quot; to represent the target concept descriptor of characteristic &quot;Anatomical_Site&quot;. 
+
+Mapping relationship: Mappings of the concept to different coding systems (e.g. ICD-0, ICF,...) and other standardised systems like terminologies (SNOMED) etc.</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">ReferenceTerm</rdfs:label>
+    </owl:Class>
+    <LinearizationView rdf:about="http://who.int/icd#Research">
+        <rdfs:label rdf:datatype="&xsd;string">Research</rdfs:label>
+        <sortingCode rdf:datatype="&xsd;string">4</sortingCode>
+    </LinearizationView>
+    <owl:Class rdf:about="http://who.int/icd#ResidualCategoryTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#LeafCodedTerm"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >This is a specific type of CodedTerm that corresponds to traditional ICD residual categories such as Not Elsewhere Classified (NEC) and Not Otherwise Specified (NOS) .</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#RespiratorySystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#BodySystemsValueSet"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Respiratory System</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#riskFactor">
+        <rdfs:domain rdf:resource="http://who.int/icd#CausalMechanismAndRiskFactorsSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">riskFactor</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#RiskFactorTerm"/>
+    </owl:ObjectProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#riskFactorModifier">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#RiskFactorTerm"/>
+        <rdfs:range rdf:resource="http://who.int/icd#RiskFactorQualifier"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#RiskFactorQualifier">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://who.int/icd#Distal"/>
+                    <rdf:Description rdf:about="http://who.int/icd#Immediate"/>
+                    <rdf:Description rdf:about="http://who.int/icd#Proximal"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ValueSet"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#RiskFactorTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#CausalPropertyTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string">7.5 Risk Factor</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#rootCodedTerm">
+        <rdfs:domain rdf:resource="http://who.int/icd#Linearization"/>
+        <rdfs:range rdf:resource="http://who.int/icd#CodedTerm"/>
+    </owl:ObjectProperty>
+    <EditorialStatusValueSet rdf:about="http://who.int/icd#RSG_Approved"/>
+    <ExclusionTermType rdf:about="http://who.int/icd#rule_out">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >A type 1 Excludes note is a pure excludes. It means &quot;NOT CODED HERE!&quot; An Excludes1 note indicates that the code excluded should never be used at the same time as the code above the Excludes1 note. An Excludes1 is for used for when two conditions cannot occur together, such as a congenital form versus an acquired form of the same condition. (From ICD10CM description)</rdfs:comment>
+    </ExclusionTermType>
+    <owl:Class rdf:about="http://who.int/icd#SceletalSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#MusculoskeletalSystem"/>
+        <rdfs:label rdf:datatype="&xsd;string">Sceletal System</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#schoolActivitiesImpact">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#lifeActivitiesImpact"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#SelectedChildrenAndYouthImpact">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#FunctionalImpactTerm"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedCommunicationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedHouseHoldActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedInterpersonalRelationsImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedLifeManagementActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSchoolActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSelfCareImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSocialParticipationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedUnderstandingImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedWorkAndEconomicLifeActivitiesImpact"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >SelectedChildrenAndYouthImpact</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#selectedChildrenAndYouthImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#SelectedChildrenAndYouthImpact"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#childrenAndYouthImpact"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#SelectedCommunicationImpact">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#FunctionalImpactTerm"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedChildrenAndYouthImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedHouseHoldActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedInterpersonalRelationsImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedLifeManagementActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSchoolActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSelfCareImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSocialParticipationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedUnderstandingImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedWorkAndEconomicLifeActivitiesImpact"/>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#selectedCommunicationImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#SelectedCommunicationImpact"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#communicationImpact"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#SelectedHouseHoldActivitiesImpact">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#FunctionalImpactTerm"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedChildrenAndYouthImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedCommunicationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedInterpersonalRelationsImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedLifeManagementActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSchoolActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSelfCareImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSocialParticipationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedUnderstandingImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedWorkAndEconomicLifeActivitiesImpact"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >SelectedHouseHoldActivitiesImpact</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#selectedHouseholdActivitiesImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#SelectedHouseHoldActivitiesImpact"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#householdActivitiesImpact"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#SelectedInterpersonalRelationsImpact">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#FunctionalImpactTerm"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedChildrenAndYouthImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedCommunicationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedHouseHoldActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedLifeManagementActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSchoolActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSelfCareImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSocialParticipationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedUnderstandingImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedWorkAndEconomicLifeActivitiesImpact"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >SelectedInterpersonalRelationImpact</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#selectedInterpersonalRelationsImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#SelectedInterpersonalRelationsImpact"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#interpersonalRelationsImpact"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#SelectedLifeManagementActivitiesImpact">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#FunctionalImpactTerm"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedChildrenAndYouthImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedCommunicationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedHouseHoldActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedInterpersonalRelationsImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSchoolActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSelfCareImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSocialParticipationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedUnderstandingImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedWorkAndEconomicLifeActivitiesImpact"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >SelectedLifeManagementActivitiesImpact</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#selectedLifeManagementActivitiesImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#SelectedLifeManagementActivitiesImpact"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#lifeManagementActivitiesImpact"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#SelectedMobilityImpact">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#FunctionalImpactTerm"/>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#selectedMobilityImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#SelectedMobilityImpact"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#mobilityImpact"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#SelectedSchoolActivitiesImpact">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#FunctionalImpactTerm"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedChildrenAndYouthImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedCommunicationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedHouseHoldActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedInterpersonalRelationsImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedLifeManagementActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSelfCareImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSocialParticipationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedUnderstandingImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedWorkAndEconomicLifeActivitiesImpact"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >SelectedSchoolActivitiesImpact</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#selectedSchoolActivitiesImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#SelectedSchoolActivitiesImpact"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#schoolActivitiesImpact"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#SelectedSelfCareImpact">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#FunctionalImpactTerm"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedChildrenAndYouthImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedCommunicationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedHouseHoldActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedInterpersonalRelationsImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedLifeManagementActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSchoolActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSocialParticipationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedUnderstandingImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedWorkAndEconomicLifeActivitiesImpact"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >SelectedSelfCareImpact</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#selectedSelfCareImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#SelectedSelfCareImpact"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#selfCareImpact"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#SelectedSocialParticipationImpact">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#FunctionalImpactTerm"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedChildrenAndYouthImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedCommunicationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedHouseHoldActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedInterpersonalRelationsImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedLifeManagementActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSchoolActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSelfCareImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedUnderstandingImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedWorkAndEconomicLifeActivitiesImpact"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >SelectedSocialParticipationImpact</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#selectedSocialParticipationImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#SelectedSocialParticipationImpact"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#socialParticipationImpact"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#SelectedUnderstandingImpact">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#FunctionalImpactTerm"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedChildrenAndYouthImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedCommunicationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedHouseHoldActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedInterpersonalRelationsImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedLifeManagementActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSchoolActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSelfCareImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSocialParticipationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedWorkAndEconomicLifeActivitiesImpact"/>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#selectedUnderstandingImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#SelectedUnderstandingImpact"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#understandingImpact"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#selectedWorkActivitiesImpact">
+        <rdfs:domain rdf:resource="http://who.int/icd#FunctionalImpactSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#SelectedWorkAndEconomicLifeActivitiesImpact"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#workActivitiesImpact"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#SelectedWorkAndEconomicLifeActivitiesImpact">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#FunctionalImpactTerm"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedChildrenAndYouthImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedCommunicationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedHouseHoldActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedInterpersonalRelationsImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedLifeManagementActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSchoolActivitiesImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSelfCareImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedSocialParticipationImpact"/>
+        <owl:disjointWith rdf:resource="http://who.int/icd#SelectedUnderstandingImpact"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >SelectedWorkAndEconomicLifeActivitiesImpact</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#selfCareImpact">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#functionalImpact"/>
+    </owl:ObjectProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#sequenceNumber">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+    </owl:FunctionalProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#settingOfEvent">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#transportDimension"/>
+    </owl:ObjectProperty>
+    <SeverityTerm rdf:about="http://who.int/icd#Severe"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#severity">
+        <rdfs:domain rdf:resource="http://who.int/icd#ClinicalDescriptionSection"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Added for backward compaitbility</rdfs:comment>
+        <rdfs:range rdf:resource="http://who.int/icd#SeverityTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#SeverityPropertyTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DefiningTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >9 Severity Property</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#severityScale">
+        <rdfs:domain rdf:resource="http://who.int/icd#ClinicalDescriptionSection"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >specifies the severity scale associated with an ICD category</rdfs:comment>
+        <rdfs:range rdf:resource="http://who.int/icd#SeverityScaleTerm"/>
+    </owl:ObjectProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#severityScaleName">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#SeverityScaleTerm"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#SeverityScaleTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#SeverityPropertyTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string">Severity Scale</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#SeverityTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#SeverityPropertyTerm"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Is severity a definitional term?</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">Severity Term</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#severityTerm">
+        <rdfs:domain rdf:resource="http://who.int/icd#SeverityScaleTerm"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >A severity term and its description</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">severity term</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#SeverityTerm"/>
+    </owl:ObjectProperty>
+    <Type rdf:about="http://who.int/icd#Sign_or_SymptomType">
+        <rdfs:label rdf:datatype="&xsd;string">Sign/Symptom</rdfs:label>
+    </Type>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#signsAndSymptoms">
+        <rdfs:domain rdf:resource="http://who.int/icd#ClinicalDescriptionSection"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >signsAndSymptoms</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#SignsAndSymptomsTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#SignsAndSymptomsTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#Manifestation_Attribute"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >6.1 Sign &amp; Symptom</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#SkinSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#BodySystemsValueSet"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Skin System (Integumentary System)</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#SnomedReferenceSection">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ICDSection"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >SnomedReferenceSection</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#SnomedReferenceTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >SnomedReferenceTerm</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#socialParticipationImpact">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#functionalImpact"/>
+    </owl:ObjectProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#sortingCode">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#LinearizationView"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >The property used to sort linearization views</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#sortingLabel">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#DefinitionSection"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#source">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#LanguageTerm"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <LinearizationView rdf:about="http://who.int/icd#Speciality_Adaptation_Mental_Health">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Specialty Adaptation: Mental Health</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Spec. Adapt: Mental Health</rdfs:label>
+        <sortingCode rdf:datatype="&xsd;string">5</sortingCode>
+    </LinearizationView>
+    <LinearizationView rdf:about="http://who.int/icd#Specialty_Adaptation_Dermatology">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Specialty Adaptation: Dermatology</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Spec. Adapt: Dermatology</rdfs:label>
+        <sortingCode rdf:datatype="&xsd;string">6</sortingCode>
+    </LinearizationView>
+    <LinearizationView rdf:about="http://who.int/icd#Specialty_Adaptation_Musculoskeletal">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Specialty Adaptation: Musculoskeletal</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Spec. Adapt: Musculoskeletal</rdfs:label>
+        <sortingCode rdf:datatype="&xsd;string">7</sortingCode>
+    </LinearizationView>
+    <LinearizationView rdf:about="http://who.int/icd#Specialty_Adaptation_Neurology">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Specialty Adaptation: Neurology</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Spec. Adapt: Neurology</rdfs:label>
+        <sortingCode rdf:datatype="&xsd;string">8</sortingCode>
+    </LinearizationView>
+    <LinearizationView rdf:about="http://who.int/icd#Specialty_Adaptation_Paediatrics">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Specialty Adaptation: Paediatrics</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Spec. Adapt: Paediatrics</rdfs:label>
+        <sortingCode rdf:datatype="&xsd;string">9</sortingCode>
+    </LinearizationView>
+    <owl:Class rdf:about="http://who.int/icd#SpecificConditionSection">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ICDSection"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#SpecificConditionTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >11 Specific Condition Property</rdfs:label>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#substanceUse">
+        <rdfs:domain rdf:resource="http://who.int/icd#ExternalCauseSection"/>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#externalCauseDimension"/>
+    </owl:ObjectProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#summary">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#LiteratureReference"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#SympatheticNervousSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#AutonomicNervousSystem"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Sympathetic Nervous System</rdfs:label>
+    </owl:Class>
+    <IndexTermType rdf:about="http://who.int/icd#Synonym"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#synonym">
+        <rdfs:domain rdf:resource="http://who.int/icd#TermSection"/>
+        <rdfs:label rdf:datatype="&xsd;string">synonym</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#SynonymTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#SynonymTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#LanguageTerm"/>
+        <rdfs:comment rdf:datatype="&xsd;string"></rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">SynonymTerm</rdfs:label>
+    </owl:Class>
+    <EvidenceLevel rdf:about="http://who.int/icd#Systematic_Review_of_Literature_AND_Formalized_Peer_Review_Consensus"/>
+    <EvidenceLevel rdf:about="http://who.int/icd#Systematic_Review_of_Literature_OR_Formalized_Peer_Review_Consensus"/>
+    <EditorialStatusValueSet rdf:about="http://who.int/icd#TAG_Approved"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#temporalProperties">
+        <rdfs:domain rdf:resource="http://who.int/icd#ClinicalDescriptionSection"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >temporalProperties</rdfs:label>
+        <rdfs:range rdf:resource="http://who.int/icd#TemporalPropertiesTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#TemporalPropertiesTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DefiningTerm"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >8 Temporal Property</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#TemporalPropertyValueSet">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Class rdf:about="http://who.int/icd#ValueSet"/>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://who.int/icd#adolescence"/>
+                            <rdf:Description rdf:about="http://who.int/icd#adult"/>
+                            <rdf:Description rdf:about="http://who.int/icd#antenatal"/>
+                            <rdf:Description rdf:about="http://who.int/icd#children_above_5"/>
+                            <rdf:Description rdf:about="http://who.int/icd#children_under_5"/>
+                            <rdf:Description rdf:about="http://who.int/icd#geriatric"/>
+                            <rdf:Description rdf:about="http://who.int/icd#infancy"/>
+                            <rdf:Description rdf:about="http://who.int/icd#neonatal"/>
+                            <rdf:Description rdf:about="http://who.int/icd#perinatal"/>
+                            <rdf:Description rdf:about="http://who.int/icd#young_adult"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#temporalQualifier">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#TemporalPropertiesTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >temporalQualifier</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#temporalRange">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#TemporalPropertiesTerm"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Age of Occurrence of the condition represented by the ICD category</rdfs:comment>
+        <rdfs:range rdf:resource="http://who.int/icd#TemporalPropertyValueSet"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#Term">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#IdentifiableClass"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Note that the Lingustic Term is not a subclass of Term because External Definition is not part of the Foundation Content Model, although it is used to help users defining the ICD category.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >subclasses of Term correspond to components of  the Foundation Content Model.</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">Term</rdfs:label>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#termId">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class rdf:about="http://who.int/icd#ExternalReference"/>
+                    <owl:Class rdf:about="http://who.int/icd#ReferenceTerm"/>
+                    <owl:Class rdf:about="http://who.int/icd#SelectedMobilityImpact"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >This is the termId of the referenced term. Should be full URI if available, or else some other id (e.g. Snomed id)</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">termId</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#TermSection">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ICDSection"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >base inclusion should be a subset of synonym</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">TermSection</rdfs:label>
+    </owl:Class>
+    <LinearizationSpecification rdf:about="http://who.int/icd#TestIsIncludedSlotLinearization">
+        <isIncludedInLinearization rdf:datatype="&xsd;boolean">true</isIncludedInLinearization>
+    </LinearizationSpecification>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#text">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#ClamlReference"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#TitleTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#LanguageTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >1 ICD Concept Title</rdfs:label>
+    </owl:Class>
+    <TitleTerm rdf:about="http://who.int/icd#TitleTerm_2">
+        <label rdf:datatype="&xsd;string">ICD Categories</label>
+    </TitleTerm>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#transportDimension">
+        <rdfs:domain rdf:resource="http://who.int/icd#ExternalCauseSection"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Also known as &quot;mechanism descriptor&quot; or &quot;details for mechanism&quot; conform to Robert&apos;s model documented in yhe Style Guide from 20 April 2010.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#externalCauseDimension"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#transportUserRoleOfInjuredPerson">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#transportDimension"/>
+    </owl:ObjectProperty>
+    <GenderConditionTerm rdf:about="http://who.int/icd#TranssexualSCTerm">
+        <bp:ontologyId rdf:datatype="&xsd;string">42122</bp:ontologyId>
+        <bp:ontologyLabel rdf:datatype="&xsd;string"
+            >SNOMED Clinical Terms</bp:ontologyLabel>
+        <bp:shortTermId rdf:datatype="&xsd;string">407374003</bp:shortTermId>
+        <label rdf:datatype="&xsd;string">Transsexual</label>
+        <ontologyId rdf:datatype="&xsd;string"
+            >SNOMED Clinical Terms</ontologyId>
+        <termId rdf:datatype="&xsd;string">407374003</termId>
+        <url rdf:datatype="&xsd;string"
+            >http://bioportal.bioontology.org/visconcepts/42122/?id=407374003</url>
+    </GenderConditionTerm>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#treatment">
+        <rdfs:domain rdf:resource="http://who.int/icd#TreatmentSection"/>
+        <rdfs:range rdf:resource="http://who.int/icd#TreatmentTerm"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://who.int/icd#TreatmentSection">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ICDSection"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#TreatmentTerm">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ReferenceTerm"/>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DefiningTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >12 Treatment Property</rdfs:label>
+    </owl:Class>
+    <owl:Class rdf:about="http://who.int/icd#Type">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://who.int/icd#Disease_Type"/>
+                    <rdf:Description rdf:about="http://who.int/icd#Disorder_Or_SyndromeType"/>
+                    <rdf:Description rdf:about="http://who.int/icd#Exposure_To_External_Causes_Or_Injuries"/>
+                    <rdf:Description rdf:about="http://who.int/icd#Reason_For_Encounter"/>
+                    <rdf:Description rdf:about="http://who.int/icd#Sign_or_SymptomType"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#DefiningTerm"/>
+        <rdfs:label rdf:datatype="&xsd;string">2.2 Type</rdfs:label>
+    </owl:Class>
+    <EditorialStatusValueSet rdf:about="http://who.int/icd#Under_Discussion"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#understandingImpact">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#functionalImpact"/>
+    </owl:ObjectProperty>
+    <Type rdf:about="http://who.int/icd#Unspecified"/>
+    <owl:DatatypeProperty rdf:about="http://who.int/icd#unspecifiedTypeComment">
+        <rdfs:domain rdf:resource="http://who.int/icd#DefinitionSection"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Unspecified: When this box is checked, the iCAT user will be required to comment on why it is unspecifie</rdfs:comment>
+    </owl:DatatypeProperty>
+    <owl:Class rdf:about="http://who.int/icd#UrinarySystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#GenitourinarySystem"/>
+        <rdfs:label rdf:datatype="&xsd;string">Urinary System</rdfs:label>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#url">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class rdf:about="http://who.int/icd#ExternalReference"/>
+                    <owl:Class rdf:about="http://who.int/icd#ReferenceTerm"/>
+                    <owl:Class rdf:about="http://who.int/icd#SelectedMobilityImpact"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Is this property necessary?</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string">url</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#ValueSet">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#ICD11Entity"/>
+    </owl:Class>
+    <EtiologyTypeTerm rdf:about="http://who.int/icd#Vascular"/>
+    <owl:Class rdf:about="http://who.int/icd#VersionNote"/>
+    <owl:AnnotationProperty rdf:about="http://who.int/icd#versionNote">
+        <rdf:type rdf:resource="&owl;ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#ICD11Entity"/>
+        <rdfs:range rdf:resource="http://who.int/icd#VersionNote"/>
+    </owl:AnnotationProperty>
+    <VersionNote rdf:about="http://who.int/icd#VersionNote2010-02-10">
+        <rdfs:comment rdf:datatype="&xsd;string"></rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Labeled ICDSection to ICD Information Model</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Re-organized top-level classes, making Domainconcept, ICD Information Model, and ValueSet subclasses of ICD11Entity</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Recreated comments in the UML content model as Collaborative Protege annotations</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Systematically copied UML content model documentation to corresponding classes, properties, and individuals in the iCAT content model</rdfs:comment>
+    </VersionNote>
+    <VersionNote rdf:about="http://who.int/icd#VersionNote2010-02-23">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Added ExternalCauses Section, with external causes dimensions (e.g., intent, mechansim of injury, object/substance) as properties. Added an ExternalCauseTerm as the range of the properties</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Added Functional Impact value set. Added functional impact property tree corresponding to the functional impact on the person domains.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Added SeverityScaleTerm (which has a name and a set of SeverityTerm). SeverityTerm has a &quot;level&quot; and &quot;description&quot; property</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Added Treatment Section (with &quot;treatment&quot; property) to the ICD11 Information Model.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Added risk factor qualifiers: immeidate, proximal, and distal to RiskFactorTerm</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Clarified the meaning of DefiningTerm with Tania, and removed textual terms (as as Fullyspecified name) as subclasses of DefiningTerm.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Created a &quot;hasICDCategories&quot; property (domain BaseExclusionTerm, range: ICDCategory) for ICD categories of an exclusion term.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Created mechansim and agent subproperties of causalFactor property and added CausalMechanismAndRiskFactorSection as the domain of the subproperties.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Made &quot;Type&quot; of ICD category consistent with the specification in the Style Guide</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Removed isSynonym and isNarrower Boolean properties, and replaced them with index term type property that has the enumerated set {synonym, narrower_term} as value domain</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Systematically relabeled the classes so that they correspond to the Style Guide for the Content Model</rdfs:comment>
+        <rdfs:label rdf:datatype="&xsd;string"></rdfs:label>
+    </VersionNote>
+    <VersionNote rdf:about="http://who.int/icd#VersionNote2010-03-05">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Added a subclass of ICDCategory: ICDExternalCauseCategory. It is an instance of DefinitionSection, ExternalCauseSection, Linearizationsection, and TermSection.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Made intent, mechanismOfInjury, object/substatnce, activity when injured, and place of occurrence functional properties.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Modified External Cause properties so that they are consistent with External_Cause_content_Model.doc (6 major axes corresponding to C1 - C7 in ICECI) and *descriptor subaxes.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Restructured functional impact object property hierarchy so that,  each functional impact property (e.g., cognition) has two subproperties (e.g., selectedCognigion and otherCognition).</rdfs:comment>
+    </VersionNote>
+    <VersionNote rdf:about="http://who.int/icd#VersionNote2110-04-05">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Added specific conditions</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Added time ranges for temporal property and flags for definition and &quot;general occurrence&quot;</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Created the default &quot;mild, moderate, severe&quot; severity scale</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Removed index term and narrower term
+ from TermSection</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >TermSection has synonyms, and base inclusion term is a subset of Synonyms</rdfs:comment>
+    </VersionNote>
+    <VersionNote rdf:about="http://who.int/icd#VersionNote2110-04-07">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Added legacy inclusion &amp; legacy exclusion, in addition to base inclusion &amp; base exclusion</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Make TemporalPropertyTerm&apos;s age range, ageRangeIsDefinition, &quot;ageRangeIsGenerallyTrue properties functional</rdfs:comment>
+    </VersionNote>
+    <owl:Class rdf:about="http://who.int/icd#VestibularSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#BodySystemsValueSet"/>
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Vestibular System</rdfs:label>
+    </owl:Class>
+    <owl:FunctionalProperty rdf:about="http://who.int/icd#viewFlag">
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://who.int/icd#CodedTerm"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Every category can have Subset adaptation and special view flags. This allows to group selected codes to a Subset that can be extracted for further use, e.g. to generate ICD-11-Mental Health or ICD-11-Mortality</rdfs:comment>
+    </owl:FunctionalProperty>
+    <owl:Class rdf:about="http://who.int/icd#VisualSystem">
+        <rdfs:subClassOf rdf:resource="http://who.int/icd#BodySystemsValueSet"/>
+        <rdfs:label rdf:datatype="&xsd;string">Visual System</rdfs:label>
+    </owl:Class>
+    <EditorialStatusValueSet rdf:about="http://who.int/icd#WHO_Approved"/>
+    <owl:ObjectProperty rdf:about="http://who.int/icd#workActivitiesImpact">
+        <rdfs:subPropertyOf rdf:resource="http://who.int/icd#lifeActivitiesImpact"/>
+    </owl:ObjectProperty>
+    <TemporalPropertyValueSet rdf:about="http://who.int/icd#young_adult">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Young Adult {19-24 yo}</rdfs:label>
+    </TemporalPropertyValueSet>
+    <InstanceTemplate rdf:about="http://who.int/icd#youngAdultTermTemplate">
+        <rdf:type rdf:resource="http://who.int/icd#TemporalPropertiesTerm"/>
+        <temporalRange rdf:resource="http://who.int/icd#young_adult"/>
+    </InstanceTemplate>
+</rdf:RDF>

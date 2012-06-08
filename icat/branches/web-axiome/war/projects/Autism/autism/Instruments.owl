@@ -1,0 +1,2799 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:dbs="http://www.dbs.cs.uni-duesseldorf.de/RDF/relational.owl#"
+    xmlns="http://www.ndar.nih.gov/instruments.owl#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:owl11xml="http://www.w3.org/2006/12/owl11-xml#"
+    xmlns:owl11="http://www.w3.org/2006/12/owl11#"
+  xml:base="http://www.ndar.nih.gov/instruments.owl">
+  <owl:Ontology rdf:about="">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Instrument ontology is an extension of birlex-lite ontology (once OBI stablizes, we will use birlex). It contains descriptions of data instruments (ADI-2003) as specified in the NADR clinical assessment code book and experiments in defining the autism phenotype groups specified in [Hus 2006]</rdfs:comment>
+    <owl:imports rdf:resource="http://purl.org/nbirn/birnlex/ontology/birnlex-lite.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="id_000002">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="id_000000"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="id_000001"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="LanguageAcquisitionGroup"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+            >0</owl:cardinality>
+            <owl:onProperty>
+              <owl:FunctionalProperty rdf:ID="acqorlossoflang_aword"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Class rdf:ID="adi_2003"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NW</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="SavantSkillGroup">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AutismPhenotypeGroup"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#id_000001">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:DataRange>
+                <owl11:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+                >24</owl11:maxInclusive>
+                <owl11:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+              </owl:DataRange>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:FunctionalProperty rdf:about="#acqorlossoflang_aword"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Class rdf:about="#adi_2003"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#LanguageAcquisitionGroup"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DW</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#id_000000">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#LanguageAcquisitionGroup"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NDW</rdfs:label>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:FunctionalProperty rdf:about="#acqorlossoflang_aword"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:DataRange>
+                <owl11:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+                >24</owl11:minExclusive>
+                <owl11:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+              </owl:DataRange>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Class rdf:about="#adi_2003"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <owl:disjointWith rdf:resource="#id_000001"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  <owl:Class rdf:ID="id_000005">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#LanguageAcquisitionGroup"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NP</rdfs:label>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="id_000004"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="id_000003"/>
+    </owl:disjointWith>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#adi_2003"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:FunctionalProperty rdf:ID="acqorlossoflang_aphrase"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:DataRange>
+                <owl11:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                <owl11:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+                >33</owl11:minExclusive>
+              </owl:DataRange>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="id_000010">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="id_000009"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="RestrictedAndRepetitiveBehaviorGroup"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >MIS</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#id_000009">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >LIS</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#RestrictedAndRepetitiveBehaviorGroup"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#RestrictedAndRepetitiveBehaviorGroup">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#AutismPhenotypeGroup"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Class"/>
+  <owl:Class rdf:about="#id_000003">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NDP</rdfs:label>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:FunctionalProperty rdf:about="#acqorlossoflang_aphrase"/>
+            </owl:onProperty>
+            <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+            >0</owl:cardinality>
+          </owl:Restriction>
+          <owl:Class rdf:about="#adi_2003"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#LanguageAcquisitionGroup"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ForeignKey">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Data"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#AutismPhenotypeGroup">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Phenotype group as defined by Hus, et al. 2006</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="id_000008">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="id_000007"/>
+    </owl:disjointWith>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >HRSMA</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#RestrictedAndRepetitiveBehaviorGroup"/>
+  </owl:Class>
+  <owl:Class rdf:about="#LanguageAcquisitionGroup">
+    <rdfs:subClassOf rdf:resource="#AutismPhenotypeGroup"/>
+  </owl:Class>
+  <owl:Class rdf:about="#id_000004">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:DataRange>
+                <owl11:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                <owl11:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+                >33</owl11:maxInclusive>
+              </owl:DataRange>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:FunctionalProperty rdf:about="#acqorlossoflang_aphrase"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Class rdf:about="#adi_2003"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DP</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#LanguageAcquisitionGroup"/>
+    <owl:disjointWith rdf:resource="#id_000003"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SubjectData">
+    <rdfs:subClassOf rdf:resource="#Data"/>
+  </owl:Class>
+  <owl:Class rdf:about="#id_000007">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >MRSMA</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#RestrictedAndRepetitiveBehaviorGroup"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SavantNegative">
+    <rdfs:subClassOf rdf:resource="#SavantSkillGroup"/>
+  </owl:Class>
+  <owl:Class rdf:ID="id_000006">
+    <rdfs:subClassOf rdf:resource="#RestrictedAndRepetitiveBehaviorGroup"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >LRSMA</rdfs:label>
+    <owl:disjointWith rdf:resource="#id_000007"/>
+    <owl:disjointWith rdf:resource="#id_000008"/>
+  </owl:Class>
+  <owl:Class rdf:about="#adi_2003">
+    <isBridgeTable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</isBridgeTable>
+    <rdfs:subClassOf rdf:resource="#SubjectData"/>
+  </owl:Class>
+  <owl:Class rdf:ID="id_000011">
+    <rdfs:subClassOf rdf:resource="#RestrictedAndRepetitiveBehaviorGroup"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >HIS</rdfs:label>
+    <owl:disjointWith rdf:resource="#id_000010"/>
+    <owl:disjointWith rdf:resource="#id_000009"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SavantPositive">
+    <rdfs:subClassOf rdf:resource="#SavantSkillGroup"/>
+  </owl:Class>
+  <owl:FunctionalProperty rdf:ID="dbaes_nvqac">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_nvqac</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_stereofailB3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_stereofailB3</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_socotfailA4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_socotfailA4</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_socplayfailB4">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_socplayfailB4</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_unsens_cmt">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_unsens_cmt</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_ereadz">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_ereadz</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_play5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_play5</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_inappqfailB3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_inappqfailB3</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="hasLocFieldProperty">
+    <rdfs:domain rdf:resource="#ForeignKey"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_gazefailA1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_gazefailA1</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_creadz">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_creadz</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_einapfe">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_einapfe</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_qualov5">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_qualov5</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_ememz">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_ememz</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cartic">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cartic</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_share5">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_share5</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_failC3">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_failC3</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_insgesfailB1">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_insgesfailB1</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_shareofferfailA3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_shareofferfailA3</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_euseobj">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_euseobj</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_smilefailA1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_smilefailA1</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_epron">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_epron</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_chshake">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_chshake</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_failC2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_failC2</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_pron_cmt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_pron_cmt</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_chfman">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_chfman</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_elmotr">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_elmotr</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_elskil">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_elskil</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_failA3">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_failA3</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intro_concern_2">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intro_concern_2</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_cssmile">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_cssmile</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_favtoy_2">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_favtoy_2</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_enoise">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_enoise</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intro_concern_3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intro_concern_3</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_chvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_chvent</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="earlydev_drydz">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >earlydev_drydz</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_ccirint">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_ccirint</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_unsensfailC4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_unsensfailC4</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_hshakefailB1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_hshakefailB1</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cstereo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cstereo</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_cinitia">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_cinitia</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="earlydev_hind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >earlydev_hind</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_converfailB2">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_converfailB2</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_qarsci">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_qarsci</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_facexpressfailA4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_facexpressfailA4</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_hfmanfailC3">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_hfmanfailC3</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_hshake5">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_hshake5</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_euatt">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_euatt</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_failC4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_failC4</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cinappq">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cinappq</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_losssyn">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_losssyn</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_chatfailB2">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_chatfailB2</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="extra_column_1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >extra_column_1</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_csoplay">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_csoplay</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_resp_cmt">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_resp_cmt</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_qarsci">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_qarsci</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_imit5">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_imit5</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_failB3">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_failB3</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_cirint_cmt">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_cirint_cmt</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_peerpl5">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_peerpl5</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_ageloss">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_ageloss</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_eaggoth">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_eaggoth</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_failB1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_failB1</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_socrespfailA4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_socrespfailA4</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_stereofailB3">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_stereofailB3</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_hfmanfailC3">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_hfmanfailC3</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="earlydev_acon">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >earlydev_acon</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_inappqfailB3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_inappqfailB3</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_socdis5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_socdis5</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cusebod">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cusebod</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_eabinr">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_eabinr</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_crespch">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_crespch</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_failC2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_failC2</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_failC3">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_failC3</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="earlydev_bowel">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >earlydev_bowel</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_failC4">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_failC4</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_failA1">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_failA1</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_cothman">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_cothman</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_ecirint">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_ecirint</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_pointfailB1">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_pointfailB1</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="hasReferenceTable">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#ForeignKey"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_showattnfailA3">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_showattnfailA3</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="extra_column_5">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >extra_column_5</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_rrspb">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_rrspb</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_failC4">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_failC4</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_cocomf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_cocomf</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_evisspz">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_evisspz</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="earlydev_fsymc_2">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >earlydev_fsymc_2</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_cunproc">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_cunproc</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_insges5">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_insges5</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_cinapfe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_cinapfe</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="extra_column_3">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >extra_column_3</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_eresis">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_eresis</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_efaint">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_efaint</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_expressfailA1">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_expressfailA1</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_failB4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_failB4</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_initia5">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_initia5</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_failC2">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_failC2</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_failC4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_failC4</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_hshakefailB1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_hshakefailB1</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="ConcludingComments_SUMDISCRP">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ConcludingComments_SUMDISCRP</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_crit_cmt">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_crit_cmt</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_comfortfailA4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_comfortfailA4</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_vqac">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_vqac</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="backgrnd_MED">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >backgrnd_MED</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_pointfailB1">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_pointfailB1</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_hshake_cmt">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_hshake_cmt</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_losshlp">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_losshlp</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_enjoyfailA3">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_enjoyfailA3</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cavoice">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cavoice</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intro_concern_1">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intro_concern_1</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="earlydev_hind_cmt">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >earlydev_hind_cmt</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_otherbodyfailA4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_otherbodyfailA4</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_cuatt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_cuatt</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cneoid">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cneoid</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_favact_2">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_favact_2</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_cnoise">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_cnoise</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_failB4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_failB4</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_elsoc">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_elsoc</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_friend_cmt">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_friend_cmt</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="ConcludingComments_OVLASST">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ConcludingComments_OVLASST</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_failA4">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_failA4</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cpeerpl">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cpeerpl</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_cslfinj">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_cslfinj</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_cmusicz">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_cmusicz</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_circinitfailC1">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_circinitfailC1</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_nod_cmt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_nod_cmt</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_everrit">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_everrit</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_failB4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_failB4</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_elplay">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_elplay</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_favtoy_3">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_favtoy_3</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="FK___Study_Metadata_ID">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >FK___Study_Metadata_ID</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cnod">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cnod</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_avoice5">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_avoice5</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_rrspb">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_rrspb</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_failA1">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_failA1</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cchat">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cchat</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_failB4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_failB4</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_soplay5">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_soplay5</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="FK___Admin_Metadata_ID">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >FK___Admin_Metadata_ID</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_favact_4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_favact_4</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_emlhand">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_emlhand</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_ecrit">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_ecrit</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="FK___Subject_ID">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >FK___Subject_ID</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="hasRefFieldProperty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:domain rdf:resource="#ForeignKey"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_failB1">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_failB1</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_edrawz">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_edrawz</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_failB1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_failB1</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_cfriend">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_cfriend</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_respch5">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_respch5</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_failB1">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_failB1</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_failB2">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_failB2</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_failB2">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_failB2</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_failA3">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_failA3</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_inr_cmt">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_inr_cmt</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_gait5">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_gait5</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_neoidfailB3">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_neoidfailB3</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_inappq_cmt">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_inappq_cmt</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_failC3">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_failC3</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_speech_cmt">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_speech_cmt</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_nod5">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_nod5</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_verritfailC2">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_verritfailC2</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_verritfailC2">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_verritfailC2</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_cchange">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_cchange</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="earlydev_walk">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >earlydev_walk</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_cresp">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_cresp</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cinsges">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cinsges</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_cuseobj">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_cuseobj</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_othmanfailC3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_othmanfailC3</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="interview_age">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >interview_age</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_cshow">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_cshow</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_failA4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_failA4</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_playfailB4">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_playfailB4</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_elskph">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_elskph</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_compritfailC2">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_compritfailC2</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_playfailB4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_playfailB4</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#acqorlossoflang_aphrase">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_aphrase</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_failA2">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_failA2</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_socotfailA4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_socotfailA4</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_grpplayfailA2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_grpplayfailA2</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cverrit">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cverrit</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_lossart">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_lossart</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_chatfailB2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_chatfailB2</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_nvqac">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_nvqac</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_cvisspz">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_cvisspz</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_otherbodyfailA4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_otherbodyfailA4</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_cgaze">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_cgaze</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_ocomf5">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_ocomf5</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_favtoy_cmt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_favtoy_cmt</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_cmlhand">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_cmlhand</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_eslfinj">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_eslfinj</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="earlydev_bowel_cmt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >earlydev_bowel_cmt</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_point5">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_point5</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="earlydev_fsymc_1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >earlydev_fsymc_1</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cconver">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cconver</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_failC1">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_failC1</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_approachfailA2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_approachfailA2</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="earlydev_fsymc_4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >earlydev_fsymc_4</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_speech5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_speech5</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_qualov_cmt">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_qualov_cmt</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_rrspb">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_rrspb</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_favact_5">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_favact_5</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="hasLocalField">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#ForeignKey"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_lossp">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_lossp</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="earlydev_fsymc_3">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >earlydev_fsymc_3</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_imitfailB4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_imitfailB4</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_elhand">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_elhand</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_socplayfailB4">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_socplayfailB4</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_losword">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_losword</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_show5">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_show5</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_showattnfailA3">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_showattnfailA3</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cimit">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cimit</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_unsensfailC4">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_unsensfailC4</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cinr">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cinr</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_converfailB2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_converfailB2</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_verrit_cmt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_verrit_cmt</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_eunproc">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_eunproc</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="hasLocTableClass">
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:domain rdf:resource="#ForeignKey"/>
+    <owl:inverseOf>
+      <owl:AnnotationProperty rdf:ID="hasForeignKeys">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+        <owl:inverseOf rdf:resource="#hasLocTableClass"/>
+      </owl:AnnotationProperty>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_caggoth">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_caggoth</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_resp5">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_resp5</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="earlydev_walk_cmt">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >earlydev_walk_cmt</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="earlydev_drynz">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >earlydev_drynz</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_failC1">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_failC1</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="earlydev_fsymc">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >earlydev_fsymc</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_chat5">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_chat5</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_ccompsl">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_ccompsl</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_qarsci">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_qarsci</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_oshare5">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_oshare5</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_cunsens">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_cunsens</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_cgrplay">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_cgrplay</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_change_cmt">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_change_cmt</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_insgesfailB1">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_insgesfailB1</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_loslang">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_loslang</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_cabinr">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_cabinr</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_nvqac">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_nvqac</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intro_concern">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intro_concern</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_enjoyfailA3">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_enjoyfailA3</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_cshare">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_cshare</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_approachfailA2">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_approachfailA2</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_conver5">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_conver5</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_intch5">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_intch5</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="hasFKName">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#ForeignKey"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_aphrase_cmt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_aphrase_cmt</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cpoint">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cpoint</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="extra_column_2">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >extra_column_2</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_childinterestfailA2">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_childinterestfailA2</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_failB3">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_failB3</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_cmemz">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_cmemz</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_ssmile5">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_ssmile5</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_failC1">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_failC1</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_gaze5">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_gaze5</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#acqorlossoflang_aword">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_aword</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_losphys_cmt">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_losphys_cmt</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_smilefailA1">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_smilefailA1</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_favtoy_5">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_favtoy_5</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_einapf_cmt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_einapf_cmt</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_peerplayfailA2">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_peerplayfailA2</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_facexpressfailA4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_facexpressfailA4</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_comfortfailA4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_comfortfailA4</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_failA3">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_failA3</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_eunsens">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_eunsens</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_crfacex">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_crfacex</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_echange">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_echange</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_failB2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_failB2</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_unpreocfailC1">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_unpreocfailC1</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cpron">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cpron</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_failB3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_failB3</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_imit_cmt">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_imit_cmt</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_shareofferfailA3">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_shareofferfailA3</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_ageabn">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_ageabn</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_failA1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_failA1</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_emusicz">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_emusicz</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_judgage">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_judgage</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_caggfam">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_caggfam</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_initia_cmt">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_initia_cmt</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_childinterestfailA2">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_childinterestfailA2</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_losdurn">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_losdurn</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="hasRefTableClass">
+    <rdfs:domain rdf:resource="#ForeignKey"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_revfailB3">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_revfailB3</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_nodfailB1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_nodfailB1</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_vqac">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_vqac</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_vqac">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_vqac</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_failC1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_failC1</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_cresis">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_cresis</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_socrespfailA4">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_socrespfailA4</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_abinr_cmt">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_abinr_cmt</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_rfacex5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_rfacex5</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_gazefailA1">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_gazefailA1</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_cqualov">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_cqualov</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_cgait">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_cgait</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_useobjfailC4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_useobjfailC4</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_cfaint">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_cfaint</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_rrspb">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_rrspb</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="ConcludingComments_IMPRESS">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ConcludingComments_IMPRESS</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cspeech">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cspeech</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_grpplayfailA2">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_grpplayfailA2</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_favact_3">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_favact_3</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_failC2">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_failC2</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_articf5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_articf5</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_ecompuz">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_ecompuz</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_levell">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_levell</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_favtoy_4">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_favtoy_4</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_failA2">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_failA2</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_coshare">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_coshare</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_failA2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_failA2</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_circinitfailC1">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_circinitfailC1</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_csocdis">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_csocdis</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_neoidfailB3">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_neoidfailB3</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_cintch">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_cintch</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_favact_1">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_favact_1</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_levlang">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_levlang</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_rfacex_cmt">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_rfacex_cmt</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_einr">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_einr</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_cdrawz">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_cdrawz</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_eothman">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_eothman</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_attinst_cmt">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_attinst_cmt</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_failA2">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_failA2</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_nvqac">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_nvqac</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_useobjfailC4">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_useobjfailC4</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_ccrit">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_ccrit</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_failA4">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_failA4</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_aloslan">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_aloslan</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_nodfailB1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_nodfailB1</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_failA3">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_failA3</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_grplay5">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_grplay5</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_compsl5">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_compsl5</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbaes_compritfailC2">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbaes_compritfailC2</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_eusebod">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_eusebod</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_favtoy_1">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_favtoy_1</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="extra_column_4">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >extra_column_4</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_failA4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_failA4</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_estereo">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_estereo</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_ccompuz">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_ccompuz</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_play_cmt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_play_cmt</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_imitfailB4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_imitfailB4</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="socdev_frend15">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >socdev_frend15</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_losphys">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_losphys</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_qarsci">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_qarsci</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intro_concern_4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intro_concern_4</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="intbehav_ehfman">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intbehav_ehfman</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_failC3">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_failC3</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_eneoid">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_eneoid</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="backgrnd_DIAG_">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >backgrnd_DIAG_</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="hasReferenceField">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#ForeignKey"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="PK___ID">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PK___ID</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_failA1">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_failA1</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_einappq">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_einappq</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_expressfailA1">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_expressfailA1</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_aword_cmt">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_aword_cmt</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_failB3">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_failB3</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acqorlossoflang_durdet">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >acqorlossoflang_durdet</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_othmanfailC3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_othmanfailC3</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_peerplayfailA2">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_peerplayfailA2</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_neoid_cmt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_neoid_cmt</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_eaggfam">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_eaggfam</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbacs_vqac">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbacs_vqac</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_unpreocfailC1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_unpreocfailC1</hasOrigColumnName>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="genbehav_ehvent">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >genbehav_ehvent</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="funccom_cplay">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >funccom_cplay</hasOrigColumnName>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="interview_date">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >interview_date</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="cbacs_failB2">
+    <rdfs:domain rdf:resource="#adi_2003"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cbacs_failB2</hasOrigColumnName>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="dbaes_revfailB3">
+    <hasOrigColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dbaes_revfailB3</hasOrigColumnName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#adi_2003"/>
+  </owl:FunctionalProperty>
+  <owl:AnnotationProperty rdf:ID="hasPrimaryKeyFields">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="hasOrigColumnName">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="isBridgeTable">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:AnnotationProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 102)  http://protege.stanford.edu -->

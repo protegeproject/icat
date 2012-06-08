@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns="http://www.autism.stanford.edu/assessment-result.owl#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.autism.stanford.edu/assessment-result.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="Assessment_result">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Assessment result</rdfs:label>
+  </owl:Class>
+  <owl:DatatypeProperty rdf:ID="autism_ontology_datatype_property"/>
+  <owl:AnnotationProperty rdf:ID="usedIn">
+    <rdfs:subPropertyOf>
+      <owl:AnnotationProperty rdf:ID="autism_annotation_property"/>
+    </rdfs:subPropertyOf>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="valueRange">
+    <rdfs:subPropertyOf rdf:resource="#autism_annotation_property"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="size">
+    <rdfs:subPropertyOf rdf:resource="#autism_annotation_property"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="isRequired">
+    <rdfs:subPropertyOf rdf:resource="#autism_annotation_property"/>
+  </owl:AnnotationProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 513)  http://protege.stanford.edu -->

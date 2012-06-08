@@ -1,0 +1,1060 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns="http://protege.stanford.edu/ontologies/ChAO/changes.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://protege.stanford.edu/ontologies/ChAO/changes.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="ReviewRequest">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ReviewRequest</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Annotation"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="VotingProposal">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Proposal"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >VotingProposal</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Property_Change">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Property_Change</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Change"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Ontology">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Ontology_Component"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Property_Created">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Property_Created</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created_Change</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Created_Change"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Property_Change"/>
+  </owl:Class>
+  <owl:Class rdf:ID="FiveStarsVote">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Vote"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >FiveStarsVote</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="DomainProperty_Removed">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Class_Change"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DomainProperty_Removed</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TemplateSlot_Removed">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >TemplateSlot_Removed</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_Change"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SplitProposal">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >SplitProposal</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Proposal"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Individual_Deleted">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Deleted_Change</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Individual_Deleted</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Deleted_Change"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Individual_Change"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Documentation_Removed">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_Change"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Documentation_Removed</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Maximum_Value">
+    <rdfs:subClassOf rdf:resource="#Property_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Maximum_Value</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Name_Changed">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Change"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Name_Changed</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Advice">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Advice</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Annotation"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A class of Annotations representing advice for the reader</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Explanation">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Annotation"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Explanation</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A class of Annotations representing explanations of content</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Example">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Annotation"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A class of Annotations representing examples</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Example</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Documentation_Added">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_Change"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Documentation_Added</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Property_Deleted">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Deleted_Change"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Property_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Property_Deleted</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Deleted_Change</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Ontology_Individual">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ontology_Individual</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Ontology_Component"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Maximum_Cardinality">
+    <rdfs:subClassOf rdf:resource="#Property_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Maximum_Cardinality</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Question">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Question</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Annotation"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A class of Annotations representing questions about the content</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Class_Change">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Class_Change</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Change"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Individual_Change">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Change"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Individual_Change</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Ontology_Property">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ontology_Property</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Ontology_Component"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="MergeProposal">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >MergeProposal</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Proposal"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Property_Value">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Property_Value</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Individual_Change"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Ontology_ComponentStatus">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ontology_ComponentStatus</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Status"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AgreeDisagreeVote">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Vote"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >AgreeDisagreeVote</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Individual_Removed">
+    <rdfs:subClassOf rdf:resource="#Individual_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Individual_Removed</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="ChangeStatus">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ChangeStatus</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Status"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Subproperty_Added">
+    <rdfs:subClassOf rdf:resource="#Property_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Subproperty_Added</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Superproperty_Removed">
+    <rdfs:subClassOf rdf:resource="#Property_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Superproperty_Removed</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="SimpleProposal">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Proposal"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >SimpleProposal</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Review">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Annotation"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="User">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >User</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Superproperty_Added">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Superproperty_Added</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Property_Change"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Comment">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A class of Annotations representing general comments</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Annotation"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Comment</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Individual_Added">
+    <rdfs:subClassOf rdf:resource="#Individual_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Individual_Added</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#Annotation">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Annotation</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AnnotatableThing"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="AnnotationStatus"/>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasStatus"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Deleted_Change">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Deleted_Change</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Change"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SeeAlso">
+    <rdfs:subClassOf rdf:resource="#Annotation"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A class of Annotations representing a reference to another resource</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >SeeAlso</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="ChangeHierarchyProposal">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Proposal"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ChangeHierarchyProposal</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Individual_Created">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Created_Change"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Individual_Change"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created_Change</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Individual_Created</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="LinguisticEntity">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >LinguisticEntity</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Subproperty_Removed">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Subproperty_Removed</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Property_Change"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Proposal">
+    <rdfs:subClassOf rdf:resource="#Annotation"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Proposal</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Class_Deleted">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Deleted_Change</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Class_Change"/>
+    <rdfs:subClassOf rdf:resource="#Deleted_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Class_Deleted</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Annotation_Change">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Annotation_Change</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Class_Change"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Change">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#AnnotatableThing"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#ChangeStatus"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasStatus"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Change</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Class_Created">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created_Change</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Class_Created</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Class_Change"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Created_Change"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Subclass_Removed">
+    <rdfs:subClassOf rdf:resource="#Class_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Subclass_Removed</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#AnnotatableThing">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >AnnotatableThing</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Timestamp">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Timestamp</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="DisjointClass_Added">
+    <rdfs:subClassOf rdf:resource="#Class_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DisjointClass_Added</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Annotation_Added">
+    <rdfs:subClassOf rdf:resource="#Annotation_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Annotation_Added</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Reviewer">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Reviewer</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#User"/>
+  </owl:Class>
+  <owl:Class rdf:ID="DirectType_Removed">
+    <rdfs:subClassOf rdf:resource="#Individual_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DirectType_Removed</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="FiveStarsVoteProposal">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >FiveStarsVoteProposal</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#VotingProposal"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Superclass_Added">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Superclass_Added</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Class_Change"/>
+  </owl:Class>
+  <owl:Class rdf:ID="CreateEntityProposal">
+    <rdfs:subClassOf rdf:resource="#Proposal"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >CreateEntityProposal</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#Vote">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Vote</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Annotation"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ChangePropertyValueProposal">
+    <rdfs:subClassOf rdf:resource="#Proposal"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ChangePropertyValueProposal</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Annotation_Removed">
+    <rdfs:subClassOf rdf:resource="#Annotation_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Annotation_Removed</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Minimum_Cardinality">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Minimum_Cardinality</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Property_Change"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AgreeDisagreeVoteProposal">
+    <rdfs:subClassOf rdf:resource="#VotingProposal"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >AgreeDisagreeVoteProposal</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Subclass_Added">
+    <rdfs:subClassOf rdf:resource="#Class_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Subclass_Added</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="DirectType_Added">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DirectType_Added</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Individual_Change"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Minimum_Value">
+    <rdfs:subClassOf rdf:resource="#Property_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Minimum_Value</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#AnnotationStatus">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Status"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >AnnotationStatus</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#Ontology_Component">
+    <rdfs:subClassOf rdf:resource="#AnnotatableThing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasStatus"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#Ontology_ComponentStatus"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ontology_Component</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#Status">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Status</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="DomainProperty_Added">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DomainProperty_Added</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Class_Change"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Ontology_Class">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ontology_Class</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Ontology_Component"/>
+  </owl:Class>
+  <owl:Class rdf:ID="TemplateSlot_Added">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >TemplateSlot_Added</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Class_Change"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Superclass_Removed">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Superclass_Removed</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Class_Change"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Annotation_Modified">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Annotation_Modified</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Annotation_Change"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RetireProposal">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >RetireProposal</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Proposal"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Created_Change">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created_Change</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Change"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Composite_Change">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Composite_Change</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Change"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="preferredName">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >preferredName</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#CreateEntityProposal"/>
+          <owl:Class rdf:about="#SplitProposal"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#LinguisticEntity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="domainOfInterest">
+    <rdfs:domain rdf:resource="#User"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >domainOfInterest</rdfs:label>
+    <rdfs:range rdf:resource="#Ontology_Component"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="watchedBy">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >watchedBy</rdfs:label>
+    <rdfs:domain rdf:resource="#Ontology_Component"/>
+    <rdfs:range rdf:resource="#User"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="watchedEntity"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="associatedAnnotations">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="annotates"/>
+    </owl:inverseOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >associatedAnnotations</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#AnnotatableThing"/>
+          <owl:Class rdf:about="#Change"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Annotation"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="synonym">
+    <rdfs:domain rdf:resource="#CreateEntityProposal"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >synonym</rdfs:label>
+    <rdfs:range rdf:resource="#LinguisticEntity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="changes">
+    <rdfs:range rdf:resource="#Change"/>
+    <rdfs:domain rdf:resource="#Ontology_Component"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="applyTo"/>
+    </owl:inverseOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >changes</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="modified">
+    <rdfs:range rdf:resource="#Timestamp"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Annotation"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >modified</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="reviewer">
+    <rdfs:range rdf:resource="#Reviewer"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >reviewer</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="reviewRequests"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#ReviewRequest"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#watchedEntity">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >watchedEntity</rdfs:label>
+    <owl:inverseOf rdf:resource="#watchedBy"/>
+    <rdfs:domain rdf:resource="#User"/>
+    <rdfs:range rdf:resource="#Ontology_Component"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="subChanges">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="partOfCompositeChange"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Composite_Change"/>
+    <rdfs:range rdf:resource="#Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >subChanges</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="created">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >created</rdfs:label>
+    <rdfs:domain rdf:resource="#Annotation"/>
+    <rdfs:range rdf:resource="#Timestamp"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="entity2">
+    <rdfs:domain rdf:resource="#MergeProposal"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#Ontology_Component"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >entity2</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#Status"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >hasStatus</rdfs:label>
+    <rdfs:domain rdf:resource="#AnnotatableThing"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#reviewRequests">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >reviewRequests</rdfs:label>
+    <owl:inverseOf rdf:resource="#reviewer"/>
+    <rdfs:domain rdf:resource="#Reviewer"/>
+    <rdfs:range rdf:resource="#ReviewRequest"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#applyTo">
+    <owl:inverseOf rdf:resource="#changes"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#Ontology_Component"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >applyTo</rdfs:label>
+    <rdfs:domain rdf:resource="#Change"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="entity1">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >entity1</rdfs:label>
+    <rdfs:domain rdf:resource="#MergeProposal"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#Ontology_Component"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="timestamp">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >timestamp</rdfs:label>
+    <rdfs:domain rdf:resource="#Change"/>
+    <rdfs:range rdf:resource="#Timestamp"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="newParents">
+    <rdfs:domain rdf:resource="#ChangeHierarchyProposal"/>
+    <rdfs:range rdf:resource="#Ontology_Component"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >newParents</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="oldParents">
+    <rdfs:range rdf:resource="#Ontology_Component"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >oldParents</rdfs:label>
+    <rdfs:domain rdf:resource="#ChangeHierarchyProposal"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#annotates">
+    <owl:inverseOf rdf:resource="#associatedAnnotations"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >annotates</rdfs:label>
+    <rdfs:domain rdf:resource="#Annotation"/>
+    <rdfs:range rdf:resource="#AnnotatableThing"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#partOfCompositeChange">
+    <rdfs:domain rdf:resource="#Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >partOfCompositeChange</rdfs:label>
+    <rdfs:range rdf:resource="#Composite_Change"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <owl:inverseOf rdf:resource="#subChanges"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="retiredEntity">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >retiredEntity</rdfs:label>
+    <rdfs:range rdf:resource="#Ontology_Component"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#RetireProposal"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="definition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#CreateEntityProposal"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition</rdfs:label>
+    <rdfs:range rdf:resource="#LinguisticEntity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="associatedProperty">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Annotation_Change"/>
+          <owl:Class rdf:about="#TemplateSlot_Added"/>
+          <owl:Class rdf:about="#TemplateSlot_Removed"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >associatedProperty</rdfs:label>
+    <rdfs:range rdf:resource="#Ontology_Property"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="parents">
+    <rdfs:domain rdf:resource="#CreateEntityProposal"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >parent</rdfs:label>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Ontology_Class"/>
+          <owl:Class rdf:about="#Ontology_Property"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="property">
+    <rdfs:range rdf:resource="#Ontology_Property"/>
+    <rdfs:domain rdf:resource="#ChangePropertyValueProposal"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >property</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <rdf:Property rdf:ID="newValue">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >newValue</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#ChangePropertyValueProposal"/>
+  </rdf:Property>
+  <rdf:Property rdf:ID="oldValue">
+    <rdfs:domain rdf:resource="#ChangePropertyValueProposal"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >oldValue</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </rdf:Property>
+  <owl:DatatypeProperty rdf:ID="archived">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Annotation"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >archived</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="changes_Slot_1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#TemplateSlot_Removed"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >changes_Slot_1</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="relationType">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >relationType</rdfs:label>
+    <rdfs:domain rdf:resource="#ChangeHierarchyProposal"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="deletionName">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Deleted_Change"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >deletionName</rdfs:label>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="title">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >title</rdfs:label>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="context">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >context</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Annotation"/>
+          <owl:Class rdf:about="#Change"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="createdAt">
+    <rdfs:domain rdf:resource="#Annotation"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >createdAt</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The timestamp when the annotation instance was created, expressed by the number of milliseconds since midnight, January 1, 1970 UTC.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#long"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="newName">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >newName</rdfs:label>
+    <rdfs:domain rdf:resource="#Name_Changed"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="name">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >name</rdfs:label>
+    <rdfs:domain rdf:resource="#User"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="body">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Annotation"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >body</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="language">
+    <rdfs:domain rdf:resource="#LinguisticEntity"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >language</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="currentName">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >currentName</rdfs:label>
+    <rdfs:domain rdf:resource="#Ontology_Component"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="reasonForChange">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Proposal"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >reasonForChange</rdfs:label>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="author">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >author</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Annotation"/>
+          <owl:Class rdf:about="#Change"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="contactInformation">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >contactInformation</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Proposal"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="deadline">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >deadline</rdfs:label>
+    <rdfs:domain rdf:resource="#ReviewRequest"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="related">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >related</rdfs:label>
+    <rdfs:domain rdf:resource="#Annotation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="changes_Slot_0">
+    <rdfs:domain rdf:resource="#TemplateSlot_Added"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >changes_Slot_0</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="action">
+    <rdfs:domain rdf:resource="#Change"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >action</rdfs:label>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="entityId">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >This can be generated or proposed by the user</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#CreateEntityProposal"/>
+          <owl:Class rdf:about="#SplitProposal"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >entityId</rdfs:label>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="comment">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >comment</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="label">
+    <rdfs:domain rdf:resource="#LinguisticEntity"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >label</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="sequence">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >sequence</rdfs:label>
+    <rdfs:domain rdf:resource="#Timestamp"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="date">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >date</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Timestamp"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="voteValue">
+    <rdfs:domain rdf:resource="#Vote"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >voteValue</rdfs:label>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="subject">
+    <rdfs:domain rdf:resource="#Annotation"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >subject</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="archivedInOntologyRevision">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Stores the ontology revision (for example BioPortal internal version id) in which the annotation instance was archived.</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >archivedInOntologyRevision</rdfs:label>
+    <rdfs:domain rdf:resource="#Annotation"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="completed">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >completed</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#ReviewRequest"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Flag - true, if review has been completed; false - if review is still pending</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="creationName">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >creationName</rdfs:label>
+    <rdfs:domain rdf:resource="#Created_Change"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="oldName">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Name_Changed"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >oldName</rdfs:label>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="modifiedAt">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The timestamp when the annotation instance was last modified, expressed by the number of milliseconds since midnight, January 1, 1970 UTC.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Annotation"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >modifiedAt</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#long"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="description">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >description</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Status"/>
+  </owl:DatatypeProperty>
+  <owl:FunctionalProperty rdf:ID="createdInOntologyRevision">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Stores the ontology revision (for example BioPortal internal version id) on which the annotation instance was created.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#Annotation"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >createdInOntologyRevision</rdfs:label>
+  </owl:FunctionalProperty>
+  <Status rdf:ID="Under_review">
+    <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Under review</description>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Under_review</rdfs:label>
+  </Status>
+  <ChangeStatus rdf:ID="Rejected">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Rejected</rdfs:label>
+    <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Rejected</description>
+  </ChangeStatus>
+  <AnnotationStatus rdf:ID="Active">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Active</rdfs:label>
+    <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Active</description>
+  </AnnotationStatus>
+  <AnnotationStatus rdf:ID="Inactive">
+    <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Inactive</description>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Inactive</rdfs:label>
+  </AnnotationStatus>
+  <ChangeStatus rdf:ID="Approved">
+    <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Approved</description>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Approved</rdfs:label>
+  </ChangeStatus>
+  <ChangeStatus rdf:ID="Proposed">
+    <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Proposed</description>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Proposed</rdfs:label>
+  </ChangeStatus>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4.4, Build 577)  http://protege.stanford.edu -->

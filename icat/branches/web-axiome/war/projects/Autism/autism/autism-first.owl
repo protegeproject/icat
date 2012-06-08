@@ -1,0 +1,1208 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY www "http://www.autism.stanford.edu/" >
+    <!ENTITY owl11 "http://www.w3.org/2006/12/owl11#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY span "http://www.ifomis.org/bfo/1.0/span#" >
+    <!ENTITY snap "http://www.ifomis.org/bfo/1.0/snap#" >
+    <!ENTITY owl11xml "http://www.w3.org/2006/12/owl11-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY light "http://www.ifomis.org/obo/ro/1.0/light#" >
+    <!ENTITY autism "http://www.autism.stanford.edu/autism.owl#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY OBI "http://obi.sourceforge.net/ontology/OBI.owl#" >
+    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
+    <!ENTITY BIRNLex-CogBehavior "http://www.nbirn.net/birnlex/1.2/BIRNLex-CogBehavior.owl#" >
+    <!ENTITY BIRNLex-Investigation "http://www.nbirn.net/birnlex/1.2/BIRNLex-Investigation.owl#" >
+    <!ENTITY BIRNLex-OrganismalAnatomy "http://www.nbirn.net/birnlex/1.2/BIRNLex-OrganismalAnatomy.owl#" >
+    <!ENTITY specific "http://www.autism.stanford.edu/autism.owl#Inflexible_adherence_to_specific,_" >
+]>
+
+
+<rdf:RDF xmlns="&www;autism.owl#"
+     xml:base="&www;autism.owl"
+     xmlns:www="http://www.autism.stanford.edu/"
+     xmlns:light="http://www.ifomis.org/obo/ro/1.0/light#"
+     xmlns:OBI="http://obi.sourceforge.net/ontology/OBI.owl#"
+     xmlns:snap="http://www.ifomis.org/bfo/1.0/snap#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:specific="&www;autism.owl#Inflexible_adherence_to_specific,_"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:autism="&www;autism.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:owl11="http://www.w3.org/2006/12/owl11#"
+     xmlns:owl11xml="http://www.w3.org/2006/12/owl11-xml#"
+     xmlns:BIRNLex-Investigation="http://www.nbirn.net/birnlex/1.2/BIRNLex-Investigation.owl#"
+     xmlns:BIRNLex-OrganismalAnatomy="http://www.nbirn.net/birnlex/1.2/BIRNLex-OrganismalAnatomy.owl#"
+     xmlns:BIRNLex-CogBehavior="http://www.nbirn.net/birnlex/1.2/BIRNLex-CogBehavior.owl#"
+     xmlns:span="http://www.ifomis.org/bfo/1.0/span#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="">
+        <protege:defaultLanguage rdf:datatype="&xsd;string">en</protege:defaultLanguage>
+        <owl:imports rdf:resource="http://www.nbirn.net/birnlex/1.2/BIRNLex-Main.owl"/>
+        <rdfs:comment
+            >The experimental autism ontology is an extension of the BIRN-Lex ontology. The basic concepts are that
+1. We extend the Behavioral_activity with a number of autism-specific behaviors. Abnormal behaviors are defined in terms of normal behavior (e.g., impairment_of Non-verbal-social-interaction)
+2. Observations about a person is modeled as Situations that have the person as subject and that have associated statements such as &quot;has_diagnosis Childhood_disintegrative_disorder&quot; or &quot;has_finding Repetitive stereotypical behavior&quot;
+3. DSM-IV criteria are modeled as a set of Situations
+
+This work benefits from the discussions and examples from the Ontology of Clinical Research project.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&protege;defaultLanguage"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#ObjectProperty1189968254759796000 -->
+
+    <owl:ObjectProperty rdf:about="#ObjectProperty1189968254759796000">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >autism_ontology_property</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#ObjectProperty1189968288565878000 -->
+
+    <owl:ObjectProperty rdf:about="#ObjectProperty1189968288565878000">
+        <rdfs:label rdf:datatype="&xsd;string">has_finding</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="#ObjectProperty1189968254759796000"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#ObjectProperty1189968313424821000 -->
+
+    <owl:ObjectProperty rdf:about="#ObjectProperty1189968313424821000">
+        <rdfs:label rdf:datatype="&xsd;string">has_diagnosis</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="#ObjectProperty1189968254759796000"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#ObjectProperty1189978069915837000 -->
+
+    <owl:ObjectProperty rdf:about="#ObjectProperty1189978069915837000">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >has_impairment_of</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="#ObjectProperty1189968254759796000"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#ObjectProperty1189978619771460000 -->
+
+    <owl:ObjectProperty rdf:about="#ObjectProperty1189978619771460000">
+        <rdfs:label rdf:datatype="&xsd;string">lack_of</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="#ObjectProperty1189968254759796000"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#ObjectProperty1189979454664014000 -->
+
+    <owl:ObjectProperty rdf:about="#ObjectProperty1189979454664014000">
+        <rdfs:label rdf:datatype="&xsd;string">has_onset</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="#ObjectProperty1189968254759796000"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#ObjectProperty1189988458527691000 -->
+
+    <owl:ObjectProperty rdf:about="#ObjectProperty1189988458527691000">
+        <rdfs:label rdf:datatype="&xsd;string">is_subject_of</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="#ObjectProperty1189968254759796000"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#ObjectProperty1190049996124847000 -->
+
+    <owl:ObjectProperty rdf:about="#ObjectProperty1190049996124847000">
+        <rdfs:label>with_degree</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="#ObjectProperty1189968254759796000"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ifomis.org/obo/ro/1.0/light#precedes -->
+
+    <owl:ObjectProperty rdf:about="&light;precedes">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://protege.stanford.edu/plugins/owl/protege#defaultLanguage -->
+
+    <owl:AnnotationProperty rdf:about="&protege;defaultLanguage">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdf:type rdf:resource="&owl;DatatypeProperty"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#DataProperty1189992876898778000 -->
+
+    <owl:DatatypeProperty rdf:about="#DataProperty1189992876898778000">
+        <rdfs:label rdf:datatype="&xsd;string">has_magnitude</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://obi.sourceforge.net/ontology/OBI.owl#OBI_155 -->
+
+    <owl:Class rdf:about="&OBI;OBI_155"/>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Ability_to_initiate_speech -->
+
+    <owl:Class rdf:about="#Ability_to_initiate_speech">
+        <rdfs:subClassOf rdf:resource="#Communication_capability"/>
+        <owl:disjointWith rdf:resource="#Development_of_spoken_speech"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Ability_to_sustain_speech -->
+
+    <owl:Class rdf:about="#Ability_to_sustain_speech">
+        <rdfs:subClassOf rdf:resource="#Communication_capability"/>
+        <owl:disjointWith rdf:resource="#Development_of_spoken_speech"/>
+        <owl:disjointWith rdf:resource="#Ability_to_initiate_speech"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Autism_feature -->
+
+    <owl:Class rdf:about="#Autism_feature">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Autism_disposition</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex-CogBehavior;birnlexCogBehavior_21"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189967996171824000 -->
+
+    <owl:Class rdf:about="#Class1189967996171824000">
+        <rdfs:label rdf:datatype="&xsd;string">Retts_disorder</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Class1190066468093203000"/>
+        <owl:disjointWith rdf:resource="#Class1190066417247010000"/>
+        <owl:disjointWith rdf:resource="&BIRNLex-Investigation;birnlexInvestigation_69"/>
+        <owl:disjointWith rdf:resource="#Class1189968018703363000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189968018703363000 -->
+
+    <owl:Class rdf:about="#Class1189968018703363000">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Childhood_disintegrative_disorder</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Class1190066468093203000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189975542344655000 -->
+
+    <owl:Class rdf:about="#Class1189975542344655000">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Peer_relationship</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Social_interaction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189977394545208000 -->
+
+    <owl:Class rdf:about="#Class1189977394545208000">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Qualitative_measure</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&snap;DependentContinuant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189977406656959000 -->
+
+    <owl:Class rdf:about="#Class1189977406656959000">
+        <rdfs:label rdf:datatype="&xsd;string">Marked</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Class1189977394545208000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189978435926910000 -->
+
+    <owl:Class rdf:about="#Class1189978435926910000">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Social_reciprocity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Social_interaction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189978449946894000 -->
+
+    <owl:Class rdf:about="#Class1189978449946894000">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Emotional_Reciprocity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Social_interaction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189978548906188000 -->
+
+    <owl:Class rdf:about="#Class1189978548906188000">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Sharing_good_thing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Social_interaction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189979332610269000 -->
+
+    <owl:Class rdf:about="#Class1189979332610269000">
+        <rdfs:label rdf:datatype="&xsd;string">Observable</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&snap;DependentContinuant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189979346239993000 -->
+
+    <owl:Class rdf:about="#Class1189979346239993000">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Quantitative_Observable</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Class1189979332610269000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189979366844410000 -->
+
+    <owl:Class rdf:about="#Class1189979366844410000">
+        <rdfs:label rdf:datatype="&xsd;string">Age</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Class1189979346239993000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189980162510725000 -->
+
+    <owl:Class rdf:about="#Class1189980162510725000">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Situation_satisfying_diagnostic_criteria_part_A</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Class1189980640543109000"/>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl11:onClass rdf:resource="#Repetitive_stereotypical_behavior"/>
+                                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
+                            </owl:Restriction>
+                            <rdf:Description rdf:about="#Class1189980797445530000"/>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                        <owl11:onClass rdf:resource="#id_000001"/>
+                        <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189980640543109000 -->
+
+    <owl:Class rdf:about="#Class1189980640543109000">
+        <rdfs:label rdf:datatype="&xsd;string">Situation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&span;Occurrent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189980797445530000 -->
+
+    <owl:Class rdf:about="#Class1189980797445530000">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Situation_with_at_least_two_social_impairments</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <owl:Class>
+                                                <owl:intersectionOf rdf:parseType="Collection">
+                                                    <rdf:Description rdf:about="#Impairment_of_non-verval_social_interaction"/>
+                                                    <owl:Restriction>
+                                                        <owl:onProperty rdf:resource="#ObjectProperty1190049996124847000"/>
+                                                        <owl:someValuesFrom rdf:resource="#Class1189977406656959000"/>
+                                                    </owl:Restriction>
+                                                </owl:intersectionOf>
+                                            </owl:Class>
+                                            <rdf:Description rdf:about="#Impairment_of_peer_relationship"/>
+                                            <rdf:Description rdf:about="#Impairment_of_sharing_good_thing"/>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom rdf:resource="#Impairment_of_social_or_emotional_reciprocity"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom rdf:resource="#Impairment_of_sharing_good_thing"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <owl:Class>
+                                                <owl:intersectionOf rdf:parseType="Collection">
+                                                    <rdf:Description rdf:about="#Impairment_of_non-verval_social_interaction"/>
+                                                    <owl:Restriction>
+                                                        <owl:onProperty rdf:resource="#ObjectProperty1190049996124847000"/>
+                                                        <owl:someValuesFrom rdf:resource="#Class1189977406656959000"/>
+                                                    </owl:Restriction>
+                                                </owl:intersectionOf>
+                                            </owl:Class>
+                                            <rdf:Description rdf:about="#Impairment_of_peer_relationship"/>
+                                            <rdf:Description rdf:about="#Impairment_of_social_or_emotional_reciprocity"/>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom rdf:resource="#Impairment_of_peer_relationship"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <owl:Class>
+                                                <owl:intersectionOf rdf:parseType="Collection">
+                                                    <rdf:Description rdf:about="#Impairment_of_non-verval_social_interaction"/>
+                                                    <owl:Restriction>
+                                                        <owl:onProperty rdf:resource="#ObjectProperty1190049996124847000"/>
+                                                        <owl:someValuesFrom rdf:resource="#Class1189977406656959000"/>
+                                                    </owl:Restriction>
+                                                </owl:intersectionOf>
+                                            </owl:Class>
+                                            <rdf:Description rdf:about="#Impairment_of_social_or_emotional_reciprocity"/>
+                                            <rdf:Description rdf:about="#Impairment_of_sharing_good_thing"/>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <owl:Class>
+                                                <owl:intersectionOf rdf:parseType="Collection">
+                                                    <rdf:Description rdf:about="#Impairment_of_non-verval_social_interaction"/>
+                                                    <owl:Restriction>
+                                                        <owl:onProperty rdf:resource="#ObjectProperty1190049996124847000"/>
+                                                        <owl:someValuesFrom rdf:resource="#Class1189977406656959000"/>
+                                                    </owl:Restriction>
+                                                </owl:intersectionOf>
+                                            </owl:Class>
+                                            <rdf:Description rdf:about="#Impairment_of_peer_relationship"/>
+                                            <rdf:Description rdf:about="#Impairment_of_sharing_good_thing"/>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom rdf:resource="#Impairment_of_social_or_emotional_reciprocity"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom rdf:resource="#Impairment_of_sharing_good_thing"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <owl:Class>
+                                                <owl:intersectionOf rdf:parseType="Collection">
+                                                    <rdf:Description rdf:about="#Impairment_of_non-verval_social_interaction"/>
+                                                    <owl:Restriction>
+                                                        <owl:onProperty rdf:resource="#ObjectProperty1190049996124847000"/>
+                                                        <owl:someValuesFrom rdf:resource="#Class1189977406656959000"/>
+                                                    </owl:Restriction>
+                                                </owl:intersectionOf>
+                                            </owl:Class>
+                                            <rdf:Description rdf:about="#Impairment_of_peer_relationship"/>
+                                            <rdf:Description rdf:about="#Impairment_of_social_or_emotional_reciprocity"/>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom rdf:resource="#Impairment_of_peer_relationship"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <owl:Class>
+                                                <owl:intersectionOf rdf:parseType="Collection">
+                                                    <rdf:Description rdf:about="#Impairment_of_non-verval_social_interaction"/>
+                                                    <owl:Restriction>
+                                                        <owl:onProperty rdf:resource="#ObjectProperty1190049996124847000"/>
+                                                        <owl:someValuesFrom rdf:resource="#Class1189977406656959000"/>
+                                                    </owl:Restriction>
+                                                </owl:intersectionOf>
+                                            </owl:Class>
+                                            <rdf:Description rdf:about="#Impairment_of_social_or_emotional_reciprocity"/>
+                                            <rdf:Description rdf:about="#Impairment_of_sharing_good_thing"/>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <owl:Class>
+                                                <owl:intersectionOf rdf:parseType="Collection">
+                                                    <rdf:Description rdf:about="#Impairment_of_non-verval_social_interaction"/>
+                                                    <owl:Restriction>
+                                                        <owl:onProperty rdf:resource="#ObjectProperty1190049996124847000"/>
+                                                        <owl:someValuesFrom rdf:resource="#Class1189977406656959000"/>
+                                                    </owl:Restriction>
+                                                </owl:intersectionOf>
+                                            </owl:Class>
+                                            <rdf:Description rdf:about="#Impairment_of_peer_relationship"/>
+                                            <rdf:Description rdf:about="#Impairment_of_sharing_good_thing"/>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom rdf:resource="#Impairment_of_social_or_emotional_reciprocity"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom rdf:resource="#Impairment_of_sharing_good_thing"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <owl:Class>
+                                                <owl:intersectionOf rdf:parseType="Collection">
+                                                    <rdf:Description rdf:about="#Impairment_of_non-verval_social_interaction"/>
+                                                    <owl:Restriction>
+                                                        <owl:onProperty rdf:resource="#ObjectProperty1190049996124847000"/>
+                                                        <owl:someValuesFrom rdf:resource="#Class1189977406656959000"/>
+                                                    </owl:Restriction>
+                                                </owl:intersectionOf>
+                                            </owl:Class>
+                                            <rdf:Description rdf:about="#Impairment_of_peer_relationship"/>
+                                            <rdf:Description rdf:about="#Impairment_of_social_or_emotional_reciprocity"/>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom rdf:resource="#Impairment_of_peer_relationship"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <owl:Class>
+                                                <owl:intersectionOf rdf:parseType="Collection">
+                                                    <rdf:Description rdf:about="#Impairment_of_non-verval_social_interaction"/>
+                                                    <owl:Restriction>
+                                                        <owl:onProperty rdf:resource="#ObjectProperty1190049996124847000"/>
+                                                        <owl:someValuesFrom rdf:resource="#Class1189977406656959000"/>
+                                                    </owl:Restriction>
+                                                </owl:intersectionOf>
+                                            </owl:Class>
+                                            <rdf:Description rdf:about="#Impairment_of_social_or_emotional_reciprocity"/>
+                                            <rdf:Description rdf:about="#Impairment_of_sharing_good_thing"/>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#Class1189980640543109000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189989086928101000 -->
+
+    <owl:Class rdf:about="#Class1189989086928101000">
+        <rdfs:label rdf:datatype="&xsd;string">Play_behavior</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex-CogBehavior;birnlexCogBehavior_21"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189989924212457000 -->
+
+    <owl:Class rdf:about="#Class1189989924212457000">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Situation_satisfying_diagnostic_criteria_part_B</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Class1189980640543109000"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="#id_000001"/>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="#ObjectProperty1189979454664014000"/>
+                                                <owl:someValuesFrom>
+                                                    <owl:Class>
+                                                        <owl:intersectionOf rdf:parseType="Collection">
+                                                            <owl:Restriction>
+                                                                <owl:onProperty rdf:resource="&light;precedes"/>
+                                                                <owl:someValuesFrom rdf:resource="#Class1189990266953578000"/>
+                                                            </owl:Restriction>
+                                                            <rdf:Description rdf:about="&span;TemporalInstant"/>
+                                                        </owl:intersectionOf>
+                                                    </owl:Class>
+                                                </owl:someValuesFrom>
+                                            </owl:Restriction>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="#Class1189990535628927000"/>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="#ObjectProperty1189979454664014000"/>
+                                                <owl:someValuesFrom>
+                                                    <owl:Class>
+                                                        <owl:intersectionOf rdf:parseType="Collection">
+                                                            <owl:Restriction>
+                                                                <owl:onProperty rdf:resource="&light;precedes"/>
+                                                                <owl:someValuesFrom rdf:resource="#Class1189990266953578000"/>
+                                                            </owl:Restriction>
+                                                            <rdf:Description rdf:about="&span;TemporalInstant"/>
+                                                        </owl:intersectionOf>
+                                                    </owl:Class>
+                                                </owl:someValuesFrom>
+                                            </owl:Restriction>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="#ObjectProperty1189979454664014000"/>
+                                                <owl:someValuesFrom>
+                                                    <owl:Class>
+                                                        <owl:intersectionOf rdf:parseType="Collection">
+                                                            <owl:Restriction>
+                                                                <owl:onProperty rdf:resource="&light;precedes"/>
+                                                                <owl:someValuesFrom rdf:resource="#Class1189990266953578000"/>
+                                                            </owl:Restriction>
+                                                            <rdf:Description rdf:about="&span;TemporalInstant"/>
+                                                        </owl:intersectionOf>
+                                                    </owl:Class>
+                                                </owl:someValuesFrom>
+                                            </owl:Restriction>
+                                            <rdf:Description rdf:about="#id_000000"/>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189990266953578000 -->
+
+    <owl:Class rdf:about="#Class1189990266953578000">
+        <rdfs:label rdf:datatype="&xsd;string">age_gte_3</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#DataProperty1189992876898778000"/>
+                        <owl:someValuesFrom>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&owl;DataRange"/>
+                                <owl11:onDataRange rdf:resource="&xsd;int"/>
+                                <owl11:minInclusive rdf:datatype="&xsd;int">3</owl11:minInclusive>
+                            </rdf:Description>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <rdf:Description rdf:about="&span;TemporalInterval"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1189990535628927000 -->
+
+    <owl:Class rdf:about="#Class1189990535628927000">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Impairment_of_play_behavior</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#ObjectProperty1189978069915837000"/>
+                        <owl:someValuesFrom rdf:resource="#Class1189989086928101000"/>
+                    </owl:Restriction>
+                    <rdf:Description rdf:about="#Autism_feature"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1190053153437716000 -->
+
+    <owl:Class rdf:about="#Class1190053153437716000">
+        <rdfs:label
+            >Situation_satifying_diagnostic_criteria_part_C</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Class1189980640543109000"/>
+                    <owl:Class>
+                        <owl:complementOf>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968313424821000"/>
+                                <owl:someValuesFrom rdf:resource="#Class1189968018703363000"/>
+                            </owl:Restriction>
+                        </owl:complementOf>
+                    </owl:Class>
+                    <owl:Class>
+                        <owl:complementOf>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#ObjectProperty1189968313424821000"/>
+                                <owl:someValuesFrom rdf:resource="#Class1189967996171824000"/>
+                            </owl:Restriction>
+                        </owl:complementOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1190066417247010000 -->
+
+    <owl:Class rdf:about="#Class1190066417247010000">
+        <rdfs:label>Autism</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Class1190066468093203000"/>
+        <owl:disjointWith rdf:resource="#Class1189968018703363000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1190066446420236000 -->
+
+    <owl:Class rdf:about="#Class1190066446420236000">
+        <rdfs:label
+            >Autism_by_DSM_IV</rdfs:label>
+        <rdfs:subClassOf rdf:resource="#Class1190066417247010000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Class1190066468093203000 -->
+
+    <owl:Class rdf:about="#Class1190066468093203000">
+        <rdfs:label
+            >Pervasive_developmental_disorder</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&OBI;OBI_155"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Communication_capability -->
+
+    <owl:Class rdf:about="#Communication_capability">
+        <rdfs:subClassOf rdf:resource="&BIRNLex-CogBehavior;birnlexCogBehavior_21"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Development_of_spoken_speech -->
+
+    <owl:Class rdf:about="#Development_of_spoken_speech">
+        <rdfs:subClassOf rdf:resource="#Communication_capability"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Impairment_of_non-verval_social_interaction -->
+
+    <owl:Class rdf:about="#Impairment_of_non-verval_social_interaction">
+        <rdfs:label
+            >impairment_of_non_verbal_social_interaction</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#ObjectProperty1189978069915837000"/>
+                <owl:someValuesFrom rdf:resource="#Non-verbal_social_interaction"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#id_000000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Impairment_of_peer_relationship -->
+
+    <owl:Class rdf:about="#Impairment_of_peer_relationship">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#ObjectProperty1189978069915837000"/>
+                <owl:someValuesFrom rdf:resource="#Class1189975542344655000"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#id_000000"/>
+        <owl:disjointWith rdf:resource="#Impairment_of_non-verval_social_interaction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Impairment_of_sharing_good_thing -->
+
+    <owl:Class rdf:about="#Impairment_of_sharing_good_thing">
+        <rdfs:label
+            >Lack_of_sharing_of_good_thing</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#ObjectProperty1189978619771460000"/>
+                <owl:someValuesFrom rdf:resource="#Class1189978548906188000"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#id_000000"/>
+        <owl:disjointWith rdf:resource="#Impairment_of_non-verval_social_interaction"/>
+        <owl:disjointWith rdf:resource="#Impairment_of_peer_relationship"/>
+        <owl:disjointWith rdf:resource="#Impairment_of_social_or_emotional_reciprocity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Impairment_of_social_or_emotional_reciprocity -->
+
+    <owl:Class rdf:about="#Impairment_of_social_or_emotional_reciprocity">
+        <rdfs:label
+            >Lack_of_social_or_emotional_reciprocity</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#ObjectProperty1189978619771460000"/>
+                        <owl:someValuesFrom rdf:resource="#Class1189978435926910000"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#ObjectProperty1189978619771460000"/>
+                        <owl:someValuesFrom rdf:resource="#Class1189978449946894000"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#id_000000"/>
+        <owl:disjointWith rdf:resource="#Impairment_of_non-verval_social_interaction"/>
+        <owl:disjointWith rdf:resource="#Impairment_of_peer_relationship"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Inflexible_adherence_to_specific,_nonfunctional_routine_or_ritual -->
+
+    <owl:Class rdf:about="#Inflexible_adherence_to_specific,_nonfunctional_routine_or_ritual">
+        <rdfs:subClassOf rdf:resource="#Repetitive_stereotypical_behavior"/>
+        <owl:disjointWith rdf:resource="#Stereotypical_and_repetitive_motor_mannerism"/>
+        <owl:disjointWith rdf:resource="#Preoccupation_with_one_or_more_sereotyped_and_restricted_patterns_of_interest"/>
+        <owl:disjointWith rdf:resource="#Persistent_preoccupation_with_Parts_of_objects"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Non-verbal_social_interaction -->
+
+    <owl:Class rdf:about="#Non-verbal_social_interaction">
+        <rdfs:subClassOf rdf:resource="#Social_interaction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Persistent_preoccupation_with_Parts_of_objects -->
+
+    <owl:Class rdf:about="#Persistent_preoccupation_with_Parts_of_objects">
+        <rdfs:subClassOf rdf:resource="#Repetitive_stereotypical_behavior"/>
+        <owl:disjointWith rdf:resource="#Stereotypical_and_repetitive_motor_mannerism"/>
+        <owl:disjointWith rdf:resource="#Preoccupation_with_one_or_more_sereotyped_and_restricted_patterns_of_interest"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#PersonWithAutismByDSM-IV -->
+
+    <owl:Class rdf:about="#PersonWithAutismByDSM-IV">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#ObjectProperty1189988458527691000"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="#Class1189989924212457000"/>
+                                    <rdf:Description rdf:about="#Class1190053153437716000"/>
+                                    <rdf:Description rdf:about="#Class1189980162510725000"/>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <rdf:Description rdf:about="&BIRNLex-OrganismalAnatomy;birnOrgAnatomy_366"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Preoccupation_with_one_or_more_sereotyped_and_restricted_patterns_of_interest -->
+
+    <owl:Class rdf:about="#Preoccupation_with_one_or_more_sereotyped_and_restricted_patterns_of_interest">
+        <rdfs:subClassOf rdf:resource="#Repetitive_stereotypical_behavior"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Repetitive_stereotypical_behavior -->
+
+    <owl:Class rdf:about="#Repetitive_stereotypical_behavior">
+        <rdfs:subClassOf rdf:resource="#Autism_feature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Social_interaction -->
+
+    <owl:Class rdf:about="#Social_interaction">
+        <rdfs:subClassOf rdf:resource="&BIRNLex-CogBehavior;birnlexCogBehavior_21"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Stereotypical_and_repetitive_motor_mannerism -->
+
+    <owl:Class rdf:about="#Stereotypical_and_repetitive_motor_mannerism">
+        <rdfs:subClassOf rdf:resource="#Repetitive_stereotypical_behavior"/>
+        <owl:disjointWith rdf:resource="#Preoccupation_with_one_or_more_sereotyped_and_restricted_patterns_of_interest"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#body_posture_social_interaction -->
+
+    <owl:Class rdf:about="#body_posture_social_interaction">
+        <rdfs:subClassOf rdf:resource="#Non-verbal_social_interaction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#eye-to-eye_gaze_social_interaction -->
+
+    <owl:Class rdf:about="#eye-to-eye_gaze_social_interaction">
+        <rdfs:subClassOf rdf:resource="#Non-verbal_social_interaction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#facial_expression_social_interaction -->
+
+    <owl:Class rdf:about="#facial_expression_social_interaction">
+        <rdfs:subClassOf rdf:resource="#Non-verbal_social_interaction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#gesture_social_interaction -->
+
+    <owl:Class rdf:about="#gesture_social_interaction">
+        <rdfs:subClassOf rdf:resource="#Non-verbal_social_interaction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#id_000000 -->
+
+    <owl:Class rdf:about="#id_000000">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Impairment_of_social_behavior</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#ObjectProperty1189978069915837000"/>
+                <owl:someValuesFrom rdf:resource="#Social_interaction"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#Autism_feature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#id_000001 -->
+
+    <owl:Class rdf:about="#id_000001">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >Impairment_of_communication_capability</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#ObjectProperty1189978069915837000"/>
+                <owl:someValuesFrom rdf:resource="#Communication_capability"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#Autism_feature"/>
+        <owl:disjointWith rdf:resource="#id_000000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/bfo/1.0/snap#DependentContinuant -->
+
+    <owl:Class rdf:about="&snap;DependentContinuant"/>
+    
+
+
+    <!-- http://www.ifomis.org/bfo/1.0/span#Occurrent -->
+
+    <owl:Class rdf:about="&span;Occurrent"/>
+    
+
+
+    <!-- http://www.ifomis.org/bfo/1.0/span#TemporalInstant -->
+
+    <owl:Class rdf:about="&span;TemporalInstant"/>
+    
+
+
+    <!-- http://www.ifomis.org/bfo/1.0/span#TemporalInterval -->
+
+    <owl:Class rdf:about="&span;TemporalInterval"/>
+    
+
+
+    <!-- http://www.nbirn.net/birnlex/1.2/BIRNLex-CogBehavior.owl#birnlexCogBehavior_21 -->
+
+    <owl:Class rdf:about="&BIRNLex-CogBehavior;birnlexCogBehavior_21"/>
+    
+
+
+    <!-- http://www.nbirn.net/birnlex/1.2/BIRNLex-Investigation.owl#birnlexInvestigation_69 -->
+
+    <owl:Class rdf:about="&BIRNLex-Investigation;birnlexInvestigation_69"/>
+    
+
+
+    <!-- http://www.nbirn.net/birnlex/1.2/BIRNLex-OrganismalAnatomy.owl#birnOrgAnatomy_366 -->
+
+    <owl:Class rdf:about="&BIRNLex-OrganismalAnatomy;birnOrgAnatomy_366"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://obi.sourceforge.net/ontology/OBI.owl#OBI_250 -->
+
+    <rdf:Description rdf:about="&OBI;OBI_250">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >_deleted_classes</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- http://obi.sourceforge.net/ontology/OBI.owl#OBI_334 -->
+
+    <rdf:Description rdf:about="&OBI;OBI_334">
+        <rdfs:label rdf:datatype="&xsd;string">to_be_fixed</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Individual1189968634879363000 -->
+
+    <rdf:Description rdf:about="#Individual1189968634879363000">
+        <rdfs:label rdf:datatype="&xsd;string">autism_joe</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Individual1189983396607612000 -->
+
+    <BIRNLex-OrganismalAnatomy:birnOrgAnatomy_366 rdf:about="#Individual1189983396607612000">
+        <rdf:type>
+            <owl:Class>
+                <owl:complementOf>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#ObjectProperty1189968313424821000"/>
+                        <owl:someValuesFrom rdf:resource="#Class1189967996171824000"/>
+                    </owl:Restriction>
+                </owl:complementOf>
+            </owl:Class>
+        </rdf:type>
+        <rdfs:label rdf:datatype="&xsd;string">autism-Joe</rdfs:label>
+    </BIRNLex-OrganismalAnatomy:birnOrgAnatomy_366>
+    
+
+
+    <!-- http://www.autism.stanford.edu/autism.owl#Individual1190052465412482000 -->
+
+    <Class1189980640543109000 rdf:about="#Individual1190052465412482000">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                <owl:someValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#ObjectProperty1189978069915837000"/>
+                        <owl:someValuesFrom rdf:resource="#Class1189978449946894000"/>
+                    </owl:Restriction>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#ObjectProperty1189968288565878000"/>
+                <owl:someValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#ObjectProperty1189978069915837000"/>
+                        <owl:someValuesFrom rdf:resource="#Class1189978548906188000"/>
+                    </owl:Restriction>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+        <rdfs:label
+            >autism-situation</rdfs:label>
+    </Class1189980640543109000>
+</rdf:RDF>

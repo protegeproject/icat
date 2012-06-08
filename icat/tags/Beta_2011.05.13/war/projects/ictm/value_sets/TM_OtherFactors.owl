@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns="http://who.int/ictm/otherFactors#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:ictm="http://who.int/ictm#"
+  xml:base="http://who.int/ictm/otherFactors">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="TM2302175">
+    <ictm:titleEnglish xml:lang="en">long-term easy and comfortable life </ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >long-term easy and comfortable life  / 过度安逸</rdfs:label>
+    <ictm:titleChinese xml:lang="cn">过度安逸</ictm:titleChinese>
+  </owl:Class>
+  <owl:Class rdf:ID="TM2302176">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Intrauterine Transfer / 胎传</rdfs:label>
+    <ictm:titleChinese xml:lang="cn">胎传</ictm:titleChinese>
+    <ictm:titleEnglish xml:lang="en">Intrauterine Transfer</ictm:titleEnglish>
+  </owl:Class>
+  <owl:Class rdf:ID="TM2302170">
+    <ictm:titleChinese xml:lang="cn">饮食失宜</ictm:titleChinese>
+    <ictm:titleEnglish xml:lang="en">improper diet</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >improper diet / 饮食失宜</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM2302167">
+    <ictm:titleEnglish xml:lang="en">Excessive Exercise</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Excessive Exercise</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM2302172">
+    <ictm:titleEnglish xml:lang="en">improper diet</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >improper diet / 饮食不洁</rdfs:label>
+    <ictm:titleChinese xml:lang="cn">饮食不洁</ictm:titleChinese>
+  </owl:Class>
+  <owl:Class rdf:ID="TM2302166">
+    <ictm:titleEnglish xml:lang="en">Excessive Mental Work</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Excessive Mental Work</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM2302171">
+    <ictm:titleChinese xml:lang="cn">饮食不节</ictm:titleChinese>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dietary intemperance / 饮食不节</rdfs:label>
+    <ictm:titleEnglish xml:lang="en">dietary intemperance</ictm:titleEnglish>
+  </owl:Class>
+  <owl:Class rdf:ID="TM2302174">
+    <ictm:titleEnglish xml:lang="en">maladjustment of work and rest</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >maladjustment of work and rest / 劳逸失度</rdfs:label>
+    <ictm:titleChinese xml:lang="cn">劳逸失度</ictm:titleChinese>
+  </owl:Class>
+  <owl:Class rdf:ID="TM2302165">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Excessive Physical Work</rdfs:label>
+    <ictm:titleEnglish xml:lang="en">Excessive Physical Work</ictm:titleEnglish>
+  </owl:Class>
+  <owl:Class rdf:ID="TM2302168">
+    <ictm:titleEnglish xml:lang="en">Diet Imbalance</ictm:titleEnglish>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Diet Imbalance</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TM2302173">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >food preference, including predilection of fatty and sweet food, pungent food, alcohol, tea and foreign bodies / 饮食偏嗜（包括嗜食肥甘、辛辣、酒、茶饮、异物等）</rdfs:label>
+    <ictm:titleEnglish xml:lang="en">food preference, including predilection of fatty and sweet food, pungent food, alcohol, tea and foreign bodies</ictm:titleEnglish>
+    <ictm:titleChinese xml:lang="cn">饮食偏嗜（包括嗜食肥甘、辛辣、酒、茶饮、异物等）</ictm:titleChinese>
+  </owl:Class>
+  <owl:Class rdf:ID="TM2302169">
+    <ictm:titleChinese xml:lang="cn"> 房劳过度</ictm:titleChinese>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Excessive Sexual Activity /  房劳过度</rdfs:label>
+    <ictm:titleEnglish xml:lang="en">Excessive Sexual Activity</ictm:titleEnglish>
+  </owl:Class>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#titleEnglish">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Title English</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#titleKorean">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Title Korean</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#definitionEnglish">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition English</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#titleChinese">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Title Chinese</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#definitionChinese">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition Chinese</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#originalCode">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Original Code</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#titleJapanese">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Title Japanese</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#definitionKorean">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition Korean</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#definitionJapanese">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition Japanese</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://who.int/ictm#originalProperty">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Original Source</rdfs:label>
+  </owl:AnnotationProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4.5, Build 600)  http://protege.stanford.edu -->
