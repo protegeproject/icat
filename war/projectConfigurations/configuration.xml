@@ -172,10 +172,27 @@
           <portlet>
             <name>edu.stanford.bmir.protege.web.client.ui.ontology.SWRL.SWRLTabPortlet</name>
             <height>600</height>
-            <width>600</width>
+            <width>0</width>
           </portlet>
         </portlets>
       </column>
+    </columns>
+  </tab>
+  <tab>
+    <name>edu.stanford.bmir.protege.web.client.ui.ontology.phenologue.PhenologueTab</name>
+    <label>Phenologue</label>
+    <columns>
+      <column>
+        <width>1</width>
+        <portlets>
+          <portlet>
+            <name>edu.stanford.bmir.protege.web.client.ui.ontology.phenologue.PhenotypeTreePortlet</name>
+            <height>0</height>
+            <width>0</width>
+          </portlet>
+        </portlets>
+      </column>
+  
     </columns>
   </tab>
 </list>

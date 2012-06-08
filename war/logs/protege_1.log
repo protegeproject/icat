@@ -1,0 +1,48 @@
+2009.11.13 17:15:50.736 PST INFO: *** SYSTEM START ***
+2009.11.13 17:15:50.736 PST INFO: WebProtege running in: /Users/saeed/Code/web-protege/war/ -- AdminServiceImpl.init()
+2009.11.13 17:15:50.747 PST INFO: Path to local metaproject: /Users/saeed/Code/web-protege/war/projects/metaproject/metaproject.pprj -- ApplicationProperties.getLocalMetaprojectURI()
+2009.11.13 17:15:51.110 PST INFO: WebProtege server running with local projects -- ProjectManager.<init>()
+2009.11.13 17:15:51.132 PST INFO: Found project def in metaproject: Collaborative Newspaper at: projects/collaborativeNewspaper/collaborativeNewspaper.pprj -- LocalMetaProjectManager.getProjectsData()
+2009.11.13 17:15:51.133 PST INFO: Found project def in metaproject: Family History at: projects/familyHistory22Clean/FamilyHistory22Clean.pprj -- LocalMetaProjectManager.getProjectsData()
+2009.11.13 17:15:51.134 PST INFO: Found project def in metaproject: Newspaper at: projects/newspaper/newspaper.pprj -- LocalMetaProjectManager.getProjectsData()
+2009.11.13 17:15:51.135 PST INFO: Found project def in metaproject: Wines at: projects/wines/wines.pprj -- LocalMetaProjectManager.getProjectsData()
+2009.11.13 17:15:51.136 PST INFO: Found project def in metaproject: Pizza at: projects/pizza/pizza.owl.pprj -- LocalMetaProjectManager.getProjectsData()
+2009.11.13 17:15:51.137 PST INFO: Found project def in metaproject: Collaborative Pizza at: projects/collaborativePizza/collaborativePizza.owl.pprj -- LocalMetaProjectManager.getProjectsData()
+2009.11.13 17:15:53.643 PST INFO: Loading project Collaborative Pizza from file:/Users/saeed/Code/web-protege/war/projects/collaborativePizza/collaborativePizza.owl.pprj -- ProjectManager.openProjectLocal()
+2009.11.13 17:15:54.392 PST WARNING: [Local Folder Repository] The specified file must be a directory. (/Users/saeed/Code/web-protege/war/plugins/edu.stanford.smi.protegex.owl) -- LocalFolderRepository.update()
+2009.11.13 17:15:54.419 PST INFO: Loading triples from: file:/Users/saeed/Code/web-protege/war/projects/collaborativePizza/collaborativePizza.owl -- ProtegeOWLParser.loadTriples()
+2009.11.13 17:15:55.161 PST INFO:     Completed triple loading after 493 ms -- ProtegeOWLParser.loadTriples()
+2009.11.13 17:15:55.180 PST INFO: Importing http://protege.stanford.edu/plugins/owl/protege from location: http://protege.stanford.edu/plugins/owl/protege -- AbstractOWLModel.loadImportedAssertions()
+2009.11.13 17:15:55.197 PST INFO: Loading triples from: http://protege.stanford.edu/plugins/owl/protege -- ProtegeOWLParser.loadTriples()
+2009.11.13 17:15:55.202 PST INFO:     Completed triple loading after 4 ms -- ProtegeOWLParser.loadTriples()
+2009.11.13 17:15:55.203 PST INFO: Postprocess: Process entities with incorrect Java type (0 entities) ...  -- TriplePostProcessor.processFramesWithWrongJavaType()
+2009.11.13 17:15:55.203 PST INFO: 0 ms
+ -- TriplePostProcessor.processFramesWithWrongJavaType()
+2009.11.13 17:15:55.204 PST INFO: Postprocess: Process metaclasses (3 metaclasses) ...  -- TriplePostProcessor.processMetaclasses()
+2009.11.13 17:15:55.204 PST INFO: 0 ms
+ -- TriplePostProcessor.processMetaclasses()
+2009.11.13 17:15:55.204 PST INFO: Postprocess: Process subclasses of rdf:List (1 classes) ...  -- TriplePostProcessor.processSubclassesOfRdfList()
+2009.11.13 17:15:55.204 PST INFO: 0 ms
+ -- TriplePostProcessor.processSubclassesOfRdfList()
+2009.11.13 17:15:55.204 PST INFO: Postprocess: Instances with multiple types (100 instances) ...  -- TriplePostProcessor.processInstancesWithMultipleTypes()
+2009.11.13 17:15:55.206 PST INFO: 1 ms
+ -- TriplePostProcessor.processInstancesWithMultipleTypes()
+2009.11.13 17:15:55.206 PST INFO: Postprocess: Add inferred superclasses ...  -- TriplePostProcessor.processInferredSuperclasses()
+2009.11.13 17:15:55.211 PST INFO: 5 ms
+ -- TriplePostProcessor.processInferredSuperclasses()
+2009.11.13 17:15:55.213 PST INFO: Postprocess: Process orphan classes (98 classes) ...  -- TriplePostProcessor.processOrphanClses()
+2009.11.13 17:15:55.218 PST INFO: 4 ms
+ -- TriplePostProcessor.processOrphanClses()
+2009.11.13 17:15:55.218 PST INFO: Postprocess: Generalized Concept Inclusion (0 axioms) ...  -- TriplePostProcessor.processGeneralizedConceptInclusions()
+2009.11.13 17:15:55.218 PST INFO: 0 ms
+ -- TriplePostProcessor.processGeneralizedConceptInclusions()
+2009.11.13 17:15:55.218 PST INFO: Postprocess: Abstract classes...  -- TriplePostProcessor.processAbstractClasses()
+2009.11.13 17:15:55.219 PST INFO: 0 ms
+ -- TriplePostProcessor.processAbstractClasses()
+2009.11.13 17:15:55.219 PST INFO: Postprocess: Domain and range of properties...  -- TriplePostProcessor.processDomainAndRange()
+2009.11.13 17:15:55.222 PST INFO: 3 ms
+ -- TriplePostProcessor.processDomainAndRange()
+2009.11.13 17:15:55.222 PST INFO: Postprocess: Possibly typed entities (0 resources) ...  -- TriplePostProcessor.processPossiblyTypedResources()
+2009.11.13 17:15:55.222 PST INFO: 0 ms
+ -- TriplePostProcessor.processPossiblyTypedResources()
+2009.11.13 17:15:55.223 PST INFO: Updating underlying frames model in 0 ms -- ProtegeOWLParser.doFinalPostProcessing()

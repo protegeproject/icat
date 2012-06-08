@@ -21,6 +21,11 @@ import edu.stanford.bmir.protege.web.client.ui.ontology.metadata.MetadataTab;
 import edu.stanford.bmir.protege.web.client.ui.ontology.metadata.MetricsPortlet;
 import edu.stanford.bmir.protege.web.client.ui.ontology.notes.NotesPortlet;
 import edu.stanford.bmir.protege.web.client.ui.ontology.notes.NotesTab;
+import edu.stanford.bmir.protege.web.client.ui.ontology.phenologue.ElicitationPortlet;
+import edu.stanford.bmir.protege.web.client.ui.ontology.phenologue.PhenologueTab;
+import edu.stanford.bmir.protege.web.client.ui.ontology.phenologue.PhenologueTabPortlet;
+import edu.stanford.bmir.protege.web.client.ui.ontology.phenologue.PhenotypeTreePortlet;
+import edu.stanford.bmir.protege.web.client.ui.ontology.phenologue.RuleTreePortlet;
 import edu.stanford.bmir.protege.web.client.ui.ontology.properties.PropertiesTab;
 import edu.stanford.bmir.protege.web.client.ui.ontology.properties.PropertiesTreePortlet;
 import edu.stanford.bmir.protege.web.client.ui.ontology.restrictions.RestrictionsPortlet;
@@ -67,12 +72,15 @@ public class UIFactory {
 			return new MetadataTab(project);
 		} else if (tabJavaClassName.equals(NotesTab.class.getName())) {
 			return new NotesTab(project);
-		} else if (tabJavaClassName.equals(OtherTerminologiesTab.class.getName())) {
+		} else if (tabJavaClassName.equals(OtherTerminologiesTab.class
+				.getName())) {
 			return new OtherTerminologiesTab(project);
 		} else if (tabJavaClassName.equals(UserDefinedTab.class.getName())) {
 			return new UserDefinedTab(project);
 		} else if (tabJavaClassName.equals(SWRLTab.class.getName())) {
 			return new SWRLTab(project);
+		} else if (tabJavaClassName.equals(PhenologueTab.class.getName())) {
+			return new PhenologueTab(project);
 		}
 		return null;
 	}
@@ -109,33 +117,49 @@ public class UIFactory {
 			return new BioPortalSearchPortlet(project);
 		} else if (portletJavaClassName.equals(SWRLTabPortlet.class.getName())) {
 			return new SWRLTabPortlet(project);
-		}
-		return null;
+		}else if (portletJavaClassName.equals(PhenologueTabPortlet.class.getName())) {
+			return new PhenologueTabPortlet(project);
+		}else if (portletJavaClassName.equals(RuleTreePortlet.class.getName())) {
+			return new RuleTreePortlet(project);
+		}else if (portletJavaClassName.equals(ElicitationPortlet.class.getName())) {
+				return new ElicitationPortlet(project);
+		}else if (portletJavaClassName.equals(PhenotypeTreePortlet.class.getName())) {
+				return new PhenotypeTreePortlet(project);
+		}else return null;
+	}
+
+	public static EntityPortlet createPortlet(Project project,
+			String portletJavaClassName, String txt) {
+		if (portletJavaClassName.equals(ElicitationPortlet.class.getName())) {
+			return new ElicitationPortlet(project, txt);
+		} else
+			return null;
 	}
 
 	public static List<String> getAvailableTabNames() {
-		String[] tabs =
-		        { ClassesTab.class.getName(), PropertiesTab.class.getName(),
-		                IndividualsTab.class.getName(),
-		                MetadataTab.class.getName(), NotesTab.class.getName(),
-		                OtherTerminologiesTab.class.getName(),
-		                SWRLTab.class.getName() };
+		String[] tabs = { ClassesTab.class.getName(),
+				PropertiesTab.class.getName(), IndividualsTab.class.getName(),
+				MetadataTab.class.getName(), NotesTab.class.getName(),
+				OtherTerminologiesTab.class.getName(), SWRLTab.class.getName(),
+				PhenologueTab.class.getName() };
 		return Arrays.asList(tabs);
 	}
 
 	public static List<String> getAvailablePortletNames() {
-		String[] portlets =
-		        { AllPropertiesPortlet.class.getName(),
-		                ClassTreePortlet.class.getName(),
-		                ImportsTreePortlet.class.getName(),
-		                IndividualsListPortlet.class.getName(),
-		                MetricsPortlet.class.getName(),
-		                NotesPortlet.class.getName(),
-		                OntologiesPortlet.class.getName(),
-		                PropertiesTreePortlet.class.getName(),
-		                RestrictionsPortlet.class.getName(),
-		                PropertyFieldPortlet.class.getName(),
-		                BioPortalSearchPortlet.class.getName() };
+		String[] portlets = { AllPropertiesPortlet.class.getName(),
+				ClassTreePortlet.class.getName(),
+				ImportsTreePortlet.class.getName(),
+				IndividualsListPortlet.class.getName(),
+				MetricsPortlet.class.getName(), NotesPortlet.class.getName(),
+				OntologiesPortlet.class.getName(),
+				PropertiesTreePortlet.class.getName(),
+				RestrictionsPortlet.class.getName(),
+				PropertyFieldPortlet.class.getName(),
+				BioPortalSearchPortlet.class.getName(),
+				PhenologueTabPortlet.class.getName(),
+				RuleTreePortlet.class.getName(),
+				ElicitationPortlet.class.getName(),
+				PhenotypeTreePortlet.class.getName() };
 		return Arrays.asList(portlets);
 	}
 

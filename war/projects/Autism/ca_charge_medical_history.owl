@@ -1,0 +1,2621 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:p1="http://www.autism.stanford.edu/assessment-result.owl#"
+    xmlns="http://www.autism.stanford.edu/CA_CHARGE_Medical_History.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.autism.stanford.edu/CA_CHARGE_Medical_History.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.autism.stanford.edu/assessment-result.owl"/>
+  </owl:Ontology>
+  <owl:Class/>
+  <owl:DatatypeProperty rdf:ID="Review___Eyes">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:ID="ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review - Eyes</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Review___Teeth">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review - Teeth</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Review_of_Systems___Ears">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review of Systems - Ears</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Diagnostic_History">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Diagnostic History</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Review_of_Systems___Head.Brain">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review of Systems - Head/Brain</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Review___Endocrine.Metabolic">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review - Endocrine/Metabolic</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Header">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Header</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Developmental_History">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Developmental History</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Early_Postnatal_History">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Early Postnatal History</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Current_Medications">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Current Medications</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Neck_Back">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Neck Back</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Nose">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nose</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Review___Orthopedic">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review - Orthopedic</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Review___Genito_Urinary">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review - Genito-Urinary</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Review___Hematalogic">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review - Hematalogic</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Review___Gastrointestinal">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review - Gastrointestinal</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Review___Pulmonary">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review - Pulmonary</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Review___Skin">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review - Skin</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Review___Mouth">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review - Mouth</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Review___Cardiovascular">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review - Cardiovascular</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Review_of_Systems___Immunologic">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review of Systems - Immunologic</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#ca_charge_medical_history_item">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/assessment-result.owl#autism_ontology_datatype_property"/>
+  </owl:DatatypeProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_earpetubeset">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PE Tubes: Sets</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Ears"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_cardiomalfunc">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cardiac Malformation</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Review___Cardiovascular"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_pulaspiration">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Aspiration</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Pulmonary"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_eartest">
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Ears"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hearing Testing:</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoimmunization">
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Up to date;Behind;None;NK</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Immunizations</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_postnatal_feedbottleform">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Early_Postnatal_History"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Feeding: Formula</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_pullungmalfunc">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Lung Malformations</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review___Pulmonary"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_diag_ageatdiagnk">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Diagnostic_History"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age at diagnosis - NK</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_gastrohernia">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Review___Gastrointestinal"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hernia</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_currmed_prescription">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Current_Medications"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Prescription (Medication, Dose, Frequency, Reason)</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_endodiabetesage">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+ </p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Endocrine.Metabolic"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Diabetes: Age(in months)</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headmeningitits">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Meningitits</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_develop_social">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Early;Average;Late;NK</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Social</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Developmental_History"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_pulasthmatrigg">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Asthma: Triggers</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review___Pulmonary"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_genitoutinum">
+    <rdfs:subPropertyOf rdf:resource="#Review___Genito_Urinary"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >UTI: Number</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headeeg">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >EEG</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_neckother">
+    <rdfs:subPropertyOf rdf:resource="#Neck_Back"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headmeningititsage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+ </p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Meningitits: Age(in months)</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_endoprecociousage">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Endocrine.Metabolic"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Precocious Puberty: Age(in months)</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+ </p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc2d">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccine 2 Day</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_diag_aofc">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age of First Concern(in months)</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+ </p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Diagnostic_History"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headfebseizages">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Febrile Seizures: Age(S)</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc2m">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccine 2 Month</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_endohypoglycemia">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review___Endocrine.Metabolic"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hypoglycemia</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_gastroother">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review___Gastrointestinal"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other feeding difficulties</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc1y">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccine 1 Year</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_postnatal_feedbottle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Feeding: Bottle</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Early_Postnatal_History"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_gastroreflux">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Reflux</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review___Gastrointestinal"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_diag_ageatdiag">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Diagnostic_History"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+ </p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age at diagnosis(in months)</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_teethneonatal">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Neonatal Teeth</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review___Teeth"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_endodiabetes">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Diabetes</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review___Endocrine.Metabolic"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc3y">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccine 3 Year</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_earrecuotitisage">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recurrent Otitis Media: Age of Onset(in months)</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Ears"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+ </p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_genitoother">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/comments</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review___Genito_Urinary"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoimmunizMMR">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Immunizations: MMR</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Up to date;Behind;None;NK</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_diag_diagnosis">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Diagnosis</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Diagnostic_History"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoenvallergy">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Environmental Allergies</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunosepsis">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sepsis</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_teethdentalab">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review___Teeth"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dental abnormalities</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoimmunizDTap">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Immunizations: DTaP</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Up to date;Behind;None;NK</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_endoprecocious">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Review___Endocrine.Metabolic"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Precocious Puberty</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_orthoother">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review___Orthopedic"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoOsteolocorg">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Osteomyelitis: Organism</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headseizurecontrol">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Seizures: Controlled</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_skinother">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review___Skin"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_orthofractureno">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fractures: Number</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Orthopedic"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_develop_regressionage">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+ </p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age(In mnths)</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Developmental_History"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunomedallergymed">
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Medication Allergies: Medications</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_genitorenalmalfunc">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review___Genito_Urinary"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Renal Malformation</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headseizure">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Seizures</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_gastroherniatype">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hernia: Type</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review___Gastrointestinal"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_comments_misc">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Miscellaneous comments on study, interview, methodology relevant to this form data </rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Header"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_noseother">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Nose"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_postnatal_feedbr">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Early_Postnatal_History"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Feeding: Breast</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headother">
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_postnatal_colic">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Colic/Difficult to Soothe</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Early_Postnatal_History"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_mouthcleftlip">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review___Mouth"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cleft Lip</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_hemanemia">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Anemia</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review___Hematalogic"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_earrecuotitisyear">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Ears"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recurrent Otitis Media: #Year</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="SubjectKey">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GUID should exist in the GUID System</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Header"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The NDAR Global Unique Identifier  (GUID) for subjects which identifies a subject in NDAR. A GUID retrieved from the NDAR GUID system.  The GUID consists of a prefix, GUID pattern, and check character. The prefix chosen for this system is NDAR. For the GUID a pattern is AANNNAA, where A represents alphabetic and N represents numerical characters. The check character can be numerical or alphabetic. An example of GUID for a valid subject is NDARCJ743PV3</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_skinabcesses">
+    <rdfs:subPropertyOf rdf:resource="#Review___Skin"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Skin Infections/Abcesses</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_gastroothercom">
+    <rdfs:subPropertyOf rdf:resource="#Review___Gastrointestinal"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/comments</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_develop_selfhelp">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Self-Help</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Early;Average;Late;NK</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Developmental_History"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunorecurinfection">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recurrent Infections((&gt;2 pneum or sinus infect/yr, &gt;8 OM /yr, absesses))</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_eyestrabismus">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Strabismus</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review___Eyes"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunosepsisorg">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sepsis: Organism</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoimmunizVari">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Up to date;Behind;None;NK</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Immunizations: Varicella</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headencephalitis">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Encephalitis</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_develop_regressionskillloss">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Developmental_History"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Skills Lost</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_hemanemiatype">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Anemia: Type</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Hematalogic"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc5y">
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccine 5 Year</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_earabdesc">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Ears"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ext. Ear Abnormalities: Abnormalities</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_pulother">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review___Pulmonary"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_SRC_Subject_ID">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The sites subject identification</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Header"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc4m">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccine 4 Month</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_cardioother">
+    <rdfs:subPropertyOf rdf:resource="#Review___Cardiovascular"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_diag_aofcnk">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age of First Concern - NK</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Diagnostic_History"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_eyeimpair">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Visual impairments</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review___Eyes"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoenvallergytype">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Environmental Allergies: Type</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_eartestages">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hearing Testing: Age(S) </rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Ears"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headmeningititsorg">
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Meningitits: Organism</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc4d">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccine 4 Day</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoimmunizHIB">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Up to date;Behind;None;NK</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Immunizations: HIB</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoigdeficiency">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ig Deficiency</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_eyeoter">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review___Eyes"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments:</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_genitorenalmalfunctype">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Genito_Urinary"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Renal Malformation: Type</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoimmunizIPV">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Immunizations: IPV</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Up to date;Behind;None;NK</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_endoother">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/comments</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review___Endocrine.Metabolic"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_endopancreasinsuff">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Endocrine.Metabolic"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Pancreatic Insufficiency</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_mouthcleftpalate">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Mouth"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cleft Palate</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headseizureonset">
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Seizures: Onset</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_mouthnasalreg">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nasal Regurgitation</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review___Mouth"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_postnatal_feedbrlngth">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Feeding: Length</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Early_Postnatal_History"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoimmunizHepB">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Up to date;Behind;None;NK</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Immunizations: HepB</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_postnatal_eyecontact">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eye Contact:</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Early_Postnatal_History"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Normal;Difficult to Engage;NK</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_orthojointdislocatelist">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Joint Dislocation: Joints</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review___Orthopedic"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_endoobesity">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Obesity</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review___Endocrine.Metabolic"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_pulasthma">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Asthma</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review___Pulmonary"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoOsteoage">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+ </p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Osteomyelitis: Age(in months)</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_pulpneumoniafreq">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Frequent Pneumonia</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review___Pulmonary"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_develop_finem">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fine Motor:</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Developmental_History"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Early;Average;Late;NK</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc1m">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccine 1 Month</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_orthojointdislocate">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Review___Orthopedic"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Joint Dislocation</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headimagestudyresult">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Imaging Studies: Results</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_endohyperthyroidism">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Review___Endocrine.Metabolic"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hyperthyroidism</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc1d">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccine 1 Day</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headimagestudytype">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Imaging Studies: Type</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >US;CT;MR;PET</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_orthofracture">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fractures</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Review___Orthopedic"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headimagestudy">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Imaging Studies</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoimmunizPrev">
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Up to date;Behind;None;NK</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Immunizations: Prevnar</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_orthofractureloc">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fractures: Location</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Orthopedic"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_genitourinediscolor">
+    <rdfs:subPropertyOf rdf:resource="#Review___Genito_Urinary"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Discolored Urine</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_cardiocyanosis">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Review___Cardiovascular"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cyanosis</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_currmed_supplement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Supplements (Herbal, Vitamin, etc.) (Supplement, Dose, Frequency, Reason)</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Current_Medications"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunocellimmunedef">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cell Mediated Immune Def.</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_diag_diagname">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Diagnostic_History"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Name</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_hembleeddisordertype">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Review___Hematalogic"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bleeding disorder: Type</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headencephalitisorg">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Encephalitis: Organism</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_pulpneumoniafreqages">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Frequent Pneumonia: Ages(S)</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review___Pulmonary"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc3d">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccine 3 Day</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_teethdentalabdesc">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dental abnormalities: Describe</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Review___Teeth"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headeegresult">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >EEG: Results</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc5d">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccine 5 Day</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_mouthspeechdiff">
+    <rdfs:subPropertyOf rdf:resource="#Review___Mouth"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Speech Difficulties</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_postnatal_temp">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Easy;Difficult/Irregular;Passive;NK</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Temperament</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Early_Postnatal_History"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_hembleeddisorder">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bleeding disorder</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review___Hematalogic"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoOsteoloc">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Osteomyelitis: Location</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_orthoosteomylitis">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Orthopedic"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Osteomylitis</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc3m">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccine 3 Month</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_genitocryptorchidism">
+    <rdfs:subPropertyOf rdf:resource="#Review___Genito_Urinary"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cryptorchidism</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_skinbirthmark">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Skin"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Birth Marks</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_postnatal_wtgainpoor">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Poor Weight Gain</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Early_Postnatal_History"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoimmunizHepA">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Up to date;Behind;None;NK</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Immunizations: HepA</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_eartestfinding">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Ears"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hearing Testing: Findings</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_currmed_overcounter">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Current_Medications"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Over the Counter (Medication, Dose, Frequency, Reason)</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_interview_date">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Interview Date</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >MM/dd/yyyy;MM/dd/yyyy HH:mm Z</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Header"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_genitouti">
+    <rdfs:subPropertyOf rdf:resource="#Review___Genito_Urinary"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >UTI</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_earother">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Ears"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_diag_diaginstitute">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Diagnostic_History"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Institution</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headmicroph">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Microcephaly</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_pulbreathab">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Abnormal Breathing</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Pulmonary"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_genitourinediscolorage">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+ </p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Discolored Urine: Age(in months)</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Genito_Urinary"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_diag_fconcern">
+    <rdfs:subPropertyOf rdf:resource="#Diagnostic_History"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >First Concerns</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_eartestresult">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Normal;Abnormal</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Ears"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hearing Testing: Result</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc2y">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccine 2 Year</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headmacroph">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Macrocephaly</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headstructab">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Structural abnormalities</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_cardiomalfunclesion">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cardiac Malformation: Lesion</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review___Cardiovascular"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_develop_grossm">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Gross Motor:</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Early;Average;Late;NK</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Developmental_History"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_skinabcessesnumtreat">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Skin Infections/Abcesses: Number/Treatment</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review___Skin"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_develop_lang">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Early;Average;Late;NK</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Language</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Developmental_History"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc5m">
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccine 5 Month</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_neckspinalab">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Spinal abnormalities</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Neck_Back"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_gastrodysphagia">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review___Gastrointestinal"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dysphagia</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_postnatal_sleeppattern">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sleep Pattern:</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Early_Postnatal_History"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Regular/Predictable;Irregular/Unpredictable;NK</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc4y">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccine 4 Year</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_develop_regression">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Developmental Regression:</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Developmental_History"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_genitourinecolor">
+    <rdfs:subPropertyOf rdf:resource="#Review___Genito_Urinary"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Discolored Urine: Color</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_gastrorefluxmed">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Review___Gastrointestinal"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Reflux: Medication Required</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_genitocryptorchidismtype">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Left;Right;Bilateral</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cryptorchidism: Type</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Review___Genito_Urinary"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_diag_diagnosismadeby">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Physician;Psychologist;Other;NK</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Diagnostic_History"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Diagnosis made by</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_teethdentalabother">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review___Teeth"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_endohypothyroidism">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hypothyroidism</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Endocrine.Metabolic"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headstructabdesc">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Structural abnormalities: Describe</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_endodiabetestype">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >I;II</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Endocrine.Metabolic"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Diabetes: Type</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_earrecuotitis">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recurrent Otitis Media</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Ears"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_mouthother">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other/Comments</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review___Mouth"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headfebseiz">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Febrile Seizures</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_skineczema">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Review___Skin"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eczema</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoOsteo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Osteomyelitis</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_nosesmellprob">
+    <rdfs:subPropertyOf rdf:resource="#Nose"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Problems with Smell</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunoinfluenzvacc">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;None;NK</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Influenza Vaccines</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_headencephalitisage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Encephalitis: Age(in months)</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Head.Brain"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+ </p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunosepsisage">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sepsis: Age(in months)</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+ </p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_immunomedallergy">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Medication Allergies</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Immunologic"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_earpetube">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PE Tubes</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Ears"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Charge_medicalhist_rev_earab">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Yes;No;NK</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ext. Ear Abnormalities</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Review_of_Systems___Ears"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <rdf:Description>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Charge Medical History</rdfs:label>
+  </rdf:Description>
+  <rdf:Description>
+    <rdfs:subClassOf rdf:resource="http://www.autism.stanford.edu/assessment-result.owl#Assessment_result"/>
+  </rdf:Description>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 513)  http://protege.stanford.edu -->

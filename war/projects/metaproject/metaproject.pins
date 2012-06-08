@@ -1,7 +1,7 @@
-; Fri Sep 11 15:14:41 PDT 2009
+; Mon Feb 08 15:15:49 PST 2010
 ; 
 ;+ (version "3.4.2")
-;+ (build "Build 541")
+;+ (build "Build 562")
 
 ([metaproject_Class0] of  User
 
@@ -108,6 +108,15 @@
 	(group [metaproject_Instance_0])
 	(name "Mike Uehara-Bingen")
 	(password "plaintext"))
+
+([metaproject_Class30002] of  Project
+
+	(allowedGroupOperation
+		[metaproject_Instance_10008]
+		[metaproject_Class3])
+	(description "This is autism Ontology from Das lab")
+	(location "projects/Autism/autism-rules.pprj")
+	(name "Autism"))
 
 ([metaproject_Instance_0] of  Group
 

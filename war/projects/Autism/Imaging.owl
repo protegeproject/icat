@@ -1,0 +1,1811 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.autism.stanford.edu/Imaging.owl#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:p1="http://www.autism.stanford.edu/assessment-result.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.autism.stanford.edu/Imaging.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.autism.stanford.edu/assessment-result.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Image">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.autism.stanford.edu/assessment-result.owl#Assessment_result"/>
+  </owl:Class>
+  <owl:DatatypeProperty rdf:ID="Unit_2">
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:ID="Dataset_Attributes"/>
+    </rdfs:subPropertyOf>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Unit_1">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#Dataset_Attributes"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="VOI">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >VOI</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:ID="image_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Set_Parameter">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Set_Parameter</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#image_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Resolution">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#image_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Resolution</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Talairach_Attributes">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Talairach Attributes</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#image_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Protocol">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:ID="Scan_Attributes"/>
+    </rdfs:subPropertyOf>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Data_Type">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#Dataset_Attributes"/>
+    </rdfs:subPropertyOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Image"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Compression">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#Dataset_Attributes"/>
+    </rdfs:subPropertyOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >10</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#Scan_Attributes">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#image_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Scan Attributes</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#Dataset_Attributes">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#image_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dataset Attributes</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="SRC_Subject_ID">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The sites subject identification</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#image_item"/>
+    </rdfs:subPropertyOf>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Annotation">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#image_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Annotation</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Subject_Axis_Orientation_3">
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Filename">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >30</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#image_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#Image"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Surface">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Surface</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#image_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#image_item">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/assessment-result.owl#autism_ontology_datatype_property"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="LUT_Function_Point">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >LUT_Function_Point</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#image_item"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Body_Part">
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#image_item"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Subject_Axis_Orientation_1">
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+  </owl:DatatypeProperty>
+  <owl:FunctionalProperty rdf:ID="Subject_ID">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GUID should exist in the GUID System</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#image_item"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"The NDAR Global Unique Identifier  (GUID) for subjects which identifies a subject in NDAR. A GUID retrieved from the NDAR GUID system. The GUID consists of a prefix, GUID pattern, and check character. The prefix chosen for this system is NDAR. For the GUID a pattern is AANNNAA, where A represents alphabetic and N represents numerical characters. The check character can be numerical or alphabetic. An example of GUID for a valid subject is NDARCJ743PV3"</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_7">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origDim_1">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acpcMin_1">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="History">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#image_item"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >4000</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Value_Type">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >10</p1:size>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Set_Parameter"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_13">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="tlrcRes_6">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origOrient_3">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Resolution_2">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Resolution"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origDim_2">
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Resolution_3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Resolution"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Endianess">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >10</p1:size>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Origin_1">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acpcPC_1">
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_8">
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="LUT_Function_ID">
+    <rdfs:subPropertyOf rdf:resource="#LUT_Function_Point"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Auto-generated</p1:isRequired>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Image_Offset">
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="nDimensions">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#image_item"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Font_Type">
+    <rdfs:subPropertyOf rdf:resource="#Annotation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_12">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Parameter_Description">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >100</p1:size>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:subPropertyOf rdf:resource="#Set_Parameter"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="tlrcRes_7">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Parameter_Date_Time">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:subPropertyOf rdf:resource="#Set_Parameter"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Image"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origOrient_4">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acpcPC_2">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="tlrcRes_1">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origDim_3">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Extent_1">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Thumbnail_yDim">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Scan_Attributes"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Unit_3">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_5">
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Font_Descriptor">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Annotation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Transform_ID">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >30</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origOrient_5">
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Modality">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Equipment_Model_Name">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Scan_Attributes"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_11">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Font_Color">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Annotation"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acpcPC_3">
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Unit_4">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:domain rdf:resource="#Image"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_6">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Thumbnail_xDim">
+    <rdfs:subPropertyOf rdf:resource="#Scan_Attributes"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Set_Description">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >100</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:subPropertyOf rdf:resource="#Set_Parameter"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origOrient_6">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Resolution_1">
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Resolution"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origAC_1">
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_10">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origOrient_8">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origRes_3">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Scan_Date_Time">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Scan_Attributes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Unit_5">
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origPC_3">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Value">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Set_Parameter"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Origin_4">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Font_Size">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Annotation"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="tlrcRes_2">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Slice_Spacing">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origAC_2">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Load_VOI_With_Image">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#VOI"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acpcMax_3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Extent_3">
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_2">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:domain rdf:resource="#Image"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Parameter_Name">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Set_Parameter"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >100</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origOrient_7">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acpcRes">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Load_Surface_With_Image">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Surface"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origRes_2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origAC_3">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="tlrcRes_3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origRes_1">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Extent_2">
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="LU_Value">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#image_item"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_16">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_1">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Point">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#LUT_Function_Point"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Extent_5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acpcMax_1">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origPC_1">
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:domain rdf:resource="#Image"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Surface_Opacity">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Surface"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Orientation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >10</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Text">
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Annotation"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Origin_2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Linked_Image">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:domain rdf:resource="#Image"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acpcMin_3">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="tlrcRes_4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:domain rdf:resource="#Image"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origOrient_1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_15">
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_9">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Resolution_4">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Resolution"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Thumbnail_Data">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#image_item"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Scan_ID">
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Scan_Attributes"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origPC_2">
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Origin_3">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Description">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Subject_Axis_Orientation_2">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acpcMin_2">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="tlrcRes_5">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Text_Location">
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Annotation"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origOrient_2">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Surface_Path">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Surface"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_14">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Image"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="origOrient_9">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Matrix_Data_3">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="VOI_Path">
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#VOI"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Resolution_5">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:subPropertyOf rdf:resource="#Resolution"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="LUT_Function_Type">
+    <rdfs:subPropertyOf rdf:resource="#LUT_Function_Point"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >10</p1:size>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:domain rdf:resource="#Image"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="acpcMax_2">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Talairach_Attributes"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Extent_4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Image"/>
+    <rdfs:subPropertyOf rdf:resource="#Dataset_Attributes"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See the schema defined on XSD_IMG for field requirements</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Image</p1:usedIn>
+  </owl:FunctionalProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 513)  http://protege.stanford.edu -->

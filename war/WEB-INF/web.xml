@@ -24,6 +24,16 @@
         <servlet-name>SWRLServiceImpl</servlet-name>        
         <servlet-class>edu.stanford.bmir.protege.web.server.SWRLServiceImpl</servlet-class>
     </servlet>
+    
+    <servlet>
+        <servlet-name>SWRLParaphrasingImpl</servlet-name>        
+        <servlet-class>edu.stanford.bmir.protege.web.server.SWRLParaphrasingImpl</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>PhenotypeImpl</servlet-name>        
+        <servlet-class>edu.stanford.bmir.protege.web.server.phenotypes.PhenotypeImpl</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>AdminServiceImpl</servlet-name>
@@ -43,6 +53,16 @@
     <servlet-mapping>
         <servlet-name>SWRLServiceImpl</servlet-name>        
         <url-pattern>/webprotege/swrl</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>SWRLParaphrasingImpl</servlet-name>        
+        <url-pattern>/webprotege/paraphrasing</url-pattern>
+    </servlet-mapping>
+    
+   <servlet-mapping>
+        <servlet-name>PhenotypeImpl</servlet-name>        
+        <url-pattern>/webprotege/phenotypes</url-pattern>
     </servlet-mapping>
 
 	<!-- Default page to serve -->

@@ -6,11 +6,16 @@
 	<!-- Inherit the GWT-Ext Toolkit stff -->
 	<inherits name='com.gwtext.GwtExt' />
 	
+	<!-- Inherit the SMART GWT Toolkit stff -->
+	<inherits name="com.smartgwt.SmartGwt"/>
+	
 	<entry-point class="edu.stanford.bmir.protege.web.client.WebProtege"/>
 		
 	<servlet path="/admin" class="edu.stanford.bmir.protege.web.server.AdminServiceImpl"/>
 	<servlet path="/ontology" class="edu.stanford.bmir.protege.web.server.OntologyServiceImpl"/>
 	<servlet path="/projectconfig" class="edu.stanford.bmir.protege.web.server.ProjectConfigurationServiceImpl"/>
 	<servlet path="/swrl" class="edu.stanford.bmir.protege.web.server.SWRLServiceImpl"/>
+	<servlet path="/paraphrasing" class="edu.stanford.bmir.protege.web.server.SWRLParaphrasingImpl"/>
+	<servlet path="/phenotypes" class="edu.stanford.bmir.protege.web.server.phenotypes.PhenotypeImpl"/>
     
 </module>

@@ -1,0 +1,597 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:protege-dc="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl#"
+    xmlns:obo_foundry_core_full="http://purl.org/nbirn/birnlex/ontology/obo-foundry/core/obo-foundry-core-full-import.owl#"
+    xmlns="http://purl.org/nbirn/birnlex/ontology/BIRNLex-OBO-UBO.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:birn_annot="http://purl.org/nbirn/birnlex/ontology/annotation/BIRNLex_annotation_properties.owl#"
+    xmlns:obo_annot="http://purl.org/nbirn/birnlex/ontology/annotation/OBO_annotation_properties.owl#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:core="http://www.w3.org/2004/02/skos/core#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xml:base="http://purl.org/nbirn/birnlex/ontology/BIRNLex-OBO-UBO.owl">
+  <owl:Ontology rdf:about="">
+    <dc:title xml:lang="en">Upper Biomedical Ontology (BIRN proposal)</dc:title>
+    <dc:description xml:lang="en">This is a proposed upper biomedial ontology derived by examples from the Biodynamic Ontology, the Simple Upper Bio Ontology, the Ontology of Biomedical Reality, and the Foundational Model of Anatomy.  It is designed to be a very slim layer intervening between the Basic Formal Ontology (BFO) and the generic, domain, and application ontologies developed to formally represent entities relevant to biomedical research and clinical practice.  The intension is for their to be a shared layer for all of these ontologies to use to declares a biological context from which they can all derive required classes thereby making the equivalent foundational entities 100% algorithmically commensurate across all of these ontological artifacts.  At this date (2006-10-06), this is just a proposal meant for: review by the community of OBO Foundry-associated biomedical ontology developers; very sparse and preliminary with the bulk of the coverage in the domain of biomaterial and immaterial objects; immediate use by the BIRN Ontology Task Force with the expectation this normalized layer will expedite future integration/import of the upper level biomedical ontology eventually adopted and endorsed by the OBO Foundry participant ontology development community members.</dc:description>
+    <core:changeNote xml:lang="en">v1.3.0 (2007-08-03) - Changed many things, but primarily: (1) removed rdf:datatype xsd:string specs for all AnnotationProperties, since they are now all untyped and should assume STRING as a the default; (2) added the typing of AnnotationProperties using annotationType which should aid in algorithmically processing; (3) Removed all underscore characters from the prefLabel field, and since the rdfs:labels are regenerated in the cleanser from prefLabel, they too are now free of underscores; (4) Also updated the XSLT BIRNLex cleanser to clean up more Protege mangling and provide a fixed order for certain properties.  This last tool is brittle, as it probably will require continued maintenance to handle more complex OWL constructs than we know have in the file - especially highly nested constructs using class axioms.</core:changeNote>
+    <dc:contributor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >David Kennedy</dc:contributor>
+    <core:changeNote xml:lang="en">Duplicated all SKOS core:prefLabel Annotations as rdfs:label Annotations using a parsing script supplied by Trish Whetzel (UPenn/OBI community).  This makes it possible to use rdfs:label as the DISPLAY_SLOT in Protege to match OBI and to use it to generate OWLDocs where both BIRNLex and OBI classes will use the same AnnotationProperty for their preferred display name (BB: 2007-02-27).</core:changeNote>
+    <dc:contributor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Carol Bean</dc:contributor>
+    <core:changeNote xml:lang="en">Added the LIGHT version of the OBO Relation ontology from IFOMIS/NCBO at http://www.ifomis.org/obo/ro/1.0/light. (BB: 2007-03-01).</core:changeNote>
+    <dc:contributor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jeff Grethe</dc:contributor>
+    <dc:subject rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The BIRN project lexicon</dc:subject>
+    <obo_annot:pendingActionNote xml:lang="en">This is likely to be replaced soon by some combination of BioTop (http://www.ifomis.uni-saarland.de/biotop/), the Simple Upper Bio Ontology (http://www.cs.man.ac.uk/~rector/ontologies/simple-top-bio/), OBO-UBO from NCBO, and the contents of this current file (BB: 2007-02-27).</obo_annot:pendingActionNote>
+    <dc:contributor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jessica Turner</dc:contributor>
+    <protege:defaultLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >en</protege:defaultLanguage>
+    <core:changeNote xml:lang="en">Added the is_bearer_of ObjectProperty - inverse of inheres_in property used to link PATO dependent_continuants to independent_continuants.  is_bearer_of enables one to represent the link from independen_continuant to dependent_continuant.</core:changeNote>
+    <core:changeNote xml:lang="en">(BB:2008-03-22) - Added a molecule and biomolecule class.  The former was added to classify entities that are ChEBI derived, but are not of biomaterial origin.  The latter was for those that are of biomaterial origin.  Also shifted macromolecule and macromolecular complex to be childre of biomolecule.</core:changeNote>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2008-03-22</obo_annot:modifiedDate>
+    <dc:contributor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</dc:contributor>
+    <core:editorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >next ID: birnlex_25</core:editorialNote>
+    <core:changeNote xml:lang="en">v1.2.2 (2007-03-19): Since Protege-OWL automatically sets new class identifiers to rdf:ID, but SOME of the classes appear to have been setup using rdf:about, I'm changing these across the files, to help make it more deterministic when parsing the RDF/XML.</core:changeNote>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <core:changeNote xml:lang="en">v1.3.2 (2007-10-08) - switched to importing BIRNLex_annoation_properties.owl so would have access to _birnlex_retired_class</core:changeNote>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1.3.2</owl:versionInfo>
+    <owl:imports rdf:resource="http://purl.org/nbirn/birnlex/ontology/obo-foundry/core/obo-foundry-core-full-import.owl"/>
+    <core:changeNote xml:lang="en">OBO-RO LIGHT version no longer available from IFOMIS/NCBO at http://www.ifomis.org/obo/ro/1.0/light.  Switched to Chris M's OWL version of OBO-RO at http://www.berkeleybop.org/ontologies/obo-all/relationship/relationship.owl.  Need to look at using Chris M's OBO-RO to BFO bridge as well (BB: 2007-05-07).</core:changeNote>
+    <owl:imports rdf:resource="http://purl.org/nbirn/birnlex/ontology/annotation/BIRNLex_annotation_properties.owl"/>
+    <dc:contributor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Maryann Martone</dc:contributor>
+    <dc:contributor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Christine Fennema-Notestine</dc:contributor>
+    <core:editorialNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ID use: 1 - 25</core:editorialNote>
+    <dc:contributor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Amarnath Gupta</dc:contributor>
+    <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The BIRN Ontology Task Force</dc:creator>
+  </owl:Ontology>
+  <owl:Class rdf:ID="birnlex_22">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="birnlex_6"/>
+    </rdfs:subClassOf>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Biomolecule</core:prefLabel>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2008-03-22</obo_annot:modifiedDate>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >insulin</core:example>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Biomolecule</rdfs:label>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2008-03-22</obo_annot:createdDate>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >voltage-gated Ca++ ion channel</core:example>
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An object consisting of a set of bonded atoms that is of organismal origin.</obo_annot:tempDefinition>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_19">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tissue</rdfs:label>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2007-10-10</obo_annot:createdDate>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tissue</core:prefLabel>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2007-10-10</obo_annot:modifiedDate>
+    <obo_annot:nifID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >_1_3.3</obo_annot:nifID>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="birnlex_16"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_8">
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Population</core:prefLabel>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-10-09</obo_annot:modifiedDate>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#ObjectAggregate"/>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Population</rdfs:label>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A collection of independent organismal entities engaged in some form of spatio-temporal interaction or aggregate behavior</obo_annot:tempDefinition>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_12">
+    <rdfs:subClassOf rdf:resource="http://purl.org/nbirn/birnlex/ontology/annotation/BIRNLex_annotation_properties.owl#_birnlex_retired_class"/>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cell</core:prefLabel>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >oocyte</core:example>
+    <obo_annot:hasExternalSource rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://purl.org/nbirn/birnlex/ontology/annotation/OBO_annotation_properties.owl#OBR</obo_annot:hasExternalSource>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >hepatocyte</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Mauthner cell</core:example>
+    <birn_annot:hasFormerParentClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://purl.org/nbirn/birnlex/ontology/BIRNLex-OBO-UBO.owl#birnlex_6</birn_annot:hasFormerParentClass>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cell</rdfs:label>
+    <birn_annot:isReplacedByClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://ccdb.ucsd.edu/SAO/1.2#sao1813327414</birn_annot:isReplacedByClass>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >stomatal guard cell</core:example>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2007-10-09</obo_annot:modifiedDate>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_15">
+    <obo_annot:nifID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >_5.2_6</obo_annot:nifID>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Macromolecule</core:prefLabel>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <rdfs:subClassOf rdf:resource="#birnlex_22"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Macromolecule</rdfs:label>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2008-03-22</obo_annot:modifiedDate>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_18">
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2007-10-08</obo_annot:modifiedDate>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2007-10-08</obo_annot:createdDate>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Body</core:prefLabel>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Body</rdfs:label>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#birnlex_6"/>
+    </rdfs:subClassOf>
+    <obo_annot:nifID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >_5.2_1</obo_annot:nifID>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_3">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Supracellular structure</rdfs:label>
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Anatomical structure consisting of an identifable arrangement of multiple cellular structures into a functional unit.</obo_annot:tempDefinition>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#birnlex_6"/>
+    </rdfs:subClassOf>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Node of Ranvier</core:example>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-10-09</obo_annot:modifiedDate>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Supracellular structure</core:prefLabel>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >neuropil</core:example>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+  </owl:Class>
+  <owl:Class rdf:about="#birnlex_16">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Regional part of organ</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#birnlex_6"/>
+    </rdfs:subClassOf>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cardiac ventricle</core:example>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-10-09</obo_annot:modifiedDate>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Regional part of organ</core:prefLabel>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >regional part of brain</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ommatidium of insect eye</core:example>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_21">
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2008-03-21</obo_annot:modifiedDate>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >glutaraldehyde</core:example>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2008-03-21</obo_annot:createdDate>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Object"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Molecule</rdfs:label>
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An object consisting of a set of bonded atoms that is not of organismal origin.</obo_annot:tempDefinition>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Saponin</core:example>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Molecule</core:prefLabel>
+  </owl:Class>
+  <owl:Class rdf:about="#birnlex_6">
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >glucose-6-phosphate</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cell</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >voltage-dependent ion-channel</core:example>
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Biomaterial object constituting the structural organization of a biological organism or an attribute of that organization.</obo_annot:tempDefinition>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-10-09</obo_annot:modifiedDate>
+    <obo_annot:synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >anatomical_object</obo_annot:synonym>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Constitutional part of organismal object</core:prefLabel>
+    <obo_annot:nifID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >_5.2</obo_annot:nifID>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A biomaterial object constituting a part of a complete organismal object.</obo_annot:tempDefinition>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >head</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >heart</core:example>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Constitutional part of organismal object</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="birnlex_5"/>
+    </rdfs:subClassOf>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_7">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Regional part of body</rdfs:label>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >head</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >antenna</core:example>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-10-09</obo_annot:modifiedDate>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >leg</core:example>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Regional part of body</core:prefLabel>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <rdfs:subClassOf rdf:resource="#birnlex_6"/>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_2">
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#birnlex_5"/>
+    </rdfs:subClassOf>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >procaryote</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >vascular plant</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >macaque monkey</core:example>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-10-09</obo_annot:modifiedDate>
+    <obo_annot:pendingActionNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >This part of the graph will need to adjust as organism taxonomy is handled more consistently by the biomedical-ontology community</obo_annot:pendingActionNote>
+    <obo_annot:nifID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >_6</obo_annot:nifID>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Organism</rdfs:label>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <obo_annot:synonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Organismal_object</obo_annot:synonym>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Organism</core:prefLabel>
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A biomaterial object capable of reproduction and harvesting energy from some biomaterial source in order to sustain its existance.</obo_annot:tempDefinition>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >insect</core:example>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_25">
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >somatostatin</core:example>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Peptide</rdfs:label>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2008-03-22</obo_annot:modifiedDate>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >vasopressin</core:example>
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A macromolecule consisting exclusively of a single covalently bound array of naturally occuring amino acids.</obo_annot:tempDefinition>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2008-03-22</obo_annot:createdDate>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="birnlex_23"/>
+    </rdfs:subClassOf>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >insulin</core:example>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Peptide</core:prefLabel>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_4">
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ovary</core:example>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <rdfs:subClassOf rdf:resource="#birnlex_6"/>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >vertebrate femur</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >heart</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >tracheobronchial tree</core:example>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Organ</rdfs:label>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Organ</core:prefLabel>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >liver</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >bicep skeletal muscle</core:example>
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Anatomical structure, which consists of the maximal set of organ parts so connected to one another that together they constitute a unit of macroscopic anatomy, structurally distinct from other such units.</obo_annot:tempDefinition>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Manduca sexta prothoracic gland</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >skin</core:example>
+    <obo_annot:hasExternalSource rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://purl.org/nbirn/birnlex/ontology/annotation/OBO_annotation_properties.owl#FMA</obo_annot:hasExternalSource>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >coral snake venom sac</core:example>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-10-09</obo_annot:modifiedDate>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_13">
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-10-09</obo_annot:modifiedDate>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sample population</core:prefLabel>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A defined subset of a population whose spatio-temporal interactions or aggregate behavior is representative of the whole population.</obo_annot:tempDefinition>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <rdfs:subClassOf rdf:resource="#birnlex_8"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sample population</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_11">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Regional part of body system</rdfs:label>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Regional part of body system</core:prefLabel>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >arterial vasculature</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >peripheral nervous system</core:example>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-10-09</obo_annot:modifiedDate>
+    <rdfs:subClassOf rdf:resource="#birnlex_6"/>
+  </owl:Class>
+  <owl:Class rdf:about="#birnlex_23">
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A macromolecule consisting primarily of a single covalently bound array of naturally occuring amino acids.</obo_annot:tempDefinition>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >insulin</core:example>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Protein</rdfs:label>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2008-03-22</obo_annot:createdDate>
+    <rdfs:subClassOf rdf:resource="#birnlex_15"/>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Protein</core:prefLabel>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2008-03-22</obo_annot:modifiedDate>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_10">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Constitutional part of cell</rdfs:label>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-10-09</obo_annot:modifiedDate>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >post-synaptic density</core:example>
+    <rdfs:subClassOf rdf:resource="#birnlex_6"/>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cytoskeletal system</core:example>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Constitutional part of cell</core:prefLabel>
+    <obo_annot:hasExternalSource rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://purl.org/nbirn/birnlex/ontology/annotation/OBO_annotation_properties.owl#UMLS</obo_annot:hasExternalSource>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+  </owl:Class>
+  <owl:Class rdf:about="#birnlex_5">
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >erythrocyte</core:example>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-10-09</obo_annot:modifiedDate>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >head</core:example>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Biomaterial object</rdfs:label>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >heart</core:example>
+    <core:historyNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The entity descriptions in this branch of the ontology are informed by previous efforts in biomedical ontology development, particularly the Foundational Model of Anatomy, Biodynamic ontology, and the Ontology of Biomedical Reality, though they do not necessary recapitulate the principles defined there verbatim.</core:historyNote>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Biomaterial object</core:prefLabel>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Object"/>
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An object constituting a biological organism either in whole or in part, or one derived from a biological organism.</obo_annot:tempDefinition>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >mitochondrion</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >mouse</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >hemoglobin molecule</core:example>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_24">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Protein complex</rdfs:label>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Protein complex</core:prefLabel>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >voltage-gated Na++ ion channel</core:example>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2008-03-22</obo_annot:createdDate>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2008-03-22</obo_annot:modifiedDate>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="birnlex_1"/>
+    </rdfs:subClassOf>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A macromolecule consisting primarily of a multiple covalently bound arrays of naturally occuring amino acids where the individual proteins are typically bound together through ionic and hydrogen bond interactions.</obo_annot:tempDefinition>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_14">
+    <obo_annot:hasExternalSource rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://purl.org/nbirn/birnlex/ontology/annotation/OBO_annotation_properties.owl#FMA</obo_annot:hasExternalSource>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Body system</rdfs:label>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >insect tracheolar network</core:example>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <rdfs:subClassOf rdf:resource="#birnlex_6"/>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-10-09</obo_annot:modifiedDate>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Body system</core:prefLabel>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >nervous system</core:example>
+  </owl:Class>
+  <owl:Class rdf:about="#birnlex_1">
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >neuronal nicotinic Acetylcholine receptor</core:example>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Macromolecular complex</core:prefLabel>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >axonal Na+-K+ ATPase transporter</core:example>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2008-03-22</obo_annot:modifiedDate>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Macromolecular complex</rdfs:label>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A large, multi-molecular biological aggregate held together by van der Waals, hydrophobic, and hydrophilic interactions. Such complexes have a myriad of interactions with other cellular constituents with help to situate them within the cell - e.g., with the periphery of the phospholipid bilayer, penetrating some or all of the bilayer, interactions with intra- or extracellular fibrous matrices, and finally with other macromolecular complexes. Conformational changes in one molecular constituent of a complex frequently caused by covalent modification will tend to high non-local effects on the over conformation and energy profile of all the constituents in the complex.</obo_annot:tempDefinition>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >16S ribosomal complex</core:example>
+    <rdfs:subClassOf rdf:resource="#birnlex_22"/>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_20">
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bodily fluid</core:prefLabel>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bodily fluid</rdfs:label>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2007-10-18</obo_annot:modifiedDate>
+    <rdfs:subClassOf rdf:resource="#birnlex_6"/>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2007-10-18</obo_annot:createdDate>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+  </owl:Class>
+  <owl:Class rdf:ID="birnlex_9">
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >anterior compartment of right arm</core:example>
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bio physical immaterial entity</core:prefLabel>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >body space</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >third ventricle of the mammalian brain.</core:example>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bio physical immaterial entity</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Site"/>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >apex of right lung</core:example>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >surface of heart</core:example>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-10-09</obo_annot:modifiedDate>
+    <core:example rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >sulcal invaginations of the mammalian brain.</core:example>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-09-07</obo_annot:createdDate>
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Physical entity of biological origin which is a three-dimensional space, surface, line or point associated with a biomaterial object.</obo_annot:tempDefinition>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="birnlex_17">
+    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is_bearer_of</core:prefLabel>
+    <obo_annot:curator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bill Bug</obo_annot:curator>
+    <owl:inverseOf>
+      <owl:FunctionalProperty rdf:about="http://purl.org/obo/owl/obo#inheres_in"/>
+    </owl:inverseOf>
+    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2007-10-02</obo_annot:modifiedDate>
+    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2007-10-02</obo_annot:createdDate>
+    <obo_annot:tempDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Makes it possible for an independent_continuant to represent its relation to a dependent_continuant, such as a PATO quality, a bfo:disposition, or a bfo:function.</obo_annot:tempDefinition>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is_bearer_of</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:FunctionalProperty rdf:about="http://purl.org/obo/owl/obo#inheres_in">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#birnlex_17"/>
+  </owl:FunctionalProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 126)  http://protege.stanford.edu -->

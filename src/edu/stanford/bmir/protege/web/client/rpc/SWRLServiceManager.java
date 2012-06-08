@@ -30,5 +30,7 @@ public class SWRLServiceManager {
 	public void getData(String projectName, AsyncCallback<List<SWRLData>> cb) {
 		proxy.getData(projectName, cb);
 	}
+	
+	
 
 }

@@ -1,0 +1,2321 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:p1="http://www.autism.stanford.edu/assessment-result.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.autism.stanford.edu/CA_CHARGE_Medical_History.owl">
+  <owl:Ontology rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl">
+    <owl:imports rdf:resource="http://www.autism.stanford.edu/assessment-result.owl"/>
+  </owl:Ontology>
+  <owl:Class/>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Header">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#charge_family_char_que_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Header</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#charge_family_char_que_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Questions</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#charge_family_char_que_item">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/assessment-result.owl#autism_ontology_datatype_property"/>
+  </owl:DatatypeProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_mathdif2">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has difficulty learning arithmetic or math -Sibling 2</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_mathdif1">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has difficulty learning arithmetic or math -Sibling 2</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapygrade5">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade -Sibling 5</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_learndis4">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a learning disability -Sibling 4</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_sub4">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Subject ID(NDAR ID) -Sibling 4</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_agebm">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age -Biological Mother(in months)</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_grader2">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Repeated a grade in school -Sibling 2</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_learndisnotes">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a learning disability -Notes</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradalA">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Last grade completed -Child with Autism/Study Participant</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradeapp4">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade if applicable -Sibling 4</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_subrel1">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Relationship to child with autism? (Full, Half-Maternal, Half-Paternal)? -Sibling 1"</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Full;Half-Maternal;Half-Paternal</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapybf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Received speech therapy in school -Biological Father</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradal4">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Last grade completed -Sibling 4</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradeappbf">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade if applicable -Biological Father</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_mathdifbf">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has difficulty learning arithmetic or math -Biological Father</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_devdelay5">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a developmental delay -Sibling 5</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_age3">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age -Sibling 3(in months)</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradalnotes">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Last grade completed -Notes</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_readdif3">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had difficulty learning to read -Sibling 3</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradalbf">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Last grade completed -Biological Father</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_langdelayA">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a speech or language delay or impairment -Child with Autism/Study Participant</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_learndis3">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a learning disability -Sibling 3</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_mathdif3">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has difficulty learning arithmetic or math -Sibling 3</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_grader1">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Repeated a grade in school -Sibling 1</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_sub5">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Subject ID(NDAR ID) -Sibling 5</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_readdifA">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had difficulty learning to read -Child with Autism/Study Participant</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_bf">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Subject ID(NDAR ID) -Biological Father</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradeapp5">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade if applicable -Sibling 5</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_bm">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Subject ID(NDAR ID) -Biological Mother</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gendernotes">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Gender -Notes</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradernotes">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Repeated a grade in school -Notes</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_eduage5">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age when identified as eligible for special education -Sibling 5(in months)</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradal3">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Last grade completed -Sibling 3</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapy5">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Received speech therapy in school -Sibling 5</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_langdelaynotes">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a speech or language delay or impairment -Notes</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_age2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age -Sibling 2(in months)</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_devdelaynotes">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a developmental delay - Notes</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_readdifbm">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had difficulty learning to read -Biological Mother</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_rla5">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R;L;A</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Right handed(R), left handed (L) or ambidextrous (A) -Sibling 5"</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_readdif4">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had difficulty learning to read -Sibling 4</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_eduA">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eligible for special education - Child with Autism/Study Participant</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapygrade3">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade -Sibling 3</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_mathdif4">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has difficulty learning arithmetic or math -Sibling 4</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_learndis2">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a learning disability -Sibling 2</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_rla4">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Right handed(R), left handed (L) or ambidextrous (A) -Sibling 4"</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R;L;A</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_agebf">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age -Biological Father(in months)</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_readdifnotes">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had difficulty learning to read -Notes</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_edubf">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eligible for special education - Biological Father</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_graderbf">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Repeated a grade in school -Biological Father</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_devdelaybm">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a developmental delay -Biological Mother</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_sub2">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Subject ID(NDAR ID) -Sibling 2</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_age5">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age -Sibling 5(in months)</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradeappA">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade if applicable -Child with Autism/Study Participant</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_genderbm">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >M;F</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Gender -Biological Mother</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapy4">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Received speech therapy in school -Sibling 4</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_mathdifnotes">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has difficulty learning arithmetic or math -Notes</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapy1">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Received speech therapy in school -Sibling 1</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_subrel3">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Full;Half-Maternal;Half-Paternal</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Relationship to child with autism? (Full, Half-Maternal, Half-Paternal)? -Sibling 3"</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gender5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Gender -Sibling 5</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >M;F</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_readdif1">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had difficulty learning to read -Sibling 1</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_devdelay3">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a developmental delay -Sibling 3</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_eduage4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age when identified as eligible for special education -Sibling 4(in months)</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_langdelaybf">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a speech or language delay or impairment -Biological Father</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapygrade4">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade -Sibling 4</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_edu1">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eligible for special education - Sibling 1</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_mathdif5">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has difficulty learning arithmetic or math -Sibling 5</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_langdelaybm">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a speech or language delay or impairment -Biological Mother</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_learndis1">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a learning disability -Sibling 1</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_rla3">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R;L;A</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Right handed(R), left handed (L) or ambidextrous (A) -Sibling 3"</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradalbm">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Last grade completed -Biological Mother</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_sub3">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Subject ID(NDAR ID) -Sibling 3</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_rlanotes">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Right handed(R), left handed (L) or ambidextrous (A) -Notes"</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapy3">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Received speech therapy in school -Sibling 3</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_subrel2">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Full;Half-Maternal;Half-Paternal</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Relationship to child with autism? (Full, Half-Maternal, Half-Paternal)? -Sibling 2"</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_SRC_Subject_ID">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The sites subject identification</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Header"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_edubm">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eligible for special education - Biological Mother</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapy2">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Received speech therapy in school -Sibling 2</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_readdif2">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had difficulty learning to read -Sibling 2</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradal5">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Last grade completed -Sibling 5</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_age4">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age -Sibling 4(in months)</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_devdelay4">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a developmental delay -Sibling 4</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_interview_date">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Header"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Interview Date</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >MM/dd/yyyy;MM/dd/yyyy HH:mm Z</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_eduage3">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age when identified as eligible for special education -Sibling 3(in months)</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_genderbf">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Gender -Biological Father</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >M;F</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradeappnotes">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade if applicable -Notes</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gender3">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >M;F</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Gender -Sibling 3</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_subrel5">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Relationship to child with autism? (Full, Half-Maternal, Half-Paternal)? -Sibling 5"</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Full;Half-Maternal;Half-Paternal</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_langdelay5">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a speech or language delay or impairment -Sibling 5</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapygrade1">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade -Sibling 1</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_eduage1">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age when identified as eligible for special education -Sibling 1(in months)</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#SubjectKey">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"The NDAR Global Unique Identifier  (GUID) for subjects which identifies a subject in NDAR. A GUID retrieved from the NDAR GUID system.  The GUID consists of a prefix, GUID pattern, and check character. The prefix chosen for this system is NDAR. For the GUID a pattern is AANNNAA, where A represents alphabetic and N represents numerical characters. The check character can be numerical or alphabetic. An example of GUID for a valid subject is NDARCJ743PV3"</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GUID should exist in the GUID System</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Header"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_learndisA">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a learning disability -Child with Autism/Study Participant</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_edu2">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eligible for special education - Sibling 2</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_agenotes">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age -Notes</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapygradeA">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade -Child with Autism/Study Participant</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapyage5">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What age -Sibling 5(in months)</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapyage4">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What age -Sibling 4(in months)</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapygradebm">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade -Biological Mother</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapygrade2">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade -Sibling 2</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_subnotes">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Subject -Notes</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_devdelay2">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a developmental delay -Sibling 2</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapyagebm">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What age -Biological Mother(in months)</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_graderA">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Repeated a grade in school -Child with Autism/Study Participant</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_langdelay4">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a speech or language delay or impairment -Sibling 4</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_eduage2">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age when identified as eligible for special education -Sibling 2(in months)</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_grader5">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Repeated a grade in school -Sibling 5</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_sub1">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Subject ID(NDAR ID) -Sibling 1</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gender4">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >M;F</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Gender -Sibling 4</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapygradebf">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade -Biological Father</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_eduagenotes">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age when identified as eligible for special education -Notes</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_subrel4">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Relationship to child with autism? (Full, Half-Maternal, Half-Paternal)? -Sibling 4"</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Full;Half-Maternal;Half-Paternal</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_devdelayA">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a developmental delay -Child with Autism/Study Participant</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_rlaA">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R;L;A</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Right handed(R), left handed (L) or ambidextrous (A) -Child with Autism/Study Participant"</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_devdelaybf">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a developmental delay -Biological Father</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_eduagebm">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age when identified as eligible for special education -Biological Mother(in months)</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_edu3">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eligible for special education - Sibling 3</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_rlabm">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R;L;A</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Right handed(R), left handed (L) or ambidextrous (A) -Biological Mother"</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_edu4">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eligible for special education - Sibling 4</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_edunotes">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eligible for special education - Notes</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_eduageA">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age when identified as eligible for special education -Child with Autism/Study Participant(in months)</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapyage3">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What age -Sibling 3(in months)</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapyA">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Received speech therapy in school -Child with Autism/Study Participant</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_graderbm">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Repeated a grade in school -Biological Mother</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradeapp1">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade if applicable -Sibling 1</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_devdelay1">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a developmental delay -Sibling 1</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_grader4">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Repeated a grade in school -Sibling 4</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gender1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >M;F</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Gender -Sibling 1</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_ageA">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age -Child with Autism/Study Participant (in months)</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_langdelay3">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a speech or language delay or impairment -Sibling 3</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_learndisbm">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a learning disability -Biological Mother</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapyagenotes">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What age -Notes</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradeappbm">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade if applicable -Biological Mother</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_readdifbf">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had difficulty learning to read -Biological Father</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_comments_misc">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Miscellaneous comments on study, interview, methodology relevant to this form data "</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Header"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_mathdifbm">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has difficulty learning arithmetic or math -Biological Mother</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_mathdifA">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has difficulty learning arithmetic or math -Child with Autism/Study Participant</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapyagebf">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What age -Biological Father(in months)</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapynotes">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Received speech therapy in school -Notes</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapyage2">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What age-Sibling 2(in months)</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_childA">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Subject ID(NDAR ID) -Child with Autism</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_rlabf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R;L;A</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Right handed(R), left handed (L) or ambidextrous (A) -Biological Father"</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_age1">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age -Sibling 1(in months)</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_readdif5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had difficulty learning to read -Sibling 5</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_rla1">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R;L;A</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Right handed(R), left handed (L) or ambidextrous (A) -Sibling 1"</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_edu5">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eligible for special education - Sibling 5</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradal2">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Last grade completed -Sibling 2</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_langdelay2">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a speech or language delay or impairment -Sibling 2</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradeapp2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade if applicable -Sibling 2</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gender2">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Gender -Sibling 2</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >M;F</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_grader3">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Repeated a grade in school -Sibling 3</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapygradenotes">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade -Notes</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapybm">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Received speech therapy in school -Biological Mother</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_eduagebf">
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Age when identified as eligible for special education -Biological Father(in months)</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_learndis5">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a learning disability -Sibling 5</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_learndisbf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a learning disability -Biological Father</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_rla2">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Right handed(R), left handed (L) or ambidextrous (A) -Sibling 2"</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R;L;A</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_genderA">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Gender -Child with Autism/Study Participant</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >M;F</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradal1">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Last grade completed -Sibling 1</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapyageA">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What age -Child with Autism/Study Participant(in months)</rdfs:comment>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_langdelay1">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Had or has a speech or language delay or impairment -Sibling 1</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Y;N</p1:valueRange>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_gradeapp3">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What grade if applicable -Sibling 3</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Charge_familychar_ques_therapyage1">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/CA_CHARGE_Family_Charateristic_Questionnaire.owl#Questions"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >What age -Sibling 1(in months)</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:parseType="Resource">
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <rdf:Description>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NDAR CHARGE Family Characteristics Questionnaire</rdfs:label>
+  </rdf:Description>
+  <rdf:Description>
+    <rdfs:subClassOf rdf:resource="http://www.autism.stanford.edu/assessment-result.owl#Assessment_result"/>
+  </rdf:Description>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 513)  http://protege.stanford.edu -->

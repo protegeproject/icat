@@ -1,0 +1,1295 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:p1="http://www.autism.stanford.edu/assessment-result.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns="http://www.autism.stanford.edu/CA_ados3-2001.owl#"
+  xml:base="http://www.autism.stanford.edu/CA_ados3-2001.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.autism.stanford.edu/assessment-result.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="ADOS3_2001">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.autism.stanford.edu/assessment-result.owl#Assessment_result"/>
+  </owl:Class>
+  <owl:DatatypeProperty rdf:ID="Ados3_2001_scoresumm_adosdiag">
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS Classification:</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:ID="Score_Summary"/>
+    </rdfs:subPropertyOf>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Ados3_2001_codingd_oman_cmt">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:ID="Coding_Group_D"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specify:</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Ados3_2001_codingd_selfinj_cmt">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#Coding_Group_D"/>
+    </rdfs:subPropertyOf>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Self-Injurious Behavior - Specify</rdfs:comment>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#Score_Summary">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Score Summary</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:ID="ados3_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Coding_Group_E">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Coding Group E</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ados3_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Header">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Header</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ados3_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#Coding_Group_D">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Coding Group D</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ados3_item"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Ados3_2001_Observation_12">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:ID="Observation"/>
+    </rdfs:subPropertyOf>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Friends and Marriage</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Ados3_2001_Observation_7">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#Observation"/>
+    </rdfs:subPropertyOf>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cartoons</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Coding_Group_B">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="#ados3_item"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Coding Group B</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#ados3_item">
+    <rdfs:subPropertyOf rdf:resource="http://www.autism.stanford.edu/assessment-result.owl#autism_ontology_datatype_property"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Coding_Group_C">
+    <rdfs:subPropertyOf rdf:resource="#ados3_item"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Coding Group C</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#Observation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Observation</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#ados3_item"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Ados3_2001_Header_2">
+    <rdfs:subPropertyOf rdf:resource="#Header"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Specify Relationship to Subject, if Other:"</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Ados3_2001_Observation_3">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Joint Interactive Play</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:subPropertyOf rdf:resource="#Observation"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Ados3_2001_Observation_4">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Demonstration Task</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Observation"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Coding_Group_A">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Coding Group A</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#ados3_item"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Ados3_2001_Observation_1">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Observation"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Construction Task</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+  </owl:DatatypeProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codinge_anxty">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2
+</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_E"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Anxiety</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codinge_actve">
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_E"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;7
+</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Over activity/Agitation</rdfs:comment>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingb_arsoc">
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_B"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;3
+</p1:valueRange>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Amount of Reciprocal Social Communication</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_d4">
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Excessive Interest in Highly Specific Topics or Objects</rdfs:comment>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_Observation_13">
+    <rdfs:subPropertyOf rdf:resource="#Observation"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Loneliness</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_Observation_9">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Emotions</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Observation"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingd_oman">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_D"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hand and Finger and Other Complex Mannerisms</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2
+</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_interview_age">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1+
+</p1:valueRange>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Header"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Interview Age (in months)</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_btotal">
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Social Total</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingb_qsov">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;3
+</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Quality of Social Overtures</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_B"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_b6">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Insight</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_interview_date">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Interview Date</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >MM/dd/yyyy;MM/dd/yyyy HH:mm Z
+</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Header"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_b1">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Unusual Eye Contact</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="SubjectKey">
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"The NDAR Global Unique Identifier  (GUID) for subjects which identifies a subject in NDAR. A GUID retrieved from the NDAR GUID system.  The GUID consists of a prefix, GUID pattern, and check character. The prefix chosen for this system is NDAR. For the GUID a pattern is AANNNAA, where A represents alphabetic and N represents numerical characters. The check character can be numerical or alphabetic. An example of GUID for a valid subject is NDARCJ743PV3"</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Required</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Header"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GUID should exist in the GUID System
+</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_d5">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Compulsions or Rituals</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_Observation_8">
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Conversation and Reporting</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Observation"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_abtotal">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Communication + Social Total</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codinga_oinfo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2
+</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_A"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Offers Information</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingd_usens">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Unusual Sensory Interest In Play Material/Person</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2
+</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_D"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingd_topic_cmt">
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_D"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Excessive Interest or References to Unusual or Highly Specific Topics or Objects or Repetitive Behaviors - specify</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_Observation_14">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Creating a Story</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Observation"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codinga_ainfo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;3
+</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_A"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Asks for Information</rdfs:comment>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codinga_stereo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;3
+</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_A"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Stereotyped/Idiosyncratic Use of Words or Phrases</rdfs:comment>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codinga_gest">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;3;8
+</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Descriptive, Conventional, Instrumental or Informational Gestures"</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_A"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingb_insig">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_B"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Insight</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;3
+</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codinga_olang">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;3
+</p1:valueRange>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Overall Level of Non-echoed Language</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_A"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingd_ritl">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Compulsions or Rituals</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2
+</p1:valueRange>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_D"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_b2">
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Facial Expressions Directed to Others</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingd_selfinj">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2
+</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_D"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Self-Injurious Behavior</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_b7">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Quality of Social Overtures</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingc_imgcr">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_C"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;3
+</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Imagination/Creativity</rdfs:comment>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingd_topic">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Excessive Interest or References to Unusual or Highly Specific Topics or Objects or Repetitive Behaviors</rdfs:comment>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;3
+</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_D"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_a7">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Reporting of Events</rdfs:comment>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_SRC_Subject_ID">
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >20</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The sites subject identification</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Header"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_Header_1">
+    <rdfs:subPropertyOf rdf:resource="#Header"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Relationship to Subject</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >50</p1:size>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_Observation_10">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Observation"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Social Difficulties and Annoyance</rdfs:comment>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codinga_iecho">
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_A"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;3
+</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Immediate Echolalia</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingb_faceo">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2
+</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Facial Expressions Directed to Others</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_B"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingb_shrnj">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;8
+</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_B"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Shared Enjoyment in Interaction</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingb_qsres">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Quality of Social Response</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_B"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;3
+</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_d2">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hand and Finger and Other Complex Mannerisms</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_b8">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Quality of Social Response</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_Observation_6">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Observation"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Telling a Story From a Book</rdfs:comment>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingb_empth">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Empathy/Comments on Others' Emotions</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_B"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;3
+</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_a8">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Conversation</rdfs:comment>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_atotal">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Communication Total</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_Observation_11">
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:subPropertyOf rdf:resource="#Observation"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Break</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_a4">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Stereotyped/Idiosyncratic Use of Words or Phrases</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_Observation_2">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Make-Believe Play</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Observation"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codinga_reprt">
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;3
+</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Reporting of Events</rdfs:comment>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_A"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingb_oqrap">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Overall Quality of Rapport</rdfs:comment>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_B"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;3
+</p1:valueRange>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingd_usens_cmt">
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specify:</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_D"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_c1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Imagination/Creativity</rdfs:comment>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_Observation_1_1">
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Observation"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Construction Task Communication Sample</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codinge_agg">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Tantrums, Aggression, Negative or Disruptive Behavior"</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2
+</p1:valueRange>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_E"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_comments_misc">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Miscellaneous comments on study, interview, methodology relevant to this form data "</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Header"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_b10">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Overall Quality of Rapport</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_d1">
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Unusual Sensory Interest in Play Material/Person</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_overalldiag">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Overall Diagnosis:</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_b9">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Amount of Reciprocal Social Communication</rdfs:comment>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_Observation_5">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:subPropertyOf rdf:resource="#Observation"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Description of a Picture</rdfs:comment>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codinga_spabn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Speech Abnormalities Associated with Autism (Intonation/Volume/Rhythm/Rate)</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;7;8
+</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_A"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_a9">
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Descriptive, Conventional, Instrumental Gestures"</rdfs:comment>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_scoresumm_dtotal">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Stereotyped Behaviors and Restricted Interests Total</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:subPropertyOf rdf:resource="#Score_Summary"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingb_ueye">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;2
+</p1:valueRange>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_B"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Unusual Eye Contact</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingd_ritl_cmt">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specify:</rdfs:comment>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_D"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:size rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >255</p1:size>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codinga_convs">
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;3
+</p1:valueRange>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Conversation</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_A"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="Ados3_2001_codingb_llnvc">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:subPropertyOf rdf:resource="#Coding_Group_B"/>
+    <p1:isRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Recommended</p1:isRequired>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <p1:usedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ADOS3_2001</p1:usedIn>
+    <p1:valueRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0;1;2;7;8
+</p1:valueRange>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Language Production and Linked Nonverbal Communication</rdfs:comment>
+    <rdfs:domain rdf:resource="#ADOS3_2001"/>
+  </owl:FunctionalProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 513)  http://protege.stanford.edu -->

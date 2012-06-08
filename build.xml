@@ -174,8 +174,7 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
           -->
        <java classname = "com.google.gwt.dev.Compiler" 
              fork = "true" 
-             maxmemory = "500M"
-             failonerror="true">
+             maxmemory = "500M">
            <classpath>
                <path refid="project.classpath"/>
                <pathelement path="${classes}"/>
