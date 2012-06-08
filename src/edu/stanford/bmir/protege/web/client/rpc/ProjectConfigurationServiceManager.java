@@ -2,13 +2,12 @@ package edu.stanford.bmir.protege.web.client.rpc;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.ProjectConfiguration;
 
 public class ProjectConfigurationServiceManager {
 
 	private static ProjectConfigurationServiceAsync proxy;
-	private static ProjectConfigurationServiceManager instance;
+	static ProjectConfigurationServiceManager instance;
 	
 	public static ProjectConfigurationServiceManager getInstance() {
 		if (instance == null) {

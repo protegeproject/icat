@@ -8,8 +8,10 @@ import java.io.Serializable;
 
 public class BioPortalSearchData implements Serializable {
 	
+    private String bpRestBaseUrl;
 	private String bpSearchUrl;
 	private String searchOntologyIds;
+	private String searchOptions;
 	private String searchPageOption;
 	
 	
@@ -17,10 +19,18 @@ public class BioPortalSearchData implements Serializable {
 	public String toString() {
 		return "BioPortalSearchData [bpSearchUrl=" + bpSearchUrl
 				+ ", searchOntologyIds=" + searchOntologyIds + 
-				", searchPageOption=" + searchPageOption + "]";
+				", searchOptions=" + searchOptions + 
+				", searchPageOption=" + searchPageOption + 
+				"bpRestBaseUrl=" + bpRestBaseUrl + "]";
 	}
 
-	public String getBpSearchUrl() {
+	public String getBpRestBaseUrl() {
+        return bpRestBaseUrl;
+    }
+    public void setBpRestBaseUrl(String bpRestBaseUrl) {
+        this.bpRestBaseUrl = bpRestBaseUrl;
+    }
+    public String getBpSearchUrl() {
 		return bpSearchUrl;
 	}
 	public void setBpSearchUrl(String bpSearchUrl) {
@@ -31,6 +41,12 @@ public class BioPortalSearchData implements Serializable {
 	}
 	public void setSearchOntologyIds(String searchOntologyIds) {
 		this.searchOntologyIds = searchOntologyIds;
+	}
+	public String getSearchOptions() {
+	    return searchOptions;
+	}
+	public void setSearchOptions(String searchOptions) {
+	    this.searchOptions = searchOptions;
 	}
 	public String getSearchPageOption() {
 		return searchPageOption;

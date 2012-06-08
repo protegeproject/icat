@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectConfiguration implements Serializable {
+public class ProjectConfiguration extends GenericConfiguration implements Serializable {
 	private static final long serialVersionUID = -1637798442860308838L;
 	
 	private List<TabConfiguration> tabs;

@@ -1,0 +1,3010 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE rdf:RDF [
+	 <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+	 <!ENTITY kb 'http://protege.stanford.edu/kb#'>
+	 <!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+]>
+<rdf:RDF xmlns:rdf="&rdf;"
+	 xmlns:kb="&kb;"
+	 xmlns:rdfs="&rdfs;">
+<kb:Individual_Created rdf:about="&kb;annotation_ICD_Class0"
+	 kb:action="Individual_Created"
+	 kb:author="ttania"
+	 kb:context="Individual Create: TitleTerm_2"
+	 kb:creationName="http://who.int/icd#TitleTerm_2"
+	 rdfs:label="Individual Create: TitleTerm_2">
+	<kb:applyTo rdf:resource="&kb;annotation_ICD_Class1"/>
+	<kb:timestamp rdf:resource="&kb;annotation_ICD_Class2"/>
+</kb:Individual_Created>
+<kb:Ontology_Individual rdf:about="&kb;annotation_ICD_Class1"
+	 kb:currentName="http://who.int/icd#TitleTerm_2"
+	 rdfs:label="http://who.int/icd#TitleTerm_2">
+	<kb:changes rdf:resource="&kb;annotation_ICD_Class0"/>
+	<kb:changes rdf:resource="&kb;annotation_ICD_Class3"/>
+	<kb:changes rdf:resource="&kb;annotation_ICD_Class5"/>
+</kb:Ontology_Individual>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10000"
+	 kb:currentName="http://who.int/icd#A00"
+	 rdfs:label="http://who.int/icd#A00">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10001"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10001"
+	 kb:author="SNOMED Mapper">
+	<kb:body>The subdivision should be 01 vibrio and not 01 vibrio and then 01 vibrio classic and 01 vibrio El Tor both of them subdivided again in serotype Inaba and Ogawa</kb:body>
+	<kb:subject>The subdivision should be 01 vibrio and not 01 vibrio and then 01 vibrio classic and 01 vibrio El Tor both of them subdivided again in serotype Inaba and Ogawa</kb:subject>
+	<rdfs:label>The subdivision should be 01 vibrio and not 01 vibrio and then 01 vibrio classic and 01 vibrio El Tor both of them subdivided again in serotype Inaba and Ogawa</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10000"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10002"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10002"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="0"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10003"
+	 kb:currentName="http://who.int/icd#A01"
+	 rdfs:label="http://who.int/icd#A01">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10004"/>
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10006"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10004"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Salmonella typhi or typhosa? SNOMED only has typhosa"
+	 kb:subject="Salmonella typhi or typhosa? SNOMED only has typhosa"
+	 rdfs:label="Salmonella typhi or typhosa? SNOMED only has typhosa">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10003"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10005"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10005"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="1"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10006"
+	 kb:author="SNOMED Mapper">
+	<kb:body>How could the site attributes for a systemic disease  be better specified?</kb:body>
+	<kb:subject>How could the site attributes for a systemic disease  be better specified?</kb:subject>
+	<rdfs:label>How could the site attributes for a systemic disease  be better specified?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10003"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10007"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10007"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="2"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10008"
+	 kb:currentName="http://who.int/icd#A01.0"
+	 rdfs:label="http://who.int/icd#A01.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10009"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10009"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Salmonella typhi or typhosa? SNOMED has the same ID concept for salmonella typhi and salmonella typhosa.</kb:body>
+	<kb:subject>Salmonella typhi or typhosa? SNOMED has the same ID concept for salmonella typhi and salmonella typhosa.</kb:subject>
+	<rdfs:label>Salmonella typhi or typhosa? SNOMED has the same ID concept for salmonella typhi and salmonella typhosa.</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10008"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10010"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10010"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="3"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10011"
+	 kb:currentName="http://who.int/icd#A02.1"
+	 rdfs:label="http://who.int/icd#A02.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10012"/>
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10014"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10012"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Disorder or disease? Harrison: Fever or hypothermia, leukocytosis or leukopenia, tachypnea and tachycardia are the cardinal signs of the systemic response often called Systemic inflammatory response syndrome (SIRS) which can be infectiuos or non infectious. If infection is suspected or proven, a patient with SIRS is said to have sepsis.  </kb:body>
+	<kb:subject>Disorder or disease? Harrison: Fever or hypothermia, leukocytosis or leukopenia, tachypnea and tachycardia are the cardinal signs of the systemic response often called Systemic inflammatory response syndrome (SIRS) which can be infectiuos or non infectious. If infection is suspected or proven, a patient with SIRS is said to have sepsis.  </kb:subject>
+	<rdfs:label>Disorder or disease? Harrison: Fever or hypothermia, leukocytosis or leukopenia, tachypnea and tachycardia are the cardinal signs of the systemic response often called Systemic inflammatory response syndrome (SIRS) which can be infectiuos or non infectious. If infection is suspected or proven, a patient with SIRS is said to have sepsis.  </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10011"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10013"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10013"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="4"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10014"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10011"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10015"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10015"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="5"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10016"
+	 kb:currentName="http://who.int/icd#A03"
+	 rdfs:label="http://who.int/icd#A03">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10017"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10017"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Shigella cannot be distinguished from E. Choli: remains a separate species on historical and clinical ground.</kb:body>
+	<kb:subject>Shigella cannot be distinguished from E. Choli: remains a separate species on historical and clinical ground.</kb:subject>
+	<rdfs:label>Shigella cannot be distinguished from E. Choli: remains a separate species on historical and clinical ground.</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10016"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10018"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10018"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="6"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10019"
+	 kb:currentName="http://who.int/icd#A03.0"
+	 rdfs:label="http://who.int/icd#A03.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10020"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10020"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Should S dysentariae type 1 be distinguished? Type 1  produces a Shiga toxin increasing severity of the disease..</kb:body>
+	<kb:subject>Should S dysentariae type 1 be distinguished? Type 1  produces a Shiga toxin increasing severity of the disease..</kb:subject>
+	<rdfs:label>Should S dysentariae type 1 be distinguished? Type 1  produces a Shiga toxin increasing severity of the disease..</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10019"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10021"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10021"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="7"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10022"
+	 kb:currentName="http://who.int/icd#A04"
+	 rdfs:label="http://who.int/icd#A04">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10023"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10023"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is the title "Diseases caused by gram negative enteric bacilli" more suitable coding then three subcategories for the predominant species E. choli, Klebsiella, Protesus, and a fourth subcategory for the others such as Enterobacter, Serratiia, Citrobacter, Morganella, Providencia, Edardsiella and Acinetobacter? </kb:body>
+	<kb:subject>Is the title "Diseases caused by gram negative enteric bacilli" more suitable coding then three subcategories for the predominant species E. choli, Klebsiella, Protesus, and a fourth subcategory for the others such as Enterobacter, Serratiia, Citrobacter, Morganella, Providencia, Edardsiella and Acinetobacter? </kb:subject>
+	<rdfs:label>Is the title "Diseases caused by gram negative enteric bacilli" more suitable coding then three subcategories for the predominant species E. choli, Klebsiella, Protesus, and a fourth subcategory for the others such as Enterobacter, Serratiia, Citrobacter, Morganella, Providencia, Edardsiella and Acinetobacter? </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10022"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10024"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10024"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="8"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10025"
+	 kb:currentName="http://who.int/icd#A04.0"
+	 rdfs:label="http://who.int/icd#A04.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10026"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10026"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Should the classification be reviewed including current intestinal pathogenic E. coli classification: STEC shiga toxin producing E. Coli, ETEC enterotoxigenic, EPEC enteropathogenetic, EIEC enteroinvasive, EAEC enteroaggregative ?</kb:body>
+	<kb:subject>Should the classification be reviewed including current intestinal pathogenic E. coli classification: STEC shiga toxin producing E. Coli, ETEC enterotoxigenic, EPEC enteropathogenetic, EIEC enteroinvasive, EAEC enteroaggregative ?</kb:subject>
+	<rdfs:label>Should the classification be reviewed including current intestinal pathogenic E. coli classification: STEC shiga toxin producing E. Coli, ETEC enterotoxigenic, EPEC enteropathogenetic, EIEC enteroinvasive, EAEC enteroaggregative ?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10025"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10027"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10027"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="9"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10028"
+	 kb:currentName="http://who.int/icd#A04.3"
+	 rdfs:label="http://who.int/icd#A04.3">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10029"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10029"
+	 kb:author="SNOMED Mapper">
+	<kb:body>STEC: causes hemorragic colitis, hemolytic-uremic syndrome:  is that a "syndrome" or "disease"? </kb:body>
+	<kb:subject>STEC: causes hemorragic colitis, hemolytic-uremic syndrome:  is that a "syndrome" or "disease"? </kb:subject>
+	<rdfs:label>STEC: causes hemorragic colitis, hemolytic-uremic syndrome:  is that a "syndrome" or "disease"? </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10028"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10030"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10030"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="10"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10031"
+	 kb:currentName="http://who.int/icd#A04.5"
+	 rdfs:label="http://who.int/icd#A04.5">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10032"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10032"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Gastrointestinal pathogens causing acute diarrhea are subdiveded in Non inflammatory (enterotoxin), Inflammatory (invasion or cytotoxin) and Penetrating. Inflammatory species are: Shigella spp, Salmonella spp, Campilobacter jejuni, enterohemorragic E. Coli, Enteroinvasive E. Coli, Yersinia enterocolitica, Clostridium difficile , entamoeba histolytica. Penetrating are S. typhi and Yersinia enterocolitica. Is there the need to specify if the infection is  inflammatory or not according to this classification?  </kb:body>
+	<kb:subject>Gastrointestinal pathogens causing acute diarrhea are subdiveded in Non inflammatory (enterotoxin), Inflammatory (invasion or cytotoxin) and Penetrating. Inflammatory species are: Shigella spp, Salmonella spp, Campilobacter jejuni, enterohemorragic E. Coli, Enteroinvasive E. Coli, Yersinia enterocolitica, Clostridium difficile , entamoeba histolytica. Penetrating are S. typhi and Yersinia enterocolitica. Is there the need to specify if the infection is  inflammatory or not according to this classification?  </kb:subject>
+	<rdfs:label>Gastrointestinal pathogens causing acute diarrhea are subdiveded in Non inflammatory (enterotoxin), Inflammatory (invasion or cytotoxin) and Penetrating. Inflammatory species are: Shigella spp, Salmonella spp, Campilobacter jejuni, enterohemorragic E. Coli, Enteroinvasive E. Coli, Yersinia enterocolitica, Clostridium difficile , entamoeba histolytica. Penetrating are S. typhi and Yersinia enterocolitica. Is there the need to specify if the infection is  inflammatory or not according to this classification?  </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10031"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10033"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10033"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="11"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10034"
+	 kb:currentName="http://who.int/icd#A04.7"
+	 rdfs:label="http://who.int/icd#A04.7">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10035"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10035"
+	 kb:author="SNOMED Mapper"
+	 kb:body="There Pseudomembranous Colitis be a better title?"
+	 kb:subject="There Pseudomembranous Colitis be a better title?"
+	 rdfs:label="There Pseudomembranous Colitis be a better title?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10034"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10036"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10036"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="12"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10037"
+	 kb:currentName="http://who.int/icd#A05.0"
+	 rdfs:label="http://who.int/icd#A05.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10038"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10038"
+	 kb:author="SNOMED Mapper">
+	<kb:body>This bacterial food poisoning  is carried out only by  S. Aureus via an enterotoxin: Should the toxin be in the aetiology mechanism.</kb:body>
+	<kb:subject>This bacterial food poisoning  is carried out only by  S. Aureus via an enterotoxin: Should the toxin be in the aetiology mechanism.</kb:subject>
+	<rdfs:label>This bacterial food poisoning  is carried out only by  S. Aureus via an enterotoxin: Should the toxin be in the aetiology mechanism.</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10037"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10039"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10039"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="13"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10040"
+	 kb:currentName="http://who.int/icd#A05.1"
+	 rdfs:label="http://who.int/icd#A05.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10041"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10041"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is it clear reading the content model that it is a foodborne neurotoxin?</kb:body>
+	<kb:subject>Is it clear reading the content model that it is a foodborne neurotoxin?</kb:subject>
+	<rdfs:label>Is it clear reading the content model that it is a foodborne neurotoxin?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10040"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10042"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10042"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="14"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10043"
+	 kb:currentName="http://who.int/icd#A05.3"
+	 rdfs:label="http://who.int/icd#A05.3">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10044"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10044"
+	 kb:author="SNOMED Mapper">
+	<kb:body>The two clinical manifestation are different. Enteritis necroticans is not properly foodborne since is produced by a toxin produced after the ingestion of food.</kb:body>
+	<kb:subject>The two clinical manifestation are different. Enteritis necroticans is not properly foodborne since is produced by a toxin produced after the ingestion of food.</kb:subject>
+	<rdfs:label>The two clinical manifestation are different. Enteritis necroticans is not properly foodborne since is produced by a toxin produced after the ingestion of food.</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10043"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10045"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10045"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="15"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10046"
+	 kb:currentName="http://who.int/icd#A05.4"
+	 rdfs:label="http://who.int/icd#A05.4">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10047"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10047"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Aetiology mechanism should be staphylococcus like enterotoxin for the emetic form and enterotoxin resembling E. Coli for the diarrheal form</kb:body>
+	<kb:subject>Aetiology mechanism should be staphylococcus like enterotoxin for the emetic form and enterotoxin resembling E. Coli for the diarrheal form</kb:subject>
+	<rdfs:label>Aetiology mechanism should be staphylococcus like enterotoxin for the emetic form and enterotoxin resembling E. Coli for the diarrheal form</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10046"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10048"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10048"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="16"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10049"
+	 kb:currentName="http://who.int/icd#A06"
+	 rdfs:label="http://who.int/icd#A06">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10050"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10050"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Intestinal infection is carried out both by E. histolytica and E. Dispar. Only E. hystolitica is invasive and therefore can produce extraintestinal manifestation. Is the classification coherent?</kb:body>
+	<kb:subject>Intestinal infection is carried out both by E. histolytica and E. Dispar. Only E. hystolitica is invasive and therefore can produce extraintestinal manifestation. Is the classification coherent?</kb:subject>
+	<rdfs:label>Intestinal infection is carried out both by E. histolytica and E. Dispar. Only E. hystolitica is invasive and therefore can produce extraintestinal manifestation. Is the classification coherent?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10049"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10051"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10051"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="17"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10052"
+	 kb:currentName="http://who.int/icd#A06.3"
+	 rdfs:label="http://who.int/icd#A06.3">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10053"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10053"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Amoeboma is not properly a disease since it's a mass lesion of the bowel lumen.</kb:body>
+	<kb:subject>Amoeboma is not properly a disease since it's a mass lesion of the bowel lumen.</kb:subject>
+	<rdfs:label>Amoeboma is not properly a disease since it's a mass lesion of the bowel lumen.</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10052"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10054"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10054"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="18"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10055"
+	 kb:currentName="http://who.int/icd#A07.2"
+	 rdfs:label="http://who.int/icd#A07.2">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10056"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10056"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Cryptosporidium has different subspecies. C. parvi and C. homini are responsible for most infections in humans. Is the classification coherent?</kb:body>
+	<kb:subject>Cryptosporidium has different subspecies. C. parvi and C. homini are responsible for most infections in humans. Is the classification coherent?</kb:subject>
+	<rdfs:label>Cryptosporidium has different subspecies. C. parvi and C. homini are responsible for most infections in humans. Is the classification coherent?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10055"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10057"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10057"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="19"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10058"
+	 kb:currentName="http://who.int/icd#A15.6"
+	 rdfs:label="http://who.int/icd#A15.6">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10059"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10059"
+	 kb:author="SNOMED Mapper">
+	<kb:body xml:space='preserve'><![CDATA[Is this referring to a diagnosis on pleural effusion liquid or in biopsy specimen? Wouldn't "cytologically confirmed" be more appropriate?]]></kb:body>
+	<kb:subject xml:space='preserve'><![CDATA[Is this referring to a diagnosis on pleural effusion liquid or in biopsy specimen? Wouldn't "cytologically confirmed" be more appropriate?]]></kb:subject>
+	<rdfs:label xml:space='preserve'><![CDATA[Is this referring to a diagnosis on pleural effusion liquid or in biopsy specimen? Wouldn't "cytologically confirmed" be more appropriate?]]></rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10058"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10060"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10060"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="20"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10061"
+	 kb:currentName="http://who.int/icd#A17.1"
+	 rdfs:label="http://who.int/icd#A17.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10062"/>
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10064"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10062"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Tuberculoma can refer to all central nervous system lesions and not specifically to meninges. Should there be an entry for tuberculoma of other sites?</kb:body>
+	<kb:subject>Tuberculoma can refer to all central nervous system lesions and not specifically to meninges. Should there be an entry for tuberculoma of other sites?</kb:subject>
+	<rdfs:label>Tuberculoma can refer to all central nervous system lesions and not specifically to meninges. Should there be an entry for tuberculoma of other sites?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10061"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10063"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10063"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="21"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10064"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is "space-occupying lesion" suitable for an  aetiology mechanism? The most common feature are seizures and focal signs.</kb:body>
+	<kb:subject>Is "space-occupying lesion" suitable for an  aetiology mechanism? The most common feature are seizures and focal signs.</kb:subject>
+	<rdfs:label>Is "space-occupying lesion" suitable for an  aetiology mechanism? The most common feature are seizures and focal signs.</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10061"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10065"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10065"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="22"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10066"
+	 kb:currentName="http://who.int/icd#A22.7"
+	 rdfs:label="http://who.int/icd#A22.7">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10067"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10067"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10066"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10068"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10068"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="23"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10069"
+	 kb:currentName="http://who.int/icd#A26.7"
+	 rdfs:label="http://who.int/icd#A26.7">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10070"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10070"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10069"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10071"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10071"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="24"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10072"
+	 kb:currentName="http://who.int/icd#A32.7"
+	 rdfs:label="http://who.int/icd#A32.7">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10073"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10073"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10072"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10074"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10074"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="25"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10075"
+	 kb:currentName="http://who.int/icd#A40"
+	 rdfs:label="http://who.int/icd#A40">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10076"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10076"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10075"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10077"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10077"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="26"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10078"
+	 kb:currentName="http://who.int/icd#A40.0"
+	 rdfs:label="http://who.int/icd#A40.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10079"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10079"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10078"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10080"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10080"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="27"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10081"
+	 kb:currentName="http://who.int/icd#A40.1"
+	 rdfs:label="http://who.int/icd#A40.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10082"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10082"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10081"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10083"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10083"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="28"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10084"
+	 kb:currentName="http://who.int/icd#A40.2"
+	 rdfs:label="http://who.int/icd#A40.2">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10085"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10085"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10084"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10086"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10086"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="29"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10087"
+	 kb:currentName="http://who.int/icd#A40.3"
+	 rdfs:label="http://who.int/icd#A40.3">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10088"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10088"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10087"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10089"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10089"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="30"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10090"
+	 kb:currentName="http://who.int/icd#A40.8"
+	 rdfs:label="http://who.int/icd#A40.8">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10091"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10091"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10090"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10092"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10092"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="31"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10093"
+	 kb:currentName="http://who.int/icd#A40.9"
+	 rdfs:label="http://who.int/icd#A40.9">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10094"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10094"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10093"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10095"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10095"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="32"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10096"
+	 kb:currentName="http://who.int/icd#A41"
+	 rdfs:label="http://who.int/icd#A41">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10097"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10097"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10096"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10098"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10098"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="33"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10099"
+	 kb:currentName="http://who.int/icd#A41.0"
+	 rdfs:label="http://who.int/icd#A41.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10100"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10100"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10099"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10101"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10101"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="34"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10102"
+	 kb:currentName="http://who.int/icd#A41.1"
+	 rdfs:label="http://who.int/icd#A41.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10103"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10103"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10102"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10104"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10104"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="35"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10105"
+	 kb:currentName="http://who.int/icd#A41.2"
+	 rdfs:label="http://who.int/icd#A41.2">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10106"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10106"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10105"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10107"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10107"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="36"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10108"
+	 kb:currentName="http://who.int/icd#A41.3"
+	 rdfs:label="http://who.int/icd#A41.3">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10109"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10109"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10108"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10110"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10110"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="37"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10111"
+	 kb:currentName="http://who.int/icd#A41.4"
+	 rdfs:label="http://who.int/icd#A41.4">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10112"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10112"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10111"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10113"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10113"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="38"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10114"
+	 kb:currentName="http://who.int/icd#A41.5"
+	 rdfs:label="http://who.int/icd#A41.5">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10115"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10115"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10114"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10116"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10116"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="39"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10117"
+	 kb:currentName="http://who.int/icd#A41.8"
+	 rdfs:label="http://who.int/icd#A41.8">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10118"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10118"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10117"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10119"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10119"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="40"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10120"
+	 kb:currentName="http://who.int/icd#A41.9"
+	 rdfs:label="http://who.int/icd#A41.9">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10121"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10121"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10120"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10122"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10122"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="41"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10123"
+	 kb:currentName="http://who.int/icd#A42.7"
+	 rdfs:label="http://who.int/icd#A42.7">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10124"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10124"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Septicaemia is medically problematic and should be avoided"
+	 kb:subject="Septicaemia is medically problematic and should be avoided"
+	 rdfs:label="Septicaemia is medically problematic and should be avoided">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10123"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10125"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10125"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="42"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10126"
+	 kb:currentName="http://who.int/icd#A54"
+	 rdfs:label="http://who.int/icd#A54">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10127"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10127"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Neisseria gonorrhoeae instead of Gonococcus as causal agent?"
+	 kb:subject="Neisseria gonorrhoeae instead of Gonococcus as causal agent?"
+	 rdfs:label="Neisseria gonorrhoeae instead of Gonococcus as causal agent?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10126"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10128"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10128"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="43"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10129"
+	 kb:currentName="http://who.int/icd#C13.1"
+	 rdfs:label="http://who.int/icd#C13.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10130"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10130"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is this entry coherent? Aryepiglottic fold neoplasms arise from the same squamous respiratory tissue that is found in hypopharinx: It's not clear what should be the meaning of hypopharyngeal aspect..</kb:body>
+	<kb:subject>Is this entry coherent? Aryepiglottic fold neoplasms arise from the same squamous respiratory tissue that is found in hypopharinx: It's not clear what should be the meaning of hypopharyngeal aspect..</kb:subject>
+	<rdfs:label>Is this entry coherent? Aryepiglottic fold neoplasms arise from the same squamous respiratory tissue that is found in hypopharinx: It's not clear what should be the meaning of hypopharyngeal aspect..</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10129"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10131"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10131"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="44"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10132"
+	 kb:currentName="http://who.int/icd#C81.0"
+	 rdfs:label="http://who.int/icd#C81.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10133"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10133"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Nodular-lymphocyte predominant HD is now recognised as an entity distinct from classical HD and has a number of characteristics that suggest it's relationship to non-Hodgkin Lymphoma. Is a change in classification to be suggested?</kb:body>
+	<kb:subject>Nodular-lymphocyte predominant HD is now recognised as an entity distinct from classical HD and has a number of characteristics that suggest it's relationship to non-Hodgkin Lymphoma. Is a change in classification to be suggested?</kb:subject>
+	<rdfs:label>Nodular-lymphocyte predominant HD is now recognised as an entity distinct from classical HD and has a number of characteristics that suggest it's relationship to non-Hodgkin Lymphoma. Is a change in classification to be suggested?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10132"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10134"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10134"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="45"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10135"
+	 kb:currentName="http://who.int/icd#C83.7"
+	 rdfs:label="http://who.int/icd#C83.7">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10136"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10136"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is the name Burkitt's tumour still in use? Burkitt's lyphoma is probably more correct and Burkitt's leukemia should be used as a synonym</kb:body>
+	<kb:subject>Is the name Burkitt's tumour still in use? Burkitt's lyphoma is probably more correct and Burkitt's leukemia should be used as a synonym</kb:subject>
+	<rdfs:label>Is the name Burkitt's tumour still in use? Burkitt's lyphoma is probably more correct and Burkitt's leukemia should be used as a synonym</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10135"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10137"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10137"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="46"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10138"
+	 kb:currentName="http://who.int/icd#C90"
+	 rdfs:label="http://who.int/icd#C90">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10139"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10139"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Rather than a disease isn't it a Plasma cell disorder?"
+	 kb:subject="Rather than a disease isn't it a Plasma cell disorder?"
+	 rdfs:label="Rather than a disease isn't it a Plasma cell disorder?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10138"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10140"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10140"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="47"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10141"
+	 kb:currentName="http://who.int/icd#D07.5"
+	 rdfs:label="http://who.int/icd#D07.5">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10142"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10142"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is the definition of carcinoma in situ of the prostate still correct?</kb:body>
+	<kb:subject>Is the definition of carcinoma in situ of the prostate still correct?</kb:subject>
+	<rdfs:label>Is the definition of carcinoma in situ of the prostate still correct?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10141"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10143"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10143"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="48"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10144"
+	 kb:currentName="http://who.int/icd#F00-F09"
+	 rdfs:label="http://who.int/icd#F00-F09">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10145"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10145"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10144"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10146"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10146"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="49"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10147"
+	 kb:currentName="http://who.int/icd#F00"
+	 rdfs:label="http://who.int/icd#F00">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10148"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10148"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10147"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10149"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10149"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="50"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10150"
+	 kb:currentName="http://who.int/icd#F00.0"
+	 rdfs:label="http://who.int/icd#F00.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10151"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10151"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10150"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10152"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10152"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="51"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10153"
+	 kb:currentName="http://who.int/icd#F00.1"
+	 rdfs:label="http://who.int/icd#F00.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10154"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10154"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10153"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10155"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10155"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="52"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10156"
+	 kb:currentName="http://who.int/icd#F00.2"
+	 rdfs:label="http://who.int/icd#F00.2">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10157"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10157"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10156"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10158"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10158"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="53"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10159"
+	 kb:currentName="http://who.int/icd#F00.9"
+	 rdfs:label="http://who.int/icd#F00.9">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10160"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10160"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10159"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10161"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10161"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="54"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10162"
+	 kb:currentName="http://who.int/icd#F01"
+	 rdfs:label="http://who.int/icd#F01">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10163"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10163"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10162"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10164"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10164"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="55"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10165"
+	 kb:currentName="http://who.int/icd#F01.0"
+	 rdfs:label="http://who.int/icd#F01.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10166"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10166"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10165"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10167"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10167"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="56"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10168"
+	 kb:currentName="http://who.int/icd#F01.1"
+	 rdfs:label="http://who.int/icd#F01.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10169"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10169"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10168"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10170"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10170"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="57"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10171"
+	 kb:currentName="http://who.int/icd#F01.2"
+	 rdfs:label="http://who.int/icd#F01.2">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10172"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10172"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10171"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10173"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10173"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="58"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10174"
+	 kb:currentName="http://who.int/icd#F01.3"
+	 rdfs:label="http://who.int/icd#F01.3">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10175"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10175"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10174"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10176"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10176"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="59"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10177"
+	 kb:currentName="http://who.int/icd#F01.8"
+	 rdfs:label="http://who.int/icd#F01.8">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10178"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10178"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10177"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10179"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10179"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="60"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10180"
+	 kb:currentName="http://who.int/icd#F01.9"
+	 rdfs:label="http://who.int/icd#F01.9">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10181"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10181"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10180"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10182"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10182"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="61"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10183"
+	 kb:currentName="http://who.int/icd#F02"
+	 rdfs:label="http://who.int/icd#F02">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10184"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10184"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10183"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10185"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10185"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="62"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10186"
+	 kb:currentName="http://who.int/icd#F02.0"
+	 rdfs:label="http://who.int/icd#F02.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10187"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10187"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10186"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10188"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10188"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="63"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10189"
+	 kb:currentName="http://who.int/icd#F02.1"
+	 rdfs:label="http://who.int/icd#F02.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10190"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10190"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10189"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10191"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10191"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="64"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10192"
+	 kb:currentName="http://who.int/icd#F02.2"
+	 rdfs:label="http://who.int/icd#F02.2">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10193"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10193"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10192"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10194"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10194"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="65"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10195"
+	 kb:currentName="http://who.int/icd#F02.3"
+	 rdfs:label="http://who.int/icd#F02.3">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10196"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10196"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10195"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10197"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10197"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="66"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10198"
+	 kb:currentName="http://who.int/icd#F02.4"
+	 rdfs:label="http://who.int/icd#F02.4">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10199"/>
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10201"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10199"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10198"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10200"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10200"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="67"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10201"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is a more suitable definition needed?: HCNI (HIV associated neurocognitive impairment), AIDS dementia complex or HIV encephalopaty</kb:body>
+	<kb:subject>Is a more suitable definition needed?: HCNI (HIV associated neurocognitive impairment), AIDS dementia complex or HIV encephalopaty</kb:subject>
+	<rdfs:label>Is a more suitable definition needed?: HCNI (HIV associated neurocognitive impairment), AIDS dementia complex or HIV encephalopaty</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10198"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10202"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10202"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="68"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10203"
+	 kb:currentName="http://who.int/icd#F02.8"
+	 rdfs:label="http://who.int/icd#F02.8">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10204"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10204"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10203"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10205"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10205"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="69"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10206"
+	 kb:currentName="http://who.int/icd#F03"
+	 rdfs:label="http://who.int/icd#F03">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10207"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10207"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10206"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10208"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10208"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="70"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10209"
+	 kb:currentName="http://who.int/icd#F04"
+	 rdfs:label="http://who.int/icd#F04">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10210"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10210"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10209"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10211"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10211"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="71"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10212"
+	 kb:currentName="http://who.int/icd#F05"
+	 rdfs:label="http://who.int/icd#F05">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10213"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10213"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10212"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10214"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10214"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="72"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10215"
+	 kb:currentName="http://who.int/icd#F05.0"
+	 rdfs:label="http://who.int/icd#F05.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10216"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10216"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10215"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10217"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10217"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="73"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10218"
+	 kb:currentName="http://who.int/icd#F05.1"
+	 rdfs:label="http://who.int/icd#F05.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10219"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10219"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10218"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10220"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10220"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="74"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10221"
+	 kb:currentName="http://who.int/icd#F05.8"
+	 rdfs:label="http://who.int/icd#F05.8">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10222"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10222"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10221"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10223"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10223"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="75"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10224"
+	 kb:currentName="http://who.int/icd#F05.9"
+	 rdfs:label="http://who.int/icd#F05.9">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10225"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10225"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10224"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10226"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10226"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="76"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10227"
+	 kb:currentName="http://who.int/icd#F06"
+	 rdfs:label="http://who.int/icd#F06">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10228"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10228"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10227"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10229"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10229"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="77"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10230"
+	 kb:currentName="http://who.int/icd#F06.0"
+	 rdfs:label="http://who.int/icd#F06.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10231"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10231"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10230"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10232"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10232"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="78"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10233"
+	 kb:currentName="http://who.int/icd#F06.1"
+	 rdfs:label="http://who.int/icd#F06.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10234"/>
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10236"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10234"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10233"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10235"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10235"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="79"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10236"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Catatonia in symptoms and sign could be incorrect since "catatonia" refers specifically to a "hypomobile and mute syndrome that arises as a part of major psychosis usually schizophrenia or major depression"..Should we just leave "catatonic"as an adjective referring to the type of signs and symptoms?</kb:body>
+	<kb:subject>Catatonia in symptoms and sign could be incorrect since "catatonia" refers specifically to a "hypomobile and mute syndrome that arises as a part of major psychosis usually schizophrenia or major depression"..Should we just leave "catatonic"as an adjective referring to the type of signs and symptoms?</kb:subject>
+	<rdfs:label>Catatonia in symptoms and sign could be incorrect since "catatonia" refers specifically to a "hypomobile and mute syndrome that arises as a part of major psychosis usually schizophrenia or major depression"..Should we just leave "catatonic"as an adjective referring to the type of signs and symptoms?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10233"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10237"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10237"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="80"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10238"
+	 kb:currentName="http://who.int/icd#F06.2"
+	 rdfs:label="http://who.int/icd#F06.2">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10239"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10239"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10238"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10240"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10240"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="81"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10241"
+	 kb:currentName="http://who.int/icd#F06.3"
+	 rdfs:label="http://who.int/icd#F06.3">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10242"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10242"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10241"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10243"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10243"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="82"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10244"
+	 kb:currentName="http://who.int/icd#F06.4"
+	 rdfs:label="http://who.int/icd#F06.4">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10245"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10245"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10244"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10246"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10246"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="83"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10247"
+	 kb:currentName="http://who.int/icd#F06.5"
+	 rdfs:label="http://who.int/icd#F06.5">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10248"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10248"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10247"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10249"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10249"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="84"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10250"
+	 kb:currentName="http://who.int/icd#F06.6"
+	 rdfs:label="http://who.int/icd#F06.6">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10251"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10251"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10250"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10252"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10252"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="85"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10253"
+	 kb:currentName="http://who.int/icd#F06.7"
+	 rdfs:label="http://who.int/icd#F06.7">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10254"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10254"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10253"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10255"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10255"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="86"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10256"
+	 kb:currentName="http://who.int/icd#F06.8"
+	 rdfs:label="http://who.int/icd#F06.8">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10257"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10257"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10256"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10258"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10258"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="87"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10259"
+	 kb:currentName="http://who.int/icd#F06.9"
+	 rdfs:label="http://who.int/icd#F06.9">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10260"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10260"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10259"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10261"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10261"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="88"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10262"
+	 kb:currentName="http://who.int/icd#F07"
+	 rdfs:label="http://who.int/icd#F07">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10263"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10263"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10262"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10264"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10264"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="89"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10265"
+	 kb:currentName="http://who.int/icd#F07.0"
+	 rdfs:label="http://who.int/icd#F07.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10266"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10266"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10265"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10267"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10267"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="90"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10268"
+	 kb:currentName="http://who.int/icd#F07.1"
+	 rdfs:label="http://who.int/icd#F07.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10269"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10269"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10268"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10270"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10270"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="91"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10271"
+	 kb:currentName="http://who.int/icd#F07.2"
+	 rdfs:label="http://who.int/icd#F07.2">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10272"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10272"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10271"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10273"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10273"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="92"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10274"
+	 kb:currentName="http://who.int/icd#F07.8"
+	 rdfs:label="http://who.int/icd#F07.8">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10275"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10275"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10274"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10276"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10276"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="93"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10277"
+	 kb:currentName="http://who.int/icd#F07.9"
+	 rdfs:label="http://who.int/icd#F07.9">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10278"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10278"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10277"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10279"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10279"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="94"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10280"
+	 kb:currentName="http://who.int/icd#F09"
+	 rdfs:label="http://who.int/icd#F09">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10281"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10281"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:body>
+	<kb:subject>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </kb:subject>
+	<rdfs:label>Alzheimer's disease, dementia, and the other entries F00 to F09 should move to chapter 6 diseases of the nervous system. </rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10280"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10282"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10282"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="95"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10283"
+	 kb:currentName="http://who.int/icd#F20-F29"
+	 rdfs:label="http://who.int/icd#F20-F29">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10284"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10284"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is brain correct as anatomical site for a psychiatric disease? By definition this should not be an overt disease of the brain.</kb:body>
+	<kb:subject>Is brain correct as anatomical site for a psychiatric disease? By definition this should not be an overt disease of the brain.</kb:subject>
+	<rdfs:label>Is brain correct as anatomical site for a psychiatric disease? By definition this should not be an overt disease of the brain.</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10283"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10285"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10285"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="96"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10286"
+	 kb:currentName="http://who.int/icd#F20.2"
+	 rdfs:label="http://who.int/icd#F20.2">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10287"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10287"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Catatonia in symptoms and sign could be incorrect since "catatonia" refers specifically to a "hypomobile and mute syndrome that arises as a part of major psychosis usually schizophrenia or major depression"..Should we just leave "catatonic"as an adjective referring to the type of signs and symptoms?</kb:body>
+	<kb:subject>Catatonia in symptoms and sign could be incorrect since "catatonia" refers specifically to a "hypomobile and mute syndrome that arises as a part of major psychosis usually schizophrenia or major depression"..Should we just leave "catatonic"as an adjective referring to the type of signs and symptoms?</kb:subject>
+	<rdfs:label>Catatonia in symptoms and sign could be incorrect since "catatonia" refers specifically to a "hypomobile and mute syndrome that arises as a part of major psychosis usually schizophrenia or major depression"..Should we just leave "catatonic"as an adjective referring to the type of signs and symptoms?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10286"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10288"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10288"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="97"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10289"
+	 kb:currentName="http://who.int/icd#F31"
+	 rdfs:label="http://who.int/icd#F31">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10290"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10290"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Bipolar disorders require, by definition, at least two episodes.. Should we use this information somewhere like in episodicity?</kb:body>
+	<kb:subject>Bipolar disorders require, by definition, at least two episodes.. Should we use this information somewhere like in episodicity?</kb:subject>
+	<rdfs:label>Bipolar disorders require, by definition, at least two episodes.. Should we use this information somewhere like in episodicity?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10289"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10291"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10291"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="98"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10292"
+	 kb:currentName="http://who.int/icd#F31.0"
+	 rdfs:label="http://who.int/icd#F31.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10293"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10293"
+	 kb:author="SNOMED Mapper">
+	<kb:body>We are talking about a specific episode of a disorder consisting of two or more episodes..are we able to put this information in?</kb:body>
+	<kb:subject>We are talking about a specific episode of a disorder consisting of two or more episodes..are we able to put this information in?</kb:subject>
+	<rdfs:label>We are talking about a specific episode of a disorder consisting of two or more episodes..are we able to put this information in?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10292"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10294"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10294"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="99"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10295"
+	 kb:currentName="http://who.int/icd#F32"
+	 rdfs:label="http://who.int/icd#F32">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10296"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10296"
+	 kb:author="SNOMED Mapper"
+	 kb:body='Is "episode" to be put in temporal relationship?'
+	 kb:subject='Is "episode" to be put in temporal relationship?'
+	 rdfs:label='Is "episode" to be put in temporal relationship?'>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10295"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10297"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10297"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="100"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10298"
+	 kb:currentName="http://who.int/icd#F32.0"
+	 rdfs:label="http://who.int/icd#F32.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10299"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10299"
+	 kb:author="SNOMED Mapper"
+	 kb:body='Is "episode" to be put in temporal relationship?'
+	 kb:subject='Is "episode" to be put in temporal relationship?'
+	 rdfs:label='Is "episode" to be put in temporal relationship?'>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10298"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10300"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10300"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="101"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10301"
+	 kb:currentName="http://who.int/icd#F32.1"
+	 rdfs:label="http://who.int/icd#F32.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10302"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10302"
+	 kb:author="SNOMED Mapper"
+	 kb:body='Is "episode" to be put in temporal relationship?'
+	 kb:subject='Is "episode" to be put in temporal relationship?'
+	 rdfs:label='Is "episode" to be put in temporal relationship?'>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10301"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10303"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10303"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="102"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10304"
+	 kb:currentName="http://who.int/icd#F32.9"
+	 rdfs:label="http://who.int/icd#F32.9">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10305"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10305"
+	 kb:author="SNOMED Mapper"
+	 kb:body='Is "episode" to be put in temporal relationship?'
+	 kb:subject='Is "episode" to be put in temporal relationship?'
+	 rdfs:label='Is "episode" to be put in temporal relationship?'>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10304"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10306"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10306"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="103"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10307"
+	 kb:currentName="http://who.int/icd#F43.2"
+	 rdfs:label="http://who.int/icd#F43.2">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10308"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10308"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is the use of stress in aetiology - mechanism correct?  The disorder arises because adaptation mechanisms are compromised  not because of a stress (it could be a life change for instance).</kb:body>
+	<kb:subject>Is the use of stress in aetiology - mechanism correct?  The disorder arises because adaptation mechanisms are compromised  not because of a stress (it could be a life change for instance).</kb:subject>
+	<rdfs:label>Is the use of stress in aetiology - mechanism correct?  The disorder arises because adaptation mechanisms are compromised  not because of a stress (it could be a life change for instance).</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10307"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10309"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10309"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="104"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10310"
+	 kb:currentName="http://who.int/icd#F54"
+	 rdfs:label="http://who.int/icd#F54">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10311"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10311"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Are they disorders or factors influencing other conditions elsewhere classified (asthma, dermatitis..)</kb:body>
+	<kb:subject>Are they disorders or factors influencing other conditions elsewhere classified (asthma, dermatitis..)</kb:subject>
+	<rdfs:label>Are they disorders or factors influencing other conditions elsewhere classified (asthma, dermatitis..)</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10310"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10312"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10312"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="105"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10313"
+	 kb:currentName="http://who.int/icd#F60-F69"
+	 rdfs:label="http://who.int/icd#F60-F69">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10314"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10314"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is brain correct as anatomical site for personality disorder which is by definition not resulting from disease damage or insult of the brain?</kb:body>
+	<kb:subject>Is brain correct as anatomical site for personality disorder which is by definition not resulting from disease damage or insult of the brain?</kb:subject>
+	<rdfs:label>Is brain correct as anatomical site for personality disorder which is by definition not resulting from disease damage or insult of the brain?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10313"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10315"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10315"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="106"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10316"
+	 kb:currentName="http://who.int/icd#F62"
+	 rdfs:label="http://who.int/icd#F62">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10317"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10317"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is a definition of "enduring" possible, giving a time limit? More than 2 years?</kb:body>
+	<kb:subject>Is a definition of "enduring" possible, giving a time limit? More than 2 years?</kb:subject>
+	<rdfs:label>Is a definition of "enduring" possible, giving a time limit? More than 2 years?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10316"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10318"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10318"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="107"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10319"
+	 kb:currentName="http://who.int/icd#F64"
+	 rdfs:label="http://who.int/icd#F64">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10320"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10320"
+	 kb:author="SNOMED Mapper">
+	<kb:body xml:space='preserve'><![CDATA[Is anatomical site "brain" actually suitable for gender identity disorders?  It 's kind of chicken and egg paradigma: careful thinking is needed.]]></kb:body>
+	<kb:subject xml:space='preserve'><![CDATA[Is anatomical site "brain" actually suitable for gender identity disorders?  It 's kind of chicken and egg paradigma: careful thinking is needed.]]></kb:subject>
+	<rdfs:label xml:space='preserve'><![CDATA[Is anatomical site "brain" actually suitable for gender identity disorders?  It 's kind of chicken and egg paradigma: careful thinking is needed.]]></rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10319"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10321"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10321"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="108"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10322"
+	 kb:currentName="http://who.int/icd#F70-F79"
+	 rdfs:label="http://who.int/icd#F70-F79">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10323"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10323"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Retardation bears in itself the meaning of a delay and therefore could be seen as stigmatizing. Intellectual disability, developmental disability..?</kb:body>
+	<kb:subject>Retardation bears in itself the meaning of a delay and therefore could be seen as stigmatizing. Intellectual disability, developmental disability..?</kb:subject>
+	<rdfs:label>Retardation bears in itself the meaning of a delay and therefore could be seen as stigmatizing. Intellectual disability, developmental disability..?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10322"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10324"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10324"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="109"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10325"
+	 kb:currentName="http://who.int/icd#F80.3"
+	 rdfs:label="http://who.int/icd#F80.3">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10326"/>
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10328"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10326"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Nelson textbook of pediatrics: Landau-Kleffner Syndrome or verbal auditory agnosia</kb:body>
+	<kb:subject>Nelson textbook of pediatrics: Landau-Kleffner Syndrome or verbal auditory agnosia</kb:subject>
+	<rdfs:label>Nelson textbook of pediatrics: Landau-Kleffner Syndrome or verbal auditory agnosia</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10325"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10327"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10327"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="110"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10328"
+	 kb:author="SNOMED Mapper">
+	<kb:body>It's not a proper aphasia: it's a regression of the ability to comprehend spoken language.</kb:body>
+	<kb:subject>It's not a proper aphasia: it's a regression of the ability to comprehend spoken language.</kb:subject>
+	<rdfs:label>It's not a proper aphasia: it's a regression of the ability to comprehend spoken language.</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10325"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10329"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10329"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="111"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10330"
+	 kb:currentName="http://who.int/icd#F84.3"
+	 rdfs:label="http://who.int/icd#F84.3">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10331"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10331"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Childhood disintegrative disorder is a well defined diagnosis a.k.a. Heller Dementia</kb:body>
+	<kb:subject>Childhood disintegrative disorder is a well defined diagnosis a.k.a. Heller Dementia</kb:subject>
+	<rdfs:label>Childhood disintegrative disorder is a well defined diagnosis a.k.a. Heller Dementia</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10330"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10332"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10332"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="112"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10333"
+	 kb:currentName="http://who.int/icd#F90-F98"
+	 rdfs:label="http://who.int/icd#F90-F98">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10334"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10334"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Should a temporal limit be choosen for childhood and adolescence?</kb:body>
+	<kb:subject>Should a temporal limit be choosen for childhood and adolescence?</kb:subject>
+	<rdfs:label>Should a temporal limit be choosen for childhood and adolescence?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10333"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10335"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10335"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="113"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10336"
+	 kb:currentName="http://who.int/icd#F94.0"
+	 rdfs:label="http://who.int/icd#F94.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10337"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10337"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is a temporal limit needed for the diagnosis? First five years of life?</kb:body>
+	<kb:subject>Is a temporal limit needed for the diagnosis? First five years of life?</kb:subject>
+	<rdfs:label>Is a temporal limit needed for the diagnosis? First five years of life?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10336"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10338"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10338"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="114"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10339"
+	 kb:currentName="http://who.int/icd#F94.1"
+	 rdfs:label="http://who.int/icd#F94.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10340"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10340"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is a temporal limit needed for the diagnosis? First five years of life?</kb:body>
+	<kb:subject>Is a temporal limit needed for the diagnosis? First five years of life?</kb:subject>
+	<rdfs:label>Is a temporal limit needed for the diagnosis? First five years of life?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10339"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10341"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10341"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="115"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10342"
+	 kb:currentName="http://who.int/icd#G00.0"
+	 rdfs:label="http://who.int/icd#G00.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10343"/>
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10345"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10343"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is this subdivision still suitable? Haemophilus influenza has had a dramatic decline neisseria m. accounts for a quarter of bacterial meningitis..</kb:body>
+	<kb:subject>Is this subdivision still suitable? Haemophilus influenza has had a dramatic decline neisseria m. accounts for a quarter of bacterial meningitis..</kb:subject>
+	<rdfs:label>Is this subdivision still suitable? Haemophilus influenza has had a dramatic decline neisseria m. accounts for a quarter of bacterial meningitis..</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10342"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10344"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10344"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="116"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10345"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is there the need for the introduction of "community-acquired" criteria?</kb:body>
+	<kb:subject>Is there the need for the introduction of "community-acquired" criteria?</kb:subject>
+	<rdfs:label>Is there the need for the introduction of "community-acquired" criteria?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10342"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10346"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10346"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="117"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10347"
+	 kb:currentName="http://who.int/icd#G00.1"
+	 rdfs:label="http://who.int/icd#G00.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10348"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10348"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Pneumococcus is a type of streptococcus (S. pneumoniae). Should the titles of the codes G00.1 and G00.2  be reviewed?</kb:body>
+	<kb:subject>Pneumococcus is a type of streptococcus (S. pneumoniae). Should the titles of the codes G00.1 and G00.2  be reviewed?</kb:subject>
+	<rdfs:label>Pneumococcus is a type of streptococcus (S. pneumoniae). Should the titles of the codes G00.1 and G00.2  be reviewed?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10347"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10349"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10349"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="118"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10350"
+	 kb:currentName="http://who.int/icd#G03.2"
+	 rdfs:label="http://who.int/icd#G03.2">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10351"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10351"
+	 kb:author="SNOMED Mapper">
+	<kb:body xml:space='preserve'><![CDATA[Is this defnition still suitable? Or just "recurrent meningitis" with "Mollaret's meningitis" as a synonym?]]></kb:body>
+	<kb:subject xml:space='preserve'><![CDATA[Is this defnition still suitable? Or just "recurrent meningitis" with "Mollaret's meningitis" as a synonym?]]></kb:subject>
+	<rdfs:label xml:space='preserve'><![CDATA[Is this defnition still suitable? Or just "recurrent meningitis" with "Mollaret's meningitis" as a synonym?]]></rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10350"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10352"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10352"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="119"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10353"
+	 kb:currentName="http://who.int/icd#G04.1"
+	 rdfs:label="http://who.int/icd#G04.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10354"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10354"
+	 kb:author="SNOMED Mapper">
+	<kb:body>The features are initially papaparesis and then paraplegia. We should prefer the name Tropical spastic paraparesis (used in Harrison's P.o.i.m.) which includes both.</kb:body>
+	<kb:subject>The features are initially papaparesis and then paraplegia. We should prefer the name Tropical spastic paraparesis (used in Harrison's P.o.i.m.) which includes both.</kb:subject>
+	<rdfs:label>The features are initially papaparesis and then paraplegia. We should prefer the name Tropical spastic paraparesis (used in Harrison's P.o.i.m.) which includes both.</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10353"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10355"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10355"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="120"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10356"
+	 kb:currentName="http://who.int/icd#G06"
+	 rdfs:label="http://who.int/icd#G06">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10357"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10357"
+	 kb:author="SNOMED Mapper">
+	<kb:body>An aetiology of infection is appropraite for abscess but not always for granuloma.</kb:body>
+	<kb:subject>An aetiology of infection is appropraite for abscess but not always for granuloma.</kb:subject>
+	<rdfs:label>An aetiology of infection is appropraite for abscess but not always for granuloma.</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10356"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10358"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10358"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="121"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10359"
+	 kb:currentName="http://who.int/icd#G06.0"
+	 rdfs:label="http://who.int/icd#G06.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10360"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10360"
+	 kb:author="SNOMED Mapper">
+	<kb:body>An aetiology of infection is appropraite for abscess but not always for granuloma.</kb:body>
+	<kb:subject>An aetiology of infection is appropraite for abscess but not always for granuloma.</kb:subject>
+	<rdfs:label>An aetiology of infection is appropraite for abscess but not always for granuloma.</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10359"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10361"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10361"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="122"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10362"
+	 kb:currentName="http://who.int/icd#G11"
+	 rdfs:label="http://who.int/icd#G11">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10363"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10363"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Should the classification of inherited ataxias be reviewed? A classification based on clinical features or a genomic one including locus and phenotypebe more appropriate?</kb:body>
+	<kb:subject>Should the classification of inherited ataxias be reviewed? A classification based on clinical features or a genomic one including locus and phenotypebe more appropriate?</kb:subject>
+	<rdfs:label>Should the classification of inherited ataxias be reviewed? A classification based on clinical features or a genomic one including locus and phenotypebe more appropriate?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10362"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10364"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10364"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="123"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10365"
+	 kb:currentName="http://who.int/icd#G23.2"
+	 rdfs:label="http://who.int/icd#G23.2">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10366"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10366"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Should  the name be changed according to classification of multiple system atrophies: multiple system atrophy with predominantly parkinsonian features (MSA-P).. MSA-a, "a" = autonomic dysfunction subtype should be used instead of for Shy-Drager syndrome and MSA - c, "c" = cerebellar dysfunction subtype for Sporadic Olivopontocerebellar atrophy (OPCA)</kb:body>
+	<kb:subject>Should  the name be changed according to classification of multiple system atrophies: multiple system atrophy with predominantly parkinsonian features (MSA-P).. MSA-a, "a" = autonomic dysfunction subtype should be used instead of for Shy-Drager syndrome and MSA - c, "c" = cerebellar dysfunction subtype for Sporadic Olivopontocerebellar atrophy (OPCA)</kb:subject>
+	<rdfs:label>Should  the name be changed according to classification of multiple system atrophies: multiple system atrophy with predominantly parkinsonian features (MSA-P).. MSA-a, "a" = autonomic dysfunction subtype should be used instead of for Shy-Drager syndrome and MSA - c, "c" = cerebellar dysfunction subtype for Sporadic Olivopontocerebellar atrophy (OPCA)</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10365"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10367"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10367"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="124"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10368"
+	 kb:currentName="http://who.int/icd#G30.0"
+	 rdfs:label="http://who.int/icd#G30.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10369"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10369"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Should a  time limit be specified?"
+	 kb:subject="Should a  time limit be specified?"
+	 rdfs:label="Should a  time limit be specified?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10368"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10370"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10370"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="125"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10371"
+	 kb:currentName="http://who.int/icd#G30.1"
+	 rdfs:label="http://who.int/icd#G30.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10372"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10372"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Should a  time limit be specified?"
+	 kb:subject="Should a  time limit be specified?"
+	 rdfs:label="Should a  time limit be specified?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10371"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10373"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10373"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="126"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10374"
+	 kb:currentName="http://who.int/icd#G31.1"
+	 rdfs:label="http://who.int/icd#G31.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10375"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10375"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Should a limit for senile be set?"
+	 kb:subject="Should a limit for senile be set?"
+	 rdfs:label="Should a limit for senile be set?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10374"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10376"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10376"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="127"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10377"
+	 kb:currentName="http://who.int/icd#G51.3"
+	 rdfs:label="http://who.int/icd#G51.3">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10378"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10378"
+	 kb:author="SNOMED Mapper">
+	<kb:body>In this content model  information about hemifacial is lost:  Could be set in extent (half of the face) or manifestation?</kb:body>
+	<kb:subject>In this content model  information about hemifacial is lost:  Could be set in extent (half of the face) or manifestation?</kb:subject>
+	<rdfs:label>In this content model  information about hemifacial is lost:  Could be set in extent (half of the face) or manifestation?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10377"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10379"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10379"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="128"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10380"
+	 kb:currentName="http://who.int/icd#G56.4"
+	 rdfs:label="http://who.int/icd#G56.4">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10381"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10381"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is the name "Complex regional pain syndrome (CRPS) type II" more suitable?</kb:body>
+	<kb:subject>Is the name "Complex regional pain syndrome (CRPS) type II" more suitable?</kb:subject>
+	<rdfs:label>Is the name "Complex regional pain syndrome (CRPS) type II" more suitable?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10380"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10382"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10382"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="129"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10383"
+	 kb:currentName="http://who.int/icd#G61"
+	 rdfs:label="http://who.int/icd#G61">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10384"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10384"
+	 kb:author="SNOMED Mapper"
+	 kb:body='Can "poly"- be considered an extent?'
+	 kb:subject='Can "poly"- be considered an extent?'
+	 rdfs:label='Can "poly"- be considered an extent?'>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10383"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10385"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10385"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="130"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10386"
+	 kb:currentName="http://who.int/icd#G62"
+	 rdfs:label="http://who.int/icd#G62">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10387"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10387"
+	 kb:author="SNOMED Mapper"
+	 kb:body='Can "poly"- be considered an extent?'
+	 kb:subject='Can "poly"- be considered an extent?'
+	 rdfs:label='Can "poly"- be considered an extent?'>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10386"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10388"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10388"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="131"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10389"
+	 kb:currentName="http://who.int/icd#G62.8"
+	 rdfs:label="http://who.int/icd#G62.8">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10390"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10390"
+	 kb:author="SNOMED Mapper"
+	 kb:body='Can "poly"- be considered an extent?'
+	 kb:subject='Can "poly"- be considered an extent?'
+	 rdfs:label='Can "poly"- be considered an extent?'>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10389"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10391"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10391"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="132"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10392"
+	 kb:currentName="http://who.int/icd#H16.1"
+	 rdfs:label="http://who.int/icd#H16.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10393"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10393"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Should we introduce a sort of exclusion column for conjunctivitis?</kb:body>
+	<kb:subject>Should we introduce a sort of exclusion column for conjunctivitis?</kb:subject>
+	<rdfs:label>Should we introduce a sort of exclusion column for conjunctivitis?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10392"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10394"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10394"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="133"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10395"
+	 kb:currentName="http://who.int/icd#H25"
+	 rdfs:label="http://who.int/icd#H25">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10396"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10396"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Should  a time limit be set for senile ?"
+	 kb:subject="Should  a time limit be set for senile ?"
+	 rdfs:label="Should  a time limit be set for senile ?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10395"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10397"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10397"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="134"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10398"
+	 kb:currentName="http://who.int/icd#H26.0"
+	 rdfs:label="http://who.int/icd#H26.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10399"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10399"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Is a definition needed for infantile, juvenile and presenile?</kb:body>
+	<kb:subject>Is a definition needed for infantile, juvenile and presenile?</kb:subject>
+	<rdfs:label>Is a definition needed for infantile, juvenile and presenile?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10398"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10400"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10400"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="135"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10401"
+	 kb:currentName="http://who.int/icd#H26.4"
+	 rdfs:label="http://who.int/icd#H26.4">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10402"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10402"
+	 kb:author="SNOMED Mapper">
+	<kb:body>The inclusion note says secondary cataract which could be generally related to all causes of cataract (after steroid use..)</kb:body>
+	<kb:subject>The inclusion note says secondary cataract which could be generally related to all causes of cataract (after steroid use..)</kb:subject>
+	<rdfs:label>The inclusion note says secondary cataract which could be generally related to all causes of cataract (after steroid use..)</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10401"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10403"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10403"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="136"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10404"
+	 kb:currentName="http://who.int/icd#I15.0"
+	 rdfs:label="http://who.int/icd#I15.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10405"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10405"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Circulatory system is maybe pleonastic within this chapter.."
+	 kb:subject="Circulatory system is maybe pleonastic within this chapter.."
+	 rdfs:label="Circulatory system is maybe pleonastic within this chapter..">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10404"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10406"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10406"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="137"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10407"
+	 kb:currentName="http://who.int/icd#I61.9"
+	 rdfs:label="http://who.int/icd#I61.9">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10408"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10408"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Simply haemorrage in aetiology? The localization appear pleonastic if I put the information in anatomic site too</kb:body>
+	<kb:subject>Simply haemorrage in aetiology? The localization appear pleonastic if I put the information in anatomic site too</kb:subject>
+	<rdfs:label>Simply haemorrage in aetiology? The localization appear pleonastic if I put the information in anatomic site too</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10407"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10409"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10409"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="138"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10410"
+	 kb:currentName="http://who.int/icd#I62.0"
+	 rdfs:label="http://who.int/icd#I62.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10411"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10411"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Simply haemorrage in aetiology?"
+	 kb:subject="Simply haemorrage in aetiology?"
+	 rdfs:label="Simply haemorrage in aetiology?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10410"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10412"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10412"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="139"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10413"
+	 kb:currentName="http://who.int/icd#I62.1"
+	 rdfs:label="http://who.int/icd#I62.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10414"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10414"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Simply haemorrage in aetiology?"
+	 kb:subject="Simply haemorrage in aetiology?"
+	 rdfs:label="Simply haemorrage in aetiology?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10413"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10415"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10415"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="140"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10416"
+	 kb:currentName="http://who.int/icd#I62.9"
+	 rdfs:label="http://who.int/icd#I62.9">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10417"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10417"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Simply haemorrage in aetiology?"
+	 kb:subject="Simply haemorrage in aetiology?"
+	 rdfs:label="Simply haemorrage in aetiology?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10416"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10418"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10418"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="141"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10419"
+	 kb:currentName="http://who.int/icd#I78.1"
+	 rdfs:label="http://who.int/icd#I78.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10420"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10420"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Naevus is too generic and has a meaning generally associeted with melanocitic naevus</kb:body>
+	<kb:subject>Naevus is too generic and has a meaning generally associeted with melanocitic naevus</kb:subject>
+	<rdfs:label>Naevus is too generic and has a meaning generally associeted with melanocitic naevus</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10419"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10421"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10421"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="142"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10422"
+	 kb:currentName="http://who.int/icd#I97.0"
+	 rdfs:label="http://who.int/icd#I97.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10423"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10423"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Should post-cardiotomy pericarditis be here classified ?"
+	 kb:subject="Should post-cardiotomy pericarditis be here classified ?"
+	 rdfs:label="Should post-cardiotomy pericarditis be here classified ?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10422"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10424"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10424"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="143"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10425"
+	 kb:currentName="http://who.int/icd#J01"
+	 rdfs:label="http://who.int/icd#J01">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10426"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10426"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Should the entry be renamed rhinosinusitis, inflammation of the sinuses and of part of the nose?</kb:body>
+	<kb:subject>Should the entry be renamed rhinosinusitis, inflammation of the sinuses and of part of the nose?</kb:subject>
+	<rdfs:label>Should the entry be renamed rhinosinusitis, inflammation of the sinuses and of part of the nose?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10425"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10427"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10427"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="144"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10428"
+	 kb:currentName="http://who.int/icd#J02.0"
+	 rdfs:label="http://who.int/icd#J02.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10429"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10429"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Clinical significance suggests a further subdividision for pharyngitis caused by S. pyogenes or group A beta hemoliticus Streptococcus.</kb:body>
+	<kb:subject>Clinical significance suggests a further subdividision for pharyngitis caused by S. pyogenes or group A beta hemoliticus Streptococcus.</kb:subject>
+	<rdfs:label>Clinical significance suggests a further subdividision for pharyngitis caused by S. pyogenes or group A beta hemoliticus Streptococcus.</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10428"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10430"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10430"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="145"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10431"
+	 kb:currentName="http://who.int/icd#J20-J22"
+	 rdfs:label="http://who.int/icd#J20-J22">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10432"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10432"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Upper respiratory tract inflammations are USUALLY the result of infectious processes but they can be caused from other factors, non infective (occupational or allergic), in this case we know it's infective because is in the block titled infective but the specific code titles do not tell specify infective..</kb:body>
+	<kb:subject>Upper respiratory tract inflammations are USUALLY the result of infectious processes but they can be caused from other factors, non infective (occupational or allergic), in this case we know it's infective because is in the block titled infective but the specific code titles do not tell specify infective..</kb:subject>
+	<rdfs:label>Upper respiratory tract inflammations are USUALLY the result of infectious processes but they can be caused from other factors, non infective (occupational or allergic), in this case we know it's infective because is in the block titled infective but the specific code titles do not tell specify infective..</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10431"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10433"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10433"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="146"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10434"
+	 kb:currentName="http://who.int/icd#J20.9"
+	 rdfs:label="http://who.int/icd#J20.9">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10435"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10435"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Upper respiratory tract inflammations are USUALLY the result of infectious processes but they can be caused from other factors, non infective (occupational or allergic), in this case we know it's infective because is in the block titled infective but the specific code titles do not tell specify infective..</kb:body>
+	<kb:subject>Upper respiratory tract inflammations are USUALLY the result of infectious processes but they can be caused from other factors, non infective (occupational or allergic), in this case we know it's infective because is in the block titled infective but the specific code titles do not tell specify infective..</kb:subject>
+	<rdfs:label>Upper respiratory tract inflammations are USUALLY the result of infectious processes but they can be caused from other factors, non infective (occupational or allergic), in this case we know it's infective because is in the block titled infective but the specific code titles do not tell specify infective..</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10434"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10436"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10436"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="147"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10437"
+	 kb:currentName="http://who.int/icd#J21"
+	 rdfs:label="http://who.int/icd#J21">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10438"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10438"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Upper respiratory tract inflammations are USUALLY the result of infectious processes but they can be caused from other factors, non infective (occupational or allergic), in this case we know it's infective because is in the block titled infective but the specific code titles do not tell specify infective..</kb:body>
+	<kb:subject>Upper respiratory tract inflammations are USUALLY the result of infectious processes but they can be caused from other factors, non infective (occupational or allergic), in this case we know it's infective because is in the block titled infective but the specific code titles do not tell specify infective..</kb:subject>
+	<rdfs:label>Upper respiratory tract inflammations are USUALLY the result of infectious processes but they can be caused from other factors, non infective (occupational or allergic), in this case we know it's infective because is in the block titled infective but the specific code titles do not tell specify infective..</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10437"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10439"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10439"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="148"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10440"
+	 kb:currentName="http://who.int/icd#J21.9"
+	 rdfs:label="http://who.int/icd#J21.9">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10441"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10441"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Upper respiratory tract inflammations are USUALLY the result of infectious processes but they can be caused from other factors, non infective (occupational or allergic), in this case we know it's infective because is in the block titled infective but the specific code titles do not tell specify infective..</kb:body>
+	<kb:subject>Upper respiratory tract inflammations are USUALLY the result of infectious processes but they can be caused from other factors, non infective (occupational or allergic), in this case we know it's infective because is in the block titled infective but the specific code titles do not tell specify infective..</kb:subject>
+	<rdfs:label>Upper respiratory tract inflammations are USUALLY the result of infectious processes but they can be caused from other factors, non infective (occupational or allergic), in this case we know it's infective because is in the block titled infective but the specific code titles do not tell specify infective..</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10440"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10442"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10442"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="149"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10443"
+	 kb:currentName="http://who.int/icd#J43.0"
+	 rdfs:label="http://who.int/icd#J43.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10444"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10444"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Recessively-inherited mutations in the XK gene on chromosome X</kb:body>
+	<kb:subject>Recessively-inherited mutations in the XK gene on chromosome X</kb:subject>
+	<rdfs:label>Recessively-inherited mutations in the XK gene on chromosome X</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10443"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10445"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10445"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="150"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10446"
+	 kb:currentName="http://who.int/icd#J60"
+	 rdfs:label="http://who.int/icd#J60">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10447"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10447"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Pneumoconiosis is an occupational lung disease, should  this information be added?</kb:body>
+	<kb:subject>Pneumoconiosis is an occupational lung disease, should  this information be added?</kb:subject>
+	<rdfs:label>Pneumoconiosis is an occupational lung disease, should  this information be added?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10446"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10448"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10448"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="151"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10449"
+	 kb:currentName="http://who.int/icd#J67.0"
+	 rdfs:label="http://who.int/icd#J67.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10450"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10450"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Thermophilic actinomyces, aspergillus species, saccharopolyspora rectivirgula and micropolyspora faeni are causal agents</kb:body>
+	<kb:subject>Thermophilic actinomyces, aspergillus species, saccharopolyspora rectivirgula and micropolyspora faeni are causal agents</kb:subject>
+	<rdfs:label>Thermophilic actinomyces, aspergillus species, saccharopolyspora rectivirgula and micropolyspora faeni are causal agents</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10449"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10451"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10451"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="152"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10452"
+	 kb:currentName="http://who.int/icd#J67.1"
+	 rdfs:label="http://who.int/icd#J67.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10453"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10453"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Thermophilic actinomyces are causal agent"
+	 kb:subject="Thermophilic actinomyces are causal agent"
+	 rdfs:label="Thermophilic actinomyces are causal agent">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10452"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10454"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10454"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="153"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10455"
+	 kb:currentName="http://who.int/icd#J67.2"
+	 rdfs:label="http://who.int/icd#J67.2">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10456"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10456"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Avian proteins are causal agents"
+	 kb:subject="Avian proteins are causal agents"
+	 rdfs:label="Avian proteins are causal agents">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10455"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10457"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10457"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="154"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10458"
+	 kb:currentName="http://who.int/icd#J67.3"
+	 rdfs:label="http://who.int/icd#J67.3">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10459"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10459"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Penicillum frequentans are causal agents"
+	 kb:subject="Penicillum frequentans are causal agents"
+	 rdfs:label="Penicillum frequentans are causal agents">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10458"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10460"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10460"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="155"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10461"
+	 kb:currentName="http://who.int/icd#J67.4"
+	 rdfs:label="http://who.int/icd#J67.4">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10462"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10462"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Aspergillus clavatus are causal agent"
+	 kb:subject="Aspergillus clavatus are causal agent"
+	 rdfs:label="Aspergillus clavatus are causal agent">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10461"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10463"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10463"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="156"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10464"
+	 kb:currentName="http://who.int/icd#J67.5"
+	 rdfs:label="http://who.int/icd#J67.5">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10465"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10465"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Thermophilic actinomycetes are causal agent"
+	 kb:subject="Thermophilic actinomycetes are causal agent"
+	 rdfs:label="Thermophilic actinomycetes are causal agent">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10464"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10466"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10466"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="157"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10467"
+	 kb:currentName="http://who.int/icd#J67.6"
+	 rdfs:label="http://who.int/icd#J67.6">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10468"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10468"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Cryptostroma corticale as causal agent"
+	 kb:subject="Cryptostroma corticale as causal agent"
+	 rdfs:label="Cryptostroma corticale as causal agent">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10467"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10469"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10469"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="158"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10470"
+	 kb:currentName="http://who.int/icd#J92.0"
+	 rdfs:label="http://who.int/icd#J92.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10471"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10471"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Should this entry be reclassified? What is the meaning of "with the presence of"? Does it mean with an exposure to asbestos? Or with presence of asbestous bodies or with the presence of asbestos fibers?</kb:body>
+	<kb:subject>Should this entry be reclassified? What is the meaning of "with the presence of"? Does it mean with an exposure to asbestos? Or with presence of asbestous bodies or with the presence of asbestos fibers?</kb:subject>
+	<rdfs:label>Should this entry be reclassified? What is the meaning of "with the presence of"? Does it mean with an exposure to asbestos? Or with presence of asbestous bodies or with the presence of asbestos fibers?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10470"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10472"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10472"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="159"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10473"
+	 kb:currentName="http://who.int/icd#K06"
+	 rdfs:label="http://who.int/icd#K06">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10474"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10474"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Should edentulia be in aetiology mechanism?"
+	 kb:subject="Should edentulia be in aetiology mechanism?"
+	 rdfs:label="Should edentulia be in aetiology mechanism?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10473"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10475"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10475"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="160"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10476"
+	 kb:currentName="http://who.int/icd#K06.8"
+	 rdfs:label="http://who.int/icd#K06.8">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10477"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10477"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Should edentulia be in aetiology mechanism?"
+	 kb:subject="Should edentulia be in aetiology mechanism?"
+	 rdfs:label="Should edentulia be in aetiology mechanism?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10476"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10478"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10478"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="161"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10479"
+	 kb:currentName="http://who.int/icd#K08.2"
+	 rdfs:label="http://who.int/icd#K08.2">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10480"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10480"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Should edentulia be in aetiology mechanism?"
+	 kb:subject="Should edentulia be in aetiology mechanism?"
+	 rdfs:label="Should edentulia be in aetiology mechanism?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10479"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10481"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10481"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="162"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10482"
+	 kb:currentName="http://who.int/icd#K14.5"
+	 rdfs:label="http://who.int/icd#K14.5">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10483"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10483"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Synonym: fissured tongue, scrotal tongue, lingua plicata, Plicated tongue, furrowed tongue. Should these be added in the content model? They currently exist in the tabular inclusion terms and the current index?</kb:body>
+	<kb:subject>Synonym: fissured tongue, scrotal tongue, lingua plicata, Plicated tongue, furrowed tongue. Should these be added in the content model? They currently exist in the tabular inclusion terms and the current index?</kb:subject>
+	<rdfs:label>Synonym: fissured tongue, scrotal tongue, lingua plicata, Plicated tongue, furrowed tongue. Should these be added in the content model? They currently exist in the tabular inclusion terms and the current index?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10482"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10484"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10484"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="163"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10485"
+	 kb:currentName="http://who.int/icd#L00"
+	 rdfs:label="http://who.int/icd#L00">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10486"/>
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10488"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10486"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Should epidermolytic exotoxin A anb B be in aetiology mechanism?</kb:body>
+	<kb:subject>Should epidermolytic exotoxin A anb B be in aetiology mechanism?</kb:subject>
+	<rdfs:label>Should epidermolytic exotoxin A anb B be in aetiology mechanism?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10485"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10487"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10487"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="164"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10488"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Should S. Aureus added as a causal agent?"
+	 kb:subject="Should S. Aureus added as a causal agent?"
+	 rdfs:label="Should S. Aureus added as a causal agent?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10485"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10489"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10489"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="165"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10490"
+	 kb:currentName="http://who.int/icd#L08.1"
+	 rdfs:label="http://who.int/icd#L08.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10491"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10491"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Corynebacterium minutissimum as aetiology causal agent?"
+	 kb:subject="Corynebacterium minutissimum as aetiology causal agent?"
+	 rdfs:label="Corynebacterium minutissimum as aetiology causal agent?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10490"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10492"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10492"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="166"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10493"
+	 kb:currentName="http://who.int/icd#L10.1"
+	 rdfs:label="http://who.int/icd#L10.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10494"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10494"
+	 kb:author="SNOMED Mapper">
+	<kb:body>It's a localised form of p. vulgaris: Is this to be considered an extent?</kb:body>
+	<kb:subject>It's a localised form of p. vulgaris: Is this to be considered an extent?</kb:subject>
+	<rdfs:label>It's a localised form of p. vulgaris: Is this to be considered an extent?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10493"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10495"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10495"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="167"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10496"
+	 kb:currentName="http://who.int/icd#L10.3"
+	 rdfs:label="http://who.int/icd#L10.3">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10497"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10497"
+	 kb:author="SNOMED Mapper"
+	 kb:body="Endemic.. How do we use this information?"
+	 kb:subject="Endemic.. How do we use this information?"
+	 rdfs:label="Endemic.. How do we use this information?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10496"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10498"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10498"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="168"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10499"
+	 kb:currentName="http://who.int/icd#L10.4"
+	 rdfs:label="http://who.int/icd#L10.4">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10500"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10500"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Localised form of p. foliaceus. Is this to be considered an extent?</kb:body>
+	<kb:subject>Localised form of p. foliaceus. Is this to be considered an extent?</kb:subject>
+	<rdfs:label>Localised form of p. foliaceus. Is this to be considered an extent?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10499"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10501"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10501"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="169"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10502"
+	 kb:currentName="http://who.int/icd#L12"
+	 rdfs:label="http://who.int/icd#L12">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10503"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10503"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Non acantholic by definition, should this information be considered?</kb:body>
+	<kb:subject>Non acantholic by definition, should this information be considered?</kb:subject>
+	<rdfs:label>Non acantholic by definition, should this information be considered?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10502"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10504"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10504"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="170"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10505"
+	 kb:currentName="http://who.int/icd#L20.0"
+	 rdfs:label="http://who.int/icd#L20.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10506"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10506"
+	 kb:author="SNOMED Mapper">
+	<kb:body>It occurs during gestation: how can this information be included?</kb:body>
+	<kb:subject>It occurs during gestation: how can this information be included?</kb:subject>
+	<rdfs:label>It occurs during gestation: how can this information be included?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10505"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10507"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10507"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="171"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10508"
+	 kb:currentName="http://who.int/icd#L68.0"
+	 rdfs:label="http://who.int/icd#L68.0">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10509"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10509"
+	 kb:author="SNOMED Mapper"
+	 kb:body="How can this be shown that it is a disorder of women only?"
+	 kb:subject="How can this be shown that it is a disorder of women only?"
+	 rdfs:label="How can this be shown that it is a disorder of women only?">
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10508"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10510"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10510"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="172"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_ICD_Class10511"
+	 kb:currentName="http://who.int/icd#L98.1"
+	 rdfs:label="http://who.int/icd#L98.1">
+	<kb:associatedAnnotations rdf:resource="&kb;annotation_ICD_Class10512"/>
+</kb:Ontology_Class>
+<kb:Comment rdf:about="&kb;annotation_ICD_Class10512"
+	 kb:author="SNOMED Mapper">
+	<kb:body>Patients will intentionally produce signs of a disease (feigned symptoms): How can this be be shown in the model?</kb:body>
+	<kb:subject>Patients will intentionally produce signs of a disease (feigned symptoms): How can this be be shown in the model?</kb:subject>
+	<rdfs:label>Patients will intentionally produce signs of a disease (feigned symptoms): How can this be be shown in the model?</rdfs:label>
+	<kb:annotates rdf:resource="&kb;annotation_ICD_Class10511"/>
+	<kb:created rdf:resource="&kb;annotation_ICD_Class10513"/>
+</kb:Comment>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class10513"
+	 kb:date="09/22/2009 06:47:07 CEST"
+	 kb:sequence="173"
+	 rdfs:label="09/22/2009 06:47:07 CEST"/>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class2"
+	 kb:date="09/11/2009 22:56:52 PDT"
+	 kb:sequence="0"
+	 rdfs:label="09/11/2009 22:56:52 PDT"/>
+<kb:Reviewer rdf:about="&kb;annotation_ICD_Class20000"
+	 kb:name="Reviewer1"
+	 rdfs:label="Reviewer1"/>
+<kb:Reviewer rdf:about="&kb;annotation_ICD_Class20001"
+	 kb:name="Reviewer2"
+	 rdfs:label="Reviewer2"/>
+<kb:Reviewer rdf:about="&kb;annotation_ICD_Class20002"
+	 kb:name="Reviewer3"
+	 rdfs:label="Reviewer3"/>
+<kb:Reviewer rdf:about="&kb;annotation_ICD_Class20003"
+	 kb:name="Reviewer4"
+	 rdfs:label="Reviewer4"/>
+<kb:Reviewer rdf:about="&kb;annotation_ICD_Class20004"
+	 kb:name="Reviewer5"
+	 rdfs:label="Reviewer5"/>
+<kb:Reviewer rdf:about="&kb;annotation_ICD_Class20005"
+	 kb:name="Reviewer6"
+	 rdfs:label="Reviewer6"/>
+<kb:Reviewer rdf:about="&kb;annotation_ICD_Class20006"
+	 kb:name="Reviewer7"
+	 rdfs:label="Reviewer7"/>
+<kb:Reviewer rdf:about="&kb;annotation_ICD_Class20007"
+	 kb:name="Reviewer8"
+	 rdfs:label="Reviewer8"/>
+<kb:Reviewer rdf:about="&kb;annotation_ICD_Class20008"
+	 kb:name="Reviewer9"
+	 rdfs:label="Reviewer9"/>
+<kb:Reviewer rdf:about="&kb;annotation_ICD_Class20009"
+	 kb:name="Reviewer10"
+	 rdfs:label="Reviewer10"/>
+<kb:Individual_Added rdf:about="&kb;annotation_ICD_Class3"
+	 kb:action="Individual_Added"
+	 kb:author="ttania"
+	 kb:context="Instance Added: TitleTerm_2 (instance of: TitleTerm)"
+	 rdfs:label="Instance Added: TitleTerm_2 (instance of: TitleTerm)">
+	<kb:applyTo rdf:resource="&kb;annotation_ICD_Class1"/>
+	<kb:timestamp rdf:resource="&kb;annotation_ICD_Class4"/>
+</kb:Individual_Added>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class4"
+	 kb:date="09/11/2009 22:56:52 PDT"
+	 kb:sequence="1"
+	 rdfs:label="09/11/2009 22:56:52 PDT"/>
+<kb:Property_Value rdf:about="&kb;annotation_ICD_Class5"
+	 kb:action="Property Value Changed"
+	 kb:author="ttania">
+	<kb:context>Property: label for instance: 'ICD Categories' set to: ICD Categories(Old values:)</kb:context>
+	<rdfs:label>Property: label for instance: 'ICD Categories' set to: ICD Categories(Old values:)</rdfs:label>
+	<kb:applyTo rdf:resource="&kb;annotation_ICD_Class1"/>
+	<kb:timestamp rdf:resource="&kb;annotation_ICD_Class6"/>
+</kb:Property_Value>
+<kb:Timestamp rdf:about="&kb;annotation_ICD_Class6"
+	 kb:date="09/11/2009 22:57:00 PDT"
+	 kb:sequence="2"
+	 rdfs:label="09/11/2009 22:57:00 PDT"/>
+</rdf:RDF>

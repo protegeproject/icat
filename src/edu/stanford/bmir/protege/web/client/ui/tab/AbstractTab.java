@@ -2,12 +2,12 @@ package edu.stanford.bmir.protege.web.client.ui.tab;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.gwtext.client.widgets.Component;
+import com.gwtext.client.widgets.Panel;
 import com.gwtext.client.widgets.event.PanelListener;
 import com.gwtext.client.widgets.event.PanelListenerAdapter;
 import com.gwtext.client.widgets.layout.ColumnLayoutData;
@@ -16,6 +16,7 @@ import com.gwtext.client.widgets.portal.Portal;
 import com.gwtext.client.widgets.portal.PortalColumn;
 import com.gwtext.client.widgets.portal.Portlet;
 
+import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.TabColumnConfiguration;
@@ -24,432 +25,470 @@ import edu.stanford.bmir.protege.web.client.ui.generated.UIFactory;
 import edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
 import edu.stanford.bmir.protege.web.client.ui.portlet.EntityPortlet;
-import edu.stanford.bmir.protege.web.client.util.Project;
-import edu.stanford.bmir.protege.web.client.util.SelectionEvent;
-import edu.stanford.bmir.protege.web.client.util.SelectionListener;
-import edu.stanford.bmir.protege.web.client.util.SessionListener;
+import edu.stanford.bmir.protege.web.client.ui.selection.SelectionEvent;
+import edu.stanford.bmir.protege.web.client.ui.selection.SelectionListener;
+import edu.stanford.bmir.protege.web.client.ui.util.GlobalSelectionManager;
 
 /**
- * Abstract class that should be extended by all tabs that can be added to 
- * the main UI of WebProtege. 
- * 
- * The tab has a reference to all the portlets that are currently part of the 
- * tab and a reference to the controlling portlet -> the portlet that provides 
+ * Abstract class that should be extended by all tabs that can be added to the
+ * main UI of WebProtege.
+ * <p/>
+ * The tab has a reference to all the portlets that are currently part of the
+ * tab and a reference to the controlling portlet -> the portlet that provides
  * the selection for the other portlets.
- * 
+ *
  * @author Tania Tudorache <tudorache@stanford.edu>
  */
-//TODO: reordering of portlets in a column at drang-n-drop does not work yet 
+// TODO: reordering of portlets in a column at drang-n-drop does not work yet
 public abstract class AbstractTab extends Portal {
 
-	protected Project project;	
-	protected Portal portal;
-	private TabConfiguration tabConfiguration;	
-	private LinkedHashMap<PortalColumn, List<EntityPortlet>> columnToPortletsMap;
-	private LinkedHashMap<TabColumnConfiguration, PortalColumn> tabColumnConfigToColumn;
-	//TODO: cache the portlets for performance 
+    protected Project project;
+    protected Portal portal;
 
-	/**
-	 * The portlet that provides the selection for other portlets
-	 */
-	private EntityPortlet controllingPortlet;
+    private TabConfiguration tabConfiguration;
+    private final LinkedHashMap<PortalColumn, List<EntityPortlet>> columnToPortletsMap;
+    private final LinkedHashMap<TabColumnConfiguration, PortalColumn> tabColumnConfigToColumn;
+    // TODO: cache the portlets for performance
 
-	private SelectionListener selectionControllingListener;
-	protected PanelListener destroyListener;
-	protected SessionListener sessionListener;
+    /**
+     * The portlet that provides the selection for other portlets
+     */
+    private EntityPortlet controllingPortlet;
 
-	public AbstractTab(Project project) {
-		super();
+    private SelectionListener selectionControllingListener;
+    private PanelListener portletDestroyListener;
+    private PanelListener panelListener;
 
-		this.project = project;
-		this.portal = new Portal();		
-		this.columnToPortletsMap = new LinkedHashMap<PortalColumn, List<EntityPortlet>>();
-		this.tabColumnConfigToColumn = new LinkedHashMap<TabColumnConfiguration, PortalColumn>();
+    public AbstractTab(final Project project) {
+        super();
 
-		this.selectionControllingListener = getSelectionControllingListener();		
-		this.destroyListener = getDestroyListener();
-		this.sessionListener = getSessionListener();
+        this.project = project;
+        this.portal = new Portal();
+        this.columnToPortletsMap = new LinkedHashMap<PortalColumn, List<EntityPortlet>>();
+        this.tabColumnConfigToColumn = new LinkedHashMap<TabColumnConfiguration, PortalColumn>();
 
-		
-		//setup(); //just for testing
-	}
+        this.selectionControllingListener = getSelectionControllingListener();
+        this.portletDestroyListener = getPortletDestroyListener();
 
-	public AbstractTab(Project project, int columnCount) {
-		this(project, getDefaultColumnData(columnCount));
-	}
+        addListener(this.panelListener = getPanelListener());
 
+    }
 
-	/**
-	 * This constructor will build a tab with the column layout 
-	 * provided as an argument.
-	 * 
-	 * Instead, please consider calling the {@link #AbstractTab(Project)}
-	 * constructor and then call {@link #setTabConfiguration(TabConfiguration)}.
-	 * 
-	 * @param project - the project displayed by this tab
-	 * @param colLayoutData - the layout information for the columns
-	 */
-	public AbstractTab(Project project, ColumnLayoutData[] colLayoutData) {
-		this(project);			
-	}
+    public AbstractTab(final Project project, final int columnCount) {
+        this(project, getDefaultColumnData(columnCount));
+    }
 
+    /**
+     * This constructor will build a tab with the column layout provided as an
+     * argument.
+     * <p/>
+     * Instead, please consider calling the {@link #AbstractTab(Project)}
+     * constructor and then call {@link #setTabConfiguration(TabConfiguration)}.
+     *
+     * @param project       - the project displayed by this tab
+     * @param colLayoutData - the layout information for the columns
+     */
+    public AbstractTab(final Project project, final ColumnLayoutData[] colLayoutData) {
+        this(project);
+    }
 
-	protected static ColumnLayoutData[] getDefaultColumnData(int columnCount) {
-		ColumnLayoutData[] colLayout = new ColumnLayoutData[columnCount];		
-		for (int i = 0; i < columnCount; i++) {
-			colLayout[i] = new ColumnLayoutData(1/columnCount);
-		}		
-		return colLayout;
-	}	
+    protected static ColumnLayoutData[] getDefaultColumnData(final int columnCount) {
+        final ColumnLayoutData[] colLayout = new ColumnLayoutData[columnCount];
+        for (int i = 0; i < columnCount; i++) {
+            colLayout[i] = new ColumnLayoutData(1 / columnCount);
+        }
+        return colLayout;
+    }
 
-	protected PanelListener getDestroyListener() {
-		if (destroyListener == null) {
-			this.destroyListener = new PanelListenerAdapter() {				
-				public void onDestroy(Component component) {				
-					if (component instanceof EntityPortlet) {
-						removePortlet((EntityPortlet) component);			
-					}				
-					super.onDestroy(component);
-				}
-			};
-		}		
-		return destroyListener;
-	}
-
-	protected SessionListener getSessionListener() {
-		if (sessionListener == null) {
-			this.sessionListener = new SessionListener() {
-				public void onLogin(String userName) {				
-					AbstractTab.this.onLogin(userName);
-				}				
-				public void onLogout(String userName) {
-					AbstractTab.this.onLogout(userName);
-				}						
-			};
-		}
-		return sessionListener;
-	}	
-
-	/**
-	 * Called on logout of a user. 
-	 * The default implementation calls the 
-	 * onLogout method on each portlet.
-	 * It can be overridden in subclasses.
-	 * @param userName - name of the user who logged out
-	 */
-	protected void onLogout(String userName) {
-		for (EntityPortlet portlet : getPortlets()) {
-			portlet.onLogout(userName);
-		}
-	}
-
-	/**
-	 * Called on log in of a user.
-	 * The default implementation calls the 
-	 * onLogin method on each portlet.
-	 * It can be overridden in subclasses.  
-	 * @param userName - named of the user who logged in
-	 */
-	protected void onLogin(String userName) { 
-		for (EntityPortlet portlet : getPortlets()) {
-			portlet.onLogin(userName);
-		}
-	}
+    protected PanelListener getPortletDestroyListener() {
+        if (portletDestroyListener == null) {
+            this.portletDestroyListener = new PanelListenerAdapter() {
+                @Override
+                public void onDestroy(final Component component) {
+                    if (component instanceof EntityPortlet) {
+                        removePortlet((EntityPortlet) component);
+                    }
+                    super.onDestroy(component);
+                }
+            };
+        }
+        return portletDestroyListener;
+    }
 
 
-	protected SelectionListener getSelectionControllingListener() {
-		if (selectionControllingListener == null) {
-			this.selectionControllingListener = new SelectionListener() {
-				public void selectionChanged(SelectionEvent event) {
-					onSelectionChange(event.getSelectable().getSelection());
-				}
-			};
-		}
+    protected PanelListener getPanelListener() {
+        if (panelListener == null) {
+            panelListener = new PanelListenerAdapter(){
+               @Override
+            public void onActivate(Panel panel) {
+                   setSelection(GlobalSelectionManager.getGlobalSelection(project.getProjectName()));
+               };
+            };
+        }
+        return panelListener;
+    }
 
-		return selectionControllingListener;
-	}
+    /**
+     * Called on logout of a user. The default implementation calls the onLogout
+     * method on each portlet. It can be overridden in subclasses.
+     *
+     * @param userName - name of the user who logged out
+     */
+    public void onLogout(final String userName) {
+        for (final EntityPortlet portlet : getPortlets()) {
+            portlet.onLogout(userName);
+        }
+    }
 
-	/**
-	 * This method is called when a new selection has been made in the 
-	 * controlling portlet. If you override this method, make sure to call 
-	 * <code>super.onSelectionChange(newSelection)</code>, otherwise the other 
-	 * portlets will not be updated with the new selection.
-	 * 
-	 * @param newSelection - the new selection
-	 */
-	protected void onSelectionChange(Collection<EntityData> newSelection) {
-		if (controllingPortlet == null) {
-			return ; //nothing to do
-		}
+    /**
+     * Called on log in of a user. The default implementation calls the onLogin
+     * method on each portlet. It can be overridden in subclasses.
+     *
+     * @param userName - named of the user who logged in
+     */
+    public void onLogin(final String userName) {
+        for (final EntityPortlet portlet : getPortlets()) {
+            portlet.onLogin(userName);
+        }
+    }
 
-		//just temporary take just the first selection
-		EntityData selection = (EntityData) newSelection.iterator().next();
+    public void onPermissionsChanged(final Collection<String> permissions) {
+        for (final EntityPortlet portlet : getPortlets()) {
+            portlet.onPermissionsChanged(permissions);
+        }
+    }
 
-		for (Iterator iterator = getPortlets().iterator(); iterator.hasNext();) {
-			EntityPortlet portlet = (EntityPortlet) iterator.next();
-			if (!portlet.equals(controllingPortlet)) {
-				//TODO: make it work with multiple selections
-				portlet.setEntity(selection); 
-			}
-		}
-	}
+    protected SelectionListener getSelectionControllingListener() {
+        if (selectionControllingListener == null) {
+            this.selectionControllingListener = new SelectionListener() {
+                public void selectionChanged(final SelectionEvent event) {
+                    onSelectionChange(event.getSelectable().getSelection());
+                    GlobalSelectionManager.setGlobalSelection(project.getProjectName(), event.getSelectable().getSelection());
+                }
+            };
+        }
 
-	public int getColumnCount() {
-		return columnToPortletsMap.size();
-	}
+        return selectionControllingListener;
+    }
 
-	public List<PortalColumn> getColumns() {
-		return new ArrayList<PortalColumn>(columnToPortletsMap.keySet());
-	}
+    /**
+     * This method is called when a new selection has been made in the
+     * controlling portlet. If you override this method, make sure to call
+     * <code>super.onSelectionChange(newSelection)</code>, otherwise the other
+     * portlets will not be updated with the new selection.
+     *
+     * @param newSelection - the new selection
+     */
+    protected void onSelectionChange(final Collection<EntityData> newSelection) {
+        if (controllingPortlet == null) {
+            return; // nothing to do
+        }
 
-	public List<EntityPortlet> getPortlets() {
-		List<EntityPortlet> portlets = new ArrayList<EntityPortlet>();
-		for (List<EntityPortlet> portletList : columnToPortletsMap.values() ) {
-			portlets.addAll(portletList);
-		}
-		return portlets;
-	}
+        //TODO: implement multiple selection
 
-	public void addPortlet(EntityPortlet portlet, int column) {		
-		TabColumnConfiguration col = getTabColumnConfigurationAt(column);
-		if (col == null) {
-			GWT.log("Column does not exist: " + column, null);
-			return;
-		}
-		addPortletToColumn(col, project.getLayoutManager().createPortletConfiguration(portlet), true);
-	}
+        EntityData selection = null;
+        if (newSelection != null && newSelection.size() > 0) {
+            selection = newSelection.iterator().next();
+        }
 
+        for (final EntityPortlet portlet : getPortlets()) {
+            if (!portlet.equals(controllingPortlet)) {
+                portlet.setEntity(selection);
+            }
+        }
+    }
 
-	public void removePortlet(EntityPortlet portlet) {
-		for (PortalColumn col : columnToPortletsMap.keySet()) {
-			List<EntityPortlet> portlets = columnToPortletsMap.get(col);
-			if (portlets.contains(portlet)) {
-				portlets.remove(portlet);
-				removePortletFromTabConfig(portlet);
-				((Portlet)portlet).hide();
-				((Portlet)portlet).destroy();
-				//how to remove the destroy listener?
-			}
-		}
-	}
+    public void setSelection(Collection<EntityData> selection) {
+        if (controllingPortlet != null) {
+            Collection<EntityData> currentSel = controllingPortlet.getSelection();
 
+            if (currentSel == null) {
+                if (selection == null) {
+                    return;
+                } // else do nothing here
+            } else if (currentSel.equals(selection)) {
+                return;
+            }
+        }
+        controllingPortlet.setSelection(selection);
+    }
 
-	protected void removePortletFromTabConfig(EntityPortlet portlet) {
-		for (TabColumnConfiguration column : tabColumnConfigToColumn.keySet()) {
-			PortalColumn portalColumn = tabColumnConfigToColumn.get(column);
-			List<PortletConfiguration> portlets = column.getPortlets();
-			Component[] comps = portalColumn.getComponents();
-			for (int i = 0; i < comps.length; i++) {
-				if (comps[i].equals(portlet)) {
-					if (portlets.size() > i) { //TODO: check should not be needed, but it seems that portlets are destroyed several times
-						PortletConfiguration portletConfig = portlets.get(i);
-						if (portletConfig.getName().equals(portlet.getClass().getName())) {
-							portlets.remove(portletConfig);
-						}
-					}
-				}
-			}
-		}		
-	}
+    public int getColumnCount() {
+        return columnToPortletsMap.size();
+    }
 
-	public PortalColumn getPortalColumnAt(int index) {
-		TabColumnConfiguration config = getTabColumnConfigurationAt(index);
-		return config == null ? null : tabColumnConfigToColumn.get(config);
-	}
+    public List<PortalColumn> getColumns() {
+        return new ArrayList<PortalColumn>(columnToPortletsMap.keySet());
+    }
 
-	public TabColumnConfiguration getTabColumnConfigurationAt(int index) {
-		Collection<TabColumnConfiguration> tabCols = tabColumnConfigToColumn.keySet();
-		if (tabCols.size() < index) { return null; }
-		int i = -1;
-		for (Iterator<TabColumnConfiguration> iterator = tabCols.iterator(); iterator.hasNext();) {
-			TabColumnConfiguration col = (TabColumnConfiguration) iterator.next();
-			i++;
-			if (i == index) {
-				return col;
-			}
-		}
-		return null;
-	}
+    public List<EntityPortlet> getPortlets() {
+        final List<EntityPortlet> portlets = new ArrayList<EntityPortlet>();
+        for (final List<EntityPortlet> portletList : columnToPortletsMap.values()) {
+            portlets.addAll(portletList);
+        }
+        return portlets;
+    }
 
-	public EntityPortlet getControllingPortlet() {
-		return controllingPortlet;
-	}
+    public void addPortlet(final EntityPortlet portlet, final int column) {
+        final TabColumnConfiguration col = getTabColumnConfigurationAt(column);
+        if (col == null) {
+            GWT.log("Column does not exist: " + column, null);
+            return;
+        }
+        final PortletConfiguration portletConfiguration = ((AbstractEntityPortlet) portlet).getPortletConfiguration();
+        addPortletToColumn(portlet, col, portletConfiguration == null ? project.getLayoutManager().createPortletConfiguration(portlet) : portletConfiguration, true);
+        if (getControllingPortlet() != null) {
+            portlet.setEntity(getControllingPortlet().getEntity());
+        }
 
-	public void setControllingPortlet(EntityPortlet newControllingPortlet) {		
-		if (controllingPortlet != null) {
-			if (controllingPortlet.equals(newControllingPortlet)) {
-				return;
-			}
-			controllingPortlet.removeSelectionListener(selectionControllingListener);
-		}		
-		controllingPortlet = newControllingPortlet;
-		if  (controllingPortlet != null) {
-			controllingPortlet.addSelectionListener(selectionControllingListener);
-		}
-	}
+    }
 
-	public TabConfiguration getTabConfiguration() {
-		return tabConfiguration;
-	}
+    public void removePortlet(final EntityPortlet portlet) {
+        for (final PortalColumn col : columnToPortletsMap.keySet()) {
+            final List<EntityPortlet> portlets = columnToPortletsMap.get(col);
+            if (portlets.contains(portlet)) {
+                portlets.remove(portlet);
+                removePortletFromTabConfig(portlet);
+                ((Portlet) portlet).hide();
+                ((Portlet) portlet).destroy();
+                // how to remove the destroy listener?
+            }
+        }
+    }
 
-	public void setTabConfiguration(TabConfiguration tabConfig) {
-		this.tabConfiguration = tabConfig;
-	}
+    protected void removePortletFromTabConfig(final EntityPortlet portlet) {
+        for (final TabColumnConfiguration column : tabColumnConfigToColumn.keySet()) {
+            final PortalColumn portalColumn = tabColumnConfigToColumn.get(column);
+            final List<PortletConfiguration> portlets = column.getPortlets();
+            final Component[] comps = portalColumn.getComponents();
+            for (int i = 0; i < comps.length; i++) {
+                if (comps[i].equals(portlet)) {
+                    if (portlets.size() > i) { // TODO: check should not be
+                        // needed, but it seems that
+                        // portlets are destroyed several
+                        // times
+                        final PortletConfiguration portletConfig = portlets.get(i);
+                        if (portletConfig.getName().equals(portlet.getClass().getName())) {
+                            portlets.remove(portletConfig);
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-	public void setup() {
-		setLayout(new FitLayout());
-		setHideBorders(true);
+    public PortalColumn getPortalColumnAt(final int index) {
+        final TabColumnConfiguration config = getTabColumnConfigurationAt(index);
+        return config == null ? null : tabColumnConfigToColumn.get(config);
+    }
 
-		//if configuration is null, initialize the default UI
-		if (tabConfiguration == null) {
-			tabConfiguration = getDefaultTabConfiguration();
-		}
+    public TabColumnConfiguration getTabColumnConfigurationAt(final int index) {
+        final Collection<TabColumnConfiguration> tabCols = tabColumnConfigToColumn.keySet();
+        if (tabCols.size() < index) {
+            return null;
+        }
+        int i = -1;
+        for (final TabColumnConfiguration tabColumnConfiguration : tabCols) {
+            final TabColumnConfiguration col = tabColumnConfiguration;
+            i++;
+            if (i == index) {
+                return col;
+            }
+        }
+        return null;
+    }
 
-		setTitle(getLabel());
-		addColumns();
-		addPorteltsToColumns();
-		setupControllingPortlet();
+    public EntityPortlet getControllingPortlet() {
+        return controllingPortlet;
+    }
 
-		add(portal);
+    public void setControllingPortlet(final EntityPortlet newControllingPortlet) {
+        if (controllingPortlet != null) {
+            if (controllingPortlet.equals(newControllingPortlet)) {
+                return;
+            }
+            controllingPortlet.removeSelectionListener(selectionControllingListener);
+        }
+        controllingPortlet = newControllingPortlet;
+        if (controllingPortlet != null) {
+            controllingPortlet.addSelectionListener(selectionControllingListener);
+        }
+    }
 
-		project.getSession().addSessionListener(sessionListener);		
-	}
+    public TabConfiguration getTabConfiguration() {
+        return tabConfiguration;
+    }
 
+    public void setTabConfiguration(final TabConfiguration tabConfig) {
+        this.tabConfiguration = tabConfig;
+    }
 
-	protected void addColumns() {
-		for (int i = 0; i < tabConfiguration.getColumns().size(); i++) {
-			addColumn(tabConfiguration.getColumns().get(i));
-		}		
-	}
+    public void setup() {
+        setLayout(new FitLayout());
+        setHideBorders(true);
 
-	protected void addColumn(TabColumnConfiguration colConfig) {		 
-		float width = colConfig.getWidth();		
-		PortalColumn portalColumn = new PortalColumn();
-		portalColumn.setPaddings(10, 10, 10, 10);
-		portal.add(portalColumn, new ColumnLayoutData(width));
-		columnToPortletsMap.put(portalColumn, new ArrayList<EntityPortlet>());
-		tabColumnConfigToColumn.put(colConfig, portalColumn);
-	}	
+        // if configuration is null, initialize the default UI
+        if (tabConfiguration == null) {
+            tabConfiguration = getDefaultTabConfiguration();
+        }
 
-	protected void addPorteltsToColumns() {
-		for (Iterator<TabColumnConfiguration> iterator = tabColumnConfigToColumn.keySet().iterator(); iterator.hasNext();) {
-			addPortletsToColumn(iterator.next());			
-		}
-	}
+        setTitle(getLabel());
+        setClosable(tabConfiguration.getClosable());
+        addColumns();
+        addPorteltsToColumns();
+        setupControllingPortlet();
 
-	protected void addPortletsToColumn(
-			TabColumnConfiguration tabColumnConfiguration) {
-		List<PortletConfiguration> portlets = tabColumnConfiguration.getPortlets();
-		for (PortletConfiguration portletConfiguration : portlets) {
-			addPortletToColumn(tabColumnConfiguration, portletConfiguration, false);
-		}
-	}	
-
-	protected void addPortletToColumn(
-			TabColumnConfiguration tabColumnConfiguration,
-			PortletConfiguration portletConfiguration, boolean updateColConfig) {
-		//configuration
-		EntityPortlet portlet = createPortlet(portletConfiguration);		
-		if (portlet == null) { return; }
-		if (updateColConfig) {
-			tabColumnConfiguration.addPortelt(portletConfiguration, 0);
-		}
-		((AbstractEntityPortlet)portlet).setPortletConfiguration(portletConfiguration); //TODO: move this to interface?
-		//UI		
-		PortalColumn portalColumn = tabColumnConfigToColumn.get(tabColumnConfiguration);
-		portalColumn.add((Portlet)portlet);
-		columnToPortletsMap.get(portalColumn).add(portlet);				
-	}
-
-
-	protected EntityPortlet createPortlet(PortletConfiguration portletConfiguration) {
-		String portletClassName = portletConfiguration.getName();
-		EntityPortlet portlet = UIFactory.createPortlet(project, portletClassName);
-		if (portlet == null) { return null; }
-		int height = portletConfiguration.getHeight();
-		if (height == 0) {
-			((Portlet)portlet).setAutoHeight(true);
-		} else {
-			((Portlet)portlet).setHeight(height);	
-		}
-		int width = portletConfiguration.getWidth();
-		if (width == 0) {
-			((Portlet)portlet).setAutoWidth(true);
-		} else {
-			((Portlet)portlet).setWidth(width);
-		}		
-		((Portlet)portlet).addListener(destroyListener);		
-
-		return portlet;
-	}
-
-
-	protected void setupControllingPortlet() {
-		PortletConfiguration portletConfiguration = tabConfiguration.getControllingPortlet();		
-		if (portletConfiguration == null) {
-			setControllingPortlet(getDefaultControllingPortlet());
-		} else {			
-			setControllingPortlet(getPortletByClassName(portletConfiguration.getName()));
-		}
-	}
+        add(portal);
+    }
 
 
-	public EntityPortlet getPortletByClassName(String javaClassName) {
-		for (Iterator<PortalColumn> iterator = columnToPortletsMap.keySet().iterator(); iterator.hasNext();) {
-			PortalColumn portalColumn = (PortalColumn) iterator.next();
-			List<EntityPortlet> portlets = columnToPortletsMap.get(portalColumn);
-			for (EntityPortlet entityPortlet : portlets) {
-				if (entityPortlet.getClass().getName().equals(javaClassName)) {
-					return entityPortlet;
-				}
-			}
-		}
-		return null;
-	}
+    protected void addColumns() {
+        for (int i = 0; i < tabConfiguration.getColumns().size(); i++) {
+            addColumn(tabConfiguration.getColumns().get(i));
+        }
+    }
 
-	protected EntityPortlet getDefaultControllingPortlet() {
-		//take the first portlet from the first column
-		PortalColumn portalColumn = columnToPortletsMap.keySet().iterator().next();
-		if (portalColumn == null) { return null; }
-		List<EntityPortlet> portlets = columnToPortletsMap.get(portalColumn);
-		if (portlets.isEmpty()) { return null; }
-		return portlets.iterator().next();
-	}
+    protected void addColumn(final TabColumnConfiguration colConfig) {
+        final float width = colConfig.getWidth();
+        final PortalColumn portalColumn = new PortalColumn();
+        portalColumn.setPaddings(10, 10, 10, 10);
+        portal.add(portalColumn, new ColumnLayoutData(width));
+        columnToPortletsMap.put(portalColumn, new ArrayList<EntityPortlet>());
+        tabColumnConfigToColumn.put(colConfig, portalColumn);
+    }
 
-	/**
-	 * Overwrite this method to provide a default tab configuration for a tab.
-	 * For example, the {@link ClassesTab} may set up in the default configuration
-	 * the default portlets to be shown in the UI (e.g., classes tree portlet,
-	 * properties portlet and restriction portlet). The default tab configuration 
-	 * will be used if the user has not performed any customization to this tab.
-	 * <p>
-	 * This method will not se the tab configuration to the return value of this
-	 * method. It is responsability of the calling code to make so. 
-	 * </p>
-	 * <p>
-	 * The default implementation will return an empty tab.
-	 * </p>
-	 * @return the default configuration of this tab
-	 */
-	public TabConfiguration getDefaultTabConfiguration() {
-		TabConfiguration tabConfiguration = new TabConfiguration();
-		List<TabColumnConfiguration> colList = new ArrayList<TabColumnConfiguration>();
-		TabColumnConfiguration column = new TabColumnConfiguration();
-		column.setWidth((float) 1.0);
-		colList.add(column);
-		tabConfiguration.setColumns(colList);
-		tabConfiguration.setName(this.getClass().getName());
-		return tabConfiguration;
-	}
+    protected void addPorteltsToColumns() {
+        for (final TabColumnConfiguration tabColumnConfiguration : tabColumnConfigToColumn.keySet()) {
+            addPortletsToColumn(tabColumnConfiguration);
+        }
+    }
 
-	public String getLabel() {
-		String tabLabel = tabConfiguration != null ? tabConfiguration.getLabel() : null;		
-		return tabLabel == null ? "Tab" : tabLabel;
-	}
-	
-	public void setLabel(String label) {
-		setTitle(label);
-		tabConfiguration.setLabel(label);
-	}
+    protected void addPortletsToColumn(final TabColumnConfiguration tabColumnConfiguration) {
+        final List<PortletConfiguration> portlets = tabColumnConfiguration.getPortlets();
+        for (final PortletConfiguration portletConfiguration : portlets) {
+            addPortletToColumn(tabColumnConfiguration, portletConfiguration, false);
+        }
+    }
+
+    protected void addPortletToColumn(final TabColumnConfiguration tabColumnConfiguration,
+                                      final PortletConfiguration portletConfiguration, final boolean updateColConfig) {
+        // configuration
+        final EntityPortlet portlet = createPortlet(portletConfiguration);
+        if (portlet == null) {
+            return;
+        }
+        addPortletToColumn(portlet, tabColumnConfiguration, portletConfiguration, updateColConfig);
+    }
+
+    protected void addPortletToColumn(final EntityPortlet portlet, final TabColumnConfiguration tabColumnConfiguration,
+                                      final PortletConfiguration portletConfiguration, final boolean updateColConfig) {
+        if (updateColConfig) {
+            tabColumnConfiguration.addPortelt(portletConfiguration, 0);
+        }
+        ((AbstractEntityPortlet) portlet).setPortletConfiguration(portletConfiguration);
+        final PortalColumn portalColumn = tabColumnConfigToColumn.get(tabColumnConfiguration);
+        portalColumn.add((Portlet) portlet);
+        columnToPortletsMap.get(portalColumn).add(portlet);
+
+        ((AbstractEntityPortlet) portlet).setTab(this);
+    }
+
+    protected EntityPortlet createPortlet(final PortletConfiguration portletConfiguration) {
+        final String portletClassName = portletConfiguration.getName();
+        final EntityPortlet portlet = UIFactory.createPortlet(project, portletClassName);
+        if (portlet == null) {
+            return null;
+        }
+        final int height = portletConfiguration.getHeight();
+        if (height == 0) {
+            ((Portlet) portlet).setAutoHeight(true);
+        } else {
+            ((Portlet) portlet).setHeight(height);
+        }
+        final int width = portletConfiguration.getWidth();
+        if (width == 0) {
+            ((Portlet) portlet).setAutoWidth(true);
+        } else {
+            ((Portlet) portlet).setWidth(width);
+        }
+        ((Portlet) portlet).addListener(getPortletDestroyListener());
+
+        return portlet;
+    }
+
+    protected void setupControllingPortlet() {
+        final PortletConfiguration portletConfiguration = tabConfiguration.getControllingPortlet();
+        if (portletConfiguration == null) {
+            setControllingPortlet(getDefaultControllingPortlet());
+        } else {
+            setControllingPortlet(getPortletByClassName(portletConfiguration.getName()));
+        }
+    }
+
+    public EntityPortlet getPortletByClassName(final String javaClassName) {
+        for (final PortalColumn portalColumn2 : columnToPortletsMap.keySet()) {
+            final PortalColumn portalColumn = portalColumn2;
+            final List<EntityPortlet> portlets = columnToPortletsMap.get(portalColumn);
+            for (final EntityPortlet entityPortlet : portlets) {
+                if (entityPortlet.getClass().getName().equals(javaClassName)) {
+                    return entityPortlet;
+                }
+            }
+        }
+        return null;
+    }
+
+    protected EntityPortlet getDefaultControllingPortlet() {
+        // take the first portlet from the first column
+        final PortalColumn portalColumn = columnToPortletsMap.keySet().iterator().next();
+        if (portalColumn == null) {
+            return null;
+        }
+        final List<EntityPortlet> portlets = columnToPortletsMap.get(portalColumn);
+        if (portlets.isEmpty()) {
+            return null;
+        }
+        return portlets.iterator().next();
+    }
+
+    /**
+     * Overwrite this method to provide a default tab configuration for a tab.
+     * For example, the {@link ClassesTab} may set up in the default
+     * configuration the default portlets to be shown in the UI (e.g., classes
+     * tree portlet, properties portlet and restriction portlet). The default
+     * tab configuration will be used if the user has not performed any
+     * customization to this tab.
+     * <p>
+     * This method will not se the tab configuration to the return value of this
+     * method. It is responsability of the calling code to make so.
+     * </p>
+     * <p>
+     * The default implementation will return an empty tab.
+     * </p>
+     *
+     * @return the default configuration of this tab
+     */
+    public TabConfiguration getDefaultTabConfiguration() {
+        final TabConfiguration tabConfiguration = new TabConfiguration();
+        final List<TabColumnConfiguration> colList = new ArrayList<TabColumnConfiguration>();
+        final TabColumnConfiguration column = new TabColumnConfiguration();
+        column.setWidth((float) 1.0);
+        colList.add(column);
+        tabConfiguration.setColumns(colList);
+        tabConfiguration.setName(this.getClass().getName());
+        return tabConfiguration;
+    }
+
+    public String getLabel() {
+        final String tabLabel = tabConfiguration != null ? tabConfiguration.getLabel() : null;
+        return tabLabel == null ? "Tab" : tabLabel;
+    }
+
+    public void setLabel(final String label) {
+        setTitle(label);
+        if (tabConfiguration != null) {
+            tabConfiguration.setLabel(label);
+        }
+    }
 
 }

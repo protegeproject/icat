@@ -1,39 +1,63 @@
 package edu.stanford.bmir.protege.web.client.ui.ontology.home;
 
 import com.gwtext.client.widgets.Panel;
-import com.gwtext.client.widgets.form.Label;
 
-import edu.stanford.bmir.protege.web.client.util.Project;
+import edu.stanford.bmir.protege.web.client.model.SystemEventManager;
+import edu.stanford.bmir.protege.web.client.model.event.LoginEvent;
+import edu.stanford.bmir.protege.web.client.model.event.PermissionEvent;
+import edu.stanford.bmir.protege.web.client.model.listener.SystemListener;
+import edu.stanford.bmir.protege.web.client.model.listener.SystemListenerAdapter;
 
 /**
  * @author Jennifer Vendetti <vendetti@stanford.edu>
  */
 public class MyWebProtegeTab extends Panel {
-	
-	private Project project;	
+
+    //TODO: make MyWebProtege unspecial!
+
 	protected OntologiesPortlet ontologiesPortlet;
+	protected SystemListener systemListener;
+
 
 	public MyWebProtegeTab() {
-		this(null);
-	}
-	
-	public MyWebProtegeTab(Project project) {
-		this.project = project;
 		initializeUI();
 	}
-	
+
 	public String getLabel() {
 		return "My WebProt\u00E9g\u00E9";
 	}
-	
+
 	public OntologiesPortlet getOntologiesPortlet() {
 		return ontologiesPortlet;
 	}
 
-	Label label ;
-	public void initializeUI() {	
-		ontologiesPortlet = new OntologiesPortlet(project);
-		add(ontologiesPortlet);		
+	public void initializeUI() {
+		ontologiesPortlet = new OntologiesPortlet();
+		add(ontologiesPortlet);
+
+		SystemEventManager.getSystemEventManager().addSystemListener(getSystemListener());
 	}
-	
+
+    protected SystemListener getSystemListener() {
+        if (systemListener == null) {
+            this.systemListener = new SystemListenerAdapter() {
+                @Override
+                public void onLogin(LoginEvent loginEvent) {
+                    ontologiesPortlet.onLogin(loginEvent.getUser());
+                }
+
+                @Override
+                public void onLogout(LoginEvent loginEvent) {
+                    ontologiesPortlet.onLogout(loginEvent.getUser());
+                }
+
+                @Override
+                public void onPermissionsChanged(PermissionEvent permissionEvent) {
+                    ontologiesPortlet.onPermissionsChanged(permissionEvent.getPermissions());
+                }
+            };
+        }
+        return systemListener;
+    }
+
 }

@@ -10,7 +10,7 @@
 <kb:Advice rdf:about="&kb;annotation_collaborativeNewspaper_Class0"
 	 kb:author="Guest"
 	 kb:subject="A piece of advice for all authors"
-	 rdfs:label="Guest (10/23/08 09:23): A piece of advice for all authors">
+	 rdfs:label="A piece of advice for all authors">
 	<kb:body xml:space='preserve'><![CDATA[<html>
   <head>
     <style type="text/css">
@@ -35,7 +35,7 @@
 <kb:SeeAlso rdf:about="&kb;annotation_collaborativeNewspaper_Class10000"
 	 kb:author="Guest"
 	 kb:subject="SeeAlso: annotations on slots"
-	 rdfs:label="Guest (10/23/08 09:53): SeeAlso: annotations on slots">
+	 rdfs:label="SeeAlso: annotations on slots">
 	<kb:body xml:space='preserve'><![CDATA[<html>
   <head>
     <style type="text/css">
@@ -64,7 +64,7 @@
 <kb:Question rdf:about="&kb;annotation_collaborativeNewspaper_Class10003"
 	 kb:author="Guest"
 	 kb:subject="How about this instance?"
-	 rdfs:label="Guest (10/23/08 09:54): How about this instance?">
+	 rdfs:label="How about this instance?">
 	<kb:body xml:space='preserve'><![CDATA[<html>
   <head>
     <style type="text/css">
@@ -95,9 +95,28 @@
 	 rdfs:label="Author">
 	<kb:associatedAnnotations rdf:resource="&kb;annotation_collaborativeNewspaper_Class0"/>
 </kb:Ontology_Class>
+<kb:Status rdf:about="&kb;annotation_collaborativeNewspaper_Class20000"
+	 kb:description="Under review"
+	 rdfs:label="Under review"/>
+<kb:AnnotationStatus rdf:about="&kb;annotation_collaborativeNewspaper_Class20001"
+	 kb:description="Active"
+	 rdfs:label="Active"/>
+<kb:AnnotationStatus rdf:about="&kb;annotation_collaborativeNewspaper_Class20002"
+	 kb:description="Inactive"
+	 rdfs:label="Inactive"/>
+<kb:ChangeStatus rdf:about="&kb;annotation_collaborativeNewspaper_Class20003"
+	 kb:description="Approved"
+	 rdfs:label="Approved"/>
+<kb:ChangeStatus rdf:about="&kb;annotation_collaborativeNewspaper_Class20004"
+	 kb:description="Proposed"
+	 rdfs:label="Proposed"/>
+<kb:ChangeStatus rdf:about="&kb;annotation_collaborativeNewspaper_Class20005"
+	 kb:description="Rejected"
+	 rdfs:label="Rejected"/>
 <kb:Example rdf:about="&kb;annotation_collaborativeNewspaper_Class3"
 	 kb:author="Guest"
-	 kb:subject="Re: A piece of advice for all authors">
+	 kb:subject="Re: A piece of advice for all authors"
+	 rdfs:label="Re: A piece of advice for all authors">
 	<kb:body xml:space='preserve'><![CDATA[<html>
   <head>
     <style type="text/css">
@@ -111,7 +130,6 @@
   <body>
     This is an <font color="blue" style="background-color: yellow">Example</font> - another annotation type.<br><br>=== On 10/23/2008 21:23, Guest wrote:<br><br><b><u>Advice</u></b> is one annotation type defined in the <i>changes and annotations ontology</i>.<br><br>You can add internal links to ontology entities, for example:<br><a href="internalLink">@'Newspaper'</a><br><a href="internalLink"><br></a>If you click on the link above a new window will pop up with the details of the class Newspaper.<br><a href="internalLink"><br></a><br></body>
 </html>]]></kb:body>
-	<rdfs:label>Guest (10/23/08 09:28): Re: A piece of advice for all authors</rdfs:label>
 	<kb:annotates rdf:resource="&kb;annotation_collaborativeNewspaper_Class0"/>
 	<kb:created rdf:resource="&kb;annotation_collaborativeNewspaper_Class4"/>
 </kb:Example>
@@ -122,7 +140,7 @@
 <kb:Explanation rdf:about="&kb;annotation_collaborativeNewspaper_Class5"
 	 kb:author="Guest"
 	 kb:subject="What are discussion threads"
-	 rdfs:label="Guest (10/23/08 09:30): What are discussion threads">
+	 rdfs:label="What are discussion threads">
 	<kb:body xml:space='preserve'><![CDATA[<html>
   <head>
     <style type="text/css">
