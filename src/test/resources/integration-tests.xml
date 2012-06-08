@@ -1,0 +1,29 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+ 
+<suite name="ProtegeTestSuite" verbose="1" >
+  
+  
+  <test name="Navigation 1"   >
+    <parameter name="ontologie"  value="Pizza"/>
+    <parameter name="username"  value="webprotege"/>
+    <parameter name="password"  value="webprotege"/>
+    <parameter name="description"  value="Test Text For Short Descr."/>
+    <classes>
+    	<class name="selenium.TestICat"></class>
+    </classes>
+    <!-- 
+    <packages>
+      <package name="selenium" />
+   </packages>
+    -->
+ </test>
+ 
+ <!--  
+ <test name="Navigation 2" enabled="false"  >
+   <parameter name="ontologie"  value="Newspaper"/>
+    <packages>
+      <package name="selenium" />
+   </packages>
+ </test>
+-->  
+</suite>

@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>edu.stanford.bmir.web</groupId>
+	<artifactId>mavenprotege</artifactId>
+	<packaging>war</packaging>
+	<name>Web-Protege</name>
+	<version>0.0.8-SNAPSHOT</version>
+	
+	     <profiles>
+                <profile>
+                        <id>gwt-dev-windows</id>
+                        <properties>
+                                <platform>windows</platform>
+                        </properties>
+                        <activation>
+                                <activeByDefault>true</activeByDefault>
+                                <os>
+                                        <family>Windows</family>
+                                </os>
+                        </activation>
+                </profile>
+                <profile>
+                        <id>gwt-dev-mac</id>
+                        <properties>
+                                <platform>mac</platform>
+                        </properties>
+                        <activation>
+                                <os>
+                                        <family>mac</family>
+                                </os>
+                        </activation>
+                </profile>
+                <profile>
+                        <id>gwt-dev-linux</id>
+                        <properties>
+                                <platform>linux</platform>
+                        </properties>
+                        <activation>
+                                <os>
+                                        <name>Linux</name>
+                                </os>
+                        </activation>
+                </profile>
+        </profiles>
+	<properties>
+
+		<!-- convenience to define GWT version in one place -->
+		<gwt.version>2.1.0</gwt.version>
+
+		<!--  tell the compiler we can use 1.6 -->
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+		<catalina.home>/opt/tomcat</catalina.home>
+		
+		<!-- GWT stuff -->
+		<gwt.output.directory>${basedir}/src/main/webapp</gwt.output.directory>
+		<target.gwtapp.html>iCat.html</target.gwtapp.html>
+		<target.gwtapp.class>edu.stanford.bmir.protege.web.ICat</target.gwtapp.class>
+		<final.build.name>gwt-prototype</final.build.name>
+		
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwt.version}</version>
+
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwt.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-crypto</artifactId>
+			<version>1.0.3</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<version>${gwt.version}</version>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<version>1.7.1</version>
+			<classifier>${platform}-libs</classifier>
+			<type>zip</type>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.bmir.protegex.bp.ref</groupId>
+			<artifactId>bioportalReference</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<!--  Core jars -->
+		<dependency>
+			<groupId>edu.stanford.bmir.core</groupId>
+			<artifactId>looks</artifactId>
+			<version>2.1.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.bmir.core</groupId>
+			<artifactId>protege</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.bmir.core</groupId>
+			<artifactId>unicode_panel</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>xpp3</groupId>
+			<artifactId>xpp3</artifactId>
+			<version>1.1.3.4.O</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.bmir.core</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>edu.stanford.bmir.core</groupId>
+			<artifactId>gwtext</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<!--  OWL jars -->
+		<dependency>
+			<groupId>antlr</groupId>
+			<artifactId>antlr</artifactId>
+			<version>2.7.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>arq</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>arq-extra</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.0</version>
+			<classifier>sources</classifier>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>concurrent</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>edtftpj</artifactId>
+			<version>1.5.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>ekitspell</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>icu4j</artifactId>
+			<version>3.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>iri</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>jcalendar</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>jena</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>jep</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>json</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>kazuki</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-core</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>orphanNodesAlg</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>owlsyntax</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>protege-owl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>stax-api</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>swrl-jess-bridge</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.woodstox</groupId>
+			<artifactId>wstx-asl</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.owl</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<!-- Changes -->
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.changes</groupId>
+			<artifactId>change-management</artifactId>
+			<version>3.4.5</version>
+		</dependency>
+
+		<!-- Chat -->
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.chatPlugin</groupId>
+			<artifactId>chat</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>5.10</version>
+			<classifier>jdk15</classifier>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium.client-drivers</groupId>
+			<artifactId>selenium-java-client-driver</artifactId>
+			<version>1.0.2</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Collab -->
+		<dependency>
+			<groupId>edu.stanford.smi.protege.collab</groupId>
+			<artifactId>protege-collab</artifactId>
+			<version>2.0</version>
+		</dependency>
+
+		<!-- RDF-Backend -->
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.rdf_backend</groupId>
+			<artifactId>rdf-backend</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.rdf_backend</groupId>
+			<artifactId>rdf-api</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<!-- Standart Extensions -->
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.standard_extensions</groupId>
+			<artifactId>JGo</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.standard_extensions</groupId>
+			<artifactId>JGoLayout</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.smi.protegex.standard_extensions</groupId>
+			<artifactId>standart-extensions</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openid4java</groupId>
+			<artifactId>openid4java</artifactId>
+			<version>0.9.5</version>
+		</dependency>
+
+		<!-- ICD stuff -->
+		<dependency>
+			<groupId>edu.stanford.bmir.core</groupId>
+			<artifactId>icd</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+
+		<!-- Bioportal -->
+		<dependency>
+			<groupId>edu.stanford.bmir.core</groupId>
+			<artifactId>bioportal-services-lib</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<!--
+
+		<dependency>
+		<groupId>edu.stanford.bmir.core</groupId>
+		<artifactId>bioportalreference</artifactId>
+		<version>1.0</version>
+		</dependency>
+		-->
+		<!-- Lucene Query -->
+		<dependency>
+			<groupId>edu.stanford.bmir.core</groupId>
+			<artifactId>lucenequeryplugin</artifactId>
+			<version>3.4.5</version>
+		</dependency>
+
+		<!-- Change-Management -->
+		<!--
+		<dependency>
+		<groupId>edu.stanford.bmir.core</groupId>
+		<artifactId>change-management</artifactId>
+		<version>1.0</version>
+		</dependency>
+		-->
+		<!-- Java mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.1</version>
+		</dependency>
+
+		<!-- test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.htwg.faigle</groupId>
+			<artifactId>jigi</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.6</version>
+		</dependency>
+
+	<dependency>
+    	<groupId>mysql</groupId>
+    	<artifactId>mysql-connector-java</artifactId>
+    	<version>5.1.13</version>
+	</dependency>
+
+	</dependencies>
+	
+	
+
+	<description>	</description>
+	<organization>
+		<name>Stanford University</name>
+	</organization>
+	<build>
+		 <finalName>${final.build.name}</finalName>
+      <outputDirectory>${gwt.output.directory}/WEB-INF/classes</outputDirectory>
+	
+		<plugins>
+			<!-- runs GWT compiler -->
+				<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <version>2.1.0</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                          <id>gwt-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                              <skip>false</skip>
+                              <force>true</force>
+                              <modules>
+                                  <module>edu.stanford.bmir.protege.web.iCat</module>
+                            </modules>   
+                      </configuration>
+                    </execution>
+                 </executions>
+            </plugin>
+
+			<!-- 
+				Execution of unit tests
+				Generates output for reporting plugin
+			-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- In order to avoid all tests in src/test/java to be executed
+					we set 'skip' to true and add tests explicitly to suiteXmlFiles.
+					Otherwise tests are executed before deploy -->
+					<skip>true</skip>
+        		</configuration>
+				<executions>
+					<execution>
+						<id>surefire-it</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<skip>false</skip>
+							<suiteXmlFiles>
+								<suiteXmlFile>src/test/resources/integration-tests.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</execution>
+					<execution>
+						<id>unit-tests</id>
+						<phase>test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<skip>false</skip>
+							<suiteXmlFiles>
+								<suiteXmlFile>src/test/resources/unit-tests.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Create war file -->
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1-beta-1</version>
+			</plugin>
+
+			<!-- Again cargo-maven2-plugin. This time we
+			-start Tomcat
+			- deploy
+			- and set dependency to tests -->
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<configuration>
+					<container>
+						<containerId>tomcat6x</containerId>
+						<type>remote</type>
+					</container>
+
+					<configuration>
+						<type>runtime</type>
+						<properties>
+							<!-- The following variables are machine specific and have to be define in 
+							/conf/settings.xml which locates in the Maven installation directory  -->
+							<cargo.remote.username>${tomcat.user}</cargo.remote.username>
+							<cargo.remote.password>${tomcat.password}</cargo.remote.password>
+							<cargo.servlet.port>${tomcat.port}</cargo.servlet.port>
+						</properties>
+					</configuration>
+				</configuration>
+
+				<executions>
+					<execution>
+						<id>deploy</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>undeploy</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>undeploy</goal>
+						</goals>
+					</execution>
+					
+				</executions>
+			</plugin>
+			
+			<!-- Hack: Copy * rpc files on level up -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.4.3</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<!-- here the phase you need -->
+						<phase>process-classes</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/${final.build.name}/</outputDirectory>
+							<resources>
+								<resource>
+									<!-- webprotege is currently hardcoded. Is this cool? -->
+									<directory>${basedir}/target/${final.build.name}/webprotege</directory>
+									<includes>
+										<include> **/*.rpc </include>
+									</includes>
+					
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Compile Java Code-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<!-- JavaDoc -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+
+			<!-- JXR Plugin produces a cross-reference of the project's sources.
+			The generated reports make it easier for the user to reference or
+			find specific lines of code. It is also handy when used with the
+			PMD Plugin for referencing errors found in the code -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+			</plugin>
+
+			<!--PMD scans Java source code and looks for potential problems like:
+			- Possible bugs - empty try/catch/finally/switch statements
+			- Dead code - unused local variables, parameters and private methods
+			- Suboptimal code - wasteful String/StringBuffer usage
+			- Overcomplicated expressions - unnecessary if statements, for loops that could be while loops
+			- Duplicate code - copied/pasted code means copied/pasted bugs
+			-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<configuration>
+					<linkXref>true</linkXref>
+					<targetJdk>1.5</targetJdk>
+				</configuration>
+			</plugin>
+
+			<!-- creates the web interface version of the test results -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+			</plugin>
+
+			<!-- JDepend determines architecture metrics as (cyclic) dependencies of packages -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jdepend-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- Cobertura determines statement and branch coverage -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<formats>
+						<format>xml</format>
+						<format>html</format>
+					</formats>
+				</configuration>
+			</plugin>
+
+			<!-- Checkstyle verifies compliance with coding stanards/guidelines -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<configLocation>
+						${basedir}/src/main/resources/checkstyle/protege.xml
+					</configLocation>
+				</configuration>
+			</plugin>
+
+			<!-- Findbugs -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>1.1.1</version>
+			</plugin>
+
+			<!-- source measurement suite for Java which produces quantity & complexity metrics -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>javancss-maven-plugin</artifactId>
+				<version>2.0-beta-2</version>
+			</plugin>
+
+			<!-- XRadar summarizing/consolidating reports-->
+			<plugin>
+				<groupId>net.sf.xradar</groupId>
+				<artifactId>maven-xradar-plugin</artifactId>
+				<version>1.2.2</version>
+				<configuration>
+					<autoRadar>false</autoRadar>
+					<!--false to execute only the plugins declared-->
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</reporting>
+
+</project>
