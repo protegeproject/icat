@@ -2,8 +2,8 @@ package edu.stanford.bmir.protege.web.client.ui.ontology.notes;
 
 import java.util.ArrayList;
 
+import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
-import edu.stanford.bmir.protege.web.client.util.Project;
 
 /**
  * @author Jennifer Vendetti <vendetti@stanford.edu>
@@ -29,7 +29,7 @@ public class NotesPortlet extends AbstractEntityPortlet {
 		notesGrid.setEntity(_currentEntity);
 	}
 	
-	public void intialize() {
+	public void initialize() {
 		setTitle("Notes");
 		notesGrid = new NotesGrid(project, topLevel);
 		add(notesGrid);

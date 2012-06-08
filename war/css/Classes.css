@@ -49,9 +49,14 @@
 	color: #0000FF !important;
 	font-weight: bold;
   	padding-top: 5px;
-	padding-bottom: 7px;
+	padding-bottom: 5px;
+	padding-left: 3px;
 }
 
+.discussion-link-inactive a {
+	color: #BBBBBB !important;
+}
+	
 .p-button {
 	font-size: 70%;
 	color: #15428B;

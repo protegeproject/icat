@@ -1,9 +1,9 @@
 package edu.stanford.bmir.protege.web.client.ui.ontology.properties;
 
+import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.ui.ontology.classes.AllPropertiesPortlet;
 import edu.stanford.bmir.protege.web.client.ui.ontology.notes.NotesPortlet;
 import edu.stanford.bmir.protege.web.client.ui.tab.AbstractTab;
-import edu.stanford.bmir.protege.web.client.util.Project;
 
 
 public class PropertiesTab extends AbstractTab {

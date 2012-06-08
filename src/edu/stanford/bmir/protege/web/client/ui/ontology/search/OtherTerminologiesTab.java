@@ -1,7 +1,7 @@
 package edu.stanford.bmir.protege.web.client.ui.ontology.search;
 
+import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.ui.tab.AbstractTab;
-import edu.stanford.bmir.protege.web.client.util.Project;
 
 public class OtherTerminologiesTab extends AbstractTab {
 

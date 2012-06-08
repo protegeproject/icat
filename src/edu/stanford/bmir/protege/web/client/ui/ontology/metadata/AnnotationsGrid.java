@@ -1,7 +1,6 @@
 package edu.stanford.bmir.protege.web.client.ui.ontology.metadata;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.gwtext.client.data.ArrayReader;
@@ -108,20 +107,15 @@ public class AnnotationsGrid extends GridPanel {
 				projectName, _currentEntity.getName(), new GetAnnotations());
 	}
 	
-	class GetAnnotations extends AbstractAsyncHandler {
+	class GetAnnotations extends AbstractAsyncHandler<List<AnnotationData>> {
 
 		public void handleFailure(Throwable caught) {
 			GWT.log("RPC error getting ontology annotations", caught);
 		}
 
-		public void handleSuccess(Object result) {
-			ArrayList annotations = (ArrayList) result;
-			Iterator iterator = annotations.iterator();
-			while (iterator.hasNext()) {
-				AnnotationData annotation = (AnnotationData) iterator.next();
-				Record record = recordDef.createRecord(new Object[] {
-						annotation.getName(), annotation.getValue(),
-						annotation.getLang() });
+		public void handleSuccess(List<AnnotationData> result) {
+			for (AnnotationData data : result) {
+				Record record = recordDef.createRecord(new Object[] { data.getName(), data.getValue(), data.getLang() });
 				store.add(record);
 			}
 			

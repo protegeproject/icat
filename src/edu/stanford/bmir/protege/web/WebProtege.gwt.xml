@@ -1,16 +1,24 @@
 <module rename-to="webprotege">
 
-	<!-- Inherit the core Google Web Toolkit stuff -->
-	<inherits name="com.google.gwt.user.User"/>
-	
-	<!-- Inherit the GWT-Ext Toolkit stff -->
-	<inherits name='com.gwtext.GwtExt' />
-	
-	<entry-point class="edu.stanford.bmir.protege.web.client.WebProtege"/>
-		
-	<servlet path="/admin" class="edu.stanford.bmir.protege.web.server.AdminServiceImpl"/>
-	<servlet path="/ontology" class="edu.stanford.bmir.protege.web.server.OntologyServiceImpl"/>
-	<servlet path="/projectconfig" class="edu.stanford.bmir.protege.web.server.ProjectConfigurationServiceImpl"/>
-	<servlet path="/swrl" class="edu.stanford.bmir.protege.web.server.SWRLServiceImpl"/>
-    
+    <!-- Inherit the core Google Web Toolkit stuff -->
+    <inherits name="com.google.gwt.user.User"/>
+
+    <!-- Inherit the GWT-Ext Toolkit stff -->
+    <inherits name='com.gwtext.GwtExt'/>
+    <inherits name='com.googlecode.gwt.crypto.Crypto'/>
+    <inherits name="com.google.gwt.http.HTTP"/>
+
+
+    <entry-point class="edu.stanford.bmir.protege.web.client.WebProtege"/>
+
+    <servlet path="/admin" class="edu.stanford.bmir.protege.web.server.AdminServiceImpl"/>
+    <servlet path="/notification" class="edu.stanford.bmir.protege.web.server.NotificationServiceImpl"/>
+    <servlet path="/ontology" class="edu.stanford.bmir.protege.web.server.OntologyServiceImpl"/>
+    <servlet path="/projectconfig" class="edu.stanford.bmir.protege.web.server.ProjectConfigurationServiceImpl"/>
+    <servlet path="/chao" class="edu.stanford.bmir.protege.web.server.ChAOServiceImpl"/>
+    <servlet path="/chaostats" class="edu.stanford.bmir.protege.web.server.ChAOStatsServiceImpl"/>
+    <servlet path="/icd" class="edu.stanford.bmir.protege.web.server.ICDServiceImpl"/>
+    <servlet path="/hierarchy" class="edu.stanford.bmir.protege.web.server.HierarchyServiceImpl"/>
+    <servlet path="/openid" class="edu.stanford.bmir.protege.web.server.OpenIdServiceImpl"/>
+
 </module>

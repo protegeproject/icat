@@ -1,8 +1,8 @@
 package edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm;
 
+import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet;
-import edu.stanford.bmir.protege.web.client.util.Project;
-import edu.stanford.bmir.protege.web.client.util.Selectable;
+import edu.stanford.bmir.protege.web.client.ui.selection.Selectable;
 
 public class ClassSelectionFieldWidget extends AbstractSelectionFieldWidget {
 

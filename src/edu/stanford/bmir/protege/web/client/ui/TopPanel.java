@@ -1,120 +1,448 @@
 package edu.stanford.bmir.protege.web.client.ui;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.AbstractImagePrototype;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.ImageBundle;
+import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.Cookies;
+import com.google.gwt.user.client.Random;
+import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.*;
+import com.gwtext.client.widgets.MessageBox;
 import com.gwtext.client.widgets.Panel;
 import com.gwtext.client.widgets.Window;
-import com.gwtext.client.widgets.layout.HorizontalLayout;
+import com.gwtext.client.widgets.layout.FitLayout;
+import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
+import edu.stanford.bmir.protege.web.client.model.PermissionConstants;
+import edu.stanford.bmir.protege.web.client.model.SystemEventManager;
+import edu.stanford.bmir.protege.web.client.model.event.LoginEvent;
+import edu.stanford.bmir.protege.web.client.model.listener.SystemListenerAdapter;
+import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
+import edu.stanford.bmir.protege.web.client.rpc.AdminServiceManager;
+import edu.stanford.bmir.protege.web.client.ui.editprofile.EditProfileUtil;
+import edu.stanford.bmir.protege.web.client.ui.login.LoginUtil;
+import edu.stanford.bmir.protege.web.client.ui.login.constants.AuthenticationConstants;
+
+import java.util.Collection;
 
 /**
+ * The panel shown at the top of the display. It contains the documentation
+ * links, the sign in/out links, and may contain other menus, etc.
+ *
  * @author Jennifer Vendetti <vendetti@stanford.edu>
+ * @author Tania Tudorache <tudorache@stanford.edu>
  */
+@SuppressWarnings("deprecation")
 public class TopPanel extends Panel {
 
-	private HTML aboutLink = new HTML("<a id='about_web_protege' href='javascript:;'>About</a>");
-	private HTML feedbackLink = new HTML("<a id='feedback' href='javascript:;'><u><b>Send us feedback!</b></u> </a>");
-	private HTML docsLink = new HTML("<a href='http://protegewiki.stanford.edu/index.php/WebProtege' target='_blank'>Documentation</a>&nbsp;|");
-	private HTML pWebLink = new HTML("<a href='http://protege.stanford.edu/' target='_blank'>Prot&eacute;g&eacute;&nbsp;Web&nbsp;site</a>&nbsp;|");
-	private HTML pWikiLink = new HTML("<a href='http://protegewiki.stanford.edu/index.php/Main_Page' target='_blank'>Prot&eacute;g&eacute;&nbsp;Wiki</a>&nbsp;|");
-	
-	//private TopPanelImages images = (TopPanelImages) GWT.create(TopPanelImages.class);
-	
-	public interface TopPanelImages extends ImageBundle {
-		@Resource("edu/stanford/bmir/protege/web/public/images/ProtegeLogo.gif") 
-		public AbstractImagePrototype protegeLogo();
-	}
-	
-	public TopPanel() {
-		setLayout(new HorizontalLayout(0));
-		//setLayout(new FitLayout());
-		//setAutoWidth(true);
-		setBorder(false);
-		setHeight(30); //75
-		setPaddings(5);
-		
-		add(getLogoPanel());
-		add(getLinksPanel());
-	}
-	
-	private Panel getLogoPanel() {
-		//final Image logo = images.protegeLogo().createImage();
+    private HTML signInOutHtml;
+    private HTML userNameHtml;
 
-		Panel logoPanel = new Panel();
-		//logoPanel.setLayout(new HorizontalLayout(0));
-		logoPanel.setBorder(false);
-		logoPanel.setWidth(200);
-		//logoPanel.add(logo);
+    private Images images = (Images) GWT.create(Images.class);
+    private HorizontalPanel optionsLinks;
+    private MenuBar verticalOptionsMenu;
+    private MenuItem addUser;
 
-		return logoPanel;
-	}
-	
-	private Panel getLinksPanel() {
-		Panel linksPanel = new Panel();
-		linksPanel.setBorder(false);
-		linksPanel.setCls("header");
-		linksPanel.setLayout(new HorizontalLayout(5));
+    public interface Images extends ImageBundle {
+        public AbstractImagePrototype iCatLogo();
+    }
 
-		linksPanel.add(feedbackLink);
-		linksPanel.add(docsLink);
-		linksPanel.add(pWebLink);
-		linksPanel.add(pWikiLink);
-		linksPanel.add(aboutLink);
-		
-		aboutLink.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				final Window window = new Window();  
-				window.setTitle("About WebProt\u00E9g\u00E9");
-				window.setClosable(true);  
-				window.setWidth(500);  
-				window.setHeight(220);
-				window.setHtml(getAboutText());
-				window.setPaddings(7);
-				window.setCloseAction(Window.HIDE);
-				window.show("about_web_protege");
-			}
-		});
-		
-		feedbackLink.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				final Window window = new Window();  
-				window.setTitle("Send us feedback!");
-				window.setClosable(true);  
-				window.setWidth(400); 
-				window.setHeight(200);
-				window.setHtml(getFeebackText());
-				window.setPaddings(7);
-				window.setCloseAction(Window.HIDE);
-				window.show("feedback");
-			}
-		});
+    public TopPanel() {
+        setLayout(new FitLayout());
+        setAutoWidth(true);
+        setCls("top-panel");
 
-		
-		return linksPanel;
-	}
-	
-	private static String getAboutText() {
-		return "<br /><b>WebProtege 0.5 alpha, build 200</b><br /><br />" +
-			"<br />WebProt&eacute;g&eacute is being developed at the <a href='" +
-			"http://bmir.stanford.edu/' target='_blank'>Stanford " +
-			"Center for Biomedical Informatics Research</a>.<br /><br />" +
-			"Send feedback, questions, and bugs to the <a href='" +
-			"https://mailman.stanford.edu/mailman/listinfo/protege-discussion' " +
-			"target='_blank'>protege-discussion</a> mailing list.<br /><br />" +
-			"Open source from: <a href='http://smi-protege.stanford.edu/repos/protege/web-protege' " +
-			"target='_blank'>http://smi-protege.stanford.edu/repos/protege/web-protege</a>" +
-			"<br /><br /><br />&copy; Copyright 2009 Stanford Center for Biomedical Informatics Research";
-	}
-	
-	private static String getFeebackText() {
-		return "<br /> Thank you for using WebProt&eacute;g&eacute! " +
-			"<br /><br /> Your feedback is very important to us. " +
-			"Please send your comments, questions, feature requests, bugs, etc. to the <a href='" +
-			"https://mailman.stanford.edu/mailman/listinfo/protege-discussion' " +
-			"target='_blank'>protege-discussion</a> mailing list.<br /><br />" +
-			"If you would like to contribute to the development of WebProt&eacute;g&eacute, " +
-			"please contact us using the mailing list. Thank you!";
-	}
+        // Outer panel to house logo and inner panel
+        HorizontalPanel outer = new HorizontalPanel();
+        outer.setHorizontalAlignment(HorizontalPanel.ALIGN_RIGHT);
+        final Image logo = images.iCatLogo().createImage();
+        outer.add(logo);
+        outer.setCellHorizontalAlignment(logo, HorizontalPanel.ALIGN_LEFT);
+
+        // Inner panel to house links panel
+        VerticalPanel inner = new VerticalPanel();
+        inner.setHorizontalAlignment(HorizontalPanel.ALIGN_RIGHT);
+        inner.add(getLinksPanel());
+
+        outer.add(inner);
+        add(outer);
+
+        SystemEventManager.getSystemEventManager().addLoginListener(new SystemListenerAdapter() {
+            @Override
+            public void onLogin(LoginEvent loginEvent) {
+                adjustUserNameText();
+                adjustOptionPanel();
+            }
+
+            @Override
+            public void onLogout(LoginEvent loginEvent) {
+                adjustUserNameText();
+                adjustOptionPanel();
+            }
+        });
+
+        AdminServiceManager.getInstance().getCurrentUserInSession(new AsyncCallback<String>() {
+            public void onSuccess(String userData) {
+                GlobalSettings.getGlobalSettings().setUserName(userData);
+                adjustUserNameText();
+                adjustOptionPanel();
+            }
+
+            public void onFailure(Throwable caught) {
+                GWT.log("Could not get server permission from server", caught);
+            }
+        });
+
+    }
+
+    /**
+     * Method for to displaying the Option link. After SignIn "Options" link
+     * should be visible otherwise disable
+     */
+    public void adjustOptionPanel() {
+        String userName = GlobalSettings.getGlobalSettings().getUserName();
+        if (userName != null) { //login
+            optionsLinks.setVisible(true);
+            AdminServiceManager.getInstance().getAllowedServerOperations(userName, new AsyncCallback<Collection<String>>() {
+                public void onSuccess(Collection<String> operations) {
+                    if (operations.contains(PermissionConstants.CREATE_USERS)) {
+                        addUserMenuItem();
+                    }
+                }
+
+                public void onFailure(Throwable caught) {
+                    GWT.log("Could not get server permission from server", caught);
+                }
+            });
+        } else { //logout
+            verticalOptionsMenu.removeItem(addUser);
+            optionsLinks.setVisible(false);
+        }
+    }
+
+    protected HorizontalPanel getLinksPanel() {
+        HorizontalPanel links = new HorizontalPanel();
+        links.setSpacing(2);
+
+        // User name text and/or sign in/out message
+        links.add(getUserNameHtml());
+
+        links.add(new HTML("<span style='font-size:75%;'>&nbsp;|&nbsp;</span>"));
+
+        // Sign In and/or Sign Out link
+        links.add(getSignInOutHtml());
+
+        links.add(new HTML("<span style='font-size:80%;'>&nbsp;|&nbsp;</span>"));
+
+        // Adding Options menu link
+        links.add(getOptionsPanel());
+
+        optionsLinks.add(new HTML("<span style='font-size:80%;'>&nbsp;|&nbsp;</span>"));
+
+        // Feedback link
+        links.add(getFeedbackHTML());
+
+        return links;
+    }
+
+    protected HorizontalPanel getOptionsPanel() {
+        MenuBar horizontalOptionsMenu = new MenuBar();
+        verticalOptionsMenu = new MenuBar(true);
+
+        horizontalOptionsMenu.addItem("" + new HTML(
+                "<a id='login' href='javascript:;'><span style='font-size:75%; text-decoration:underline;'>Options</span>" +
+                        "<span style='font-size:75%; margin-top: 3px;'>&nbsp;&#9660;</span></a>"),
+                true, verticalOptionsMenu);
+        horizontalOptionsMenu.setStyleName("menuBar");
+        verticalOptionsMenu.setStyleName("subMenuBar");
+
+        addChangePasswordMenuItem();
+
+        addEditProfileMenuItem();
+
+        optionsLinks = new HorizontalPanel();
+        optionsLinks.add(horizontalOptionsMenu);
+
+        optionsLinks.setVisible(false);
+
+        return optionsLinks;
+    }
+
+    protected HTML getUserNameHtml() {
+        return userNameHtml = new HTML("<span style='font-size:75%; font-weight:bold;'>" + getUserNameText()
+                + "</span>");
+    }
+
+    protected HTML getSignInOutHtml() {
+        signInOutHtml = new HTML(
+                "<a id='login' href='javascript:;'><span style='font-size:75%; text-decoration:underline;'>"
+                        + getSignInOutText() + "</span></a>");
+        signInOutHtml.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                onSignInOut();
+            }
+        });
+        return signInOutHtml;
+    }
+
+    protected HTML getFeedbackHTML() {
+        HTML feedbackHtml = new HTML(
+                "<a id='feedback' href='javascript:;'><span style='font-size:75%; text-decoration:underline; padding-right:5px;'>" +
+                        "Send&nbsp;feedback!</span></a>");
+        feedbackHtml.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                final Window window = new Window();
+                window.setTitle("Send feedback!");
+                window.setClosable(true);
+                window.setWidth(400);
+                window.setHeight(150);
+                window.setHtml(getFeebackText());
+                window.setPaddings(7);
+                window.setCloseAction(Window.HIDE);
+                window.show("feedback");
+            }
+        });
+        return feedbackHtml;
+    }
+
+    protected void addChangePasswordMenuItem() {
+        MenuItem changePassword = new MenuItem("Change Password", new Command() {
+            public void execute() {
+                final LoginUtil loginUtil = new LoginUtil();
+                AdminServiceManager.getInstance().isLoginWithHttps(new AsyncCallback<Boolean>() {
+
+                    public void onSuccess(Boolean isLoginWithHttps) {
+                        if (isLoginWithHttps) {
+                            changePasswordWithHttps(loginUtil);
+                        } else {
+                            loginUtil
+                                    .changePassword(GlobalSettings.getGlobalSettings().getUserName(), isLoginWithHttps);
+                        }
+                    }
+
+                    public void onFailure(Throwable caught) {
+                        MessageBox.alert(AuthenticationConstants.ASYNCHRONOUS_CALL_FAILURE_MESSAGE);
+                    }
+                });
+
+            }
+        });
+        verticalOptionsMenu.addItem(changePassword);
+    }
+
+    protected void addUserMenuItem() {
+        addUser = new MenuItem("Add User", new Command() {
+            public void execute() {
+
+                AdminServiceManager.getInstance().isLoginWithHttps(new AsyncCallback<Boolean>() {
+
+                    public void onSuccess(Boolean isLoginWithHttps) {
+                        LoginUtil loginUtil = new LoginUtil();
+                        if (isLoginWithHttps) {
+                            createUserViaHttps(loginUtil);
+                        } else {
+                            loginUtil.createNewUser(isLoginWithHttps);
+                        }
+                    }
+
+                    public void onFailure(Throwable caught) {
+                        //do nothing
+                    }
+                });
+            }
+        });
+        verticalOptionsMenu.addItem(addUser);
+    }
+
+    protected void addEditProfileMenuItem() {
+        MenuItem editProfile = new MenuItem("Edit Profile", new Command() {
+            public void execute() {
+                EditProfileUtil eProfileUtil = new EditProfileUtil();
+                eProfileUtil.editProfile();
+            }
+        });
+        verticalOptionsMenu.addItem(editProfile);
+    }
+
+    protected String getUserNameText() {
+        String name = GlobalSettings.getGlobalSettings().getUserName();
+        return name == null ? "You&nbsp;are&nbsp;signed&nbsp;out." : name;
+    }
+
+    /*
+     * Sign in and Sign out handling
+     */
+
+    protected String getSignInOutText() {
+        return GlobalSettings.getGlobalSettings().isLoggedIn() ? "Sign&nbsp;Out" : "Sign&nbsp;In";
+    }
+
+    protected void onSignInOut() {
+        final LoginUtil loginUtil = new LoginUtil();
+        String userName = GlobalSettings.getGlobalSettings().getUserName();
+        if (userName == null) {
+            AdminServiceManager.getInstance().isLoginWithHttps(new AsyncCallback<Boolean>() {
+
+                public void onSuccess(Boolean isLoginWithHttps) {
+                    if (isLoginWithHttps) {
+                        AdminServiceManager.getInstance().getApplicationHttpsPort(new AsyncCallback<String>() {
+
+                            public void onSuccess(String httpsPort) {
+                                String authenUrl = loginUtil.getAuthenticateWindowUrl(
+                                        AuthenticationConstants.AUTHEN_TYPE_LOGIN, httpsPort);
+                                authenUrl = authenUrl + "&" + AuthenticationConstants.PROTOCOL + "="
+                                        + com.google.gwt.user.client.Window.Location.getProtocol();
+                                authenUrl = authenUrl + "&" + AuthenticationConstants.DOMAIN_NAME_AND_PORT + "="
+                                        + com.google.gwt.user.client.Window.Location.getHost();
+                                int randomNumber = Random.nextInt(10000);
+                                authenUrl = authenUrl + "&" + AuthenticationConstants.RANDOM_NUMBER + "="
+                                        + randomNumber;
+                                AdminServiceManager.getInstance().clearPreviousLoginAuthenticationData(
+                                        new clearLoginAuthDataHandler(authenUrl, loginUtil, randomNumber));
+
+                            }
+
+                            public void onFailure(Throwable caught) {
+                                MessageBox.alert(AuthenticationConstants.ASYNCHRONOUS_CALL_FAILURE_MESSAGE);
+
+                            }
+                        });
+
+                    } else {
+                        loginUtil.login(isLoginWithHttps);
+                    }
+                }
+
+                public void onFailure(Throwable caught) {
+                    MessageBox.alert(AuthenticationConstants.ASYNCHRONOUS_CALL_FAILURE_MESSAGE);
+                }
+            });
+
+        } else {
+            loginUtil.logout();
+        }
+    }
+
+    private void adjustUserNameText() {
+        signInOutHtml
+                .setHTML("<a id='login' href='javascript:;'><span style='font-size:75%; text-decoration:underline;'>"
+                        + getSignInOutText() + "</span>");
+        userNameHtml.setHTML("<span style='font-size:75%; font-weight:bold;'>" + getUserNameText() + "</span>");
+    }
+
+    /*
+     * Text for links
+     */
+
+    private String getFeebackText() {
+        return "<br /> Thank you for using iCAT! "
+                + "<br /><br /> Your feedback is very important to us. "
+                + "Please send your comments, questions, feature requests, bugs, etc. "
+                + "on the <a href=\"http://groups.google.com/group/icat-users\">Google icat-users group</a>. <br /><br />";
+    }
+
+    /**
+     * @param loginUtil
+     */
+    private void changePasswordWithHttps(final LoginUtil loginUtil) {
+        AdminServiceManager.getInstance().getApplicationHttpsPort(new AsyncCallback<String>() {
+
+            public void onSuccess(String httsPort) {
+                Cookies.removeCookie(AuthenticationConstants.CHANGE_PASSWORD_RESULT);
+                notifyIfPasswordChanged();
+                String authUrl = loginUtil.getAuthenticateWindowUrl(
+                        AuthenticationConstants.AUTHEN_TYPE_CHANGE_PASSWORD, httsPort);
+                authUrl = authUrl + "&" + AuthenticationConstants.USERNAME + "="
+                        + GlobalSettings.getGlobalSettings().getUserName();
+                loginUtil.openNewWindow(authUrl, "440", "260", "0");
+
+            }
+
+            public void onFailure(Throwable caught) {
+                MessageBox.alert(AuthenticationConstants.ASYNCHRONOUS_CALL_FAILURE_MESSAGE);
+            }
+        });
+    }
+
+    protected void notifyIfPasswordChanged() {
+        AdminServiceManager.getInstance().getServerPollingTimeoutMin(new AsyncCallback<Integer>() {
+
+            public void onSuccess(final Integer timeout) {
+                final long initTime = System.currentTimeMillis();
+                final Timer checkSessionTimer = new Timer() {
+                    @Override
+                    public void run() {
+                        final Timer timer = this;
+                        long curTime = System.currentTimeMillis();
+                        long maxTime = 1000 * 60 * timeout;
+                        if (curTime - initTime > maxTime) {
+                            timer.cancel();
+                        }
+                        String passwordChangedCookie = Cookies
+                                .getCookie(AuthenticationConstants.CHANGE_PASSWORD_RESULT);
+                        if (passwordChangedCookie != null) {
+                            timer.cancel();
+
+                            if (passwordChangedCookie.equalsIgnoreCase(AuthenticationConstants.CHANGE_PASSWORD_SUCCESS)) {
+                                MessageBox.alert("Password Changed successfully");
+                            }
+                            Cookies.removeCookie(AuthenticationConstants.CHANGE_PASSWORD_RESULT);
+                        }
+                    }
+                };
+                checkSessionTimer.scheduleRepeating(2000);
+            }
+
+            public void onFailure(Throwable caught) {
+
+            }
+        });
+
+    }
+
+    class clearLoginAuthDataHandler extends AbstractAsyncHandler<Void> {
+        private String athnUrl;
+        private LoginUtil loginUtil;
+        private int randomNumber;
+
+        public clearLoginAuthDataHandler(String athnUrl, LoginUtil loginUtil, int randomNumber) {
+            this.athnUrl = athnUrl;
+            this.loginUtil = loginUtil;
+            this.randomNumber = randomNumber;
+        }
+
+        @Override
+        public void handleFailure(Throwable caught) {
+            MessageBox.alert(AuthenticationConstants.ASYNCHRONOUS_CALL_FAILURE_MESSAGE);
+        }
+
+        @Override
+        public void handleSuccess(Void result) {
+            loginUtil.openNewWindow(athnUrl, "390", "325", "0");
+            loginUtil.getTimeoutAndCheckUserLoggedInMethod(loginUtil, "" + randomNumber);
+        }
+
+    }
+
+    /**
+     * @param loginUtil
+     */
+    private void createUserViaHttps(final LoginUtil loginUtil) {
+        AdminServiceManager.getInstance().getApplicationHttpsPort(new AsyncCallback<String>() {
+
+            public void onSuccess(String httsPort) {
+                notifyIfPasswordChanged();
+                String authUrl = loginUtil.getAuthenticateWindowUrl(AuthenticationConstants.AUTHEN_TYPE_CREATE_USER,
+                        httsPort);
+                loginUtil.openNewWindow(authUrl, "440", "260", "0");
+
+            }
+
+            public void onFailure(Throwable caught) {
+                MessageBox.alert(AuthenticationConstants.ASYNCHRONOUS_CALL_FAILURE_MESSAGE);
+            }
+        });
+    }
+
 }
