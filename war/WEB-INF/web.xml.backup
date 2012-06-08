@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+	<!-- Listener for initializing and disposing WebProtege -->
+	<listener>
+		<listener-class>edu.stanford.bmir.protege.web.server.owlapi.LifeCycleListener</listener-class>
+	</listener>
+
+	
+	<!-- WebProtege servlets -->
+	
+    <servlet>
+        <servlet-name>AdminServiceImpl</servlet-name>
+        <servlet-class>edu.stanford.bmir.protege.web.server.owlapi.AdminServiceImpl</servlet-class>               
+    </servlet>
+
+    <servlet>
+        <servlet-name>ChAOServiceImpl</servlet-name>
+        <servlet-class>edu.stanford.bmir.protege.web.server.owlapi.ChAOServiceImpl</servlet-class>               
+    </servlet>
+    
+    <servlet>
+        <servlet-name>OntologyServiceImpl</servlet-name>        
+        <servlet-class>edu.stanford.bmir.protege.web.server.owlapi.OntologyServiceImpl</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ProjectConfigurationServiceImpl</servlet-name>        
+        <servlet-class>edu.stanford.bmir.protege.web.server.ProjectConfigurationServiceImpl</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>ICDServiceImpl</servlet-name>        
+        <servlet-class>edu.stanford.bmir.protege.web.server.owlapi.ICDServiceImpl</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>HierarchyServiceImpl</servlet-name>        
+        <servlet-class>edu.stanford.bmir.protege.web.server.owlapi.HierarchyServiceImpl</servlet-class>
+    </servlet>
+    
+    <servlet>
+	  	<servlet-name>chAOStatsServiceImpl</servlet-name>
+	  	<servlet-class>edu.stanford.bmir.protege.web.server.owlapi.ChAOStatsServiceImpl</servlet-class>
+	</servlet>
+
+    <servlet-mapping>
+        <servlet-name>AdminServiceImpl</servlet-name>
+        <url-pattern>/webprotege/admin</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ChAOServiceImpl</servlet-name>
+        <url-pattern>/webprotege/chao</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>OntologyServiceImpl</servlet-name>        
+        <url-pattern>/webprotege/ontology</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ProjectConfigurationServiceImpl</servlet-name>        
+        <url-pattern>/webprotege/projectconfig</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ICDServiceImpl</servlet-name>        
+        <url-pattern>/webprotege/icd</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>HierarchyServiceImpl</servlet-name>        
+        <url-pattern>/webprotege/hierarchy</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+  		<servlet-name>chAOStatsServiceImpl</servlet-name>
+  		<url-pattern>/webprotege/chaostats</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>WebProtege.html</welcome-file>
+	</welcome-file-list>
+
+</web-app>

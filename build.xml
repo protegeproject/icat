@@ -6,6 +6,8 @@
    <property environment="env"/>
    <property name="protege.home"       location = "${env.PROTEGE_HOME}"/>
    <property name="catalina.home"      location = "${env.CATALINA_HOME}"/>
+	
+   <property name="war.name"           value    = "webprotege"/>
 
    <property name="server.dir"         location = "./war"/>
    <property name="server.metaproject" location = "./war/projects/metaproject/metaproject.pprj"/>
@@ -19,8 +21,9 @@
 
    <property name = "build"            location = "./build"/>
    <property name = "war"              location = "${build}/war"/>
-   <property name = "classes"          location = "${war}/WEB-INF/classes"/>
+   <property name = "classes"          location = "${build}/classes"/>
    <property name = "owl.path"         value    = "edu.stanford.smi.protegex.owl"/>
+   
 
 
 
@@ -38,12 +41,13 @@
        <echo message="Using Protege Home = ${protege.home} to find protege jars"/>
        <property name="protege.lib"     location="${protege.home}/protege.jar"/>
        <property name="protege.owl.lib" location="${protege.home}/plugins/${owl.path}/protege-owl.jar"/>
-       <property name="bioportal.lib"   location="${protege.home}/plugins/edu.stanford.bmir.protegex.bp.ref/bioportalReference.jar"/>
        <property name="changes.lib"     location="${protege.home}/plugins/edu.stanford.smi.protegex.changes/change-management.jar"/>
        <property name="chat.lib"        location="${protege.home}/plugins/edu.stanford.smi.protegex.chatPlugin/chat.jar"/>
        <property name="collab.lib"      location="${protege.home}/plugins/edu.stanford.smi.protege.collab/protege-collab.jar"/>
        <property name="rdf.lib"         location="${protege.home}/plugins/edu.stanford.smi.protegex.rdf_backend/rdf-backend.jar"/>
        <property name="standard.lib"    location="${protege.home}/plugins/edu.stanford.smi.protegex.standard_extensions/standard-extensions.jar"/>
+       <property name="bioportal1.lib"   location="${protege.home}/plugins/edu.stanford.bmir.protegex.bp.ref/bioportalReference.jar"/>
+   	   <property name="bioportal2.lib"   location="${protege.home}/plugins/edu.stanford.bmir.protegex.bp.ref/bioportal-services-lib.jar"/>   	
    </target>
     
 
@@ -52,27 +56,29 @@
         <and>
           <available file="${protege.lib}"                 type = "file"/>
           <available file="${protege.owl.lib}"             type = "file"/>
-          <available file="${bioportal.lib}"               type = "file"/>
           <available file="${changes.lib}"                 type = "file"/>
           <available file="${chat.lib}"                    type = "file"/>
           <available file="${collab.lib}"                  type = "file"/>
           <available file="${rdf.lib}"                     type = "file"/>
           <available file="${standard.lib}"                type = "file"/>
           <available file="${gwt.dir}/gwt-user.jar"        type = "file"/>
-          <available file="${gwt.dir}/gwt-dev-${gwt.dev.platform}.jar" type = "file"/>
+          <available file="${gwt.dir}/gwt-dev.jar" type = "file"/>
+          <available file="${bioportal1.lib}"               type = "file"/>
+          <available file="${bioportal2.lib}"               type = "file"/>
         </and>
       </condition>
       <path id = "project.classpath">    
         <pathelement location = "${protege.lib}"/>
         <pathelement location = "${protege.owl.lib}"/>
-        <pathelement location="${bioportal.lib}"/>
         <pathelement location="${changes.lib}"/>
         <pathelement location="${chat.lib}"/>
         <pathelement location="${collab.lib}"/>
         <pathelement location="${rdf.lib}"/>
         <pathelement location="${standard.lib}"/>
         <pathelement location="${gwt.dir}/gwt-user.jar"/>
-        <pathelement location="${gwt.dir}/gwt-dev-${gwt.dev.platform}.jar"/>
+        <pathelement location="${gwt.dir}/gwt-dev.jar"/>
+        <pathelement location="${bioportal1.lib}"/>
+      	<pathelement location="${bioportal2.lib}"/>
         <fileset dir="${lib}"/>
       </path>
 
@@ -98,10 +104,30 @@
     #   ********** Initialization and staging *************
     -->
 
-   <target name = "stage.war">
+   <target name = "init">
+     <tstamp>
+       <format property="build.time" pattern="MM/dd/yyyy hh:mm aa"/>
+	 </tstamp>
+	 <mkdir dir = "${build}"/>
+	 <mkdir dir = "${classes}"/>
+	 <condition property="set.if.use.server">
+	   <istrue value="${use.server}"/>
+	 </condition>	 
+         <condition property="set.if.deploy.in.root">
+	   <equals arg1="${deploy.in.root}" arg2="true"/>
+         </condition>
+	 <available property="alt.war.template.exists"
+	   	        file="${alt.war.template}"
+		 		type="dir"/>
+	 <available property="alt.projects.template.exists"
+	   	        file="${alt.war.template}/projects"
+	   	        type="dir"/>
+   </target> 
+
+   <target name = "stage.war" depends="checkProtegeLibsAndReport, init">
      <mkdir dir = "${war}"/>
      <copy todir="${war}">
-       <fileset dir="./war"/>
+       <fileset dir="${war.template}"/>
      </copy>
      <!-- Protege dependencies -->
      <copy todir = "${war}/WEB-INF/lib">
@@ -115,25 +141,30 @@
        <fileset dir = "${protege.home}/plugins/edu.stanford.smi.protegex.rdf_backend" 
                 includes = "**/*.jar"
                 excludes = "xerces.jar"/>
-       
+       <fileset dir = "${protege.home}/plugins/edu.stanford.bmir.protegex.bp.ref"
+                includes = "**/*.jar"
+                excludes="**/xpp*.jar,**/xstream*.jar"/>
      </copy>
+
      <copy todir = "${war}/WEB-INF/lib" file="${protege.lib}"/>
      <copy todir = "${war}/WEB-INF/lib" file="${changes.lib}"/>
      <copy todir = "${war}/WEB-INF/lib" file="${chat.lib}"/>
      <copy todir = "${war}/WEB-INF/lib" file="${collab.lib}"/>
      <copy todir = "${war}/WEB-INF/lib" file="${standard.lib}"/>
+     <antcall target="replace.projects"/>
+     <antcall target="copy.alt.war.template"/>
+     
    </target>
 
-   <target name = "init">
-     <tstamp>
-       <format property="build.time" pattern="MM/dd/yyyy hh:mm aa"/>
-     </tstamp>
-     <mkdir dir = "${build}"/>
-     <mkdir dir = "${classes}"/>
-     <condition property="set.if.use.server">
-       <istrue value="${use.server}"/>
-     </condition>
-   </target>  
+   <target name="replace.projects" if="alt.projects.template.exists">
+   	  <delete dir="${war}/projects"/>
+   </target>
+	
+   <target name="copy.alt.war.template" if="alt.war.template.exists">
+   	  <copy todir="${war}" overwrite="true">
+   	  	<fileset dir="${alt.war.template}"/>
+   	  </copy>
+   </target>
 
    <!-- 
     #   ********** Compilation *************
@@ -156,6 +187,10 @@
      </copy>
    </target>
 
+   <target name="webprotege.lib" depends="stage.war, compile">
+   	   <jar file="${war}/WEB-INF/lib/webprotege-lib.jar" basedir="${classes}"/>
+   </target>
+	
    <target name = "check.js.compiled">
        <uptodate property="js.up.to.date"
                  targetfile="${war}/BUILT">
@@ -174,8 +209,7 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
           -->
        <java classname = "com.google.gwt.dev.Compiler" 
              fork = "true" 
-             maxmemory = "500M"
-             failonerror="true">
+             maxmemory = "500M">
            <classpath>
                <path refid="project.classpath"/>
                <pathelement path="${classes}"/>
@@ -192,9 +226,20 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
            <arg line = "-logLevel"/>
            <arg line = "INFO"/>
 
-           <arg value = "edu.stanford.bmir.protege.web.WebProtege"/>
+           <arg value = "${gwt.xml.target}"/>
        </java>
        <touch file="${war}/BUILT"/>
+
+       <antcall target="copy.rpc.in.war" />
+   </target>
+
+   <target name="copy.rpc.in.war" if="set.if.deploy.in.root">
+	<echo message="Copying the rpc files in war (workaround for GWT + proxy bug)"/>   	
+       <copy todir="${war}">
+       <fileset dir="${war}/${gwt.module}">
+         <include name="**/*.rpc"/>
+       </fileset>
+     </copy> 
    </target>
 
 
@@ -202,20 +247,29 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
      #  ********** Tomcat *************
      -->
 
-   <target name = "tomcat" depends="compile, compile.js">
+   <target name = "tomcat" depends="webprotege.lib,compile.js">
      <delete file="${war}/WEB-INF/lib/gwt-user.jar"/>
      <copy  file="${gwt.dir}/gwt-servlet.jar" 
             todir="${war}/WEB-INF/lib"/>
-     <war destfile="${build}/webprotege.war"
+     <war destfile="${build}/${war.name}.war"
           basedir = "${war}" />
    </target>
         
    <target name = "deploy" depends="tomcat">
-       <delete dir = "${catalina.home}/webapps/webprotege"/>
-       <copy tofile="${catalina.home}/webapps/webprotege.war"
-             file="${build}/webprotege.war"/>
+       <delete dir = "${catalina.home}/webapps/${war.name}"/>
+       <copy tofile="${catalina.home}/webapps/${war.name}.war"
+             file="${build}/${war.name}.war"/>
    </target>
 
+   <target name = "update"  depends="webprotege.lib, compile.js">
+   	   <copy todir="${catalina.home}/webapps/${war.name}">
+   	   	 <fileset dir="${war}">
+   	   	 	<exclude name="projectConfigurations/*"/>
+   	   	 	<exclude name="projects/**"/>
+   	   	 	<exclude name="WEB-INF/web.xml"/>
+   	   	 </fileset>
+   	   </copy>
+   </target>
 
    <!-- 
      #  ********** Running *************
@@ -245,10 +299,10 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
    </target>
 
    <target name    = "hosted" 
-           depends = "compile,stage.war">
+           depends = "webprotege.lib,stage.war">
      <copy todir="${war}/WEB-INF/lib" file="${gwt.dir}/gwt-user.jar"/>
      
-     <java classname = "com.google.gwt.dev.HostedMode" 
+     <java classname = "com.google.gwt.dev.DevMode" 
            fork = "true" maxmemory = "${hosted.memory}"
            dir="${war}">
        <classpath>
@@ -261,10 +315,25 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
        <jvmarg value = "${extra.hosted.jvm.arg}"/>
        <arg value = "-war"/>
        <arg value = "${war}"/>
-       <arg value = "edu.stanford.bmir.protege.web.WebProtege"/>
+       <arg value = "${gwt.xml.target}"/>
+       <arg value = "-startupUrl"/>
+       <arg value = "${gwt.html.target}"/>
      </java>
    </target>
 
+   <!-- 
+     #  ********** Usage *************
+     -->
+
+   <target name="usage">
+       <echo message="tomcat - makes a war file"/>
+       <echo message="deploy - makes a war file and deploys it to ${CATALINA_HOME}"/>
+       <echo message="hosted - runs web-protege in hosted mode with remote debug support"/>
+       <echo message="run.server - runs the protege server configured for web-protege"/>
+       <echo message="stage.war - makes a copy of the war directory in ./build/war"/>
+       <echo message="usage - prints a help message"/>
+       <echo message="clean - cleans the build directory"/>
+   </target>
 
    <!-- 
      #  ********** Clean *************

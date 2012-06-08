@@ -2,344 +2,335 @@ package edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import com.gwtext.client.data.SimpleStore;
 import com.gwtext.client.widgets.Component;
 import com.gwtext.client.widgets.Panel;
 import com.gwtext.client.widgets.TabPanel;
-import com.gwtext.client.widgets.form.ComboBox;
 import com.gwtext.client.widgets.form.FieldSet;
 import com.gwtext.client.widgets.layout.FormLayout;
-import com.gwtext.client.widgets.portal.Portlet;
 
+import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
-import edu.stanford.bmir.protege.web.client.rpc.data.Triple;
+import edu.stanford.bmir.protege.web.client.ui.icd.ICDLinearizationWidget;
+import edu.stanford.bmir.protege.web.client.ui.icd.ICDTitleWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
-import edu.stanford.bmir.protege.web.client.util.Project;
 
 /**
  * This class generates a form with fields based on the portlet configuration
- * from the server. The Form Generator is able to generate. A field is a 
+ * from the server. The Form Generator is able to generate. A field is a
  * {@link PropertyWidget}.
- * 
- * The Form Generator also has methods for filling in the field values of the generated form.
- * 
+ *
+ * The Form Generator also has methods for filling in the field values of the
+ * generated form.
+ *
  * @author Tania Tudorache <tudorache@stanford.edu>
  *
  */
 public class FormGenerator {
-	/*
-	 * For now, we'll assume that the form configuration map
-	 * has a valid configuration stored 
-	 */
 
-	//TODO: add a type to the configuration
+    private Project project;
+    private Map<String, Object> formConf;
 
-	private Project project;
-	private Map<String, Object> formConf;
-	private Map<String, List<PropertyWidget>> prop2widget = new HashMap<String, List<PropertyWidget>>();
-	private Portlet portletId;//TODO this should be changed to the String element ID, but we could not retrieve the Portlet based on the ID
+    private Collection<PropertyWidget> widgets;
 
-	public FormGenerator(Project project, Map<String, Object> formConfiguration) {
-		this.project = project;
-		this.formConf = formConfiguration;
-	}	
+    private Map<Panel, Collection<PropertyWidget>> tab2PropWidgets;
+    private Map<Panel, Collection<String>> tab2TypesAny;
+    //TODO: treat types_all
 
-	public void setPortletId(Portlet id) {
-		portletId = id;
-	}
-	
-	public Panel getFormPanel() {
-		Panel panel = null;
-		Object tabs = formConf.get(FormConstants.TABS);
-		if (tabs != null && (tabs instanceof Collection) && ((Collection)tabs).size() > 0) {	// multiple tabs
-			panel = new TabPanel();
-			panel.setPaddings(8);	
-			panel.setBorder(false);
+    public FormGenerator(Project project, Map<String, Object> formConfiguration) {
+        this.project = project;
+        this.formConf = formConfiguration;
+        this.widgets = new ArrayList<PropertyWidget>();
+        tab2PropWidgets = new LinkedHashMap<Panel, Collection<PropertyWidget>>();
+        tab2TypesAny = new LinkedHashMap<Panel, Collection<String>>();
+    }
 
-			for (Iterator iterator = ((Collection)tabs).iterator(); iterator.hasNext();) {
-				Object tabObj = (Object) iterator.next();
-				if (tabObj instanceof Map) {
-					Map tabMap = (Map) tabObj;
-					Panel tab = createInnerPanel(tabMap);
-					panel.add(tab);
-				}
-			}
-		} else { //no tabs
-			panel = createInnerPanel(formConf);
-		}
-		return panel;
-	}
+    /**
+     * This is necessary only to circumvent a problem related to adding/removing
+     * components problem that involves a tab panel
+     *
+     * @return - the tab panel - same as input
+     */
+    public Panel addFormToTabPanel(TabPanel tabPanel) {
+        Object tabs = formConf.get(FormConstants.TABS);
+        if (tabs != null && (tabs instanceof Collection) && ((Collection) tabs).size() > 0) {
+            // multiple tabs
+            for (Iterator iterator = ((Collection) tabs).iterator(); iterator.hasNext();) {
+                Object tabObj = iterator.next();
+                if (tabObj instanceof Map) {
+                    Map tabMap = (Map) tabObj;
+                    Panel tab = createInnerPanel(tabMap);
+                    tab.setVisible(false);
+                    setTabVisible(tab, false);
+                    tabPanel.add(tab);
+                    tabPanel.hideTabStripItem(tab);
 
-	/**
-	 * This is necessary only to circumvent a problem related to adding/removing
-	 * components problem that involves a tab panel
-	 * @return - the tab panel - same as input
-	 */
-	public Panel addFormToTabPanel(TabPanel panel) {		
-		Object tabs = formConf.get(FormConstants.TABS);
-		if (tabs != null && (tabs instanceof Collection) && ((Collection)tabs).size() > 0) {	// multiple tabs			
-			for (Iterator iterator = ((Collection)tabs).iterator(); iterator.hasNext();) {
-				Object tabObj = (Object) iterator.next();
-				if (tabObj instanceof Map) {
-					Map tabMap = (Map) tabObj;
-					Panel tab = createInnerPanel(tabMap);					
-					panel.add(tab);
-				}
-			}
-		} else { //one tab
-			Panel createInnerPanel = createInnerPanel(formConf);
-			if (createInnerPanel != null) {				
-				panel.add(createInnerPanel);
-			}
-		}
-		
-		return panel;
-	}
+                    String title = (String) tabMap.get(FormConstants.TITLE);
+                    if (title != null) {
+                       tab.setTitle(title);
+                    }
+                }
+            }
+        } else { // one tab
+            Panel createInnerPanel = createInnerPanel(formConf);
+            if (createInnerPanel != null) {
+                tabPanel.add(createInnerPanel);
+            }
+        }
+        return tabPanel;
+    }
 
+    public boolean isSuitableForType(Panel tab, Collection<EntityData> types) {
+        Collection<String> anytypes = tab2TypesAny.get(tab);
+        if (anytypes == null) { return true; }
+        for (EntityData type : types) {
+            if (anytypes.contains(type.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public List<PropertyWidget> getComponents(String propertyName) {
-		return prop2widget.get(propertyName);
-	}
+    public boolean isSuitableForType(TabPanel tab, String type) {
+        Collection<String> anytypes = tab2TypesAny.get(tab);
+        return anytypes == null ? true : anytypes.contains(type);
+    }
 
+    public Collection<PropertyWidget> getWidgetsInTab(Panel tabPanel) {
+        return tab2PropWidgets.get(tabPanel);
+    }
 
-	protected Panel createInnerPanel(Map panelConf) {
-		Panel panel = new Panel();
-		panel.setLayout(new FormLayout()); //TODO
-		panel.setPaddings(5);	
-		panel.setBorder(false);
-		panel.setAutoScroll(true);
+    public Collection<Panel> getTabs() {
+        return tab2PropWidgets.keySet();
+    }
 
-		String title = (String) panelConf.get(FormConstants.TITLE);
-		if (title != null) {
-			panel.setTitle(title);
-		}
+    public Collection<PropertyWidget> getWidgets() {
+        return widgets;
+    }
 
-		createInnerPanelComponents(panel, panelConf);
-		return panel;
-	}
+    protected Panel createInnerPanel(Map panelConf) {
+        Panel panel = new Panel();
+        panel.setLayout(new FormLayout()); // TODO
+        panel.setPaddings(5);
+        panel.setBorder(false);
+        panel.setAutoScroll(true);
 
-	protected void configurePanel(Panel panel) {
+        tab2TypesAny.put(panel, (Collection<String>) panelConf.get(FormConstants.TYPES_ANY));
+        setTabVisible(panel, true);
 
-	}
+        createInnerPanelComponents(panel, panelConf);
 
-	protected void createInnerPanelComponents(Panel panel, Map panelConf) {		 
-		Collection<String> properties = panelConf.keySet(); //TODO: this won't be sorted
-		String[] sortedProps = new String[properties.size()];
-		
-		for (String prop : properties) {
-			Object value = panelConf.get(prop);
-			if (value instanceof Map) {
-				String indexStr = (String) ((Map)value).get(FormConstants.INDEX);
-				if (indexStr != null) {
-					int index = Integer.parseInt(indexStr);
-					sortedProps[index] = prop;
-				}
-			}
-		}
-				
-		for (int i =0 ; i < sortedProps.length; i ++) {			
-			String prop = sortedProps[i];
-			Object value = panelConf.get(prop);
-			if (value instanceof Map) {
-				String component_type = (String) ((Map)value).get(FormConstants.COMPONENT_TYPE);
-				if (component_type != null) {
-					PropertyWidget widget = null;
-					if (component_type.equals(FormConstants.TEXTFIELD)) {				
-						widget = createTextField((Map)value, prop);				
-					} else if (component_type.equals(FormConstants.TEXTAREA)) {
-						widget = createTextArea((Map)value, prop);
-					} else if (component_type.equals(FormConstants.COMBOBOX)) {
-						widget = createComboBox((Map)value, prop);
-					} else if (component_type.equals(FormConstants.HTMLEDITOR)) {
-						widget = createHtmlEditor((Map)value, prop);
-					} else if (component_type.equals(FormConstants.FIELDSET)) {
-						//widget = createFieldSet((Map)value);
-					} else if (component_type.equals(FormConstants.MULTITEXTFIELD)) {
-						widget = createMultiTextField((Map)value, prop);
-					} else if (component_type.equals(FormConstants.GRID)) {
-						widget = createGrid((Map)value, prop);
-					} else if (component_type.equals(FormConstants.EXTERNALREFERENCE)) {
-						widget = createExternalReference((Map)value, prop);
-					} else if (component_type.equals(FormConstants.CLASS_SELECTION_FIELD)) {
-						widget = createClassSelectionField((Map)value, prop);
-					} else if (component_type.equals(FormConstants.PROPERTY_SELECTION_FIELD)) {
-						widget = createPropertySelectionField((Map)value, prop);
-					}
-
-					if (widget != null && widget.getComponent() != null) {	
-						addComponent(prop, widget);
-						panel.add(widget.getComponent());						
-					}
-				}
-			}
-		}
-	}
+        return panel;
+    }
 
 
-	protected PropertyWidget createTextField(Map conf, String property) {
-		TextFieldWidget textFieldWidget = new TextFieldWidget(project); //TODO: fix me
-		textFieldWidget.setup(conf, new PropertyEntityData(property));
-		//TODO: remove:		
-		return textFieldWidget; 
-	}
-	
-	protected ClassSelectionFieldWidget createClassSelectionField(Map conf, String property) {
-		ClassSelectionFieldWidget widget = new ClassSelectionFieldWidget(project); //TODO: fix me
-		widget.setup(conf, new PropertyEntityData(property));		
-		return widget;
-	}
-	
-	protected PropertySelectionFieldWidget createPropertySelectionField(Map conf, String property) {
-		PropertySelectionFieldWidget widget = new PropertySelectionFieldWidget(project); //TODO: fix me
-		widget.setup(conf, new PropertyEntityData(property));		
-		return widget;
-	}
+    protected void createInnerPanelComponents(Panel panel, Map panelConf) {
+        Collection<String> properties = panelConf.keySet(); // TODO: this won't be sorted
+        String[] sortedProps = new String[properties.size()];
 
-	protected PropertyWidget createTextArea(Map conf, String property) {
-		TextAreaWidget textareaWidget = new TextAreaWidget(project); //TODO: fix me
-		textareaWidget.setup(conf, new PropertyEntityData(property));
-		return textareaWidget; 
-	}
+        for (String prop : properties) {
+            Object value = panelConf.get(prop);
+            if (value instanceof Map) {
+                String indexStr = (String) ((Map) value).get(FormConstants.INDEX);
+                if (indexStr != null) {
+                    int index = Integer.parseInt(indexStr);
+                    sortedProps[index] = prop;
+                }
+            }
+        }
 
-	protected PropertyWidget createComboBox(Map conf, String property) {
-		ComboBoxWidget comboBoxWidget = new ComboBoxWidget(project); //TODO
-		comboBoxWidget.setup(conf, new PropertyEntityData(property));
-		return comboBoxWidget;
-	}
+        for (String prop : sortedProps) {
+            Object value = panelConf.get(prop);
+            if (value instanceof Map) {
+                String component_type = (String) ((Map) value).get(FormConstants.COMPONENT_TYPE);
+                if (component_type != null) {
+                    PropertyWidget widget = null;
+                    if (component_type.equals(FormConstants.TEXTFIELD)) {
+                        widget = createTextField((Map) value, prop);
+                    } else if (component_type.equals(FormConstants.TEXTAREA)) {
+                        widget = createTextArea((Map) value, prop);
+                    } else if (component_type.equals(FormConstants.COMBOBOX)) {
+                        widget = createComboBox((Map) value, prop);
+                    } else if (component_type.equals(FormConstants.HTMLEDITOR)) {
+                        widget = createHtmlEditor((Map) value, prop);
+                    } else if (component_type.equals(FormConstants.FIELDSET)) {
+                        // widget = createFieldSet((Map)value);
+                    } else if (component_type.equals(FormConstants.MULTITEXTFIELD)) {
+                        widget = createMultiTextField((Map) value, prop);
+                    } else if (component_type.equals(FormConstants.INSTANCETEXTFIELD)) {
+                    	widget = createInstanceTextField((Map) value, prop);
+                    } else if (component_type.equals(FormConstants.GRID)) {
+                        widget = createGrid((Map) value, prop);
+                    } else if (component_type.equals(FormConstants.EXTERNALREFERENCE)) {
+                        widget = createExternalReference((Map) value, prop);
+                    } else if (component_type.equals(FormConstants.CLASS_SELECTION_FIELD)) {
+                        widget = createClassSelectionField((Map) value, prop);
+                    } else if (component_type.equals(FormConstants.PROPERTY_SELECTION_FIELD)) {
+                        widget = createPropertySelectionField((Map) value, prop);
+                    } else if (component_type.equals(FormConstants.HTMLMESSAGE)) {
+                        widget = createHtmlMessage((Map<String, Object>) value, prop);
+                    } else if (component_type.equals(FormConstants.INSTANCE_CHECKBOX)) {
+                        widget = createInstanceCheckBox((Map) value, prop);
+                    } else if (component_type.equals(FormConstants.INSTANCE_RADIOBUTTON)) {
+                        widget = createInstanceRadioButton((Map) value, prop);
+                    } else if (component_type.equals(FormConstants.ICDTITLE_TEXTFIELD)) { //ICD specific
+                        widget = createICDTitleTextField((Map) value, prop);
+                    } else if (component_type.equals(FormConstants.ICDLINEARIZATION_GRID)) { //ICD specific
+                        widget = createICDLinearizationGrid((Map) value, prop);
+                    }
 
-	protected PropertyWidget createHtmlEditor(Map conf, String property) {
-		HTMLEditorWidget htmlEditorWidget = new HTMLEditorWidget(project); //TODO
-		htmlEditorWidget.setup(conf, new PropertyEntityData(property));
-		return htmlEditorWidget;
-	}
+                    if (widget != null && widget.getComponent() != null) {
+                        widgets.add(widget);
+                        panel.add(widget.getComponent());
+                        addToMap(panel, widget);
+                    }
+                }
+            }
+        }
+    }
 
-	protected Component createFieldSet(Map conf, String property) {
-		String label = (String) conf.get(FormConstants.LABEL);		
-		FieldSet fieldSet = new FieldSet(label);
-		String collapsible = (String) conf.get(FormConstants.FIELDSET_COLLAPISBLE);
-		if (collapsible != null && collapsible.equalsIgnoreCase("true")) {
-			fieldSet.setCollapsible(true);
-			String collapsed = (String) conf.get(FormConstants.FIELDSET_COLLAPISBLE);
-			if (collapsed != null && collapsed.equalsIgnoreCase("true")) {
-				fieldSet.setCollapsed(true);
-			}
-		}
-		String checkBoxToggle = (String) conf.get(FormConstants.FIELDSET_CHECKBOX_TOGGLE);
-		if (checkBoxToggle != null && checkBoxToggle.equalsIgnoreCase("true")) {
-			fieldSet.setCheckboxToggle(true);
-		}
+    protected void addToMap(Panel tabPanel, PropertyWidget propWidget) {
+        Collection<PropertyWidget> widgets = tab2PropWidgets.get(tabPanel);
+        if (widgets == null) {
+            widgets = new ArrayList<PropertyWidget>();
+        }
+        widgets.add(propWidget);
+        tab2PropWidgets.put(tabPanel, widgets);
+    }
 
-		createInnerPanelComponents(fieldSet, conf);
+    public void setTabVisible(Panel tab, boolean isVisible) {
+        tab.getElement().setAttribute("vis", isVisible ? "1" : "0");
+    }
 
-		return fieldSet;
-	}
-	
-	private PropertyWidget createMultiTextField(Map conf, String property) {
-		TextFieldMultiWidget widget = new TextFieldMultiWidget(project);
-		widget.setup(conf, new PropertyEntityData(property));
-		return widget;
-	}
-
-	protected void addComponent(String property, PropertyWidget widget) {
-		List<PropertyWidget> comps = prop2widget.get(property);
-		if (comps == null) {
-			comps = new ArrayList<PropertyWidget>();
-		}
-		comps.add(widget);
-		prop2widget.put(property, comps);
-	}
-
-
-	protected PropertyWidget createGrid(Map conf, String prop) {
-		InstanceGridWidget widget = new InstanceGridWidget(project);
-		widget.setPortletId(portletId);
-		widget.setup(conf, new PropertyEntityData(prop));
-		return widget;
-	}
-	
-	protected PropertyWidget createExternalReference(Map conf, String prop) {
-		InstanceGridWidget widget = new ReferenceFieldWidget(project);
-		widget.setPortletId(portletId);
-		widget.setup(conf, new PropertyEntityData(prop));
-		return widget;
-	}
-	
-	/*
-	 * Fill values in fields
-	 */
-
-	public void fillValues(ArrayList<Triple> triples, EntityData subjectEntityData) {		
-		//hack
-		EntityData subject = subjectEntityData;
-		Map<PropertyEntityData, List<EntityData>> prop2values = new LinkedHashMap<PropertyEntityData, List<EntityData>>();
-		for (Triple triple : triples) {
-			List<EntityData> values = prop2values.get(triple.getProperty());
-			if (values == null) {
-				values = new ArrayList<EntityData>();
-			}
-			values.add(triple.getValue());
-			prop2values.put(triple.getProperty(), values);
-			subject = triple.getEntity();		
-		}				
-		
-		Set<String> propsWithValue = new HashSet();
-		for (PropertyEntityData prop : prop2values.keySet()) {			
-			String propName = prop.getName();
-			propsWithValue.add(propName);
-			List<PropertyWidget> widgets = getComponents(propName);
-			if (widgets != null) {
-				for (PropertyWidget widget : widgets) {
-					widget.setSubject(subject);
-					widget.setProperty(prop);
-					widget.setValues(prop2values.get(prop)); //TODO			
-				}	
-			}
-		}
-
-		//TODO: optimize
-		for (String prop : prop2widget.keySet()) {		
-			if (!propsWithValue.contains(prop)) {
-				List<PropertyWidget> widgets = getComponents(prop);
-				if (widgets != null) {
-					for (PropertyWidget widget : widgets) {
-						Collection values = new ArrayList();						
-						widget.setSubject(subject); //TODO: need to set subject!
-						//widget.setProperty(triple.getProperty()); //TODO: need to set pred!!
-						widget.setValues(values); //TODO			
-					}	
-				}
-			}
-		}
-	}
+    public boolean isTabVisible(Panel tab) {
+        String val = tab.getElement().getAttribute("vis");
+        return val == null ? false : val.equals("1") ? true : false;
+    }
 
 
-	
-	protected void fillComboBox(ComboBox comboBox, Triple triple) {
-		List<EntityData> allowedValues = triple.getProperty().getAllowedValues();
-		if (allowedValues != null && allowedValues.size() > 0) {
-			Object[][] data = new Object[allowedValues.size()][2];
-			for (int i = 0; i< allowedValues.size(); i++) {
-				data[i][0] = allowedValues.get(i);
-				data[i][1] = allowedValues.get(i).getBrowserText();
-			}
+    protected PropertyWidget createTextField(Map conf, String property) {
+        TextFieldWidget textFieldWidget = new TextFieldWidget(project);
+        textFieldWidget.setup(conf, new PropertyEntityData(property));
+        return textFieldWidget;
+    }
 
-			SimpleStore store = new SimpleStore(new String[]{"entityData", "browserText"}, data);
-			comboBox.setValueField("entityData");			
-			comboBox.setDisplayField("browserText");
-			comboBox.setStore(store);
-		}
-		String value = triple.getValue().getBrowserText();
-		if (value != null) {
-			comboBox.setValue(value);
-		}
-	}	
+    protected ClassSelectionFieldWidget createClassSelectionField(Map conf, String property) {
+        ClassSelectionFieldWidget widget = new ClassSelectionFieldWidget(project);
+        widget.setup(conf, new PropertyEntityData(property));
+        return widget;
+    }
+
+    protected PropertySelectionFieldWidget createPropertySelectionField(Map conf, String property) {
+        PropertySelectionFieldWidget widget = new PropertySelectionFieldWidget(project);
+        widget.setup(conf, new PropertyEntityData(property));
+        return widget;
+    }
+
+    protected PropertyWidget createTextArea(Map conf, String property) {
+        TextAreaWidget textareaWidget = new TextAreaWidget(project);
+        textareaWidget.setup(conf, new PropertyEntityData(property));
+        return textareaWidget;
+    }
+
+    protected PropertyWidget createComboBox(Map conf, String property) {
+        //FIXME Get rid of this special treatment for combobox initialization
+        List<String> allowedValueNames = (List<String>) conf.get(FormConstants.ALLOWED_VALUES);
+        ComboBoxWidget comboBoxWidget = new ComboBoxWidget(project, allowedValueNames);
+        comboBoxWidget.setup(conf, new PropertyEntityData(property));
+        return comboBoxWidget;
+    }
+
+    protected PropertyWidget createHtmlEditor(Map conf, String property) {
+        HTMLEditorWidget htmlEditorWidget = new HTMLEditorWidget(project);
+        htmlEditorWidget.setup(conf, new PropertyEntityData(property));
+        return htmlEditorWidget;
+    }
+
+    protected Component createFieldSet(Map conf, String property) {
+        String label = (String) conf.get(FormConstants.LABEL);
+        FieldSet fieldSet = new FieldSet(label);
+        String collapsible = (String) conf.get(FormConstants.FIELDSET_COLLAPISBLE);
+        if (collapsible != null && collapsible.equalsIgnoreCase("true")) {
+            fieldSet.setCollapsible(true);
+            String collapsed = (String) conf.get(FormConstants.FIELDSET_COLLAPISBLE);
+            if (collapsed != null && collapsed.equalsIgnoreCase("true")) {
+                fieldSet.setCollapsed(true);
+            }
+        }
+        String checkBoxToggle = (String) conf.get(FormConstants.FIELDSET_CHECKBOX_TOGGLE);
+        if (checkBoxToggle != null && checkBoxToggle.equalsIgnoreCase("true")) {
+            fieldSet.setCheckboxToggle(true);
+        }
+
+        createInnerPanelComponents(fieldSet, conf);
+
+        return fieldSet;
+    }
+
+    private PropertyWidget createMultiTextField(Map conf, String property) {
+        TextFieldMultiWidget widget = new TextFieldMultiWidget(project);
+        widget.setup(conf, new PropertyEntityData(property));
+        return widget;
+    }
+
+    private PropertyWidget createInstanceTextField(Map conf, String property) {
+    	InstanceTextFieldWidget widget = new InstanceTextFieldWidget(project);
+    	widget.setup(conf, new PropertyEntityData(property));
+    	return widget;
+    }
+
+    protected PropertyWidget createGrid(Map conf, String prop) {
+        InstanceGridWidget widget = new InstanceGridWidget(project);
+        widget.setup(conf, new PropertyEntityData(prop));
+        return widget;
+    }
+
+    protected PropertyWidget createExternalReference(Map conf, String prop) {
+        InstanceGridWidget widget = new ReferenceFieldWidget(project);
+        widget.setup(conf, new PropertyEntityData(prop));
+        return widget;
+    }
+
+    protected PropertyWidget createHtmlMessage(Map<String, Object> conf, String prop) {
+        HtmlMessageWidget widget = new HtmlMessageWidget(project);
+        widget.setup(conf, new PropertyEntityData(prop));
+        return widget;
+    }
+
+    protected PropertyWidget createInstanceCheckBox(Map<String, Object> conf, String prop) {
+        InstanceCheckBoxWidget widget = new InstanceCheckBoxWidget(project);
+        widget.setup(conf, new PropertyEntityData(prop));
+        return widget;
+    }
+
+    protected PropertyWidget createInstanceRadioButton(Map<String, Object> conf, String prop) {
+        InstanceRadioButtonWidget widget = new InstanceRadioButtonWidget(project);
+        widget.setup(conf, new PropertyEntityData(prop));
+        return widget;
+    }
+
+    //ICD specific
+    protected PropertyWidget createICDTitleTextField(Map conf, String property) {
+        ICDTitleWidget icdTitleWidget = new ICDTitleWidget(project);
+        icdTitleWidget.setup(conf, new PropertyEntityData(property));
+        return icdTitleWidget;
+    }
+
+    protected PropertyWidget createICDLinearizationGrid(Map conf, String property) {
+        ICDLinearizationWidget icdLinearizationWidget = new ICDLinearizationWidget(project);
+        icdLinearizationWidget.setup(conf, new PropertyEntityData(property));
+        return icdLinearizationWidget;
+    }
+
+    public void dispose() {
+        //formConf.clear();
+        //TODO: dispose all widgets
+        widgets.clear();
+        tab2PropWidgets.clear();
+    }
 }

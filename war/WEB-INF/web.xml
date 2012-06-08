@@ -5,29 +5,74 @@
 
 <web-app>
 
+	<!-- Listener for initializing and disposing WebProtege -->
+	<listener>
+		<listener-class>edu.stanford.bmir.protege.web.server.LifeCycleListener</listener-class>
+	</listener>
+
+	
+	<!-- WebProtege servlets -->
+	
     <servlet>
         <servlet-name>AdminServiceImpl</servlet-name>
         <servlet-class>edu.stanford.bmir.protege.web.server.AdminServiceImpl</servlet-class>               
     </servlet>
+
+	<servlet>
+        <servlet-name>NotificationServiceImpl</servlet-name>
+        <servlet-class>edu.stanford.bmir.protege.web.server.NotificationServiceImpl</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>NotificationSchedulerServlet</servlet-name>
+        <servlet-class>edu.stanford.bmir.protege.web.server.NotificationSchedulerServlet</servlet-class>
+        <load-on-startup />
+    </servlet>
+
+	<!-- Using the NotesAPI implementation -->
+    <servlet>
+        <servlet-name>ChAOServiceImpl</servlet-name>
+        <servlet-class>edu.stanford.bmir.protege.web.server.ChAOServiceImpl</servlet-class>               
+    </servlet>
     
     <servlet>
         <servlet-name>OntologyServiceImpl</servlet-name>        
-        <servlet-class>edu.stanford.bmir.protege.web.server.OntologyServiceImpl</servlet-class>
+        <servlet-class>edu.stanford.bmir.protege.web.server.owlapi.OntologyServiceImpl</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ProjectConfigurationServiceImpl</servlet-name>        
         <servlet-class>edu.stanford.bmir.protege.web.server.ProjectConfigurationServiceImpl</servlet-class>
     </servlet>
-
+    
     <servlet>
-        <servlet-name>SWRLServiceImpl</servlet-name>        
-        <servlet-class>edu.stanford.bmir.protege.web.server.SWRLServiceImpl</servlet-class>
+        <servlet-name>ICDServiceImpl</servlet-name>        
+        <servlet-class>edu.stanford.bmir.protege.web.server.ICDServiceImpl</servlet-class>
     </servlet>
 
-    <servlet-mapping>
+    <servlet>
+        <servlet-name>HierarchyServiceImpl</servlet-name>        
+        <servlet-class>edu.stanford.bmir.protege.web.server.HierarchyServiceImpl</servlet-class>
+    </servlet>
+    
+    <servlet>
+	  	<servlet-name>chAOStatsServiceImpl</servlet-name>
+	  	<servlet-class>edu.stanford.bmir.protege.web.server.ChAOStatsServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
         <servlet-name>AdminServiceImpl</servlet-name>
         <url-pattern>/webprotege/admin</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>NotificationServiceImpl</servlet-name>
+        <url-pattern>/webprotege/notification</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ChAOServiceImpl</servlet-name>
+        <url-pattern>/webprotege/chao</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>
@@ -39,15 +84,38 @@
         <servlet-name>ProjectConfigurationServiceImpl</servlet-name>        
         <url-pattern>/webprotege/projectconfig</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ICDServiceImpl</servlet-name>        
+        <url-pattern>/webprotege/icd</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>SWRLServiceImpl</servlet-name>        
-        <url-pattern>/webprotege/swrl</url-pattern>
+        <servlet-name>HierarchyServiceImpl</servlet-name>        
+        <url-pattern>/webprotege/hierarchy</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+  		<servlet-name>chAOStatsServiceImpl</servlet-name>
+  		<url-pattern>/webprotege/chaostats</url-pattern>
+	</servlet-mapping>
+
 
 	<!-- Default page to serve -->
 	<welcome-file-list>
 		<welcome-file>WebProtege.html</welcome-file>
 	</welcome-file-list>
+	
+	<security-constraint>
+        <display-name>excluded</display-name>
+        <web-resource-collection>
+            <web-resource-name>No Access</web-resource-name>
+            <url-pattern>/protege.properties</url-pattern>
+        </web-resource-collection>
+        <auth-constraint/>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
 
 </web-app>

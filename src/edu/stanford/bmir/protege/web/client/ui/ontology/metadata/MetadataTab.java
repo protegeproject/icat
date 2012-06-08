@@ -2,8 +2,8 @@ package edu.stanford.bmir.protege.web.client.ui.ontology.metadata;
 
 import com.gwtext.client.widgets.layout.ColumnLayoutData;
 
+import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.ui.tab.AbstractTab;
-import edu.stanford.bmir.protege.web.client.util.Project;
 
 /**
  * A tab that shows metadata about an ontology such as the imported 

@@ -1,11 +1,10 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <project name = "web-protege" default = "init" basedir = ".">
 
-	<!-- TODO: Make separate global properties for the WebProtege builds -->
-	<property file = "C:/build_svn/global.properties"/>
-
-	<property environment = "env"/>
-	<property name = "protege.home" location = "${env.PROTEGE_HOME}"/>
+	<!-- Global properties, e.g., location of Subversion repository for checkouts, etc. -->
+	<property file = "../global.properties"/>
+	
+	<!-- Local properties -->
 	<property name = "project.name" value = "web-protege"/>
 	<property name = "dist.dir" value = "./dist"/>
 	<property name = "lib.dir" value = "war/WEB-INF/lib"/>
@@ -30,28 +29,32 @@
 		<!-- Protege dependencies -->
 		
 		<!-- Protege Core -->
-		<pathelement path = "${protege.home}/protege.jar"/>
+        <pathelement path = "${protege.jar}"/>
+		<fileset dir = "${protege.dir}/lib" includes = "looks-2.1.3.jar, unicode_panel.jar"/>
 		
 		<!-- Protege-OWL -->
-		<pathelement path = "${protege.home}/plugins/edu.stanford.smi.protegex.owl/protege-owl.jar" /> 
-
+        <pathelement path = "${protege-owl.jar}"/>
+		<fileset dir = "${owl.dir}/lib" excludes = "ekitspell.jar, json.jar, junit.jar, kazuki.jar, lucene-core-2.3.1.jar, swrl-jess-bridge.jar">
+			<include name = "**/*.jar" /> 
+		</fileset>
+		
 		<!-- Protege BioPortal Reference Plugin (not part of the 3.4.1 release, will be in 3.4.2) -->
-		<pathelement path = "${protege.home}/plugins/edu.stanford.bmir.protegex.bp.ref\bioportalReference.jar"/>
+		<pathelement path = "C:\Program Files\Protege_3.4.1\plugins\edu.stanford.bmir.protegex.bp.ref\bioportalReference.jar"/>
 
 		<!-- Protege Change Management -->
-		<pathelement path = "${protege.home}/plugins/edu.stanford.smi.protegex.changes/change-management.jar"/>
+		<pathelement path = "${change-management.jar}"/>
 
 		<!-- Protege Chat -->
-		<pathelement path = "${protege.home}/plugins/edu.stanford.smi.protegex.chatPlugin/chat.jar"/>
+		<pathelement path = "${chat.jar}"/>
 		
 		<!-- Protege Collab -->
-		<pathelement path = "${protege.home}/plugins/edu.stanford.smi.protege.collab/protege-collab.jar"/>
+		<pathelement path = "${protege-collab.jar}"/>
 
 		<!-- Protege RDF Backend -->
-		<pathelement path = "${protege.home}/plugins/edu.stanford.smi.protegex.rdf_backend/rdf-backend.jar"/>
+		<pathelement path = "${rdf-backend.jar}"/>
 
 		<!-- Protege Standard Extensions (this is a custom JAR file, not part of the 3.4.1 release due to some commit/compile issues) -->
-		<pathelement path = "${protege.home}/plugins/edu.stanford.smi.protegex.standard_extensions/standard-extensions.jar"/>
+		<pathelement path = "C:\Program Files\Protege_3.4.1\plugins\edu.stanford.smi.protegex.standard_extensions\standard-extensions.jar"/>
 	</path>
 	
 	<!-- =================================================================== -->
@@ -70,15 +73,15 @@
 
 		<!-- get source code from subversion repository -->
 		<exec executable = "cmd.exe" dir = "${batch.files}" os = "${os}">
-			<arg line = "/c checkout ${svn.core.url}/${project.name}/trunk ../../build-web-protege/${project.name} --non-recursive"/>
+			<arg line = "/c checkout ${svn.core.url}/${project.name}/trunk ../${project.name} --non-recursive"/>
 		</exec>
 		
 		<exec executable = "cmd.exe" dir = "${batch.files}" os = "${os}">
-			<arg line = "/c checkout ${svn.core.url}/${project.name}/trunk/src ../../build-web-protege/${project.name}/${src.dir}"/>
+			<arg line = "/c checkout ${svn.core.url}/${project.name}/trunk/src ../${project.name}/${src.dir}"/>
 		</exec>
 		
 		<exec executable = "cmd.exe" dir = "${batch.files}" os = "${os}">
-			<arg line = "/c checkout ${svn.core.url}/${project.name}/trunk/war ../../build-web-protege/${project.name}/${war.dir}"/>
+			<arg line = "/c checkout ${svn.core.url}/${project.name}/trunk/war ../${project.name}/${war.dir}"/>
 		</exec>
 	</target>
 	
@@ -87,31 +90,37 @@
 	<!-- =================================================================== -->
 	<target name = "libs" description = "Copy libs to WEB-INF/lib">
 		<!-- GWT libs -->
-		<copy file = "${gwt.sdk}/gwt-servlet.jar" todir = "${lib.dir}" />
+		<copy todir = "${lib.dir}" file = "${gwt.sdk}/gwt-servlet.jar" />
 
 		<!-- Protege libs -->
-
-		<!-- Core, OWL, RDF Backend -->
 		<copy todir = "${lib.dir}">
-			<fileset dir = "${protege.home}" includes = "protege.jar, looks-2.1.3.jar, unicode_panel.jar"/>
-			<fileset dir = "${protege.home}/plugins/edu.stanford.smi.protegex.owl" includes = "**/*.jar" excludes = "ekitspell.jar, json.jar, junit.jar, kazuki.jar, lucene-core-2.3.1.jar, swrl-jess-bridge.jar"/>
-			<fileset dir = "${protege.home}/plugins/edu.stanford.smi.protegex.rdf_backend" includes = "rdf-backend.jar, rdf-api.jar"/>
+			<!-- protege-core -->
+			<fileset dir = "${protege.dir}/dist" includes = "protege.jar"/>
+			<fileset dir = "${protege.dir}/lib" includes = "looks-2.1.3.jar, unicode_panel.jar"/>
+
+			<!-- protege-owl -->
+			<fileset dir = "${owl.dir}/dist/" includes = "protege-owl.jar"/>
+			<fileset dir = "${owl.dir}/lib" includes = "**/*.jar" excludes = "ekitspell.jar, json.jar, junit.jar, kazuki.jar, lucene-core-2.3.1.jar, swrl-jess-bridge.jar"/>
+			
+			<!-- bioportal-reference-plugin -->
+			<fileset dir = "C:\Program Files\Protege_3.4.1\plugins\edu.stanford.bmir.protegex.bp.ref" includes = "bioportalReference.jar"/>
+
+			<!-- change-management -->
+			<fileset dir = "${change-management.dir}/dist" includes = "change-management.jar, change-model.jar"/>
+
+			<!-- protege-collab -->
+			<fileset dir = "${protege-collab.dir}/dist" includes = "protege-collab.jar"/>
+
+			<!-- chat -->
+			<fileset dir = "${chat.dir}/dist" includes = "chat.jar"/>
+			
+			<!-- rdf-backend -->
+			<fileset dir = "${rdfBackend.dir}/dist" includes = "rdf-backend.jar"/>
+			<fileset dir = "${rdfBackend.dir}/lib" includes = "rdf-api.jar"/>
+			
+			<!-- standard-extensions -->
+			<fileset dir = "${standardExtensions.dir}/dist" includes = "standard-extensions.jar"/>
 		</copy>
-		
-		<!-- bioportal-reference-plugin -->
-		<copy file = "${protege.home}/plugins/edu.stanford.bmir.protegex.bp.ref/bioportalReference.jar" todir = "${lib.dir}" />
-
-		<!-- change-management -->
-		<copy file = "${protege.home}/plugins/edu.stanford.smi.protegex.changes/change-management.jar" todir = "${lib.dir}" />
-
-		<!-- protege-collab -->
-		<copy file = "${protege.home}/plugins/edu.stanford.smi.protege.collab/protege-collab.jar" todir = "${lib.dir}" />
-
-		<!-- chat -->
-		<copy file = "${protege.home}/plugins/edu.stanford.smi.protegex.chatPlugin/chat.jar" todir = "${lib.dir}" />
-
-		<!-- standard-extensions -->
-		<copy file = "${protege.home}/plugins/edu.stanford.smi.protegex.standard_extensions/standard-extensions.jar" todir = "${lib.dir}" />
 		
 		<!-- Any additional libs that need to be copied should go here -->
 	</target>

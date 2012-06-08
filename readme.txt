@@ -3,7 +3,7 @@ Dependencies
 
 1). Google Web Toolkit (GWT)
     URL: http://code.google.com/webtoolkit/
-    Version: 2.2.0
+    Version: 1.7.0
 
 
 Running

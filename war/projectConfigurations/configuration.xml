@@ -1,4 +1,5 @@
-<list> 
+<project>
+<tabs>
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
     <label>Classes</label>
@@ -136,46 +137,5 @@
     </columns>
     <controllingPortlet reference="../columns/column/portlets/portlet"/>
   </tab>
-   <tab>
-    <name>edu.stanford.bmir.protege.web.client.ui.ontology.metadata.MetadataTab</name>
-    <label>Metadata</label>
-    <columns>
-      <column>
-        <width>0.5</width>
-        <portlets>
-          <portlet>
-            <name>edu.stanford.bmir.protege.web.client.ui.ontology.metadata.ImportsTreePortlet</name>
-            <height>0</height>
-            <width>0</width>
-          </portlet>
-        </portlets>
-      </column>
-      <column>
-        <width>0.5</width>
-        <portlets>
-          <portlet>
-            <name>edu.stanford.bmir.protege.web.client.ui.ontology.metadata.MetricsPortlet</name>
-            <height>0</height>
-            <width>0</width>
-          </portlet>
-        </portlets>
-      </column>
-    </columns>
-  </tab>
-   <tab>
-    <name>edu.stanford.bmir.protege.web.client.ui.ontology.SWRL.SWRLTab</name>
-    <label>SWRL</label>
-    <columns>
-      <column>
-        <width>1</width>
-        <portlets>
-          <portlet>
-            <name>edu.stanford.bmir.protege.web.client.ui.ontology.SWRL.SWRLTabPortlet</name>
-            <height>600</height>
-            <width>600</width>
-          </portlet>
-        </portlets>
-      </column>
-    </columns>
-  </tab>
-</list>
+  </tabs>  
+</project>

@@ -1,230 +1,118 @@
 package edu.stanford.bmir.protege.web.server;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-
-import edu.stanford.bmir.protege.web.client.event.AbstractEvent;
-import edu.stanford.bmir.protege.web.client.event.EntityCreateEvent;
-import edu.stanford.bmir.protege.web.client.event.EntityDeleteEvent;
-import edu.stanford.bmir.protege.web.client.event.EntityRenameEvent;
-import edu.stanford.bmir.protege.web.client.event.EventType;
+import edu.stanford.bmir.protege.web.client.model.event.*;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
-import edu.stanford.smi.protege.event.ClsAdapter;
-import edu.stanford.smi.protege.event.ClsEvent;
-import edu.stanford.smi.protege.event.ClsListener;
-import edu.stanford.smi.protege.event.KnowledgeBaseAdapter;
-import edu.stanford.smi.protege.event.KnowledgeBaseEvent;
-import edu.stanford.smi.protege.event.KnowledgeBaseListener;
-import edu.stanford.smi.protege.event.SlotAdapter;
-import edu.stanford.smi.protege.event.SlotEvent;
-import edu.stanford.smi.protege.event.SlotListener;
+import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
+import edu.stanford.smi.protege.collab.util.HasAnnotationCache;
+import edu.stanford.smi.protege.event.*;
+import edu.stanford.smi.protege.model.Cls;
 import edu.stanford.smi.protege.model.KnowledgeBase;
+import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.util.CollectionUtilities;
+import org.semanticweb.owlapi.model.*;
+import org.semanticweb.owlapi.util.FilteringOWLOntologyChangeListener;
+
+import java.util.*;
 
 public class ServerEventManager {
-	
-	private ServerProject serverProject;	
-	private KnowledgeBaseListener kbListener;
-	private ClsListener clsListener;
-	private SlotListener slotListener;
-	private List<AbstractEvent> events;
-	
-	/*
-	 * We should start with a version number (not 0)
-	 */
-	public ServerEventManager(ServerProject serverProject) {
-		this.serverProject = serverProject;
-		this.events = new ArrayList<AbstractEvent>();
-		createListeners();
-		addListeners();
-	}
-	
-	private void createListeners() {
-		kbListener = createKBListener();
-		clsListener = createClsListener();
-		slotListener = createSlotListener();
-	}
+    static OWLOntologyManager owlOntologyManager;
 
-	private KnowledgeBaseListener createKBListener() {
-		kbListener = new KnowledgeBaseAdapter() {
-			@Override
-			public void clsCreated(KnowledgeBaseEvent event) {
-				if (event.isReplacementEvent()) return;
-				events.add(createEvent(event, EventType.CLASS_CREATED, 
-						getEntityDataList(event.getCls().getDirectSuperclasses())));
-			}
-			
-			@Override
-			public void slotCreated(KnowledgeBaseEvent event) {
-				if (event.isReplacementEvent()) return;
-				events.add(createEvent(event, EventType.PROPERTY_CREATED,
-						getEntityDataList(event.getSlot().getDirectSuperslots())));
-			}
-			
-			@Override
-			public void instanceCreated(KnowledgeBaseEvent event) {
-				
-				events.add(createEvent(event, EventType.INDIVIDUAL_CREATED, null));
-			}
-			
-			@Override
-			public void clsDeleted(KnowledgeBaseEvent event) {
-				if (event.isReplacementEvent()) return;
-				events.add(deleteEvent(event, EventType.CLASS_DELETED, 
-						getEntityDataList(event.getCls().getDirectSuperclasses())));
-			}
-			
-			@Override
-			public void slotDeleted(KnowledgeBaseEvent event) {
-				if (event.isReplacementEvent()) return;
-				events.add(deleteEvent(event, EventType.PROPERTY_DELETED, 
-						getEntityDataList(event.getSlot().getDirectSuperslots())));		
-				}
-			
-			@Override
-			public void frameReplaced(KnowledgeBaseEvent event) {
-				events.add(replaceEvent(event, EventType.ENTITY_RENAMED, event.getOldName()));
-			}
-		};			
-		return kbListener;		
-	}
-	
-	private ClsListener createClsListener() {
-		clsListener = new ClsAdapter() {					
-			@Override
-			public void directSubclassRemoved(ClsEvent event) {
-				if (event.isReplacementEvent()) return;
-				events.add(createEvent(event, EventType.SUBCLASS_REMOVED, 
-						getEntityDataList(CollectionUtilities.createCollection(event.getSubclass())))); //3rd arg - the subclass
-			}
-			
-			@Override
-			public void directSubclassAdded(ClsEvent event) {
-				if (event.isReplacementEvent()) return;
-				events.add(createEvent(event, EventType.SUBCLASS_ADDED, 
-						getEntityDataList(CollectionUtilities.createCollection(event.getSubclass()))));				
-			}
-		};		
-		return clsListener;
-	}
 
-	private SlotListener createSlotListener() {
-		slotListener = new SlotAdapter() {					
-			@Override
-			public void directSubslotRemoved(SlotEvent event) {
-				if (event.isReplacementEvent()) return;
-				events.add(createEvent(event, EventType.SUBPROPERTY_REMOVED, 
-						getEntityDataList(CollectionUtilities.createCollection(event.getSubslot())))); //3rd arg - the subclass
-			}
-			
-			@Override
-			public void directSubslotAdded(SlotEvent event) {
-				if (event.isReplacementEvent()) return;
-				events.add(createEvent(event, EventType.SUBPROPERTY_ADDED, 
-						getEntityDataList(CollectionUtilities.createCollection(event.getSubslot()))));				
-			}
-		};		
-		return slotListener;
-	}
+    /*
+     * TODO: this is a memory leak: we keep all the change events
+     * since the server was started.. this set can get veeery big.
+     * We need to serialize it somehow.
+     */
+    private List<OntologyEvent> events;
+    private ServerProject<Project> serverProject;
+    private FilteringOWLOntologyChangeListener changeListener;
 
-	
-	public void startListening() {
-		addListeners();
-	}
-	
-	private void addListeners() {
-		KnowledgeBase kb = serverProject.getProject().getKnowledgeBase();		
-		kb.addKnowledgeBaseListener(kbListener);
-		kb.addClsListener(clsListener);
-		kb.addSlotListener(slotListener);
-	}
-	
-	private void removeListeners() {
-		KnowledgeBase kb = serverProject.getProject().getKnowledgeBase();		
-		kb.removeKnowledgeBaseListener(kbListener);	
-		kb.removeClsListener(clsListener);
-	}
-	
-	
-	public int getServerVersion() {
-		return events.size();
-	}
-	
-	public ArrayList<AbstractEvent> getEvents(long fromVersion) {
-		return getEvents(fromVersion, events.size());
-	}
-		
-	public ArrayList<AbstractEvent> getEvents(long fromVersion, long toVersion) {
-		ArrayList<AbstractEvent> fromToEvents  = new ArrayList<AbstractEvent>();
-			
-		//TODO: check these conditions
-		if (fromVersion < 0) {
-			fromVersion = 0;
-		}		
-		if (toVersion > events.size()) {
-			toVersion = events.size();
-		}		
-		for (long i = fromVersion; i < toVersion; i++) {
-			fromToEvents.add(events.get((int)i)); //fishy
-		}		
-		
-		//Log.getLogger().info("SERVER: GetEvents from: " + fromVersion + " to: " + toVersion + " events size: " + events.size() + " Events: " + fromToEvents);
-		
-		return fromToEvents;
-	}
-	
-	public void dispose() {
-		removeListeners();
-	}
-	
-	/*
-	 * Utility methods
-	 */
-	ArrayList<EntityData> getEntityDataList(Collection frames) {
-		if (frames == null) {
-			return null;
-		}
-		
-		ArrayList<EntityData> entityDataList = new ArrayList<EntityData>();
-		
-		for (Iterator iterator = frames.iterator(); iterator.hasNext();) {			
-			entityDataList.add(OntologyServiceImpl.createEntityData(iterator.next(), false));						
-		}
-		return entityDataList;
-	}
-	
-	private AbstractEvent createEvent(KnowledgeBaseEvent event, int type, 
-			ArrayList<EntityData> superEntities) {
-		EntityData entity = OntologyServiceImpl.createEntityData(event.getFrame());
-		return new EntityCreateEvent(entity, type, event.getUserName(), superEntities);
-	}
+    /*
+     * TODO: commenting out the frame listener for now -> no widget uses it so far
+     * and it generates too many events and the clients do not need them for now.
+     * Think about an alternative way of handling property value events - they are too verbose..
+     */
 
-	private AbstractEvent createEvent(ClsEvent event, int type, 
-			ArrayList<EntityData> superEntities) {
-		EntityData entity = OntologyServiceImpl.createEntityData(event.getCls());
-		//TODO: change type of event
-		return new EntityCreateEvent(entity, type, event.getUserName(), superEntities);
-	}
-	
-	private AbstractEvent createEvent(SlotEvent event, int type, 
-			ArrayList<EntityData> superEntities) {
-		EntityData entity = OntologyServiceImpl.createEntityData(event.getSlot());
-		//TODO: change type of event
-		return new EntityCreateEvent(entity, type, event.getUserName(), superEntities);
-	}
-	
-	private AbstractEvent deleteEvent(KnowledgeBaseEvent event, int type, 
-			ArrayList<EntityData> superEntities) {
-		EntityData entity = OntologyServiceImpl.createEntityData(event.getFrame());
-		return new EntityDeleteEvent(entity, type, event.getUserName(), superEntities);
-	}
+    // TODO: We should be able to start with a different version number
+    public ServerEventManager(ServerProject serverProject) {
+        this.serverProject = serverProject;
+        this.events = new ArrayList<OntologyEvent>();
+        owlOntologyManager = ProjectManagerFactory.getOWLAPIProjectManager().getOwlOntologyManager();
+        createListeners();
+        addListeners();
+    }
 
-	private AbstractEvent replaceEvent(KnowledgeBaseEvent event, int type, String oldName) {
-		EntityData entity = OntologyServiceImpl.createEntityData(event.getNewFrame());
-		return new EntityRenameEvent(entity, oldName, event.getUserName());
-	}
+    private void createListeners() {
 
-	
+        if (changeListener == null){
+        changeListener = new FilteringOWLOntologyChangeListener() {
+            @Override
+            public void visit(OWLSubClassOfAxiom axiom) {
+                if (isAdd() ) {
+                    events.add(createEvent(axiom, EventType.SUBCLASS_ADDED));
+                }
+            }
+
+        };
+        owlOntologyManager.addOntologyChangeListener(changeListener);
+        }
+    }
+
+    private OWLOntology getOntology(String project) {
+        OWLOntology ont = ProjectManagerFactory.getOWLAPIProjectManager().getProject(project);
+        return ont;
+    }
+
+    public void startListening() {
+
+    }
+
+    private void addListeners() {
+
+
+    }
+
+    public int getServerRevision() {
+        return events.size();
+    }
+
+    public ArrayList<OntologyEvent> getEvents(long fromVersion) {
+        return getEvents(fromVersion, events.size());
+    }
+
+    public ArrayList<OntologyEvent> getEvents(long fromVersion, long toVersion) {
+        ArrayList<OntologyEvent> fromToEvents = new ArrayList<OntologyEvent>();
+
+        //TODO: check these conditions
+        if (fromVersion < 0) {
+            fromVersion = 0;
+        }
+        if (toVersion > events.size()) {
+            toVersion = events.size();
+        }
+        for (long i = fromVersion; i < toVersion; i++) {
+            fromToEvents.add(events.get((int) i)); //fishy
+        }
+
+        //Log.getLogger().info("SERVER: GetEvents from: " + fromVersion + " to: " + toVersion + " events size: " + events.size() + " Events: " + fromToEvents);
+
+        return fromToEvents.size() == 0 ? null : fromToEvents;
+    }
+
+    public void dispose() {
+        owlOntologyManager.removeOntologyChangeListener(this.changeListener);
+    }
+
+
+    private OntologyEvent createEvent(OWLSubClassOfAxiom event, int type) {
+        String name = event.getSuperClass().asOWLClass().getIRI().toString();
+        if(name == null){
+            name = event.getSuperClass().asOWLClass().getIRI().toString(); 
+        }
+        EntityData superClass = new EntityData(name, event.toString());
+        EntityData subClass = new EntityData(event.getSubClass().asOWLClass().getIRI().toString(), event.getSubClass().asOWLClass().getIRI().toString());
+        return new EntityCreateEvent(superClass, type, "getUser not supported by owl ontologies", Arrays.asList(subClass), events.size());
+    }
+
+
 }
