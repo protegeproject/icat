@@ -51,4 +51,6 @@ public interface AdminServiceAsync {
 
     void allowsCreateUsers(AsyncCallback<Boolean> async);
 
+    void download(String projectName, AsyncCallback<String> callback);
+
 }

@@ -176,6 +176,18 @@ public class ApplicationProperties {
         return exportPath;
     }
 
+    public static String getDownloadServerPath() {
+        String exportPath =  edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.DOWNLOAD_SERVER_PATH_PROP, ".");
+        exportPath = exportPath.endsWith(File.separator) ? exportPath : exportPath + File.separator;
+        return exportPath;
+    }
+
+    public static String getDownloadClientRelPath() {
+        String exportPath =  edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.DOWNLOAD_CLIENT_REL__PATH_PROP, "");
+        exportPath = exportPath.endsWith("/") ? exportPath : exportPath + "/";
+        return exportPath;
+    }
+
     public static int getServerPollingTimeoutMinutes() {
         return edu.stanford.smi.protege.util.ApplicationProperties.getIntegerProperty(ApplicationPropertyNames.SERVER_POLLING_TIMEOUT_MINUTES_PROP,
                 ApplicationPropertyDefaults.SERVER_POLLING_TIMEOUT_MINUTES_DEFAULT);

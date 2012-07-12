@@ -1,9 +1,18 @@
 package edu.stanford.bmir.protege.web.server;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,8 +25,14 @@ import edu.stanford.bmir.protege.web.client.rpc.data.ProjectData;
 import edu.stanford.bmir.protege.web.client.rpc.data.UserData;
 import edu.stanford.bmir.protege.web.client.ui.login.constants.AuthenticationConstants;
 import edu.stanford.bmir.protege.web.client.ui.openid.constants.OpenIdConstants;
+import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.server.metaproject.Operation;
 import edu.stanford.smi.protege.server.metaproject.User;
+import edu.stanford.smi.protege.util.Log;
+import edu.stanford.smi.protege.util.URIUtilities;
+import edu.stanford.smi.protegex.owl.jena.export.JenaExportPlugin;
+import edu.stanford.smi.protegex.owl.model.OWLModel;
+import edu.stanford.smi.protegex.owl.storage.OWLKnowledgeBaseFactory;
 
 /**
  * Administrative services for user management
@@ -37,26 +52,6 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
         return userData;
     }
 
-    /*
-     //weird..
-    public String getUserName() {
-        HttpServletRequest request = this.getThreadLocalRequest();
-        HttpSession sess = request.getSession();
-        long initTime = System.currentTimeMillis();
-        long currTime = initTime;
-        String userName = null;
-        long min = 1000 * 60 * 5;
-        do {
-            UserData uData = (UserData) sess.getAttribute(AuthenticationConstants.USERDATA_OBJECT);
-            if (uData != null) {
-                userName = uData.getName();
-                break;
-            }
-            currTime = System.currentTimeMillis();
-        } while ((currTime - initTime) < min);
-        return userName;
-    }
- */
 
     public void logout() {
         HttpServletRequest request = getThreadLocalRequest();
@@ -229,5 +224,82 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
         user.setEmail(emailId);
 
         return userData;
+    }
+
+    public String download(String projectName) {
+        Project project = ProjectManagerFactory.getProtege3ProjectManager().getProject(projectName);
+
+        if (project == null) {
+            return null;
+        }
+
+        //TODO: support for downloading frames ontologies will be added later, if necessary
+        if (project.getKnowledgeBase().getKnowledgeBaseFactory() instanceof OWLKnowledgeBaseFactory == false) {
+            return null;
+        }
+
+        String fileName = getExportedFileName(projectName);
+        String exportDirectory = ApplicationProperties.getDownloadServerPath();
+        final String exportFilePath = exportDirectory + fileName;
+        String downloadedFile = exportFilePath + ".zip";
+
+        Log.getLogger().info("Started download of " + projectName + " on " + new Date() + " by user " + KBUtil.getUserInSession(getThreadLocalRequest()));
+        long t0 = System.currentTimeMillis();
+
+        try {
+            JenaExportPlugin exportPlugin = new JenaExportPlugin();
+            Collection errors = new ArrayList();
+            exportPlugin.exportWithNativeWriter((OWLModel)project.getKnowledgeBase(), URIUtilities.createURI(exportFilePath), errors);
+            if (errors.size() > 0) {
+                Log.getLogger().warning("There were errors or warnings at exporting " + projectName + " to OWL.");
+            }
+            createZipArchive(exportFilePath, downloadedFile);
+        } catch (Exception e) {
+            Log.getLogger().log(Level.WARNING, "Download of " + projectName + " failed.", e);
+            throw new RuntimeException("Download of " + projectName + " failed.");
+        }
+
+        Log.getLogger().info("Download of " + projectName +" took " + (System.currentTimeMillis() - t0)/1000 + " seconds.");
+        return getSimpleFileName(downloadedFile);
+    }
+
+    private String getExportedFileName(String projectName) {
+        StringBuffer fileName = new StringBuffer();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd_HHmmss");
+        final String formattedDate = sdf.format(new Date());
+
+        fileName.append(projectName);
+        fileName.append("_");
+        fileName.append(formattedDate);
+        fileName.append(".owl");
+
+        return fileName.toString();
+    }
+
+    private void createZipArchive(String source, String target) {
+        byte[] buf = new byte[1024];
+
+        File targetFile = new File(target);
+
+        try {
+            ZipOutputStream out = new ZipOutputStream(new FileOutputStream(targetFile));
+            FileInputStream in = new FileInputStream(source);
+            out.putNextEntry(new ZipEntry(getSimpleFileName(source)));
+            int len;
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+            out.closeEntry();
+            in.close();
+            out.close();
+        } catch (IOException e) {
+            Log.getLogger().log(Level.WARNING, "Could not create zip file: " + target, e);
+            throw new RuntimeException("Could not create zip file: " + target, e);
+        }
+    }
+
+
+    private String getSimpleFileName(String filePath) {
+        return new File(filePath).getName();
     }
 }

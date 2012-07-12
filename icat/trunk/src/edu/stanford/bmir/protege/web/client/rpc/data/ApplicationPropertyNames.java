@@ -39,6 +39,9 @@ public class ApplicationPropertyNames {
     public static final String ENABLE_ALL_NOTIFICATION = "enable.all.notification";
     public static final String ENABLE_IMMEDIATE_NOTIFICATION = "enable.immediate.notification";
 
+    public static final String DOWNLOAD_SERVER_PATH_PROP = "download.server.path";
+    public static final String DOWNLOAD_CLIENT_REL__PATH_PROP = "download.client.rel.path";
+
     //ICD specific
     public static final String ICD_EXPORT_DIR_PROP = "icd.export.dir";
 

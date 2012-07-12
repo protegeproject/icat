@@ -5,9 +5,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.gwtext.client.core.EventObject;
 import com.gwtext.client.data.ArrayReader;
 import com.gwtext.client.data.FieldDef;
@@ -29,8 +32,10 @@ import com.gwtext.client.widgets.layout.FitLayout;
 import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.AdminServiceManager;
+import edu.stanford.bmir.protege.web.client.rpc.data.ApplicationPropertyNames;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ProjectData;
+import edu.stanford.bmir.protege.web.client.ui.ClientApplicationPropertiesCache;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
 import edu.stanford.bmir.protege.web.client.ui.selection.SelectionEvent;
 
@@ -42,8 +47,11 @@ public class OntologiesPortlet extends AbstractEntityPortlet {
     private static String LINK_TO_PROTEGE_JNLP = "<a href=\"" + GWT.getModuleBaseURL() + "collabProtege_OWL.jnlp"
             + "\">here</a>";
 
+    private static String DOWNLOAD = "<span style=\"color: #327BAA;\">Download</span>";
+    private static String DOWNLOAD_IN_PROGRESS = "<span style=\"color: #AAAAAA;\">Downloading </span><img src=\"images/loading.gif\"/>";
+
     protected GridPanel ontologiesGrid;
-    protected HashMap<String, ProjectData> ontologies = new HashMap<String, ProjectData>();
+    protected Map<String, ProjectData> ontologies = new HashMap<String, ProjectData>();
     protected RecordDef recordDef;
     protected Store store;
 
@@ -85,10 +93,9 @@ public class OntologiesPortlet extends AbstractEntityPortlet {
 
         createColumns();
 
-        recordDef = new RecordDef(new FieldDef[] { new StringFieldDef("name"), new StringFieldDef("desc"),
-                new StringFieldDef("owner"),
-        // new StringFieldDef("action")
-                });
+        recordDef = new RecordDef(new FieldDef[] {
+                new StringFieldDef("name"), new StringFieldDef("desc"),
+                new StringFieldDef("owner"), new StringFieldDef("download") });
 
         ArrayReader reader = new ArrayReader(recordDef);
         MemoryProxy dataProxy = new MemoryProxy(new Object[][] {});
@@ -99,17 +106,26 @@ public class OntologiesPortlet extends AbstractEntityPortlet {
         ontologiesGrid.addGridCellListener(new GridCellListenerAdapter() {
             @Override
             public void onCellClick(GridPanel grid, int rowIndex, int colindex, EventObject e) {
-                if (grid.getColumnModel().getDataIndex(colindex).equals("name")) {
-                    Record record = grid.getStore().getAt(rowIndex);
-                    String projectName = record.getAsString("name");
+                String col = grid.getColumnModel().getDataIndex(colindex);
+                Record record = grid.getStore().getAt(rowIndex);
+                String projectName = record.getAsString("name");
 
+                if (col.equals("name")) {
                     currentSelection = new ArrayList<EntityData>();
                     currentSelection.add(new EntityData(projectName));
-                    GWT.log(projectName + " selected in OntologiesPortlet", null);
+
                     notifySelectionListeners(new SelectionEvent(OntologiesPortlet.this));
+                } else if (col.equals("download")) {
+                    if (!isDownloading(record)) {
+                        onDownload(projectName, record);
+                    }
                 }
             }
         });
+    }
+
+    private boolean isDownloading(Record record) {
+        return DOWNLOAD_IN_PROGRESS.equals(record.getAsString("download"));
     }
 
     public void addStoreListener(StoreListener listener){
@@ -144,28 +160,21 @@ public class OntologiesPortlet extends AbstractEntityPortlet {
         ownerCol.setHeader("Owner");
         ownerCol.setId("owner");
         ownerCol.setDataIndex("owner");
+        ownerCol.setWidth(120);
         ownerCol.setResizable(true);
         ownerCol.setSortable(true);
 
-        /*
-         * ColumnConfig actionCol = new ColumnConfig();
-         * actionCol.setHeader("Action"); actionCol.setId("action");
-         * actionCol.setDataIndex("action"); actionCol.setResizable(true);
-         * actionCol.setSortable(false);
-         * actionCol.setTooltip("Open the same copy of the ontology in" +
-         * "\n Collaborative Protege using Java Web Start");
-         * actionCol.setWidth(200);
-         */
-        /*
-         * Renderer actionColRenderer = new Renderer() { public String
-         * render(Object value, CellMetadata cellMetadata, Record record, int
-         * rowIndex, int colNum, Store store) { return new
-         * String("<a href=\"\">view recent changes</a>"); } };
-         * actionCol.setRenderer(actionColRenderer);
-         */
+        ColumnConfig downloadCol = new ColumnConfig();
+        downloadCol.setHeader("Download");
+        downloadCol.setId("download");
+        downloadCol.setDataIndex("download");
+        downloadCol.setResizable(true);
+        downloadCol.setSortable(false);
+        downloadCol.setTooltip("Download the latest snapshot of this ontology.");
 
-        ColumnConfig[] columns = new ColumnConfig[] { nameCol, descCol, ownerCol };
+        ColumnConfig[] columns = new ColumnConfig[] { nameCol, descCol, ownerCol, downloadCol };
         ColumnModel columnModel = new ColumnModel(columns);
+
         ontologiesGrid.setColumnModel(columnModel);
     }
 
@@ -175,6 +184,11 @@ public class OntologiesPortlet extends AbstractEntityPortlet {
 
     public List<EntityData> getSelection() {
         return currentSelection;
+    }
+
+    protected void onDownload(String projectName, Record record) {
+        record.set("download", DOWNLOAD_IN_PROGRESS);
+        AdminServiceManager.getInstance().download(projectName, new DownloadProjectHandler(record));
     }
 
     @Override
@@ -189,7 +203,7 @@ public class OntologiesPortlet extends AbstractEntityPortlet {
 
     public void refreshProjectList() {
         AdminServiceManager.getInstance().getProjects(GlobalSettings.getGlobalSettings().getUserName(),
-                        new GetProjectsHandler());
+                new GetProjectsHandler());
     }
 
     @Override
@@ -223,10 +237,9 @@ public class OntologiesPortlet extends AbstractEntityPortlet {
             Iterator<ProjectData> i = projectsData.iterator();
             while (i.hasNext()) {
                 ProjectData data = i.next();
-                // Window.alert("Getting project " + data.getName());
+
                 ontologies.put(data.getName(), data);
-                Record record = recordDef.createRecord(new Object[] { data.getName(), data.getDescription(),
-                        data.getOwner() });
+                Record record = recordDef.createRecord(new Object[] { data.getName(), data.getDescription(), data.getOwner(), DOWNLOAD });
                 store.add(record);
             }
         }
@@ -237,13 +250,53 @@ public class OntologiesPortlet extends AbstractEntityPortlet {
         @Override
         public void handleFailure(Throwable caught) {
             GWT.log("RPC error at refreshing metaproject on the server", caught);
-            com.google.gwt.user.client.Window
-                    .alert("There were errors at refreshing metaproject information from server.");
+            com.google.gwt.user.client.Window.alert("There were errors at refreshing metaproject information from server.");
         }
 
         @Override
         public void handleSuccess(Void result) {
             refreshProjectList();
+        }
+    }
+
+    class DownloadProjectHandler extends AbstractAsyncHandler<String> {
+
+        private Record record;
+
+        public DownloadProjectHandler(Record record) {
+            this.record = record;
+        }
+
+        @Override
+        public void handleFailure(Throwable caught) {
+            record.set("download", DOWNLOAD);
+            store.commitChanges();
+            MessageBox.alert("Error", "The download of the project was not successful. Please try again later.");
+        }
+
+        @Override
+        public void handleSuccess(String fileName) {
+            record.set("download", DOWNLOAD);
+            store.commitChanges();
+
+            if (fileName == null) {
+                MessageBox.alert("Download", "The project format is currently not supported for download.");
+                return;
+            }
+
+            String clientShareDir = ClientApplicationPropertiesCache.getStringProperty(ApplicationPropertyNames.DOWNLOAD_CLIENT_REL__PATH_PROP, "") ;
+            String downloadLink = GWT.getHostPageBaseURL() +clientShareDir + fileName;
+            //FIXME: we should figure out how to make the real HTML enconding for the URL, this is super simplified
+            downloadLink = downloadLink.replaceAll(" ", "%20");
+
+            MessageBox.alert("Download successful",
+                    "If the download does not start automatically in a few seconds, " +
+                            "you may download the file manually, by clicking on this link: <br /><br />" +
+                            "<a href=\"" + downloadLink + "\" target=\"_blank\">" + downloadLink + "</a>");
+
+            //FIXME: this should not be hardcoded
+            String link = GWT.getModuleBaseURL() + "fileserver?FILE_NAME=" + fileName;
+            DOM.setElementAttribute(RootPanel.get("__download").getElement(), "src", link);
         }
 
     }

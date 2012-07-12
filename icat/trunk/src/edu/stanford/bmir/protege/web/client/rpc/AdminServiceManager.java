@@ -104,4 +104,8 @@ public class AdminServiceManager {
     public void allowsCreateUsers(AsyncCallback<Boolean> async){
         proxy.allowsCreateUsers(async);
     }
+
+    public void download(String projectName, AsyncCallback<String> async) {
+        proxy.download(projectName, async);
+    }
 }
