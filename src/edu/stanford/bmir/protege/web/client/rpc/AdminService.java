@@ -78,4 +78,6 @@ public interface AdminService extends RemoteService {
     void logout();
 
     boolean allowsCreateUsers();
+
+    String download(String projectName);
 }
