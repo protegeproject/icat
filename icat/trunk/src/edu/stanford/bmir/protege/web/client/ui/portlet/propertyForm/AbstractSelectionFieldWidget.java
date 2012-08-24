@@ -35,7 +35,7 @@ public abstract class AbstractSelectionFieldWidget extends TextFieldWidget {
     }
 
     protected Anchor createAddEntityLink() {
-        Anchor addLink = new Anchor("&nbsp<img src=\"images/add.png\"></img>", true, "");
+        Anchor addLink = new Anchor("&nbsp<img src=\"images/add.png\"></img>", true);
         addLink.setWidth("20px");
         addLink.setTitle("Add new value");
         addLink.addClickHandler(new ClickHandler() {
