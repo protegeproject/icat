@@ -1,7 +1,7 @@
-; Fri Jul 02 16:00:08 PDT 2010
+; Wed Sep 19 13:13:26 PDT 2012
 ; 
-;+ (version "3.4.4")
-;+ (build "Build 580")
+;+ (version "3.4.8")
+;+ (build "Build 629")
 
 ([metaproject_Class0] of  User
 
@@ -160,16 +160,6 @@
 		[metaproject_Class30001])
 	(name "World"))
 
-([metaproject_Instance_10000] of  Project
-
-	(allowedGroupOperation
-		[metaproject_Instance_10008]
-		[metaproject_Class3])
-	(description "The ICD pre-alpha draft")
-	(location "projects/icd/ICD.pprj")
-	(name "ICD")
-	(owner [metaproject_Instance_10005]))
-
 ([metaproject_Instance_10002] of  User
 
 	(group [metaproject_Instance_0])
@@ -243,7 +233,6 @@
 	(allowedGroupOperation
 		[metaproject_Instance_10008]
 		[metaproject_Class3])
-	(annotationProject [metaproject_Instance_40001])
 	(description "The OWL pizza project with collaborative toppings :)")
 	(location "projects/collaborativePizza/collaborativePizza.owl.pprj")
 	(name "Collaborative Pizza")
@@ -266,14 +255,6 @@
 	(description "Example on how to configure a collaborative project.")
 	(location "projects/collaborativeNewspaper/collaborativeNewspaper.pprj")
 	(name "Collaborative Newspaper")
-	(owner [metaproject_Instance_10006]))
-
-([metaproject_Instance_40001] of  Project
-
-	(allowedGroupOperation [metaproject_Instance_10008])
-	(description "annotation prj of ICD")
-	(location "projects/icd/annotation_ICD.pprj")
-	(name "ICD annotation")
 	(owner [metaproject_Instance_10006]))
 
 ([nci_metaproject_Instance_60009] of  ProjectAppliedOperation
