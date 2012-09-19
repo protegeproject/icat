@@ -899,7 +899,7 @@
 						<entry>
 							<string>text</string>
 							<string>
-&lt;iframe src ="../html/twitter.html" width="280px" height="420px" frameborder="0" &gt;
+&lt;iframe src ="html/twitter.html" width="280px" height="420px" frameborder="0" &gt;
   &lt;p&gt;Your browser does not support iframes.&lt;/p&gt;
 &lt;/iframe&gt;
 							</string>
