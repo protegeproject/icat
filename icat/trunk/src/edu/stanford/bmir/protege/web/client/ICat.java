@@ -261,10 +261,10 @@ public class ICat implements EntryPoint {
 
     protected String getWelcomeMessage() {
         String text = "<div style=\"padding:20px; font-weight: bold\">" +
-            "Welcome to iCAT &mdash; the Collaborative Authoring Tool for the ICD-11 alpha draft. <br/><br/>" +
-            "In the alpha phase, the access to iCAT is restricted to TAG members only. Please sign in to access the iCAT platform.<br/><br/>" +
+            "Welcome to iCAT &mdash; the Collaborative Authoring Tool for the 11th Revsion of the International Classification of Diseases (ICD-11). <br/><br/>" +
+            "The access to iCAT is restricted to TAG members only. Please sign in to access the iCAT platform.<br/><br/>" +
             " <span style=\"color:#003399\">To request an iCAT user account, please contact " +
-            "your TAG managing editor. Alternatively, you may write an email with your information to Sara Cottler (cottlers_AT_who.int) and Tania Tudorache (tudorache_AT_stanford.edu).</span>" +
+            "your TAG managing editor. Alternatively, you may write an email with your information to Sara Cottler (cottlers_AT_who.int).</span>" +
             "</div>";
 
     		return text;
