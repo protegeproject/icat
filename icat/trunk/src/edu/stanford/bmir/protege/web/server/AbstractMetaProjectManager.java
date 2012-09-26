@@ -84,6 +84,15 @@ public abstract class AbstractMetaProjectManager implements MetaProjectManager {
         return allowedOps;
     }
 
+    public Collection<Operation> getDefinedOperations() {
+        Collection<Operation> ops = new ArrayList<Operation>();
+        final MetaProject metaProject = getMetaProject();
+        if (metaProject == null) {
+            throw new IllegalStateException("Metaproject is set to null");
+        }
+        return metaProject.getOperations();
+    }
+
     public Collection<Operation> getAllowedServerOperations(String userName) {
         Collection<Operation> allowedOps = new ArrayList<Operation>();
         if (userName == null) {

@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.zip.ZipEntry;
@@ -75,8 +76,22 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
         return Protege3ProjectManager.getProjectManager().getMetaProjectManager().getProjectsData(user);
     }
 
-    public Collection<String> getAllowedOperations(String project, String user) {
-        Collection<Operation> ops = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getAllowedOperations(project, user);
+    public List<Collection<String>> getAllowedOperations(String project, String user) {
+        Collection<Operation> allDefinedOps = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getDefinedOperations();
+        Collection<Operation> allowedOps = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getAllowedOperations(project, user);
+        List<Collection<String>> returnList = new ArrayList<Collection<String>>();
+        returnList.add(getOperationsAsString(allowedOps));
+        returnList.add(getOperationsAsString(allDefinedOps));
+        return returnList;
+    }
+
+
+    public Collection<String> getAllowedServerOperations(String userName) {
+        Collection<Operation> ops = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getAllowedServerOperations(userName);
+        return getOperationsAsString(ops);
+    }
+
+    public Collection<String> getOperationsAsString(Collection<Operation> ops) {
         Collection<String> opsAsString = new ArrayList<String>();
         for (Operation op : ops) {
             opsAsString.add(op.getName());
@@ -84,14 +99,6 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
         return opsAsString;
     }
 
-    public Collection<String> getAllowedServerOperations(String userName) {
-        Collection<Operation> ops = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getAllowedServerOperations(userName);
-        Collection<String> opsAsString = new ArrayList<String>();
-        for (Operation op : ops) {
-            opsAsString.add(op.getName());
-        }
-        return opsAsString;
-    }
 
     public void refreshMetaproject() {
         Protege3ProjectManager.getProjectManager().getMetaProjectManager().reloadMetaProject();

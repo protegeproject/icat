@@ -3,6 +3,7 @@ package edu.stanford.bmir.protege.web.client.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
@@ -126,7 +127,7 @@ public class SystemEventManager {
      * @param user
      * @param callback
      */
-    public void requestPermissions(Project project, String user, AsyncCallback<Collection<String>> callback) {
+    public void requestPermissions(Project project, String user, AsyncCallback<List<Collection<String>>> callback) {
         AdminServiceManager.getInstance().getAllowedOperations(project.getProjectName(), user,
                 new GetPermissionsHandler(project, user, callback));
     }
@@ -140,13 +141,13 @@ public class SystemEventManager {
      * Remote calls
      */
 
-    class GetPermissionsHandler extends AbstractAsyncHandler<Collection<String>> {
+    class GetPermissionsHandler extends AbstractAsyncHandler<List<Collection<String>>> {
 
         private final Project project;
         private final String user;
-        private final AsyncCallback<Collection<String>> callback;
+        private final AsyncCallback<List<Collection<String>>> callback;
 
-        public GetPermissionsHandler(Project project, String user, AsyncCallback<Collection<String>> callback) {
+        public GetPermissionsHandler(Project project, String user, AsyncCallback<List<Collection<String>>> callback) {
             this.project = project;
             this.user = user;
             this.callback = callback;
@@ -162,9 +163,10 @@ public class SystemEventManager {
         }
 
         @Override
-        public void handleSuccess(Collection<String> permissions) {
-            project.getProjectPermissionManager().setUserPermissions(user, permissions);
-            notifyPermissionsChanged(project, user, permissions);
+        public void handleSuccess(List<Collection<String>> permissions) {
+            project.getProjectPermissionManager().setAllDefinedOperations(permissions.get(1));
+            project.getProjectPermissionManager().setUserPermissions(user, permissions.get(0));
+            notifyPermissionsChanged(project, user, permissions.get(0));
             if (callback != null) {
                 callback.onSuccess(permissions);
             }
