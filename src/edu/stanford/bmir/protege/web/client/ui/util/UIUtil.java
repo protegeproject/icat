@@ -18,6 +18,7 @@ import com.gwtext.client.widgets.MessageBoxConfig;
 import com.gwtext.client.widgets.WaitConfig;
 
 import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
+import edu.stanford.bmir.protege.web.client.model.PermissionConstants;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
@@ -197,14 +198,14 @@ public class UIUtil {
 
     /**
      * Returns a {@link Map} of allowed values from a widget configuration,
-     * where the keys in the map represent the different possible values, 
+     * where the keys in the map represent the different possible values,
      * and for each key the associated values in the map are the display
      * label corresponding for that value.
      * <p>
-     * If the allowed values in the configuration file is represented by a 
-     * simple list of String values, this method will build a map from it, 
-     * where to each key the exact same value will correspond. 
-     * 
+     * If the allowed values in the configuration file is represented by a
+     * simple list of String values, this method will build a map from it,
+     * where to each key the exact same value will correspond.
+     *
      * @param config a widget configuration represented by a String-to-Object map
      * @return the "allowed values" map
      */
@@ -213,7 +214,7 @@ public class UIUtil {
             return null;
         }
         try {
-            Map<String, String> allowedValues = null; 
+            Map<String, String> allowedValues = null;
             Object allowedValuesObject = config.get(FormConstants.ALLOWED_VALUES);
             if (allowedValuesObject instanceof Map) {
                 allowedValues = (Map<String, String>)allowedValuesObject;
@@ -231,7 +232,7 @@ public class UIUtil {
             return null;
         }
     }
-    
+
     public static String getStringConfigurationProperty(
             Map<String, Object> config, ProjectConfiguration projectConfiguration, String prop, String defaultValue) {
         String projectDefaultValue = getStringConfigurationProperty(projectConfiguration, prop, defaultValue);
@@ -334,28 +335,39 @@ public class UIUtil {
             return false;
         }
     }
-    
+
     public static boolean confirmOperationAllowed(Project project) {
         return checkOperationAllowed(project, true);
     }
-    
+
     public static boolean checkOperationAllowed(Project project, boolean showUserAlerts) {
-        if (GlobalSettings.getGlobalSettings().isLoggedIn()) {
-            if (project.hasWritePermission(GlobalSettings.getGlobalSettings().getUserName())) {
-                return true;
-            } else {
-                if (showUserAlerts) {
-                    MessageBox.alert("No permission", "You do not have write permission.");
-                }
-                return false;
-            }
-        } else {
+        return checkOperationAllowed(project, PermissionConstants.WRITE, "", "", true, showUserAlerts);
+    }
+
+    public static boolean checkOperationAllowed(Project project, String operation, String title, String text, boolean checkWritePermission, boolean showUserAlerts) {
+        if (GlobalSettings.getGlobalSettings().isLoggedIn() == false) {
             if (showUserAlerts) {
                 MessageBox.alert("Sign in", "Please sign in first.");
             }
             return false;
         }
+
+        if (checkWritePermission && project.hasPermission(PermissionConstants.WRITE) == false) {
+            if (showUserAlerts) {
+                MessageBox.alert("Warning", "You do not have write permission.");
+            }
+            return false;
+        }
+
+         if (project.hasPermission(operation) == false) {
+                if (showUserAlerts) {
+                    MessageBox.alert(title, text);
+                }
+                return false;
+         }
+         return true;
     }
+
 
     public static Collection<String> getStringCollection(Collection<EntityData> entities) {
         Collection<String> coll = new HashSet<String>();

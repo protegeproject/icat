@@ -1,13 +1,13 @@
 package edu.stanford.bmir.protege.web.server;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import edu.stanford.bmir.protege.web.client.rpc.data.ProjectData;
 import edu.stanford.bmir.protege.web.client.rpc.data.UserData;
 import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.server.metaproject.MetaProject;
 import edu.stanford.smi.protege.server.metaproject.Operation;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 public interface MetaProjectManager {
 
@@ -22,6 +22,8 @@ public interface MetaProjectManager {
     public void setUserEmail(String userName, String email);
 
     public ArrayList<ProjectData> getProjectsData(String userName);
+
+    public Collection<Operation> getDefinedOperations();
 
     public Collection<Operation> getAllowedOperations(String project, String userName);
 
@@ -39,11 +41,11 @@ public interface MetaProjectManager {
     public void reloadMetaProject();
 
     public void dispose();
-    
+
     public UserData getUserAssociatedWithOpenId(String userOpenId);
 
     public String getUserSalt(String userName);
 
-    public boolean allowsCreateUser(); 
+    public boolean allowsCreateUser();
 
 }

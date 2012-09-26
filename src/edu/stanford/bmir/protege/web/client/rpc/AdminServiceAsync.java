@@ -1,6 +1,7 @@
 package edu.stanford.bmir.protege.web.client.rpc;
 
 import java.util.Collection;
+import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -23,7 +24,7 @@ public interface AdminServiceAsync {
 
     void getProjects(String user, AsyncCallback<Collection<ProjectData>> cb);
 
-    void getAllowedOperations(String project, String user, AsyncCallback<Collection<String>> cb);
+    void getAllowedOperations(String project, String user, AsyncCallback<List<Collection<String>>> cb);
 
     void getAllowedServerOperations(String userName, AsyncCallback<Collection<String>> callback);
 

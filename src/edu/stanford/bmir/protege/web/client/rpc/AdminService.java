@@ -1,6 +1,7 @@
 package edu.stanford.bmir.protege.web.client.rpc;
 
 import java.util.Collection;
+import java.util.List;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
@@ -38,7 +39,7 @@ public interface AdminService extends RemoteService {
 
     Collection<ProjectData> getProjects(String user);
 
-    Collection<String> getAllowedOperations(String project, String user);
+    List<Collection<String>> getAllowedOperations(String project, String user);
 
     Collection<String> getAllowedServerOperations(String userName);
 

@@ -91,6 +91,10 @@ public class Project {
         return getProjectPermissionManager().hasPermission(GlobalSettings.getGlobalSettings().getUserName(), PermissionConstants.WRITE);
     }
 
+    public boolean hasPermission(String operation) {
+        return getProjectPermissionManager().hasPermission(GlobalSettings.getGlobalSettings().getUserName(), operation);
+    }
+
     public void dispose() {
         // TODO: we might notify the session that project has been closed
         eventManager.dispose();

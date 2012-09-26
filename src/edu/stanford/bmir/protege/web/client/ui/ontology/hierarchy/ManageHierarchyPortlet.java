@@ -1,5 +1,8 @@
 package edu.stanford.bmir.protege.web.client.ui.ontology.hierarchy;
 
+import java.util.Collection;
+import java.util.Map;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.HTML;
@@ -8,6 +11,8 @@ import com.gwtext.client.widgets.Panel;
 import com.gwtext.client.widgets.layout.ColumnLayout;
 import com.gwtext.client.widgets.layout.ColumnLayoutData;
 import com.gwtext.client.widgets.layout.FitLayout;
+
+import edu.stanford.bmir.protege.web.client.model.PermissionConstants;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration;
@@ -15,9 +20,6 @@ import edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
 import edu.stanford.bmir.protege.web.client.ui.selection.Selectable;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
-
-import java.util.Collection;
-import java.util.Map;
 
 public class ManageHierarchyPortlet extends AbstractEntityPortlet {
 
@@ -112,7 +114,9 @@ public class ManageHierarchyPortlet extends AbstractEntityPortlet {
         createClassHtml.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 if (UIUtil.confirmOperationAllowed(getProject())) {
-                    onCreateCls();
+                    if (isClassCreatePermitted(true) == true) {
+                        onCreateCls();
+                    }
                 }
             }
         });
@@ -145,7 +149,7 @@ public class ManageHierarchyPortlet extends AbstractEntityPortlet {
         moveHtml.setStylePrimaryName("manage-button");
         moveHtml.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                if (UIUtil.confirmOperationAllowed(getProject())) {
+                if (isChangeParentPermitted(true)) {
                     onChangeParents();
                 }
             }
@@ -213,7 +217,7 @@ public class ManageHierarchyPortlet extends AbstractEntityPortlet {
     private boolean getCreateICDSpecificEntities() {
         return UIUtil.getBooleanConfigurationProperty(getPortletConfiguration(), ICDClassTreePortlet.CREATE_ICD_SPECIFIC_ENTITES_PROP, ICDClassTreePortlet.CREATE_ICD_SPECIFIC_ENTITES_DEFAULT);
     }
-    
+
     protected boolean isClassCreateEnabled() {
         return UIUtil.getBooleanConfigurationProperty(getPortletConfiguration(), CREATE_CLASS_ENABLED_PROP, CREATE_CLASS_ENABLED_DEFAULT);
     }
@@ -225,5 +229,14 @@ public class ManageHierarchyPortlet extends AbstractEntityPortlet {
     protected boolean isRetireClassEnabled() {
         return UIUtil.getBooleanConfigurationProperty(getPortletConfiguration(), RETIRE_CLASS_ENABLED_PROP, RETIRE_CLASS_ENABLED_DEFAULT);
     }
+
+    protected boolean isClassCreatePermitted(boolean showAlerts) {
+        return UIUtil.checkOperationAllowed(getProject(), PermissionConstants.CREATE_CLS, "Warning", "The create class operation is not permitted.", true, showAlerts) ;
+    }
+
+    protected boolean isChangeParentPermitted(boolean showAlerts) {
+        return UIUtil.checkOperationAllowed(getProject(), PermissionConstants.MOVE_CLS, "Warning", "The change parents operation is not permitted.", true, showAlerts) ;
+    }
+
 
 }

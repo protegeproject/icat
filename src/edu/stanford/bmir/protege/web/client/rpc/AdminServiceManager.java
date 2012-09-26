@@ -1,6 +1,7 @@
 package edu.stanford.bmir.protege.web.client.rpc;
 
 import java.util.Collection;
+import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -41,7 +42,7 @@ public class AdminServiceManager {
         proxy.getProjects(user, cb);
     }
 
-    public void getAllowedOperations(String project, String user, AsyncCallback<Collection<String>> cb) {
+    public void getAllowedOperations(String project, String user, AsyncCallback<List<Collection<String>>> cb) {
         proxy.getAllowedOperations(project, user, cb);
     }
 

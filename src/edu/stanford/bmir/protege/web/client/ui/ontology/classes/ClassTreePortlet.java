@@ -59,6 +59,7 @@ import com.gwtext.client.widgets.tree.event.TreeNodeListenerAdapter;
 import com.gwtext.client.widgets.tree.event.TreePanelListenerAdapter;
 
 import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
+import edu.stanford.bmir.protege.web.client.model.PermissionConstants;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.model.event.EntityCreateEvent;
 import edu.stanford.bmir.protege.web.client.model.event.EntityRenameEvent;
@@ -339,10 +340,14 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         treePanel.setAutoWidth(true);
         treePanel.setAnimate(true);
         treePanel.setAutoScroll(true);
-        treePanel.setEnableDD(true);
 
         if (allowsMultiSelection) {
             treePanel.setSelectionModel(new MultiSelectionModel());
+        }
+
+        if (hasMovePermission(false) == true) {
+            treePanel.setEnableDD(true);
+            addDragAndDropSupport();
         }
 
         treePanel.addListener(new TreePanelListenerAdapter() {
@@ -356,7 +361,6 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             }
         });
 
-        addDragAndDropSupport();
         addProjectListeners();
 
         return treePanel;
@@ -474,11 +478,17 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         createButton.addListener(new ButtonListenerAdapter() {
             @Override
             public void onClick(final Button button, final EventObject e) {
-                onCreateCls();
+                if (hasCreatePermission(true)) {
+                    onCreateCls();
+                }
             }
         });
         createButton.setDisabled(!project.hasWritePermission(GlobalSettings.getGlobalSettings().getUserName()));
         return createButton;
+    }
+
+    protected boolean hasCreatePermission(boolean showAlerts) {
+        return UIUtil.checkOperationAllowed(getProject(), PermissionConstants.CREATE_CLS, "Warning", "The create class operation is not permitted.", true, showAlerts) ;
     }
 
     protected ToolbarButton createDeleteButton() {
@@ -638,14 +648,12 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             public boolean doBeforeNodeDrop(final TreePanel treePanel, final TreeNode target, final DragData dragData,
                     final String point, final DragDrop source, final TreeNode dropNode,
                     final DropNodeCallback dropNodeCallback) {
-                if (project.hasWritePermission()) {
+                if (hasMovePermission(true)) {
                     final boolean success = Window.confirm("Are you sure you want to move "
                             + getNodeBrowserText(dropNode) + " from parent "
-                            + getNodeBrowserText(dropNode.getParentNode()) + " to parent " + getNodeBrowserText(target)
-                            + " ?");
+                            + getNodeBrowserText(dropNode.getParentNode()) + " to parent " + getNodeBrowserText(target) + " ?");
                     if (success) {
-                        moveClass((EntityData) dropNode.getUserObject(), (EntityData) dropNode.getParentNode()
-                                .getUserObject(), (EntityData) target.getUserObject());
+                        moveClass((EntityData) dropNode.getUserObject(), (EntityData) dropNode.getParentNode().getUserObject(), (EntityData) target.getUserObject());
                         return true;
                     } else {
                         return false;
@@ -1044,6 +1052,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         if (oldParent.equals(newParent)) {
             return;
         }
+
         OntologyServiceManager.getInstance().moveCls(
                 project.getProjectName(),
                 cls.getName(),
@@ -1059,6 +1068,10 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             final EntityData newParent) {
         return getMoveClsDescription() + ": " + UIUtil.getDisplayText(cls) + ". Old parent: "
                 + UIUtil.getDisplayText(oldParent) + ", New parent: " + UIUtil.getDisplayText(newParent);
+    }
+
+    protected boolean hasMovePermission(boolean showAlerts) {
+        return UIUtil.checkOperationAllowed(getProject(), PermissionConstants.MOVE_CLS, "Warning", "The move operation is not permitted.", true, showAlerts) ;
     }
 
     public void getPathToRoot(final EntityData entity) {
@@ -1184,12 +1197,12 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         final TreeNode node = new TreeNode(UIUtil.getDisplayText(entityData));
         node.setHref(null);
         node.setUserObject(entityData);
-        node.setAllowDrag(true);
-        node.setAllowDrop(true);
         setTreeNodeIcon(node, entityData);
         setTreeNodeTooltip(node, entityData);
-
         node.setText(createNodeRenderText(node));
+
+        node.setAllowDrag(true);
+        node.setAllowDrop(true);
 
         node.addListener(nodeListener);
 
