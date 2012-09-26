@@ -751,6 +751,16 @@
 													<string>label</string>
 													<string>Use</string>
 												</entry>
+										
+												<!-- Restrict editing of linearizations to WHO and Stanford teams -->
+												<entry>
+													<string>writeAccessGroups</string>
+													<list>
+														<string>WHOTeam</string>
+														<string>Stanford</string>
+													</list>
+												</entry>
+												
 												<entry>
 													<string>tooltip</string>
 													<string>DRAFT HINT: Specifies the linearization in which this category should be used</string>
