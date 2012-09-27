@@ -321,8 +321,8 @@ public class AllPropertiesGrid extends EditorGridPanel {
         setAnimCollapse(true);
         setClicksToEdit(
                 UIUtil.getIntegerConfigurationProperty(
-                        project.getProjectConfiguration(), 
-                        FormConstants.CLICKS_TO_EDIT, 
+                        project.getProjectConfiguration(),
+                        FormConstants.CLICKS_TO_EDIT,
                         FormConstants.DEFAULT_CLICKS_TO_EDIT));
         setView(gridView);
 
@@ -375,7 +375,7 @@ public class AllPropertiesGrid extends EditorGridPanel {
             PropertyEntityData prop = (PropertyEntityData) store.getAt(rowIndex).getAsObject(PROPERTY);
             if (ValueType.Instance.equals(prop.getValueType())) {
                 return Format.format(
-                        "<img src=\"../images/tree/class.gif\" /><style type=\"text/css\">.x-grid3-cell-inner, .x-grid3-hd-inner { white-space:normal !important; }</style> {0}",
+                        "<img src=\"images/tree/class.gif\" /><style type=\"text/css\">.x-grid3-cell-inner, .x-grid3-hd-inner { white-space:normal !important; }</style> {0}",
                         new String[] { ed.getBrowserText() });
             } else {
                 return Format.format(
