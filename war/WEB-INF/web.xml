@@ -63,11 +63,16 @@
         <servlet-class>edu.stanford.bmir.protege.web.server.ChAOStatsServiceImpl</servlet-class>
     </servlet>
     
-     <servlet>
+    <servlet>
         <servlet-name>bpProposals</servlet-name>
         <servlet-class>edu.stanford.bmir.protege.web.server.bioportal.BioPortalProposalsImpl</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>bpUpload</servlet-name>
+        <servlet-class>edu.stanford.bmir.protege.web.server.bioportal.BioPortalUploadImpl</servlet-class>
+    </servlet>
+     
 	<servlet>
 		<servlet-name>OpenIdServiceImpl</servlet-name>
 		<servlet-class>edu.stanford.bmir.protege.web.server.OpenIdServiceImpl</servlet-class>
@@ -147,6 +152,11 @@
     <servlet-mapping>
         <servlet-name>bpProposals</servlet-name>
         <url-pattern>/webprotege/bpProposals</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>bpUpload</servlet-name>
+        <url-pattern>/webprotege/bpUpload</url-pattern>
     </servlet-mapping>
 	
 	<servlet-mapping>

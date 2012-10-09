@@ -41,6 +41,8 @@ public class BioPortalConstants {
     //public static String DEFAULT_BIOPORTAL_REST_CALL_SUFFIX = "apikey=5a15a173-dac1-4ea4-b2cf-61ac033bb026 ";    //stage - account: webprotege
     static String DEFAULT_BIOPORTAL_SEARCH_ONE_PAGE_OPTION = "pagesize=10&pagenum=1";
 
+    public static String DEFAULT_WEBPROTEGE_USERID = "39089";
+
     public static final boolean DEFAULT_IMPORT_FROM_ORIGINAL_ONTOLOGIES = true;
 
     static String CONFIG_PROPERTY_REFERENCE_CLASS = "reference_class";
