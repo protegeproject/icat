@@ -62,7 +62,7 @@ public class BioPortalUploadImpl implements BioPortalUpload {
         addIfNotNull(params, "viewingRestriction", viewingRestriction);
         addIfNotNull(params, "useracl", useracl);
         addIfNotNull(params, "description", description);
-        addIfNotNull(params, "categories", categories);
+        addIfNotNull(params, "categoryIds", categories);
         addIfNotNull(params, "synonymSlot", synonymSlot);
         addIfNotNull(params, "preferredNameSlot", preferredNameSlot);
         addIfNotNull(params, "documentationSlot", documentationSlot);
