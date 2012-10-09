@@ -41,7 +41,8 @@ public class URLUtil {
         return urlString.toString();
     }
 
-    public static void httpPost(String urlStr, String encodedData) {
+    public static String httpPost(String urlStr, String encodedData) {
+        StringBuffer response = new StringBuffer();
         try {
             URL url = new URL(urlStr);
             // Send data
@@ -56,8 +57,8 @@ public class URLUtil {
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line;
             while ((line = rd.readLine()) != null) {
-                // Process line...
-                System.out.println(line);
+                response.append(line);
+                response.append("\n");
             }
             wr.close();
             rd.close();
@@ -69,6 +70,7 @@ public class URLUtil {
             }
             throw new RuntimeException("HTTP POST to: " + urlStr + " failed. Message: " + e.getMessage());
         }
+        return response.toString();
     }
 
     public static int httpPut(String urlStr) {

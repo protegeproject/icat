@@ -23,6 +23,7 @@
 	<servlet path="/icd" class="edu.stanford.bmir.protege.web.server.ICDServiceImpl"/>
     <servlet path="/hierarchy" class="edu.stanford.bmir.protege.web.server.HierarchyServiceImpl"/>
     <servlet path="/openid" class="edu.stanford.bmir.protege.web.server.OpenIdServiceImpl"/>
-     <servlet path="/bpProposals" class="edu.stanford.bmir.protege.web.server.bioportal.BioPortalProposalsImpl"/>
+    <servlet path="/bpProposals" class="edu.stanford.bmir.protege.web.server.bioportal.BioPortalProposalsImpl"/>
+    <servlet path="/bpUpload" class="edu.stanford.bmir.protege.web.server.bioportal.BioPortalUploadImpl" />
     
 </module>
