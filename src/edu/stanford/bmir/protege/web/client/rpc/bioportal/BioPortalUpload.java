@@ -35,7 +35,7 @@ public interface BioPortalUpload  extends RemoteService {
      * @param authorSlot
      * @return String - the BioPortal response as XML
      */
-    String uploadOntologyFromURL(String bpRestBase,
+    String uploadOntologyFromURL(String bpRestBase, String virtualOntologyId,
             String downloadLocation,
             String displayLabel, String userId, String format,
             String dateReleased, String contactName, String contactEmail,

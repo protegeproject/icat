@@ -8,7 +8,7 @@ import edu.stanford.bmir.protege.web.server.URLUtil;
 public class BioPortalUploadImpl implements BioPortalUpload {
 
 
-    public String uploadOntologyFromURL(String bpRestBase, String downloadLocation, String displayLabel, String userId, String format,
+    public String uploadOntologyFromURL(String bpRestBase, String virtualOntologyId, String downloadLocation, String displayLabel, String userId, String format,
             String dateReleased, String contactName, String contactEmail, String abbreviation, String versionNumber,
             String homepage, String documentation, String publication, String viewingRestriction, String useracl,
             String description, String categories, String synonymSlot, String preferredNameSlot,
@@ -48,6 +48,8 @@ public class BioPortalUploadImpl implements BioPortalUpload {
         viewingRestriction = viewingRestriction == null ? "public" : viewingRestriction;
 
         StringBuffer params = new StringBuffer();
+
+        addIfNotNull(params, "ontologyId", virtualOntologyId);
         addIfNotNull(params, "downloadLocation", downloadLocation);
         addIfNotNull(params, "displayLabel", displayLabel);
         addIfNotNull(params, "format", format);
@@ -97,11 +99,11 @@ public class BioPortalUploadImpl implements BioPortalUpload {
 
     public static void main(String[] args) {
         BioPortalUploadImpl bpUploadService = new BioPortalUploadImpl();
-        String response = bpUploadService.uploadOntologyFromURL("http://stagerest.bioontology.org/bioportal/",
+        String response = bpUploadService.uploadOntologyFromURL("http://stagerest.bioontology.org/bioportal/", "3135",
                 "http://smi-protege.stanford.edu/collab-protege/ont/TestUpload1.owl",
                 "Test Upload 3", null, "OWL",
-                "10/08/2012", "Tania Tudorache", "tudorache@stanford.edu",
-                "UPLThree", "1.0", "http://ont.org", "http://doc.org",
+                "10/09/2012", "Tania Tudorache", "tudorache@stanford.edu",
+                "UPLThree", "2.0", "http://ont.org", "http://doc.org",
                 "http://publ.org", "public", null, "This is a test upload from WP", "2818,5060",
                 null, null, null, null);
 
