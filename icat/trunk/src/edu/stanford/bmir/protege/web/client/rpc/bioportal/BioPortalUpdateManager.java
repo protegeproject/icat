@@ -20,12 +20,12 @@ public class BioPortalUpdateManager {
         return instance;
     }
 
-    void uploadOntologyFromURL(String bpRestBase, String downloadLocation, String displayLabel, String userId, String format,
+    void uploadOntologyFromURL(String bpRestBase,String virtualOntologyId, String downloadLocation, String displayLabel, String userId, String format,
             String dateReleased, String contactName, String contactEmail, String abreviation, String versionNumber,
             String homepage, String documentation, String publication, String viewingRestriction, String useracl,
             String description, String categories, String synonymSlot, String preferredNameSlot,
             String documentationSlot, String authorSlot, AsyncCallback<String> callback) {
-        proxy.uploadOntologyFromURL(bpRestBase, downloadLocation, displayLabel, userId, format, dateReleased,
+        proxy.uploadOntologyFromURL(bpRestBase, virtualOntologyId, downloadLocation, displayLabel, userId, format, dateReleased,
                 contactName, contactEmail, abreviation, versionNumber, homepage, documentation, publication,
                 viewingRestriction, useracl, description, categories, synonymSlot, preferredNameSlot, documentationSlot, authorSlot, callback);
     }
