@@ -1,11 +1,13 @@
 package edu.stanford.bmir.protege.web.server.bioportal;
 
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 import edu.stanford.bmir.protege.web.client.rpc.bioportal.BioPortalUpload;
 import edu.stanford.bmir.protege.web.client.ui.ontology.search.BioPortalConstants;
 import edu.stanford.bmir.protege.web.server.URLUtil;
 
 
-public class BioPortalUploadImpl implements BioPortalUpload {
+public class BioPortalUploadImpl extends RemoteServiceServlet implements BioPortalUpload {
 
 
     public String uploadOntologyFromURL(String bpRestBase, String virtualOntologyId, String downloadLocation, String displayLabel, String userId, String format,
