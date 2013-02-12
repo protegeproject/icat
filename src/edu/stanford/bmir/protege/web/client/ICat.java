@@ -264,7 +264,7 @@ public class ICat implements EntryPoint {
             "Welcome to iCAT &mdash; the Collaborative Authoring Tool for the 11th Revsion of the International Classification of Diseases (ICD-11). <br/><br/>" +
             "The access to iCAT is restricted to TAG members only. Please sign in to access the iCAT platform.<br/><br/>" +
             " <span style=\"color:#003399\">To request an iCAT user account, please contact " +
-            "your TAG managing editor. Alternatively, you may write an email with your information to Sara Cottler (cottlers_AT_who.int).</span>" +
+            "your TAG managing editor. Alternatively, you may write an email with your information to Can Celik (celikc_at_who.int).</span>" +
             "</div>";
 
     		return text;
