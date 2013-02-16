@@ -1,6 +1,7 @@
 package edu.stanford.bmir.protege.web.client;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -42,6 +43,8 @@ import edu.stanford.bmir.protege.web.client.ui.ClientApplicationPropertiesCache;
 import edu.stanford.bmir.protege.web.client.ui.Ontology;
 import edu.stanford.bmir.protege.web.client.ui.TopPanel;
 import edu.stanford.bmir.protege.web.client.ui.login.LoginUtil;
+import edu.stanford.bmir.protege.web.client.ui.portlet.html.HtmlTextComponent;
+import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 
 /**
  * The entry class for iCAT. It shows the introduction and login screen. If the user is already logged in the session
@@ -53,6 +56,8 @@ import edu.stanford.bmir.protege.web.client.ui.login.LoginUtil;
 public class ICat implements EntryPoint {
 
     private final static String PROJECT_NAME = "ICD";
+
+	private static final String FILE_PRE_LOGIN_HTML_MESSAGE = "html/home_page.html";
 
     private SystemListener systemListener;
     private Project project;
@@ -191,8 +196,10 @@ public class ICat implements EntryPoint {
      */
     protected void buildInitialUI() {
         Panel wrappingPanel = new Panel();
-        Panel introMessagePanel = new Panel();
-        introMessagePanel.setHtml(getWelcomeMessage());
+        HtmlTextComponent htmlIntroMessage = new HtmlTextComponent();
+        Map<String, Object> htmlTextComponentProperties = new HashMap<String, Object>();
+        htmlTextComponentProperties.put(FormConstants.LOAD_URL, FILE_PRE_LOGIN_HTML_MESSAGE);
+        htmlIntroMessage.setConfigProperties(htmlTextComponentProperties);
 
         Anchor signInAnchor = new Anchor("<span style=\"padding:20px\">If you don't see the sign in pop-up, you may also sign in here.</span>", true);
         signInAnchor.addClickHandler(new ClickHandler() {
@@ -201,7 +208,7 @@ public class ICat implements EntryPoint {
             }
         });
 
-        wrappingPanel.add(introMessagePanel);
+        wrappingPanel.add(htmlIntroMessage);
         wrappingPanel.add(signInAnchor);
 
         RootPanel introPanel = RootPanel.get("intro");
@@ -257,17 +264,6 @@ public class ICat implements EntryPoint {
     protected TopPanel getTopPanel() {
         TopPanel top = new TopPanel();
         return top;
-    }
-
-    protected String getWelcomeMessage() {
-        String text = "<div style=\"padding:20px; font-weight: bold\">" +
-            "Welcome to iCAT &mdash; the Collaborative Authoring Tool for the 11th Revsion of the International Classification of Diseases (ICD-11). <br/><br/>" +
-            "The access to iCAT is restricted to TAG members only. Please sign in to access the iCAT platform.<br/><br/>" +
-            " <span style=\"color:#003399\">To request an iCAT user account, please contact " +
-            "your TAG managing editor. Alternatively, you may write an email with your information to Can Celik (celikc_at_who.int).</span>" +
-            "</div>";
-
-    		return text;
     }
 
     protected String getProjectName() {
