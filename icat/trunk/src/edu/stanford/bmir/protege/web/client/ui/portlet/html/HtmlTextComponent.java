@@ -12,7 +12,6 @@ import com.google.gwt.user.client.ui.HTML;
 import com.gwtext.client.widgets.Panel;
 import com.gwtext.client.widgets.layout.AnchorLayout;
 
-import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 
 /**
@@ -20,14 +19,12 @@ import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstant
  */
 public class HtmlTextComponent extends Panel {
 
-    private Project project;
     private Map<String, Object> configProperties;
     private String loadURL = null;
     private String htmlText = null;
     private RequestBuilder requestBuilder = null;
 
-    public HtmlTextComponent(Project project) {
-        this.project = project;
+    public HtmlTextComponent() {
         initUI();
     }
 

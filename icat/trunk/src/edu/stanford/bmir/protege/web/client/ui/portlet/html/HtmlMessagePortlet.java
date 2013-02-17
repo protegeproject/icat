@@ -31,7 +31,7 @@ public class HtmlMessagePortlet extends AbstractEntityPortlet {
         setPaddings(3);
 
         initConfiguration();
-        htmlTextComponent = new HtmlTextComponent(project);
+        htmlTextComponent = new HtmlTextComponent();
         add(htmlTextComponent);
         doLayout();
     }
