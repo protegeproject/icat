@@ -5,6 +5,38 @@
  * Note: try to use GWT naming conventions of projectname-component when possible
  */
 
+/* Styles for hyperlink menu items 
+  MAKE SURE THAT THESE VALUES ARE THE SAME WITH THE ON IN WebProtege.css
+  These CSS classes should be moved in Classes.css or even WebProtege.css when we add
+  context menu with external link functionality to more general widgets 
+  */ 
+.x-menu-item-active a.x-menu-item.hyperlink {
+	text-decoration: none !important;
+}
+.x-menu-item-active a.x-menu-item.hyperlink:link {
+	color: #327BAA;
+}  /* medium blue */
+.x-menu-item-active a.x-menu-item.hyperlink:visited {
+	color: #6F1488;
+}  /* purple */
+.x-menu-item-active a.x-menu-item.hyperlink:hover {
+	color: #DC7317;
+}  /* bright orange */
+
+.x-menu a.hyperlink {
+	text-decoration: none !important;
+}
+.x-menu a.hyperlink:link {
+	color: #327BAA;
+}  /* medium blue */
+.x-menu a.hyperlink:visited {
+	color: #6F1488;
+}  /* purple */
+.x-menu a.hyperlink:hover {
+	color: #DC7317;
+}  /* bright orange */
+
+
 
 /*
 * Special tab header styles

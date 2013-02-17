@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.google.gwt.http.client.URL;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.gwtext.client.core.EventObject;
 import com.gwtext.client.data.ArrayReader;
 import com.gwtext.client.data.FieldDef;
+import com.gwtext.client.data.Node;
 import com.gwtext.client.data.ObjectFieldDef;
 import com.gwtext.client.data.Record;
 import com.gwtext.client.data.RecordDef;
@@ -22,6 +25,10 @@ import com.gwtext.client.widgets.form.ComboBox;
 import com.gwtext.client.widgets.form.Field;
 import com.gwtext.client.widgets.form.event.ComboBoxCallback;
 import com.gwtext.client.widgets.form.event.ComboBoxListenerAdapter;
+import com.gwtext.client.widgets.menu.BaseItem;
+import com.gwtext.client.widgets.menu.Menu;
+import com.gwtext.client.widgets.menu.MenuItem;
+import com.gwtext.client.widgets.menu.event.BaseItemListenerAdapter;
 import com.gwtext.client.widgets.tree.TreeNode;
 
 import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
@@ -57,6 +64,43 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
         addSearchInWindowButton();
     }
 
+
+	protected void createContextMenu(final Node node, EventObject e) {
+		getTreePanel().getSelectionModel().select((TreeNode) node);
+        Menu contextMenu = new Menu();
+        contextMenu.setWidth("200px");
+        EntityData entity = (EntityData) node.getUserObject();
+
+        addMenuItemShowInternalId(entity, contextMenu);
+        addMenuItemShowDirectLink(entity, contextMenu);
+        addMenuItemShowExternalLink(entity, contextMenu);
+
+        contextMenu.showAt(e.getXY()[0]+5, e.getXY()[1]+5);
+	}
+
+
+	protected void addMenuItemShowExternalLink(final EntityData entity, Menu contextMenu) {
+		MenuItem menuExternalLink = new MenuItem();
+        //TODO load text from configuration
+        menuExternalLink.setText("Link to ICD-11 Beta Browser");
+        menuExternalLink.setCls("hyperlink");
+        menuExternalLink.addListener(new BaseItemListenerAdapter() {
+            @Override
+            public void onClick(BaseItem item, EventObject event) {
+                super.onClick(item, event);
+                openExternalLink(entity);
+            }
+        });
+        contextMenu.addItem(menuExternalLink);
+	}
+
+    private void openExternalLink(EntityData entity) {
+        String className = entity.getName();
+        //TODO get URL base from configuration
+        String baseUrl = "http://apps.who.int/classifications/icd11/browse/f/en#/";
+        String url = baseUrl + URL.encodePathSegment(className);
+        Window.open(url,  "_blank", "");
+    }
 
     @Override
     protected void onCreateCls() {
