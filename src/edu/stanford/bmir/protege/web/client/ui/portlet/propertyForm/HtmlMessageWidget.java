@@ -16,7 +16,7 @@ public class HtmlMessageWidget extends AbstractPropertyWidget {
 
     @Override
     public Component createComponent() {
-        htmlTextComponent = new HtmlTextComponent(getProject());
+        htmlTextComponent = new HtmlTextComponent();
         htmlTextComponent.setConfigProperties(getWidgetConfiguration());
         return htmlTextComponent;
     }
