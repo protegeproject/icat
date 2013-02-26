@@ -3,7 +3,10 @@ package edu.stanford.bmir.protege.web.client.ui.ontology.changes;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.mortbay.log.Log;
+
 import com.google.gwt.core.client.GWT;
+import com.gwtext.client.core.EventObject;
 import com.gwtext.client.core.SortDir;
 import com.gwtext.client.data.ArrayReader;
 import com.gwtext.client.data.DateFieldDef;
@@ -12,10 +15,20 @@ import com.gwtext.client.data.Record;
 import com.gwtext.client.data.RecordDef;
 import com.gwtext.client.data.Store;
 import com.gwtext.client.data.StringFieldDef;
+import com.gwtext.client.widgets.Component;
 import com.gwtext.client.widgets.PagingToolbar;
+import com.gwtext.client.widgets.Panel;
+import com.gwtext.client.widgets.Window;
+import com.gwtext.client.widgets.form.Checkbox;
+import com.gwtext.client.widgets.form.TextArea;
+import com.gwtext.client.widgets.form.TextField;
 import com.gwtext.client.widgets.grid.ColumnConfig;
 import com.gwtext.client.widgets.grid.ColumnModel;
 import com.gwtext.client.widgets.grid.GridPanel;
+import com.gwtext.client.widgets.grid.event.GridRowListener;
+import com.gwtext.client.widgets.grid.event.GridRowListenerAdapter;
+import com.gwtext.client.widgets.layout.FitLayout;
+import com.gwtext.client.widgets.layout.FormLayout;
 
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
@@ -26,6 +39,17 @@ import edu.stanford.bmir.protege.web.client.ui.util.PaginationUtil;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public class ChangesPortlet extends AbstractEntityPortlet {
+	
+	private static final String COLUMN_NAME_AUTHOR = "Author";
+	private static final String COLUMN_NAME_DESCRIPTION = "Description";
+	private static final String COLUMN_NAME_TIMESTAMP = "Timestamp";
+	private static final String COLUMN_NAME_APPLIES_TO = "Applies to";
+	
+	private static final String FIELD_LABEL_AUTHOR = COLUMN_NAME_AUTHOR;
+	private static final String FIELD_LABEL_DESCRIPTION = COLUMN_NAME_DESCRIPTION;
+	private static final String FIELD_LABEL_TIMESTAMP = "Time of change";
+	private static final String FIELD_LABEL_APPLIES_TO = COLUMN_NAME_APPLIES_TO;
+	
 	protected GridPanel changesGrid;
 	protected RecordDef recordDef;
 	protected Store store;
@@ -84,6 +108,7 @@ public class ChangesPortlet extends AbstractEntityPortlet {
 		changesGrid.setAutoExpandColumn("ChangesGrid_ChangeDescCol");
 		changesGrid.setStripeRows(true);
 		changesGrid.setFrame(true);
+		changesGrid.addGridRowListener(createGridRowListener());
 		createColumns();
 
 		recordDef = new RecordDef(new FieldDef[] { new StringFieldDef("desc"),
@@ -111,21 +136,91 @@ public class ChangesPortlet extends AbstractEntityPortlet {
 		//reload();
 	}
 
+	private GridRowListener createGridRowListener() {
+		GridRowListener rowListener = new GridRowListenerAdapter() {
+			public void onRowDblClick(GridPanel grid, int rowIndex, EventObject e) {
+				Record record = store.getRecordAt(rowIndex);
+				showChangeDetails(record);
+			}
+		};
+		
+		return rowListener;
+	}
+
+	private void showChangeDetails(Record record) {
+        final Window window = new Window();
+        window.setTitle("Search results");
+        window.setWidth(500);
+        window.setHeight(365);
+        window.setLayout(new FitLayout());
+
+        Panel propertyValuesPanel = new Panel();
+        propertyValuesPanel.setLayout(new FormLayout());
+        propertyValuesPanel.setPaddings(5);
+        propertyValuesPanel.setBorder(false);
+        propertyValuesPanel.setAutoScroll(true);
+        
+        String author = record.getAsString("author");
+        addFieldToPanel(propertyValuesPanel, FIELD_LABEL_AUTHOR, author, TextField.class);
+        String description = record.getAsString("desc");
+        addFieldToPanel(propertyValuesPanel, FIELD_LABEL_DESCRIPTION, description, TextArea.class);
+        String timestamp = record.getAsString("timestamp");
+        addFieldToPanel(propertyValuesPanel, FIELD_LABEL_TIMESTAMP, timestamp, TextField.class);
+        //TODO uncomment this once we have add real values in the "applies to" column
+        //String applies = record.getAsString("applies");
+        //addFieldToPanel(propertyValuesPanel, FIELD_LABEL_APPLIES_TO, applies, TextField.class);
+
+		window.add(propertyValuesPanel);
+        
+        window.show();
+	}
+	
+	private <T extends Component> void addFieldToPanel(Panel infoPanel, String label, String value, Class<T> type) {
+		Component fieldComponent = null;
+		if (type.equals(TextField.class)) {
+			TextField textField = new TextField(label);
+			textField.setValue(value);
+			textField.setReadOnly(true);
+			fieldComponent = textField;
+		}
+		else if (type.equals(TextArea.class)) {
+			TextArea textArea = new TextArea(label);
+			textArea.setValue(value);
+			textArea.setReadOnly(true);
+			textArea.setHeight("125px");
+			fieldComponent = textArea;
+		}
+		else if (type.equals(Checkbox.class)) {
+			Checkbox checkbox = new Checkbox(label);
+			checkbox.setValue("true".equals(value.toLowerCase()));
+			checkbox.setReadOnly(true);
+			fieldComponent = checkbox;
+		}
+		
+		if (fieldComponent != null) {
+			fieldComponent.setWidth("80%");
+			infoPanel.add(fieldComponent);
+		}
+		else {
+			Log.warn("Could not understand type " + type + ". Information about '" + label + ": " + value + "' will not be displayed");
+		}
+	}
+
 	private void createColumns() {
-		ColumnConfig changeDescCol = new ColumnConfig("Description", "desc");
+		ColumnConfig changeDescCol = new ColumnConfig(COLUMN_NAME_DESCRIPTION, "desc");
 		changeDescCol.setId("ChangesGrid_ChangeDescCol");
 		changeDescCol.setResizable(true);
 		changeDescCol.setSortable(true);
 
-		ColumnConfig authorCol = new ColumnConfig("Author", "author");
+		ColumnConfig authorCol = new ColumnConfig(COLUMN_NAME_AUTHOR, "author");
 		authorCol.setResizable(true);
 		authorCol.setSortable(true);
 
-		ColumnConfig timestampCol = new ColumnConfig("Timestamp", "timestamp");
+		ColumnConfig timestampCol = new ColumnConfig(COLUMN_NAME_TIMESTAMP, "timestamp");
 		timestampCol.setResizable(true);
 		timestampCol.setSortable(true);
 
-		ColumnConfig appliesToCol = new ColumnConfig("Applies to", "applies");
+		ColumnConfig appliesToCol = new ColumnConfig(COLUMN_NAME_APPLIES_TO, "applies");
 		appliesToCol.setResizable(true);
 		appliesToCol.setSortable(true);
 		appliesToCol.setHidden(true);
