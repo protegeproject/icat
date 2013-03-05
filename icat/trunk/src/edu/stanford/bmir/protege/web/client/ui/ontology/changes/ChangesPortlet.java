@@ -3,8 +3,6 @@ package edu.stanford.bmir.protege.web.client.ui.ontology.changes;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.mortbay.log.Log;
-
 import com.google.gwt.core.client.GWT;
 import com.gwtext.client.core.EventObject;
 import com.gwtext.client.core.SortDir;
@@ -38,18 +36,19 @@ import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
 import edu.stanford.bmir.protege.web.client.ui.util.PaginationUtil;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
+
 public class ChangesPortlet extends AbstractEntityPortlet {
-	
+
 	private static final String COLUMN_NAME_AUTHOR = "Author";
 	private static final String COLUMN_NAME_DESCRIPTION = "Description";
 	private static final String COLUMN_NAME_TIMESTAMP = "Timestamp";
 	private static final String COLUMN_NAME_APPLIES_TO = "Applies to";
-	
+
 	private static final String FIELD_LABEL_AUTHOR = COLUMN_NAME_AUTHOR;
 	private static final String FIELD_LABEL_DESCRIPTION = COLUMN_NAME_DESCRIPTION;
 	private static final String FIELD_LABEL_TIMESTAMP = "Time of change";
 	private static final String FIELD_LABEL_APPLIES_TO = COLUMN_NAME_APPLIES_TO;
-	
+
 	protected GridPanel changesGrid;
 	protected RecordDef recordDef;
 	protected Store store;
@@ -138,12 +137,13 @@ public class ChangesPortlet extends AbstractEntityPortlet {
 
 	private GridRowListener createGridRowListener() {
 		GridRowListener rowListener = new GridRowListenerAdapter() {
-			public void onRowDblClick(GridPanel grid, int rowIndex, EventObject e) {
+			@Override
+            public void onRowDblClick(GridPanel grid, int rowIndex, EventObject e) {
 				Record record = store.getRecordAt(rowIndex);
 				showChangeDetails(record);
 			}
 		};
-		
+
 		return rowListener;
 	}
 
@@ -159,7 +159,7 @@ public class ChangesPortlet extends AbstractEntityPortlet {
         propertyValuesPanel.setPaddings(5);
         propertyValuesPanel.setBorder(false);
         propertyValuesPanel.setAutoScroll(true);
-        
+
         String author = record.getAsString("author");
         addFieldToPanel(propertyValuesPanel, FIELD_LABEL_AUTHOR, author, TextField.class);
         String description = record.getAsString("desc");
@@ -171,10 +171,10 @@ public class ChangesPortlet extends AbstractEntityPortlet {
         //addFieldToPanel(propertyValuesPanel, FIELD_LABEL_APPLIES_TO, applies, TextField.class);
 
 		window.add(propertyValuesPanel);
-        
+
         window.show();
 	}
-	
+
 	private <T extends Component> void addFieldToPanel(Panel infoPanel, String label, String value, Class<T> type) {
 		Component fieldComponent = null;
 		if (type.equals(TextField.class)) {
@@ -196,13 +196,13 @@ public class ChangesPortlet extends AbstractEntityPortlet {
 			checkbox.setReadOnly(true);
 			fieldComponent = checkbox;
 		}
-		
+
 		if (fieldComponent != null) {
 			fieldComponent.setWidth("80%");
 			infoPanel.add(fieldComponent);
 		}
 		else {
-			Log.warn("Could not understand type " + type + ". Information about '" + label + ": " + value + "' will not be displayed");
+			GWT.log("Could not understand type " + type + ". Information about '" + label + ": " + value + "' will not be displayed");
 		}
 	}
 
