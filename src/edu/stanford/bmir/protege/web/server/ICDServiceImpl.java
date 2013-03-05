@@ -79,6 +79,14 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
                     cls.setPropertyValue(cm.getSortingLabelProperty(), sortingLabel);
                 }
 
+                //add the public ID
+                String publicId = ICDIDUtil.getPublicId(cls.getName());
+                if (publicId == null) {
+                    Log.getLogger().warning("Could not get public ID for newly created class: " + cls.getName());
+                } else {
+                    cls.setPropertyValue(cm.getPublicIdProperty(), publicId);
+                }
+
                 if (runsInTransaction) {
                     kb.commitTransaction();
                 }
@@ -567,8 +575,8 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         }
         return res;
     }
-    
-    
+
+
     public void removeBaseIndexTerm(String projectName, String entityName,
             String value, String user, String operationDescription) {
         Project project = getProject(projectName);
@@ -576,10 +584,10 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         KnowledgeBase kb = project.getKnowledgeBase();
         Instance subject = kb.getInstance(entityName);
         if (subject == null) { return; }
-       
+
         Instance valueInst = kb.getInstance(value);
         if (valueInst == null) {
-            throw new RuntimeException("Cannot find index term to remove: " + 
+            throw new RuntimeException("Cannot find index term to remove: " +
                              value + " for entity: " + entityName);
         }
 
@@ -587,7 +595,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         RDFProperty synonymProperty = cm.getSynonymProperty();
         RDFProperty narrowerProperty = cm.getNarrowerProperty();
         RDFProperty baseIndexProperty = cm.getBaseIndexProperty();
-        
+
         synchronized (kb) {
             KBUtil.morphUser(kb, user);
             boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
@@ -599,7 +607,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
                 subject.removeOwnSlotValue(synonymProperty, valueInst);
                 subject.removeOwnSlotValue(narrowerProperty, valueInst);
                 subject.removeOwnSlotValue(baseIndexProperty, valueInst);
-                
+
                 if (runsInTransaction) {
                     kb.commitTransaction();
                 }
