@@ -47,6 +47,8 @@ import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 public class ICDClassTreePortlet extends ClassTreePortlet {
     public static final String CREATE_ICD_SPECIFIC_ENTITES_PROP = "create_icd_specific_entities";
     public static final boolean CREATE_ICD_SPECIFIC_ENTITES_DEFAULT = true;
+    public static final String PUBLIC_ID_PROP ="publicId";
+
     private ComboBox searchCb;
 
     public ICDClassTreePortlet(Project project) {
@@ -65,12 +67,14 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
     }
 
 
-	protected void createContextMenu(final Node node, EventObject e) {
+	@Override
+    protected void createContextMenu(final Node node, EventObject e) {
 		getTreePanel().getSelectionModel().select((TreeNode) node);
         Menu contextMenu = new Menu();
         contextMenu.setWidth("200px");
         EntityData entity = (EntityData) node.getUserObject();
 
+        addMenuItemShowPublicId(entity, contextMenu);
         addMenuItemShowInternalId(entity, contextMenu);
         addMenuItemShowDirectLink(entity, contextMenu);
         addMenuItemShowExternalLink(entity, contextMenu);
@@ -87,7 +91,6 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
         menuExternalLink.addListener(new BaseItemListenerAdapter() {
             @Override
             public void onClick(BaseItem item, EventObject event) {
-                super.onClick(item, event);
                 openExternalLink(entity);
             }
         });
@@ -100,6 +103,29 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
         String baseUrl = "http://apps.who.int/classifications/icd11/browse/f/en#/";
         String url = baseUrl + URL.encodePathSegment(className);
         Window.open(url,  "_blank", "");
+    }
+
+    protected void addMenuItemShowPublicId(final EntityData entity, Menu contextMenu) {
+        MenuItem menuShowPublicID = new MenuItem();
+        menuShowPublicID.setText("Show Public ID");
+        menuShowPublicID.addListener(new BaseItemListenerAdapter() {
+            @Override
+            public void onClick(BaseItem item, EventObject event) {
+                showPublicID(entity);
+            }
+        });
+        contextMenu.addItem(menuShowPublicID);
+    }
+
+
+    private void showPublicID(EntityData entity) {
+        String classDisplayName = entity.getBrowserText();
+        String publicID = entity.getProperty(PUBLIC_ID_PROP);
+        String message = "The public ID of the class ";
+        message += "<BR>&nbsp;&nbsp;&nbsp;&nbsp;<I>" + classDisplayName + "</I>";
+        message += "<BR>is:";
+        message += "<BR>&nbsp;&nbsp;&nbsp;&nbsp;<B>" + (publicID == null || publicID.length() == 0 ? "--- not set ---" : publicID) + "</B>";
+        MessageBox.alert("Public ID", message);
     }
 
     @Override
