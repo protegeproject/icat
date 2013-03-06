@@ -46,24 +46,24 @@ public class ICDIDUtil {
      */
     class ICDPublicId {
 
-        private String Uri;
-        private String Type;
-        private Boolean NewlyCreated;
+        private String uri;
+        private String type;
+        private Boolean newlyCreated;
 
         public ICDPublicId() {
             //empty constructor
         }
 
         public String getUri() {
-            return Uri;
+            return uri;
         }
 
         public String getType() {
-            return Type;
+            return type;
         }
 
         public Boolean getNewlyCreated() {
-            return NewlyCreated;
+            return newlyCreated;
         }
     }
 
