@@ -20,6 +20,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
 import edu.stanford.bmir.protege.web.client.ui.icd.DisplayStatus;
+import edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet;
 import edu.stanford.smi.protege.collab.util.HasAnnotationCache;
 import edu.stanford.smi.protege.exception.ProtegeException;
 import edu.stanford.smi.protege.model.Cls;
@@ -52,6 +53,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         ICDContentModel cm = new ICDContentModel((OWLModel) kb);
 
         RDFSNamedClass cls = null;
+        String publicId = null;
 
         if (clsName != null && ((OWLModel) kb).getRDFSNamedClass(clsName) != null) {
             throw new RuntimeException("A class with the same name '" + clsName + "' already exists in the model.");
@@ -80,7 +82,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
                 }
 
                 //add the public ID
-                String publicId = ICDIDUtil.getPublicId(cls.getName());
+                publicId = ICDIDUtil.getPublicId(cls.getName());
                 if (publicId == null) {
                     Log.getLogger().warning("Could not get public ID for newly created class: " + cls.getName());
                 } else {
@@ -109,6 +111,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         }
 
         entityData.setTypes(createEntityList(cls.getDirectTypes()));
+        entityData.setProperty(ICDClassTreePortlet.PUBLIC_ID_PROP, publicId);
 
         return entityData;
     }
@@ -329,6 +332,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         ICDContentModel cm = new ICDContentModel((OWLModel) getProject(projectName).getKnowledgeBase());
         RDFProperty displayStatusProp = cm.getDisplayStatusProperty();
         RDFProperty isObsoleteProp = cm.getIsObsoleteProperty();
+        RDFProperty publicIdProp = cm.getPublicIdProperty();
 
         ArrayList<Cls> subclasses = new ArrayList<Cls>(superCls.getVisibleDirectSubclasses());
         Collections.sort(subclasses, new FrameComparator());
@@ -344,6 +348,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
                 subclassEntityData.setChildrenAnnotationsCount(HasAnnotationCache.getChildrenAnnotationCount(subcls));
                 setDisplayStatus(subcls, displayStatusProp, subclassEntityData, cm);
                 setObsoleteStatus(subcls, isObsoleteProp, subclassEntityData);
+                subclassEntityData.setProperty(ICDClassTreePortlet.PUBLIC_ID_PROP, (String) subcls.getOwnSlotValue(publicIdProp));
 
                 String user = KBUtil.getUserInSession(getThreadLocalRequest());
                 if (user != null) {
