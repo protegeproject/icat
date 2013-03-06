@@ -1,6 +1,5 @@
 package edu.stanford.bmir.protege.web.client.ui.ontology.classes;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -10,21 +9,16 @@ import java.util.Set;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.HTML;
 import com.gwtext.client.core.EventObject;
 import com.gwtext.client.core.Position;
 import com.gwtext.client.data.Node;
 import com.gwtext.client.dd.DragData;
 import com.gwtext.client.dd.DragDrop;
-import com.gwtext.client.widgets.BoxComponent;
 import com.gwtext.client.widgets.Button;
 import com.gwtext.client.widgets.Component;
 import com.gwtext.client.widgets.Container;
@@ -45,10 +39,8 @@ import com.gwtext.client.widgets.form.ValidationException;
 import com.gwtext.client.widgets.form.Validator;
 import com.gwtext.client.widgets.form.event.TextFieldListenerAdapter;
 import com.gwtext.client.widgets.layout.FitLayout;
-import com.gwtext.client.widgets.menu.Adapter;
 import com.gwtext.client.widgets.menu.BaseItem;
 import com.gwtext.client.widgets.menu.CheckItem;
-import com.gwtext.client.widgets.menu.Item;
 import com.gwtext.client.widgets.menu.Menu;
 import com.gwtext.client.widgets.menu.MenuItem;
 import com.gwtext.client.widgets.menu.event.BaseItemListener;
@@ -85,7 +77,6 @@ import edu.stanford.bmir.protege.web.client.rpc.data.Watch;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.ontology.notes.NoteInputPanel;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
-import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.search.SearchUtil;
 import edu.stanford.bmir.protege.web.client.ui.selection.SelectionEvent;
 import edu.stanford.bmir.protege.web.client.ui.selection.SelectionListener;
@@ -331,7 +322,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
 
 	protected void addMenuItemShowInternalId(final EntityData entity, Menu contextMenu) {
 		MenuItem menuShowInternalID = new MenuItem();
-        menuShowInternalID.setText("Show internal ID");
+        menuShowInternalID.setText("Show Internal ID");
         menuShowInternalID.addListener(new BaseItemListenerAdapter() {
             @Override
             public void onClick(BaseItem item, EventObject event) {
@@ -342,9 +333,10 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         contextMenu.addItem(menuShowInternalID);
 	}
 
+
 	protected void addMenuItemShowDirectLink(final EntityData entity, Menu contextMenu) {
 		MenuItem menuShowDirectLink = new MenuItem();
-        menuShowDirectLink.setText("Show direct link");
+        menuShowDirectLink.setText("Show Direct Link");
         menuShowDirectLink.setIcon("images/link.png");
         menuShowDirectLink.addListener(new BaseItemListenerAdapter() {
             @Override
