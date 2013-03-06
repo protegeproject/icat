@@ -20,7 +20,7 @@ public class ICDIDUtil {
 
         Gson gson = new Gson();
         ICDPublicId publicId = gson.fromJson(jSonText, ICDPublicId.class);
-        return publicId.getUri();
+        return publicId == null ? null : publicId.getUri();
     }
 
     private static String getWHOServiceNewIdURL() {
