@@ -12,6 +12,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.ChangeData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PaginationData;
 import edu.stanford.bmir.protegex.chao.ChAOKbManager;
 import edu.stanford.bmir.protegex.chao.change.api.Change;
+import edu.stanford.smi.protege.collab.changes.ChAOUtil;
 import edu.stanford.smi.protege.model.Frame;
 import edu.stanford.smi.protege.model.KnowledgeBase;
 import edu.stanford.smi.protege.model.Project;
@@ -119,7 +120,7 @@ public class ChAOStatsServiceImpl extends RemoteServiceServlet implements ChAOSt
         }
 
         List<Change> displayedChanges = new LinkedList<Change>();
-        Collection<Change> changes = ChangeCache.getInstance(getProject(projectName).getKnowledgeBase()).getChanges(frame);
+        Collection<Change> changes = ChAOUtil.getTopLevelChanges(frame);
         if(changes != null) {
         	for(Change change : changes) {
         		String author = change.getAuthor();
