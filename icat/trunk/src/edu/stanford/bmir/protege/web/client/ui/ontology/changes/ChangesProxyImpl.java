@@ -84,7 +84,7 @@ public class ChangesProxyImpl extends GWTProxy {
 
                 int i = 0;
                 for (ChangeData record : data) {
-                    Object[] obj = getRow(record.getDescription(), record.getAuthor(), record.getTimestamp(), "");
+                    Object[] obj = getRow(record.getDescription(), record.getAuthor(), record.getTimestamp(), getEntityName());
                     resultAsObjects[i++] = obj;
                 }
 

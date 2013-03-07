@@ -47,7 +47,8 @@ public class ChangesPortlet extends AbstractEntityPortlet {
 	private static final String FIELD_LABEL_AUTHOR = COLUMN_NAME_AUTHOR;
 	private static final String FIELD_LABEL_DESCRIPTION = COLUMN_NAME_DESCRIPTION;
 	private static final String FIELD_LABEL_TIMESTAMP = "Time of change";
-	private static final String FIELD_LABEL_APPLIES_TO = COLUMN_NAME_APPLIES_TO;
+	private static final String FIELD_LABEL_APPLIES_TO = "Applies to (entity)";
+	private static final String FIELD_LABEL_APPLIES_TO_DISPLAY_TEXT = "Applies to (label)";
 
 	protected GridPanel changesGrid;
 	protected RecordDef recordDef;
@@ -149,7 +150,7 @@ public class ChangesPortlet extends AbstractEntityPortlet {
 
 	private void showChangeDetails(Record record) {
         final Window window = new Window();
-        window.setTitle("Search results");
+        window.setTitle("Change details");
         window.setWidth(500);
         window.setHeight(365);
         window.setLayout(new FitLayout());
@@ -166,9 +167,10 @@ public class ChangesPortlet extends AbstractEntityPortlet {
         addFieldToPanel(propertyValuesPanel, FIELD_LABEL_DESCRIPTION, description, TextArea.class);
         String timestamp = record.getAsString("timestamp");
         addFieldToPanel(propertyValuesPanel, FIELD_LABEL_TIMESTAMP, timestamp, TextField.class);
-        //TODO uncomment this once we have add real values in the "applies to" column
-        //String applies = record.getAsString("applies");
-        //addFieldToPanel(propertyValuesPanel, FIELD_LABEL_APPLIES_TO, applies, TextField.class);
+        String applies = record.getAsString("applies");
+        addFieldToPanel(propertyValuesPanel, FIELD_LABEL_APPLIES_TO, applies, TextField.class);
+        String appliesDisplayText = (getEntity().getName().equals(applies) ? getEntity().getBrowserText() : "");
+        addFieldToPanel(propertyValuesPanel, FIELD_LABEL_APPLIES_TO_DISPLAY_TEXT, appliesDisplayText, TextField.class);
 
 		window.add(propertyValuesPanel);
 
@@ -243,13 +245,9 @@ public class ChangesPortlet extends AbstractEntityPortlet {
 		@Override
 		public void handleSuccess(Collection<ChangeData> result) {
 			for (ChangeData data : result) {
-				/*
-				 * TODO: Populate "Applies to" column with something other than
-				 * an empty string.
-				 */
 				Record record = recordDef.createRecord(new Object[] {
 						data.getDescription(), data.getAuthor(),
-						data.getTimestamp(), "" });
+						data.getTimestamp(), getEntity() });
 				store.add(record);
 			}
 			store.sort("timestamp", SortDir.DESC);
