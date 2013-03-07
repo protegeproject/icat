@@ -41,7 +41,7 @@ public class ICDIDUtil {
     Parameters required when calling the service are as follows:
     type : type of the id to be generated. Only “entity” type is supported at the moment.
     seed: A seed value to be used to generate the Id.  I guess using  iCat internal ID makes sense here.
-    apiKey : key to be used (for iCat the key is 6507f996-71e9-47af-aa8c-ef4cb6ece3fc) Even though this is not a very high security approach I guess  it’s OK for the time being
+    apiKey : key to be used
     The result is returned in Json or in Xml depending on your http Accept header
      */
     class ICDPublicId {
