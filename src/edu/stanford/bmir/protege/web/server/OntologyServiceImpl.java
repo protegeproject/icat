@@ -328,34 +328,40 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             if (superProperty == null) {
                 return subpropertyData;
             }
-            subproperties.addAll(superProperty.getDirectSubslots());
+            subproperties.addAll(getSubSlots(superProperty));
         }
 
         Collections.sort(subproperties, new FrameComparator<Slot>());
 
-        for (Slot subprop : subproperties) {
-            if (!subprop.isSystem() && subprop.isVisible()) {
-                PropertyEntityData entityData = createPropertyEntityData(subprop, null, true);
-                entityData.setPropertyType(getPropertyType(subprop));
-                subpropertyData.add(entityData);
-            }
+        //FIXME: Decide which system props to show. For now, select the most commonly used ones.
+        if (kb instanceof OWLModel && propertyName == null) {
+            OWLModel owlModel = (OWLModel) kb;
+            subproperties.add(0, owlModel.getSystemFrames().getRdfsIsDefinedByProperty());
+            subproperties.add(0, owlModel.getSystemFrames().getRdfsSeeAlsoProperty());
+            subproperties.add(0, owlModel.getRDFSCommentProperty());
+            subproperties.add(0, owlModel.getRDFSLabelProperty());
         }
 
-        //TODO: Fix me. Decide whether to show the OWL properties or not
-        if (propertyName == null && kb instanceof OWLModel) {
-            OWLModel owlModel = (OWLModel) kb;
-            PropertyEntityData entityData1 = createPropertyEntityData(owlModel.getRDFSLabelProperty(), null, true);
-            entityData1.setPropertyType(PropertyType.ANNOTATION);
-            entityData1.setIsSystem(true);
-            subpropertyData.add(entityData1);
-
-            PropertyEntityData entityData2 = createPropertyEntityData(owlModel.getRDFSCommentProperty(), null, true);
-            entityData2.setIsSystem(true);
-            entityData2.setPropertyType(PropertyType.ANNOTATION);
-            subpropertyData.add(entityData2);
+        for (Slot subprop : subproperties) {
+            PropertyEntityData entityData = createPropertyEntityData(subprop, null, true);
+            entityData.setPropertyType(getPropertyType(subprop));
+            subpropertyData.add(entityData);
+            entityData.setIsSystem(subprop.isSystem());
         }
 
         return subpropertyData;
+    }
+
+    private Collection<Slot> getSubSlots(Slot parentSlot) {
+        Collection<Slot> slots = new ArrayList<Slot>();
+        for (@SuppressWarnings("unchecked")
+        Iterator<Slot> iterator = parentSlot.getSubslots().iterator(); iterator.hasNext();) {
+            Slot slot = iterator.next();
+            if (slot.isSystem() == false) {
+                slots.add(slot);
+            }
+        }
+        return slots;
     }
 
     public static PropertyType getPropertyType(Slot slot) {
@@ -617,7 +623,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         Iterator<Slot> i = results.iterator();
         while (i.hasNext()) {
             Slot slot = i.next();
-            if (slot.getDirectSuperslotCount() > 0) {
+            if (slot.getDirectSuperslotCount() > 0 || slot.isSystem()) {
                 i.remove();
             }
         }
@@ -648,11 +654,20 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
         // add rdfs:comment and rdfs:label
         if (kb instanceof OWLModel) {
-            triples.addAll(getTriples(inst, ((OWLModel) kb).getRDFSCommentProperty()));
-            triples.addAll(getTriples(inst, ((OWLModel) kb).getRDFSLabelProperty()));
+            OWLModel owlModel = (OWLModel) kb;
+            triples.addAll(getTriples(inst, owlModel.getRDFSCommentProperty()));
+            triples.addAll(getTriples(inst, owlModel.getRDFSLabelProperty()));
+            triples.addAll(getTriples(inst, owlModel.getSystemFrames().getRdfsSeeAlsoProperty()));
+            triples.addAll(getTriples(inst, owlModel.getSystemFrames().getRdfsIsDefinedByProperty()));
+
+            triples.addAll(getTriples(inst, owlModel.getSystemFrames().getOwlVersionInfoProperty()));
+            triples.addAll(getTriples(inst, owlModel.getSystemFrames().getOwlBackwardCompatibleWithProperty()));
+            triples.addAll(getTriples(inst, owlModel.getSystemFrames().getOwlIncompatibleWithProperty()));
+            triples.addAll(getTriples(inst, owlModel.getSystemFrames().getOwlPriorVersionProperty()));
+
             // domain and range should not be necessarily retrieved
-            triples.addAll(getTriples(inst, ((OWLModel) kb).getRDFSDomainProperty()));
-            triples.addAll(getTriples(inst, ((OWLModel) kb).getRDFSRangeProperty()));
+            triples.addAll(getTriples(inst, owlModel.getRDFSDomainProperty()));
+            triples.addAll(getTriples(inst, owlModel.getRDFSRangeProperty()));
         }
 
         //TODO - should we show this or not?
@@ -924,11 +939,14 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         if (property == null) {
             return null;
         }
+
         PropertyEntityData ped = new PropertyEntityData(property.getName(), getBrowserText(property), null);
+
         if (computeAnnotations) {
             ped.setChildrenAnnotationsCount(HasAnnotationCache.getChildrenAnnotationCount(property));
             ped.setLocalAnnotationsCount(HasAnnotationCache.getAnnotationCount(property));
         }
+
         if (property instanceof RDFProperty) {
             //TODO: for now check only if the property is functional
             if (((RDFProperty) property).isFunctional()) {
@@ -940,6 +958,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             ped.setMaxCardinality(cls == null ? property.getMaximumCardinality() : cls
                     .getTemplateSlotMaximumCardinality(property));
         }
+
         if (property.getValueType() == ValueType.STRING) {
             ped.setValueType(edu.stanford.bmir.protege.web.client.rpc.data.ValueType.String);
         } else if (property.getValueType() == ValueType.INSTANCE || property.getValueType() == ValueType.CLS) {
@@ -953,11 +972,16 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         } else {
             ped.setValueType(edu.stanford.bmir.protege.web.client.rpc.data.ValueType.Any);
         }
+
+        if (property.isSystem()) {
+            ped.setIsSystem(true);
+        }
+
         return ped;
     }
 
     public List<EntityData> getIndividuals(String projectName, String className) {
-        ArrayList<EntityData> instancesData = new ArrayList<EntityData>();
+        List<EntityData> instancesData = new ArrayList<EntityData>();
 
         Project project = getProject(projectName);
 
@@ -979,7 +1003,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             Instance inst = (Instance) element;
 
             if (inst.isVisible()) { //TODO: is this a good check?
-                instancesData.add(createEntityData(inst));
+                EntityData instEntityData = new EntityData(inst.getName(), getBrowserText(inst), createEntityList(inst.getDirectTypes()));
+                instEntityData.setLocalAnnotationsCount(HasAnnotationCache.getAnnotationCount(inst));
+                instancesData.add(instEntityData);
             }
         }
 
@@ -1600,7 +1626,11 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 KBUtil.restoreUser(kb);
             }
         }
-        return createEntityData(inst);
+        EntityData instData = createEntityData(inst);
+        if (instData != null) {
+            instData.setTypes(CollectionUtilities.createCollection(new EntityData(typeName)));
+        }
+        return instData;
     }
 
     public EntityData createInstanceValue(String projectName, String instName, String typeName, String subjectEntity,
