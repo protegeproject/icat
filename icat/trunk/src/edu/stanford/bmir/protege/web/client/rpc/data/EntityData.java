@@ -17,6 +17,7 @@ public class EntityData implements Serializable {
     private ValueType valueType;
     private Watch watch;
     private Map<String, String> properties;
+    private Boolean isSystem;
 
     public EntityData() {
         this(null, null);
@@ -131,6 +132,14 @@ public class EntityData implements Serializable {
 
     public void setWatch(Watch watch) {
         this.watch = watch;
+    }
+
+    public boolean isSystem() {
+        return isSystem;
+    }
+
+    public void setIsSystem(boolean isSystem) {
+        this.isSystem = isSystem;
     }
 
     public Map<String, String> getProperties() {

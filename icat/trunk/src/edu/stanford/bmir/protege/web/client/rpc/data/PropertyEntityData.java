@@ -9,7 +9,7 @@ public class PropertyEntityData extends EntityData {
     private int minCardinality = 0;
     private int maxCardinality = -1;
     private PropertyType propertyType; //TODO - temporary solution, will be removed
-    private boolean isSystem;
+
 
     public PropertyEntityData() {
         super(null);
@@ -53,14 +53,6 @@ public class PropertyEntityData extends EntityData {
 
     public PropertyType getPropertyType() {
         return propertyType;
-    }
-
-    public boolean isSystem() {
-        return isSystem;
-    }
-
-    public void setIsSystem(boolean isSystem) {
-        this.isSystem = isSystem;
     }
 
 }
