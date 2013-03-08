@@ -451,7 +451,9 @@ public class BioPortalSearchComponent extends GridPanel {
 
         String searchString = searchStringTextField.getText();
         if (searchString != null && searchString.length() > 0) {
-            getEl().mask("Loading search results", true);
+            if (getEl() != null) {
+                getEl().mask("Loading search results", true);
+            }
             if (configPropertiesMap != null) {
                 BioPortalSearchData bpSearchData = new BioPortalSearchData();
                 initBioPortalSearchData(bpSearchData);
@@ -764,14 +766,18 @@ public class BioPortalSearchComponent extends GridPanel {
     class ImportBioPortalConceptHandler extends AbstractAsyncHandler<EntityData> {
         @Override
         public void handleFailure(Throwable caught) {
-            getEl().unmask();
+            if (getEl() != null) {
+                getEl().unmask();
+            }
             GWT.log("Could not import BioPortal concept for " + currentEntity, null);
             MessageBox.alert("Import operation failed!");
         }
 
         @Override
         public void handleSuccess(EntityData refInstance) {
-            getEl().unmask();
+            if (getEl() != null) {
+                getEl().unmask();
+            }
             MessageBox.alert(refInstance != null ? "Import operation SUCCEDED! Reference instance: " + refInstance
                     : "Import operation DID NOT SUCCEDED!");
         }
@@ -791,7 +797,9 @@ public class BioPortalSearchComponent extends GridPanel {
 
         @Override
         public void handleSuccess(EntityData refInstance) {
-            getEl().unmask();
+            if (getEl() != null) {
+                getEl().unmask();
+            }
             MessageBox.alert(refInstance != null ? "Reference creation SUCCEDED! Reference instance: " + refInstance
                     : "Reference creation DID NOT SUCCEDED!");
         }
@@ -810,14 +818,18 @@ public class BioPortalSearchComponent extends GridPanel {
 
         @Override
         public void handleFailure(Throwable caught) {
-            getEl().unmask();
+            if (getEl() != null) {
+                getEl().unmask();
+            }
             GWT.log("Could not create DNF reference for " + currentEntity, null);
             MessageBox.alert("Reference creation failed!");
         }
 
         @Override
         public void handleSuccess(EntityData refInstance) {
-            getEl().unmask();
+            if (getEl() != null) {
+                getEl().unmask();
+            }
             MessageBox.alert(refInstance != null ? "Reference creation SUCCEDED! Reference instance: " + refInstance
                     : "Reference creation DID NOT SUCCEDED!");
             this.note.setAnnotatedEntity(refInstance);
