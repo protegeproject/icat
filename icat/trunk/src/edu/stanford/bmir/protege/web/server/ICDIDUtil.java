@@ -8,7 +8,7 @@ import edu.stanford.smi.protege.util.ApplicationProperties;
 public class ICDIDUtil {
 
     private static String WHO_SERVICE_NEW_ID_URL_PROP = "who.service.new.id.url";
-    private static String WHO_SERVICE_NEW_ID_URL_DEFAULT = "http://apps.who.int/classifications/icd11/idgenerator/GetNewId";
+    private static String WHO_SERVICE_NEW_ID_URL_DEFAULT = "http://apps.who.int/classifications/icd11/idgenerator/GetNewIdForICD";
 
     private static String WHO_SERVICE_APIKEY = "who.service.apikey";
 
