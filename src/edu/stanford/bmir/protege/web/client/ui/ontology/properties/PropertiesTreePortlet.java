@@ -520,12 +520,11 @@ public class PropertiesTreePortlet extends AbstractEntityPortlet {
                 return;
             }
 
-            for (Object element2 : children) {
-                EntityData childData = (EntityData) element2;
-
-                // if (!hasChild(clsName, childName)) {
-                parentNode.appendChild(createTreeNode(childData));
-                // }
+            for (EntityData ch : children) {
+                PropertyEntityData childData = (PropertyEntityData) ch;
+                //if (childData.isSystem() == false) {
+                    parentNode.appendChild(createTreeNode(childData));
+                //}
             }
 
             if (getSubpropertiesOfSubproperties) {
