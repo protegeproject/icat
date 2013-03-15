@@ -8,12 +8,18 @@ import edu.stanford.smi.protege.util.ApplicationProperties;
 public class ICDIDUtil {
 
     private static String WHO_SERVICE_NEW_ID_URL_PROP = "who.service.new.id.url";
-    private static String WHO_SERVICE_NEW_ID_URL_DEFAULT = "http://apps.who.int/classifications/icd11/idgenerator/GetNewIdForICD";
+    private static String WHO_SERVICE_NEW_ID_URL_DEFAULT = "http://id.who.int/classifications/idgenerator/icd11/GetNewId";
+
+    private static String WHO_SERVICE_SYSTEM_NAME="who.service.system.name";
+    private static String WHO_SERVICE_SYSTEM_NAME_DEFAULT="iCat";
 
     private static String WHO_SERVICE_APIKEY = "who.service.apikey";
 
     public static String getPublicId(String iCATId) {
-        String url = getWHOServiceNewIdURL() + "?" + "type=entity&apikey=" + getWHOServiceAPIKey() + "&seed=" + URLUtil.encode(iCATId);
+        String url = getWHOServiceNewIdURL() + "?" +
+                            "type=entity&apikey=" + getWHOServiceAPIKey() +
+                            "&seed=" + URLUtil.encode(iCATId) +
+                            "&callerSystemName=" + getWHOServiceSystemName();
         String jSonText = URLUtil.getURLContent(url);
 
         if (jSonText == null) { return null;}
@@ -31,8 +37,13 @@ public class ICDIDUtil {
         return ApplicationProperties.getString(WHO_SERVICE_APIKEY);
     }
 
+    private static String getWHOServiceSystemName() {
+        return ApplicationProperties.getString(WHO_SERVICE_SYSTEM_NAME, WHO_SERVICE_SYSTEM_NAME_DEFAULT);
+    }
+
     public static void main (String[] args) throws Exception{
         System.out.println(getPublicId("http://who.int/icd#V"));
+        //System.out.println(getPublicId("http://who.int/ictm#1462_63a13dac_fbb6_4e21_9a3c_f0e312d405a2"));
     }
 
 
