@@ -22,9 +22,7 @@ public class AllPropertiesPortlet extends AbstractEntityPortlet {
 
     @Override
     public void reload() {
-        if (_currentEntity != null) {
-            setTitle("Properties for " + _currentEntity.getBrowserText());
-        }
+        setTitle(_currentEntity == null ? "Properties: nothing selected" : "Properties for " + _currentEntity.getBrowserText());
 
         propGrid.setEntity(_currentEntity);
     }
