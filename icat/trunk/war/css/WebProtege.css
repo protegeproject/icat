@@ -589,6 +589,13 @@ Styles for the hierarchy management tab
 	color: white;
 }
 
+/*Scrollbar for vertical menues*/
+ul.x-menu-list {
+  height: expression( this.scrollHeight > 350 ? "350px" : "auto" ); /* sets max-height for IE */ 
+  max-height: 350px;  
+  overflow-y: auto;
+}
+
 .label {
 	color: #003399;
 	font-size: 11px;
