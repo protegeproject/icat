@@ -101,21 +101,27 @@ public class Protege3ProjectManager extends AbstractProjectManager implements Pr
                 //load also ChAO KB if available
                 KnowledgeBase kb = project.getKnowledgeBase();
                 final KnowledgeBase chaoKb = ChAOKbManager.getChAOKb(kb);
-                //TODO: check this: it will start change tracking, even if not enabled
-                if (!ChangesProject.isInitialized(project)) { //TODO: not the ideal solution. Should be in changes project code
-                    ChangesProject.initialize(project);
-                }
 
-                HasAnnotationCache.fillHasAnnotationCache(kb);
-                //FIXME: this needs to be clean up when the client project closes
-                ChAOCacheUpdater chaoCacheUpdater = new ChAOCacheUpdater(kb);
-                chaoCacheUpdater.initialize();
+                if (chaoKb != null) {
+                    if (!ChangesProject.isInitialized(project)) { //TODO: not the ideal solution. Should be in changes project code
+                        ChangesProject.initialize(project);
+                    }
+
+                    Log.getLogger().info("Starting the caching of note counts for " + projectName);
+                    //this may be an expensive operation, computes all notes count, including aggregation on children
+                    HasAnnotationCache.fillHasAnnotationCache(kb);
+                    //FIXME: this needs to be clean up when the client project closes
+                    ChAOCacheUpdater chaoCacheUpdater = new ChAOCacheUpdater(kb);
+                    chaoCacheUpdater.initialize();
+
+                    AnnotationCache.updateAnnotationCache(project);                    
+                    Log.getLogger().info("Ended the caching of note counts for " + projectName);
+                }
+                
+                WatchedEntitiesCache.init(project, chaoKb != null ? new OntologyComponentFactory(chaoKb) : null);
 
                 serverProject.setProject(project);
                 serverProject.setProjectName(projectName);
-
-                AnnotationCache.updateAnnotationCache(project);
-                WatchedEntitiesCache.init(project, chaoKb != null ? new OntologyComponentFactory(chaoKb) : null);
             }
         }
     }
