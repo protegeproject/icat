@@ -114,13 +114,6 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         if (serverProject == null) {
             return null;
         }
-        // TODO: not clear it is needed...
-        /*
-        Project prj = serverProject.getProject();
-        if (prj != null) {
-            HasAnnotationCache.fillHasAnnotationCache(prj.getKnowledgeBase());
-        }
-         */
         return Integer.valueOf(serverProject.getServerVersion());
 
     }
