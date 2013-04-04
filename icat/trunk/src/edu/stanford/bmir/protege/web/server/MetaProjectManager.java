@@ -8,6 +8,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.UserData;
 import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.server.metaproject.MetaProject;
 import edu.stanford.smi.protege.server.metaproject.Operation;
+import edu.stanford.smi.protege.server.metaproject.User;
 
 public interface MetaProjectManager {
 
@@ -31,6 +32,8 @@ public interface MetaProjectManager {
 
     public Project openProject(String name);
 
+    public User getUser(String userNameOrEmail);
+
     public MetaProject getMetaProject();
 
     /**
@@ -43,8 +46,6 @@ public interface MetaProjectManager {
     public void dispose();
 
     public UserData getUserAssociatedWithOpenId(String userOpenId);
-
-    public String getUserSalt(String userName);
 
     public boolean allowsCreateUser();
 
