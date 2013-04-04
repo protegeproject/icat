@@ -231,15 +231,6 @@ public class RemoteMetaProjectManager extends AbstractMetaProjectManager {
         }
     }
 
-
-    public String getUserSalt(String userName) {
-        User user = getMetaProject().getUser(userName);
-        if (user == null) {
-            return null;
-        }
-        return user.getSalt();
-    }
-
     public boolean allowsCreateUser() {
         try {
             return getServer().allowsCreateUsers();

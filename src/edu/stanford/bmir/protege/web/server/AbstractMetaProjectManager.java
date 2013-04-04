@@ -123,8 +123,7 @@ public abstract class AbstractMetaProjectManager implements MetaProjectManager {
             return null;
         }
 
-        Set<User> users = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getMetaProject()
-                .getUsers();
+        Set<User> users = getMetaProject().getUsers();
 
         boolean gotUser = false;
         for (Iterator<User> iterator = users.iterator(); iterator.hasNext();) {
@@ -152,6 +151,32 @@ public abstract class AbstractMetaProjectManager implements MetaProjectManager {
         }
 
         return userData;
+    }
+
+
+    public User getUser(String userNameOrEmail) {
+        if (userNameOrEmail == null) {
+            return null;
+        }
+
+        //try to get it by name first
+        User user = getMetaProject().getUser(userNameOrEmail);
+        if (user != null) {
+            return user;
+        }
+
+        //get user by email
+        Set<User> users = getMetaProject().getUsers();
+        Iterator<User> it = users.iterator();
+
+        while (it.hasNext() && user == null) {
+            User u = it.next();
+            if (userNameOrEmail.equals(u.getEmail())) {
+                user = u;
+            }
+        }
+
+        return user;
     }
 
 }

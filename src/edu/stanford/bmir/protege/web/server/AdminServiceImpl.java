@@ -57,6 +57,9 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
     public void logout() {
         HttpServletRequest request = getThreadLocalRequest();
         final HttpSession session = request.getSession();
+        UserData userData = (UserData) session.getAttribute(SessionConstants.USER_DATA_PARAMETER);
+        String userName = userData == null ? null : userData.getName();
+        Log.getLogger().info("User " + userName + " logged out on " + new Date());
         session.setAttribute(SessionConstants.USER_DATA_PARAMETER, null);
     }
 
@@ -114,8 +117,12 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
                 ApplicationProperties.getEmailAccount());
     }
 
-    public LoginChallengeData getUserSaltAndChallenge(String userName) {
-        String userSalt = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getUserSalt(userName);
+    public LoginChallengeData getUserSaltAndChallenge(String userNameOrEmail) {
+        User user = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getUser(userNameOrEmail);
+        if (user == null) {
+            return null;
+        }
+        String userSalt = user.getSalt();
         if (userSalt == null) {
             return null;
         }
@@ -130,13 +137,14 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
         return Protege3ProjectManager.getProjectManager().getMetaProjectManager().allowsCreateUser();
     }
 
-    public UserData authenticateToLogin(String userName, String response) {
+    public UserData authenticateToLogin(String userNameOrEmail, String response) {
         HttpServletRequest request = this.getThreadLocalRequest();
         HttpSession session = request.getSession();
         String challenge = (String) session.getAttribute(AuthenticationConstants.LOGIN_CHALLENGE);
         session.setAttribute(AuthenticationConstants.LOGIN_CHALLENGE, null);
 
-        User user = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getMetaProject().getUser(userName);
+        //Will check both user name and email
+        User user = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getUser(userNameOrEmail);
         if (user == null) { //user not in metaproject
             return null;
         }
@@ -146,8 +154,9 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
         AuthenticationUtil authenticatinUtil = new AuthenticationUtil();
         boolean isverified = authenticatinUtil.verifyChallengedHash(user.getDigestedPassword(), response, challenge);
         if (isverified) {
-            userData = AuthenticationUtil.createUserData(userName);
+            userData = AuthenticationUtil.createUserData(user.getName());
             session.setAttribute(SessionConstants.USER_DATA_PARAMETER, userData);
+            Log.getLogger().info("User " + user.getName() + " logged in on " + new Date());
         }
 
         return userData;
