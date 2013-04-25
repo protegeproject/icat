@@ -287,7 +287,7 @@ public class TopPanel extends Panel {
                 loginUtil.login(isLoginWithHttps);
             }
         } else {
-            loginUtil.logout();
+            LoginUtil.logout();
         }
     }
 
