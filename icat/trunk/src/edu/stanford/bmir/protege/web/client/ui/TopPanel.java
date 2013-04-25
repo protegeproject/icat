@@ -303,10 +303,10 @@ public class TopPanel extends Panel {
      */
 
     protected String getFeebackText() {
-        return "<br /> Thank you for using iCAT! "
+        return "<br /> Thank you for using WebProtege! "
                 + "<br /><br /> Your feedback is very important to us. "
                 + "Please send your comments, questions, feature requests, bugs, etc. "
-                + "on the <a href=\"http://groups.google.com/group/icat-users\">Google icat-users group</a>. <br /><br />";
+                + "on the <a href=\"https://mailman.stanford.edu/mailman/listinfo/webprotege-feedback\">WebProtege mailing list</a>. <br /><br />";
     }
 
     /**
