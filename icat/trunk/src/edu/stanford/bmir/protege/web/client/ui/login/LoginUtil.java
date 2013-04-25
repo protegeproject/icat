@@ -262,23 +262,42 @@ public class LoginUtil {
         });
     }
 
-    public void logout() {
+    public static void logout() {
+        logout(true, null);
+    }
+
+    public static void logout(boolean showConfirmation, final AsyncCallback<Void> callback) {
+        if (showConfirmation == true) {
         MessageBox.confirm("Log out", "Are you sure you want to log out?", new MessageBox.ConfirmCallback() {
             public void execute(String btnID) {
                 if (btnID.equalsIgnoreCase("yes")) {
-                    GlobalSettings.getGlobalSettings().setUser(null);
-                    AdminServiceManager.getInstance().logout(new AsyncCallback<Void>() {
-                        public void onFailure(Throwable caught) {
-                            MessageBox.alert(AuthenticationConstants.ASYNCHRONOUS_CALL_FAILURE_MESSAGE);
-                        }
+                   logoutNoConfirmation(callback);
+                }
+            }
+        });
+        } else {
+            logoutNoConfirmation(callback);
+        }
+    }
 
-                        public void onSuccess(Void result) {
-                        }
-                    });
+    private static void logoutNoConfirmation(final AsyncCallback<Void> callback) {
+        GlobalSettings.getGlobalSettings().setUser(null);
+        AdminServiceManager.getInstance().logout(new AsyncCallback<Void>() {
+            public void onFailure(Throwable caught) {
+                MessageBox.alert(AuthenticationConstants.ASYNCHRONOUS_CALL_FAILURE_MESSAGE);
+                if (callback != null) {
+                    callback.onFailure(caught);
+                }
+            }
+
+            public void onSuccess(Void result) {
+                if (callback != null) {
+                    callback.onSuccess(result);
                 }
             }
         });
     }
+
 
     public void getTimeoutAndCheckUserLoggedInMethod(final LoginUtil loginUtil, final String randomNumber) {
         final Integer timeout = ClientApplicationPropertiesCache.getServerPollingTimeoutMinutes();
