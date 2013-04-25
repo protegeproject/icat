@@ -1,6 +1,8 @@
 package edu.stanford.bmir.protege.web.client.ui;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -33,6 +35,8 @@ import edu.stanford.bmir.protege.web.client.rpc.AdminServiceManager;
 import edu.stanford.bmir.protege.web.client.ui.editprofile.EditProfileUtil;
 import edu.stanford.bmir.protege.web.client.ui.login.LoginUtil;
 import edu.stanford.bmir.protege.web.client.ui.login.constants.AuthenticationConstants;
+import edu.stanford.bmir.protege.web.client.ui.portlet.html.HtmlTextComponent;
+import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 
 /**
  * The panel shown at the top of the display. It contains the documentation
@@ -66,7 +70,14 @@ public class TopPanel extends Panel {
         outer.setHorizontalAlignment(HorizontalPanel.ALIGN_RIGHT);
         final Image logo = getImage();
         outer.add(logo);
+
         outer.setCellHorizontalAlignment(logo, HorizontalPanel.ALIGN_LEFT);
+
+        //add notification panel, if configured
+        Panel notificationPanel = getNotificationMessagePanel();
+        if (notificationPanel != null) {
+            outer.add(notificationPanel);
+        }
 
         // Inner panel to house links panel
         VerticalPanel inner = new VerticalPanel();
@@ -91,6 +102,19 @@ public class TopPanel extends Panel {
                 adjustOptionPanel();
             }
         });
+    }
+
+    private Panel getNotificationMessagePanel() {
+        String homepageNotificationHtml = ClientApplicationPropertiesCache.getHomepageNotificationHtml();
+        if (homepageNotificationHtml == null) {
+            return null;
+        }
+
+        HtmlTextComponent notificationPanel = new HtmlTextComponent();
+        Map<String, Object> htmlTextComponentProperties = new HashMap<String, Object>();
+        htmlTextComponentProperties.put(FormConstants.LOAD_URL, homepageNotificationHtml);
+        notificationPanel.setConfigProperties(htmlTextComponentProperties);
+        return notificationPanel;
     }
 
     protected Image getImage() {

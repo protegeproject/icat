@@ -44,6 +44,10 @@ public class ClientApplicationPropertiesCache {
         return o == null ? Boolean.FALSE : Boolean.parseBoolean(o);
     }
 
+    public static String getHomepageNotificationHtml() {
+        return cache.get(ApplicationPropertyNames.HOMEPAGE_NOTIFICATION_HTML);
+    }
+
     public static void initialize(final AsyncCallback<Map<String, String>> callback){
         ApplicationPropertiesServiceManager.getInstance().initialize(new AsyncCallback<Map<String, String>>(){
             public void onFailure(Throwable caught) {

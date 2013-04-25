@@ -29,6 +29,8 @@ public class ApplicationPropertyNames {
     public static final String LOGIN_WITH_HTTPS_PROP = "login.with.https";
     public static final String WEBPROTEGE_AUTHENTICATE_WITH_OPENID_PROP = "webprotege.authenticate.with.openid";
 
+    public static final String HOMEPAGE_NOTIFICATION_HTML="homepage.notification.html";
+
     //TODO: to be renamed, use seconds
     public static final String DAILY_NOTIFICATION_THREAD_STARTUP_DELAY_PROP = "daily.notification.startup.delay";
     public static final String HOURLY_NOTIFICATION_THREAD_STARTUP_DELAY_PROP = "hourly.notification.startup.delay";
