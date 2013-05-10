@@ -46,7 +46,11 @@ public class IndividualsTab extends AbstractTab {
         if (clsTreePortlet != null && indListPorlet != null) {
             clsTreePortlet.addSelectionListener(new SelectionListener() {
                 public void selectionChanged(SelectionEvent event) {
-                    EntityData selection = clsTreePortlet.getSelection().get(0);
+                    List<EntityData> selections = clsTreePortlet.getSelection();
+                    EntityData selection = null;
+                    if (selections != null && selections.size() > 0) {
+                        selection = selections.get(0);
+                    }
                     clsTreePortlet.setEntity(selection); //might cause later infinite cycles, if anything will happen in setEntity
                     Collection<EntityPortlet> portlets = getPortlets();
                     for (EntityPortlet portlet : portlets) {
