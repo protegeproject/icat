@@ -1,5 +1,6 @@
 <project>
 <tabs>
+
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
     <label>Classes</label>
@@ -27,6 +28,7 @@
     </columns>
     <controllingPortlet reference="../columns/column/portlets/portlet"/>
   </tab>
+
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.properties.PropertiesTab</name>
     <label>Properties</label>
@@ -59,6 +61,7 @@
     </columns>
     <controllingPortlet reference="../columns/column/portlets/portlet"/>
   </tab>
+
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.individuals.IndividualsTab</name>
     <label>Individuals</label>
@@ -100,6 +103,7 @@
       </column>
     </columns>
   </tab>
+
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.notes.NotesTab</name>
     <label>Notes and Discussions</label>
@@ -127,5 +131,220 @@
     </columns>
     <controllingPortlet reference="../columns/column/portlets/portlet"/>
   </tab>  
+
+  <!--  This tab provides an example for using forms and grids -->
+  <tab>
+    <name>edu.stanford.bmir.protege.web.client.ui.tab.UserDefinedTab</name>
+    <label>Newspapers</label>
+    
+    <columns>
+      <column>      
+        <width>0.33</width>
+        <portlets>
+          <portlet>
+            <name>edu.stanford.bmir.protege.web.client.ui.ontology.individuals.IndividualsListPortlet</name>
+            <properties>
+            	<entry>
+            		<string>showOnlyClass</string>
+            		<string>Newspaper</string>
+            	</entry>
+            </properties>
+            <height>600</height>
+            <width>200</width>
+          </portlet>
+        </portlets>
+      </column>
+      
+      <column>
+        <width>0.66</width>
+        <portlets>          
+         
+   <portlet>
+	<name>edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.PropertyFieldPortlet</name>
+        <height>200</height>
+	<width>0</width>
+	<properties>
+		<entry>
+			<string>tabs</string>
+			<list>
+				<map>
+					<entry>
+						<string>title</string>
+						<string>Metadata</string>
+					</entry>										
+					<entry>
+						<string>date</string>
+						<map>
+							<entry>
+								<string>name</string>
+								<string>date</string>
+							</entry>
+							<entry>
+								<string>label</string>
+								<string>Date</string>
+							</entry>
+							<entry>
+								<string>component_type</string>
+								<string>multitextfield</string>
+							</entry>
+							<entry>
+								<string>index</string>
+								<string>0</string>
+							</entry>
+						</map>
+					</entry>
+					<entry>
+						<string>:DOCUMENTATION</string>
+						<map>
+							<entry>
+								<string>name</string>
+								<string>:DOCUMENTATION</string>
+							</entry>
+							<entry>
+								<string>label</string>
+								<string>Documentation</string>
+							</entry>
+							<entry>
+								<string>component_type</string>
+								<string>textarea</string>
+							</entry>
+							<entry>
+								<string>index</string>
+								<string>1</string>
+							</entry>
+						</map>
+					</entry>										
+				</map>																				
+			</list>
+		</entry>
+	</properties>
+ </portlet>
+         
+         
+                  <portlet>
+	<name>edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.PropertyFieldPortlet</name>
+        <height>200</height>
+	<width>0</width>
+	<properties>
+		<entry>
+			<string>tabs</string>
+			<list>
+				<map>
+					<entry>
+						<string>title</string>
+						<string>Contents</string>
+					</entry>	
+					
+					<entry>
+											<string>contents</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>contents</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Contents</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>The contents of the newspaper is modeled as a list of instances of class Content.</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://protege.stanford.edu/doc/users_guide/newspaper_example.html</string>
+												</entry>
+												<entry>																								
+													<string>index</string>
+													<string>1</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>200</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>grid</string>
+												</entry>
+												<entry>
+													<string>show_add_existing</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>Content</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Headline</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>headline</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column2</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Expiration date</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>expiration_date</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>1</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>combobox</string>
+														</entry>
+														<entry>
+															<string>allowed_values</string>
+															<list>
+																<string>today</string>
+																<string>tomorrow</string>
+															</list>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+														
+				</map>																				
+			</list>
+		</entry>
+	</properties>
+ </portlet>
+         
+        </portlets>
+      </column>
+    </columns>
+    <controllingPortlet reference="../columns/column/portlets/portlet"/>
+  </tab>  
+
   </tabs>  
 </project>
