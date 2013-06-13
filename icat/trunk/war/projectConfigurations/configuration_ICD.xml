@@ -1023,7 +1023,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column20</string>
+													<string>Column24</string>
 													<map>
 														<entry>
 															<string>clone_of</string>
@@ -1031,7 +1031,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>19</string>
+															<string>23</string>
 														</entry>
 													</map>
 												</entry>
@@ -1744,6 +1744,129 @@
 													<map>
 														<entry>
 															<string>header</string>
+															<string>Fracture Subtype</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Injury specific -&gt; Fracture Subtype</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#fractureSubtype</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>17</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column19</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Type of Injury</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Injury specific -&gt; Type of Injury</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#typeOfInjury</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>18</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column20</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Custom Burn Scale</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Injury specific -&gt; Custom Burn Scale Value</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#customBurnScaleValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>19</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column21</string>
+													<map>
+														<entry>
+															<string>header</string>
 															<string>Level of&lt;BR&gt;Consciousness</string>
 														</entry>
 														<entry>
@@ -1768,7 +1891,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>17</string>
+															<string>20</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -1778,10 +1901,14 @@
 															<string>field_align</string>
 															<string>center</string>
 														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
 													</map>
 												</entry>
 												<entry>
-													<string>Column19</string>
+													<string>Column22</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -1809,7 +1936,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>18</string>
+															<string>21</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -1822,6 +1949,51 @@
 														<entry>
 															<string>field_bg_color</string>
 															<string>lightblue</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column23</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Assocaiated With</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Assocaiated With another ICD Entity</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#associatedWith</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>22</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgreen</string>
 														</entry>
 													</map>
 												</entry>
@@ -1929,7 +2101,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column18</string>
+													<string>Column16</string>
 													<map>
 														<entry>
 															<string>clone_of</string>
@@ -1937,57 +2109,12 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>17</string>
+															<string>15</string>
 														</entry>
 													</map>
 												</entry>
 												<entry>
 													<string>Column2</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Severity</string>
-														</entry>
-														<entry>
-															<string>tooltip</string>
-															<string>Severity</string>
-														</entry>
-														<entry>
-															<string>headerCssClass</string>
-															<string>rotated-table-header1</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>45</string>
-														</entry>
-														<entry>
-															<string>height</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#hasSeverity</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>1</string>
-														</entry>
-														<entry>
-															<string>field_type</string>
-															<string>checkbox_important</string>
-														</entry>
-														<entry>
-															<string>field_align</string>
-															<string>center</string>
-														</entry>
-														<entry>
-															<string>field_bg_color</string>
-															<string>lightgray</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column3</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2015,7 +2142,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>2</string>
+															<string>1</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2028,7 +2155,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column4</string>
+													<string>Column3</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2056,7 +2183,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>3</string>
+															<string>2</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2073,7 +2200,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column5</string>
+													<string>Column4</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2105,7 +2232,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>4</string>
+															<string>3</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2118,7 +2245,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column6</string>
+													<string>Column5</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2146,7 +2273,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>5</string>
+															<string>4</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2163,7 +2290,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column7</string>
+													<string>Column6</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2191,7 +2318,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>6</string>
+															<string>5</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2208,7 +2335,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column8</string>
+													<string>Column7</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2236,7 +2363,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>7</string>
+															<string>6</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2253,7 +2380,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column9</string>
+													<string>Column8</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2281,7 +2408,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>8</string>
+															<string>7</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2298,7 +2425,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column10</string>
+													<string>Column9</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2326,7 +2453,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>9</string>
+															<string>8</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2339,7 +2466,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column11</string>
+													<string>Column10</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2367,7 +2494,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>10</string>
+															<string>9</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2384,7 +2511,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column12</string>
+													<string>Column11</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2412,7 +2539,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>11</string>
+															<string>10</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2425,7 +2552,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column13</string>
+													<string>Column12</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2453,7 +2580,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>12</string>
+															<string>11</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2470,7 +2597,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column14</string>
+													<string>Column13</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2498,7 +2625,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>13</string>
+															<string>12</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2511,7 +2638,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column15</string>
+													<string>Column14</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2539,7 +2666,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>14</string>
+															<string>13</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2556,7 +2683,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column16</string>
+													<string>Column15</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2584,7 +2711,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>15</string>
+															<string>14</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2593,51 +2720,6 @@
 														<entry>
 															<string>field_align</string>
 															<string>center</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column17</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Diagnosis&lt;BR&gt;Confirmed By</string>
-														</entry>
-														<entry>
-															<string>tooltip</string>
-															<string>Diagnosis Confirmed By</string>
-														</entry>
-														<entry>
-															<string>headerCssClass</string>
-															<string>rotated-table-header1</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>45</string>
-														</entry>
-														<entry>
-															<string>height</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#diagnosisConfirmedBy</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>16</string>
-														</entry>
-														<entry>
-															<string>field_type</string>
-															<string>checkbox_important</string>
-														</entry>
-														<entry>
-															<string>field_align</string>
-															<string>center</string>
-														</entry>
-														<entry>
-															<string>field_bg_color</string>
-															<string>lightblue</string>
 														</entry>
 													</map>
 												</entry>
