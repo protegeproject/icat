@@ -78,12 +78,14 @@ import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 import edu.stanford.bmir.protege.web.client.ui.ontology.search.DefaultSearchStringTypeEnum;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidgetWithNotes;
 import edu.stanford.bmir.protege.web.client.ui.util.SelectionUtil;
+import edu.stanford.bmir.protege.web.client.ui.util.UIConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.SelectionUtil.SelectionCallback;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
     protected static String INSTANCE_FIELD_NAME = "@instance@";
+//    protected static String REPLICA_FIELD_NAME = "@replica@";
     protected static String DELETE_FIELD_NAME = "@delete@";
     protected static String COMMENT_FIELD_NAME = "@comment@";
 
@@ -470,11 +472,8 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         grid.setCls("form_grid");
         grid.setAutoWidth(true);
         grid.setStripeRows(true);
-        int clicksToEdit = UIUtil.getIntegerConfigurationProperty(
-                getProject().getProjectConfiguration(),
-                FormConstants.CLICKS_TO_EDIT,
-                FormConstants.DEFAULT_CLICKS_TO_EDIT);
-        grid.setClicksToEdit(clicksToEdit);
+        grid.setClicksToEdit(getClicksToEdit());
+        grid.setEnableHdMenu(getEnableHeaderMenu());
         grid.setFrame(true);
 
         Map<String, Object> widgetConfig = getWidgetConfiguration();
@@ -507,7 +506,40 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         return grid;
     }
 
-    protected void createStore() {
+	protected int getClicksToEdit() {
+		return UIUtil.getIntegerConfigurationProperty(
+                getProject().getProjectConfiguration(),
+                FormConstants.CLICKS_TO_EDIT,
+                FormConstants.DEFAULT_CLICKS_TO_EDIT);
+	}
+
+	protected boolean getOneClickComboboxEditingEnabled() {
+		return UIUtil.getBooleanConfigurationProperty(
+                getProject().getProjectConfiguration(),
+                FormConstants.ONE_CLICK_COMBOBOX_EDITING,
+                true);
+	}
+	
+	protected boolean getEnableHeaderMenu() {
+		return UIUtil.getBooleanConfigurationProperty(
+                getWidgetConfiguration(), getProject().getProjectConfiguration(), 
+                FormConstants.ENABLE_HEADER_MENU, getEnableHeaderMenuDefault());
+	}
+
+    protected boolean getEnableHeaderMenuDefault() {
+		return true;
+	}
+
+	protected boolean getIsSortable(Map<String, Object> columnConfig) {
+		boolean isSortableGrid = UIUtil.getBooleanConfigurationProperty(getWidgetConfiguration(), FormConstants.IS_SORTABLE, getIsSortableDefault());
+		return UIUtil.getBooleanConfigurationProperty(columnConfig, FormConstants.IS_SORTABLE, isSortableGrid);
+	}
+
+    protected boolean getIsSortableDefault() {
+		return true;
+	}
+
+	protected void createStore() {
         ArrayReader reader = new ArrayReader(recordDef);
         MemoryProxy dataProxy = new MemoryProxy(new Object[][] {});
         store = new Store(dataProxy, reader);
@@ -538,76 +570,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
     protected void attachListeners() {
         //TODO: may not work so well.. - check indexes
-        grid.addGridCellListener(new GridCellListenerAdapter() {
-            double timeOfLastClick = 0;
-            int clicksToEdit = UIUtil.getIntegerConfigurationProperty(
-                    getProject().getProjectConfiguration(),
-                    FormConstants.CLICKS_TO_EDIT,
-                    FormConstants.DEFAULT_CLICKS_TO_EDIT);
-            boolean oneClickComboboxEditingEnabled = UIUtil.getBooleanConfigurationProperty(
-                    getProject().getProjectConfiguration(),
-                    FormConstants.ONE_CLICK_COMBOBOX_EDITING,
-                    true);
-
-            @Override
-            public void onCellClick(final GridPanel grid, final int rowIndex, final int colindex, final EventObject e) {
-                double eventTime = e.getTime();
-                if (eventTime - timeOfLastClick > 500) { //not the second click in a double click
-                    onCellClickOrDblClick(grid, rowIndex, colindex, e);
-                };
-
-                /*
-                 * Set new value for timeOfLastClick the time the last click was handled
-                 * We use the current time (and not eventTime), because some time may have passed since eventTime
-                 * while executing the onCellClickOrDblClick method.
-                 */
-                timeOfLastClick = new Date().getTime();
-            }
-
-            private void onCellClickOrDblClick(GridPanel grid, final int rowIndex, int colindex, EventObject e) {
-                int offsetDeleteColumn = getOffsetDeleteColumn();
-                int offsetCommentColumn = getOffsetCommentColumn();
-                if (offsetDeleteColumn != -1 && colindex == properties.size() + offsetDeleteColumn) {
-                    onDeleteColumnClicked(rowIndex);
-                } else if (offsetCommentColumn != -1 && colindex == properties.size() + offsetCommentColumn) {
-                    onCommentColumnClicked(rowIndex);
-                } else {
-                    if (clicksToEdit == 1) {
-                        onValueColumnClicked(grid, rowIndex, colindex);
-                    }
-                    else {
-                        //overriding clicksToEdit behavior: forcing single click to work for specific field types, such as comboboxes
-                        checkSpecialColumnsAndStartEditing(grid, rowIndex, colindex);
-                    }
-                }
-            }
-
-            private void checkSpecialColumnsAndStartEditing(GridPanel grid, final int rowIndex, int colindex) {
-                if (oneClickComboboxEditingEnabled) {
-                    String fieldType = (String) getColumnConfiguration(colindex, FormConstants.FIELD_TYPE);
-                    if (FormConstants.FIELD_TYPE_COMBOBOX.equals(fieldType)) {
-                        ((EditorGridPanel)grid).startEditing(rowIndex, colindex);
-                    }
-                }
-            }
-
-            @Override
-            public void onCellDblClick(GridPanel grid, int rowIndex, int colIndex, EventObject e) {
-                if (clicksToEdit == 2) {
-                    onValueColumnClicked(grid, rowIndex, colIndex);
-                }
-            }
-
-            @Override
-            public void onCellContextMenu(final GridPanel grid, final int rowIndex, final int colindex, final EventObject e) {
-                e.stopEvent();
-                if (e.getTarget(".checkbox", 1) != null) {
-                    onContextMenuCheckboxClicked(rowIndex, colindex, e);
-                } else {
-                    onContextMenuClicked(rowIndex, colindex, e);
-                }
-            }
-        });
+		grid.addGridCellListener(getGridMouseListener());
 
         //TODO we should find a solution for removing the cell selection once focus is lost (i.e. another widget is selected)
 //        grid.addListener(Event.ONBLUR, new Function() {
@@ -629,6 +592,10 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
             }
         });
     }
+
+	protected InstanceGridCellMouseListener getGridMouseListener() {
+		return new InstanceGridCellMouseListener();
+	}
 
     protected void onDeleteColumnClicked(final int rowIndex) {
         Record record = store.getAt(rowIndex);
@@ -771,7 +738,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 String value = record.getAsString(field);
                 if (value != null && !"".equals(value)) {
                     Menu contextMenu = new DeleteContextMenu(
-                            "Unset value (i.e. set to 'Unknown')", "images/unknown_check.gif",
+                            "Unset value (i.e. set to 'Unknown')", UIConstants.ICON_CHECKBOX_UNKNOWN,
                             record, rowIndex, colIndex);
                     contextMenu.showAt(e.getXY()[0] + 5, e.getXY()[1] + 5);
                 }
@@ -872,7 +839,16 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
         for (String key : widgetConfig.keySet()) {
             if (key.startsWith(FormConstants.COLUMN_PREFIX)) {
-                createColumn((Map<String, Object>) widgetConfig.get(key), fieldDef, columns, props);
+                Map<String, Object> columnConfig = (Map<String, Object>) widgetConfig.get(key);
+
+                String cloneOf = isCloneColumn(columnConfig);
+                if (cloneOf != null) {
+                	Map<String, Object> origColumnConfig = getOriginalOfClone(widgetConfig, columnConfig);
+                	createCloneColumn(columnConfig, origColumnConfig, cloneOf, fieldDef, columns, props);
+                }
+                else {
+                	createColumn(columnConfig, fieldDef, columns, props);
+                }
             }
         }
 
@@ -882,6 +858,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         }
 
         createInstanceColumn(fieldDef, columns, colCount);
+//        createReplicaColumn(fieldDef, columns, colCount);
         createActionColumns(fieldDef, columns, colCount);
 
         recordDef = new RecordDef(fieldDef);
@@ -890,7 +867,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         grid.setColumnModel(columnModel);
     }
 
-    protected void createInstanceColumn(FieldDef[] fieldDef, ColumnConfig[] columns, int colCount) {
+	protected void createInstanceColumn(FieldDef[] fieldDef, ColumnConfig[] columns, int colCount) {
         ColumnConfig instCol = new ColumnConfig("", INSTANCE_FIELD_NAME, 25);
         instCol.setTooltip("Attached instance name");
         instCol.setRenderer(new Renderer() {
@@ -905,6 +882,32 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         fieldDef[colCount] = new StringFieldDef(INSTANCE_FIELD_NAME);
         columns[colCount] = instCol;
     }
+    
+//    protected void createReplicaColumn(final FieldDef[] fieldDef, ColumnConfig[] columns, int colCount) {
+//        int offsetDeleteColumn = getOffsetDeleteColumn();
+//        if (offsetDeleteColumn != -1) {
+//        	ColumnConfig replCol = instantiateReplicaColumn(fieldDef, columns, colCount);
+//            replCol.setHidden(true);
+//
+//            fieldDef[colCount] = new StringFieldDef(REPLICA_FIELD_NAME);
+//            columns[colCount] = replCol;
+//        }
+//    }
+//    
+//    protected ColumnConfig instantiateReplicaColumn(final FieldDef[] fieldDef, ColumnConfig[] columns, int colCount) {
+//    	ColumnConfig origCol = columns[0];
+//        ColumnConfig replCol = new ColumnConfig(origCol.getHeader(), REPLICA_FIELD_NAME, origCol.getWidth());
+//        replCol.setTooltip(origCol.getTooltip());
+//        //TODO copy other relevant properties from origCol to replCol
+//        replCol.setRenderer(new Renderer() {
+//            public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum,
+//                    Store store) {
+//                String strValue = record.getAsString(fieldDef[0].getName());
+//                return strValue;
+//            }
+//        });
+//        return replCol;
+//    }
 
     protected void createActionColumns(FieldDef[] fieldDef, ColumnConfig[] columns, int colCount) {
         int offsetDeleteColumn = getOffsetDeleteColumn();
@@ -956,7 +959,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 // TODO: add a css for this
                 String text = "<img src=\"images/comment.gif\" title=\""
                     + " Click on the icon to add new note(s).\"></img>";
-                int annotationsCount = (value == null ? 0 : ((Integer) value));
+                int annotationsCount = (value == null ? 0 : value instanceof Integer ? ((Integer) value) : ((Long) value).intValue());
                 if (annotationsCount > 0) {
                     text = "<img src=\"images/comment.gif\" title=\""
                         + UIUtil.getNiceNoteCountText(annotationsCount)
@@ -969,10 +972,60 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         };
     }
 
+	private String isCloneColumn(Map<String, Object> columnConfig) {
+        return UIUtil.getStringConfigurationProperty(columnConfig, FormConstants.CLONE_OF, null);
+	}
+
+	private Map<String, Object> getOriginalOfClone(
+			Map<String, Object> widgetConfig, Map<String, Object> columnConfig) {
+        String cloneOf = UIUtil.getStringConfigurationProperty(columnConfig, FormConstants.CLONE_OF, null);
+        if (cloneOf != null) {
+        	return (Map<String, Object>) widgetConfig.get(cloneOf);
+        }
+        else {
+        	//TODO error
+        	return null;
+        }
+	}
+
+    private ColumnConfig createCloneColumn(Map<String, Object> columnConfig,
+			Map<String, Object> origColumnConfig, String originalCol, 
+			FieldDef[] fieldDef, ColumnConfig[] columnConfigs, String[] props) {
+        ColumnConfig gridColConfig = new ColumnConfig();
+        
+        String property = null;
+        String indexStr = (String) columnConfig.get(FormConstants.INDEX);
+
+        int index = Integer.parseInt(indexStr); //better be valid
+        props[index] = property;
+        gridColConfig.setDataIndex(property);
+
+        String origIndexStr = (String) origColumnConfig.get(FormConstants.INDEX);
+        int origColIndex = Integer.parseInt(origIndexStr); //better be valid
+
+        initializeColumnStyle(columnConfig, gridColConfig);
+        initializeColumnHeader(origColumnConfig, gridColConfig);
+        initializeColumnTooltip(origColumnConfig, gridColConfig);
+        initializeColumnWidth(origColumnConfig, gridColConfig);
+        initializeColumnHiddenFlag(origColumnConfig, gridColConfig);
+        initializeColumnDefaultToEdit(origColumnConfig, index);
+        initializeColumnAlignment(origColumnConfig, gridColConfig);
+        initializeColumnSortedFlag(origColumnConfig, gridColConfig);
+        initializeCloneColumnRenderer(origColIndex, origColumnConfig, gridColConfig);
+
+        //initializeColumnGridEditor(index, columnConfig, gridColConfig);
+
+        //TODO: support other types as well
+        fieldDef[index] = new StringFieldDef(property);
+        columnConfigs[index] = gridColConfig;
+
+        return gridColConfig;
+	}
+
     //FIXME: protect against invalid config xml
     protected ColumnConfig createColumn(Map<String, Object> columnConfig, FieldDef[] fieldDef, ColumnConfig[] columnConfigs, String[] props) {
         ColumnConfig gridColConfig = new ColumnConfig();
-
+        
         String property = (String) columnConfig.get(FormConstants.PROPERTY); //better not be null
         String indexStr = (String) columnConfig.get(FormConstants.INDEX);
 
@@ -980,7 +1033,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         props[index] = property;
         gridColConfig.setDataIndex(property);
 
-        initializeColumnStyle(gridColConfig);
+        initializeColumnStyle(columnConfig, gridColConfig);
         initializeColumnHeader(columnConfig, gridColConfig);
         initializeColumnTooltip(columnConfig, gridColConfig);
         initializeColumnWidth(columnConfig, gridColConfig);
@@ -998,19 +1051,33 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
         return gridColConfig;
     }
+    
+    private void initializeCloneColumnRenderer(int origColIndex, Map<String, Object> columnConfig, ColumnConfig gridColConfig) {
+    	String fieldType = (String) columnConfig.get(FormConstants.FIELD_TYPE);
+    	gridColConfig.setRenderer(createCloneColumnRenderer(origColIndex, fieldType, columnConfig));
+    }
 
     private void initializeColumnRenderer(Map<String, Object> columnConfig, ColumnConfig gridColConfig) {
         String fieldType = (String) columnConfig.get(FormConstants.FIELD_TYPE);
         gridColConfig.setRenderer(createColumnRenderer(fieldType, columnConfig));
     }
 
-    private void initializeColumnStyle(ColumnConfig gridColConfig) {
+    private void initializeColumnStyle(Map<String, Object> columnConfig, ColumnConfig gridColConfig) {
         gridColConfig.setResizable(true);
-        gridColConfig.setSortable(true);
-        gridColConfig.setCss("word-wrap: break-word ;");
+        gridColConfig.setSortable(getIsSortable(columnConfig));
+        String bgColor = (String) columnConfig.get(FormConstants.FIELD_BG_COLOR);
+        String bgColorStatement = "";
+        if (bgColor != null) {
+        	bgColorStatement = " background-color: " + bgColor + ";";
+        	//alternatively we could set the cell style by specifying CSS classes
+        	//for the CellMetadata but apparently the only place we can do this 
+        	//would be in the renderer and it would be rather expensive to do that
+        	//every time the render is called
+        }
+        gridColConfig.setCss("word-wrap: break-word;" + bgColorStatement);
     }
 
-    private void initializeColumnSortedFlag(Map<String, Object> columnConfig, ColumnConfig gridColConfig) {
+	private void initializeColumnSortedFlag(Map<String, Object> columnConfig, ColumnConfig gridColConfig) {
         Boolean sorted = (Boolean) columnConfig.get(FormConstants.SORTED);
         if (Boolean.TRUE.equals(sorted)) {
             fieldNameSorted = gridColConfig.getDataIndex();
@@ -1076,7 +1143,18 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
     protected void initializeColumnHeader(Map<String, Object> columnConfig, ColumnConfig gridColumnConfig) {
         String header = (String) columnConfig.get(FormConstants.HEADER);
-        gridColumnConfig.setHeader(header == null ? "" : header);
+        String htmlHeader = (header == null ? "" : header);
+        
+        String headerCss = (String) columnConfig.get(FormConstants.HEADER_CSS_CLASS);
+        
+        String height = (String) columnConfig.get(FormConstants.HEIGHT);
+        String heightStr = (height == null ? "" : 
+        	"height:"+ (height.endsWith("px") ? height : height + "px") + ";");
+        	
+        if (headerCss != null || height != null) {
+        	htmlHeader = "<span class=" + headerCss + " style=\"" + heightStr + "\">" + htmlHeader + "</span>";
+        }
+        gridColumnConfig.setHeader(htmlHeader);
     }
 
 
@@ -1194,6 +1272,15 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         return null;
     }
 
+    
+    protected Renderer createCloneColumnRenderer(final int origColIndex, final String fieldType, Map<String, Object> config) {
+//    	if (FormConstants.FIELD_TYPE_COMBOBOX.equals(fieldType)) {
+//    		return createComboBoxFieldRenderer(fieldType, config);
+//    	}
+//    	
+    	InstanceGridColumnRenderer renderer = new InstanceGridCloneColumnRenderer(fieldType, origColIndex);
+    	return renderer;
+    }
 
     protected Renderer createColumnRenderer(final String fieldType, Map<String, Object> config) {
         if (FormConstants.FIELD_TYPE_COMBOBOX.equals(fieldType)) {
@@ -1403,7 +1490,72 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         return UIUtil.prettyPrintList(epv.getPropertyValues(ped));
     }
 
+    protected class InstanceGridCellMouseListener extends GridCellListenerAdapter {
+        double timeOfLastClick = 0;
+        int clicksToEdit = getClicksToEdit();
+        boolean oneClickComboboxEditingEnabled = getOneClickComboboxEditingEnabled();
 
+        @Override
+        public void onCellClick(final GridPanel grid, final int rowIndex, final int colIndex, final EventObject e) {
+            double eventTime = e.getTime();
+            if (eventTime - timeOfLastClick > 500) { //not the second click in a double click
+                onCellClickOrDblClick(grid, rowIndex, colIndex, e);
+            };
+
+            /*
+             * Set new value for timeOfLastClick the time the last click was handled
+             * We use the current time (and not eventTime), because some time may have passed since eventTime
+             * while executing the onCellClickOrDblClick method.
+             */
+            timeOfLastClick = new Date().getTime();
+        }
+
+        protected void onCellClickOrDblClick(GridPanel grid, final int rowIndex, int colIndex, EventObject e) {
+            int offsetDeleteColumn = getOffsetDeleteColumn();
+            int offsetCommentColumn = getOffsetCommentColumn();
+            if (offsetDeleteColumn != -1 && colIndex == properties.size() + offsetDeleteColumn) {
+                onDeleteColumnClicked(rowIndex);
+            } else if (offsetCommentColumn != -1 && colIndex == properties.size() + offsetCommentColumn) {
+                onCommentColumnClicked(rowIndex);
+            } else {
+                if (clicksToEdit == 1) {
+                    onValueColumnClicked(grid, rowIndex, colIndex);
+                }
+                else {
+                    //overriding clicksToEdit behavior: forcing single click to work for specific field types, such as comboboxes
+                    checkSpecialColumnsAndStartEditing(grid, rowIndex, colIndex);
+                }
+            }
+        }
+
+        private void checkSpecialColumnsAndStartEditing(GridPanel grid, final int rowIndex, int colIndex) {
+            if (oneClickComboboxEditingEnabled) {
+                String fieldType = (String) getColumnConfiguration(colIndex, FormConstants.FIELD_TYPE);
+                if (FormConstants.FIELD_TYPE_COMBOBOX.equals(fieldType)) {
+                    ((EditorGridPanel)grid).startEditing(rowIndex, colIndex);
+                }
+            }
+        }
+
+        @Override
+        public void onCellDblClick(GridPanel grid, int rowIndex, int colIndex, EventObject e) {
+            if (clicksToEdit == 2) {
+                onValueColumnClicked(grid, rowIndex, colIndex);
+            }
+        }
+
+        @Override
+        public void onCellContextMenu(final GridPanel grid, final int rowIndex, final int colIndex, final EventObject e) {
+            e.stopEvent();
+            if (e.getTarget(".checkbox", 1) != null) {
+                onContextMenuCheckboxClicked(rowIndex, colIndex, e);
+            } else {
+                onContextMenuClicked(rowIndex, colIndex, e);
+            }
+        }
+    }
+
+    
     protected class RemovePropertyValueHandler extends AbstractAsyncHandler<Void> {
         private int removeInd;
 
@@ -1516,8 +1668,26 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     /*
      * Inner classes
      */
+    
+    class InstanceGridCloneColumnRenderer extends InstanceGridColumnRenderer {
+    	//private String type = "";
+    	private int origColumnIndex;
+    	
+    	public InstanceGridCloneColumnRenderer(final String fieldType, int origColIndex) {
+    		super(fieldType);
+    		//this.type = fieldType;
+    		this.origColumnIndex= origColIndex;
+    	}
 
-    class InstanceGridColumnRenderer implements Renderer {
+		@Override
+		public String render(Object value, CellMetadata cellMetadata,
+				Record record, int rowIndex, int colNum, Store store) {
+              Object origValue = record.getAsObject(store.getFields()[origColumnIndex]);
+              return super.render(origValue, cellMetadata, record, rowIndex, origColumnIndex, store);
+		}
+    }
+    
+    protected class InstanceGridColumnRenderer implements Renderer {
         private String type = "";
         private Map<String, String> valueToDisplayTextMap = null;
 
@@ -1533,6 +1703,11 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum,
                 Store store) {
             String field = record.getAsString(store.getFields()[colNum]);
+
+            //This would be an elegant way to set the background color and other styling with CSS
+            //but it would be quite inefficient to read the configuration options at the 
+            //time of rendering each cell.
+            //cellMetadata.setCssClass("table-cell-style1");
 
             if (type != null) {
                 if (type.equals(FormConstants.FIELD_TYPE_LINK_ICON)) {
@@ -1588,12 +1763,13 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
             }
 
             if (unknown) {
-                return "<img class=\"checkbox\" src=\"images/unknown_check.gif\"/>";//<div style=\"text-align: center;\"> IMG_TAG </div>;
+                return "<img class=\"checkbox\" src=\"" + UIConstants.ICON_CHECKBOX_UNKNOWN + "\"/>";//<div style=\"text-align: center;\"> IMG_TAG </div>;
             }
 
             return "<img class=\"checkbox\" " +
-            		"src=\"js/ext/resources/images/default/menu/" +
-                            (checked ? "checked.gif" : "unchecked.gif") + "\"/>";//<div style=\"text-align: center;\"> IMG_TAG </div>;
+            		"src=\"" +
+                    (checked ? UIConstants.ICON_CHECKBOX_CHECKED : UIConstants.ICON_CHECKBOX_UNCHECKED) + 
+                    "\"/>";//<div style=\"text-align: center;\"> IMG_TAG </div>;
         }
 
         private String renderRadioButton(final Object value, final CellMetadata cellMetadata,

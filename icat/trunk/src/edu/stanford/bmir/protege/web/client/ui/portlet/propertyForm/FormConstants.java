@@ -2,13 +2,13 @@ package edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm;
 
 public class FormConstants {
 
-    public static final String CLICKS_TO_EDIT = "clicksToEdit";
+    public static final String CLICKS_TO_EDIT = "clicks_to_edit";
     public static final int DEFAULT_CLICKS_TO_EDIT = 2;
-    public static final String ONE_CLICK_COMBOBOX_EDITING = "oneClickComboboxEditing";
+    public static final String ONE_CLICK_COMBOBOX_EDITING = "one_click_combobox_editing";
 
 	public static final String TABS = "tabs";
 	public static final String TITLE = "title";
-	public static final String HEADER_CSS_CLASS = "headerCssClass";
+	public static final String HEADER_CSS_CLASS = "headerCssClass";	//we should not use camel case in property names
 
 	public static final String TYPES_ANY = "types_any";
 
@@ -51,7 +51,7 @@ public class FormConstants {
 	public static final String READ_ONLY = "read_only";
 	public static final String DISABLED = "disabled";
 	public static final String PAGE_SIZE = "page_size";
-	public static final String WRITE_ACCESS_GROUPS = "writeAccessGroups";
+	public static final String WRITE_ACCESS_GROUPS = "writeAccessGroups";	//we should not use camel case in property names
 
 	/*
 	 * Instance field widget
@@ -65,18 +65,23 @@ public class FormConstants {
 	public static final String SORTED = "sorted";
 	public static final String WIDTH_ALL = "all";
 	public static final String HIDDEN = "hidden";
+	public static final String CLONE_OF = "clone_of";
 	public static final String COLUMN_PREFIX = "Column";
 	public static final String ONT_TYPE = "ont_type";
 	public static final String BP_SEARCH_PROPERTIES = "bp_search_properties";
+    public static final String ENABLE_HEADER_MENU = "enable_header_menu";
+    public static final String IS_SORTABLE = "sortable";
 	public static final String FIELD_TYPE = "field_type";
 	public static final String FIELD_EDITOR = "field_editor";
 	public static final String FIELD_ALIGN = "field_align";
+	public static final String FIELD_BG_COLOR = "field_bg_color";
 	public static final String MULTIPLE_VALUES_ALLOWED = "multiple_values_allowed";
 	public static final String TOP_CLASS = "top_class";
 	public static final String DEFAULT_COLUMN_TO_EDIT = "default_column_to_edit";
 
 	public static final String FIELD_TYPE_LINK_ICON = "linkicon";
 	public static final String FIELD_TYPE_CHECKBOX = "checkbox";
+	public static final String FIELD_TYPE_CHECKBOX_IMPORTANT = "checkbox_important";
 	public static final String FIELD_TYPE_RADIO = "radio";
 	public static final String FIELD_TYPE_COMBOBOX = "combobox";
 	public static final String FIELD_TYPE_CLASS = "class";
@@ -95,6 +100,7 @@ public class FormConstants {
     public static final String ICDINHERITEDTAG_GRID = "icdinheritedtag_grid";
     public static final String ICDINDEX_GRID = "icdindex_grid";
     public static final String ICDINCLUSION_GRID = "icdinclusion_grid";
+    public static final String POSTCOORDINATION_GRID = "postcoordination_grid";
 
 
 }

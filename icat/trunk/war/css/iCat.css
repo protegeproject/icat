@@ -81,6 +81,26 @@
 	color: #585858;
 }
 
+.x-grid3-hd-inner .rotated-table-header1 {
+	transform-origin: left;
+	transform:rotate(-75deg) translate(-45px,20%);	/*translate arguments seem to be (vertical,horizontal)?*/
+	-ms-transform-origin: left; /* IE 9 */
+	-ms-transform:rotate(-75deg) translate(-45px,20%); /* IE 9 */
+	-webkit-transform-origin: left; /* Safari and Chrome */
+	-webkit-transform:rotate(-75deg) translate(-45px,20%); /* Safari and Chrome */
+	/** /background-color: #FFCCCC;/ **/
+	display:table-cell;
+	vertical-align:middle;
+	white-space: nowrap;
+}
+
+.table-cell-style1{
+	background-color: green;
+}
+.table-cell-style2{
+	background-color: red;
+}
+
 .x-tree-node-icon{
 	background-image:none;
 	width:0px;

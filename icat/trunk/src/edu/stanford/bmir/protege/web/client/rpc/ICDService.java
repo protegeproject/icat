@@ -32,6 +32,19 @@ public interface ICDService extends RemoteService  {
             List<String> reifiedProps, boolean isInclusionFlag);
     
     public void removeBaseIndexTerm(String projectName, String entityName,
-            String value, String user, String operationDescritpion);
+            String value, String user, String operationDescription);
+
+//  List<EntityPropertyValues> getValidPostCoordinationAxes(String projectName,
+//			String clsName);
+//
+	public List<EntityPropertyValues> getEntityPropertyValuesForPostCoordinationAxes(
+			String projectName, List<String> entities, List<String> properties,
+			List<String> reifiedProps);
+
+    public void addAllowedPostCoordinationAxis(String projectName, String subject,
+   		 	String postcoordinationEntity, String postcoordinationProperty, boolean isRequiredFlag);
+
+    public void removeAllowedPostCoordinationAxis(String projectName, String subject,
+    		String postcoordinationEntity, String postcoordinationProperty);
     
 }

@@ -30,6 +30,19 @@ public interface ICDServiceAsync {
             boolean isInclusionFlag, AsyncCallback<EntityPropertyValues> callback);
 
     void removeBaseIndexTerm(String projectName, String entityName,
-            String value, String user, String operationDescritpion, AsyncCallback<Void> callback);
+            String value, String user, String operationDescription, AsyncCallback<Void> cb);
+
+//  void getValidPostCoordinationAxes(String projectName, String clsName,
+//			AsyncCallback<List<EntityPropertyValues>> cb);
+//  
+    void getEntityPropertyValuesForPostCoordinationAxes(String projectName, List<String> entities, List<String> properties,
+    		List<String> reifiedProps, AsyncCallback<List<EntityPropertyValues>> cb);
+
+    void addAllowedPostCoordinationAxis(String projectName, String subject,
+			String postcoordinationEntity, String postcoordinationProperty,
+			boolean isRequiredFlag, AsyncCallback<Void> cb);
+
+	void removeAllowedPostCoordinationAxis(String projectName, String subject,
+			String postcoordinationEntity, String postcoordinationProperty, AsyncCallback<Void> cb);
 
 }
