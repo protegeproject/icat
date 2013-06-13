@@ -22,6 +22,7 @@ import edu.stanford.bmir.protege.web.client.ui.icd.ICDIndexWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDLinearizationWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDTitleWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.InheritedTagsGrid;
+import edu.stanford.bmir.protege.web.client.ui.icd.PostCoordinationGrid;
 import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 
 /**
@@ -202,6 +203,8 @@ public class FormGenerator {
                         widget = createICDIndexGrid((Map) value, prop);
                     } else if (component_type.equals(FormConstants.ICDINCLUSION_GRID)) { //ICD specific
                         widget = createICDInclusionGrid((Map) value, prop);
+                    } else if (component_type.equals(FormConstants.POSTCOORDINATION_GRID)) { //ICD specific
+                        widget = createPosCoordinationGrid((Map) value, prop);
                     }
 
                     if (widget != null && widget.getComponent() != null) {
@@ -390,6 +393,14 @@ public class FormGenerator {
         InheritedTagsGrid inheritedTagWidget = new InheritedTagsGrid(project);
         inheritedTagWidget.setup(conf, new PropertyEntityData(property));
         return inheritedTagWidget;
+    }
+
+
+    //ICD specific
+    private PropertyWidget createPosCoordinationGrid(Map<String, Object> conf, String property) {
+    	PostCoordinationGrid postCoordinationWidget = new PostCoordinationGrid(project);
+        postCoordinationWidget.setup(conf, new PropertyEntityData(property));
+        return postCoordinationWidget;
     }
 
 

@@ -752,10 +752,12 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                                 Instance valueInst = (Instance) value;
                                 EntityPropertyValues epv = new EntityPropertyValues(createEntityData(valueInst));
                                 for (String reifiedPropName : reifiedProperties) {
-                                    Slot reifiedSlot = kb.getSlot(reifiedPropName);
-                                    if (reifiedSlot != null) {
-                                        epv.addPropertyValues(new PropertyEntityData(reifiedSlot.getName()), createEntityList(valueInst.getOwnSlotValues(reifiedSlot)));
-                                    }
+                                	if (reifiedPropName != null) { //for example in case of clone columns
+	                                    Slot reifiedSlot = kb.getSlot(reifiedPropName);
+	                                    if (reifiedSlot != null) {
+	                                        epv.addPropertyValues(new PropertyEntityData(reifiedSlot.getName()), createEntityList(valueInst.getOwnSlotValues(reifiedSlot)));
+	                                    }
+                                	}
                                 }
                                 entityPropValues.add(epv);
                             }

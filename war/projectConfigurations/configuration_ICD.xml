@@ -71,6 +71,10 @@
 			<string>show_replace_new</string>
 			<boolean>false</boolean>
 		</entry>
+		<entry>
+			<string>enable_header_menu</string>
+			<boolean>true</boolean>
+		</entry>
 	</properties>
 	
   <tabs>
@@ -928,6 +932,906 @@
 										</entry>
 									</map>
 
+<!-- ICD International -> Post-coordination -->
+									<map>
+										<entry>
+											<string>title</string>
+											<string>Post-coordination</string>
+										</entry>
+										
+										<entry>
+											<string>types_any</string>
+											<list>
+												<string>http://who.int/icd#LinearizationSection</string>
+												<string>http://who.int/icd#PostcoordinationSection</string>
+											</list>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#allowedPostcoordinationAxes</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>postcoordination</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Post-coordination axes</string>
+												</entry>
+										
+												<!-- Restrict editing of linearizations to WHO and Stanford teams - - >
+												<entry>
+													<string>writeAccessGroups</string>
+													<list>
+														<string>WHOTeam</string>
+														<string>Stanford</string>
+													</list>
+												</entry-->
+												
+												<entry>
+													<string>tooltip</string>
+													<string>Specifies the allowed post-coordination axes for this category in different linearizations</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://protegewiki.stanford.edu/wiki/ICatPostcoordination</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>postcoordination_grid</string>
+												</entry>
+												<entry>
+													<string>enable_header_menu</string>
+													<boolean>false</boolean>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>0</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>335</string>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Linearization</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>190</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#linearizationView</string>
+														</entry>
+														<!-- entry>
+															<string>sorted</string>
+															<boolean>true</boolean>
+														</entry-->
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column20</string>
+													<map>
+														<entry>
+															<string>clone_of</string>
+															<string>Column1</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>19</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column2</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Severity</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Severity</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#hasSeverity</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>1</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column3</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Course</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Temporality -&gt; Course</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#course</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>2</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column4</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Temporal Pattern&lt;BR&gt; / Onset</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Temporality -&gt; Temporal Pattern Or Onset</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#temporalPatternAndOnset</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>3</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column5</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Time in Life</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Temporality -&gt; Time in Life</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>cellCssClass</string>
+															<string>table-cell-style2</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#timeInLife</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>4</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column6</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Causality</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Etiology -&gt; Causality</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#causality</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>5</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column7</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Infectious Agent</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Etiology -&gt; Infectious Agent</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#infectiousAgent</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>6</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column8</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Chemical Agent</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Etiology -&gt; Chemical Agent</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#chemicalAgent</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>7</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column9</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Medication</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Etiology -&gt; Medication</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#medication</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>8</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column10</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Histopathology</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Histopathology</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#histopathology</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>9</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column11</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Distribution</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Anatomy -&gt; Topology -&gt; Distribution</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#distribution</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>10</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column12</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>External / Internal</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Anatomy -&gt; Topology -&gt; External Or Internal</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#externalOrInternal</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>11</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column13</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Laterality</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Anatomy -&gt; Topology -&gt; Laterality</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#laterality</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>12</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column14</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Superficial / Deep</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Anatomy -&gt; Topology -&gt; Superficial Or Deep</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#superficialOrDeep</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>13</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column15</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Specific Anatomy</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Anatomy -&gt; Specific Anatomy</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#specificAnatomy</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>14</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column16</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Serotypes</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Biological Indicators -&gt; Serotypes</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#serotype</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>15</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column17</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Gen. &amp; Chrom.&lt;BR&gt;Anomalies</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Biological Indicators -&gt; Genomic &amp; Chromosomal Anomalies</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#genomicAndChomosomalAnomaly</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>16</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column18</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Level of&lt;BR&gt;Consciousness</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Level of Consciousness</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#levelOfConsciousness</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>17</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column19</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Diagnosis&lt;BR&gt;Confirmed By</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Diagnosis Confirmed By</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#diagnosisConfirmedBy</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>18</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightblue</string>
+														</entry>
+													</map>
+												</entry>
+												<!--entry>
+													<string>topClass</string>
+													<string>http://who.int/icd#ICDCategory</string>
+												</entry-->
+											</map>
+										</entry>
+									</map>
+
 <!-- ICD International -> Terms -->
 									<map>
 										<entry>
@@ -1395,6 +2299,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -1526,6 +2434,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -1651,6 +2563,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -1794,6 +2710,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -1918,6 +2838,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -2124,6 +3048,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -2248,6 +3176,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -2377,6 +3309,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -2501,6 +3437,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -2682,6 +3622,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -3243,6 +4187,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -3422,6 +4370,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -3645,6 +4597,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -3842,6 +4798,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -4027,6 +4987,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -4208,6 +5172,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -4383,6 +5351,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -4566,6 +5538,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -4745,6 +5721,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -4934,6 +5914,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -5149,6 +6133,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -5623,6 +6611,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -5752,6 +6744,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -5908,6 +6904,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -6037,6 +7037,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -6193,6 +7197,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -6322,6 +7330,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -6478,6 +7490,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -6607,6 +7623,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -6763,6 +7783,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -6888,6 +7912,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -7044,6 +8072,10 @@
 															<string>linkicon</string>
 														</entry>
 														<entry>
+															<string>sortable</string>
+															<string>false</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>2</string>
 														</entry>
@@ -7183,6 +8215,10 @@
 														<entry>
 															<string>field_type</string>
 															<string>linkicon</string>
+														</entry>
+														<entry>
+															<string>sortable</string>
+															<string>false</string>
 														</entry>
 														<entry>
 															<string>index</string>
