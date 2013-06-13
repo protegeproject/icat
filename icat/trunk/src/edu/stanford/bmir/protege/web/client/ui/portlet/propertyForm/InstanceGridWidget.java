@@ -85,7 +85,6 @@ import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
     protected static String INSTANCE_FIELD_NAME = "@instance@";
-//    protected static String REPLICA_FIELD_NAME = "@replica@";
     protected static String DELETE_FIELD_NAME = "@delete@";
     protected static String COMMENT_FIELD_NAME = "@comment@";
 
@@ -858,7 +857,6 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         }
 
         createInstanceColumn(fieldDef, columns, colCount);
-//        createReplicaColumn(fieldDef, columns, colCount);
         createActionColumns(fieldDef, columns, colCount);
 
         recordDef = new RecordDef(fieldDef);
@@ -883,32 +881,6 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         columns[colCount] = instCol;
     }
     
-//    protected void createReplicaColumn(final FieldDef[] fieldDef, ColumnConfig[] columns, int colCount) {
-//        int offsetDeleteColumn = getOffsetDeleteColumn();
-//        if (offsetDeleteColumn != -1) {
-//        	ColumnConfig replCol = instantiateReplicaColumn(fieldDef, columns, colCount);
-//            replCol.setHidden(true);
-//
-//            fieldDef[colCount] = new StringFieldDef(REPLICA_FIELD_NAME);
-//            columns[colCount] = replCol;
-//        }
-//    }
-//    
-//    protected ColumnConfig instantiateReplicaColumn(final FieldDef[] fieldDef, ColumnConfig[] columns, int colCount) {
-//    	ColumnConfig origCol = columns[0];
-//        ColumnConfig replCol = new ColumnConfig(origCol.getHeader(), REPLICA_FIELD_NAME, origCol.getWidth());
-//        replCol.setTooltip(origCol.getTooltip());
-//        //TODO copy other relevant properties from origCol to replCol
-//        replCol.setRenderer(new Renderer() {
-//            public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum,
-//                    Store store) {
-//                String strValue = record.getAsString(fieldDef[0].getName());
-//                return strValue;
-//            }
-//        });
-//        return replCol;
-//    }
-
     protected void createActionColumns(FieldDef[] fieldDef, ColumnConfig[] columns, int colCount) {
         int offsetDeleteColumn = getOffsetDeleteColumn();
         if (offsetDeleteColumn != -1) {

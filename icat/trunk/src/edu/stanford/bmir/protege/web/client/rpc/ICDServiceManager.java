@@ -61,10 +61,6 @@ public class ICDServiceManager {
         proxy.removeBaseIndexTerm(projectName, entityName, value, user, operationDescription, cb);
     }
 
-//  public void getValidPostCoordinationAxes(String projectName, String clsName, AsyncCallback<List<EntityPropertyValues>> cb) {
-//      proxy.getValidPostCoordinationAxes(projectName, clsName, cb);
-//  }
-//
 	public void getEntityPropertyValuesForPostCoordinationAxes(String projectName, List<String> entities, List<String> properties,
 			List<String> reifiedProps, AsyncCallback<List<EntityPropertyValues>> cb) {
 		proxy.getEntityPropertyValuesForPostCoordinationAxes(projectName, entities, properties, reifiedProps, cb);

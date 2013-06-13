@@ -32,9 +32,6 @@ public interface ICDServiceAsync {
     void removeBaseIndexTerm(String projectName, String entityName,
             String value, String user, String operationDescription, AsyncCallback<Void> cb);
 
-//  void getValidPostCoordinationAxes(String projectName, String clsName,
-//			AsyncCallback<List<EntityPropertyValues>> cb);
-//  
     void getEntityPropertyValuesForPostCoordinationAxes(String projectName, List<String> entities, List<String> properties,
     		List<String> reifiedProps, AsyncCallback<List<EntityPropertyValues>> cb);
 
