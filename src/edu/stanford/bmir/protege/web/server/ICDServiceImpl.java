@@ -640,27 +640,6 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
     }
     
     
-//    public List<EntityPropertyValues> getValidPostCoordinationAxes(String projectName, String clsName) {
-//        Project project = getProject(projectName);
-//        if (project == null) { return null; }
-//
-//        OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
-//        RDFSNamedClass cls = owlModel.getRDFSNamedClass(clsName);
-//        if (cls == null) { return null; }
-//
-//        //set browserText for values that come from primary
-//
-//        List<EntityData> validPostCoordAxesList = new ArrayList<EntityData>();
-//        
-//        ICDContentModel cm = new ICDContentModel(owlModel);
-//        Collection<RDFResource> validPCAxes = cm.getValidPostCoordinationAxes(cls);
-//        for (RDFResource validPCAxis : validPCAxes) {
-//        	validPostCoordAxesList.add(new EntityData(validPCAxis.getName(), validPCAxis.getBrowserText()));
-//        }
-//        
-//        return validPostCoordAxesList;
-//    }
-    
     public List<EntityPropertyValues> getEntityPropertyValuesForPostCoordinationAxes(String projectName, List<String> entities, List<String> properties,
     		List<String> reifiedProps) {
     	List<String> regularReifiedProperties = new ArrayList<String>(reifiedProps);
@@ -682,7 +661,6 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
     	return getEntityPropertyValuesForPostCoordinationAxes(
         		projectName, entities, properties, regularReifiedProperties, 
-        		//(cm == null ? null : cm.getAllowedPostcoordinationAxesProperty()),
         		(cm == null ? null : cm.getAllowedPostcoordinationAxisPropertyProperty()), 
         		(cm == null ? null : cm.getRequiredPostcoordinationAxisPropertyProperty()),
         		specialReifiedProperties);
@@ -690,9 +668,6 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
     
     public List<EntityPropertyValues> getEntityPropertyValuesForPostCoordinationAxes(String projectName, List<String> entities, List<String> properties,
             List<String> reifiedProps, RDFProperty allowedPcAxisProperty, RDFProperty requiredPcAxisProperty, List<String> pcAxisProperties) {
-//        List<EntityPropertyValues> entityPropertyValues = getEntityPropertyValues(
-//        		projectName, entities, properties, reifiedProps, allowedPcAxisProperty, specReifiedProperties);
-        
         
         List<EntityPropertyValues> entityPropValues = getEntityPropertyValues(projectName, entities, properties, reifiedProps);
 
@@ -707,95 +682,35 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         	entityPropValues = new ArrayList<EntityPropertyValues>();
         }
         if (allowedPcAxisProperty != null && pcAxisProperties != null && pcAxisProperties.size() > 0) {
-//            Slot specReifiedSlot = kb.getSlot(allowedPcAxisProperty);
-//            if (specReifiedSlot != null) {
-	        	for (EntityPropertyValues epv : entityPropValues) {
-	        		String instanceName = epv.getSubject().getName();
-					Instance valueInst = kb.getInstance(instanceName);
-	        		if (valueInst != null) {
-		        		Collection<?> allowedPcAxisPropertyValues = valueInst.getOwnSlotValues(allowedPcAxisProperty);
-		        		Collection<?> requiredPcAxisPropertyValues = valueInst.getOwnSlotValues(requiredPcAxisProperty);
-			            for (String pcAxisPropName : pcAxisProperties) {
-			                Slot pcAxisProperty = kb.getSlot(pcAxisPropName);
-			                int value = 0;
-			                if (allowedPcAxisPropertyValues.contains(pcAxisProperty)) {
-			                	value |= 1;
-			                }
-			                if (requiredPcAxisPropertyValues.contains(pcAxisProperty)) {
-			                	value |= 2;
-			                }
-			                if (pcAxisProperty != null) {
-			                    epv.addPropertyValue(new PropertyEntityData(pcAxisProperty.getName()), createEntityData(value));
-			                }
-			            }
-			            //entityPropValues.add(epv);
-	        		}
-	        		else {
-	        			assert false : "Unable to get instance " + instanceName + " which was created in getEntityPropertyValues(String, List, List, List) method";
-	        		}
-	        	}
-//            }
+        	for (EntityPropertyValues epv : entityPropValues) {
+        		String instanceName = epv.getSubject().getName();
+				Instance valueInst = kb.getInstance(instanceName);
+        		if (valueInst != null) {
+	        		Collection<?> allowedPcAxisPropertyValues = valueInst.getOwnSlotValues(allowedPcAxisProperty);
+	        		Collection<?> requiredPcAxisPropertyValues = valueInst.getOwnSlotValues(requiredPcAxisProperty);
+		            for (String pcAxisPropName : pcAxisProperties) {
+		                Slot pcAxisProperty = kb.getSlot(pcAxisPropName);
+		                int value = 0;
+		                if (allowedPcAxisPropertyValues.contains(pcAxisProperty)) {
+		                	value |= 1;
+		                }
+		                if (requiredPcAxisPropertyValues.contains(pcAxisProperty)) {
+		                	value |= 2;
+		                }
+		                if (pcAxisProperty != null) {
+		                    epv.addPropertyValue(new PropertyEntityData(pcAxisProperty.getName()), createEntityData(value));
+		                }
+		            }
+		            //entityPropValues.add(epv);
+        		}
+        		else {
+        			assert false : "Unable to get instance " + instanceName + " which was created in getEntityPropertyValues(String, List, List, List) method";
+        		}
+        	}
         }
         
         
         return prepareLinearizationEntityPropertyValues(projectName, entities, entityPropValues, false);
-    }
-
-
-    /** 
-     * This method is similar to {@link #getEntityPropertyValues(String, List, List, List)}, but 
-     * additionally it also returns a "truth table", which specifies for each property in
-     * <code>specReifiedProperties</code>, whether that property is contained or not between the values of
-     * the <code>specReifiedProperty</code> property. <br><br>
-     * For example, if the <code>specReifiedProperty</code>
-     * is "http://who.int/icd#allowedPostcoordinationAxisProperty" and <code>specReifiedProperties</code> is
-     * {"http://who.int/icd#severity", "http://who.int/icd#temporal_pattern", "http://who.int/icd#specific_anatomy"},
-     * the result will contain in addition to the property values (i.e. triples) that correspond to the values 
-     * of <code>reifiedProperties</code>, also 3 more property values, such as <br>
-     * {("http://who.int/icd#severity", "true"),<br>
-     *  ("http://who.int/icd#temporal_pattern", "false"), and <br>
-     *  ("http://who.int/icd#specific_anatomy", "true")}<br>
-     * in case "icd:severity" and "icd:specific_anatomy is between the values of "icd:validPostCoordinationAxes"
-     * property, while "icd:temporal_pattern" is not.
-     */
-    public List<EntityPropertyValues> getEntityPropertyValues(String projectName, List<String> entities, List<String> properties, 
-    		List<String> reifiedProperties, RDFProperty specReifiedProperty, List<String> specReifiedProperties) {
-        List<EntityPropertyValues> entityPropValues = getEntityPropertyValues(projectName, entities, properties, reifiedProperties);
-
-        Project project = getProject(projectName);
-        if (project == null) {
-            return entityPropValues;
-        }
-
-        KnowledgeBase kb = project.getKnowledgeBase();
-
-        if (entityPropValues == null) {
-        	entityPropValues = new ArrayList<EntityPropertyValues>();
-        }
-        if (specReifiedProperty != null && specReifiedProperties != null && specReifiedProperties.size() > 0) {
-//            Slot specReifiedSlot = kb.getSlot(specReifiedProperty);
-//            if (specReifiedSlot != null) {
-	        	for (EntityPropertyValues epv : entityPropValues) {
-	        		String instanceName = epv.getSubject().getName();
-					Instance valueInst = kb.getInstance(instanceName);
-	        		if (valueInst != null) {
-		        		Collection specReifiedPropertyValues = valueInst.getOwnSlotValues(specReifiedProperty);
-			            for (String reifiedPropName : specReifiedProperties) {
-			                Slot reifiedSlot = kb.getSlot(reifiedPropName);
-			                if (reifiedSlot != null) {
-			                    epv.addPropertyValue(new PropertyEntityData(reifiedSlot.getName()), createEntityData(specReifiedPropertyValues.contains(reifiedSlot)));
-			                }
-			            }
-			            //entityPropValues.add(epv);
-	        		}
-	        		else {
-	        			assert false : "Unable to get instance " + instanceName + " which was created in getEntityPropertyValues(String, List, List, List) method";
-	        		}
-	        	}
-//            }
-        }
-        
-    	return entityPropValues.size() == 0 ? null : entityPropValues;
     }
     
     
