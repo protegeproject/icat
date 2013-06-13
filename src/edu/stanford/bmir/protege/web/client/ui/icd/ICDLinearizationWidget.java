@@ -45,6 +45,7 @@ import edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.InstanceGridWidget;
 import edu.stanford.bmir.protege.web.client.ui.selection.Selectable;
+import edu.stanford.bmir.protege.web.client.ui.util.UIConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public class ICDLinearizationWidget extends InstanceGridWidget {
@@ -219,10 +220,10 @@ public class ICDLinearizationWidget extends InstanceGridWidget {
             double timeOfLastClick = 0;
 
             @Override
-            public void onCellClick(final GridPanel grid, final int rowIndex, final int colindex, final EventObject e) {
+            public void onCellClick(final GridPanel grid, final int rowIndex, final int colIndex, final EventObject e) {
                 double eventTime = e.getTime();
                 if (eventTime - timeOfLastClick > 500) { //not the second click in a double click
-                    onCellClickOrDblClick(grid, rowIndex, colindex, e);
+                    onCellClickOrDblClick(grid, rowIndex, colIndex, e);
                 }
                 /*
                  * Set new value for timeOfLastClick the time the last click was handled
@@ -232,32 +233,32 @@ public class ICDLinearizationWidget extends InstanceGridWidget {
                 timeOfLastClick = new Date().getTime();
             }
 
-            private void onCellClickOrDblClick(GridPanel grid, final int rowIndex, int colindex, EventObject e) {
+            private void onCellClickOrDblClick(GridPanel grid, final int rowIndex, int colIndex, EventObject e) {
                 // int offsetDeleteColumn = getOffsetDeleteColumn();
                 int offsetCommentColumn = getOffsetCommentColumn();
                 if (e.getTarget(".checkbox", 1) != null) {
                     Record record = getStore().getAt(rowIndex);
                     if (record != null) {
                         if (isWriteOperationAllowed()) {
-                            String field = record.getFields()[colindex];
+                            String field = record.getFields()[colIndex];
                             String value = record.getAsString(field);
                             if (Boolean.parseBoolean(value) == true) {
                                 record.set(field, Boolean.FALSE.toString());
                             } else {
                                 record.set(field, Boolean.TRUE.toString());
                             }
-                            updateInstanceValue(record, colindex, value == null ? "" : value, record.getAsString(field), ValueType.Boolean, false);
+                            updateInstanceValue(record, colIndex, value == null ? "" : value, record.getAsString(field), ValueType.Boolean, false);
                         }
                     }
-                } else if (colindex == properties.size() + OFFSET_PARENT_ENTITY_COLUMN) {
+                } else if (colIndex == properties.size() + OFFSET_PARENT_ENTITY_COLUMN) {
                     Record record = getStore().getAt(rowIndex);
                     if (record != null) {
                         if (isWriteOperationAllowed()) {
-                            String field = record.getFields()[colindex];
+                            String field = record.getFields()[colIndex];
                             selectNewParents(record, field);
                         }
                     }
-                } else if (offsetCommentColumn != -1 && colindex == properties.size() + offsetCommentColumn) {
+                } else if (offsetCommentColumn != -1 && colIndex == properties.size() + offsetCommentColumn) {
                     onCommentColumnClicked(rowIndex);
                 } else {
                     Record record = getStore().getAt(rowIndex);
@@ -271,23 +272,23 @@ public class ICDLinearizationWidget extends InstanceGridWidget {
             }
 
             @Override
-            public void onCellContextMenu(final GridPanel grid, final int rowIndex, final int colindex, final EventObject e) {
+            public void onCellContextMenu(final GridPanel grid, final int rowIndex, final int colIndex, final EventObject e) {
                 e.stopEvent();
                 if (e.getTarget(".checkbox", 1) != null) {
                     final Record record = getStore().getAt(rowIndex);
                     if (record != null) {
                         if (isWriteOperationAllowed()) {
-                            String field = record.getFields()[colindex];
+                            String field = record.getFields()[colIndex];
                             String value = record.getAsString(field);
                             if (value != null && !"".equals(value)) {
                                 Menu contextMenu = new DeleteContextMenu(
-                                    "Unset value (i.e. set to 'Unknown')", "images/unknown_check.gif",
-                                    record, colindex, ValueType.Boolean, false);
+                                    "Unset value (i.e. set to 'Unknown')", UIConstants.ICON_CHECKBOX_UNKNOWN,
+                                    record, colIndex, ValueType.Boolean, false);
                                 contextMenu.showAt(e.getXY()[0] + 5, e.getXY()[1] + 5);
                             }
                         }
                     }
-                } else if (colindex == properties.size() + OFFSET_PARENT_ENTITY_COLUMN) {
+                } else if (colIndex == properties.size() + OFFSET_PARENT_ENTITY_COLUMN) {
                     Record record = getStore().getAt(rowIndex);
                     if (record != null) {
                         if (isWriteOperationAllowed()) {
@@ -307,7 +308,7 @@ public class ICDLinearizationWidget extends InstanceGridWidget {
             }
 
             final class DeleteContextMenu extends Menu{
-                public DeleteContextMenu(String menuText, String menuIcon, final Record record, final int colindex, final ValueType valueType, final boolean resetParentDisplayName) {
+                public DeleteContextMenu(String menuText, String menuIcon, final Record record, final int colIndex, final ValueType valueType, final boolean resetParentDisplayName) {
                     MenuItem item = new MenuItem();
                     item.setText(menuText);
                     item.setIcon(menuIcon);
@@ -315,10 +316,10 @@ public class ICDLinearizationWidget extends InstanceGridWidget {
                         @Override
                         public void onClick(BaseItem item, EventObject e) {
                           super.onClick(item, e);
-                          String field = record.getFields()[colindex];
+                          String field = record.getFields()[colIndex];
                           String value = record.getAsString(field);
                           record.set(field, (String)null);
-                          updateInstanceValue(record, colindex, value == null ? "" : value, record.getAsString(field), valueType, resetParentDisplayName);
+                          updateInstanceValue(record, colIndex, value == null ? "" : value, record.getAsString(field), valueType, resetParentDisplayName);
                           //alternative solution, if we don't want to refresh the widget, but prefer to display a non-precise message
 //                          if (resetParentDisplayName) {
 //                              record.set(ICD_CATEGORY_DISPLAY_FIELD_NAME, (String)null); //this is optimistic and not precise

@@ -35,7 +35,7 @@ public class InheritedTagsGrid extends InstanceGridWidget {
 
     //Virtual property names from the configuration of the grid
     private final static String COL_TAG = "tag";
-    private final static String COL_INH_FOM = "inheritedFrom";
+    private final static String COL_INH_FROM = "inheritedFrom";
 
     public InheritedTagsGrid(Project project) {
         super(project);
@@ -59,7 +59,7 @@ public class InheritedTagsGrid extends InstanceGridWidget {
     }
 
     private boolean isInherited(Record record) {
-        return !record.isEmpty(COL_INH_FOM);
+        return !record.isEmpty(COL_INH_FROM);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class InheritedTagsGrid extends InstanceGridWidget {
             boolean isInherited = false;
             for (PropertyEntityData ped : epv.getProperties()) {
                 data[i][getIndexOfProperty(ped.getName())] = getCellText(epv, ped);
-                if (ped.getName().equals(COL_INH_FOM)) {
+                if (ped.getName().equals(COL_INH_FROM)) {
                     Collection<EntityData> values = epv.getPropertyValues(ped);
                     if (values != null && values.size() > 0) {
                         isInherited = true;
@@ -99,7 +99,7 @@ public class InheritedTagsGrid extends InstanceGridWidget {
         String property = (String) config.get(FormConstants.PROPERTY);
         if (COL_TAG.equals(property)) {
             return getTagColumnRenderer();
-        } else if (COL_INH_FOM.equals(property)) {
+        } else if (COL_INH_FROM.equals(property)) {
             return getInheritedFromRenderer();
         }
         return super.createColumnRenderer(fieldType, config);
