@@ -761,7 +761,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		String linViewName = (linView == null ? "" : linView.getBrowserText());
         String operationDescription = "Added '" + postCoordProperty.getBrowserText() + "' as " + 
         		(isRequiredFlag ? "a required" : "an allowed") + " post-coordination axis " +
-        		"for the " + linViewName + " linearization of " + subjResource.getBrowserText() + ".";
+        		"in the " + linViewName + " linearization of " + subjResource.getBrowserText() + ".";
 
         synchronized (kb) {
             KBUtil.morphUser(kb, user);
@@ -850,7 +850,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		String linViewName = (linView == null ? "" : linView.getBrowserText());
         String operationDescription = "Removed '" + postCoordProperty.getBrowserText() + "' as " + 
         		"a possible post-coordination axis " +
-        		"for the " + linViewName + " linearization of " + subjResource.getBrowserText() + ".";
+        		"in the " + linViewName + " linearization of " + subjResource.getBrowserText() + ".";
 
         synchronized (kb) {
             KBUtil.morphUser(kb, user);
