@@ -240,10 +240,10 @@ public class ICDIndexWidget extends InstanceGridWidget {
             double timeOfLastClick = 0;
 
             @Override
-            public void onCellClick(final GridPanel grid, final int rowIndex, final int colindex, final EventObject e) {
+            public void onCellClick(final GridPanel grid, final int rowIndex, final int colIndex, final EventObject e) {
                 double eventTime = e.getTime();
                 if (eventTime - timeOfLastClick > 500) { //not the second click in a double click
-                    onCellClickOrDblClick(grid, rowIndex, colindex, e);
+                    onCellClickOrDblClick(grid, rowIndex, colIndex, e);
                 }
                 /*
                  * Set new value for timeOfLastClick the time the last click was handled
@@ -253,17 +253,17 @@ public class ICDIndexWidget extends InstanceGridWidget {
                 timeOfLastClick = new Date().getTime();
             }
 
-            private void onCellClickOrDblClick(GridPanel grid, final int rowIndex, int colindex, EventObject e) {
+            private void onCellClickOrDblClick(GridPanel grid, final int rowIndex, int colIndex, EventObject e) {
                 int offsetDeleteColumn = getOffsetDeleteColumn();
                 int offsetCommentColumn = getOffsetCommentColumn();
                 if (e.getTarget(".checkbox", 1) != null) {
                     Record record = getStore().getAt(rowIndex);
                     if (record != null) {
                         if (isWriteOperationAllowed()) {
-                            String field = record.getFields()[colindex];
+                            String field = record.getFields()[colIndex];
                             String value = record.getAsString(field);
 
-                            if (colindex == properties.size() + OFFSET_INCLUSION_COLUMN) {
+                            if (colIndex == properties.size() + OFFSET_INCLUSION_COLUMN) {
                                 String selSubject = record.getAsString(INSTANCE_FIELD_NAME);
                                 if (selSubject != null) {
                                     if (Boolean.parseBoolean(value) == true) {
@@ -284,21 +284,21 @@ public class ICDIndexWidget extends InstanceGridWidget {
                                     record.set(field, Boolean.TRUE.toString());
                                 }
 
-                                updateInstanceValue(record, colindex, value == null ? "" : value, record.getAsString(field), ValueType.Boolean, false);
+                                updateInstanceValue(record, colIndex, value == null ? "" : value, record.getAsString(field), ValueType.Boolean, false);
                             }
                         }
                     }
-//                } else if (colindex == properties.size() + OFFSET_PARENT_ENTITY_COLUMN) {
+//                } else if (colIndex == properties.size() + OFFSET_PARENT_ENTITY_COLUMN) {
 //                    Record record = store.getAt(rowIndex);
 //                    if (record != null) {
 //                        if (UIUtil.confirmOperationAllowed(getProject())) {
-//                            String field = record.getFields()[colindex];
+//                            String field = record.getFields()[colIndex];
 //                            selectNewParents(record, field);
 //                        }
 //                    }
-                } else if (offsetDeleteColumn != -1 && colindex == properties.size() + offsetDeleteColumn) {
+                } else if (offsetDeleteColumn != -1 && colIndex == properties.size() + offsetDeleteColumn) {
                     onDeleteColumnClicked(rowIndex);
-                } else if (offsetCommentColumn != -1 && colindex == properties.size() + offsetCommentColumn) {
+                } else if (offsetCommentColumn != -1 && colIndex == properties.size() + offsetCommentColumn) {
                     onCommentColumnClicked(rowIndex);
                 } else {
                     Record record = getStore().getAt(rowIndex);

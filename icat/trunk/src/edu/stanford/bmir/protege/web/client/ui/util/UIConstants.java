@@ -20,7 +20,11 @@ public class UIConstants {
     public static final String ICON_DELETE_DISABLED = "images/delete_grey.png";
     
     //icons used for presenting property values
-    public static final String ICON_UNKNOWN = "images/unknown_check.png";    //FIXME
+    public static final String ICON_CHECKBOX_CHECKED = "js/ext/resources/images/default/menu/checked.gif";
+    public static final String ICON_CHECKBOX_UNCHECKED = "js/ext/resources/images/default/menu/unchecked.gif";
+    public static final String ICON_CHECKBOX_UNKNOWN = "images/unknown_check.gif";
+    //public static final String ICON_CHECKBOX_IMPORTANT = "images/important_check.gif";
+    public static final String ICON_CHECKBOX_IMPORTANT = "images/important_check_with_R.gif";
     public static final String ICON_OPEN_URL = "images/world_link.png";
     
     //icons used for presenting external reference search results
