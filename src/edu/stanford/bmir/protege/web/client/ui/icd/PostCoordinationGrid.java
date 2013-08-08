@@ -409,7 +409,7 @@ public class PostCoordinationGrid extends InstanceGridWidget {
 
 		@Override
 		public void handleFailure(Throwable caught) {
-            GWT.log("Post-Coordination Grid Widget: Error at getting list if selected post-cooordination axes properties for " + getSubject(), caught);
+            GWT.log("Post-Coordination Grid Widget: Error at getting list if selected post-cooordination axes properties for " + subject, caught);
         	for (String propertyName : properties) {
        			widgetController.showWidgetForProperty(propertyName);
         	}
@@ -417,47 +417,18 @@ public class PostCoordinationGrid extends InstanceGridWidget {
 
 		@Override
         public void handleSuccess(List<String> selectedProperties) {
-        	//Map<String, Boolean> propSelectionMap = getPropertySelectionMap(entityPropertyValues);
-        	//for (String propertyName : propSelectionMap.keySet()) {
-        	for (String propertyName : properties) {
-        		//if (propSelectionMap.get(propertyName)) {
-        		if (selectedProperties.contains(propertyName)) {
-        			widgetController.showWidgetForProperty(propertyName);
-        		}
-        		else {
-        			widgetController.hideWidgetForProperty(propertyName);
-        		}
-        	}
+			//in case the selection did not change since the remote method was called
+			if (subject != null && subject.equals(getSubject())) {
+	        	for (String propertyName : properties) {
+	        		if (selectedProperties.contains(propertyName)) {
+	        			widgetController.showWidgetForProperty(propertyName);
+	        		}
+	        		else {
+	        			widgetController.hideWidgetForProperty(propertyName);
+	        		}
+	        	}
+			}
         }
     }
-
-
-    //TODO delete this if it is not used
-	private Map<String, Boolean> getPropertySelectionMap(List<EntityPropertyValues> entityPropertyValues) {
-		Map<String, Boolean> prop2selectionStatus = new HashMap<String, Boolean>();
-		for (EntityPropertyValues epv : entityPropertyValues) {
-			Collection<PropertyEntityData> propEntityDataCollection = epv.getProperties();
-			for (PropertyEntityData ped : propEntityDataCollection) {
-				String propertyName = ped.getName();
-				if (ICDContentModelConstants.PC_AXES_PROPERTIES_LIST.contains(propertyName)) {
-					List<EntityData> values = epv.getPropertyValues(ped);
-					boolean selected = false;
-					if (!values.isEmpty()) {
-						EntityData propertyValue = values.get(0);
-						Integer value = Integer.parseInt(propertyValue.getName());
-						selected = (value & 3) != 0; 
-					}
-					Boolean currSelStatus = prop2selectionStatus.get(propertyName);
-					if (currSelStatus == null) {
-						prop2selectionStatus.put(propertyName, new Boolean(selected));
-					}
-					else {
-						prop2selectionStatus.put(propertyName, currSelStatus || selected);
-					}
-				}
-			}
-		}
-		return prop2selectionStatus;
-	}
 
 }
