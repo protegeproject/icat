@@ -32,6 +32,7 @@ import edu.stanford.smi.protege.ui.FrameComparator;
 import edu.stanford.smi.protege.util.CollectionUtilities;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
+import edu.stanford.smi.protegex.owl.model.RDFIndividual;
 import edu.stanford.smi.protegex.owl.model.RDFProperty;
 import edu.stanford.smi.protegex.owl.model.RDFResource;
 import edu.stanford.smi.protegex.owl.model.RDFSNamedClass;
@@ -640,6 +641,42 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
     }
     
     
+    public List<String> getListOfSelectedPostCoordinationAxes(String projectName, 
+    		String entity, List<String> reifiedProps) {
+    	List<String> selectedPCAxisProperties = new ArrayList<String>();
+    	
+    	Project project = getProject(projectName);
+    	KnowledgeBase kb = project.getKnowledgeBase();
+    	ICDContentModel cm = new ICDContentModel((OWLModel)kb);
+    	
+    	Slot allowedPcAxesProperty = cm.getAllowedPostcoordinationAxesProperty();
+		Slot allowedPcAxisPropertyProperty = cm.getAllowedPostcoordinationAxisPropertyProperty();
+		Slot requiredPcAxisPropertyProperty = cm.getRequiredPostcoordinationAxisPropertyProperty();
+
+		List<String> pcAxisProperties = ICDContentModelConstants.PC_AXES_PROPERTIES_LIST;
+		pcAxisProperties.retainAll(reifiedProps);
+		
+    	Instance subjInst = kb.getInstance(entity);
+    	Collection<?> pcSpecs = subjInst.getOwnSlotValues(allowedPcAxesProperty);
+    	for (Object pcSpec : pcSpecs) {
+			Instance pcSpecInst = (Instance)pcSpec;
+			if (pcSpecInst != null) {
+				Collection<?> allowedPcAxisPropertyValues = pcSpecInst.getOwnSlotValues(allowedPcAxisPropertyProperty);
+				Collection<?> requiredPcAxisPropertyValues = pcSpecInst.getOwnSlotValues(requiredPcAxisPropertyProperty);
+	            for (String pcAxisPropName : pcAxisProperties) {
+	                Slot pcAxisProperty = kb.getSlot(pcAxisPropName);
+	                if (allowedPcAxisPropertyValues.contains(pcAxisProperty)|| 
+	                		requiredPcAxisPropertyValues.contains(pcAxisProperty)) {
+	                	selectedPCAxisProperties.add(pcAxisPropName);
+	                }
+	            }
+			}
+		}
+    	
+    	return selectedPCAxisProperties;
+    }
+    
+    
     public List<EntityPropertyValues> getEntityPropertyValuesForPostCoordinationAxes(String projectName, List<String> entities, List<String> properties,
     		List<String> reifiedProps) {
     	List<String> regularReifiedProperties = new ArrayList<String>(reifiedProps);
@@ -714,34 +751,38 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
     }
     
     
-    public void addAllowedPostCoordinationAxis(String projectName, String subject,
+    /**
+     * @return true if this is the first linearization where we have set
+     *         this post-coordination axis as allowed. False otherwise. 
+     */
+    public boolean addAllowedPostCoordinationAxis(String projectName, String subject,
     		 String postcoordinationEntity, String postcoordinationProperty, boolean isRequiredFlag) {
         Project project = getProject(projectName);
         if (project == null) {
-            return;
+            return false;
         }
         KnowledgeBase kb = project.getKnowledgeBase();
         if (! (kb instanceof OWLModel)) {
         	assert false : "The methods of ICDServiceImpl, including addAllowedPostCoordinationAxis, " +
         			"are suppose to work with OWL ontologies that conform to the ICD content model";
-        	return;
+        	return false;
         }
         OWLModel owlModel = (OWLModel) kb;
         ICDContentModel cm = new ICDContentModel(owlModel);
 
         RDFResource subjResource = owlModel.getOWLNamedClass(subject);
         if (subjResource == null) {
-            return;
+            return false;
         }
 
         RDFResource postCoordInd = owlModel.getOWLIndividual(postcoordinationEntity);
         if (postCoordInd == null) {
-            return;
+            return false;
         }
 
         RDFProperty postCoordProperty = (RDFProperty)owlModel.getOWLProperty(postcoordinationProperty);
         if (postCoordProperty == null) {
-            return;
+            return false;
         }
 
         RDFProperty allowedPostCoordinationAxisPropertyProperty = cm.getAllowedPostcoordinationAxisPropertyProperty();
@@ -756,6 +797,8 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         
         RDFProperty linViewProp = cm.getLinearizationViewProperty();
         RDFResource linView = (RDFResource)postCoordInd.getPropertyValue(linViewProp);
+        
+        boolean axisAlreadyUsed = isAxisPartOfAnyLinearization(cm, subjResource, postCoordProperty);
         
         String user = KBUtil.getUserInSession(getThreadLocalRequest());
 		String linViewName = (linView == null ? "" : linView.getBrowserText());
@@ -800,37 +843,44 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
             }
         }
         
+        return (! axisAlreadyUsed);
+        
     }
 
 
-    public void removeAllowedPostCoordinationAxis(String projectName, String subject,
+    /**
+     * @return true if after we removed this post-coordination axis,
+     *         there are no other linearizations where this property is set
+     *         as a possible post-coordination axis. False otherwise. 
+     */
+    public boolean removeAllowedPostCoordinationAxis(String projectName, String subject,
    		 String postcoordinationEntity, String postcoordinationProperty) {
         Project project = getProject(projectName);
         if (project == null) {
-            return;
+            return false;
         }
         KnowledgeBase kb = project.getKnowledgeBase();
         if (! (kb instanceof OWLModel)) {
         	assert false : "The methods of ICDServiceImpl, including addAllowedPostCoordinationAxis, " +
         			"are suppose to work with OWL ontologies that conform to the ICD content model";
-        	return;
+        	return false;
         }
         OWLModel owlModel = (OWLModel) kb;
         ICDContentModel cm = new ICDContentModel(owlModel);
 
         RDFResource subjResource = owlModel.getOWLNamedClass(subject);
         if (subjResource == null) {
-            return;
+            return false;
         }
 
         RDFResource postCoordInd = owlModel.getOWLIndividual(postcoordinationEntity);
         if (postCoordInd == null) {
-            return;
+            return false;
         }
 
         RDFProperty postCoordProperty = (RDFProperty)owlModel.getOWLProperty(postcoordinationProperty);
         if (postCoordProperty == null) {
-            return;
+            return false;
         }
 
         RDFProperty allowedPostCoordinationAxisPropertyProperty = cm.getAllowedPostcoordinationAxisPropertyProperty();
@@ -882,7 +932,30 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
             }
         }
         
+        boolean axisUsed = isAxisPartOfAnyLinearization(cm, subjResource, postCoordProperty);
+        return (! axisUsed);
+        
     }
+
+
+    private boolean isAxisPartOfAnyLinearization(ICDContentModel cm, RDFResource subjResource, RDFProperty postCoordProperty) {
+    	RDFProperty allowedPostCoordinationAxesProperty = cm.getAllowedPostcoordinationAxesProperty();
+        RDFProperty allowedPostCoordinationAxisPropertyProperty = cm.getAllowedPostcoordinationAxisPropertyProperty();
+        RDFProperty requiredPostCoordinationAxisPropertyProperty = cm.getRequiredPostcoordinationAxisPropertyProperty();
+
+        Collection<?> postCoordSpecifications = subjResource.getPropertyValues(allowedPostCoordinationAxesProperty);
+    	for (Object postCoordSpec : postCoordSpecifications) {
+    		RDFIndividual postCoordSpecInd = (RDFIndividual) postCoordSpec;
+            Collection<?> allowedPcAxes = postCoordSpecInd.getPropertyValues(allowedPostCoordinationAxisPropertyProperty);
+            Collection<?> requiredPcAxes = postCoordSpecInd.getPropertyValues(requiredPostCoordinationAxisPropertyProperty);
+            
+            if (allowedPcAxes.contains(postCoordProperty) || requiredPcAxes.contains(postCoordProperty)) {
+            	return true;
+            }
+		} 
+		
+		return false;
+	}
 
 
 }
