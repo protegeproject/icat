@@ -1,5 +1,7 @@
 package edu.stanford.bmir.protege.web.client.ui.icd;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,11 +19,16 @@ import com.gwtext.client.widgets.menu.Menu;
 import com.gwtext.client.widgets.menu.MenuItem;
 import com.gwtext.client.widgets.menu.event.BaseItemListenerAdapter;
 
+import edu.stanford.bmir.icd.claml.ICDContentModelConstants;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
+import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
+import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.InstanceGridWidget;
+import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.WidgetController;
 import edu.stanford.bmir.protege.web.client.ui.util.UIConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
@@ -39,9 +46,11 @@ public class PostCoordinationGrid extends InstanceGridWidget {
     private static int OFFSET_COMMENT_COLUMN = 1;
     private static int OFFSET_MAX_COLUMN = OFFSET_COMMENT_COLUMN;
 
+    private WidgetController widgetController;
 	
-	public PostCoordinationGrid(Project project) {
+	public PostCoordinationGrid(Project project, WidgetController widgetController) {
 		super(project);
+		this.widgetController = widgetController;
 	}
 
     @Override
@@ -104,10 +113,11 @@ public class PostCoordinationGrid extends InstanceGridWidget {
     @Override
     protected void fillValues(List<String> subjects, List<String> props) {
         getStore().removeAll();
-//        ICDServiceManager.getInstance().getValidPostCoordinationAxes(getProject().getProjectName(), getSubject().getName(),
-//                new GetTriplesHandler(getSubject()));
-        ICDServiceManager.getInstance().getEntityPropertyValuesForPostCoordinationAxes(getProject().getProjectName(), subjects, props, properties, 
-                new GetTriplesHandler(getSubject()));
+        EntityData currentSubject = getSubject();
+		ICDServiceManager.getInstance().getEntityPropertyValuesForPostCoordinationAxes(getProject().getProjectName(), subjects, props, properties, 
+                new GetTriplesHandler(currentSubject));
+        ICDServiceManager.getInstance().getListOfSelectedPostCoordinationAxes(getProject().getProjectName(), currentSubject.getName(), properties, 
+                new GetSelectedPostCoordinationAxesHandler(currentSubject));
     }
 
     @Override
@@ -236,7 +246,7 @@ public class PostCoordinationGrid extends InstanceGridWidget {
         if (selSubject != null) {
         	ICDServiceManager.getInstance().removeAllowedPostCoordinationAxis(
         			getProject().getProjectName(), getSubject().getName(), 
-        			selSubject, field, new AddOrRemovePostcoordinationAxisHandler());
+        			selSubject, field, new RemovePostcoordinationAxisHandler(field));
         }
 	}
 
@@ -249,7 +259,7 @@ public class PostCoordinationGrid extends InstanceGridWidget {
         if (selSubject != null) {
         	ICDServiceManager.getInstance().addAllowedPostCoordinationAxis(
         			getProject().getProjectName(), getSubject().getName(), 
-        			selSubject, field, false, new AddOrRemovePostcoordinationAxisHandler());
+        			selSubject, field, false, new AddPostcoordinationAxisHandler(field));
         }
 	}
 
@@ -262,16 +272,46 @@ public class PostCoordinationGrid extends InstanceGridWidget {
         if (selSubject != null) {
         	ICDServiceManager.getInstance().addAllowedPostCoordinationAxis(
         			getProject().getProjectName(), getSubject().getName(), 
-        			selSubject, field, true, new AddOrRemovePostcoordinationAxisHandler());
+        			selSubject, field, true, new AddPostcoordinationAxisHandler(field));
         }
 	}
 
 	
+	
+	class AddPostcoordinationAxisHandler extends AbstractAsyncHandler<Boolean> {
+		private String pcAxisProperty;
 
-    class AddOrRemovePostcoordinationAxisHandler extends AbstractAsyncHandler<Void> {
+		public AddPostcoordinationAxisHandler(String pcAxisProperty) {
+			this.pcAxisProperty = pcAxisProperty;
+		}
+
+		@Override
+		public void handleSuccess(Boolean first) {
+			getStore().commitChanges();
+			if (first)	{
+            	activateValueSelectionWidget(pcAxisProperty);
+			}
+		}
+		
+		@Override
+		public void handleFailure(Throwable caught) {
+			getStore().rejectChanges();
+		}
+	}
+
+    class RemovePostcoordinationAxisHandler extends AbstractAsyncHandler<Boolean> {
+		private String pcAxisProperty;
+
+		public RemovePostcoordinationAxisHandler(String pcAxisProperty) {
+			this.pcAxisProperty = pcAxisProperty;
+		}
+    	
         @Override
-        public void handleSuccess(Void result) {
+        public void handleSuccess(Boolean last) {
             getStore().commitChanges();
+            if (last)	{
+            	deactivateValueSelectionWidget(pcAxisProperty);
+            }
         }
 
 		@Override
@@ -280,6 +320,16 @@ public class PostCoordinationGrid extends InstanceGridWidget {
 		}
     }
 
+
+    public void activateValueSelectionWidget(String pcAxisProperty) {
+    	widgetController.showWidgetForProperty(pcAxisProperty);
+	}
+
+    public void deactivateValueSelectionWidget(String pcAxisProperty) {
+    	widgetController.hideWidgetForProperty(pcAxisProperty);
+	}
+
+    
 	
     @Override
     protected Renderer createColumnRenderer(final String fieldType, Map<String, Object> config) {
@@ -349,5 +399,65 @@ public class PostCoordinationGrid extends InstanceGridWidget {
 			}
 		}
     }
-    
+
+    protected class GetSelectedPostCoordinationAxesHandler extends AbstractAsyncHandler<List<String>> {
+    	private EntityData subject;
+    	
+        public GetSelectedPostCoordinationAxesHandler(EntityData subject) {
+			this.subject = subject;
+		}
+
+		@Override
+		public void handleFailure(Throwable caught) {
+            GWT.log("Post-Coordination Grid Widget: Error at getting list if selected post-cooordination axes properties for " + getSubject(), caught);
+        	for (String propertyName : properties) {
+       			widgetController.showWidgetForProperty(propertyName);
+        	}
+		}
+
+		@Override
+        public void handleSuccess(List<String> selectedProperties) {
+        	//Map<String, Boolean> propSelectionMap = getPropertySelectionMap(entityPropertyValues);
+        	//for (String propertyName : propSelectionMap.keySet()) {
+        	for (String propertyName : properties) {
+        		//if (propSelectionMap.get(propertyName)) {
+        		if (selectedProperties.contains(propertyName)) {
+        			widgetController.showWidgetForProperty(propertyName);
+        		}
+        		else {
+        			widgetController.hideWidgetForProperty(propertyName);
+        		}
+        	}
+        }
+    }
+
+
+    //TODO delete this if it is not used
+	private Map<String, Boolean> getPropertySelectionMap(List<EntityPropertyValues> entityPropertyValues) {
+		Map<String, Boolean> prop2selectionStatus = new HashMap<String, Boolean>();
+		for (EntityPropertyValues epv : entityPropertyValues) {
+			Collection<PropertyEntityData> propEntityDataCollection = epv.getProperties();
+			for (PropertyEntityData ped : propEntityDataCollection) {
+				String propertyName = ped.getName();
+				if (ICDContentModelConstants.PC_AXES_PROPERTIES_LIST.contains(propertyName)) {
+					List<EntityData> values = epv.getPropertyValues(ped);
+					boolean selected = false;
+					if (!values.isEmpty()) {
+						EntityData propertyValue = values.get(0);
+						Integer value = Integer.parseInt(propertyValue.getName());
+						selected = (value & 3) != 0; 
+					}
+					Boolean currSelStatus = prop2selectionStatus.get(propertyName);
+					if (currSelStatus == null) {
+						prop2selectionStatus.put(propertyName, new Boolean(selected));
+					}
+					else {
+						prop2selectionStatus.put(propertyName, currSelStatus || selected);
+					}
+				}
+			}
+		}
+		return prop2selectionStatus;
+	}
+
 }

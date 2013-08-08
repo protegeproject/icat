@@ -204,7 +204,9 @@ public class FormGenerator {
                     } else if (component_type.equals(FormConstants.ICDINCLUSION_GRID)) { //ICD specific
                         widget = createICDInclusionGrid((Map) value, prop);
                     } else if (component_type.equals(FormConstants.POSTCOORDINATION_GRID)) { //ICD specific
-                        widget = createPosCoordinationGrid((Map) value, prop);
+                    	WidgetController ctrl = new WidgetController(panel, this);
+                        widget = createPosCoordinationGrid((Map) value, prop, ctrl);
+                        ctrl.setControllingWidget(widget);
                     }
 
                     if (widget != null && widget.getComponent() != null) {
@@ -397,8 +399,9 @@ public class FormGenerator {
 
 
     //ICD specific
-    private PropertyWidget createPosCoordinationGrid(Map<String, Object> conf, String property) {
-    	PostCoordinationGrid postCoordinationWidget = new PostCoordinationGrid(project);
+    private PropertyWidget createPosCoordinationGrid(Map<String, Object> conf, String property, 
+    		WidgetController ctrl) {
+    	PostCoordinationGrid postCoordinationWidget = new PostCoordinationGrid(project, ctrl);
         postCoordinationWidget.setup(conf, new PropertyEntityData(property));
         return postCoordinationWidget;
     }

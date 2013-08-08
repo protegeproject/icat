@@ -60,6 +60,11 @@ public class ICDServiceManager {
             String value, String user, String operationDescription, AsyncCallback<Void> cb) {
         proxy.removeBaseIndexTerm(projectName, entityName, value, user, operationDescription, cb);
     }
+    
+    public void getListOfSelectedPostCoordinationAxes(String projectName, String entity,
+    		List<String> reifiedProps, AsyncCallback<List<String>> cb) {
+    	proxy.getListOfSelectedPostCoordinationAxes(projectName, entity, reifiedProps, cb);
+    }
 
 	public void getEntityPropertyValuesForPostCoordinationAxes(String projectName, List<String> entities, List<String> properties,
 			List<String> reifiedProps, AsyncCallback<List<EntityPropertyValues>> cb) {
@@ -68,13 +73,13 @@ public class ICDServiceManager {
     
     public void addAllowedPostCoordinationAxis(String projectName, String subject,
 			String postcoordinationEntity, String postcoordinationProperty,
-			boolean isRequiredFlag, AsyncCallback<Void> cb) {
+			boolean isRequiredFlag, AsyncCallback<Boolean> cb) {
     	proxy.addAllowedPostCoordinationAxis(projectName, subject, 
     			postcoordinationEntity, postcoordinationProperty, isRequiredFlag, cb);
     }
     
     public void removeAllowedPostCoordinationAxis(String projectName, String subject,
-    		String postcoordinationEntity, String postcoordinationProperty, AsyncCallback<Void> cb) {
+    		String postcoordinationEntity, String postcoordinationProperty, AsyncCallback<Boolean> cb) {
     	proxy.removeAllowedPostCoordinationAxis(projectName, subject, 
     			postcoordinationEntity, postcoordinationProperty, cb);
     }
