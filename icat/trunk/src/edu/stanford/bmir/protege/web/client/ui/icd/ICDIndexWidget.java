@@ -427,6 +427,19 @@ public class ICDIndexWidget extends InstanceGridWidget {
         }
     };    
 
+    @Override
+    protected String getWarningText(Object value, Record record, int rowIndex, int colNum, Store store) {
+    	if (record.getAsBoolean(SYNONYM_FIELD_NAME) == false &&
+    			record.getAsBoolean(NARROWER_FIELD_NAME) == false &&
+    			(colNum == properties.size() + OFFSET_SYNONYM_COLUMN ||
+    			 colNum == properties.size() + OFFSET_NARROWER_COLUMN) ) {
+    		return "Please choose one of the possible base index types: &quot;synonym&quot; or &quot;narrower&quot;";
+    	}
+    	else {
+    		return null;
+    	}
+	}
+
     protected class ChangeIndexTypeHandler extends AbstractAsyncHandler<EntityPropertyValues> {
 
         private EntityData mySubject;

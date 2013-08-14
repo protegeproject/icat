@@ -451,6 +451,12 @@ ul.disc {
 
 }
 
+.x-grid3-cell-inner.grid-cell-warning,
+.x-grid3-cell-inner .grid-cell-warning, 
+.grid-cell-warning .x-grid3-cell-inner  {
+	background: yellow;
+}
+
 /******************************************************************
  Styles for ChangeSummaryPortlet.java
  *****************************************************************/
