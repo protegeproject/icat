@@ -1676,6 +1676,12 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 Store store) {
             String field = record.getAsString(store.getFields()[colNum]);
 
+            String warningText = getWarningText(value, record, rowIndex, colNum, store);
+        	if (warningText != null) {
+            	cellMetadata.setCssClass("grid-cell-warning");
+            	cellMetadata.setHtmlAttribute("title='" + warningText + "'");
+        	}
+
             //This would be an elegant way to set the background color and other styling with CSS
             //but it would be quite inefficient to read the configuration options at the 
             //time of rendering each cell.
@@ -1791,7 +1797,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 }
             });
             return Format.format(
-                    "<div id='{0}' style='padding:0px;width:100%;height:20px;'></div>", id);
+                    "<div id='{0}' style='padding:4px 0px 0px 0px;width:100%;height:20px;'></div>", id);
 
         }
     }
@@ -1800,6 +1806,12 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
             Record record, int rowIndex, int colNum, Store store) {
         //override this in subclasses
     }
+
+    protected String getWarningText(Object value, Record record,
+			int rowIndex, int colNum, Store store) {
+    	//by default we should not return a warning text
+   		return null;
+	}
 
 
     final class DeleteContextMenu extends Menu{
