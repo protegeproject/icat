@@ -287,16 +287,16 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
                 tabName = tabName.substring(tabName.lastIndexOf(".") + 1);
             }
             String className = entity.getName();
-//            url = linkMessage.format(new Object[]{
-//                    applicationURL,
-//                    URL.encodeQueryString(getProject().getProjectName()),
-//                    tabName,
-//                    className == null ? "" : URL.encodeQueryString(className)
-//            }, new StringBuffer(), new FieldPosition(0)).toString();
+            //            url = linkMessage.format(new Object[]{
+            //                    applicationURL,
+            //                    URL.encodeQueryString(getProject().getProjectName()),
+            //                    tabName,
+            //                    className == null ? "" : URL.encodeQueryString(className)
+            //            }, new StringBuffer(), new FieldPosition(0)).toString();
             url = linkPattern.replace("{0}", applicationURL).
-                replace("{1}", URL.encodeQueryString(getProject().getProjectName())).
-                replace("{2}", tabName).
-                replace("{3}", className == null ? "" : URL.encodeQueryString(className));
+                    replace("{1}", URL.encodeQueryString(getProject().getProjectName())).
+                    replace("{2}", tabName).
+                    replace("{3}", className == null ? "" : URL.encodeQueryString(className));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -308,8 +308,8 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
     }
 
 
-	protected void createContextMenu(final Node node, EventObject e) {
-		treePanel.getSelectionModel().select((TreeNode) node);
+    protected void createContextMenu(final Node node, EventObject e) {
+        treePanel.getSelectionModel().select((TreeNode) node);
         Menu contextMenu = new Menu();
         contextMenu.setWidth("140px");
         EntityData entity = (EntityData) node.getUserObject();
@@ -318,10 +318,10 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         addMenuItemShowDirectLink(entity, contextMenu);
 
         contextMenu.showAt(e.getXY()[0]+5, e.getXY()[1]+5);
-	}
+    }
 
-	protected void addMenuItemShowInternalId(final EntityData entity, Menu contextMenu) {
-		MenuItem menuShowInternalID = new MenuItem();
+    protected void addMenuItemShowInternalId(final EntityData entity, Menu contextMenu) {
+        MenuItem menuShowInternalID = new MenuItem();
         menuShowInternalID.setText("Show Internal ID");
         menuShowInternalID.addListener(new BaseItemListenerAdapter() {
             @Override
@@ -331,11 +331,11 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             }
         });
         contextMenu.addItem(menuShowInternalID);
-	}
+    }
 
 
-	protected void addMenuItemShowDirectLink(final EntityData entity, Menu contextMenu) {
-		MenuItem menuShowDirectLink = new MenuItem();
+    protected void addMenuItemShowDirectLink(final EntityData entity, Menu contextMenu) {
+        MenuItem menuShowDirectLink = new MenuItem();
         menuShowDirectLink.setText("Show Direct Link");
         menuShowDirectLink.setIcon("images/link.png");
         menuShowDirectLink.addListener(new BaseItemListenerAdapter() {
@@ -346,7 +346,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             }
         });
         contextMenu.addItem(menuShowDirectLink);
-	}
+    }
 
     public TreePanel createTreePanel() {
         treePanel = new TreePanel();
@@ -359,7 +359,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             treePanel.setSelectionModel(new MultiSelectionModel());
         }
 
-        if (hasMovePermission(false) == true) {
+        if (shouldEnableDragNDrop() == true) {
             treePanel.setEnableDD(true);
             addDragAndDropSupport();
         }
@@ -378,6 +378,10 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         addProjectListeners();
 
         return treePanel;
+    }
+
+    protected boolean shouldEnableDragNDrop() {
+        return true;
     }
 
     protected void createSelectionListener() {
@@ -647,10 +651,10 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
                     MessageBox
                     .alert("No results",
                             "No results were found. Please try a different query. <br />"
-                            + "<BR>"
-                            + "<B>Hint:</B> You may use wildcards (*) in your search query. <br />"
-                            + "&nbsp;&nbsp;&nbsp;&nbsp;(Wildcards are automatically added before and after query strings that&nbsp;&nbsp;&nbsp;&nbsp;<br />"
-                            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;have at least 3 characters AND do not already start or end with a wildcard.)&nbsp;&nbsp;&nbsp;&nbsp;");
+                                    + "<BR>"
+                                    + "<B>Hint:</B> You may use wildcards (*) in your search query. <br />"
+                                    + "&nbsp;&nbsp;&nbsp;&nbsp;(Wildcards are automatically added before and after query strings that&nbsp;&nbsp;&nbsp;&nbsp;<br />"
+                                    + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;have at least 3 characters AND do not already start or end with a wildcard.)&nbsp;&nbsp;&nbsp;&nbsp;");
                 }
             }
         };
@@ -662,21 +666,67 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             public boolean doBeforeNodeDrop(final TreePanel treePanel, final TreeNode target, final DragData dragData,
                     final String point, final DragDrop source, final TreeNode dropNode,
                     final DropNodeCallback dropNodeCallback) {
-                if (hasMovePermission(true)) {
-                    final boolean success = Window.confirm("Are you sure you want to move "
-                            + getNodeBrowserText(dropNode) + " from parent "
-                            + getNodeBrowserText(dropNode.getParentNode()) + " to parent " + getNodeBrowserText(target) + " ?");
-                    if (success) {
-                        moveClass((EntityData) dropNode.getUserObject(), (EntityData) dropNode.getParentNode().getUserObject(), (EntityData) target.getUserObject());
+
+                GWT.log( "** " + point + ": " + getNodeBrowserText(target));
+
+                if ("below".equals(point) || "above".equals(point)) {
+                    GWT.log( point + ": " + getNodeBrowserText(target));
+                    if (isValidSiblingReorder(dropNode, target, point) == true) {
+                        onReorderNode(dropNode, target, "below".equals(point));
                         return true;
-                    } else {
-                        return false;
                     }
-                } else {
                     return false;
                 }
+
+                if ("append".equals(point)) {
+                    if (hasMovePermission(false) == false) {
+                        return false;
+                    } else {
+                        final boolean success = Window.confirm("Are you sure you want to move "
+                                + getNodeBrowserText(dropNode) + " from parent "
+                                + getNodeBrowserText(dropNode.getParentNode()) + " to parent " + getNodeBrowserText(target) + " ?");
+                        if (success) {
+                             onMoveClass(target, dropNode);
+                             return true;
+                        }
+                        return false;
+                    }
+                } // end append
+
+                return false;
             }
+
         });
+    }
+
+    protected boolean isValidSiblingReorder(TreeNode dropNode, TreeNode targetNode, String position) {
+        Node dropParent = dropNode.getParentNode();
+        Node targetParent = targetNode.getParentNode();
+
+        // if they are siblings, move is fine
+        if (dropParent != null && dropParent.equals(targetParent) ||
+                (dropParent == null) && (targetParent == null)) {
+            GWT.log("is valid reoder - same parent");
+            return true;
+        }
+
+        if ("below".equals(position) && (targetNode.equals(dropParent))) {
+            GWT.log("is valid reoder - parent - child");
+            return true;
+        }
+
+        GWT.log("is NOT valid reoder");
+        return false;
+    }
+
+    protected void onReorderNode(TreeNode movedNode, TreeNode targetNode, boolean isBelow) {
+        //do nothing, overwrite in subclasses
+    }
+
+
+    protected void onMoveClass(final TreeNode target, final TreeNode dropNode) {
+            moveClass((EntityData) dropNode.getUserObject(), (EntityData) dropNode.getParentNode().getUserObject(),
+                    (EntityData) target.getUserObject());
     }
 
     protected void onSubclassAdded(final EntityData parent, final Collection<EntityData> subclasses,
@@ -746,17 +796,17 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             return;
         }
 
-       // final TreeNode subclassNode = findTreeNode(parentNode, subclass.getName(), new ArrayList<TreeNode>());
+        // final TreeNode subclassNode = findTreeNode(parentNode, subclass.getName(), new ArrayList<TreeNode>());
         final TreeNode subclassNode = getDirectChild(parentNode, subclass.getName());
         if (subclassNode == null) {
             return;
         }
 
         //if (subclassNode.getParentNode().equals(parentNode)) {
-            parentNode.removeChild(subclassNode);
-            if (parentNode.getChildNodes().length < 1) {
-                parentNode.setExpandable(false);
-            }
+        parentNode.removeChild(subclassNode);
+        if (parentNode.getChildNodes().length < 1) {
+            parentNode.setExpandable(false);
+        }
         //}
     }
 
@@ -896,12 +946,12 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
 
         MessageBox.confirm("Confirm", "Are you sure you want to delete class <br> " + displayName + " ?",
                 new MessageBox.ConfirmCallback() {
-                    public void execute(final String btnID) {
-                        if (btnID.equals("yes")) {
-                            deleteCls(clsName);
-                        }
-                    }
-                });
+            public void execute(final String btnID) {
+                if (btnID.equals("yes")) {
+                    deleteCls(clsName);
+                }
+            }
+        });
     }
 
     protected void deleteCls(final String className) {
@@ -1269,11 +1319,11 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             return "<img src=\"images/tag_blue.png\" " + ClassTreePortlet.WATCH_ICON_STYLE_STRING + " title=\"" + " Watched\"></img>";
         case BRANCH_WATCH:
             return "<img src=\"images/tag_blue_add.png\" " + ClassTreePortlet.WATCH_ICON_STYLE_STRING + " title=\""
-                    + " Watched branch\"></img>";
+            + " Watched branch\"></img>";
         case BOTH:
             return "<img src=\"images/tag_blue.png\" " + ClassTreePortlet.WATCH_ICON_STYLE_STRING + " title=\"" + " Watched\"></img>"
-                    + "<img src=\"images/tag_blue_add.png\" " + ClassTreePortlet.WATCH_ICON_STYLE_STRING + " title=\""
-                    + " Watched branch\"></img>";
+            + "<img src=\"images/tag_blue_add.png\" " + ClassTreePortlet.WATCH_ICON_STYLE_STRING + " title=\""
+            + " Watched branch\"></img>";
         default:
             return "";
         }
@@ -1447,7 +1497,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         @Override
         public void handleFailure(final Throwable caught) {
             if (getEl() != null) {
-               // getEl().unmask();
+                // getEl().unmask();
             }
             GWT.log("RPC error at getting classes root ", caught);
         }
@@ -1455,7 +1505,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         @Override
         public void handleSuccess(final EntityData rootEnitity) {
             if (getEl() != null) {
-             //   getEl().unmask();
+                //   getEl().unmask();
             }
             createRoot(rootEnitity);
         }
@@ -1519,13 +1569,13 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
 
         @Override
         public void handleFailure(final Throwable caught) {
-           // getEl().unmask();
+            // getEl().unmask();
             GWT.log("RPC error at getting subproperties of " + clsName, caught);
         }
 
         @Override
         public void handleSuccess(final List<Triple> childTriples) {
-           // getEl().unmask();
+            // getEl().unmask();
             if (childTriples != null) {
                 for (final Triple childTriple : childTriples) {
                     final EntityData childData = childTriple.getValue();
@@ -1697,7 +1747,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
 
         @Override
         public void handleSuccess(final List<SubclassEntityData> children) {
-           // getEl().unmask();
+            // getEl().unmask();
 
             TreeNode pathTreeNode = null;
 
