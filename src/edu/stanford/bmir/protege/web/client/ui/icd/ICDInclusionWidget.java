@@ -44,6 +44,13 @@ import edu.stanford.bmir.protege.web.client.ui.selection.Selectable;
 import edu.stanford.bmir.protege.web.client.ui.util.UIConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
+/**
+ * 
+ * @deprecated This class is currently not used. It was created to edit base inclusion terms from descendants, 
+ * but it seems that the simple InstanceGridWidget can do the job. 
+ * Remove the deprecated flag, when the implementation of this class will be finished, and the class will be used.
+ * 
+ **/
 public class ICDInclusionWidget extends InstanceGridWidget {
 
     //private static final String TOP_CLASS_PROP = "topClass";
