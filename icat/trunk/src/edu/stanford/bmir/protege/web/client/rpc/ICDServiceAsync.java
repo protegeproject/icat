@@ -23,7 +23,7 @@ public interface ICDServiceAsync {
 
     void getSubclasses(String projectName, String className, AsyncCallback<List<SubclassEntityData>> cb);
 
-    void changeIndexType(String projectName, String subject, String indexEntity, List<String> reifiedProps, 
+    void changeIndexType(String projectName, String subject, String indexEntity, List<String> reifiedProps,
             String indexType, AsyncCallback<EntityPropertyValues> cb);
 
     void changeInclusionFlagForIndex(String projectName, String subject, String indexEntity, List<String> reifiedProps,
@@ -34,7 +34,7 @@ public interface ICDServiceAsync {
 
     void getListOfSelectedPostCoordinationAxes(String projectName,
 			String entity, List<String> reifiedProps, AsyncCallback<List<String>> cb);
-    
+
     void getEntityPropertyValuesForPostCoordinationAxes(String projectName, List<String> entities, List<String> properties,
     		List<String> reifiedProps, AsyncCallback<List<EntityPropertyValues>> cb);
 
@@ -44,5 +44,8 @@ public interface ICDServiceAsync {
 
     void removeAllowedPostCoordinationAxis(String projectName, String subject,
 			String postcoordinationEntity, String postcoordinationProperty, AsyncCallback<Boolean> cb);
+
+    void reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent,
+            AsyncCallback<Boolean> cb);
 
 }

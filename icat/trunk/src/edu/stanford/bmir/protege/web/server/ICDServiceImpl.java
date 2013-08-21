@@ -28,7 +28,6 @@ import edu.stanford.smi.protege.model.Instance;
 import edu.stanford.smi.protege.model.KnowledgeBase;
 import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.model.Slot;
-import edu.stanford.smi.protege.ui.FrameComparator;
 import edu.stanford.smi.protege.util.CollectionUtilities;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
@@ -324,32 +323,27 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
     }
 
 
+    @SuppressWarnings("deprecation")
     @Override
     public List<SubclassEntityData> getSubclasses(String projectName, String className) {
+        Project project = getProject(projectName);
+        OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
+
         ArrayList<SubclassEntityData> subclassesData = new ArrayList<SubclassEntityData>();
 
-        Project project = getProject(projectName);
-        if (project == null) {
-            return subclassesData;
-        }
-        KnowledgeBase kb = project.getKnowledgeBase();
-
-        Cls superCls = kb.getCls(className);
+        RDFSNamedClass superCls = owlModel.getRDFSNamedClass(className);
         if (superCls == null) {
             return subclassesData;
         }
 
-        ICDContentModel cm = new ICDContentModel((OWLModel) getProject(projectName).getKnowledgeBase());
+        ICDContentModel cm = new ICDContentModel(owlModel);
         RDFProperty displayStatusProp = cm.getDisplayStatusProperty();
         RDFProperty isObsoleteProp = cm.getIsObsoleteProperty();
         RDFProperty publicIdProp = cm.getPublicIdProperty();
 
-        ArrayList<Cls> subclasses = new ArrayList<Cls>(superCls.getVisibleDirectSubclasses());
-        Collections.sort(subclasses, new FrameComparator());
+        List<RDFSNamedClass> subclasses = cm.getOrderedChildren(superCls);
 
-        for (Object element : subclasses) {
-            Cls subcls = (Cls) element;
-
+        for (RDFSNamedClass subcls : subclasses) {
             if (!subcls.isSystem()) {
                 SubclassEntityData subclassEntityData = new SubclassEntityData(subcls.getName(),
                         getBrowserText(subcls), createEntityList(subcls.getDirectTypes()), subcls.getVisibleDirectSubclassCount());
@@ -364,7 +358,6 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
                 if (user != null) {
                     subclassEntityData.setWatch(WatchedEntitiesCache.getCache(project).getWatchType(user, subcls.getName()));
                 }
-
             }
         }
         return subclassesData;
@@ -639,23 +632,23 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
             }
         }
     }
-    
-    
-    public List<String> getListOfSelectedPostCoordinationAxes(String projectName, 
+
+
+    public List<String> getListOfSelectedPostCoordinationAxes(String projectName,
     		String entity, List<String> reifiedProps) {
     	List<String> selectedPCAxisProperties = new ArrayList<String>();
-    	
+
     	Project project = getProject(projectName);
     	KnowledgeBase kb = project.getKnowledgeBase();
     	ICDContentModel cm = new ICDContentModel((OWLModel)kb);
-    	
+
     	Slot allowedPcAxesProperty = cm.getAllowedPostcoordinationAxesProperty();
 		Slot allowedPcAxisPropertyProperty = cm.getAllowedPostcoordinationAxisPropertyProperty();
 		Slot requiredPcAxisPropertyProperty = cm.getRequiredPostcoordinationAxisPropertyProperty();
 
 		List<String> pcAxisProperties = ICDContentModelConstants.PC_AXES_PROPERTIES_LIST;
 		pcAxisProperties.retainAll(reifiedProps);
-		
+
     	Instance subjInst = kb.getInstance(entity);
     	Collection<?> pcSpecs = subjInst.getOwnSlotValues(allowedPcAxesProperty);
     	for (Object pcSpec : pcSpecs) {
@@ -665,29 +658,29 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 				Collection<?> requiredPcAxisPropertyValues = pcSpecInst.getOwnSlotValues(requiredPcAxisPropertyProperty);
 	            for (String pcAxisPropName : pcAxisProperties) {
 	                Slot pcAxisProperty = kb.getSlot(pcAxisPropName);
-	                if (allowedPcAxisPropertyValues.contains(pcAxisProperty)|| 
+	                if (allowedPcAxisPropertyValues.contains(pcAxisProperty)||
 	                		requiredPcAxisPropertyValues.contains(pcAxisProperty)) {
 	                	selectedPCAxisProperties.add(pcAxisPropName);
 	                }
 	            }
 			}
 		}
-    	
+
     	return selectedPCAxisProperties;
     }
-    
-    
+
+
     public List<EntityPropertyValues> getEntityPropertyValuesForPostCoordinationAxes(String projectName, List<String> entities, List<String> properties,
     		List<String> reifiedProps) {
     	List<String> regularReifiedProperties = new ArrayList<String>(reifiedProps);
     	List<String> specialReifiedProperties = new ArrayList<String>();
-    	for (String reifiedProp : reifiedProps) { 
+    	for (String reifiedProp : reifiedProps) {
     		if (ICDContentModelConstants.PC_AXES_PROPERTIES_LIST.contains(reifiedProp)) {
     			regularReifiedProperties.remove(reifiedProp);
     			specialReifiedProperties.add(reifiedProp);
     		}
     	}
-    	
+
     	ICDContentModel cm = null;
     	if (projectName != null) {
     		Project project = getProject(projectName);
@@ -697,15 +690,15 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
     	}
 
     	return getEntityPropertyValuesForPostCoordinationAxes(
-        		projectName, entities, properties, regularReifiedProperties, 
-        		(cm == null ? null : cm.getAllowedPostcoordinationAxisPropertyProperty()), 
+        		projectName, entities, properties, regularReifiedProperties,
+        		(cm == null ? null : cm.getAllowedPostcoordinationAxisPropertyProperty()),
         		(cm == null ? null : cm.getRequiredPostcoordinationAxisPropertyProperty()),
         		specialReifiedProperties);
     }
-    
+
     public List<EntityPropertyValues> getEntityPropertyValuesForPostCoordinationAxes(String projectName, List<String> entities, List<String> properties,
             List<String> reifiedProps, RDFProperty allowedPcAxisProperty, RDFProperty requiredPcAxisProperty, List<String> pcAxisProperties) {
-        
+
         List<EntityPropertyValues> entityPropValues = getEntityPropertyValues(projectName, entities, properties, reifiedProps);
 
         Project project = getProject(projectName);
@@ -745,15 +738,15 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         		}
         	}
         }
-        
-        
+
+
         return prepareLinearizationEntityPropertyValues(projectName, entities, entityPropValues, false);
     }
-    
-    
+
+
     /**
      * @return true if this is the first linearization where we have set
-     *         this post-coordination axis as allowed. False otherwise. 
+     *         this post-coordination axis as allowed. False otherwise.
      */
     public boolean addAllowedPostCoordinationAxis(String projectName, String subject,
     		 String postcoordinationEntity, String postcoordinationProperty, boolean isRequiredFlag) {
@@ -780,29 +773,29 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
             return false;
         }
 
-        RDFProperty postCoordProperty = (RDFProperty)owlModel.getOWLProperty(postcoordinationProperty);
+        RDFProperty postCoordProperty = owlModel.getOWLProperty(postcoordinationProperty);
         if (postCoordProperty == null) {
             return false;
         }
 
         RDFProperty allowedPostCoordinationAxisPropertyProperty = cm.getAllowedPostcoordinationAxisPropertyProperty();
         RDFProperty requiredPostCoordinationAxisPropertyProperty = cm.getRequiredPostcoordinationAxisPropertyProperty();
-        
+
         if (allowedPostCoordinationAxisPropertyProperty == null ||
         		requiredPostCoordinationAxisPropertyProperty == null) {
-        	throw new RuntimeException("Invalid content model! The following properties could not be retrieved:" + 
+        	throw new RuntimeException("Invalid content model! The following properties could not be retrieved:" +
         		(allowedPostCoordinationAxisPropertyProperty == null ? " " + ICDContentModelConstants.ALLOWED_POSTCOORDINATION_AXIS_PROPERTY_PROP : "") +
         		(requiredPostCoordinationAxisPropertyProperty == null ? " " + ICDContentModelConstants.REQUIRED_POSTCOORDINATION_AXIS_PROPERTY_PROP : "") );
         }
-        
+
         RDFProperty linViewProp = cm.getLinearizationViewProperty();
         RDFResource linView = (RDFResource)postCoordInd.getPropertyValue(linViewProp);
-        
+
         boolean axisAlreadyUsed = isAxisPartOfAnyLinearization(cm, subjResource, postCoordProperty);
-        
+
         String user = KBUtil.getUserInSession(getThreadLocalRequest());
 		String linViewName = (linView == null ? "" : linView.getBrowserText());
-        String operationDescription = "Added '" + postCoordProperty.getBrowserText() + "' as " + 
+        String operationDescription = "Added '" + postCoordProperty.getBrowserText() + "' as " +
         		(isRequiredFlag ? "a required" : "an allowed") + " post-coordination axis " +
         		"in the " + linViewName + " linearization of " + subjResource.getBrowserText() + ".";
 
@@ -814,14 +807,14 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
                 Collection<?> allowedPcAxes = postCoordInd.getPropertyValues(allowedPostCoordinationAxisPropertyProperty);
                 Collection<?> requiredPcAxes = postCoordInd.getPropertyValues(requiredPostCoordinationAxisPropertyProperty);
-                
+
                 if (requiredPcAxes.contains(postCoordProperty)) {
                 	postCoordInd.removePropertyValue(requiredPostCoordinationAxisPropertyProperty, postCoordProperty);
                 }
                 if (allowedPcAxes.contains(postCoordProperty)) {
                 	postCoordInd.removePropertyValue(allowedPostCoordinationAxisPropertyProperty, postCoordProperty);
                 }
-                
+
                 if (isRequiredFlag) {
                 	postCoordInd.addPropertyValue(requiredPostCoordinationAxisPropertyProperty, postCoordProperty);
                 }
@@ -832,26 +825,26 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
                 kb.commitTransaction();
 
             } catch (Exception e) {
-                Log.getLogger().log(Level.SEVERE, "Error at adding postcoordination property " + postcoordinationProperty + " for: " + subject + 
+                Log.getLogger().log(Level.SEVERE, "Error at adding postcoordination property " + postcoordinationProperty + " for: " + subject +
                 		" and post-coordination specification: " + postcoordinationEntity + " (" + linViewName + ")", e);
                 kb.rollbackTransaction();
-                throw new RuntimeException("Error at adding postcoordination property " + postcoordinationProperty + " for: " + subject + 
+                throw new RuntimeException("Error at adding postcoordination property " + postcoordinationProperty + " for: " + subject +
                 		" and post-coordination specification: " + postcoordinationEntity + " (" + linViewName + ")" +
                         ". Message: " + e.getMessage(), e);
             } finally {
                 KBUtil.restoreUser(kb);
             }
         }
-        
+
         return (! axisAlreadyUsed);
-        
+
     }
 
 
     /**
      * @return true if after we removed this post-coordination axis,
      *         there are no other linearizations where this property is set
-     *         as a possible post-coordination axis. False otherwise. 
+     *         as a possible post-coordination axis. False otherwise.
      */
     public boolean removeAllowedPostCoordinationAxis(String projectName, String subject,
    		 String postcoordinationEntity, String postcoordinationProperty) {
@@ -878,27 +871,27 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
             return false;
         }
 
-        RDFProperty postCoordProperty = (RDFProperty)owlModel.getOWLProperty(postcoordinationProperty);
+        RDFProperty postCoordProperty = owlModel.getOWLProperty(postcoordinationProperty);
         if (postCoordProperty == null) {
             return false;
         }
 
         RDFProperty allowedPostCoordinationAxisPropertyProperty = cm.getAllowedPostcoordinationAxisPropertyProperty();
         RDFProperty requiredPostCoordinationAxisPropertyProperty = cm.getRequiredPostcoordinationAxisPropertyProperty();
-        
+
         if (allowedPostCoordinationAxisPropertyProperty == null ||
         		requiredPostCoordinationAxisPropertyProperty == null) {
-        	throw new RuntimeException("Invalid content model! The following properties could not be retrieved:" + 
+        	throw new RuntimeException("Invalid content model! The following properties could not be retrieved:" +
         		(allowedPostCoordinationAxisPropertyProperty == null ? " " + ICDContentModelConstants.ALLOWED_POSTCOORDINATION_AXIS_PROPERTY_PROP : "") +
         		(requiredPostCoordinationAxisPropertyProperty == null ? " " + ICDContentModelConstants.REQUIRED_POSTCOORDINATION_AXIS_PROPERTY_PROP : "") );
         }
-        
+
         RDFProperty linViewProp = cm.getLinearizationViewProperty();
         RDFResource linView = (RDFResource)postCoordInd.getPropertyValue(linViewProp);
-        
+
         String user = KBUtil.getUserInSession(getThreadLocalRequest());
 		String linViewName = (linView == null ? "" : linView.getBrowserText());
-        String operationDescription = "Removed '" + postCoordProperty.getBrowserText() + "' as " + 
+        String operationDescription = "Removed '" + postCoordProperty.getBrowserText() + "' as " +
         		"a possible post-coordination axis " +
         		"in the " + linViewName + " linearization of " + subjResource.getBrowserText() + ".";
 
@@ -910,7 +903,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
                 Collection<?> allowedPcAxes = postCoordInd.getPropertyValues(allowedPostCoordinationAxisPropertyProperty);
                 Collection<?> requiredPcAxes = postCoordInd.getPropertyValues(requiredPostCoordinationAxisPropertyProperty);
-                
+
                 if (requiredPcAxes.contains(postCoordProperty)) {
                 	postCoordInd.removePropertyValue(requiredPostCoordinationAxisPropertyProperty, postCoordProperty);
                 }
@@ -921,20 +914,20 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
                 kb.commitTransaction();
 
             } catch (Exception e) {
-                Log.getLogger().log(Level.SEVERE, "Error at removing postcoordination property " + postcoordinationProperty + " for: " + subject + 
+                Log.getLogger().log(Level.SEVERE, "Error at removing postcoordination property " + postcoordinationProperty + " for: " + subject +
                 		" and post-coordination specification: " + postcoordinationEntity + " (" + linViewName + ")", e);
                 kb.rollbackTransaction();
-                throw new RuntimeException("Error at removing postcoordination property " + postcoordinationProperty + " for: " + subject + 
+                throw new RuntimeException("Error at removing postcoordination property " + postcoordinationProperty + " for: " + subject +
                 		" and post-coordination specification: " + postcoordinationEntity + " (" + linViewName + ")" +
                         ". Message: " + e.getMessage(), e);
             } finally {
                 KBUtil.restoreUser(kb);
             }
         }
-        
+
         boolean axisUsed = isAxisPartOfAnyLinearization(cm, subjResource, postCoordProperty);
         return (! axisUsed);
-        
+
     }
 
 
@@ -948,14 +941,37 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
     		RDFIndividual postCoordSpecInd = (RDFIndividual) postCoordSpec;
             Collection<?> allowedPcAxes = postCoordSpecInd.getPropertyValues(allowedPostCoordinationAxisPropertyProperty);
             Collection<?> requiredPcAxes = postCoordSpecInd.getPropertyValues(requiredPostCoordinationAxisPropertyProperty);
-            
+
             if (allowedPcAxes.contains(postCoordProperty) || requiredPcAxes.contains(postCoordProperty)) {
             	return true;
             }
-		} 
-		
+		}
+
 		return false;
 	}
+
+    @Override
+    public boolean reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent) {
+
+        String user = KBUtil.getUserInSession(getThreadLocalRequest());
+        if (user == null) {
+            return false;
+        }
+
+        Project project = getProject(projectName);
+        OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
+        ICDContentModel cm = new ICDContentModel(owlModel);
+
+        RDFSNamedClass movedCls = owlModel.getRDFSNamedClass(movedClass);
+        RDFSNamedClass targetCls = owlModel.getRDFSNamedClass(targetClass);
+        RDFSNamedClass parentCls = owlModel.getRDFSNamedClass(parent);
+
+        if (movedCls == null || targetClass == null || parentCls == null) {
+            return false;
+        }
+
+        return cm.reorderSibling(movedCls, targetCls, isBelow, parentCls, user);
+    }
 
 
 }

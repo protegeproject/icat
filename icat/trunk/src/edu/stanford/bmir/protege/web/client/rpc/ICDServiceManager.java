@@ -51,7 +51,7 @@ public class ICDServiceManager {
     public void changeIndexType(String projectName, String subject, String indexEntity, List<String> reifiedProps, String indexType, AsyncCallback<EntityPropertyValues> cb) {
         proxy.changeIndexType(projectName, subject, indexEntity, reifiedProps, indexType, cb);
     }
-    
+
     public void changeInclusionFlagForIndex(String projectName, String subject, String indexEntity, List<String> reifiedProps, boolean isInclusionFlag, AsyncCallback<EntityPropertyValues> cb) {
         proxy.changeInclusionFlagForIndex(projectName, subject, indexEntity, reifiedProps, isInclusionFlag, cb);
     }
@@ -60,7 +60,7 @@ public class ICDServiceManager {
             String value, String user, String operationDescription, AsyncCallback<Void> cb) {
         proxy.removeBaseIndexTerm(projectName, entityName, value, user, operationDescription, cb);
     }
-    
+
     public void getListOfSelectedPostCoordinationAxes(String projectName, String entity,
     		List<String> reifiedProps, AsyncCallback<List<String>> cb) {
     	proxy.getListOfSelectedPostCoordinationAxes(projectName, entity, reifiedProps, cb);
@@ -70,18 +70,23 @@ public class ICDServiceManager {
 			List<String> reifiedProps, AsyncCallback<List<EntityPropertyValues>> cb) {
 		proxy.getEntityPropertyValuesForPostCoordinationAxes(projectName, entities, properties, reifiedProps, cb);
 	}
-    
+
     public void addAllowedPostCoordinationAxis(String projectName, String subject,
 			String postcoordinationEntity, String postcoordinationProperty,
 			boolean isRequiredFlag, AsyncCallback<Boolean> cb) {
-    	proxy.addAllowedPostCoordinationAxis(projectName, subject, 
+    	proxy.addAllowedPostCoordinationAxis(projectName, subject,
     			postcoordinationEntity, postcoordinationProperty, isRequiredFlag, cb);
     }
-    
+
     public void removeAllowedPostCoordinationAxis(String projectName, String subject,
     		String postcoordinationEntity, String postcoordinationProperty, AsyncCallback<Boolean> cb) {
-    	proxy.removeAllowedPostCoordinationAxis(projectName, subject, 
+    	proxy.removeAllowedPostCoordinationAxis(projectName, subject,
     			postcoordinationEntity, postcoordinationProperty, cb);
+    }
+
+    public void reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent,
+            AsyncCallback<Boolean> cb) {
+        proxy.reorderSiblings(projectName, movedClass, targetClass, isBelow, parent, cb);
     }
 
 }

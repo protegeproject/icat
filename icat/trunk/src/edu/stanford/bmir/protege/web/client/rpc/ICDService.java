@@ -30,10 +30,10 @@ public interface ICDService extends RemoteService  {
 
     public EntityPropertyValues changeInclusionFlagForIndex(String projectName, String subject, String indexEntity,
             List<String> reifiedProps, boolean isInclusionFlag);
-    
+
     public void removeBaseIndexTerm(String projectName, String entityName,
             String value, String user, String operationDescription);
-    
+
     public List<String> getListOfSelectedPostCoordinationAxes(
     		String projectName, String entity, List<String> reifiedProps);
 
@@ -46,5 +46,7 @@ public interface ICDService extends RemoteService  {
 
     public boolean removeAllowedPostCoordinationAxis(String projectName, String subject,
     		String postcoordinationEntity, String postcoordinationProperty);
-    
+
+    public boolean reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent);
+
 }

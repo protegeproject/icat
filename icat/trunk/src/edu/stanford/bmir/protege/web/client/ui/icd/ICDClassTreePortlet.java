@@ -198,6 +198,25 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
                         cls.getName()), new MoveClassHandler(cls.getName(), oldParent.getName(), newParent.getName()));
     }
 
+
+    @Override
+    protected void onReorderNode(TreeNode movedNode, TreeNode targetNode, boolean isBelow) {
+        ICDServiceManager.getInstance().reorderSiblings(getProject().getProjectName(),
+                getNodeClsName(movedNode), getNodeClsName(targetNode), isBelow, "parentXXXXXXXXXXXXXXXXXXXXXx",
+                new AsyncCallback<Boolean>() {
+
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        MessageBox.alert("Error", "There was an error at reordering the classes. Please try again later.");
+                    }
+
+                    @Override
+                    public void onSuccess(Boolean result) {
+                        MessageBox.alert("Success at reordering!");
+                    }
+                });
+    }
+
     @Override
     protected ToolbarButton createDeleteButton() {
         return null;
