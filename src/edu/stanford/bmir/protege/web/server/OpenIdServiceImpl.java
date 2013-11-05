@@ -187,7 +187,7 @@ public class OpenIdServiceImpl extends RemoteServiceServlet implements OpenIdSer
                             session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_URL, null);
                             session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_ID, null);
                             session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_PROVIDER, null);
-                            session.setAttribute(SessionConstants.USER_DATA_PARAMETER, userData);
+                            session.setAttribute(AuthenticationConstants.USERDATA_OBJECT, userData);
                         }
                     }
                 }

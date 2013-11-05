@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import edu.stanford.bmir.protege.web.client.rpc.data.UserData;
+import edu.stanford.bmir.protege.web.client.ui.login.constants.AuthenticationConstants;
 import edu.stanford.smi.protege.model.Cls;
 import edu.stanford.smi.protege.model.DefaultKnowledgeBase;
 import edu.stanford.smi.protege.model.Frame;
@@ -65,7 +66,7 @@ public class KBUtil {
     //TODO: not the best util class for this method.. find a better one
     public static String getUserInSession(HttpServletRequest request) {
         final HttpSession session = request.getSession();
-        final UserData userData = (UserData) session.getAttribute(SessionConstants.USER_DATA_PARAMETER);
+        final UserData userData = (UserData) session.getAttribute(AuthenticationConstants.USERDATA_OBJECT);
         if (userData == null) {
             return null;
         }
