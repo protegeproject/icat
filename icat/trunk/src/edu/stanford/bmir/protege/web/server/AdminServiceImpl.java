@@ -49,7 +49,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
     public UserData getCurrentUserInSession() {
         HttpServletRequest request = getThreadLocalRequest();
         final HttpSession session = request.getSession();
-        final UserData userData = (UserData) session.getAttribute(SessionConstants.USER_DATA_PARAMETER);
+        final UserData userData = (UserData) session.getAttribute(AuthenticationConstants.USERDATA_OBJECT);
         return userData;
     }
 
@@ -57,10 +57,10 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
     public void logout() {
         HttpServletRequest request = getThreadLocalRequest();
         final HttpSession session = request.getSession();
-        UserData userData = (UserData) session.getAttribute(SessionConstants.USER_DATA_PARAMETER);
+        UserData userData = (UserData) session.getAttribute(AuthenticationConstants.USERDATA_OBJECT);
         String userName = userData == null ? null : userData.getName();
         Log.getLogger().info("User " + userName + " logged out on " + new Date());
-        session.setAttribute(SessionConstants.USER_DATA_PARAMETER, null);
+        session.setAttribute(AuthenticationConstants.USERDATA_OBJECT, null);
     }
 
     public void changePassword(String userName, String password) {
@@ -155,7 +155,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
         boolean isverified = authenticatinUtil.verifyChallengedHash(user.getDigestedPassword(), response, challenge);
         if (isverified) {
             userData = AuthenticationUtil.createUserData(user.getName());
-            session.setAttribute(SessionConstants.USER_DATA_PARAMETER, userData);
+            session.setAttribute(AuthenticationConstants.USERDATA_OBJECT, userData);
             Log.getLogger().info("User " + user.getName() + " logged in on " + new Date());
         }
 
