@@ -24,10 +24,12 @@ import edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet;
 import edu.stanford.smi.protege.collab.util.HasAnnotationCache;
 import edu.stanford.smi.protege.exception.ProtegeException;
 import edu.stanford.smi.protege.model.Cls;
+import edu.stanford.smi.protege.model.Frame;
 import edu.stanford.smi.protege.model.Instance;
 import edu.stanford.smi.protege.model.KnowledgeBase;
 import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.model.Slot;
+import edu.stanford.smi.protege.ui.FrameComparator;
 import edu.stanford.smi.protege.util.CollectionUtilities;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
@@ -341,9 +343,13 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         RDFProperty isObsoleteProp = cm.getIsObsoleteProperty();
         RDFProperty publicIdProp = cm.getPublicIdProperty();
 
-        List<RDFSNamedClass> subclasses = cm.getOrderedChildren(superCls);
+        //FIXME: TT - use when enabling reordering of siblings
+        //List<RDFSNamedClass> subclasses = cm.getOrderedChildren(superCls);
 
-        for (RDFSNamedClass subcls : subclasses) {
+        ArrayList<Cls> subclasses = new ArrayList<Cls>(superCls.getVisibleDirectSubclasses());
+        Collections.sort(subclasses, new FrameComparator<Frame>());
+
+        for (Cls subcls : subclasses) {
             if (!subcls.isSystem()) {
                 SubclassEntityData subclassEntityData = new SubclassEntityData(subcls.getName(),
                         getBrowserText(subcls), createEntityList(subcls.getDirectTypes()), subcls.getVisibleDirectSubclassCount());
