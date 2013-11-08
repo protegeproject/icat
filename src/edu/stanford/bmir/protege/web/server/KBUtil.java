@@ -3,6 +3,7 @@ package edu.stanford.bmir.protege.web.server;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -68,6 +69,8 @@ public class KBUtil {
         final HttpSession session = request.getSession();
         final UserData userData = (UserData) session.getAttribute(AuthenticationConstants.USERDATA_OBJECT);
         if (userData == null) {
+            Log.getLogger().warning("User in session is null! A user was expected. Session " + session.getId() + " created on: " + session.getCreationTime() +
+                    " internal: " + session + ". Date: " +  new Date());
             return null;
         }
         return userData.getName();
