@@ -66,6 +66,11 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
 
         FormPanel formPanel = new FormPanel();
         formPanel.add(field, new AnchorLayoutData("100%"));
+        //Set label width
+        int labelWidth = UIUtil.getIntegerConfigurationProperty(getWidgetConfiguration(), FormConstants.LABEL_WIDTH, -1);
+        if (labelWidth != -1) {
+            formPanel.setLabelWidth(labelWidth);
+        }
 
         wrappingPanel.add(formPanel, new ColumnLayoutData(1));
 
