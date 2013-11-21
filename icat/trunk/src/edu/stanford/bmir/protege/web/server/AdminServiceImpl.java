@@ -29,6 +29,7 @@ import edu.stanford.bmir.protege.web.client.ui.openid.constants.OpenIdConstants;
 import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.server.metaproject.Operation;
 import edu.stanford.smi.protege.server.metaproject.User;
+import edu.stanford.smi.protege.server.metaproject.impl.WrappedProtegeInstanceWithPropsImpl;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protege.util.URIUtilities;
 import edu.stanford.smi.protegex.owl.jena.export.JenaExportPlugin;
@@ -47,20 +48,17 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
 
 
     public UserData getCurrentUserInSession() {
-        HttpServletRequest request = getThreadLocalRequest();
-        final HttpSession session = request.getSession();
-        final UserData userData = (UserData) session.getAttribute(AuthenticationConstants.USERDATA_OBJECT);
-        return userData;
+        String user = KBUtil.getUserInSession(getThreadLocalRequest());
+        return user == null ? null : new UserData(user);
     }
 
 
     public void logout() {
         HttpServletRequest request = getThreadLocalRequest();
         final HttpSession session = request.getSession();
-        UserData userData = (UserData) session.getAttribute(AuthenticationConstants.USERDATA_OBJECT);
-        String userName = userData == null ? null : userData.getName();
-        Log.getLogger().info("User " + userName + " logged out on " + new Date());
-        session.setAttribute(AuthenticationConstants.USERDATA_OBJECT, null);
+        final String user = (String) session.getAttribute(AuthenticationConstants.USER);
+        Log.getLogger().info("User " + user + " logged out on " + new Date());
+        session.setAttribute(AuthenticationConstants.USER, null);
     }
 
     public void changePassword(String userName, String password) {
@@ -140,26 +138,29 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
     public UserData authenticateToLogin(String userNameOrEmail, String response) {
         HttpServletRequest request = this.getThreadLocalRequest();
         HttpSession session = request.getSession();
+
         String challenge = (String) session.getAttribute(AuthenticationConstants.LOGIN_CHALLENGE);
         session.setAttribute(AuthenticationConstants.LOGIN_CHALLENGE, null);
 
         //Will check both user name and email
         User user = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getUser(userNameOrEmail);
-        if (user == null) { //user not in metaproject
+        if (user == null) {
+            return null;
+        }
+        String userName = user.getName();
+        if (user.getName() == null) { // data corruption in the metaproject
+            Log.getLogger().warning("User " +((WrappedProtegeInstanceWithPropsImpl)user).getProtegeInstance().getName() + " has a null name!!! Fix in metaproject.");
             return null;
         }
 
-        UserData userData = null;
-
         AuthenticationUtil authenticatinUtil = new AuthenticationUtil();
         boolean isverified = authenticatinUtil.verifyChallengedHash(user.getDigestedPassword(), response, challenge);
-        if (isverified) {
-            userData = AuthenticationUtil.createUserData(user.getName());
-            session.setAttribute(AuthenticationConstants.USERDATA_OBJECT, userData);
+        if (isverified == true) {
+            session.setAttribute(AuthenticationConstants.USER, userName);
             Log.getLogger().info("User " + user.getName() + " logged in on " + new Date());
         }
 
-        return userData;
+        return isverified == true ? new UserData(userName) : null;
     }
 
     private static String encodeBytes(byte[] bytes) {
@@ -191,7 +192,8 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
     public void clearPreviousLoginAuthenticationData() {
         HttpServletRequest request = this.getThreadLocalRequest();
         HttpSession session = request.getSession();
-        session.setAttribute(AuthenticationConstants.USERDATA_OBJECT, null);
+
+        session.setAttribute(AuthenticationConstants.USER, null);
         session.setAttribute(AuthenticationConstants.LOGIN_METHOD, null);
         session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_ID, null);
         session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_PROVIDER, null);

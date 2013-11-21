@@ -22,6 +22,10 @@ import edu.stanford.bmir.protege.web.client.rpc.data.UserData;
  * The list above is not meant to be exhaustive.
  * <p />
  *
+ *<p>
+ * WARNING: The methods that return UserData objects are shallow objects:
+ * they contain only the user name and not any of the other information.
+ *</p>
  * @author Jennifer Vendetti <vendetti@stanford.edu>
  */
 @RemoteServiceRelativePath("admin")

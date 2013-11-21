@@ -36,20 +36,18 @@ public class AuthenticateServiceImpl extends RemoteServiceServlet implements Aut
         session.setAttribute(AuthenticationConstants.LOGIN_METHOD, AuthenticationConstants.LOGIN_METHOD_WEBPROTEGE_ACCOUNT);
 
         if (!Protege3ProjectManager.getProjectManager().getMetaProjectManager().hasValidCredentials(name, password)) {
-            session.setAttribute(AuthenticationConstants.USERDATA_OBJECT, null);
+            session.setAttribute(AuthenticationConstants.USER, null);
             return null;
         }
 
-        UserData userData = AuthenticationUtil.createUserData(name);
-        session.setAttribute(AuthenticationConstants.USERDATA_OBJECT, userData);
-        return userData;
+        session.setAttribute(AuthenticationConstants.USER, name);
+        return new UserData(name);
     }
 
     public UserData validateUser(String name, String password) {
         if (!Protege3ProjectManager.getProjectManager().getMetaProjectManager().hasValidCredentials(name, password)) {
             return null;
         }
-        Log.getLogger().info("User " + name + " logged in at: " + new Date());
         return AuthenticationUtil.createUserData(name);
     }
 
@@ -103,15 +101,14 @@ public class AuthenticateServiceImpl extends RemoteServiceServlet implements Aut
         session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_ID, null);
         session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_PROVIDER, null);
         userData.setProperty(OpenIdUtil.REGISTRATION_RESULT_PROP, OpenIdConstants.REGISTER_USER_SUCCESS);
+        session.setAttribute(AuthenticationConstants.USER, userData.getName());
 
-        session.setAttribute(AuthenticationConstants.USERDATA_OBJECT, userData);
-
-        return userData;
+        return new UserData(userData.getName());
     }
 
     public UserData validateUserToAssociateOpenId(String userName, String password) {
 
-        if (!isAuthenticateWithOpenId()) {
+        if (isAuthenticateWithOpenId() == false) {
             return null;
         }
 
@@ -121,8 +118,10 @@ public class AuthenticateServiceImpl extends RemoteServiceServlet implements Aut
             if (!Protege3ProjectManager.getProjectManager().getMetaProjectManager().hasValidCredentials(userName, password)) {
                 return null;
             }
+
             HttpServletRequest request = this.getThreadLocalRequest();
             HttpSession session = request.getSession();
+
             String userOpenId = (String) session.getAttribute(OpenIdConstants.HTTPSESSION_OPENID_URL);
             String openIdAccName = (String) session.getAttribute(OpenIdConstants.HTTPSESSION_OPENID_ID);
             String openIdProvider = (String) session.getAttribute(OpenIdConstants.HTTPSESSION_OPENID_PROVIDER);
@@ -145,14 +144,17 @@ public class AuthenticateServiceImpl extends RemoteServiceServlet implements Aut
                 }
             }
 
-            Log.getLogger().info("User " + userName + " logged in at: " + new Date() + " with OpenId: " + userOpenId);
-
             userData = AuthenticationUtil.createUserData(userName);
 
             session.setAttribute(OpenIdConstants.AUTHENTICATED_USER_TO_ASSOC_OPEN_ID, userData);
             session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_URL, null);
             session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_ID, null);
             session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_PROVIDER, null);
+
+            session.setAttribute(AuthenticationConstants.USER, userName);
+
+            Log.getLogger().info("User " + userName + " logged in at: " + new Date() + " and associated its account with OpenId: " + userOpenId);
+
         } catch (Exception e) {
             Log.getLogger().log(Level.SEVERE, "Exception in validateUserToAssociateOpenId", e);
         }
