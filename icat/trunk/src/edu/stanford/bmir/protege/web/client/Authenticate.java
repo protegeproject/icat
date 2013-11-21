@@ -1,5 +1,8 @@
 package edu.stanford.bmir.protege.web.client;
 
+import java.util.Date;
+import java.util.Map;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Cookies;
@@ -7,18 +10,16 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.Window.ClosingEvent;
 import com.google.gwt.user.client.Window.ClosingHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+
 import edu.stanford.bmir.protege.web.client.rpc.ApplicationPropertiesServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.AuthenticateServiceManager;
 import edu.stanford.bmir.protege.web.client.ui.ClientApplicationPropertiesCache;
 import edu.stanford.bmir.protege.web.client.ui.login.LoginUtil;
 import edu.stanford.bmir.protege.web.client.ui.login.constants.AuthenticationConstants;
 
-import java.util.Date;
-import java.util.Map;
-
 /**
  * @author z.khan
- * 
+ *
  */
 public class Authenticate implements EntryPoint {
 
@@ -41,13 +42,16 @@ public class Authenticate implements EntryPoint {
 
     private void checkAuthenType() {
         String authenType = Window.Location.getParameter(AuthenticationConstants.AUTHEN_TYPE);
+
         if (authenType.trim().equals(AuthenticationConstants.AUTHEN_TYPE_LOGIN)) {//To open login popup in https window
             final String randomNumber = Window.Location.getParameter(AuthenticationConstants.RANDOM_NUMBER);
-            HandlerRegistration windowCloseHandlerRegistration = Window
-                    .addWindowClosingHandler(new LoginWindowCloseHandler(randomNumber));
+
+            HandlerRegistration windowCloseHandlerRegistration = Window.addWindowClosingHandler(new LoginWindowCloseHandler(randomNumber));
+
             LoginUtil loginUtil = new LoginUtil();
             loginUtil.setWindowCloseHandlerRegistration(windowCloseHandlerRegistration);
             loginUtil.login(true);
+
             setWindowSize("405", "408");
 
         } else if (authenType.trim().equals(AuthenticationConstants.AUTHEN_TYPE_CHANGE_PASSWORD)) {
@@ -75,7 +79,7 @@ public class Authenticate implements EntryPoint {
     protected void setWindowClosedCookie(String randomNumber) {
         Date expireDate = new Date();
         long nowLong = expireDate.getTime();
-        nowLong = nowLong + (1000 * 60 * 30);//30 minutes  
+        nowLong = nowLong + (1000 * 60 * 30);//30 minutes
         expireDate.setTime(nowLong);
         Cookies.setCookie(AuthenticationConstants.HTTPS_WINDOW_CLOSED_COOKIE + "." + randomNumber, "", expireDate);
     }
@@ -123,7 +127,7 @@ public class Authenticate implements EntryPoint {
             if (Cookies.getCookie(cookieName) == null) {
                 Date expireDate = new Date();
                 long nowLong = expireDate.getTime();
-                nowLong = nowLong + (1000 * 60 * 5);//5 minutes  
+                nowLong = nowLong + (1000 * 60 * 5);//5 minutes
                 expireDate.setTime(nowLong);
                 Cookies.setCookie(cookieName, cookieValue, expireDate);
             }
