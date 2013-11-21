@@ -269,10 +269,10 @@ public class OpenIdUtil {
         String openidUrl = GWT.getHostPageBaseURL() + OpenIdConstants.OPENID_AUTH_SERVLET_URLPATTERN;
         openidUrl = openidUrl + "?";
         if (isLoginWithHttps) {
-            openidUrl = openidUrl + AuthenticationConstants.DOMAIN_NAME_AND_PORT + "="
-                    + Window.Location.getParameter(AuthenticationConstants.DOMAIN_NAME_AND_PORT) + "&";
-            openidUrl = openidUrl + AuthenticationConstants.PROTOCOL + "="
-                    + Window.Location.getParameter(AuthenticationConstants.PROTOCOL) + "&";
+            openidUrl = openidUrl + AuthenticationConstants.AUTH_DOMAIN_NAME_AND_PORT + "="
+                    + Window.Location.getParameter(AuthenticationConstants.AUTH_DOMAIN_NAME_AND_PORT) + "&";
+            openidUrl = openidUrl + AuthenticationConstants.AUTH_PROTOCOL + "="
+                    + Window.Location.getParameter(AuthenticationConstants.AUTH_PROTOCOL) + "&";
         }
 
         switch (provId) {

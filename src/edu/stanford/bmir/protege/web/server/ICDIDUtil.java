@@ -42,8 +42,9 @@ public class ICDIDUtil {
     }
 
     public static void main (String[] args) throws Exception{
-        System.out.println(getPublicId("http://who.int/icd#V"));
+        // System.out.println(getPublicId("http://who.int/icd#V"));
         //System.out.println(getPublicId("http://who.int/ictm#1462_63a13dac_fbb6_4e21_9a3c_f0e312d405a2"));
+        System.out.println(getPublicId("http://who.int/icd#918_7aeacda2_5f4c_453e_8027_a21e8958c4c3"));
     }
 
 

@@ -3,7 +3,6 @@ package edu.stanford.bmir.protege.web.server;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -11,7 +10,6 @@ import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import edu.stanford.bmir.protege.web.client.rpc.data.UserData;
 import edu.stanford.bmir.protege.web.client.ui.login.constants.AuthenticationConstants;
 import edu.stanford.smi.protege.model.Cls;
 import edu.stanford.smi.protege.model.DefaultKnowledgeBase;
@@ -67,13 +65,8 @@ public class KBUtil {
     //TODO: not the best util class for this method.. find a better one
     public static String getUserInSession(HttpServletRequest request) {
         final HttpSession session = request.getSession();
-        final UserData userData = (UserData) session.getAttribute(AuthenticationConstants.USERDATA_OBJECT);
-        if (userData == null) {
-            Log.getLogger().warning("User in session is null! A user was expected. Session " + session.getId() + " created on: " + session.getCreationTime() +
-                    " internal: " + session + ". Date: " +  new Date());
-            return null;
-        }
-        return userData.getName();
+
+        return (String) session.getAttribute(AuthenticationConstants.USER);
     }
 
     public static String getRemoteProjectName(Project prj) {

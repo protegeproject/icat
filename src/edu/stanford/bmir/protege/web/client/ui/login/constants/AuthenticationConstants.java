@@ -1,13 +1,13 @@
 /**
- * 
+ *
  */
 package edu.stanford.bmir.protege.web.client.ui.login.constants;
 
 /**
  * Contains constants related to Authentication Module.
- * 
+ *
  * @author z.khan
- * 
+ *
  */
 public class AuthenticationConstants {
 
@@ -16,29 +16,29 @@ public class AuthenticationConstants {
     public static final String CHANGE_PASSWORD_NEW_SALT = "change.password.new.salt";
 
     //Authenticate Module constants
-    public static final String AUTHEN_TYPE = "authen.type";
+    public static final String AUTH_TYPE = "authen.type";
 
-    public static final String AUTHEN_TYPE_LOGIN = "login";
+    public static final String AUTH_TYPE_LOGIN = "login";
 
-    public static final String AUTHEN_TYPE_CHANGE_PASSWORD = "change.password";
+    public static final String AUTH_TYPE_CHANGE_PASSWORD = "change.password";
 
-    public static final String AUTHEN_TYPE_CREATE_USER_TO_ASSOC_OPEN_ID = "create.user.to.assoc.openid";
+    public static final String AUTH_TYPE_CREATE_USER_TO_ASSOC_OPEN_ID = "create.user.to.assoc.openid";
 
-    public static final String AUTHEN_TYPE_LOGIN_TO_ASSOC_OPEN_ID = "login.to.assoc.openid";
+    public static final String AUTH_TYPE_LOGIN_TO_ASSOC_OPEN_ID = "login.to.assoc.openid";
 
-    public static final String AUTHEN_TYPE_CREATE_USER = "create.user";
+    public static final String AUTH_TYPE_CREATE_USER = "create.user";
 
-    public static final String DOMAIN_NAME_AND_PORT = "domain.name.and.port";
+    public static final String AUTH_DOMAIN_NAME_AND_PORT = "domain.name.and.port";
 
-    public static final String RANDOM_NUMBER = "random.number";
+    public static final String AUTH_RANDOM_NUMBER = "random.number";
 
-    public static final String PROTOCOL = "protocol";
+    public static final String AUTH_PROTOCOL = "protocol";
 
-    public static final String USERNAME = "username";
+    public static final String AUTH_USERNAME = "username";
 
-    public static final String AUTHENICATE_MODULE_HTML_FILE = "Authenticate.html";
+    public static final String AUTH_MODULE_HTML_FILE = "Authenticate.html";
 
-    public static final String USERDATA_OBJECT = "userdata.object";
+
 
     public static final String LOGIN_METHOD = "login.method";
 
@@ -75,5 +75,12 @@ public class AuthenticationConstants {
     public static final String CHANGE_PASSWORD_SUCCESS = "change.password.result.success";
 
     public static final String NEW_SALT = "new.salt";
+
+
+    /*
+     * Used to store the user name in a session, value is a string representing the user name
+     */
+    public static final String USER = "user";
+
 
 }

@@ -682,9 +682,9 @@ public class LoginUtil {
         } else {
             queryString = queryString + "&";
         }
-        queryString = queryString + AuthenticationConstants.AUTHEN_TYPE + "=" + authType;
+        queryString = queryString + AuthenticationConstants.AUTH_TYPE + "=" + authType;
 
-        String loginWindowUrl = GWT.getHostPageBaseURL() + AuthenticationConstants.AUTHENICATE_MODULE_HTML_FILE;
+        String loginWindowUrl = GWT.getHostPageBaseURL() + AuthenticationConstants.AUTH_MODULE_HTML_FILE;
         loginWindowUrl = loginWindowUrl.replace(com.google.gwt.user.client.Window.Location.getProtocol(), "https:");
 
         String host = com.google.gwt.user.client.Window.Location.getHostName();
@@ -1283,7 +1283,7 @@ public class LoginUtil {
                 openIdUtil.getTimeoutAndCheckIfAuthenToAssocId();
                 LoginUtil loginUtil = new LoginUtil();
                 String authUrl = loginUtil.getAuthenticateWindowUrl(
-                        AuthenticationConstants.AUTHEN_TYPE_LOGIN_TO_ASSOC_OPEN_ID, httsPort);
+                        AuthenticationConstants.AUTH_TYPE_LOGIN_TO_ASSOC_OPEN_ID, httsPort);
 
                 loginUtil.openNewWindow(authUrl, "375", "220", "0");
 
@@ -1308,7 +1308,7 @@ public class LoginUtil {
                 openIdUtil.getTimeoutAndCheckIfUserCreatedToAssocId();
                 LoginUtil loginUtil = new LoginUtil();
                 String authUrl = loginUtil.getAuthenticateWindowUrl(
-                        AuthenticationConstants.AUTHEN_TYPE_CREATE_USER_TO_ASSOC_OPEN_ID, httsPort);
+                        AuthenticationConstants.AUTH_TYPE_CREATE_USER_TO_ASSOC_OPEN_ID, httsPort);
 
                 loginUtil.openNewWindow(authUrl, "440", "260", "0");
 

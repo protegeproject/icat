@@ -356,8 +356,8 @@ public class EditProfileUtil {
             Cookies.removeCookie(AuthenticationConstants.CHANGE_PASSWORD_RESULT);
             notifyIfPasswordChanged();
             String authUrl = loginUtil.getAuthenticateWindowUrl(
-                    AuthenticationConstants.AUTHEN_TYPE_CHANGE_PASSWORD, httpsPort);
-            authUrl = authUrl + "&" + AuthenticationConstants.USERNAME + "="
+                    AuthenticationConstants.AUTH_TYPE_CHANGE_PASSWORD, httpsPort);
+            authUrl = authUrl + "&" + AuthenticationConstants.AUTH_USERNAME + "="
                     + GlobalSettings.getGlobalSettings().getUserName();
             loginUtil.openNewWindow(authUrl, "440", "260", "0");
         }

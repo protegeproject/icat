@@ -5,7 +5,7 @@ package edu.stanford.bmir.protege.web.server.openid;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.logging.Level;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,14 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.openid4java.consumer.ConsumerManager;
 import org.openid4java.consumer.VerificationResult;
 import org.openid4java.discovery.DiscoveryInformation;
 import org.openid4java.discovery.Identifier;
 import org.openid4java.message.AuthSuccess;
-import org.openid4java.message.Parameter;
 import org.openid4java.message.ParameterList;
 import org.openid4java.message.ax.AxMessage;
 import org.openid4java.message.ax.FetchResponse;
@@ -29,6 +26,7 @@ import org.openid4java.message.sreg.SRegResponse;
 
 import edu.stanford.bmir.protege.web.client.ui.login.constants.AuthenticationConstants;
 import edu.stanford.bmir.protege.web.client.ui.openid.constants.OpenIdConstants;
+import edu.stanford.smi.protege.util.Log;
 
 /**
  * @author z.Khan
@@ -37,7 +35,6 @@ import edu.stanford.bmir.protege.web.client.ui.openid.constants.OpenIdConstants;
 public class OpenIdAuthenticationResponseServlet extends HttpServlet {
 
     private static final long serialVersionUID = 8089333325493540320L;
-    private static final Log log = LogFactory.getLog(OpenIdAuthenticationResponseServlet.class);
 
     @Override
     public void service(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws ServletException,
@@ -47,14 +44,6 @@ public class OpenIdAuthenticationResponseServlet extends HttpServlet {
             ConsumerManager manager = (ConsumerManager) httpSession.getAttribute("manager");
 
             ParameterList openidResp = new ParameterList(httpRequest.getParameterMap());
-            List list = openidResp.getParameters();
-            if (list != null){
-                for (Object param : list) {
-                    if (param != null && ((Parameter)param).getKey() != null && ((Parameter)param).getValue() != null){
-                        log.debug(((Parameter)param).getKey() +"=" +((Parameter)param).getValue());
-                    }
-                }
-            }
 
             String openIdIdentity = httpRequest.getParameter("openid.identity");
             DiscoveryInformation discovered = (DiscoveryInformation) httpSession.getAttribute("discovered");
@@ -66,7 +55,7 @@ public class OpenIdAuthenticationResponseServlet extends HttpServlet {
             }
             // verify the response
             VerificationResult verification = null;
-            log.debug("Receiving URL = " + receivingURL.toString());
+
             verification = manager.verify(receivingURL.toString(), openidResp, discovered);
             // examine the verification result and extract the verified identifier
             Identifier verified = verification.getVerifiedId();
@@ -80,26 +69,31 @@ public class OpenIdAuthenticationResponseServlet extends HttpServlet {
                     FetchResponse fetchResp = (FetchResponse) authSuccess.getExtension(AxMessage.OPENID_NS_AX);
                     emailId = (String) fetchResp.getAttributeValues("email").get(0);
 
-                    session.setAttribute("emailFromFetch", fetchResp.getAttributeValues("email").get(0));
+                    session.setAttribute("emailFromFetch", emailId);
                 }
+
                 if (authSuccess.hasExtension(SRegMessage.OPENID_NS_SREG)) {
                     SRegResponse sregResp = (SRegResponse) authSuccess.getExtension(SRegMessage.OPENID_NS_SREG);
                     emailId = sregResp.getAttributeValue("email");
                 }
+
                 if (emailId != null) {
                     httpSession.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_ID, emailId);
                 } else {
                     httpSession.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_ID, openIdIdentity);
                 }
+
                 httpSession.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_URL, verified.getIdentifier());
+
+                Log.getLogger().info("OpenId login for: " + emailId);
 
             } else {
                 httpSession.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_ID, null);
                 httpSession.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_PROVIDER, null);
                 httpSession.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_URL, null);
             }
-            httpSession.setAttribute(AuthenticationConstants.LOGIN_METHOD,
-                    AuthenticationConstants.LOGIN_METHOD_OPEN_ID_ACCOUNT);
+            httpSession.setAttribute(AuthenticationConstants.LOGIN_METHOD,  AuthenticationConstants.LOGIN_METHOD_OPEN_ID_ACCOUNT);
+
             httpResponse.setContentType("text/html");
             PrintWriter out = httpResponse.getWriter();
             out.println("<html>");
@@ -108,7 +102,7 @@ public class OpenIdAuthenticationResponseServlet extends HttpServlet {
             out.close();
 
         } catch (Exception e) {
-            log.error("Exception OpenIdAuthenticationResponseServlet: " , e);
+            Log.getLogger().log(Level.WARNING, "Error in the OpenId authentication servlet: " + e.getMessage(), e);
         }
     }
 }

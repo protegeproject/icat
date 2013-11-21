@@ -68,38 +68,39 @@ public class OpenIdServiceImpl extends RemoteServiceServlet implements OpenIdSer
         return oIdData;
     }
 
-    @SuppressWarnings("finally")
     public OpenIdData removeAssocToOpenId(String name, String opnId) {
         OpenIdData openIdData = new OpenIdData();
-        try {
-            User user = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getMetaProject().getUser(name);
-            Collection<PropertyValue> propColl = user.getPropertyValues();
-            for (Iterator<PropertyValue> iterator = propColl.iterator(); iterator.hasNext();) {
-                PropertyValue propertyValue = iterator.next();
-                if (propertyValue.getPropertyName().startsWith(OpenIdConstants.OPENID_PROPERTY_PREFIX)
-                        && propertyValue.getPropertyName().endsWith(OpenIdConstants.OPENID_PROPERTY_URL_SUFFIX)) {
-                    String openIdAccNamePropName = propertyValue.getPropertyName().replace(
-                            OpenIdConstants.OPENID_PROPERTY_URL_SUFFIX, OpenIdConstants.OPENID_PROPERTY_ID_SUFFIX);
-                    String openIdProvdNamePropName = propertyValue.getPropertyName()
-                    .replace(OpenIdConstants.OPENID_PROPERTY_URL_SUFFIX, OpenIdConstants.OPENID_PROPERTY_PROVIDER_SUFFIX);
+
+        User user = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getMetaProject().getUser(name);
+        Collection<PropertyValue> propColl = user.getPropertyValues();
+
+        for (Iterator<PropertyValue> iterator = propColl.iterator(); iterator.hasNext();) {
+            PropertyValue propertyValuePair = iterator.next();
+            try {
+                String propertyName = propertyValuePair.getPropertyName();
+                if (propertyName.startsWith(OpenIdConstants.OPENID_PROPERTY_PREFIX) && propertyName.endsWith(OpenIdConstants.OPENID_PROPERTY_URL_SUFFIX)) {
+                    String openIdAccNamePropName = propertyName.replace(OpenIdConstants.OPENID_PROPERTY_URL_SUFFIX, OpenIdConstants.OPENID_PROPERTY_ID_SUFFIX);
+                    String openIdProvdNamePropName = propertyName.replace(OpenIdConstants.OPENID_PROPERTY_URL_SUFFIX, OpenIdConstants.OPENID_PROPERTY_PROVIDER_SUFFIX);
                     String openIdAccNamePropValue = user.getPropertyValue(openIdAccNamePropName);
                     String openIdProvdNamePropValue = user.getPropertyValue(openIdProvdNamePropName);
-                    if (propertyValue.getPropertyValue().trim().equalsIgnoreCase(opnId)) {
 
-                        user.removePropertyValue(propertyValue.getPropertyName(), propertyValue.getPropertyValue());
+                    String propertyValue = propertyValuePair.getPropertyValue();
+                    if (propertyValue.trim().equalsIgnoreCase(opnId)) {
+                        user.removePropertyValue(propertyName, propertyValue);
                         user.removePropertyValue(openIdAccNamePropName, openIdAccNamePropValue);
                         user.removePropertyValue(openIdProvdNamePropName, openIdProvdNamePropValue);
                     }
                 }
+            } catch (Exception e) {
+                Log.getLogger().log(Level.WARNING, "Errors when parsing property values to remove the openID association for user: " + name + " Message: " + e.getMessage());
             }
-        } catch (Exception e) {
-            Log.getLogger().log(Level.WARNING, "Errors at removing Users Association to OpenId:", e);
-        } finally {
-            openIdData = getUsersOpenId(name);
-            openIdData.setName(name);
-            return openIdData;
         }
+
+        openIdData = getUsersOpenId(name);
+        openIdData.setName(name);
+        return openIdData;
     }
+
 
     public OpenIdData assocNewOpenIdToUser(String name) {
         OpenIdData openIdData = new OpenIdData();
@@ -173,29 +174,35 @@ public class OpenIdServiceImpl extends RemoteServiceServlet implements OpenIdSer
     }
 
     public UserData checkIfOpenIdInSessionForLogin() {
-        UserData userData = null;
-        if (isAuthenticateWithOpenId()) {
-            try {
-                HttpServletRequest request = this.getThreadLocalRequest();
-                HttpSession session = request.getSession(false);
-                if (session != null) {
-                    String openIdUrl = (String) session.getAttribute(OpenIdConstants.HTTPSESSION_OPENID_URL);
-                    if (openIdUrl != null) {
-                        userData = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getUserAssociatedWithOpenId(openIdUrl);
+        if (isAuthenticateWithOpenId() == false) {
+            return null;
+        }
 
-                        if (userData != null && userData.getName() != null) { //user is associated with openid
-                            session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_URL, null);
-                            session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_ID, null);
-                            session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_PROVIDER, null);
-                            session.setAttribute(AuthenticationConstants.USERDATA_OBJECT, userData);
-                        }
+        String userName = null;
+
+        try {
+            HttpServletRequest request = this.getThreadLocalRequest();
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                String openIdUrl = (String) session.getAttribute(OpenIdConstants.HTTPSESSION_OPENID_URL);
+                if (openIdUrl != null) {
+
+                    UserData userData = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getUserAssociatedWithOpenId(openIdUrl);
+
+                    if (userData != null && userData.getName() != null) { //user is associated with openid
+                        userName = userData.getName();
+                        session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_URL, null);
+                        session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_ID, null);
+                        session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_PROVIDER, null);
+                        session.setAttribute(AuthenticationConstants.USER, userName);
                     }
                 }
-            } catch (Exception e) {
-                Log.getLogger().log(Level.WARNING, "Errors at checkIfOpenIdInSessionForLogin  User:", e);
             }
+        } catch (Exception e) {
+            Log.getLogger().log(Level.WARNING, "Errors at checkIfOpenIdInSessionForLogin  User:", e);
         }
-        return userData;
+
+        return new UserData(userName);
     }
 
     public void clearCreateUserToAssocOpenIdSessData() {
@@ -336,12 +343,14 @@ public class OpenIdServiceImpl extends RemoteServiceServlet implements OpenIdSer
                 }
             }
 
-            Log.getLogger().info("User " + userName + " logged in at: " + new Date() + " with OpenId: " + userOpenId);
-
             session.setAttribute(OpenIdConstants.AUTHENTICATED_USER_TO_ASSOC_OPEN_ID, userName);
             session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_URL, null);
             session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_ID, null);
             session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_PROVIDER, null);
+
+            session.setAttribute(AuthenticationConstants.USER, userName);
+
+            Log.getLogger().info("User " + userName + " logged in at: " + new Date() + " and associated OpenId: " + userOpenId);
         } catch (Exception e) {
             Log.getLogger().log(Level.SEVERE, "Exception in validateUserToAssociateOpenId", e);
         }

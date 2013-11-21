@@ -297,13 +297,13 @@ public class TopPanel extends Panel {
                 String httpsPort = ClientApplicationPropertiesCache.getApplicationHttpsPort();
 
                 String authenUrl = loginUtil.getAuthenticateWindowUrl(
-                        AuthenticationConstants.AUTHEN_TYPE_LOGIN, httpsPort);
-                authenUrl = authenUrl + "&" + AuthenticationConstants.PROTOCOL + "="
+                        AuthenticationConstants.AUTH_TYPE_LOGIN, httpsPort);
+                authenUrl = authenUrl + "&" + AuthenticationConstants.AUTH_PROTOCOL + "="
                         + com.google.gwt.user.client.Window.Location.getProtocol();
-                authenUrl = authenUrl + "&" + AuthenticationConstants.DOMAIN_NAME_AND_PORT + "="
+                authenUrl = authenUrl + "&" + AuthenticationConstants.AUTH_DOMAIN_NAME_AND_PORT + "="
                         + com.google.gwt.user.client.Window.Location.getHost();
                 int randomNumber = Random.nextInt(10000);
-                authenUrl = authenUrl + "&" + AuthenticationConstants.RANDOM_NUMBER + "="
+                authenUrl = authenUrl + "&" + AuthenticationConstants.AUTH_RANDOM_NUMBER + "="
                         + randomNumber;
                 AdminServiceManager.getInstance().clearPreviousLoginAuthenticationData(
                         new clearLoginAuthDataHandler(authenUrl, loginUtil, randomNumber));
@@ -341,8 +341,8 @@ public class TopPanel extends Panel {
         Cookies.removeCookie(AuthenticationConstants.CHANGE_PASSWORD_RESULT);
         notifyIfPasswordChanged();
         String authUrl = loginUtil.getAuthenticateWindowUrl(
-                AuthenticationConstants.AUTHEN_TYPE_CHANGE_PASSWORD, httsPort);
-        authUrl = authUrl + "&" + AuthenticationConstants.USERNAME + "="
+                AuthenticationConstants.AUTH_TYPE_CHANGE_PASSWORD, httsPort);
+        authUrl = authUrl + "&" + AuthenticationConstants.AUTH_USERNAME + "="
                 + GlobalSettings.getGlobalSettings().getUserName();
         loginUtil.openNewWindow(authUrl, "440", "260", "0");
     }
@@ -404,7 +404,7 @@ public class TopPanel extends Panel {
     private void createUserViaHttps(final LoginUtil loginUtil) {
         String httsPort = ClientApplicationPropertiesCache.getApplicationHttpsPort();
         notifyIfPasswordChanged();
-        String authUrl = loginUtil.getAuthenticateWindowUrl(AuthenticationConstants.AUTHEN_TYPE_CREATE_USER,
+        String authUrl = loginUtil.getAuthenticateWindowUrl(AuthenticationConstants.AUTH_TYPE_CREATE_USER,
                 httsPort);
         loginUtil.openNewWindow(authUrl, "440", "260", "0");
     }

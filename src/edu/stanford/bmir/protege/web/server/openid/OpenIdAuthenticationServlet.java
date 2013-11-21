@@ -39,8 +39,8 @@ public class OpenIdAuthenticationServlet extends HttpServlet {
         returnUrl = returnUrl.substring(0, returnUrl.lastIndexOf('/')) + "/openidresponse";
         String openId = httpServletRequest.getParameter("openId");
         String openIdProvider = httpServletRequest.getParameter(OpenIdConstants.HTTPSESSION_OPENID_PROVIDER);
-        String domainNameAndPort = httpServletRequest.getParameter(AuthenticationConstants.DOMAIN_NAME_AND_PORT);
-        String protocol = httpServletRequest.getParameter(AuthenticationConstants.PROTOCOL);
+        String domainNameAndPort = httpServletRequest.getParameter(AuthenticationConstants.AUTH_DOMAIN_NAME_AND_PORT);
+        String protocol = httpServletRequest.getParameter(AuthenticationConstants.AUTH_PROTOCOL);
         if (domainNameAndPort != null) {
             URL url;
             try {
