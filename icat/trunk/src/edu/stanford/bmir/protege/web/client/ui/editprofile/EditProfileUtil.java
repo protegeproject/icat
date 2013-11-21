@@ -1,7 +1,9 @@
 /**
- * 
+ *
  */
 package edu.stanford.bmir.protege.web.client.ui.editprofile;
+
+import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -25,6 +27,7 @@ import com.gwtext.client.widgets.Window;
 import com.gwtext.client.widgets.event.ButtonListenerAdapter;
 import com.gwtext.client.widgets.layout.AnchorLayoutData;
 import com.gwtext.client.widgets.layout.FitLayout;
+
 import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.AdminServiceManager;
@@ -38,11 +41,9 @@ import edu.stanford.bmir.protege.web.client.ui.login.LoginUtil;
 import edu.stanford.bmir.protege.web.client.ui.login.constants.AuthenticationConstants;
 import edu.stanford.bmir.protege.web.client.ui.openid.OpenIdUtil;
 
-import java.util.Map;
-
 /**
  * @author z.khan
- * 
+ *
  */
 public class EditProfileUtil {
 
@@ -251,7 +252,7 @@ public class EditProfileUtil {
             if (completions > 2){
             win.getEl().unmask();
             win.close();
-            MessageBox.alert("Profile Information was Updated successfully.");
+            MessageBox.alert("Profile was updated successfully.");
                 completions = 0;
             }
             }
