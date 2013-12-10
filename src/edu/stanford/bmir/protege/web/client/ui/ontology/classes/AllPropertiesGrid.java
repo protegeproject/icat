@@ -129,7 +129,33 @@ public class AllPropertiesGrid extends EditorGridPanel {
     }
 
     protected void onCellDoubleClick(int rowIndex, int colindex) {
-        //do something - for future use
+        if (isInstanceOrClassValueType((PropertyEntityData) store.getAt(rowIndex).getAsObject(PROPERTY))) {
+            displayInstance((EntityData) store.getAt(rowIndex).getAsObject(VALUE));
+        }
+    }
+
+
+    protected void displayInstance(EntityData entity) {
+        final com.gwtext.client.widgets.Window window = new com.gwtext.client.widgets.Window();
+        window.setTitle("Properties for " + UIUtil.getDisplayText(entity) + (" (internal id: " + entity.getName() + ")"));
+        window.setClosable(true);
+        window.setPaddings(7);
+        window.setWidth(500);
+        window.setHeight(350);
+        window.setLayout(new FitLayout());
+        window.setCloseAction(com.gwtext.client.widgets.Window.CLOSE);
+        window.add(createInstancePanel(entity));
+        window.show();
+    }
+
+
+    protected Panel createInstancePanel(EntityData entity) {
+        Panel panel = new Panel();
+        panel.setLayout(new FitLayout());
+        AllPropertiesGrid propGrid = new AllPropertiesGrid(project);
+        propGrid.setEntity(entity);
+        panel.add(propGrid);
+        return panel;
     }
 
 
@@ -175,9 +201,14 @@ public class AllPropertiesGrid extends EditorGridPanel {
         return gridRowListener;
     }
 
-    private boolean isStringOrAnyValueType(EntityData prop) {
+    private boolean isStringOrAnyValueType(PropertyEntityData prop) {
         ValueType vt = prop.getValueType();
         return vt == null || ValueType.String.equals(vt) || ValueType.Literal.equals(vt) || ValueType.Any.equals(vt);
+    }
+
+    private boolean isInstanceOrClassValueType(PropertyEntityData prop) {
+        ValueType vt = prop.getValueType();
+        return vt != null && (ValueType.Instance.equals(vt) || ValueType.Cls.equals(vt) || ValueType.Class.equals(vt));
     }
 
     protected EditorGridListener getEditorGridListener() {
