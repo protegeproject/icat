@@ -385,7 +385,6 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
     protected void onDeleteColumnValue(final Record record, final int rowIndex, final int colIndex) {
         String field = record.getFields()[colIndex];
-//        EntityData oldValue = (EntityData) shadowStore.getRecordAt(rowIndex).getAsObject(field);
         EntityData oldValue = getEntityDataValueAt(record, rowIndex, colIndex);
 
         record.set(field, (String)null);
@@ -686,8 +685,6 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     }
 
     private void editInstanceFieldType(final Record record, final int rowIndex, final int colIndex) {
-        //final String field = record.getFields()[colIndex];
-        //final Object oldValue = shadowStore.getRecordAt(rowIndex).getAsObject(field);
         final EntityData oldValue = getEntityDataValueAt(record, rowIndex, colIndex);
 
         Collection<EntityData> clses = null;
@@ -710,8 +707,6 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     }
 
     private void editClassFieldType(final Record record, final int rowIndex, final int colIndex) {
-        //final String field = record.getFields()[colIndex];
-        //final Object oldValue = shadowStore.getRecordAt(rowIndex).getAsObject(field);
         final Object oldValue = getEntityDataValueAt(record, rowIndex, colIndex);
 
         String topCls = (String) getColumnConfiguration(colIndex, FormConstants.TOP_CLASS);
@@ -793,7 +788,6 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 @Override
                 public void onAfterEdit(GridPanel grid, Record record, String field, Object newValue, Object oldValue,
                         int rowIndex, int colIndex) {
-                    //EntityData oldValueEntityData = (EntityData) shadowStore.getRecordAt(rowIndex).getAsObject(properties.get(colIndex));
                     EntityData oldValueEntityData = getEntityDataValueAt(record, rowIndex,colIndex);
                     changeValue(record, newValue, oldValueEntityData, rowIndex, colIndex);
                 }
@@ -804,14 +798,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
 
 	private EntityData getEntityDataValueAt(Record record, int rowIndex, int colIndex) {
-		//return (EntityData) shadowStore.getRecordAt(rowIndex).getAsObject(properties.get(colIndex));
-
 		//this would work only for columns that represent property names
 		//String field = getPropertyFieldName(colIndex);
 		String field = record.getFields()[colIndex];
-        //EntityData oldValue = (EntityData) shadowStore.getRecordAt(rowIndex).getAsObject(field);
-
-        //final Object oldValue = shadowStore.getRecordAt(rowIndex).getAsObject(field);
 
 		return (EntityData) shadowStore.getRecordAt(rowIndex).getAsObject(field);
 	}
@@ -879,7 +868,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 String property = getPropertyNameFromConfig(columnConfig);
                 int index = getColumnIndexFromConfig(columnConfig);
                 props[index] = property;
-                prop2Index.put(property, index);////
+                prop2Index.put(property, index);
 
                 String cloneOf = isCloneColumn(columnConfig);
                 if (cloneOf != null) {
@@ -893,10 +882,6 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         }
 
         properties = Arrays.asList(props);
-//        //no need for this, since it is added in the for loop above
-//        for (int i = 0; i < props.length; i++) {
-//            prop2Index.put(props[i], i);
-//        }
 
         createInstanceColumn(fieldDef, columns, colCount);
         createActionColumns(fieldDef, columns, colCount);
