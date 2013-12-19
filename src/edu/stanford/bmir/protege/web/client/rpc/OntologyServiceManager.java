@@ -13,6 +13,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.ConditionItem;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionSuggestion;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
+import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValuesList;
 import edu.stanford.bmir.protege.web.client.rpc.data.ImportsData;
 import edu.stanford.bmir.protege.web.client.rpc.data.MetricData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PaginationData;
@@ -91,6 +92,13 @@ public class OntologyServiceManager {
             AsyncCallback<List<EntityPropertyValues>> cb) {
         proxy.getEntityPropertyValues(projectName, entities, properties, reifiedProps, cb);
     }
+
+	public void getMultilevelEntityPropertyValues(String projectName,
+			List<String> entities, String property, List<String> reifiedProperties,
+			int[] subjectEntityIndexes, AsyncCallback<List<EntityPropertyValuesList>> cb) {
+		proxy.getMultilevelEntityPropertyValues(projectName, 
+				entities, property, reifiedProperties, subjectEntityIndexes, cb);
+	}
 
     public void getRootEntity(String projectName, AsyncCallback<EntityData> cb) {
         proxy.getRootEntity(projectName, cb);

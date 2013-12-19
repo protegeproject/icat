@@ -51,6 +51,7 @@ public class ICDIndexWidget extends InstanceGridWidget {
     private static int OFFSET_COMMENT_COLUMN = 5;
     private static int OFFSET_MAX_COLUMN = OFFSET_COMMENT_COLUMN;
 
+    private String propertyNameType = null;
     private String fieldNameType = null;
     private int colIndexType = -1;
 
@@ -86,14 +87,20 @@ public class ICDIndexWidget extends InstanceGridWidget {
 
         for (String key : widgetConfig.keySet()) {
             if (key.startsWith(FormConstants.COLUMN_PREFIX)) {
-                ColumnConfig colConfig = createColumn((Map<String, Object>) widgetConfig.get(key), fieldDef, columns,
-                        props);
+                Map<String, Object> columnConfig = (Map<String, Object>) widgetConfig.get(key);
+                
+                String property = getPropertyNameFromConfig(columnConfig);
+                int index = getColumnIndexFromConfig(columnConfig);
+                props[index] = property;
+                
+                ColumnConfig colConfig = createColumn(columnConfig, fieldDef, columns, property, index);
 //
 //                //do not allow users to rearrange instance order
 //                colConfig.setSortable(false);
 
                 //hide and extract info from column storing the parent instance name
                 if (colConfig.getHeader().toLowerCase().contains("type")) {
+                	propertyNameType = property;
                     fieldNameType = colConfig.getDataIndex();
                     //either this, or there is a better way to get colIndexParent using prop2Index (see below)
                     //colIndexParent = Integer.parseInt(key.substring(FormConstants.COLUMN_PREFIX.length())) - 1; //Column1 -> index 0, Column2 -> index 1, etc.
@@ -107,8 +114,8 @@ public class ICDIndexWidget extends InstanceGridWidget {
             prop2Index.put(props[i], i);
         }
         //set the colIndexParent
-        if (fieldNameType != null) {
-            Integer fieldNameParentIndex = prop2Index.get(fieldNameType);
+        if (propertyNameType != null) {
+            Integer fieldNameParentIndex = prop2Index.get(propertyNameType);
             colIndexType = fieldNameParentIndex == null ? -1 : fieldNameParentIndex.intValue();
         }
 
@@ -337,7 +344,7 @@ public class ICDIndexWidget extends InstanceGridWidget {
         public void handleSuccess(EntityPropertyValues result) {
             if (mySubject.equals(getSubject())) {
                 for (PropertyEntityData ped : result.getProperties()) {
-                    if (ped.getName().equals(fieldNameType)) {
+                    if (ped.getName().equals(propertyNameType)) {
                         int propIndex = getIndexOfProperty(ped.getName());
                         String fieldName = record.getFields()[propIndex];
                         String types = typeFullNamesToString(result.getPropertyValues(ped));
@@ -467,7 +474,7 @@ public class ICDIndexWidget extends InstanceGridWidget {
         public void handleSuccess(EntityPropertyValues result) {
             if (mySubject.equals(getSubject())) {
                 for (PropertyEntityData ped : result.getProperties()) {
-                    if (ped.getName().equals(fieldNameType)) {
+                    if (ped.getName().equals(propertyNameType)) {
                         int propIndex = getIndexOfProperty(ped.getName());
                         String fieldName = record.getFields()[propIndex];
                         String types = typeFullNamesToString(result.getPropertyValues(ped));
@@ -493,7 +500,7 @@ public class ICDIndexWidget extends InstanceGridWidget {
         String types = null;
         for (PropertyEntityData ped : epv.getProperties()) {
             //data[i][getIndexOfProperty(ped.getName())] = UIUtil.commaSeparatedList(epv.getPropertyValues(ped));
-            if (ped.getName().equals(fieldNameType)) {
+            if (ped.getName().equals(propertyNameType)) {
                 List<EntityData> values = epv.getPropertyValues(ped);
                 types = typeFullNamesToString(values);
             }

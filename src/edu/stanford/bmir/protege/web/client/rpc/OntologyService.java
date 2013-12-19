@@ -13,6 +13,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.ConditionItem;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionSuggestion;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
+import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValuesList;
 import edu.stanford.bmir.protege.web.client.rpc.data.ImportsData;
 import edu.stanford.bmir.protege.web.client.rpc.data.MetricData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PaginationData;
@@ -65,6 +66,10 @@ public interface OntologyService extends RemoteService {
     public List<Triple> getEntityTriples(String projectName, List<String> entities, List<String> properties, List<String> reifiedProps);
 
     public List<EntityPropertyValues> getEntityPropertyValues(String projectName, List<String> entities, List<String> properties, List<String> reifiedProps);
+
+	public List<EntityPropertyValuesList> getMultilevelEntityPropertyValues(
+			String projectName, List<String> entities, String property,
+			List<String> reifiedProperties, int[] subjectEntityIndexes);
 
     public EntityData renameEntity(String projectName, String oldName, String newName, String user,
             String operationDescription);

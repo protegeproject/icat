@@ -84,6 +84,7 @@ import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
+    protected static String FIELD_NAME_INDEX_SEPARATOR = "@";
     protected static String INSTANCE_FIELD_NAME = "@instance@";
     protected static String DELETE_FIELD_NAME = "@delete@";
     protected static String COMMENT_FIELD_NAME = "@comment@";
@@ -384,12 +385,13 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
     protected void onDeleteColumnValue(final Record record, final int rowIndex, final int colIndex) {
         String field = record.getFields()[colIndex];
-        EntityData oldValue = (EntityData) shadowStore.getRecordAt(rowIndex).getAsObject(field);
+//        EntityData oldValue = (EntityData) shadowStore.getRecordAt(rowIndex).getAsObject(field);
+        EntityData oldValue = getEntityDataValueAt(record, rowIndex, colIndex);
 
         record.set(field, (String)null);
         shadowStore.getRecordAt(rowIndex).set(field, (EntityData)null);
 
-        changeValue(record, null, oldValue, colIndex);
+        changeValue(record, null, oldValue, rowIndex, colIndex);
     }
 
     protected void onDelete(int index) {
@@ -538,6 +540,14 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 		return true;
 	}
 
+	protected String getPropertyFieldName(final int colIndex) {
+		return getPropertyFieldName(properties.get(colIndex), colIndex);
+	}
+
+	protected String getPropertyFieldName(final String property, final int colIndex) {
+		return property + FIELD_NAME_INDEX_SEPARATOR + colIndex;
+	}
+
 	protected void createStore() {
         ArrayReader reader = new ArrayReader(recordDef);
         MemoryProxy dataProxy = new MemoryProxy(new Object[][] {});
@@ -553,7 +563,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     private void createShadowStore() {
         FieldDef[] fieldDefs = new FieldDef[properties.size()];
         for (int i = 0; i < properties.size(); i++) {
-            fieldDefs[i] = new ObjectFieldDef(properties.get(i));
+            fieldDefs[i] = new ObjectFieldDef(getPropertyFieldName(i));
         }
         shadowRecordDef = new RecordDef(fieldDefs);
 
@@ -640,9 +650,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         //text editing
         if (record != null && gridEditorOption != null) {
             if (gridEditorOption.equals(FormConstants.FIELD_EDITOR_MULTILINE)) {
-                editWithPopupGridEditor(PopupGridEditor.TEXT_AREA, grid, colIndex, record);
+                editWithPopupGridEditor(PopupGridEditor.TEXT_AREA, grid, rowIndex, colIndex, record);
             } else if (gridEditorOption.equals(FormConstants.FIELD_EDITOR_HTML)) {
-                editWithPopupGridEditor(PopupGridEditor.HTML, grid, colIndex, record);
+                editWithPopupGridEditor(PopupGridEditor.HTML, grid, rowIndex, colIndex, record);
             }
         }
 
@@ -660,7 +670,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     }
 
 
-    private void editWithPopupGridEditor(final PopupGridEditor editor, final GridPanel grid, final int colIndex, final Record record) {
+    private void editWithPopupGridEditor(final PopupGridEditor editor, final GridPanel grid, final int rowIndex, final int colIndex, final Record record) {
         final String field = record.getFields()[colIndex];
         final String value = record.getAsString(field);
         editor.show(labelText, grid.getColumnModel().getColumnHeader(colIndex), value, isWriteOperationAllowed(false));
@@ -669,15 +679,16 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 if (editor.hasValueChanged()) {
                     String newValue = editor.getValue();
                     record.set(field, newValue);
-                    changeValue(record, newValue, value, colIndex);
+                    changeValue(record, newValue, value, rowIndex, colIndex);
                 }
             }
         });
     }
 
     private void editInstanceFieldType(final Record record, final int rowIndex, final int colIndex) {
-        final String field = record.getFields()[colIndex];
-        final Object oldValue = shadowStore.getRecordAt(rowIndex).getAsObject(field);
+        //final String field = record.getFields()[colIndex];
+        //final Object oldValue = shadowStore.getRecordAt(rowIndex).getAsObject(field);
+        final EntityData oldValue = getEntityDataValueAt(record, rowIndex, colIndex);
 
         Collection<EntityData> clses = null;
 
@@ -699,8 +710,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     }
 
     private void editClassFieldType(final Record record, final int rowIndex, final int colIndex) {
-        final String field = record.getFields()[colIndex];
-        final Object oldValue = shadowStore.getRecordAt(rowIndex).getAsObject(field);
+        //final String field = record.getFields()[colIndex];
+        //final Object oldValue = shadowStore.getRecordAt(rowIndex).getAsObject(field);
+        final Object oldValue = getEntityDataValueAt(record, rowIndex, colIndex);
 
         String topCls = (String) getColumnConfiguration(colIndex, FormConstants.TOP_CLASS);
 
@@ -726,7 +738,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         record.set(field, UIUtil.getDisplayText(newValue));
         shadowStore.getRecordAt(rowIndex).set(field, newValue);
 
-        changeValue(record, newValue, oldValue, colIndex);
+        changeValue(record, newValue, oldValue, rowIndex, colIndex);
     }
 
     protected void onContextMenuCheckboxClicked(final int rowIndex, final int colIndex,  final EventObject e) {
@@ -781,8 +793,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 @Override
                 public void onAfterEdit(GridPanel grid, Record record, String field, Object newValue, Object oldValue,
                         int rowIndex, int colIndex) {
-                    EntityData oldValueEntityData = (EntityData) shadowStore.getRecordAt(rowIndex).getAsObject(properties.get(colIndex));
-                    changeValue(record, newValue, oldValueEntityData, colIndex);
+                    //EntityData oldValueEntityData = (EntityData) shadowStore.getRecordAt(rowIndex).getAsObject(properties.get(colIndex));
+                    EntityData oldValueEntityData = getEntityDataValueAt(record, rowIndex,colIndex);
+                    changeValue(record, newValue, oldValueEntityData, rowIndex, colIndex);
                 }
             };
         }
@@ -790,13 +803,26 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     }
 
 
-    private void changeValue(Record record, Object newValue, Object oldValue, int colIndex) {
+	private EntityData getEntityDataValueAt(Record record, int rowIndex, int colIndex) {
+		//return (EntityData) shadowStore.getRecordAt(rowIndex).getAsObject(properties.get(colIndex));
+
+		//this would work only for columns that represent property names
+		//String field = getPropertyFieldName(colIndex);
+		String field = record.getFields()[colIndex];
+        //EntityData oldValue = (EntityData) shadowStore.getRecordAt(rowIndex).getAsObject(field);
+
+        //final Object oldValue = shadowStore.getRecordAt(rowIndex).getAsObject(field);
+
+		return (EntityData) shadowStore.getRecordAt(rowIndex).getAsObject(field);
+	}
+
+    private void changeValue(Record record, Object newValue, Object oldValue, int rowIndex, int colIndex) {
         //special handling rdfs:Literal
         String valueType = record.getAsString("valueType");
        // if (valueType == null) { //TODO: should be fixed
        //     valueType = ValueType.String.name();
        // }
-        String selSubject = record.getAsString(INSTANCE_FIELD_NAME);
+        String selSubject = getSubjectOfPropertyValue(record, rowIndex, colIndex);
         if (selSubject != null) {
             //FIXME: don't use strings for the values, but entity data
             propertyValueUtil.replacePropertyValue(getProject().getProjectName(), selSubject,
@@ -810,6 +836,10 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         }
     }
 
+    protected String getSubjectOfPropertyValue(Record record, int rowIndex, int colIndex) {
+    	return record.getAsString(INSTANCE_FIELD_NAME);
+    }
+    
     private String getStringValue(Object value) {
         if (value == null) { return null; }
         if (value instanceof EntityData) {
@@ -818,6 +848,12 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         return value.toString();
     }
 
+    /**
+     * Creates the column configurations for this grid, based on the widget configuration.
+     * <br><br>
+     * <b>IMPORTNAT!!!</b> Please be careful when changing this method, and add <b>all relevant changes</b> also to 
+     * the subclasses that override this method (especially {@link MultilevelInstanceGridWidget}).
+     */
     protected void createColumns() {
         Map<String, Object> widgetConfig = getWidgetConfiguration();
         if (widgetConfig == null) {
@@ -839,22 +875,28 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         for (String key : widgetConfig.keySet()) {
             if (key.startsWith(FormConstants.COLUMN_PREFIX)) {
                 Map<String, Object> columnConfig = (Map<String, Object>) widgetConfig.get(key);
+                
+                String property = getPropertyNameFromConfig(columnConfig);
+                int index = getColumnIndexFromConfig(columnConfig);
+                props[index] = property;
+                prop2Index.put(property, index);////
 
                 String cloneOf = isCloneColumn(columnConfig);
                 if (cloneOf != null) {
                 	Map<String, Object> origColumnConfig = getOriginalOfClone(widgetConfig, columnConfig);
-                	createCloneColumn(columnConfig, origColumnConfig, cloneOf, fieldDef, columns, props);
+                	createCloneColumn(columnConfig, origColumnConfig, cloneOf, fieldDef, columns, property, index);
                 }
                 else {
-                	createColumn(columnConfig, fieldDef, columns, props);
+                	createColumn(columnConfig, fieldDef, columns, property, index);
                 }
             }
         }
 
         properties = Arrays.asList(props);
-        for (int i = 0; i < props.length; i++) {
-            prop2Index.put(props[i], i);
-        }
+//        //no need for this, since it is added in the for loop above
+//        for (int i = 0; i < props.length; i++) {
+//            prop2Index.put(props[i], i);
+//        }
 
         createInstanceColumn(fieldDef, columns, colCount);
         createActionColumns(fieldDef, columns, colCount);
@@ -944,11 +986,11 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         };
     }
 
-	private String isCloneColumn(Map<String, Object> columnConfig) {
+	protected String isCloneColumn(Map<String, Object> columnConfig) {
         return UIUtil.getStringConfigurationProperty(columnConfig, FormConstants.CLONE_OF, null);
 	}
 
-	private Map<String, Object> getOriginalOfClone(
+	protected Map<String, Object> getOriginalOfClone(
 			Map<String, Object> widgetConfig, Map<String, Object> columnConfig) {
         String cloneOf = UIUtil.getStringConfigurationProperty(columnConfig, FormConstants.CLONE_OF, null);
         if (cloneOf != null) {
@@ -960,20 +1002,14 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         }
 	}
 
-    private ColumnConfig createCloneColumn(Map<String, Object> columnConfig,
+    protected ColumnConfig createCloneColumn(Map<String, Object> columnConfig,
 			Map<String, Object> origColumnConfig, String originalCol, 
-			FieldDef[] fieldDef, ColumnConfig[] columnConfigs, String[] props) {
+			FieldDef[] fieldDef, ColumnConfig[] columnConfigs, String property, int index) {
         ColumnConfig gridColConfig = new ColumnConfig();
         
-        String property = null;
-        String indexStr = (String) columnConfig.get(FormConstants.INDEX);
+        gridColConfig.setDataIndex(getPropertyFieldName(property, index));
 
-        int index = Integer.parseInt(indexStr); //better be valid
-        props[index] = property;
-        gridColConfig.setDataIndex(property);
-
-        String origIndexStr = (String) origColumnConfig.get(FormConstants.INDEX);
-        int origColIndex = Integer.parseInt(origIndexStr); //better be valid
+        int origColIndex = getColumnIndexFromConfig(origColumnConfig);
 
         initializeColumnStyle(columnConfig, gridColConfig);
         initializeColumnHeader(origColumnConfig, gridColConfig);
@@ -988,22 +1024,18 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         //initializeColumnGridEditor(index, columnConfig, gridColConfig);
 
         //TODO: support other types as well
-        fieldDef[index] = new StringFieldDef(property);
+        fieldDef[index] = new StringFieldDef(getPropertyFieldName(property, index));
         columnConfigs[index] = gridColConfig;
 
         return gridColConfig;
 	}
 
     //FIXME: protect against invalid config xml
-    protected ColumnConfig createColumn(Map<String, Object> columnConfig, FieldDef[] fieldDef, ColumnConfig[] columnConfigs, String[] props) {
+    protected ColumnConfig createColumn(Map<String, Object> columnConfig, 
+    		FieldDef[] fieldDef, ColumnConfig[] columnConfigs, String property, int index) {
         ColumnConfig gridColConfig = new ColumnConfig();
         
-        String property = (String) columnConfig.get(FormConstants.PROPERTY); //better not be null
-        String indexStr = (String) columnConfig.get(FormConstants.INDEX);
-
-        int index = Integer.parseInt(indexStr); //better be valid
-        props[index] = property;
-        gridColConfig.setDataIndex(property);
+        gridColConfig.setDataIndex(getPropertyFieldName(property, index));
 
         initializeColumnStyle(columnConfig, gridColConfig);
         initializeColumnHeader(columnConfig, gridColConfig);
@@ -1018,11 +1050,22 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         initializeColumnGridEditor(index, columnConfig, gridColConfig);
 
         //TODO: support other types as well
-        fieldDef[index] = new StringFieldDef(property);
+        fieldDef[index] = new StringFieldDef(getPropertyFieldName(property, index));
         columnConfigs[index] = gridColConfig;
 
         return gridColConfig;
     }
+
+	protected final String getPropertyNameFromConfig(Map<String, Object> columnConfig) {
+		String property = (String) columnConfig.get(FormConstants.PROPERTY); //better not be null
+		return property;
+	}
+
+	protected final int getColumnIndexFromConfig(Map<String, Object> columnConfig) {
+		String indexStr = (String) columnConfig.get(FormConstants.INDEX);
+        int index = Integer.parseInt(indexStr); //better be valid
+		return index;
+	}
     
     private void initializeCloneColumnRenderer(int origColIndex, Map<String, Object> columnConfig, ColumnConfig gridColConfig) {
     	String fieldType = (String) columnConfig.get(FormConstants.FIELD_TYPE);
@@ -1369,6 +1412,10 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
     protected Store getStore() {
         return store;
+    }
+    
+    protected Store getShadowStore() {
+    	return shadowStore;
     }
 
     /*

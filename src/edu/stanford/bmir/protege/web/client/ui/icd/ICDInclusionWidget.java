@@ -63,6 +63,7 @@ public class ICDInclusionWidget extends InstanceGridWidget {
     private static int OFFSET_COMMENT_COLUMN = 3;
     private static int OFFSET_MAX_COLUMN = OFFSET_COMMENT_COLUMN;
 
+    private String propertyNameIcdCategory = null;
     private String fieldNameIcdCategory = null;
     private int colIndexIcdCategory = -1;
 
@@ -104,14 +105,20 @@ public class ICDInclusionWidget extends InstanceGridWidget {
 
         for (String key : widgetConfig.keySet()) {
             if (key.startsWith(FormConstants.COLUMN_PREFIX)) {
-                ColumnConfig colConfig = createColumn((Map<String, Object>) widgetConfig.get(key), fieldDef, columns,
-                        props);
+                Map<String, Object> columnConfig = (Map<String, Object>) widgetConfig.get(key);
+                
+                String property = getPropertyNameFromConfig(columnConfig);
+                int index = getColumnIndexFromConfig(columnConfig);
+                props[index] = property;
+
+                ColumnConfig colConfig = createColumn(columnConfig, fieldDef, columns, property, index);
 //
 //                //do not allow users to rearrange instance order
 //                colConfig.setSortable(false);
 
                 //hide and extract info from column storing the parent instance name
                 if (colConfig.getHeader().toLowerCase().contains("category")) {
+                	propertyNameIcdCategory = property;
                     fieldNameIcdCategory = colConfig.getDataIndex();
                     //either this, or there is a better way to get colIndexParent using prop2Index (see below)
                     //colIndexParent = Integer.parseInt(key.substring(FormConstants.COLUMN_PREFIX.length())) - 1; //Column1 -> index 0, Column2 -> index 1, etc.
@@ -125,8 +132,8 @@ public class ICDInclusionWidget extends InstanceGridWidget {
             prop2Index.put(props[i], i);
         }
         //set the colIndexParent
-        if (fieldNameIcdCategory != null) {
-            Integer fieldNameParentIndex = prop2Index.get(fieldNameIcdCategory);
+        if (propertyNameIcdCategory != null) {
+            Integer fieldNameParentIndex = prop2Index.get(propertyNameIcdCategory);
             colIndexIcdCategory = fieldNameParentIndex == null ? -1 : fieldNameParentIndex.intValue();
         }
 

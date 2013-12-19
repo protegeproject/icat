@@ -12,6 +12,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.ConditionItem;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionSuggestion;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
+import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValuesList;
 import edu.stanford.bmir.protege.web.client.rpc.data.ImportsData;
 import edu.stanford.bmir.protege.web.client.rpc.data.MetricData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PaginationData;
@@ -60,6 +61,11 @@ public interface OntologyServiceAsync {
     void getEntityTriples(String projectName, List<String> entities, List<String> properties, List<String> reifiedProps, AsyncCallback<List<Triple>> cb);
 
     void getEntityPropertyValues(String projectName, List<String> entities, List<String> properties, List<String> reifiedProps, AsyncCallback<List<EntityPropertyValues>> cb);
+
+	void getMultilevelEntityPropertyValues(String projectName,
+			List<String> entities, String property,
+			List<String> reifiedProperties, int[] subjectEntityIndexes,
+			AsyncCallback<List<EntityPropertyValuesList>> cb);
 
     void getRootEntity(String projectName, AsyncCallback<EntityData> cb);
 
