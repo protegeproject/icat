@@ -66,6 +66,7 @@ public class FormConstants {
 	public static final String WIDTH_ALL = "all";
 	public static final String HIDDEN = "hidden";
 	public static final String CLONE_OF = "clone_of";
+	public static final String INDEX_OF_SUBJECT_COLUMN = "subject_column_index";
 	public static final String COLUMN_PREFIX = "Column";
 	public static final String ONT_TYPE = "ont_type";
 	public static final String BP_SEARCH_PROPERTIES = "bp_search_properties";

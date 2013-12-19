@@ -38,6 +38,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.ConditionItem;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionSuggestion;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
+import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValuesList;
 import edu.stanford.bmir.protege.web.client.rpc.data.ImportsData;
 import edu.stanford.bmir.protege.web.client.rpc.data.MetricData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PaginationData;
@@ -620,7 +621,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 i.remove();
             }
         }
-        Collections.sort(results, new FrameComparator());
+        Collections.sort(results, new FrameComparator<Slot>());
         return results;
     }
 
@@ -768,6 +769,76 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         }
         return entityPropValues.size() == 0 ? null : entityPropValues;
     }
+
+    //TODO: add a comment
+	public List<EntityPropertyValuesList> getMultilevelEntityPropertyValues(
+			String projectName, List<String> entities, String property,
+			List<String> reifiedProperties, int[] subjectEntityIndexes){
+		
+        List<EntityPropertyValuesList> entityPropValues = new ArrayList<EntityPropertyValuesList>();
+        Project project = getProject(projectName);
+        if (project == null) {
+            return entityPropValues.size() == 0 ? null : entityPropValues;
+        }
+
+        KnowledgeBase kb = project.getKnowledgeBase();
+
+        for (String entityName : entities) {
+            Instance inst = kb.getInstance(entityName);
+            if (inst != null) {
+                Slot slot = kb.getSlot(property);
+                if (slot != null) {
+                    Collection<?> values = inst.getOwnSlotValues(slot);
+                    for (Object value : values) {
+                        if (value instanceof Instance) {
+                            Instance valueInst = (Instance) value;
+                            EntityPropertyValuesList epv = new EntityPropertyValuesList(createEntityData(valueInst));
+                            boolean thereAreMoreValuesToRead = true;
+							while (thereAreMoreValuesToRead) {
+								boolean foundNewValues = false;
+	                            for (int i = 0; i < reifiedProperties.size(); i++) {
+	                            	String reifiedPropName = reifiedProperties.get(i);
+	                            	if (reifiedPropName != null) { //for example in case of clone columns
+	                            		int subjEntityIndex = subjectEntityIndexes[i];
+	                                    Slot reifiedSlot = kb.getSlot(reifiedPropName);
+	                                    if (reifiedSlot != null) {
+		                            		if (subjEntityIndex == -1) {
+		                            			epv.addPropertyValues(i, createEntityList(valueInst.getOwnSlotValues(reifiedSlot)));
+		                            			foundNewValues = true;
+		                            		}
+		                            		else {
+		                            			List<EntityData> subjEntities = epv.getPropertyValues(subjEntityIndex);
+		                            			if (subjEntities != null && !subjEntities.isEmpty()) {
+		                            				//take the first subject entity
+		                            				Instance subjEntity = kb.getInstance(subjEntities.get(0).getName());
+		                            				if (subjEntity != null) {
+				                            			epv.addPropertyValues(i, createEntityList(subjEntity.getOwnSlotValues(reifiedSlot)));
+				                            			foundNewValues = true;
+		                            				}
+		    	                                    else {
+		    	                                    	epv.addPropertyValues(i, null);
+		    	                                    }
+		                            			}
+			                                    else {
+			                                    	epv.addPropertyValues(i, createEntityList(new ArrayList<Object>()));
+			                                    }
+		                            		}
+	                                    }
+	                                    else {
+	                                    	epv.addPropertyValues(i, null);
+	                                    }
+	                            	}
+	                            }
+	                            thereAreMoreValuesToRead = foundNewValues && epv.getAllPropertyValues().contains(null);
+                            }
+                            entityPropValues.add(epv);
+                        }
+                    }
+                }
+            }
+        }
+        return entityPropValues.size() == 0 ? null : entityPropValues;
+	}
 
 
     private ArrayList<Triple> getPropertiesInDomain(Cls cls) {
@@ -992,7 +1063,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         }
 
         List<Instance> instances = new ArrayList<Instance>(cls.getDirectInstances());
-        Collections.sort(instances, new FrameComparator());
+        Collections.sort(instances, new FrameComparator<Instance>());
 
         for (Object element : instances) {
             Instance inst = (Instance) element;

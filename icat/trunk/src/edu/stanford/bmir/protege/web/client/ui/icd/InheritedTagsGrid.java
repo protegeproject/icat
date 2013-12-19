@@ -96,7 +96,7 @@ public class InheritedTagsGrid extends InstanceGridWidget {
 
     @Override
     protected Renderer createColumnRenderer(String fieldType, Map<String, Object> config) {
-        String property = (String) config.get(FormConstants.PROPERTY);
+        String property = getPropertyNameFromConfig(config);
         if (COL_TAG.equals(property)) {
             return getTagColumnRenderer();
         } else if (COL_INH_FROM.equals(property)) {

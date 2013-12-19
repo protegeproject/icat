@@ -60,6 +60,7 @@ public class ICDLinearizationWidget extends InstanceGridWidget {
     private static int OFFSET_COMMENT_COLUMN = 2;
     private static int OFFSET_MAX_COLUMN = OFFSET_COMMENT_COLUMN;
 
+    private String propertyNameParent = null;
     private String fieldNameParent = null;
     private int colIndexParent = -1;
 
@@ -99,14 +100,20 @@ public class ICDLinearizationWidget extends InstanceGridWidget {
 
         for (String key : widgetConfig.keySet()) {
             if (key.startsWith(FormConstants.COLUMN_PREFIX)) {
-                ColumnConfig colConfig = createColumn((Map<String, Object>) widgetConfig.get(key), fieldDef, columns,
-                        props);
+                Map<String, Object> columnConfig = (Map<String, Object>) widgetConfig.get(key);
+                
+                String property = getPropertyNameFromConfig(columnConfig);
+                int index = getColumnIndexFromConfig(columnConfig);
+                props[index] = property;
+                
+                ColumnConfig colConfig = createColumn(columnConfig, fieldDef, columns, property, index);
 
                 //do not allow users to rearrange instance order
                 colConfig.setSortable(false);
 
                 //hide and extract info from column storing the parent instance name
                 if (colConfig.getHeader().toLowerCase().contains("parent")) {
+                	propertyNameParent = property;
                     fieldNameParent = colConfig.getDataIndex();
                     //either this, or there is a better way to get colIndexParent using prop2Index (see below)
                     //colIndexParent = Integer.parseInt(key.substring(FormConstants.COLUMN_PREFIX.length())) - 1; //Column1 -> index 0, Column2 -> index 1, etc.
@@ -135,8 +142,8 @@ public class ICDLinearizationWidget extends InstanceGridWidget {
             prop2Index.put(props[i], i);
         }
         //set the colIndexParent
-        if (fieldNameParent != null) {
-            Integer fieldNameParentIndex = prop2Index.get(fieldNameParent);
+        if (propertyNameParent != null) {
+            Integer fieldNameParentIndex = prop2Index.get(propertyNameParent);
             colIndexParent = fieldNameParentIndex == null ? -1 : fieldNameParentIndex.intValue();
         }
 
@@ -489,7 +496,7 @@ public class ICDLinearizationWidget extends InstanceGridWidget {
         String parentName = null;
         for (PropertyEntityData ped : epv.getProperties()) {
             //datarow[getIndexOfProperty(ped.getName())] = UIUtil.commaSeparatedList(epv.getPropertyValues(ped));
-            if (ped.getName().equals(fieldNameParent)) {
+            if (ped.getName().equals(propertyNameParent)) {
                 List<EntityData> values = epv.getPropertyValues(ped);
                 if (values != null && values.size() > 0) {
                     parentName = UIUtil.getDisplayText(values.get(0));
@@ -510,7 +517,7 @@ public class ICDLinearizationWidget extends InstanceGridWidget {
 
     @Override
     protected String getCellText(EntityPropertyValues epv, PropertyEntityData ped) {
-        if (ped.getName().equals(fieldNameParent)) {
+        if (ped.getName().equals(propertyNameParent)) {
             List<EntityData> values = epv.getPropertyValues(ped);
             if (values != null && values.size() > 0) {
                 return values.get(0).getName();

@@ -127,7 +127,7 @@ public class PostCoordinationGrid extends InstanceGridWidget {
         if (FormConstants.FIELD_TYPE_CHECKBOX_IMPORTANT.equals(fieldType)) {
 	        GWT.log("Radio checked in col: " + colIndex);
 	        Record record = getStore().getRecordAt(rowIndex);
-	        String field = properties.get(colIndex);
+	        String field = getPropertyFieldName(colIndex);
 	        int value = record.getAsInteger(field);
 	        if ((value & 2) != 0) {
 	        	onSetPostcoordinationAxisNotAllowed(record, rowIndex, colIndex);
@@ -239,40 +239,43 @@ public class PostCoordinationGrid extends InstanceGridWidget {
 
 	protected void onSetPostcoordinationAxisNotAllowed(Record record,
 			int rowIndex, int colIndex) {
-        String field = properties.get(colIndex);
+		String property = properties.get(colIndex);
+	    String field = getPropertyFieldName(colIndex);
         record.set(field, 0);
 
         String selSubject = record.getAsString(INSTANCE_FIELD_NAME);
         if (selSubject != null) {
         	ICDServiceManager.getInstance().removeAllowedPostCoordinationAxis(
         			getProject().getProjectName(), getSubject().getName(), 
-        			selSubject, field, new RemovePostcoordinationAxisHandler(field));
+        			selSubject, property, new RemovePostcoordinationAxisHandler(property));
         }
 	}
 
 	protected void onSetPostcoordinationAxisAllowed(Record record,
 			int rowIndex, int colIndex) {
-        String field = properties.get(colIndex);
+		String property = properties.get(colIndex);
+	    String field = getPropertyFieldName(colIndex);
         record.set(field, 1);
 
         String selSubject = record.getAsString(INSTANCE_FIELD_NAME);
         if (selSubject != null) {
         	ICDServiceManager.getInstance().addAllowedPostCoordinationAxis(
         			getProject().getProjectName(), getSubject().getName(), 
-        			selSubject, field, false, new AddPostcoordinationAxisHandler(field));
+        			selSubject, property, false, new AddPostcoordinationAxisHandler(property));
         }
 	}
 
 	protected void onSetPostcoordinationAxisRequired(Record record,
 			int rowIndex, int colIndex) {
-        String field = properties.get(colIndex);
+		String property = properties.get(colIndex);
+        String field = getPropertyFieldName(colIndex);
         record.set(field, 2);
 
         String selSubject = record.getAsString(INSTANCE_FIELD_NAME);
         if (selSubject != null) {
         	ICDServiceManager.getInstance().addAllowedPostCoordinationAxis(
         			getProject().getProjectName(), getSubject().getName(), 
-        			selSubject, field, true, new AddPostcoordinationAxisHandler(field));
+        			selSubject, property, true, new AddPostcoordinationAxisHandler(property));
         }
 	}
 
