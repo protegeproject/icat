@@ -229,8 +229,8 @@ public class OntologyServiceManager {
     }
 
     public void addPropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
-            EntityData value, String user, String operationDescription, AsyncCallback<Void> cb) {
-        proxy.addPropertyValue(projectName, entityName, propertyEntity, value, user, operationDescription, cb);
+            EntityData value, boolean addCopy, String user, String operationDescription, AsyncCallback<Void> cb) {
+        proxy.addPropertyValue(projectName, entityName, propertyEntity, value, addCopy, user, operationDescription, cb);
     }
 
     public void removePropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
@@ -239,8 +239,8 @@ public class OntologyServiceManager {
     }
 
     public void replacePropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
-            EntityData oldValue, EntityData newValue, String user, String operationDescription, AsyncCallback<Void> cb) {
-        proxy.replacePropertyValue(projectName, entityName, propertyEntity, oldValue, newValue, user,
+            EntityData oldValue, EntityData newValue, boolean addCopy, String user, String operationDescription, AsyncCallback<Void> cb) {
+        proxy.replacePropertyValue(projectName, entityName, propertyEntity, oldValue, newValue, addCopy, user,
                 operationDescription, cb);
     }
 

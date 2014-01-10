@@ -181,7 +181,7 @@ public class AllPropertiesGrid extends EditorGridPanel {
 
 
     protected void addPropertyValue(String entityName, String propName, ValueType propValueType, String newValue, String operationDescription) {
-        propertyValueUtil.addPropertyValue(project.getProjectName(), entityName, propName, propValueType, newValue,
+        propertyValueUtil.addPropertyValue(project.getProjectName(), entityName, propName, propValueType, newValue, false,
                 GlobalSettings.getGlobalSettings().getUserName(), operationDescription, new ReplacePropertyValueHandler());
     }
 
@@ -277,7 +277,7 @@ public class AllPropertiesGrid extends EditorGridPanel {
     protected void replacePropertyValue(String entityName, String propName, ValueType propValueType, String oldValue,
             String newValue, String operationDescription) {
         propertyValueUtil.replacePropertyValue(project.getProjectName(), entityName, propName, propValueType, oldValue,
-                newValue, GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
+                newValue, false, GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
                 new ReplacePropertyValueHandler());
     }
 

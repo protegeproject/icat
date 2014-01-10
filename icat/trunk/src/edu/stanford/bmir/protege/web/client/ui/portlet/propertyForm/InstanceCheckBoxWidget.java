@@ -194,7 +194,7 @@ public class InstanceCheckBoxWidget extends AbstractPropertyWidget {
     protected void addPropertyValue(String entityName, String propName, ValueType propValueType,
             EntityData newEntityData, String operationDescription) {
         propertyValueUtil.addPropertyValue(getProject().getProjectName(), entityName, propName, propValueType,
-                newEntityData.getName(), GlobalSettings.getGlobalSettings().getUserName(),
+                newEntityData.getName(), false, GlobalSettings.getGlobalSettings().getUserName(),
                 operationDescription, new AddPropertyValueHandler(newEntityData));
     }
 

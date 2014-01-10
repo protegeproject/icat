@@ -334,7 +334,8 @@ public class ICDInclusionWidget extends InstanceGridWidget {
                 (newValue instanceof EntityData) ? ((EntityData)newValue).getName() : newValue.toString();
 
             propertyValueUtil.replacePropertyValue(getProject().getProjectName(), selSubject,
-                    properties .get(colIndex), valueType, (String)oldValueId, (String)newValueId, GlobalSettings.getGlobalSettings().getUserName(),
+                    properties .get(colIndex), valueType, (String)oldValueId, (String)newValueId, 
+                    false, GlobalSettings.getGlobalSettings().getUserName(),
                     getReplaceValueOperationDescription(colIndex, oldValue, newValue),
                     new ReplacePropertyValueHandlerForICDLinearizationWidget(new EntityData(
                             newValue == null ? null : newValue.toString(),
