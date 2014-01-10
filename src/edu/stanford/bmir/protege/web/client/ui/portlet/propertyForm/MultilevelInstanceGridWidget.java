@@ -229,22 +229,18 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
     }
 
     protected Object[][] createDataArrayFromValueList(List<EntityPropertyValuesList> entityPropertyValues, boolean asEntityData) {
-    	System.out.println("Good method");
         int i = 0;
         Object[][] data = new Object[entityPropertyValues.size()][properties.size() + getExtraColumnCount()];
         for (EntityPropertyValuesList epv : entityPropertyValues) {
-        	int j = 0;
-            for (String property : properties) {
+            for (int j = 0; j < properties.size(); j++) {
                 if (asEntityData == true) {
                     List<EntityData> values = epv.getPropertyValues(j);
                     //FIXME: just take the first
                     EntityData value = UIUtil.getFirstItem(values);
                     data[i][j] = value;
                 } else {
-                    //data[i][j] = getCellText(epv, ped);
                     data[i][j] = UIUtil.prettyPrintList(epv.getPropertyValues(j));
                 }
-                j++;
             }
 
             if (!asEntityData) {

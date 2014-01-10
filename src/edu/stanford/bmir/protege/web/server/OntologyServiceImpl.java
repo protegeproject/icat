@@ -770,7 +770,105 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         return entityPropValues.size() == 0 ? null : entityPropValues;
     }
 
-    //TODO: add a comment
+    /**
+     * This method returns a list of {@link EntityPropertyValuesList}s,
+     * each element in the list representing a multi-level expansion 
+     * along the reified properties in <code>reifiedProperties</code> 
+     * of all the instances that are <code>property</code> values on
+     * each subject entity in <code>entities</code>. <br> <br>
+     * The method first retrieves for each subject entity specified in 
+     * <code>entities</code> the property values for the property
+     * specified by the <code>property</code> argument. Then each of those instances
+     * will be further expanded along the properties specified in
+     * <code>reifiedProperties</code>. Since this is a multi-level 
+     * expansion, while some reified properties will refer to the "main"
+     * property value instance (extracted in the first step), 
+     * other reified properties may refer to instances that are 
+     * themselves property values calculated in another "column".
+     * The subjects of the reified properties are specified in the 
+     * <code>subjectEntityIndexes</code> array. The value -1 in that array 
+     * means that the reified property applies to the "main" property value instance.
+     * <br><br>
+     * A particularity of this method is that it generates separate entries
+     * in the result list not only for every property value instance 
+     * on every subject, but if the subject of a reified property is
+     * in a different column, and that column contains multiple instances, 
+     * this method will generate separate entries for each of those instances
+     * and will apply the reified properties to each of those instances separately.
+     * <br><br>
+     * For example: If we have the following relations in our ontology
+     * <code>
+     * <br> s - p - {a,b}
+     * <br> a - p0 - a0
+     * <br> b - p0 - b0
+     * <br> a - p1 - {i1, i2}
+     * <br> b - p1 - i3
+     * <br> i1 - p2 - v1
+     * <br> i2 - p2 - {v21, v22}
+     * <br> i3 - p2 - v3
+     * <br> i1 - p3 - v4
+     * <br> i2 - p3 - v5
+     * <br> i3 - p3 - {v61, v62}
+     * </code>
+     * <br><br> and we call the method with the arguments:
+     * <br>
+     * <br> <code>entities = ["s"]</code>
+     * <br> <code>property = "p"</code>
+     * <br> <code>reifiedProperties = ["p0", "p1", "p2", "p3"]</code>
+     * <br> <code>subjectEntityIndexes = [-1, -1, 1, 1]</code>
+     * <br><br> we will get the following result (presented in a table form for convenience):
+     * <code><table border="1"><tbody>
+     * <tr>
+     * <th>prop: p0; subjInd: -1</th>
+     * <th>prop: p1; subjInd: -1</th>
+     * <th>prop: p2; subjInd: 1</th>
+     * <th>prop: p3; subjInd: 1</th>
+     * <th>"main" instance <br>(i.e. value of prop. "p" on subject "s")</th>
+     * </tr>
+     * <tr>
+     * <td>a0</td>
+     * <td>i1</td>
+     * <td>v1</td>
+     * <td>v4</td>
+     * <td>a</td>
+     * </tr>
+     * <tr>
+     * <td>a0</td>
+     * <td>i2</td>
+     * <td>[v21, v22]</td>
+     * <td>v5</td>
+     * <td>a</td>
+     * </tr>
+     * <tr>
+     * <td>b0</td>
+     * <td>i3</td>
+     * <td>v3</td>
+     * <td>[v61, v62]</td>
+     * <td>b</td>
+     * </tr>
+     * </tbody></table></code>
+     * 
+     * <br><br>The reason for having two rows for the instance "a"
+     * (and having the property value "a0" for property "p0" repeated in both rows),
+     * is because the subject of property "p2" (as well of "p3")
+     * is in column 1, which for the instance "a" contains 
+     * multiple values ("i1" and "i2"). In order to disambiguate which instance 
+     * is the subject of the property value in column 2 and 3
+     * we needed to ensure that column 1 contains a single instance, therfore
+     * we have split the multiple values in two different entries.
+     * This splitting was not necessary for the values of properties
+     * "p2" and "p3" ({"v21", "v22"} and {"v61", "v62"}) because
+     * those values did not have any reified properties referring to them as subjects.
+     * 
+     * @param projectName name of the project
+     * @param entities list of entity names
+     * @param property name of property
+     * @param reifiedProperties list of reified property names
+     * @param subjectEntityIndexes list of indexes that identify the subject 
+     * that a given reified property in reifiedProperties refer to. The value -1
+     * means that the subject of the reified property is the "main" instance,  
+     * which is the property value for "property" on a subject entity in "entities". 
+     */
 	public List<EntityPropertyValuesList> getMultilevelEntityPropertyValues(
 			String projectName, List<String> entities, String property,
 			List<String> reifiedProperties, int[] subjectEntityIndexes){
@@ -792,15 +890,119 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     for (Object value : values) {
                         if (value instanceof Instance) {
                             Instance valueInst = (Instance) value;
-                            EntityPropertyValuesList epv = generateEPVsForMultilevelProperties(
-									kb, valueInst, reifiedProperties, subjectEntityIndexes);
-                            entityPropValues.add(epv);
+//                            EntityPropertyValuesList epv = generateEPVsForMultilevelProperties(
+//									kb, valueInst, reifiedProperties, subjectEntityIndexes);
+//                            entityPropValues.add(epv);
+                            List<EntityPropertyValuesList> epvs = generateEPVsForMultilevelProperties2(
+                            		kb, valueInst, reifiedProperties, subjectEntityIndexes);
+                            entityPropValues.addAll(epvs);
                         }
                     }
                 }
             }
         }
         return entityPropValues.size() == 0 ? null : entityPropValues;
+	}
+
+	private List<EntityPropertyValuesList> generateEPVsForMultilevelProperties2(
+			KnowledgeBase kb, Instance valueInst,
+			List<String> reifiedProperties, int[] subjectEntityIndexes) {
+		
+		List<EntityPropertyValuesList> epvs = new ArrayList<EntityPropertyValuesList>();
+		boolean thereAreMoreValuesToRead = true;
+		while (thereAreMoreValuesToRead) {
+			boolean foundNewValues = false;
+		    for (int i = 0; i < reifiedProperties.size(); i++) {
+		    	String reifiedPropName = reifiedProperties.get(i);
+		    	if (reifiedPropName != null) { //for example in case of clone columns
+		    		int subjEntityIndex = subjectEntityIndexes[i];
+		            Slot reifiedSlot = kb.getSlot(reifiedPropName);
+		            if (reifiedSlot != null) {
+		            	foundNewValues |= fillInPropertyValues(kb, valueInst, 
+		            			reifiedSlot, i, subjEntityIndex, epvs);
+		            }
+		    	}
+		    }
+		    boolean epvsContainsNullPropValue = false;
+		    Iterator<EntityPropertyValuesList> it = epvs.iterator();
+		    while (it.hasNext() && !epvsContainsNullPropValue) {
+		    	epvsContainsNullPropValue = it.next().getAllPropertyValues().contains(null);
+		    }
+		    thereAreMoreValuesToRead = foundNewValues && epvsContainsNullPropValue;
+		}
+		return epvs;
+	}
+	
+	private boolean fillInPropertyValues(KnowledgeBase kb, Instance valueInst, 
+			Slot reifiedSlot, int propIndex, int subjEntityIndex,
+			List<EntityPropertyValuesList> epvs) {
+		boolean foundNewValues = false;
+		//create first epv if necessary
+		if (epvs.isEmpty() && subjEntityIndex == -1) {
+			EntityPropertyValuesList epv = new EntityPropertyValuesList(createEntityData(valueInst));
+			epvs.add(epv);
+		}
+		
+		List<EntityPropertyValuesList> epvsToBeSplit = new ArrayList<EntityPropertyValuesList>();
+		
+		for (EntityPropertyValuesList epv : epvs) {
+    		if (subjEntityIndex == -1) {
+    			epv.setPropertyValues(propIndex, createEntityList(valueInst.getOwnSlotValues(reifiedSlot)));
+    			foundNewValues = true;
+    		}
+    		else {
+    			List<EntityData> subjEntities = epv.getPropertyValues(subjEntityIndex);
+    			if (subjEntities != null && !subjEntities.isEmpty()) {
+    				if (subjEntities.size() > 1) {
+    					epvsToBeSplit.add(epv);
+    				}
+    				else {
+	    				//take the first subject entity
+	    				Instance subjEntity = kb.getInstance(subjEntities.get(0).getName());
+	    				if (subjEntity != null) {
+	            			epv.setPropertyValues(propIndex, createEntityList(subjEntity.getOwnSlotValues(reifiedSlot)));
+	            			foundNewValues = true;
+	    				}
+	                    else {
+	                    	epv.setPropertyValues(propIndex, null);
+	                    }
+    				}
+    			}
+                else {
+                	epv.setPropertyValues(propIndex, createEntityList(new ArrayList<Object>()));
+                }
+    		}
+		}
+		
+		if (epvsToBeSplit.size() > 0) {
+			for (EntityPropertyValuesList epvToBeSplit : epvsToBeSplit) {
+				List<EntityPropertyValuesList> newEpvs = splitEpv(epvToBeSplit, subjEntityIndex);
+				epvs.remove(epvToBeSplit);
+				epvs.addAll(newEpvs);
+			}
+			//call again this method
+			foundNewValues |= fillInPropertyValues(kb, valueInst, reifiedSlot, propIndex, subjEntityIndex, epvs);
+		}
+		
+		return foundNewValues;
+	}
+
+	private List<EntityPropertyValuesList> splitEpv(
+			EntityPropertyValuesList epvToBeSplit, int subjEntityIndex) {
+		List<EntityPropertyValuesList> res = new ArrayList<EntityPropertyValuesList>();
+		List<EntityData> subjEntities = epvToBeSplit.getPropertyValues(subjEntityIndex);
+		if (subjEntities != null) {
+			try {
+				for (EntityData subjEntity : subjEntities) {
+					EntityPropertyValuesList cloneEpv = new EntityPropertyValuesList(epvToBeSplit);
+					cloneEpv.setPropertyValues(subjEntityIndex, Collections.singletonList(subjEntity));
+					res.add(cloneEpv);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return res;
 	}
 
 	private EntityPropertyValuesList generateEPVsForMultilevelProperties(

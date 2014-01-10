@@ -416,7 +416,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     }
 
     protected String getAddExistingOperationDescription(EntityData value) {
-        return UIUtil.getAppliedToTransactionString("Added  " + UIUtil.getDisplayText(value) + " as "
+        return UIUtil.getAppliedToTransactionString("Added " + UIUtil.getDisplayText(value) + " as "
                 + UIUtil.getShortName(getProperty().getBrowserText()) + " to " + getSubject().getBrowserText(),
                 getSubject().getName());
     }
