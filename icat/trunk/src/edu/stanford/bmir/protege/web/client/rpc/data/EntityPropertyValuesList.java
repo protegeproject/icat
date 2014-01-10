@@ -16,7 +16,7 @@ import java.util.List;
  * @author csnyulas
  *
  */
-public class EntityPropertyValuesList implements Serializable{
+public class EntityPropertyValuesList implements Serializable {
 
 	private static final long serialVersionUID = 7748731638176720736L;
 
@@ -30,6 +30,12 @@ public class EntityPropertyValuesList implements Serializable{
         this.subject = subject;
     }
 
+    public EntityPropertyValuesList(EntityPropertyValuesList bluePrint) {
+    	this.subject = bluePrint.subject;
+    	this.properties = new ArrayList<PropertyEntityData>(bluePrint.properties);
+    	this.propertyValues = new ArrayList<List<EntityData>>(bluePrint.propertyValues);
+    }
+    
     public void setSubject(EntityData subject) {
         this.subject = subject;
     }
