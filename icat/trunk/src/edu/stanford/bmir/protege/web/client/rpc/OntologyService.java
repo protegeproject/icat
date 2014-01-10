@@ -144,17 +144,14 @@ public interface OntologyService extends RemoteService {
 
     public List<EntityData> getSubproperties(String projectName, String propertyName);
 
-    void addPropertyValue(String projectName, String entityName,
-			PropertyEntityData propertyEntity, EntityData value,
-			boolean addCopy, String user, String operationDescription);
+    public void addPropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
+            EntityData value, String user, String operationDescription);
 
     public void removePropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
             EntityData value, String user, String operationDescription);
 
-    void replacePropertyValue(String projectName, String entityName,
-			PropertyEntityData propertyEntity, EntityData oldValue,
-			EntityData newValue, boolean addCopy, String user,
-			String operationDescription);
+    public void replacePropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
+            EntityData oldValue, EntityData newValue, String user, String operationDescription);
 
     void setPropertyValues(String projectName, String entityName, PropertyEntityData propertyEntity,
             List<EntityData> values, String user, String operationDescription);

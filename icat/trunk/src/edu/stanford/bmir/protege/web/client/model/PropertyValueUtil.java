@@ -27,14 +27,14 @@ public class PropertyValueUtil {
 
     //TODO: assume value value type is the same as the property value type, fix later
     public void replacePropertyValue(String projectName, String entityName, String propName, ValueType propValueType,
-            String oldValue, String newValue, boolean addCopy, String user, String operationDescription,
+            String oldValue, String newValue, String user, String operationDescription,
             AsyncCallback<Void> asyncCallback) {
         EntityData oldEntityData = new EntityData(oldValue);
         oldEntityData.setValueType(propValueType);
         EntityData newEntityData = new EntityData(newValue);
         newEntityData.setValueType(propValueType);
         OntologyServiceManager.getInstance().replacePropertyValue(projectName, entityName,
-                new PropertyEntityData(propName), oldEntityData, newEntityData, addCopy, user, operationDescription,
+                new PropertyEntityData(propName), oldEntityData, newEntityData, user, operationDescription,
                 new ReplacePropertyValueHandler(entityName, propName, newEntityData, asyncCallback));
     }
 
@@ -58,11 +58,11 @@ public class PropertyValueUtil {
 
     //TODO: assume value value type is the same as the property value type, fix later
     public void addPropertyValue(String projectName, String entityName, String propName, ValueType propValueType,
-            String newValue, boolean addCopy, String user, String operationDescription, AsyncCallback<Void> asyncCallback) {
+            String newValue, String user, String operationDescription, AsyncCallback<Void> asyncCallback) {
         EntityData newEntityData = new EntityData(newValue);
         newEntityData.setValueType(propValueType);
         OntologyServiceManager.getInstance().addPropertyValue(projectName, entityName,
-                new PropertyEntityData(propName), newEntityData, addCopy, user, operationDescription,
+                new PropertyEntityData(propName), newEntityData, user, operationDescription,
                 new AddPropertyValueHandler(entityName, propName, asyncCallback));
     }
 
