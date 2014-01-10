@@ -159,7 +159,7 @@ public class InstanceTextFieldWidget extends TextFieldWidget {
         
         if (oldInstanceEntityData != null) {
             propertyValueUtil.replacePropertyValue(getProject().getProjectName(), oldInstanceEntityData.getName(),
-                    property, null, oldEntityData.toString(), newEntityData.toString(), false,
+                    property, null, oldEntityData.toString(), newEntityData.toString(), 
                     GlobalSettings.getGlobalSettings().getUserName(), operationDescription, 
                     new ReplaceInstancePropertyValueHandler(subject, oldInstanceEntityData, 
                             oldEntityData, newEntityData, getValues()));

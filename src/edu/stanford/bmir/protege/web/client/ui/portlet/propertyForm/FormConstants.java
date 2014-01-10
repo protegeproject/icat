@@ -77,7 +77,6 @@ public class FormConstants {
 	public static final String FIELD_ALIGN = "field_align";
 	public static final String FIELD_BG_COLOR = "field_bg_color";
 	public static final String MULTIPLE_VALUES_ALLOWED = "multiple_values_allowed";
-	public static final String INSERT_COPY = "insert_copy";
 	public static final String TOP_CLASS = "top_class";
 	public static final String DEFAULT_COLUMN_TO_EDIT = "default_column_to_edit";
 
