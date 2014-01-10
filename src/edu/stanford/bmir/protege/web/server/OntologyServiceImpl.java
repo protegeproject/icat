@@ -370,7 +370,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
     }
 
     public void addPropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
-            EntityData valueEntityData, String user, String operationDescription) {
+            EntityData valueEntityData, boolean addCopy, String user, String operationDescription) {
         Project project = getProject(projectName);
         if (project == null) {
             throw new IllegalArgumentException("Add operation failed. Unknown project: " + projectName);
@@ -395,6 +395,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                         kb.beginTransaction(operationDescription);
                     }
 
+                    if (addCopy && value instanceof Instance) { 
+                    	//value = ((Instance) value).copy(kb, null, false);
+                    }
                     subject.addOwnSlotValue(property, value);
 
                     if (runsInTransaction) {
@@ -466,7 +469,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
 
     public void replacePropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
-            EntityData oldValue, EntityData newValue, String user, String operationDescription) {
+            EntityData oldValue, EntityData newValue, boolean addCopy, String user, String operationDescription) {
         Project project = getProject(projectName);
         if (project == null) {
             return;
@@ -480,7 +483,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     kb.beginTransaction(operationDescription);
                 }
                 if (newValue !=null && newValue.getName() != null) {
-                    addPropertyValue(projectName, entityName, propertyEntity, newValue, user, null);
+                    addPropertyValue(projectName, entityName, propertyEntity, newValue, addCopy, user, null);
                     KBUtil.morphUser(kb, user); //hack
                 }
                 if (oldValue != null && oldValue.getName() != null) {
@@ -1949,7 +1952,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 }
                 KBUtil.morphUser(kb, user); //hack
                 PropertyEntityData propEntityData = createPropertyEntityData(slot, null, false);
-                addPropertyValue(projectName, subjectEntity, propEntityData, valueData, user, null);
+                addPropertyValue(projectName, subjectEntity, propEntityData, valueData, false, user, null);
                 KBUtil.morphUser(kb, user); //hack
                 if (runsInTransaction) {
                     kb.commitTransaction();
@@ -1997,7 +2000,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 EntityData valueData = createInstanceValue(projectName, instName, typeName,
                         subjectEntity, propertyEntity, user, null);
                 addPropertyValue(projectName, valueData.getName(), instancePropertyEntity,
-                        valueEntityData, user, null);
+                        valueEntityData, false, user, null);
                 KBUtil.morphUser(kb, user);
                 if (runsInTransaction){
                     kb.commitTransaction();

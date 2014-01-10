@@ -400,7 +400,7 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
     protected void replacePropertyValue(EntityData subject, String propName, ValueType propValueType,
             EntityData oldEntityData, EntityData newEntityData, Object oldDisplayedValue, String operationDescription) {
         propertyValueUtil.replacePropertyValue(getProject().getProjectName(), subject.getName(), propName, propValueType,
-                oldEntityData.getName(), newEntityData.getName(), GlobalSettings.getGlobalSettings().getUserName(),
+                oldEntityData.getName(), newEntityData.getName(), false, GlobalSettings.getGlobalSettings().getUserName(),
                 operationDescription, new ReplacePropertyValueHandler(subject, oldEntityData, newEntityData, values));
     }
 
@@ -408,7 +408,7 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
     protected void addPropertyValue(EntityData subject, String propName, ValueType propValueType,
             EntityData newEntityData, Object oldDisplayedValue, String operationDescription) {
         propertyValueUtil.addPropertyValue(getProject().getProjectName(), subject.getName(), propName, propValueType,
-                newEntityData.getName(), GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
+                newEntityData.getName(), false, GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
                 new AddPropertyValueHandler(subject, newEntityData, values));
     }
 

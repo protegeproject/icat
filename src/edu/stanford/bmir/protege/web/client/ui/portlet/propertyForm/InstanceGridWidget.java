@@ -339,10 +339,12 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     }
 
     protected void addExistingValues(Collection<EntityData> values) {
+    	boolean addCopy = UIUtil.getBooleanConfigurationProperty(
+    			getWidgetConfiguration(), FormConstants.INSERT_COPY, false);
         //TODO: later optimize this in a single remote call
         for (EntityData value : values) {
             OntologyServiceManager.getInstance().addPropertyValue(getProject().getProjectName(), getSubject().getName(), getProperty(), value,
-                    GlobalSettings.getGlobalSettings().getUserName(), getAddExistingOperationDescription(value), new AddExistingValueHandler(getSubject()));
+                    addCopy, GlobalSettings.getGlobalSettings().getUserName(), getAddExistingOperationDescription(value), new AddExistingValueHandler(getSubject()));
         }
     }
 
@@ -813,11 +815,15 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
        // }
         String selSubject = getSubjectOfPropertyValue(record, rowIndex, colIndex);
         if (selSubject != null) {
+        	boolean addCopy = UIUtil.getBooleanConfigurationProperty(
+        			getWidgetConfiguration(), FormConstants.INSERT_COPY, false);
+        	
             //FIXME: don't use strings for the values, but entity data
             propertyValueUtil.replacePropertyValue(getProject().getProjectName(), selSubject,
                     properties.get(colIndex), valueType == null ? null : ValueType.valueOf(valueType),
                             getStringValue(oldValue),
                             getStringValue(newValue),
+                            addCopy,
                             GlobalSettings.getGlobalSettings().getUserName(),
                             getReplaceValueOperationDescription(colIndex, oldValue, newValue),
                             new ReplacePropertyValueHandler(new EntityData(newValue == null ? null : newValue.toString(),
