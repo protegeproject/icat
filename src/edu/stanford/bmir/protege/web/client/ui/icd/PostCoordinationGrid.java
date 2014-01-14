@@ -1,6 +1,5 @@
 package edu.stanford.bmir.protege.web.client.ui.icd;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +23,6 @@ import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
-import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
-import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.InstanceGridWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.WidgetController;
@@ -46,8 +43,9 @@ public class PostCoordinationGrid extends InstanceGridWidget {
     private static int OFFSET_COMMENT_COLUMN = 1;
     private static int OFFSET_MAX_COLUMN = OFFSET_COMMENT_COLUMN;
 
-    private static HashMap<String, String> PC_AXIS_PROP_TO_VALUE_SET_PROP = new HashMap<String, String>(){
-    	{
+    @SuppressWarnings("serial")
+	private static final HashMap<String, String> PC_AXIS_PROP_TO_VALUE_SET_PROP = new HashMap<String, String>(){
+		{
     		put(ICDContentModelConstants.PC_AXIS_HAS_SEVERITY, ICDContentModelConstants.PC_SCALE_SEVERITY);
     		put(ICDContentModelConstants.PC_AXIS_TEMPORALITY_COURSE, ICDContentModelConstants.PC_SCALE_COURSE);
 	    	put(ICDContentModelConstants.PC_AXIS_TEMPORALITY_PATTERN_AND_ONSET, ICDContentModelConstants.PC_SCALE_PATTERN_AND_ONSET);
