@@ -46,6 +46,23 @@ public class PostCoordinationGrid extends InstanceGridWidget {
     private static int OFFSET_COMMENT_COLUMN = 1;
     private static int OFFSET_MAX_COLUMN = OFFSET_COMMENT_COLUMN;
 
+    private static HashMap<String, String> PC_AXIS_PROP_TO_VALUE_SET_PROP = new HashMap<String, String>(){
+    	{
+    		put(ICDContentModelConstants.PC_AXIS_HAS_SEVERITY, ICDContentModelConstants.PC_SCALE_SEVERITY);
+    		put(ICDContentModelConstants.PC_AXIS_TEMPORALITY_COURSE, ICDContentModelConstants.PC_SCALE_COURSE);
+	    	put(ICDContentModelConstants.PC_AXIS_TEMPORALITY_PATTERN_AND_ONSET, ICDContentModelConstants.PC_SCALE_PATTERN_AND_ONSET);
+	    }
+    
+    	@Override
+    	public String get(Object key){
+    		String res = super.get(key);
+    		if (res == null) {
+    			return (String)key;
+    		}
+    		return res;
+    	}
+    };
+    
     private WidgetController widgetController;
 	
 	public PostCoordinationGrid(Project project, WidgetController widgetController) {
@@ -325,11 +342,11 @@ public class PostCoordinationGrid extends InstanceGridWidget {
 
 
     public void activateValueSelectionWidget(String pcAxisProperty) {
-    	widgetController.showWidgetForProperty(pcAxisProperty);
+    	widgetController.showWidgetForProperty(PC_AXIS_PROP_TO_VALUE_SET_PROP.get(pcAxisProperty));
 	}
 
     public void deactivateValueSelectionWidget(String pcAxisProperty) {
-    	widgetController.hideWidgetForProperty(pcAxisProperty);
+    	widgetController.hideWidgetForProperty(PC_AXIS_PROP_TO_VALUE_SET_PROP.get(pcAxisProperty));
 	}
 
     
@@ -414,7 +431,7 @@ public class PostCoordinationGrid extends InstanceGridWidget {
 		public void handleFailure(Throwable caught) {
             GWT.log("Post-Coordination Grid Widget: Error at getting list if selected post-cooordination axes properties for " + subject, caught);
         	for (String propertyName : properties) {
-       			widgetController.showWidgetForProperty(propertyName);
+        		activateValueSelectionWidget(propertyName);
         	}
 		}
 
@@ -424,10 +441,10 @@ public class PostCoordinationGrid extends InstanceGridWidget {
 			if (subject != null && subject.equals(getSubject())) {
 	        	for (String propertyName : properties) {
 	        		if (selectedProperties.contains(propertyName)) {
-	        			widgetController.showWidgetForProperty(propertyName);
+	        			activateValueSelectionWidget(propertyName);
 	        		}
 	        		else {
-	        			widgetController.hideWidgetForProperty(propertyName);
+	        			deactivateValueSelectionWidget(propertyName);
 	        		}
 	        	}
 			}
