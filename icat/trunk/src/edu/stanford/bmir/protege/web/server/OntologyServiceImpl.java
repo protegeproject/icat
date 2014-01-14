@@ -189,7 +189,6 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         return owlOntology;
     }
 
-    @SuppressWarnings("rawtypes")
     public List<EntityData> getDirectTypes(String projectName, String instanceName) {
         Project project = getProject(projectName);
         if (project == null) {
@@ -206,7 +205,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         return createEntityList(instance.getDirectTypes());
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public List<SubclassEntityData> getSubclasses(String projectName, String className) {
         ArrayList<SubclassEntityData> subclassesData = new ArrayList<SubclassEntityData>();
 
@@ -890,9 +889,6 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     for (Object value : values) {
                         if (value instanceof Instance) {
                             Instance valueInst = (Instance) value;
-//                            EntityPropertyValuesList epv = generateEPVsForMultilevelProperties(
-//									kb, valueInst, reifiedProperties, subjectEntityIndexes);
-//                            entityPropValues.add(epv);
                             List<EntityPropertyValuesList> epvs = generateEPVsForMultilevelProperties2(
                             		kb, valueInst, reifiedProperties, subjectEntityIndexes);
                             entityPropValues.addAll(epvs);
@@ -1003,51 +999,6 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 			}
 		}
 		return res;
-	}
-
-	private EntityPropertyValuesList generateEPVsForMultilevelProperties(
-			KnowledgeBase kb, Instance valueInst,
-			List<String> reifiedProperties, int[] subjectEntityIndexes) {
-		EntityPropertyValuesList epv = new EntityPropertyValuesList(createEntityData(valueInst));
-		boolean thereAreMoreValuesToRead = true;
-		while (thereAreMoreValuesToRead) {
-			boolean foundNewValues = false;
-		    for (int i = 0; i < reifiedProperties.size(); i++) {
-		    	String reifiedPropName = reifiedProperties.get(i);
-		    	if (reifiedPropName != null) { //for example in case of clone columns
-		    		int subjEntityIndex = subjectEntityIndexes[i];
-		            Slot reifiedSlot = kb.getSlot(reifiedPropName);
-		            if (reifiedSlot != null) {
-		        		if (subjEntityIndex == -1) {
-		        			epv.addPropertyValues(i, createEntityList(valueInst.getOwnSlotValues(reifiedSlot)));
-		        			foundNewValues = true;
-		        		}
-		        		else {
-		        			List<EntityData> subjEntities = epv.getPropertyValues(subjEntityIndex);
-		        			if (subjEntities != null && !subjEntities.isEmpty()) {
-		        				//take the first subject entity
-		        				Instance subjEntity = kb.getInstance(subjEntities.get(0).getName());
-		        				if (subjEntity != null) {
-		                			epv.addPropertyValues(i, createEntityList(subjEntity.getOwnSlotValues(reifiedSlot)));
-		                			foundNewValues = true;
-		        				}
-		                        else {
-		                        	epv.addPropertyValues(i, null);
-		                        }
-		        			}
-		                    else {
-		                    	epv.addPropertyValues(i, createEntityList(new ArrayList<Object>()));
-		                    }
-		        		}
-		            }
-		            else {
-		            	epv.addPropertyValues(i, null);
-		            }
-		    	}
-		    }
-		    thereAreMoreValuesToRead = foundNewValues && epv.getAllPropertyValues().contains(null);
-		}
-		return epv;
 	}
 
 
