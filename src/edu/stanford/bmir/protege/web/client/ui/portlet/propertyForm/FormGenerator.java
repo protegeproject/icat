@@ -45,7 +45,8 @@ public class FormGenerator {
 
     private Map<Panel, Collection<PropertyWidget>> tab2PropWidgets;
     private Map<Panel, Collection<String>> tab2TypesAny;
-    //TODO: treat types_all
+    private Map<Panel, Collection<String>> tab2TypesAll;
+    private Map<Panel, Collection<String>> tab2TypesNot;
 
     public FormGenerator(Project project, Map<String, Object> formConfiguration) {
         this.project = project;
@@ -53,6 +54,8 @@ public class FormGenerator {
         this.widgets = new ArrayList<PropertyWidget>();
         tab2PropWidgets = new LinkedHashMap<Panel, Collection<PropertyWidget>>();
         tab2TypesAny = new LinkedHashMap<Panel, Collection<String>>();
+        tab2TypesAll = new LinkedHashMap<Panel, Collection<String>>();
+        tab2TypesNot = new LinkedHashMap<Panel, Collection<String>>();
     }
 
     /**
@@ -96,18 +99,53 @@ public class FormGenerator {
 
     public boolean isSuitableForType(Panel tab, Collection<EntityData> types) {
         Collection<String> anytypes = tab2TypesAny.get(tab);
-        if (anytypes == null) { return true; }
-        for (EntityData type : types) {
-            if (anytypes.contains(type.getName())) {
-                return true;
-            }
+        Collection<String> alltypes = tab2TypesAll.get(tab);
+        Collection<String> nottypes = tab2TypesNot.get(tab);
+        //convert empty nottypes to null for more effective tests
+        if (nottypes!= null && nottypes.isEmpty()) {nottypes = null;}
+        
+        if (anytypes == null && alltypes == null && nottypes == null) { return true; }
+        
+        boolean foundAnyOfTypes = false;
+        Collection<String> allTypesToBeFound = new ArrayList<String>();
+        if (alltypes != null) {
+        	allTypesToBeFound.addAll(alltypes);
         }
-        return false;
+        
+        for (EntityData type : types) {
+        	String typeName = type.getName();
+        	if (nottypes != null && nottypes.contains(typeName)) {
+        		return false;
+        	}
+            if (anytypes != null && anytypes.contains(typeName)) {
+            	foundAnyOfTypes = true;
+            	
+            	//if there is no chance to turn the result to "false" by analyzing the remaining types
+            	if (nottypes == null && allTypesToBeFound.isEmpty()) {
+            		return true;
+            	}
+            }
+            allTypesToBeFound.remove(typeName);
+        }
+        
+        return foundAnyOfTypes && allTypesToBeFound.isEmpty();
     }
 
     public boolean isSuitableForType(TabPanel tab, String type) {
         Collection<String> anytypes = tab2TypesAny.get(tab);
-        return anytypes == null ? true : anytypes.contains(type);
+        Collection<String> alltypes = tab2TypesAll.get(tab);
+        Collection<String> nottypes = tab2TypesNot.get(tab);
+        boolean isSuitable = true;
+        if (anytypes != null) {
+        	isSuitable = anytypes.contains(type);
+        }
+        if (isSuitable && alltypes != null) {
+        	isSuitable = alltypes.size() <= 1 && alltypes.contains(type);
+        }
+        if (isSuitable && nottypes != null) {
+        	isSuitable = !nottypes.contains(type);
+        }
+        return isSuitable;
     }
 
     public Collection<PropertyWidget> getWidgetsInTab(Panel tabPanel) {
@@ -130,6 +168,8 @@ public class FormGenerator {
         panel.setAutoScroll(true);
 
         tab2TypesAny.put(panel, (Collection<String>) panelConf.get(FormConstants.TYPES_ANY));
+        tab2TypesAll.put(panel, (Collection<String>) panelConf.get(FormConstants.TYPES_ALL));
+        tab2TypesNot.put(panel, (Collection<String>) panelConf.get(FormConstants.TYPES_NOT));
         setTabVisible(panel, true);
 
         createInnerPanelComponents(panel, panelConf);
