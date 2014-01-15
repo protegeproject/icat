@@ -11,6 +11,8 @@ public class FormConstants {
 	public static final String HEADER_CSS_CLASS = "headerCssClass";	//we should not use camel case in property names
 
 	public static final String TYPES_ANY = "types_any";
+	public static final String TYPES_ALL = "types_all";
+	public static final String TYPES_NOT = "types_not";
 
 	public static final String TEXTFIELD = "textfield";
 	public static final String TEXTAREA = "textarea";
