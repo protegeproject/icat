@@ -106,7 +106,7 @@ public class FormGenerator {
         
         if (anytypes == null && alltypes == null && nottypes == null) { return true; }
         
-        boolean foundAnyOfTypes = false;
+        boolean foundAnyOfTypes = (anytypes == null || anytypes.isEmpty());
         Collection<String> allTypesToBeFound = new ArrayList<String>();
         if (alltypes != null) {
         	allTypesToBeFound.addAll(alltypes);
