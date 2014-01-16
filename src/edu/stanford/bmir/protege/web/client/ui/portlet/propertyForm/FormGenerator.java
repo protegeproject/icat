@@ -23,6 +23,7 @@ import edu.stanford.bmir.protege.web.client.ui.icd.ICDLinearizationWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDTitleWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.InheritedTagsGrid;
 import edu.stanford.bmir.protege.web.client.ui.icd.PostCoordinationGrid;
+import edu.stanford.bmir.protege.web.client.ui.icd.ScaleValueEditorWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 
 /**
@@ -247,6 +248,8 @@ public class FormGenerator {
                     	WidgetController ctrl = new WidgetController(panel, this);
                         widget = createPosCoordinationGrid((Map) value, prop, ctrl);
                         ctrl.setControllingWidget(widget);
+                    } else if (component_type.equals(FormConstants.SCALEEDITOR_GRID)) { //ICD specific
+                        widget = createScaleEditorGrid((Map) value, prop);
                     }
 
                     if (widget != null && widget.getComponent() != null) {
@@ -444,6 +447,14 @@ public class FormGenerator {
     	PostCoordinationGrid postCoordinationWidget = new PostCoordinationGrid(project, ctrl);
         postCoordinationWidget.setup(conf, new PropertyEntityData(property));
         return postCoordinationWidget;
+    }
+
+
+    //ICD specific
+    private PropertyWidget createScaleEditorGrid(Map<String, Object> conf, String property) {
+    	ScaleValueEditorWidget scaleValueEditorWidget = new ScaleValueEditorWidget(project);
+        scaleValueEditorWidget.setup(conf, new PropertyEntityData(property));
+        return scaleValueEditorWidget;
     }
 
 
