@@ -33,8 +33,8 @@ import com.gwtext.client.widgets.tree.TreeNode;
 
 import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
 import edu.stanford.bmir.protege.web.client.model.Project;
+import edu.stanford.bmir.protege.web.client.rpc.HierarchyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
-import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
@@ -187,22 +187,24 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
         if (oldParent.equals(newParent)) {
             return;
         }
-        OntologyServiceManager.getInstance().moveCls(
+
+        HierarchyServiceManager.getInstance().changeParent(
                 project.getProjectName(),
                 cls.getName(),
-                oldParent.getName(),
-                newParent.getName(),
-                true,
+                UIUtil.createCollection(newParent.getName()),
+                UIUtil.createCollection(oldParent.getName()),
                 GlobalSettings.getGlobalSettings().getUserName(),
-                UIUtil.getAppliedToTransactionString(getMoveClsOperationDescription(cls, oldParent, newParent),
-                        cls.getName()), new MoveClassHandler(cls.getName(), oldParent.getName(), newParent.getName()));
+                UIUtil.getAppliedToTransactionString(getMoveClsOperationDescription(cls, oldParent, newParent), cls.getName()),
+                (String) null,
+                new MoveClassHandler(cls.getName(), oldParent.getName(), newParent.getName()));
     }
 
 
     @Override
     protected void onReorderNode(TreeNode movedNode, TreeNode targetNode, boolean isBelow) {
+        String parentNode = getNodeClsName(movedNode.getParentNode());
         ICDServiceManager.getInstance().reorderSiblings(getProject().getProjectName(),
-                getNodeClsName(movedNode), getNodeClsName(targetNode), isBelow, "parentXXXXXXXXXXXXXXXXXXXXXx",
+                getNodeClsName(movedNode), getNodeClsName(targetNode), isBelow, parentNode,
                 new AsyncCallback<Boolean>() {
 
                     @Override
@@ -212,7 +214,7 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
 
                     @Override
                     public void onSuccess(Boolean result) {
-                        MessageBox.alert("Success at reordering!");
+                       // MessageBox.alert("Success at reordering!");
                     }
                 });
     }

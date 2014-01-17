@@ -680,8 +680,14 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
 
                 if ("append".equals(point)) {
                     if (hasMovePermission(false) == false) {
+                        GWT.log("Does not have move permission");
                         return false;
                     } else {
+                        GWT.log("target: " + getNodeBrowserText(target) + " drop node: " + getNodeBrowserText(dropNode) + " parent of drop node: " + getNodeBrowserText(dropNode.getParentNode()));
+                        if (target.equals(dropNode.getParentNode())) {
+                            GWT.log("Move to the same parent");
+                            return false;
+                        }
                         final boolean success = Window.confirm("Are you sure you want to move "
                                 + getNodeBrowserText(dropNode) + " from parent "
                                 + getNodeBrowserText(dropNode.getParentNode()) + " to parent " + getNodeBrowserText(target) + " ?");

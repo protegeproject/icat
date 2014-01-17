@@ -24,12 +24,10 @@ import edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet;
 import edu.stanford.smi.protege.collab.util.HasAnnotationCache;
 import edu.stanford.smi.protege.exception.ProtegeException;
 import edu.stanford.smi.protege.model.Cls;
-import edu.stanford.smi.protege.model.Frame;
 import edu.stanford.smi.protege.model.Instance;
 import edu.stanford.smi.protege.model.KnowledgeBase;
 import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.model.Slot;
-import edu.stanford.smi.protege.ui.FrameComparator;
 import edu.stanford.smi.protege.util.CollectionUtilities;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
@@ -45,6 +43,10 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
     private static final String PROPERTY_LINEARIZATION_PARENT = "http://who.int/icd#linearizationParent";
 
+    //TODO: Event generation is currently disabled for class creation, because
+    // it generates too many events and slows down significantly the class creation.
+    // The effect is that some other class trees do not get the event, and will not
+    // update. We will keep this limitation for now, given the increase in performance.
     @SuppressWarnings("rawtypes")
     public EntityData createICDCls(final String projectName, String clsName, Collection<String> superClsNames,
             String title, String sortingLabel, boolean createICDSpecificEntities, final String user, final String operationDescription,
@@ -61,6 +63,8 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
             throw new RuntimeException("A class with the same name '" + clsName + "' already exists in the model.");
         }
 
+        boolean eventsEnabled = kb.setGenerateEventsEnabled(false);
+
         boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
         synchronized (kb) {
             KBUtil.morphUser(kb, user);
@@ -68,6 +72,10 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
                 }
+
+                //TODO: get index, if valid, pass some arg to the second call
+
+                boolean isSiblingIndexValid = checkAndRecreateIndex((OWLModel) kb, superClsNames, false);
 
                 cls = cm.createICDCategory(clsName, superClsNames, true, createICDSpecificEntities);
 
@@ -91,6 +99,8 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
                     cls.setPropertyValue(cm.getPublicIdProperty(), publicId);
                 }
 
+                addChildToIndex(cls, superClsNames, isSiblingIndexValid);
+
                 if (runsInTransaction) {
                     kb.commitTransaction();
                 }
@@ -102,6 +112,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
                 throw new RuntimeException("Error at creating class " + clsName + ". Message: " + e.getMessage(), e);
             } finally {
                 KBUtil.restoreUser(kb);
+                kb.setGenerateDeletingFrameEventsEnabled(eventsEnabled);
             }
         }
 
@@ -117,6 +128,40 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
         return entityData;
     }
+
+
+    private boolean checkAndRecreateIndex(OWLModel owlModel, Collection<String> superClsNames, boolean recreateIndex) {
+        boolean success = true;
+        for (String superclsname : superClsNames) {
+            RDFSNamedClass parent = owlModel.getRDFSNamedClass(superclsname);
+            if (parent != null) {
+                success = success && checkAndRecreateIndex(parent, recreateIndex);
+            }
+        }
+        return success;
+    }
+
+    private boolean checkAndRecreateIndex(RDFSNamedClass parent, boolean recreateIndex) {
+        return new ICDContentModel(parent.getOWLModel()).checkIndexAndRecreate(parent, recreateIndex);
+    }
+
+
+    private boolean addChildToIndex(RDFSNamedClass cls, Collection<String> superClsNames, boolean isSiblingIndexValid) {
+        boolean success = true;
+        for (String superclsname : superClsNames) {
+            RDFSNamedClass parent = cls.getOWLModel().getRDFSNamedClass(superclsname);
+            if (parent != null) {
+                success = success && addChildToIndex(parent, cls, isSiblingIndexValid);
+            }
+        }
+        return success;
+    }
+
+
+    private boolean addChildToIndex(RDFSNamedClass parent, RDFSNamedClass cls, boolean isSiblingIndexValid) {
+        return new ICDContentModel(parent.getOWLModel()).addChildToIndex(parent, cls, isSiblingIndexValid);
+    }
+
 
     public List<EntityPropertyValues> getEntityPropertyValuesForLinearization(String projectName, List<String> entities, List<String> properties,
             List<String> reifiedProps) {
@@ -344,10 +389,10 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         RDFProperty publicIdProp = cm.getPublicIdProperty();
 
         //FIXME: TT - use when enabling reordering of siblings
-        //List<RDFSNamedClass> subclasses = cm.getOrderedChildren(superCls);
+        List<RDFSNamedClass> subclasses = cm.getOrderedChildren(superCls);
 
-        ArrayList<Cls> subclasses = new ArrayList<Cls>(superCls.getVisibleDirectSubclasses());
-        Collections.sort(subclasses, new FrameComparator<Frame>());
+        //ArrayList<Cls> subclasses = new ArrayList<Cls>(superCls.getVisibleDirectSubclasses());
+        //Collections.sort(subclasses, new FrameComparator<Frame>());
 
         for (Cls subcls : subclasses) {
             if (!subcls.isSystem()) {
@@ -976,8 +1021,32 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
             return false;
         }
 
-        return cm.reorderSibling(movedCls, targetCls, isBelow, parentCls, user);
-    }
+        String opDescription = "Changed order of  " + movedCls.getBrowserText() + " in parent: " + parentCls.getBrowserText() +
+                ". Moved " + (isBelow ? "below " : "above") + " " +
+                targetCls.getBrowserText();
 
+        boolean success = false;
+
+        boolean eventsEnabled = owlModel.setGenerateEventsEnabled(false);
+        synchronized (owlModel) {
+            KBUtil.morphUser(owlModel, user);
+            try {
+                owlModel.beginTransaction(opDescription, movedClass);
+
+                success = cm.reorderSibling(movedCls, targetCls, isBelow, parentCls, user);
+
+                owlModel.commitTransaction();
+            } catch (Exception e) {
+                Log.getLogger().log(Level.WARNING, "Error on operation: " + opDescription, e);
+                owlModel.rollbackTransaction();
+                throw new RuntimeException("Error on operation: " + opDescription, e);
+            } finally {
+                KBUtil.restoreUser(owlModel);
+                owlModel.setGenerateEventsEnabled(eventsEnabled);
+            }
+
+        return success;
+    }
+    }
 
 }
