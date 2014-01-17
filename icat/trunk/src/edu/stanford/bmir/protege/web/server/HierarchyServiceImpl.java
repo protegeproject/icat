@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import edu.stanford.bmir.icd.claml.ICDContentModel;
 import edu.stanford.bmir.protege.web.client.rpc.HierarchyService;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.NotesData;
@@ -17,6 +18,15 @@ import edu.stanford.smi.protegex.owl.model.OWLClass;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.RDFSNamedClass;
 
+/**
+ *
+ * Services to handle changes in the hierarchy: add/remove parents, retire.
+ * As of Jan. 15, 2014, this class is ICD specific because it will call the SiblingReordering
+ * class from ICD content model.
+ *
+ * @author ttania
+ *
+ */
 public class HierarchyServiceImpl extends RemoteServiceServlet implements HierarchyService {
 
     private static final long serialVersionUID = -2929819058734836756L;
@@ -37,6 +47,8 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
             throw new IllegalArgumentException("Class " + className + " does not exist.");
         }
 
+        ICDContentModel cm = new ICDContentModel((OWLModel) kb);
+
         Collection<Cls> parentClsesToAdd = KBUtil.getCollection(kb, parentsToAdd, Cls.class);
         Collection<Cls> parentClsesToRemove = KBUtil.getCollection(kb, parentsToRemove, Cls.class);
 
@@ -50,13 +62,17 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
 
                 for (Cls parent : parentClsesToAdd) {
                     if (!cls.hasDirectSuperclass(parent)) {
+                        boolean isSiblingIndexValid = cm.checkIndexAndRecreate((RDFSNamedClass) parent, false);
                         cls.addDirectSuperclass(parent);
+                        cm.addChildToIndex((RDFSNamedClass) parent, (RDFSNamedClass) cls, isSiblingIndexValid);
                     }
                 }
 
                 for (Cls parent: parentClsesToRemove) {
                     if (cls.hasDirectSuperclass(parent)) {
+                        boolean isSiblingIndexValid = cm.checkIndexAndRecreate((RDFSNamedClass) parent, false);
                         cls.removeDirectSuperclass(parent);
+                        cm.removeChildFromIndex((RDFSNamedClass) parent, (RDFSNamedClass) cls, isSiblingIndexValid);
                     }
                 }
 
@@ -64,7 +80,7 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
                 if (!cls.getSuperclasses().contains(kb.getRootCls())) {
                     cls.addDirectSuperclass(kb.getRootCls());
                 }
-                
+
                 if (runsInTransaction) {
                     kb.commitTransaction();
                 }
@@ -86,7 +102,7 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
             if (owlcls.getSuperclasses(true).contains(owlcls)) {
                 ArrayList<OWLClass> cyclePath = new ArrayList<OWLClass>();
                 KBUtil.getPathToSuperClass(owlcls, owlcls, cyclePath);
-                //if we really found a cycle (i.e. there was a real cycle that did not involve anonymous classes) 
+                //if we really found a cycle (i.e. there was a real cycle that did not involve anonymous classes)
                 if (cyclePath.size() > 1) {
                     res = OntologyServiceImpl.createEntityList(cyclePath);
                 }
@@ -100,7 +116,7 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
                 res = OntologyServiceImpl.createEntityList(cyclePath);
             }
         }
-        
+
         if (reasonForChange != null && reasonForChange.length() > 0) {
             ChAOServiceImpl chaoService = new ChAOServiceImpl();
             NotesData notesData = new NotesData();
@@ -110,10 +126,13 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
             notesData.setSubject("[Reason for change]: " + operationDescription);
             chaoService.createNote(project, notesData, false);
         }
-        
+
         return res;
     }
 
+    /*
+     * This method will not update the sibling index, because it is not used by icd anymore.
+     */
     public void retireClasses(String project, Collection<String> classesToRetireNames, boolean retireChildren,
             String newParentName, String reasonForChange, String operationDescription, String user) {
         Project prj = getProject(project);
