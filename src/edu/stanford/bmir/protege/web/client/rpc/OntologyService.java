@@ -143,6 +143,8 @@ public interface OntologyService extends RemoteService {
             String user, String operationDescription);
 
     public List<EntityData> getSubproperties(String projectName, String propertyName);
+    
+    public List<EntityData> getProperties(String projectName, List<String> props);
 
     public void addPropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
             EntityData value, String user, String operationDescription);

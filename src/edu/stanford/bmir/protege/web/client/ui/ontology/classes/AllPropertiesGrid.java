@@ -2,7 +2,9 @@ package edu.stanford.bmir.protege.web.client.ui.ontology.classes;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
@@ -50,6 +52,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.Triple;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.ontology.properties.PropertiesTreePortlet;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.selection.Selectable;
@@ -86,6 +89,7 @@ public class AllPropertiesGrid extends EditorGridPanel {
 
     private Collection<EntityData> currentSelection;
     private PropertyValueUtil propertyValueUtil;
+	private Map<String, Object> configMap = null;
 
     public AllPropertiesGrid(Project project) {
         this.project = project;
@@ -99,7 +103,16 @@ public class AllPropertiesGrid extends EditorGridPanel {
     }
 
 
-    public void setEntity(EntityData newEntity) {
+    public AllPropertiesGrid(Project project, Map<String, Object> configMap) {
+		this(project);
+		setConfigurationMap(configMap);
+	}
+
+    public void setConfigurationMap(Map<String, Object> configMap) {
+		this.configMap = configMap;
+    }
+
+	public void setEntity(EntityData newEntity) {
         if (_currentEntity != null && _currentEntity.equals(newEntity)) {
             return;
         }
@@ -114,6 +127,13 @@ public class AllPropertiesGrid extends EditorGridPanel {
             return;
         }
         reload();
+    }
+    
+    private List<String> getAllAllowedNewProperties() {
+    	if (configMap == null) {
+    		return null;
+    	}
+    	return (List<String>) configMap.get(FormConstants.ALLOWED_NEW_PROPERTIES);
     }
 
     protected GridCellListener getGridCellListerner() {
@@ -482,6 +502,16 @@ public class AllPropertiesGrid extends EditorGridPanel {
 
     public Selectable createSelectable() {
         PropertiesTreePortlet propertiesTreePortlet = new PropertiesTreePortlet(project);
+        List<String> allowedProp = getAllAllowedNewProperties();
+        if (allowedProp != null) {
+        	PortletConfiguration portletConfig = propertiesTreePortlet.getPortletConfiguration();
+        	if (portletConfig == null) {
+        		portletConfig = new PortletConfiguration();
+        		portletConfig.setProperties(new HashMap<String, Object>());
+        	}
+        	portletConfig.addPropertyValue(FormConstants.VISIBLE_PROPERTIES, allowedProp);
+        	propertiesTreePortlet.setPortletConfiguration(portletConfig);
+        }
         return propertiesTreePortlet;
     }
 

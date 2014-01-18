@@ -140,6 +140,8 @@ public interface OntologyServiceAsync {
 
     void getSubproperties(String projectName, String propertyName, AsyncCallback<List<EntityData>> cb);
 
+	void getProperties(String projectName, List<String> props, AsyncCallback<List<EntityData>> cb);
+    
     void addPropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity, EntityData value,
             String user, String operationDescription, AsyncCallback<Void> cb);
 

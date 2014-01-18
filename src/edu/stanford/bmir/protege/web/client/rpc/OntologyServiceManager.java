@@ -227,6 +227,10 @@ public class OntologyServiceManager {
     public void getSubproperties(String projectName, String propertyName, AsyncCallback<List<EntityData>> cb) {
         proxy.getSubproperties(projectName, propertyName, cb);
     }
+    
+	public void getProperties(String projectName, List<String> props, AsyncCallback<List<EntityData>> cb) {
+		proxy.getProperties(projectName, props, cb);
+	}
 
     public void addPropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
             EntityData value, String user, String operationDescription, AsyncCallback<Void> cb) {
@@ -318,6 +322,8 @@ public class OntologyServiceManager {
             String user, String operationDescription, AsyncCallback<EntityData> cb) {
         proxy.replaceExternalReference(projectName, entityName, bpRefData, oldValueEntityData, user, operationDescription, cb);
     }
+
+
 
 
 }

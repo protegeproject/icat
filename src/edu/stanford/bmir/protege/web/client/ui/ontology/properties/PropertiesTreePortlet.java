@@ -33,12 +33,16 @@ import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyType;
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
+import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.selection.SelectionEvent;
 
 // TODO: add action descriptions and labels in the config similar to the ClassTreePortlet
 public class PropertiesTreePortlet extends AbstractEntityPortlet {
 
+	private static final String ROOT_PROPERTY_NODE = "RootPropertyNode";
+	
     protected TreePanel treePanel;
 
     protected List<EntityData> currentSelection;
@@ -84,9 +88,9 @@ public class PropertiesTreePortlet extends AbstractEntityPortlet {
 
         // Temporary - to be replaced when ontology is loaded.
         TreeNode root = new TreeNode((String) null);
-        root.setId("RootPropertyNode");
+        root.setId(ROOT_PROPERTY_NODE);
         root.setHref("");
-        root.setUserObject(new PropertyEntityData("RootPropertyNode", "RootPropertyNode", null));
+        root.setUserObject(new PropertyEntityData(ROOT_PROPERTY_NODE, ROOT_PROPERTY_NODE, null));
         setTreeNodeIcon(root);
 
         treePanel.setRootNode(root);
@@ -426,11 +430,17 @@ public class PropertiesTreePortlet extends AbstractEntityPortlet {
 
     @Override
     protected void afterRender() {
-        getSubProperties(null, true);
+    	List<String> allowedProps = getAllowedProperties();
+    	if (allowedProps != null) {
+    		getPropertiesFromServer(allowedProps);
+    	} else {
+    		getSubProperties(null, true);
+    	}
         super.afterRender();
     }
 
-    public void setTreeNodeIcon(TreeNode node) {
+
+	public void setTreeNodeIcon(TreeNode node) {
         PropertyEntityData entityData = (PropertyEntityData) node.getUserObject();
         PropertyType type = entityData.getPropertyType();
         if (type == PropertyType.OBJECT) {
@@ -449,6 +459,11 @@ public class PropertiesTreePortlet extends AbstractEntityPortlet {
                 new GetSubproperties(propName, getSubpropertiesOfSubproperties));
     }
 
+    private void getPropertiesFromServer(List<String> allowedProps) {
+ 		OntologyServiceManager.getInstance().getProperties(project.getProjectName(), allowedProps,
+ 				new GetSubproperties(null, true));
+ 	}
+    
     public List<EntityData> getSelection() {
         return currentSelection;
     }
@@ -474,12 +489,21 @@ public class PropertiesTreePortlet extends AbstractEntityPortlet {
         return node;
     }
 
+    public List<String> getAllowedProperties() {
+    	PortletConfiguration config = getPortletConfiguration();
+    	if (config == null) {
+    		return null;
+    	}
+    	return (List<String>) config.getProperties().get(FormConstants.VISIBLE_PROPERTIES);
+    }
+    
     /*
      * Remote procedure calls
      */
     class GetSubproperties extends AbstractAsyncHandler<List<EntityData>> {
 
-        private String propName;
+        
+		private String propName;
         private boolean getSubpropertiesOfSubproperties;
 
         public GetSubproperties(String className, boolean getSubpropertiesOfSubproperties) {
@@ -496,7 +520,7 @@ public class PropertiesTreePortlet extends AbstractEntityPortlet {
         @Override
         public void handleSuccess(List<EntityData> children) {
             if (propName == null) {
-                propName = "RootPropertyNode";
+                propName = ROOT_PROPERTY_NODE;
             }
             TreeNode parentNode = treePanel.getNodeById(propName);
 
@@ -511,7 +535,7 @@ public class PropertiesTreePortlet extends AbstractEntityPortlet {
                 // children are already fetched? Maybe?
                 // TODO: think about this situation
 
-                if (getSubpropertiesOfSubproperties) {
+                if (getSubpropertiesOfSubproperties == true) {
                     for (Object element2 : children) {
                         EntityData child = (EntityData) element2;
                         getSubProperties(child.getName(), false);
@@ -523,7 +547,7 @@ public class PropertiesTreePortlet extends AbstractEntityPortlet {
             for (EntityData ch : children) {
                 PropertyEntityData childData = (PropertyEntityData) ch;
                 //if (childData.isSystem() == false) {
-                    parentNode.appendChild(createTreeNode(childData));
+                	parentNode.appendChild(createTreeNode(childData));
                 //}
             }
 

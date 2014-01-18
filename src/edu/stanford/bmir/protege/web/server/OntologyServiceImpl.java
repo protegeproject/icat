@@ -344,6 +344,28 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
         return subpropertyData;
     }
+    
+    public List<EntityData> getProperties(String projectName, List<String> props) {
+        ArrayList<EntityData> propsData = new ArrayList<EntityData>();
+
+        Project project = getProject(projectName);
+        if (project == null) {
+            return propsData;
+        }
+
+        KnowledgeBase kb = project.getKnowledgeBase();
+
+        for (String prop : props) {
+			Slot slot = kb.getSlot(prop);
+			if (slot != null) {
+				PropertyEntityData entityData = createPropertyEntityData(slot, null, true);
+	            entityData.setPropertyType(getPropertyType(slot));
+	            propsData.add(entityData);
+			}
+		}
+        
+        return propsData;
+    }
 
     private Collection<Slot> getSubSlots(Slot parentSlot) {
         Collection<Slot> slots = new ArrayList<Slot>();
