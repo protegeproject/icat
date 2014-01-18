@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
 
 /**
@@ -32,6 +33,13 @@ public class AllPropertiesPortlet extends AbstractEntityPortlet {
         setTitle("Properties");
         this.propGrid = new AllPropertiesGrid(project);
         add(propGrid);
+    }
+
+    @Override
+    public void setPortletConfiguration(PortletConfiguration portletConfiguration) {
+        super.setPortletConfiguration(portletConfiguration);
+        //forward configurations to property grid
+        this.propGrid.setConfigurationMap(portletConfiguration.getProperties());
     }
 
     public Collection<EntityData> getSelection() {

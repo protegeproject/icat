@@ -16,6 +16,10 @@ public class GenericConfiguration implements Serializable {
 		return properties;
 	}
 
+	public void addPropertyValue(String key, Object value) {
+		properties.put(key, value);
+	}
+	
     public String getStringProperty(String prop, String defaultValue) {
         if (properties == null) {
             return defaultValue;

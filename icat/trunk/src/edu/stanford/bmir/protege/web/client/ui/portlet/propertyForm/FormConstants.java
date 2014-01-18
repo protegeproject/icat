@@ -10,6 +10,10 @@ public class FormConstants {
 	public static final String TITLE = "title";
 	public static final String HEADER_CSS_CLASS = "headerCssClass";	//we should not use camel case in property names
 
+	//portlet configuration constants
+    public static final String ALLOWED_NEW_PROPERTIES = "allowed_new_properties";
+    public static final String VISIBLE_PROPERTIES = "visible_properties";
+	
 	public static final String TYPES_ANY = "types_any";
 	public static final String TYPES_ALL = "types_all";
 	public static final String TYPES_NOT = "types_not";
