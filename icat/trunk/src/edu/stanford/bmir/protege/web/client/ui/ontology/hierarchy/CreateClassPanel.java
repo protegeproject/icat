@@ -41,7 +41,6 @@ public class CreateClassPanel extends FormPanel implements Selectable {
     private final Project project;
     private ClassSelectionField parentsField;
     private TextField titleField;
-    private TextField sortingLabelField;
     private TextAreaField reasonField;
     private AsyncCallback<EntityData> asyncCallback;
     private String topClass;
@@ -89,12 +88,8 @@ public class CreateClassPanel extends FormPanel implements Selectable {
         });
         add(titleField, new AnchorLayoutData("98%"));
 
-        sortingLabelField = new TextField("Sorting label", "code");
-        sortingLabelField.setAllowBlank(false);
-        add(sortingLabelField, new AnchorLayoutData("98%"));
-
         //FIXME: ICD specific!!!!
-        
+
         parentsField = new ClassSelectionField(project, "Parent(s)", true, topClass) {
             @Override
             protected edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet createSelectable() {
@@ -194,7 +189,7 @@ public class CreateClassPanel extends FormPanel implements Selectable {
 
     protected void performCreate() {
         ICDServiceManager.getInstance().createICDCls(project.getProjectName(), null,
-                UIUtil.getStringCollection(parentsField.getClsValues()), titleField.getValueAsString(), sortingLabelField.getValueAsString(),
+                UIUtil.getStringCollection(parentsField.getClsValues()), titleField.getValueAsString(), null,
                 createICDSpecificEntities, GlobalSettings.getGlobalSettings().getUserName(), getOperationDescription(),
                 "reason for change", new CreateClassHandler()); //TODO: remove the unneeded args
     }
