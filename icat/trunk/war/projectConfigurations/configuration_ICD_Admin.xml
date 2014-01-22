@@ -8903,6 +8903,47 @@
 		<controllingPortlet reference="../columns/column/portlets/portlet[2]" ></controllingPortlet>
 	</tab>
 
+    <!-- WP classes tab -->
+	<tab> 
+		<name>edu.stanford.bmir.protege.web.client.ui.tab.UserDefinedTab</name>
+		<label>Classes Overview</label>
+		<properties>
+			<entry>
+				<string>closable</string>
+				<boolean>true</boolean>
+			</entry>
+		</properties>
+		
+		<columns>
+			<column>
+				<width>0.40</width>
+				<portlets>
+					<portlet>
+						<name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.SuperclassesPortlet</name>
+						<height>83</height>
+						<width>200</width>
+					</portlet>
+					<portlet>
+						<name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet</name>
+						<height>507</height>
+						<width>200</width>						
+					</portlet>					
+				</portlets>
+			</column>
+			
+			<column>
+			<width>0.60</width>
+				<portlets>
+					<portlet>
+	            		<name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.AllPropertiesPortlet</name>
+	            		<height>600</height>
+	            		<width>0</width>
+	          		</portlet>
+          		</portlets>
+			</column>
+		</columns>
+		<controllingPortlet reference="../columns/column/portlets/portlet[2]" ></controllingPortlet>
+	</tab>
 
   </tabs>
 </project>
