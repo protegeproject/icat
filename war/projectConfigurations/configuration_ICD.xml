@@ -232,7 +232,8 @@
 												</entry>
 											</map>
 										</entry>
-										
+										<!-- Taking out the sorting label as parent-based multi-sorting is enabled -->
+										<!-- 
 										<entry>
 											<string>http://who.int/icd#sortingLabel</string>
 											<map>
@@ -258,6 +259,8 @@
 												</entry>
 											</map>
 										</entry>
+										-->
+										<!-- End sorting label -->
 										
 										<entry>
 											<string>http://who.int/icd#icdTitle</string>
