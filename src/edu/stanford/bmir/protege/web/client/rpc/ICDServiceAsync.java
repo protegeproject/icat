@@ -8,6 +8,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 
 public interface ICDServiceAsync {
 
@@ -44,6 +45,9 @@ public interface ICDServiceAsync {
 
     void removeAllowedPostCoordinationAxis(String projectName, String subject,
 			String postcoordinationEntity, String postcoordinationProperty, AsyncCallback<Boolean> cb);
+
+	void getPostCoordinationAxesScales(String projectName,
+			List<String> properties, AsyncCallback<List<ScaleInfoData>> cb);
 
     void reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent,
             AsyncCallback<Boolean> cb);

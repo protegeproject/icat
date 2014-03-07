@@ -109,6 +109,7 @@ public class FormConstants {
     public static final String ICDINCLUSION_GRID = "icdinclusion_grid";
     public static final String POSTCOORDINATION_GRID = "postcoordination_grid";
     public static final String SCALEEDITOR_GRID = "scaleeditor_grid";
+    public static final String FIXEDSCALEVALUES_GRID = "fixedscalevalues_grid";
 
 
 }

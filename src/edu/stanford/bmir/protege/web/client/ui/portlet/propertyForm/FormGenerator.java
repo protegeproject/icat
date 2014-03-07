@@ -17,12 +17,14 @@ import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
+import edu.stanford.bmir.protege.web.client.ui.icd.FixedScaleValuePresenter;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDInclusionWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDIndexWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDLinearizationWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDTitleWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.InheritedTagsGrid;
 import edu.stanford.bmir.protege.web.client.ui.icd.PostCoordinationGrid;
+import edu.stanford.bmir.protege.web.client.ui.icd.PostCoordinationWidgetController;
 import edu.stanford.bmir.protege.web.client.ui.icd.ScaleValueEditorWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 
@@ -245,11 +247,13 @@ public class FormGenerator {
                     } else if (component_type.equals(FormConstants.ICDINCLUSION_GRID)) { //ICD specific
                         widget = createICDInclusionGrid((Map) value, prop);
                     } else if (component_type.equals(FormConstants.POSTCOORDINATION_GRID)) { //ICD specific
-                    	WidgetController ctrl = new WidgetController(panel, this);
+                    	WidgetController ctrl = new PostCoordinationWidgetController(panel, this);
                         widget = createPosCoordinationGrid((Map) value, prop, ctrl);
                         ctrl.setControllingWidget(widget);
                     } else if (component_type.equals(FormConstants.SCALEEDITOR_GRID)) { //ICD specific
                         widget = createScaleEditorGrid((Map) value, prop);
+                    } else if (component_type.equals(FormConstants.FIXEDSCALEVALUES_GRID)) { //ICD specific
+                    	widget = createFixedScaleValuesGrid((Map) value, prop);
                     }
 
                     if (widget != null && widget.getComponent() != null) {
@@ -455,6 +459,14 @@ public class FormGenerator {
     	ScaleValueEditorWidget scaleValueEditorWidget = new ScaleValueEditorWidget(project);
         scaleValueEditorWidget.setup(conf, new PropertyEntityData(property));
         return scaleValueEditorWidget;
+    }
+    
+    
+    //ICD specific
+    private PropertyWidget createFixedScaleValuesGrid(Map<String, Object> conf, String property) {
+    	FixedScaleValuePresenter fixedScaleValueWidget = new FixedScaleValuePresenter(project);
+    	fixedScaleValueWidget.setup(conf, new PropertyEntityData(property));
+    	return fixedScaleValueWidget;
     }
 
 

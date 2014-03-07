@@ -19,6 +19,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 import edu.stanford.bmir.protege.web.client.ui.icd.DisplayStatus;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet;
 import edu.stanford.smi.protege.collab.util.HasAnnotationCache;
@@ -697,7 +698,8 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		Slot allowedPcAxisPropertyProperty = cm.getAllowedPostcoordinationAxisPropertyProperty();
 		Slot requiredPcAxisPropertyProperty = cm.getRequiredPostcoordinationAxisPropertyProperty();
 
-		List<String> pcAxisProperties = ICDContentModelConstants.PC_AXES_PROPERTIES_LIST;
+		//need to create a copy of the constant array list in order to be able to modify if (e.g. by calling .retainAll())
+		List<String> pcAxisProperties = new ArrayList<String>(ICDContentModelConstants.PC_AXES_PROPERTIES_LIST);
 		pcAxisProperties.retainAll(reifiedProps);
 
     	Instance subjInst = kb.getInstance(entity);
@@ -1001,6 +1003,63 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		return false;
 	}
 
+
+	@Override
+	public List<ScaleInfoData> getPostCoordinationAxesScales(String projectName,
+			List<String> properties) {
+		
+    	Project project = getProject(projectName);
+    	KnowledgeBase kb = project.getKnowledgeBase();
+    	ICDContentModel cm = new ICDContentModel((OWLModel)kb);
+		
+		List<ScaleInfoData> res = new ArrayList<ScaleInfoData>();
+		for (String property : properties) {
+			Slot propSlot = kb.getSlot(property);
+			if (propSlot == null) {
+				Log.getLogger().warning("No property found with name: " + property + " in method ICDSerivceImpl.getPostCoordinationAxesScales. " +
+						"Please check your configurations.");
+			}
+			else {
+				Collection<?> range = propSlot.getAllowedClses();
+				if (range == null || range.isEmpty()) {
+					Log.getLogger().warning("It is not possible to retrieve the (fixed) scale values for property " + property + " because it's range ot set");
+				}
+				else {
+					Iterator<?> it = range.iterator();
+					Cls rangeCls = (Cls) it.next();
+					if (it.hasNext()) {
+						Log.getLogger().warning("Range if property " + property + " contains multiple classes. " +
+								"To calculate the (fixed) scale values, we will use only on of those, namely " + rangeCls.getName());
+					}
+					Collection<Instance> allValidValues = rangeCls.getDirectInstances();
+					List<EntityData> propertyValues = new ArrayList<EntityData>();
+					List<String> propertyValueDefinitions = new ArrayList<String>();
+					for (Instance inst : allValidValues) {
+						//TODO get the referencedValue and get the title and definition from it
+						propertyValues.add(new EntityData(inst.getName(), inst.getBrowserText()));
+						propertyValueDefinitions.add(getDefinition(cm, inst));
+					}
+					//build property info:
+					ScaleInfoData propertyInfo = new ScaleInfoData(propertyValues);
+					propertyInfo.setProperty(new PropertyEntityData(property));
+					res.add(propertyInfo);
+				}
+			}
+		}
+		return res;
+	}
+
+	private String getDefinition(ICDContentModel cm, Instance inst) {
+		String definition = null;
+		if (inst instanceof RDFSNamedClass) {
+	        RDFResource defTerm = cm.getTerm(((RDFSNamedClass)inst), cm.getDefinitionProperty());
+	        if (defTerm != null) {
+	            definition = (String) defTerm.getPropertyValue(cm.getLabelProperty());
+	        }
+		}
+        return definition;
+	}
+	
     @Override
     public boolean reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent) {
 
@@ -1046,7 +1105,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
             }
 
         return success;
-    }
+        }
     }
 
 }

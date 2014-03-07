@@ -126,14 +126,46 @@
  * Display status icons for the ICD class tree
  */
  
- .blue-display-status-icon {
+.blue-display-status-icon {
     background-image: url(../images/blue.png) !important;   
 }
 
- .yellow-display-status-icon {
+.yellow-display-status-icon {
     background-image: url(../images/warning.png) !important;   
 }
 
- .red-display-status-icon {
+.red-display-status-icon {
     background-image: url(../images/no.png) !important;   
+}
+
+/*
+ * Styles used in widgets related to post-coordination
+ */
+.table-row-hidden {
+	display:none;
+}
+
+.table-row-visible {
+	display:table-row;
+}
+
+table.fixedscalevalues-values {
+	border: 1px solid;
+	border-color: #99BBE8;
+	border-collapse: collapse;
+	margin: 0 0 10px 0;
+	min-width: 250px;
+}
+
+table.fixedscalevalues-values td
+{
+	border: 1px solid;
+	border-color: #99BBE8;
+	padding:1px 10px;
+}
+
+.fixedscalevalues-header {
+	background-color: lightgray;
+	font-weight: bold;
+	text-align: center;
 }
