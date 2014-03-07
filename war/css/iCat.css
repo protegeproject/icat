@@ -149,7 +149,7 @@
 	display:table-row;
 }
 
-table.fixedscalevalues-values {
+table.fixedscalevalues-table {
 	border: 1px solid;
 	border-color: #99BBE8;
 	border-collapse: collapse;
@@ -157,7 +157,7 @@ table.fixedscalevalues-values {
 	min-width: 250px;
 }
 
-table.fixedscalevalues-values td
+table.fixedscalevalues-table td
 {
 	border: 1px solid;
 	border-color: #99BBE8;
