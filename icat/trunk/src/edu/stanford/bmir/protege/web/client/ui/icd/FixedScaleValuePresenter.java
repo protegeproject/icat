@@ -73,25 +73,14 @@ public class FixedScaleValuePresenter extends AbstractPropertyWidget {
 		Integer rowIndex = prop2RowMap.get(property);
 		int row = (rowIndex == null ? 0 : rowIndex.intValue());
 		if (flag) {
-			System.out.println("Show it!");
+			System.out.println("Show it! (" + property + ")");
 			table.getRowFormatter().setStyleName(row, "table-row-visible");
 		}
 		else {
-			System.out.println("Hide it!");
+			System.out.println("Hide it! (" + property + ")");
 			table.getRowFormatter().setStyleName(row, "table-row-hidden");
 		}
 		return !flag;
-	}
-	
-	@Override
-	public void setSubject(EntityData subject) {
-		super.setSubject(subject);
-		if (subject != null) {
-			ICDServiceManager.getInstance().getListOfSelectedPostCoordinationAxes(
-				getProject().getProjectName(), subject.getName(), properties, 
-				new GetSelectedPostCoordinationAxesHandler(
-						FixedScaleValuePresenter.this, subject, properties));
-		}
 	}
 
 	protected class GetPostCoordinationAxesScalesHandler extends AbstractAsyncHandler<List<ScaleInfoData>> {
@@ -129,10 +118,10 @@ public class FixedScaleValuePresenter extends AbstractPropertyWidget {
 		
 		private String createHTMLForScaleInfoData(ScaleInfoData scaleInfo) {
 			Grid g = new Grid(1,2);
-			g.setCellSpacing(10);
 			g.setText(0, 0, "Value");
 			g.setText(0, 1, "Definition");
 			g.getRowFormatter().setStyleName(0, "fixedscalevalues-header");
+			
     		for (int i = 0; i < scaleInfo.getValueCount(); i++) {
     			int row = i + 1;
 				g.insertRow(row);
@@ -144,24 +133,10 @@ public class FixedScaleValuePresenter extends AbstractPropertyWidget {
 				}
 			}
 			
-			return "<table class=\"fixedscalevalues-values\"> " + g.getElement().getInnerHTML() + " </table>";
+			return "<table class=\"fixedscalevalues-table\"> " + g.getElement().getInnerHTML() + " </table>";
 		}
 	}
 	
-	protected class GetSelectedPostCoordinationAxesHandler extends AbstractGetSelectedPostCoordinationAxesHandler {
-
-		public GetSelectedPostCoordinationAxesHandler(FixedScaleValuePresenter widget,
-				EntityData subject, List<String> properties) {
-			super(widget, subject, properties);
-		}
-
-		@Override
-		public void updateUI(String propertyName, boolean selected) {
-			setVisible(propertyName, selected);
-		}
-		
-	}
-
 	public void show(String propertyName) {
 		setVisible(propertyName, true);
 	}
