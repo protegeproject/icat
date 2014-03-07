@@ -20,6 +20,10 @@ public class WidgetController {
 		this.formGenerator = formGenerator;
 	}
 
+	public FormGenerator getFormGenerator() {
+		return formGenerator;
+	}
+	
 	public void setControllingWidget(PropertyWidget widget) {
 		this.controllingWidget = widget;
 	}
@@ -38,7 +42,7 @@ public class WidgetController {
 		}
 	}
 	
-	private PropertyWidget getWidgetForProperty(String propertyName) {
+	protected PropertyWidget getWidgetForProperty(String propertyName) {
 		//initialize on demand
 		if (property2Widget == null) {
 			property2Widget = new HashMap<String, PropertyWidget>();

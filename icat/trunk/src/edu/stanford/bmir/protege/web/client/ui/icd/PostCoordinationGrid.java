@@ -132,7 +132,7 @@ public class PostCoordinationGrid extends InstanceGridWidget {
 		ICDServiceManager.getInstance().getEntityPropertyValuesForPostCoordinationAxes(getProject().getProjectName(), subjects, props, properties, 
                 new GetTriplesHandler(currentSubject));
         ICDServiceManager.getInstance().getListOfSelectedPostCoordinationAxes(getProject().getProjectName(), currentSubject.getName(), properties, 
-                new GetSelectedPostCoordinationAxesHandler(currentSubject));
+                new GetSelectedPostCoordinationAxesHandler(currentSubject, properties));
     }
 
     @Override
@@ -418,35 +418,21 @@ public class PostCoordinationGrid extends InstanceGridWidget {
 		}
     }
 
-    protected class GetSelectedPostCoordinationAxesHandler extends AbstractAsyncHandler<List<String>> {
-    	private EntityData subject;
-    	
-        public GetSelectedPostCoordinationAxesHandler(EntityData subject) {
-			this.subject = subject;
-		}
-
-		@Override
-		public void handleFailure(Throwable caught) {
-            GWT.log("Post-Coordination Grid Widget: Error at getting list if selected post-cooordination axes properties for " + subject, caught);
-        	for (String propertyName : properties) {
-        		activateValueSelectionWidget(propertyName);
-        	}
-		}
-
-		@Override
-        public void handleSuccess(List<String> selectedProperties) {
-			//in case the selection did not change since the remote method was called
-			if (subject != null && subject.equals(getSubject())) {
-	        	for (String propertyName : properties) {
-	        		if (selectedProperties.contains(propertyName)) {
-	        			activateValueSelectionWidget(propertyName);
-	        		}
-	        		else {
-	        			deactivateValueSelectionWidget(propertyName);
-	        		}
-	        	}
-			}
-        }
-    }
+	protected class GetSelectedPostCoordinationAxesHandler extends AbstractGetSelectedPostCoordinationAxesHandler {
+	
+	    public GetSelectedPostCoordinationAxesHandler(EntityData subject, List<String> properties) {
+	    	super(PostCoordinationGrid.this, subject, properties);
+	    }
+	    
+	    @Override
+	    public void updateUI(String propertyName, boolean selected) {
+	    	if (selected) {
+	    		activateValueSelectionWidget(propertyName);
+	    	}
+	    	else {
+	    		deactivateValueSelectionWidget(propertyName);
+	    	}
+	    }
+	}
 
 }

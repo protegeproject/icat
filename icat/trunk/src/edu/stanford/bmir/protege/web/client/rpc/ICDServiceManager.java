@@ -9,6 +9,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 
 public class ICDServiceManager {
 
@@ -84,9 +85,13 @@ public class ICDServiceManager {
     			postcoordinationEntity, postcoordinationProperty, cb);
     }
 
+    public void getPostCoordinationAxesScales(String projectName,
+    		List<String> properties, AsyncCallback<List<ScaleInfoData>> cb) {
+    	proxy.getPostCoordinationAxesScales(projectName, properties, cb);
+    }
+
     public void reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent,
             AsyncCallback<Boolean> cb) {
         proxy.reorderSiblings(projectName, movedClass, targetClass, isBelow, parent, cb);
     }
-
 }
