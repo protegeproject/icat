@@ -389,11 +389,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         RDFProperty isObsoleteProp = cm.getIsObsoleteProperty();
         RDFProperty publicIdProp = cm.getPublicIdProperty();
 
-        //FIXME: TT - use when enabling reordering of siblings
         List<RDFSNamedClass> subclasses = cm.getOrderedChildren(superCls);
-
-        //ArrayList<Cls> subclasses = new ArrayList<Cls>(superCls.getVisibleDirectSubclasses());
-        //Collections.sort(subclasses, new FrameComparator<Frame>());
 
         for (Cls subcls : subclasses) {
             if (!subcls.isSystem()) {
@@ -1007,11 +1003,11 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 	@Override
 	public List<ScaleInfoData> getPostCoordinationAxesScales(String projectName,
 			List<String> properties) {
-		
+
     	Project project = getProject(projectName);
     	KnowledgeBase kb = project.getKnowledgeBase();
     	ICDContentModel cm = new ICDContentModel((OWLModel)kb);
-		
+
 		List<ScaleInfoData> res = new ArrayList<ScaleInfoData>();
 		for (String property : properties) {
 			Slot propSlot = kb.getSlot(property);
@@ -1059,7 +1055,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		}
         return definition;
 	}
-	
+
     @Override
     public boolean reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent) {
 
