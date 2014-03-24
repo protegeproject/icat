@@ -168,6 +168,9 @@ public class ICat implements EntryPoint {
 
     protected void onLogout() {
        // Window.open(GWT.getHostPageBaseURL(), APP_NAME, null );
+        //FIXME: this is called from the UI before the server could removed the attrs in the session,
+        //so, the user will not be able to logout... not a good model.
+        //this needs to happen in a callback from logout on the server, or at least add a timer
         Window.Location.replace(GWT.getHostPageBaseURL());
     }
 

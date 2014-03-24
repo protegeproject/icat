@@ -202,7 +202,7 @@ public class OpenIdServiceImpl extends RemoteServiceServlet implements OpenIdSer
             Log.getLogger().log(Level.WARNING, "Errors at checkIfOpenIdInSessionForLogin  User:", e);
         }
 
-        return new UserData(userName);
+        return AuthenticationUtil.createUserData(userName);
     }
 
     public void clearCreateUserToAssocOpenIdSessData() {

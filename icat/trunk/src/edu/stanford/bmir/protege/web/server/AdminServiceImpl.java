@@ -49,7 +49,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
 
     public UserData getCurrentUserInSession() {
         String user = KBUtil.getUserInSession(getThreadLocalRequest());
-        return user == null ? null : new UserData(user);
+        return user == null ? null : AuthenticationUtil.createUserData(user);
     }
 
 
@@ -160,7 +160,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
             Log.getLogger().info("User " + user.getName() + " logged in on " + new Date());
         }
 
-        return isverified == true ? new UserData(userName) : null;
+        return isverified == true ? AuthenticationUtil.createUserData(userName) : null;
     }
 
     private static String encodeBytes(byte[] bytes) {

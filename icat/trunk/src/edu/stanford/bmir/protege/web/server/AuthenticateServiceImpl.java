@@ -41,7 +41,7 @@ public class AuthenticateServiceImpl extends RemoteServiceServlet implements Aut
         }
 
         session.setAttribute(AuthenticationConstants.USER, name);
-        return new UserData(name);
+        return AuthenticationUtil.createUserData(name);
     }
 
     public UserData validateUser(String name, String password) {
@@ -96,6 +96,7 @@ public class AuthenticateServiceImpl extends RemoteServiceServlet implements Aut
 
         Log.getLogger().info("User " + userName + " created at: " + new Date() + " with OpenId: " + userOpenId);
 
+        //FIXME: should not have an object in the session, only a string
         session.setAttribute(OpenIdConstants.CREATED_USER_TO_ASSOC_OPEN_ID, userData);
         session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_URL, null);
         session.setAttribute(OpenIdConstants.HTTPSESSION_OPENID_ID, null);
@@ -103,7 +104,7 @@ public class AuthenticateServiceImpl extends RemoteServiceServlet implements Aut
         userData.setProperty(OpenIdUtil.REGISTRATION_RESULT_PROP, OpenIdConstants.REGISTER_USER_SUCCESS);
         session.setAttribute(AuthenticationConstants.USER, userData.getName());
 
-        return new UserData(userData.getName());
+        return AuthenticationUtil.createUserData(userData.getName());
     }
 
     public UserData validateUserToAssociateOpenId(String userName, String password) {
