@@ -1,16 +1,11 @@
 package edu.stanford.bmir.protege.web.server;
 
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -19,21 +14,11 @@ import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 
-import org.ncbo.stanford.bean.concept.ClassBean;
-import org.ncbo.stanford.bean.ontology.OntologyBean;
-import org.ncbo.stanford.util.BioPortalServerConstants;
-import org.ncbo.stanford.util.BioPortalUtil;
-import org.ncbo.stanford.util.BioPortalViewOntologyMap;
-import org.ncbo.stanford.util.BioportalConcept;
-import org.ncbo.stanford.util.HTMLUtil;
-
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import edu.stanford.bmir.protege.web.client.model.event.OntologyEvent;
 import edu.stanford.bmir.protege.web.client.rpc.OntologyService;
 import edu.stanford.bmir.protege.web.client.rpc.data.AnnotationData;
-import edu.stanford.bmir.protege.web.client.rpc.data.BioPortalReferenceData;
-import edu.stanford.bmir.protege.web.client.rpc.data.BioPortalSearchData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionItem;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionSuggestion;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
@@ -47,8 +32,6 @@ import edu.stanford.bmir.protege.web.client.rpc.data.PropertyType;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.Triple;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
-import edu.stanford.bmir.protegex.bp.ref.ProtegeUtil;
-import edu.stanford.bmir.protegex.bp.ref.ReferenceModel;
 import edu.stanford.smi.protege.collab.util.HasAnnotationCache;
 import edu.stanford.smi.protege.model.Cls;
 import edu.stanford.smi.protege.model.Frame;
@@ -104,7 +87,7 @@ import edu.stanford.smi.protegex.owl.ui.conditions.ConditionsTableModel;
 public class OntologyServiceImpl extends RemoteServiceServlet implements OntologyService {
     private static final long serialVersionUID = -4229789001933130232L;
     private static final int MIN_SEARCH_STRING_LENGTH = 3;
-    private static HashMap<String, BioPortalViewOntologyMap> bpViewOntologyMaps = new HashMap<String, BioPortalViewOntologyMap>();
+
 
     protected Project getProject(String projectName) {
         return ProjectManagerFactory.getProtege3ProjectManager().getProject(projectName);
@@ -344,7 +327,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
         return subpropertyData;
     }
-    
+
     public List<EntityData> getProperties(String projectName, List<String> props) {
         ArrayList<EntityData> propsData = new ArrayList<EntityData>();
 
@@ -363,7 +346,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 	            propsData.add(entityData);
 			}
 		}
-        
+
         return propsData;
     }
 
@@ -793,27 +776,27 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
     /**
      * This method returns a list of {@link EntityPropertyValuesList}s,
-     * each element in the list representing a multi-level expansion 
-     * along the reified properties in <code>reifiedProperties</code> 
+     * each element in the list representing a multi-level expansion
+     * along the reified properties in <code>reifiedProperties</code>
      * of all the instances that are <code>property</code> values on
      * each subject entity in <code>entities</code>. <br> <br>
-     * The method first retrieves for each subject entity specified in 
+     * The method first retrieves for each subject entity specified in
      * <code>entities</code> the property values for the property
      * specified by the <code>property</code> argument. Then each of those instances
      * will be further expanded along the properties specified in
-     * <code>reifiedProperties</code>. Since this is a multi-level 
+     * <code>reifiedProperties</code>. Since this is a multi-level
      * expansion, while some reified properties will refer to the "main"
-     * property value instance (extracted in the first step), 
-     * other reified properties may refer to instances that are 
+     * property value instance (extracted in the first step),
+     * other reified properties may refer to instances that are
      * themselves property values calculated in another "column".
-     * The subjects of the reified properties are specified in the 
-     * <code>subjectEntityIndexes</code> array. The value -1 in that array 
+     * The subjects of the reified properties are specified in the
+     * <code>subjectEntityIndexes</code> array. The value -1 in that array
      * means that the reified property applies to the "main" property value instance.
      * <br><br>
      * A particularity of this method is that it generates separate entries
-     * in the result list not only for every property value instance 
+     * in the result list not only for every property value instance
      * on every subject, but if the subject of a reified property is
-     * in a different column, and that column contains multiple instances, 
+     * in a different column, and that column contains multiple instances,
      * this method will generate separate entries for each of those instances
      * and will apply the reified properties to each of those instances separately.
      * <br><br>
@@ -868,32 +851,32 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
      * <td>b</td>
      * </tr>
      * </tbody></table></code>
-     * 
+     *
      * <br><br>The reason for having two rows for the instance "a"
      * (and having the property value "a0" for property "p0" repeated in both rows),
      * is because the subject of property "p2" (as well of "p3")
-     * is in column 1, which for the instance "a" contains 
-     * multiple values ("i1" and "i2"). In order to disambiguate which instance 
+     * is in column 1, which for the instance "a" contains
+     * multiple values ("i1" and "i2"). In order to disambiguate which instance
      * is the subject of the property value in column 2 and 3
      * we needed to ensure that column 1 contains a single instance, therfore
      * we have split the multiple values in two different entries.
      * This splitting was not necessary for the values of properties
      * "p2" and "p3" ({"v21", "v22"} and {"v61", "v62"}) because
      * those values did not have any reified properties referring to them as subjects.
-     * 
+     *
      * @param projectName name of the project
      * @param entities list of entity names
      * @param property name of property
      * @param reifiedProperties list of reified property names
-     * @param subjectEntityIndexes list of indexes that identify the subject 
+     * @param subjectEntityIndexes list of indexes that identify the subject
      * that a given reified property in reifiedProperties refer to. The value -1
-     * means that the subject of the reified property is the "main" instance,  
-     * which is the property value for "property" on a subject entity in "entities". 
+     * means that the subject of the reified property is the "main" instance,
+     * which is the property value for "property" on a subject entity in "entities".
      */
 	public List<EntityPropertyValuesList> getMultilevelEntityPropertyValues(
 			String projectName, List<String> entities, String property,
 			List<String> reifiedProperties, int[] subjectEntityIndexes){
-		
+
         List<EntityPropertyValuesList> entityPropValues = new ArrayList<EntityPropertyValuesList>();
         Project project = getProject(projectName);
         if (project == null) {
@@ -925,7 +908,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 	private List<EntityPropertyValuesList> generateEPVsForMultilevelProperties2(
 			KnowledgeBase kb, Instance valueInst,
 			List<String> reifiedProperties, int[] subjectEntityIndexes) {
-		
+
 		List<EntityPropertyValuesList> epvs = new ArrayList<EntityPropertyValuesList>();
 		boolean thereAreMoreValuesToRead = true;
 		while (thereAreMoreValuesToRead) {
@@ -936,7 +919,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 		    		int subjEntityIndex = subjectEntityIndexes[i];
 		            Slot reifiedSlot = kb.getSlot(reifiedPropName);
 		            if (reifiedSlot != null) {
-		            	foundNewValues |= fillInPropertyValues(kb, valueInst, 
+		            	foundNewValues |= fillInPropertyValues(kb, valueInst,
 		            			reifiedSlot, i, subjEntityIndex, epvs);
 		            }
 		    	}
@@ -950,8 +933,8 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 		}
 		return epvs;
 	}
-	
-	private boolean fillInPropertyValues(KnowledgeBase kb, Instance valueInst, 
+
+	private boolean fillInPropertyValues(KnowledgeBase kb, Instance valueInst,
 			Slot reifiedSlot, int propIndex, int subjEntityIndex,
 			List<EntityPropertyValuesList> epvs) {
 		boolean foundNewValues = false;
@@ -960,9 +943,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 			EntityPropertyValuesList epv = new EntityPropertyValuesList(createEntityData(valueInst));
 			epvs.add(epv);
 		}
-		
+
 		List<EntityPropertyValuesList> epvsToBeSplit = new ArrayList<EntityPropertyValuesList>();
-		
+
 		for (EntityPropertyValuesList epv : epvs) {
     		if (subjEntityIndex == -1) {
     			epv.setPropertyValues(propIndex, createEntityList(valueInst.getOwnSlotValues(reifiedSlot)));
@@ -991,7 +974,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 }
     		}
 		}
-		
+
 		if (epvsToBeSplit.size() > 0) {
 			for (EntityPropertyValuesList epvToBeSplit : epvsToBeSplit) {
 				List<EntityPropertyValuesList> newEpvs = splitEpv(epvToBeSplit, subjEntityIndex);
@@ -1001,7 +984,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 			//call again this method
 			foundNewValues |= fillInPropertyValues(kb, valueInst, reifiedSlot, propIndex, subjEntityIndex, epvs);
 		}
-		
+
 		return foundNewValues;
 	}
 
@@ -2489,321 +2472,5 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         return path;
     }
 
-    // private static String PREFERRED_NAME_PROP = "icdTitle";
-
-    // TODO: search methods to be refactored in another class/interface
-
-    public String getBioPortalSearchContent(String projectName, String entityName, BioPortalSearchData bpSearchData) {
-        Project project = getProject(projectName);
-        KnowledgeBase kb = project.getKnowledgeBase();
-        Frame frame = kb.getFrame(entityName);
-        if (frame == null) {
-            return URLUtil.getURLContent(getBioPortalSearchUrl(entityName, bpSearchData));
-        }
-        // try to search the preferred name, if exists
-        /*if (kb instanceof OWLModel) {
-            RDFProperty preferredNameProp = ((OWLModel) kb).getRDFProperty(PREFERRED_NAME_PROP);
-            if (preferredNameProp != null) {
-                try {
-                    String preferredName = (String) frame.getOwnSlotValue(preferredNameProp);
-                    String prefNameSearch = URLUtil.getURLContent(getBioPortalSearchUrl(preferredName, bpSearchData));
-                    if (prefNameSearch != null && prefNameSearch.indexOf("searchBean") > 0) {
-                        return prefNameSearch;
-                    }
-                } catch (Exception e) {
-                }
-            }
-        }
-        // try to search the browser text
-        String nameSearch = URLUtil.getURLContent(getBioPortalSearchUrl(getBrowserText(frame), bpSearchData));
-        if (nameSearch != null && nameSearch.indexOf("searchBean") > 0) {
-            return nameSearch;
-        }
-
-        // search first rdfs:label if exist..
-        if (frame instanceof RDFResource) {
-            RDFProperty rdfsLabelProp = ((OWLModel) kb).getSystemFrames().getRdfsLabelProperty();
-            Object rdfsLabelO = kb.getOwnSlotValue(frame, rdfsLabelProp);
-            if (rdfsLabelO != null) {
-                String rdfsLabelString = "";
-                rdfsLabelString = rdfsLabelO instanceof RDFSLiteral ? ((RDFSLiteral) rdfsLabelO).getString()
-                        : rdfsLabelO.toString();
-                return URLUtil.getURLContent(getBioPortalSearchUrl(rdfsLabelString, bpSearchData));
-            }
-        }
-         */
-        return "";
-    }
-
-    public String getBioPortalSearchContentDetails(String projectName, BioPortalSearchData bpSearchData,
-            BioPortalReferenceData bpRefData) {
-        BioportalConcept bpc = new BioportalConcept();
-        String encodedConceptId = bpRefData.getConceptId();
-        try {
-            encodedConceptId = URLEncoder.encode(bpRefData.getConceptId(), "UTF-8");
-        } catch (UnsupportedEncodingException e1) {
-            Log.getLogger().log(Level.WARNING, "Error at encoding BP search url", e1);
-        }
-        String urlString = bpSearchData.getBpRestBaseUrl() + BioPortalServerConstants.CONCEPTS_REST + "/"
-        + bpRefData.getOntologyVersionId() + "/?conceptid=" + encodedConceptId;
-        urlString = BioPortalUtil.addRestCallSuffixToUrl(urlString, bpSearchData.getBpRestCallSuffix());
-        URL url = null;
-        try {
-            url = new URL(urlString);
-        } catch (MalformedURLException e) {
-            Log.getLogger().log(Level.WARNING, "Invalid BP search URL: " + urlString, e);
-        }
-        if (url == null) {
-            return "";
-        }
-
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("<html><body>");
-        buffer.append("<table width=\"100%\" class=\"servicesT\" style=\"border-collapse:collapse;border-width:0px;padding:5px\"><tr>");
-
-        buffer.append("<td class=\"servHd\" style=\"background-color:#8E798D;color:#FFFFFF;\">Property</td>");
-        buffer.append("<td class=\"servHd\" style=\"background-color:#8E798D;color:#FFFFFF;\">Value</td>");
-
-        String oddColor = "#F4F2F3";
-        String evenColor = "#E6E6E5";
-
-        ClassBean cb = bpc.getConceptProperties(url);
-        if (cb == null) {
-            return "<html><body><i>Details could not be retrieved.</i></body></html>";
-        }
-
-        Map<Object, Object> relationsMap = cb.getRelations();
-        int i = 0;
-        for (Object obj : relationsMap.keySet()) {
-            Object value = relationsMap.get(obj);
-            if (value != null) {
-                String text = HTMLUtil.replaceEOF(ProtegeUtil.getDisplayText(value));
-                if (text.startsWith("[")) {
-                    text = text.substring(1, text.length() - 1);
-                }
-                if (text.length() > 0) {
-                    String color = i % 2 == 0 ? evenColor : oddColor;
-                    buffer.append("<tr>");
-                    buffer.append("<td class=\"servBodL\" style=\"background-color:" + color + ";padding:7px;font-weight: bold;\" >");
-                    buffer.append(ProtegeUtil.getDisplayText(obj));
-                    buffer.append("</td>");
-                    buffer.append("<td class=\"servBodL\" style=\"background-color:" + color + ";padding:7px;\" >");
-                    buffer.append(text);
-                    buffer.append("</td>");
-                    buffer.append("</tr>");
-                    i++;
-                }
-            }
-        }
-        buffer.append("</table>");
-
-        String directLink = bpRefData.getBpUrl();
-        if (directLink != null && directLink.length() > 0) {
-            buffer.append("<div style=\"padding:5px;\"><br><b>Direct link in BioPortal:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-            buffer.append("<a href=\"");
-            buffer.append(directLink);
-            buffer.append("\" target=\"_blank\">");
-            buffer.append(directLink);
-            buffer.append("</a></div>");
-        }
-        buffer.append("</body></html>");
-
-        return buffer.toString();
-    }
-
-    private static String getBioPortalSearchUrl(String text, BioPortalSearchData bpSearchData) {
-        text = text.replaceAll(" ", "%20");
-        String urlString = bpSearchData.getBpRestBaseUrl() + BioPortalServerConstants.SEARCH_REST + "/" +
-        text + createSearchUrlQueryString(bpSearchData);
-        urlString = BioPortalUtil.addRestCallSuffixToUrl(urlString, bpSearchData.getBpRestCallSuffix());
-        return urlString;
-    }
-
-    private static String createSearchUrlQueryString(BioPortalSearchData bpSearchData) {
-        String res = "";
-        String ontIds = bpSearchData.getSearchOntologyIds();
-        String srchOpts = bpSearchData.getSearchOptions();
-        String pgOpt = bpSearchData.getSearchPageOption();
-        boolean firstSep = true;
-        if (ontIds != null) {
-            res += (firstSep ? "?" : "&") + "ontologyids=" + ontIds;
-            firstSep = false;
-        }
-        if (srchOpts != null) {
-            res += (firstSep ? "?" : "&") + srchOpts;
-            firstSep = false;
-        }
-        if (pgOpt != null) {
-            res += (firstSep ? "?" : "&") + pgOpt;
-            firstSep = false;
-        }
-        return res;
-    }
-
-    public EntityData createExternalReference(String projectName, String entityName, BioPortalReferenceData bpRefData,
-            String user, String operationDescription) {
-        Project project = getProject(projectName);
-        KnowledgeBase kb = project.getKnowledgeBase();
-
-        Instance instance = kb instanceof OWLModel ?
-                ((OWLModel) kb).getRDFResource(entityName) :
-                    kb.getInstance(entityName);
-
-                if (instance == null) {
-                    throw new RuntimeException("Failed to import reference. Entity does not exist: " + entityName);
-                }
-
-                String referenceProperty = bpRefData.getReferencePropertyName();
-
-                Slot slot = kb instanceof OWLModel ? ((OWLModel) kb).getRDFProperty(referenceProperty) : kb
-                        .getSlot(referenceProperty);
-
-                if (slot == null) {
-                    throw new RuntimeException("Could not create reference for " + entityName
-                            + " because the reference property is not part of the ontology. Property name: "
-                            + referenceProperty);
-                }
-
-                ReferenceModel referenceModel = null;
-                Instance refInstance = null;
-                synchronized (kb) {
-                    KBUtil.morphUser(kb, user);
-
-                    boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
-                    try {
-                        if (runsInTransaction) {
-                            kb.beginTransaction(operationDescription);
-                        }
-
-                        String viewOnOntologyVersionId = getIsViewOnOntologyId(
-                                bpRefData.getBpRestBaseUrl(), bpRefData.getOntologyVersionId(), bpRefData.getBpRestCallSuffix());
-                        String viewOnOntologyWithLabel =
-                            (viewOnOntologyVersionId == null ? null : getIsViewOnOntologyWithLabel(
-                                    bpRefData.getBpRestBaseUrl(), bpRefData.getOntologyVersionId(), bpRefData.getBpRestCallSuffix()));
-
-                        referenceModel = new ReferenceModel(kb, bpRefData.importFromOriginalOntology(), bpRefData.createAsClass(),
-                                bpRefData.getReferenceClassName(), bpRefData.getUrlPropertyName(),
-                                bpRefData.getOntologyNamePropertyName(), bpRefData.getOntologyNameAltPropertyName(),
-                                bpRefData.getOntologyIdPropertyName(), bpRefData.getConceptIdPropertyName(),
-                                bpRefData.getConceptIdAltPropertyName(), bpRefData.getPreferredLabelPropertyName());
-
-                        referenceModel.setReference_cls(bpRefData.getReferenceClassName());
-                        refInstance = referenceModel.createReference(
-                                bpRefData.getBpUrl(), bpRefData.getConceptId(), bpRefData.getConceptIdShort(), bpRefData.getOntologyVersionId(),
-                                viewOnOntologyVersionId, bpRefData.getPreferredName(), bpRefData.getOntologyName(),
-                                viewOnOntologyWithLabel);
-                        if (refInstance == null) {
-                            Log.getLogger().log(Level.SEVERE,
-                                    "Could not create reference in " + projectName + " for entity " + entityName);
-
-                            if (runsInTransaction) {
-                                kb.commitTransaction();
-                            }
-                            throw new RuntimeException("Could not create reference for entity " + entityName);
-                        }
-                        instance.addOwnSlotValue(slot, refInstance);
-
-                        if (runsInTransaction) {
-                            kb.commitTransaction();
-                        }
-                    } catch (Exception e) {
-                        Log.getLogger().log(Level.SEVERE,
-                                "Could not import reference in " + projectName + " for entity " + entityName, e);
-                        if (runsInTransaction) {
-                            kb.rollbackTransaction();
-                        }
-                        throw new RuntimeException("Could not import reference for entity " + entityName + ". Message: "
-                                + e.getMessage(), e);
-                    } finally {
-                        KBUtil.restoreUser(kb);
-                    }
-                }
-                return createEntityData(refInstance);
-    }
-
-    public EntityData replaceExternalReference(String projectName, String entityName, BioPortalReferenceData bpRefData,
-            EntityData oldValueEntityData, String user, String operationDescription) {
-        Project project = getProject(projectName);
-        if (project == null) {
-            return null;
-        }
-
-        KnowledgeBase kb = project.getKnowledgeBase();
-
-        synchronized (kb) {
-            KBUtil.morphUser(kb, user);
-            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
-            try {
-                if (runsInTransaction) {
-                    kb.beginTransaction(operationDescription);
-                }
-
-                PropertyEntityData oldPropertyEntity = new PropertyEntityData();
-                oldPropertyEntity.setName(bpRefData.getReferencePropertyName());
-                oldValueEntityData.setValueType(edu.stanford.bmir.protege.web.client.rpc.data.ValueType.Instance); // these are always an instance type, so we can do this.
-                removePropertyValue(projectName, entityName, oldPropertyEntity, oldValueEntityData, user, operationDescription);
-                KBUtil.morphUser(kb, user); //hack
-                final EntityData data = createExternalReference(projectName, entityName, bpRefData, user, operationDescription);
-                KBUtil.morphUser(kb, user); //hack
-
-                if (runsInTransaction) {
-                    kb.commitTransaction();
-                }
-
-                return data;
-            } catch (Exception e) {
-                Log.getLogger().log(Level.SEVERE,  "Could not replace reference in " + projectName + " for entity " + entityName, e);
-                if (runsInTransaction) {
-                    kb.rollbackTransaction();
-                }
-                throw new RuntimeException("Could not replace reference for entity " + entityName + ". Message: " + e.getMessage(), e);
-            } finally {
-                KBUtil.restoreUser(kb);
-            }
-        }
-    }
-
-
-    private String getIsViewOnOntologyId(String bpRestBaseUrl, String ontologyVersionId, String bpRestCallSuffix) {
-        String viewOnOntologyVersionId = null;
-        if (bpRestBaseUrl != null && ontologyVersionId != null) {
-            BioPortalViewOntologyMap bpViewOntologyMap = getBPViewOntologyMap(bpRestBaseUrl);
-            int bpOntologyVersionId = Integer.parseInt(ontologyVersionId);
-            int bpViewOnOntologyId = bpViewOntologyMap.getViewOnOntologyId(bpOntologyVersionId);
-            if (bpViewOnOntologyId == BioPortalViewOntologyMap.UNKNOWN) {
-                //calculate bpViewOnOntologyId
-                bpViewOnOntologyId = org.ncbo.stanford.util.BioPortalUtil.getViewOnOntologyId(bpRestBaseUrl, bpOntologyVersionId, bpRestCallSuffix);
-                //if calculation was successfully
-                if (bpViewOnOntologyId != BioPortalViewOntologyMap.UNKNOWN) {
-                    OntologyBean bpViewOnOntology = (bpViewOnOntologyId == BioPortalViewOntologyMap.NOT_A_VIEW ? null :
-                        org.ncbo.stanford.util.BioPortalUtil.getViewOnOntology(bpRestBaseUrl, bpViewOnOntologyId, bpRestCallSuffix));
-                    bpViewOntologyMap.setViewOnOntologyId(bpOntologyVersionId, bpViewOnOntologyId, bpViewOnOntology);
-                }
-            }
-            if (bpViewOnOntologyId > 0) {
-                viewOnOntologyVersionId = new Integer(bpViewOnOntologyId).toString();
-            }
-        }
-        return viewOnOntologyVersionId;
-    }
-
-    private String getIsViewOnOntologyWithLabel(String bpRestBaseUrl, String ontologyVersionId, String bpRestCallSuffix) {
-        String viewOnOntologyWithLabel = null;
-        if (bpRestBaseUrl != null && ontologyVersionId != null) {
-            BioPortalViewOntologyMap bpViewOntologyMap = getBPViewOntologyMap(bpRestBaseUrl);
-            int bpOntologyVersionId = Integer.parseInt(ontologyVersionId);
-            viewOnOntologyWithLabel = bpViewOntologyMap.getViewOnOntologyDisplayLabel(bpOntologyVersionId);
-        }
-        return viewOnOntologyWithLabel;
-    }
-
-    private BioPortalViewOntologyMap getBPViewOntologyMap(String bpRestBaseURL) {
-        BioPortalViewOntologyMap bpViewOntologyMap = bpViewOntologyMaps.get(bpRestBaseURL);
-        if (bpViewOntologyMap == null) {
-            bpViewOntologyMap = new BioPortalViewOntologyMap();
-            bpViewOntologyMaps.put(bpRestBaseURL, bpViewOntologyMap);
-        }
-        return bpViewOntologyMap;
-    }
 
 }

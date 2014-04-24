@@ -37,7 +37,7 @@ import com.gwtext.client.widgets.layout.FitLayout;
 import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
-import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
+import edu.stanford.bmir.protege.web.client.rpc.BioPortalAccessManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.BioPortalReferenceData;
 import edu.stanford.bmir.protege.web.client.rpc.data.BioPortalSearchData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
@@ -282,12 +282,12 @@ public class BioPortalSearchComponent extends GridPanel {
         BioPortalReferenceData bpRefData = createBioPortalReferenceDataFromRecord(record);
         if(replaceExisting && isSingleValued){
             EntityData oldValueEntityData = new EntityData(currentValue);
-            OntologyServiceManager.getInstance().replaceExternalReference(project.getProjectName(), currentEntity.getName(), bpRefData,
+            BioPortalAccessManager.getInstance().replaceExternalReference(project.getProjectName(), currentEntity.getName(), bpRefData,
                     oldValueEntityData, GlobalSettings.getGlobalSettings().getUserName(),
                     getReplaceReferenceApplyToString(bpRefData, oldValueEntityData),
                     getImportBioPortalConceptHandler());
         } else {
-            OntologyServiceManager.getInstance().createExternalReference(project.getProjectName(), currentEntity.getName(), bpRefData,
+            BioPortalAccessManager.getInstance().createExternalReference(project.getProjectName(), currentEntity.getName(), bpRefData,
                     GlobalSettings.getGlobalSettings().getUserName(),
                     getImportReferenceApplyToString(bpRefData),
                     getImportBioPortalConceptHandler());
@@ -330,7 +330,7 @@ public class BioPortalSearchComponent extends GridPanel {
         initBioPortalSearchData(bpSearchData);
         BioPortalReferenceData bpRefData = createBioPortalReferenceDataFromRecord(record);
 
-        OntologyServiceManager.getInstance().getBioPortalSearchContentDetails(project.getProjectName(), bpSearchData,
+        BioPortalAccessManager.getInstance().getBioPortalSearchContentDetails(project.getProjectName(), bpSearchData,
                 bpRefData, new AsyncCallback<String>() {
                     public void onFailure(Throwable caught) {
                         panel.getEl().unmask();
@@ -457,7 +457,7 @@ public class BioPortalSearchComponent extends GridPanel {
             if (configPropertiesMap != null) {
                 BioPortalSearchData bpSearchData = new BioPortalSearchData();
                 initBioPortalSearchData(bpSearchData);
-                OntologyServiceManager.getInstance().getBioPortalSearchContent(project.getProjectName(), searchString,
+                BioPortalAccessManager.getInstance().getBioPortalSearchContent(project.getProjectName(), searchString,
                         bpSearchData, new GetSearchURLContentHandler());
             } else {
                 GWT.log("configPropertiesMap should have been initialized!", new Exception(
@@ -606,7 +606,7 @@ public class BioPortalSearchComponent extends GridPanel {
         bpRefData.setOntologyName(null);
         bpRefData.setPreferredName(BioPortalConstants.DNF_CONCEPT_LABEL);
         bpRefData.setBpUrl(null);//do not use the BP rest URL to find out more information about this concept
-        OntologyServiceManager.getInstance().createExternalReference(
+        BioPortalAccessManager.getInstance().createExternalReference(
                 project.getProjectName(),
                 currentEntity.getName(),
                 bpRefData,
@@ -630,7 +630,7 @@ public class BioPortalSearchComponent extends GridPanel {
         bpRefData.setOntologyName(null);
         bpRefData.setPreferredName(preferredName);
         bpRefData.setBpUrl(null);//do not use the BP rest URL to find out more information about this concept
-        OntologyServiceManager.getInstance().createExternalReference(
+        BioPortalAccessManager.getInstance().createExternalReference(
                 project.getProjectName(),
                 currentEntity.getName(),
                 bpRefData,
@@ -655,7 +655,7 @@ public class BioPortalSearchComponent extends GridPanel {
         bpRefData.setBpUrl(null);//do not use the BP rest URL to find out more information about this concept
 
         EntityData oldValueEntityData = new EntityData(oldInstanceName);
-        OntologyServiceManager.getInstance().replaceExternalReference(
+        BioPortalAccessManager.getInstance().replaceExternalReference(
                 project.getProjectName(),
                 currentEntity. getName(),
                 bpRefData,

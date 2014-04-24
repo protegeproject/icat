@@ -7,8 +7,6 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import edu.stanford.bmir.protege.web.client.model.event.OntologyEvent;
 import edu.stanford.bmir.protege.web.client.rpc.data.AnnotationData;
-import edu.stanford.bmir.protege.web.client.rpc.data.BioPortalReferenceData;
-import edu.stanford.bmir.protege.web.client.rpc.data.BioPortalSearchData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionItem;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionSuggestion;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
@@ -185,20 +183,5 @@ public interface OntologyService extends RemoteService {
 
     public List<EntityData> getPathToRoot(String projectName, String entityName);
 
-    /*
-     * Util methods
-     */
-
-    public String getBioPortalSearchContent(String projectName, String entityName, BioPortalSearchData bpSearchData);
-
-    public String getBioPortalSearchContentDetails(String projectName, BioPortalSearchData bpSearchData,
-            BioPortalReferenceData bpRefData);
-
-    public EntityData createExternalReference(String projectName, String entityName, BioPortalReferenceData bpRefData,
-            String user, String operationDescription);
-
-    public EntityData replaceExternalReference(String projectName, String entityName, BioPortalReferenceData bpRefData,
-                                        EntityData oldValueEntityData,
-                                        String user, String operationDescription);
 
 }

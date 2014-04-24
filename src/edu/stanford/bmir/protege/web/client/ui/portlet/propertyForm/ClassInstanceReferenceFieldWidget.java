@@ -19,7 +19,7 @@ import com.gwtext.client.widgets.layout.FitLayout;
 import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
-import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
+import edu.stanford.bmir.protege.web.client.rpc.BioPortalAccessManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.BioPortalReferenceData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
@@ -174,7 +174,7 @@ public class ClassInstanceReferenceFieldWidget extends ReferenceFieldWidget {
                         final BioPortalReferenceData bpRefData = createBioPortalReferenceData(data);
                         if (isReplace()){
                            EntityData oldValueEntityData = new EntityData(getStore().getAt(0).getAsString(INSTANCE_FIELD_NAME));
-                            OntologyServiceManager.getInstance().replaceExternalReference(
+                           BioPortalAccessManager.getInstance().replaceExternalReference(
                                 getProject().getProjectName(),
                                 getSubject().getName(),
                                 bpRefData,
@@ -182,7 +182,7 @@ public class ClassInstanceReferenceFieldWidget extends ReferenceFieldWidget {
                                 GlobalSettings.getGlobalSettings().getUserName(),
                                     getTransactionString(bpRefData), new ImportInternalReferenceHandler(selectWindow));
                         } else {
-                            OntologyServiceManager.getInstance().createExternalReference(
+                            BioPortalAccessManager.getInstance().createExternalReference(
                                 getProject().getProjectName(),
                                 getSubject().getName(),
                                 bpRefData,

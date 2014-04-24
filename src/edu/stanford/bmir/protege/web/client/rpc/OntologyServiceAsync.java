@@ -6,8 +6,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import edu.stanford.bmir.protege.web.client.model.event.OntologyEvent;
 import edu.stanford.bmir.protege.web.client.rpc.data.AnnotationData;
-import edu.stanford.bmir.protege.web.client.rpc.data.BioPortalReferenceData;
-import edu.stanford.bmir.protege.web.client.rpc.data.BioPortalSearchData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionItem;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionSuggestion;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
@@ -141,7 +139,7 @@ public interface OntologyServiceAsync {
     void getSubproperties(String projectName, String propertyName, AsyncCallback<List<EntityData>> cb);
 
 	void getProperties(String projectName, List<String> props, AsyncCallback<List<EntityData>> cb);
-    
+
     void addPropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity, EntityData value,
             String user, String operationDescription, AsyncCallback<Void> cb);
 
@@ -181,22 +179,6 @@ public interface OntologyServiceAsync {
 
     void getPathToRoot(String projectName, String entityName, AsyncCallback<List<EntityData>> cb);
 
-    /*
-     * Util methods
-     */
-
-    void getBioPortalSearchContent(String projectName, String entityName, BioPortalSearchData bpSearchData,
-            AsyncCallback<String> cb);
-
-    void getBioPortalSearchContentDetails(String projectName, BioPortalSearchData bpSearchData,
-            BioPortalReferenceData bpRefData, AsyncCallback<String> cb);
-
-    void createExternalReference(String projectName, String entityName, BioPortalReferenceData bpRefData, String user,
-            String operationDescription, AsyncCallback<EntityData> cb);
-
-    void replaceExternalReference(String projectName, String entityName, BioPortalReferenceData bpRefData,
-                                  EntityData oldValueEntityData,
-                                  String user, String operationDescription, AsyncCallback<EntityData> async);
 
     void getDirectTypes(String projectName, String instanceName, AsyncCallback<List<EntityData>> cb);
 
