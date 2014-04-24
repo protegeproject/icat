@@ -97,6 +97,11 @@
         <servlet-name>edu.stanford.bmir.protege.web.iCat ApplicationPropertiesService</servlet-name>
         <servlet-class>edu.stanford.bmir.protege.web.server.ApplicationPropertiesServiceImpl</servlet-class>
     </servlet>
+    
+    <servlet>
+        <servlet-name>BioPortalAccessImpl</servlet-name>
+        <servlet-class>edu.stanford.bmir.protege.web.server.BioPortalAccessImpl</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>NotificationServiceImpl</servlet-name>
@@ -183,6 +188,11 @@
     <servlet-mapping>
         <servlet-name>edu.stanford.bmir.protege.web.iCat ApplicationPropertiesService</servlet-name>
         <url-pattern>/authenticate/applicationProperties</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>BioPortalAccessImpl</servlet-name>
+        <url-pattern>/webprotege/bpaccess</url-pattern>
     </servlet-mapping>
 
     <!-- Default page to serve -->

@@ -25,5 +25,6 @@
     <servlet path="/openid" class="edu.stanford.bmir.protege.web.server.OpenIdServiceImpl"/>
     <servlet path="/bpProposals" class="edu.stanford.bmir.protege.web.server.bioportal.BioPortalProposalsImpl"/>
     <servlet path="/bpUpload" class="edu.stanford.bmir.protege.web.server.bioportal.BioPortalUploadImpl" />
+    <servlet path="/bpaccess" class="edu.stanford.bmir.protege.web.server.BioPortalAccessImpl" />
     
 </module>
