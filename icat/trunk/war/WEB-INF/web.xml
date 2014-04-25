@@ -100,7 +100,7 @@
     
     <servlet>
         <servlet-name>BioPortalAccessImpl</servlet-name>
-        <servlet-class>edu.stanford.bmir.protege.web.server.BioPortalAccessImpl</servlet-class>
+        <servlet-class>edu.stanford.bmir.protege.web.server.bioportal.BioPortalAccessImpl</servlet-class>
     </servlet>
 
     <servlet-mapping>
