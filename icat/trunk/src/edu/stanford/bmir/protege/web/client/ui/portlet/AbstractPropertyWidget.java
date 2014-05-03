@@ -63,15 +63,16 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
         return labelHtml;
     }
 
+    //TODO we should probably make this abstract
     public Collection<EntityData> getValues() {
         return new ArrayList<EntityData>();
     }
 
+    abstract public void setValues(Collection<EntityData> values);
+
     public EntityData getSubject() {
         return subject;
     }
-
-    public void setValues(Collection<EntityData> values) {}
 
     public void setSubject(EntityData subject) {
         this.subject = subject;
