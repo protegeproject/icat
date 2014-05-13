@@ -23,6 +23,8 @@ import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public abstract class AbstractSelectionFieldWidget extends TextFieldWidget {
 
+    protected static final String ADD_ICON_STYLE_STRING = DELETE_ICON_STYLE_STRING;
+
     public AbstractSelectionFieldWidget(Project project) {
         super(project);
     }
@@ -35,8 +37,9 @@ public abstract class AbstractSelectionFieldWidget extends TextFieldWidget {
     }
 
     protected Anchor createAddEntityLink() {
-        Anchor addLink = new Anchor("&nbsp<img src=\"images/add.png\"></img>", true);
-        addLink.setWidth("20px");
+        Anchor addLink = new Anchor("&nbsp<img src=\"images/add.png\" " + ADD_ICON_STYLE_STRING + "></img>", true);
+        addLink.setWidth("22px");
+        addLink.setHeight("22px");
         addLink.setTitle("Add new value");
         addLink.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
