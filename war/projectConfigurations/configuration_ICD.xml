@@ -86,7 +86,7 @@
 		
 		<columns>
 			<column>      
-				<width>0.50</width>
+				<width>1</width>
 				<portlets>									
 					<portlet>
 					<name>edu.stanford.bmir.protege.web.client.ui.portlet.html.HtmlMessagePortlet</name>
@@ -104,13 +104,13 @@
 					</portlet>
 				</portlets>
 			</column>
-			
+		<!-- Commented out the statistics because we don't keep them up to date	
 			<column>      
 				<width>0.50</width>
 				<portlets>					
 					<portlet>
 					<name>edu.stanford.bmir.protege.web.client.ui.portlet.html.HtmlMessagePortlet</name>
-					<height>500</height> <!-- 200 - 10 (why not 13?) -->
+					<height>500</height> 
 					<properties>
 						<entry>
 							<string>label</string>
@@ -124,6 +124,7 @@
 					</portlet>
 				</portlets>
 			</column>
+	-->
 	<!-- 	<column>
 				<width>0.5</width>
 				<portlets>
