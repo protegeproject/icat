@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.logging.Level;
 
 import edu.stanford.bmir.icd.claml.ICDContentModel;
+import edu.stanford.bmir.icd.claml.ICDContentModel.PrecoordinationDefinitionComponent;
 import edu.stanford.bmir.icd.claml.ICDContentModelConstants;
 import edu.stanford.bmir.protege.icd.export.ExportICDClassesJob;
 import edu.stanford.bmir.protege.web.client.rpc.ICDService;
@@ -19,6 +20,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.icd.PrecoordinationClassExpressionData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 import edu.stanford.bmir.protege.web.client.ui.icd.DisplayStatus;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet;
@@ -29,12 +31,14 @@ import edu.stanford.smi.protege.model.Instance;
 import edu.stanford.smi.protege.model.KnowledgeBase;
 import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.model.Slot;
+import edu.stanford.smi.protege.model.ValueType;
 import edu.stanford.smi.protege.util.CollectionUtilities;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.RDFIndividual;
 import edu.stanford.smi.protegex.owl.model.RDFProperty;
 import edu.stanford.smi.protegex.owl.model.RDFResource;
+import edu.stanford.smi.protegex.owl.model.RDFSClass;
 import edu.stanford.smi.protegex.owl.model.RDFSNamedClass;
 
 public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
@@ -696,7 +700,9 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
 		//need to create a copy of the constant array list in order to be able to modify if (e.g. by calling .retainAll())
 		List<String> pcAxisProperties = new ArrayList<String>(ICDContentModelConstants.PC_AXES_PROPERTIES_LIST);
-		pcAxisProperties.retainAll(reifiedProps);
+		if (reifiedProps != null) {
+			pcAxisProperties.retainAll(reifiedProps);
+		}
 
     	Instance subjInst = kb.getInstance(entity);
     	Collection<?> pcSpecs = subjInst.getOwnSlotValues(allowedPcAxesProperty);
@@ -1056,7 +1062,173 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         return definition;
 	}
 
-    @Override
+	/**
+	 * This method returns all superclasses or superproperties of a given class or property
+	 * ordered from most specific to the most general. 
+	 */
+	public List<EntityData> getAllSuperEntities(String projectName, EntityData entity) {
+		List<EntityData> superEntities = new ArrayList<EntityData>();
+
+        if (entity == null || entity.getName() == null) {return superEntities;}
+
+        Project project = getProject(projectName);
+        OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
+        ICDContentModel cm = new ICDContentModel(owlModel);
+
+        Class<? extends RDFResource> type = null;
+        RDFResource res = null;
+    	RDFResource top = null;
+       if (entity instanceof PropertyEntityData) {
+        	type = RDFProperty.class;
+        	res = owlModel.getRDFProperty(entity.getName());
+        }
+        else {
+        	type = RDFSClass.class;
+        	res = owlModel.getRDFSNamedClass(entity.getName());
+    		top = cm.getICDCategoryClass();
+        }
+
+        if (type != null && res != null) {
+        	List<RDFResource> superResources = getAllSuperEntities(owlModel, res, type, top);
+    		for (RDFResource superRes : superResources) {
+    			if (RDFProperty.class.equals(type)) {
+    				superEntities.add(new PropertyEntityData(superRes.getName(), superRes.getBrowserText(), null));
+    			}
+    			else {
+    				superEntities.add(new EntityData(superRes.getName(), superRes.getBrowserText()));
+    			}
+			}
+        }
+        
+		return superEntities;
+	}
+	
+    private List<RDFResource> getAllSuperEntities(OWLModel owlModel,
+    		RDFResource res, Class<? extends RDFResource> type, RDFResource top) {
+    	List<RDFResource> result = new ArrayList<RDFResource>();
+
+    	collectAllSuperEntities(owlModel, res, type, top, result);
+    	
+		return result;
+	}
+
+	private void collectAllSuperEntities(OWLModel owlModel, RDFResource res,
+			Class<? extends RDFResource> type, RDFResource top, List<RDFResource> result) {
+		if ( res.equals(top) ) {
+			return;
+		}
+		
+		Collection<RDFResource> superEntities = getSuperEntities(res, type);
+		List<RDFResource> toBeVisited = new ArrayList<RDFResource>();
+		for (RDFResource parent : superEntities) {
+			if (parent != null && /*(!parent.equals(top)) &&*/ (!result.contains(parent))) {
+				result.add(parent);
+				toBeVisited.add(parent);
+			}
+		}
+		
+		for (RDFResource parent : toBeVisited) {
+			collectAllSuperEntities(owlModel, parent, type, top, result);
+		}
+	}
+
+
+	@SuppressWarnings("unchecked")
+	private Collection<RDFResource> getSuperEntities(RDFResource res, Class<? extends RDFResource> type) {
+		if (RDFSClass.class.equals(type)) {
+			return filterOutAnonymousClasses(((RDFSClass)res).getSuperclasses(false));
+		}
+		else if (RDFProperty.class.equals(type)) {
+			return ((RDFProperty)res).getSuperproperties(false);
+		}
+		else {
+			return Collections.emptyList();
+		}
+	}
+
+	
+	private Collection<RDFResource> filterOutAnonymousClasses(
+			Collection<RDFResource> superclasses) {
+		Collection<RDFResource> res = new ArrayList<RDFResource>();
+		for (RDFResource cls : superclasses) {
+			if (cls instanceof RDFSNamedClass) {
+				res.add((RDFSNamedClass) cls);
+			}
+		}
+		return res;
+	}
+
+
+	@Override
+	public List<PrecoordinationClassExpressionData> getPreCoordinationClassExpressions(
+			String projectName, String entity, List<String> properties) {
+        Project project = getProject(projectName);
+        OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
+        ICDContentModel cm = new ICDContentModel(owlModel);
+
+        RDFSNamedClass cls = cm.getICDCategory(entity);
+        Collection<PrecoordinationDefinitionComponent> propertyValues = cm.getPrecoordinationPropertyValues(cls, properties);
+		List<PrecoordinationClassExpressionData> res = new ArrayList<PrecoordinationClassExpressionData>();
+		for (Iterator<PrecoordinationDefinitionComponent> it = propertyValues.iterator(); it.hasNext();) {
+			PrecoordinationDefinitionComponent defComp = (PrecoordinationDefinitionComponent) it.next();
+			
+			PrecoordinationClassExpressionData resData = new PrecoordinationClassExpressionData(
+					defComp.getProperty(), defComp.isDefinitional());
+			
+			String value = defComp.getValue();
+			ValueType valueType = defComp.getValueType();
+			RDFResource valueRes = null;
+			if (valueType == ValueType.INSTANCE) {
+				valueRes = owlModel.getRDFIndividual(value);
+			}
+			else if (valueType == ValueType.CLS) {
+				valueRes = owlModel.getOWLNamedClass(value);
+			}
+			
+			if (valueRes != null) {
+				resData.setValue(valueRes.getName(), valueRes.getBrowserText(), 
+						(valueType == ValueType.INSTANCE ? 
+								edu.stanford.bmir.protege.web.client.rpc.data.ValueType.Instance : 
+								edu.stanford.bmir.protege.web.client.rpc.data.ValueType.Class));
+				res.add(resData);
+			}
+			else {
+				if (value != null) {
+					Log.getLogger().warning("Problem at creating PrecoordinationClassExpressionData for" +
+						"PrecoordinationDefinitionComponent: " + defComp + " (value could not be converted)");
+				}
+			}
+		}
+		return res;
+	}
+
+	@Override
+	public boolean setPrecoordinationPropertyValue(String projectName, String entity,
+			String property, EntityData oldValue, EntityData newValue) {
+
+        Project project = getProject(projectName);
+        OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
+        ICDContentModel cm = new ICDContentModel(owlModel);
+
+        RDFSNamedClass cls = cm.getICDCategory(entity);
+		return cm.setPrecoordinationDefinitionPropertyValue(cls, property, 
+				(oldValue == null ? null : oldValue.getName()), (newValue == null ? null : newValue.getName()));
+	}
+	
+	@Override
+	public boolean changeIsDefinitionalFlag(String projectName, String entity,
+			String property, boolean isDefinitionalFlag) {
+
+        Project project = getProject(projectName);
+        OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
+        ICDContentModel cm = new ICDContentModel(owlModel);
+
+        RDFSNamedClass cls = cm.getICDCategory(entity);
+		return cm.changeIsDefinitionalFlag(cls, property, isDefinitionalFlag);
+	}
+	
+	
+	@Override
     public boolean reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent) {
 
         String user = KBUtil.getUserInSession(getThreadLocalRequest());

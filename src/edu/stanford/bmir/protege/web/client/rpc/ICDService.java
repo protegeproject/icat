@@ -9,6 +9,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.icd.PrecoordinationClassExpressionData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 
 @RemoteServiceRelativePath("icd")
@@ -50,6 +51,17 @@ public interface ICDService extends RemoteService  {
 
 	public List<ScaleInfoData> getPostCoordinationAxesScales(String projectName,
 			List<String> properties);
+
+    public List<EntityData> getAllSuperEntities(String projectName, EntityData entity);
+
+    public List<PrecoordinationClassExpressionData> getPreCoordinationClassExpressions(
+			String projectName, String entity, List<String> properties);
+
+	public boolean setPrecoordinationPropertyValue(String projectName, String entity,
+			String property, EntityData oldValue, EntityData newValue);
+
+	public boolean changeIsDefinitionalFlag(String projectName, String entity,
+			String property, boolean isDefinitionalFlag);
 
     public boolean reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent);
 

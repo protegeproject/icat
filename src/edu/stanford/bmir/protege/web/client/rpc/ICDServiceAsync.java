@@ -8,6 +8,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.icd.PrecoordinationClassExpressionData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 
 public interface ICDServiceAsync {
@@ -48,6 +49,21 @@ public interface ICDServiceAsync {
 
 	void getPostCoordinationAxesScales(String projectName,
 			List<String> properties, AsyncCallback<List<ScaleInfoData>> cb);
+
+	void getAllSuperEntities(String projectName, EntityData entity,
+			AsyncCallback<List<EntityData>> callback);
+
+	void getPreCoordinationClassExpressions(String projectName,
+			String entity, List<String> properties,
+			AsyncCallback<List<PrecoordinationClassExpressionData>> cb);
+
+	void setPrecoordinationPropertyValue(String projectName, String entity,
+			String property, EntityData oldValue, EntityData newValue,
+			AsyncCallback<Boolean> cb);
+
+	void changeIsDefinitionalFlag(String projectName, String entity,
+			String property, boolean isDefinitionalFlag,
+			AsyncCallback<Boolean> cb);
 
     void reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent,
             AsyncCallback<Boolean> cb);
