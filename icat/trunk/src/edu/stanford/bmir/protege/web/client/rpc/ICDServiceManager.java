@@ -8,7 +8,9 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
+import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.icd.PrecoordinationClassExpressionData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 
 public class ICDServiceManager {
@@ -90,8 +92,29 @@ public class ICDServiceManager {
     	proxy.getPostCoordinationAxesScales(projectName, properties, cb);
     }
 
-    public void reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent,
+	public void getAllSuperEntities(String projectName, EntityData entity, AsyncCallback<List<EntityData>> cb) {
+		proxy.getAllSuperEntities(projectName, entity, cb);
+	}
+	
+	public void getPreCoordinationClassExpressions(String projectName, String entity, 
+			List<String> properties, AsyncCallback<List<PrecoordinationClassExpressionData>> cb) {
+		proxy.getPreCoordinationClassExpressions(projectName, entity, properties, cb);
+	}
+	
+	public void setPrecoordinationPropertyValue(String projectName,
+			String entity, String property, 
+			EntityData oldValue, EntityData newValue, AsyncCallback<Boolean> cb) {
+		proxy.setPrecoordinationPropertyValue(projectName, entity, property, oldValue, newValue, cb);
+	}
+
+	public void changeIsDefinitionalFlag(String projectName, String entity,
+			String property, boolean isDefinitionalFlag, AsyncCallback<Boolean> cb) {
+		proxy.changeIsDefinitionalFlag(projectName, entity, property, isDefinitionalFlag, cb);
+	}
+
+	public void reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent,
             AsyncCallback<Boolean> cb) {
         proxy.reorderSiblings(projectName, movedClass, targetClass, isBelow, parent, cb);
     }
+
 }

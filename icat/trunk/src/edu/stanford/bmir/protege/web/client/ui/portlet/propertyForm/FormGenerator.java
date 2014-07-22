@@ -17,15 +17,21 @@ import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
-import edu.stanford.bmir.protege.web.client.ui.icd.FixedScaleValuePresenter;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDInclusionWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDIndexWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDLinearizationWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDTitleWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.InheritedTagsGrid;
-import edu.stanford.bmir.protege.web.client.ui.icd.PostCoordinationGrid;
-import edu.stanford.bmir.protege.web.client.ui.icd.PostCoordinationWidgetController;
-import edu.stanford.bmir.protege.web.client.ui.icd.ScaleValueEditorWidget;
+import edu.stanford.bmir.protege.web.client.ui.icd.pc.CustomScaleValueSelector;
+import edu.stanford.bmir.protege.web.client.ui.icd.pc.FixedScaleValuePresenter;
+import edu.stanford.bmir.protege.web.client.ui.icd.pc.FixedScaleValueSelector;
+import edu.stanford.bmir.protege.web.client.ui.icd.pc.PostCoordinationGrid;
+import edu.stanford.bmir.protege.web.client.ui.icd.pc.PostCoordinationWidgetController;
+import edu.stanford.bmir.protege.web.client.ui.icd.pc.PreCoordinationWidget;
+import edu.stanford.bmir.protege.web.client.ui.icd.pc.PreCoordinationWidgetController;
+import edu.stanford.bmir.protege.web.client.ui.icd.pc.ScaleValueEditorWidget;
+import edu.stanford.bmir.protege.web.client.ui.icd.pc.SuperclassSelectorWidget;
+import edu.stanford.bmir.protege.web.client.ui.icd.pc.TreeValueSelector;
 import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 
 /**
@@ -199,61 +205,76 @@ public class FormGenerator {
         for (String prop : sortedProps) {
             Object value = panelConf.get(prop);
             if (value instanceof Map) {
-                String component_type = (String) ((Map) value).get(FormConstants.COMPONENT_TYPE);
+            	Map<String, Object> configMap = (Map<String, Object>) value;
+                String component_type = (String) configMap.get(FormConstants.COMPONENT_TYPE);
                 if (component_type != null) {
                     PropertyWidget widget = null;
                     if (component_type.equals(FormConstants.TEXTFIELD)) {
-                        widget = createTextField((Map<String, Object>) value, prop);
+                        widget = createTextField(configMap, prop);
                     } else if (component_type.equals(FormConstants.TEXTAREA)) {
-                        widget = createTextArea((Map) value, prop);
+                        widget = createTextArea(configMap, prop);
                     } else if (component_type.equals(FormConstants.CHECKBOX)) {
-                        widget = createCheckBox((Map) value, prop);
+                        widget = createCheckBox(configMap, prop);
                     } else if (component_type.equals(FormConstants.COMBOBOX)) {
-                        widget = createComboBox((Map) value, prop);
+                        widget = createComboBox(configMap, prop);
                     } else if (component_type.equals(FormConstants.HTMLEDITOR)) {
-                        widget = createHtmlEditor((Map) value, prop);
+                        widget = createHtmlEditor(configMap, prop);
                     } else if (component_type.equals(FormConstants.FIELDSET)) {
                         // widget = createFieldSet((Map)value);
                     } else if (component_type.equals(FormConstants.MULTITEXTFIELD)) {
-                        widget = createMultiTextField((Map) value, prop);
+                        widget = createMultiTextField(configMap, prop);
                     } else if (component_type.equals(FormConstants.INSTANCETEXTFIELD)) {
-                    	widget = createInstanceTextField((Map) value, prop);
+                    	widget = createInstanceTextField(configMap, prop);
                     }  else if (component_type.equals(FormConstants.INSTANCEREFERENCE)) {
-                    	widget = createInstanceReferenceField((Map) value, prop);
+                    	widget = createInstanceReferenceField(configMap, prop);
                     } else if (component_type.equals(FormConstants.GRID)) {
-                        widget = createGrid((Map) value, prop);
+                        widget = createGrid(configMap, prop);
                     } else if (component_type.equals(FormConstants.EXTERNALREFERENCE)) {
-                        widget = createExternalReference((Map) value, prop);
+                        widget = createExternalReference(configMap, prop);
                     } else if (component_type.equals(FormConstants.CLASS_SELECTION_FIELD)) {
-                        widget = createClassSelectionField((Map) value, prop);
+                        widget = createClassSelectionField(configMap, prop);
                     } else if (component_type.equals(FormConstants.PROPERTY_SELECTION_FIELD)) {
-                        widget = createPropertySelectionField((Map) value, prop);
+                        widget = createPropertySelectionField(configMap, prop);
                     } else if (component_type.equals(FormConstants.HTMLMESSAGE)) {
-                        widget = createHtmlMessage((Map<String, Object>) value, prop);
+                        widget = createHtmlMessage((Map<String, Object>) configMap, prop);
                     } else if (component_type.equals(FormConstants.INSTANCE_CHECKBOX)) {
-                        widget = createInstanceCheckBox((Map) value, prop);
+                        widget = createInstanceCheckBox(configMap, prop);
                     } else if (component_type.equals(FormConstants.INSTANCE_RADIOBUTTON)) {
-                        widget = createInstanceRadioButton((Map) value, prop);
+                        widget = createInstanceRadioButton(configMap, prop);
                     } else if (component_type.equals(FormConstants.INSTANCE_COMBOBOX)) {
-                        widget = createInstanceComboBox((Map) value, prop);
+                        widget = createInstanceComboBox(configMap, prop);
                     } else if (component_type.equals(FormConstants.ICDTITLE_TEXTFIELD)) { //ICD specific
-                        widget = createICDTitleTextField((Map) value, prop);
+                        widget = createICDTitleTextField(configMap, prop);
                     } else if (component_type.equals(FormConstants.ICDLINEARIZATION_GRID)) { //ICD specific
-                        widget = createICDLinearizationGrid((Map) value, prop);
+                        widget = createICDLinearizationGrid(configMap, prop);
                     } else if (component_type.equals(FormConstants.ICDINHERITEDTAG_GRID)) { //ICD specific
-                        widget = createICDInheritedTagGrid((Map) value, prop);
+                        widget = createICDInheritedTagGrid(configMap, prop);
                     } else if (component_type.equals(FormConstants.ICDINDEX_GRID)) { //ICD specific
-                        widget = createICDIndexGrid((Map) value, prop);
+                        widget = createICDIndexGrid(configMap, prop);
                     } else if (component_type.equals(FormConstants.ICDINCLUSION_GRID)) { //ICD specific
-                        widget = createICDInclusionGrid((Map) value, prop);
+                        widget = createICDInclusionGrid(configMap, prop);
                     } else if (component_type.equals(FormConstants.POSTCOORDINATION_GRID)) { //ICD specific
                     	WidgetController ctrl = new PostCoordinationWidgetController(panel, this);
-                        widget = createPosCoordinationGrid((Map) value, prop, ctrl);
+                        widget = createPostCoordinationGrid(configMap, prop, ctrl);
                         ctrl.setControllingWidget(widget);
                     } else if (component_type.equals(FormConstants.SCALEEDITOR_GRID)) { //ICD specific
-                        widget = createScaleEditorGrid((Map) value, prop);
+                        widget = createScaleEditorGrid(configMap, prop);
                     } else if (component_type.equals(FormConstants.FIXEDSCALEVALUES_GRID)) { //ICD specific
-                    	widget = createFixedScaleValuesGrid((Map) value, prop);
+                    	widget = createFixedScaleValuesGrid(configMap, prop);
+                    } else if (component_type.equals(FormConstants.PRECOORDINATION_COMP)) { //ICD specific
+                    	PreCoordinationWidgetController ctrl = new PreCoordinationWidgetController(project, panel, this);
+                    	widget = createPreCoordinationWidget(configMap, prop, ctrl);
+                    	ctrl.setControllingWidget(widget);
+                    } else if (component_type.equals(FormConstants.PRECOORDINATION_SUPERCLASS)) { //ICD specific
+                    	PreCoordinationWidgetController ctrl = new PreCoordinationWidgetController(project, panel, this);
+                    	widget = createPreCoordinationSuperclassWidget(configMap, prop, ctrl);
+                    	ctrl.setControllingWidget(widget);
+                    } else if (component_type.equals(FormConstants.PRECOORDINATION_CUST_SCALE_VALUE_SELECTOR)) { //ICD specific
+                    	widget = createPreCoordinationCustomScaleValueSelectorWidget(configMap, prop);
+                    } else if (component_type.equals(FormConstants.PRECOORDINATION_FIX_SCALE_VALUE_SELECTOR)) { //ICD specific
+                    	widget = createPreCoordinationFixedScaleValueSelectorWidget(configMap, prop);
+                    } else if (component_type.equals(FormConstants.PRECOORDINATION_TREE_VALUE_SELECTOR)) { //ICD specific
+                    	widget = createPreCoordinationTreeValueSelectorWidget(configMap, prop);
                     }
 
                     if (widget != null && widget.getComponent() != null) {
@@ -446,7 +467,7 @@ public class FormGenerator {
 
 
     //ICD specific
-    private PropertyWidget createPosCoordinationGrid(Map<String, Object> conf, String property, 
+    private PropertyWidget createPostCoordinationGrid(Map<String, Object> conf, String property, 
     		WidgetController ctrl) {
     	PostCoordinationGrid postCoordinationWidget = new PostCoordinationGrid(project, ctrl);
         postCoordinationWidget.setup(conf, new PropertyEntityData(property));
@@ -467,6 +488,48 @@ public class FormGenerator {
     	FixedScaleValuePresenter fixedScaleValueWidget = new FixedScaleValuePresenter(project);
     	fixedScaleValueWidget.setup(conf, new PropertyEntityData(property));
     	return fixedScaleValueWidget;
+    }
+    
+    
+    //ICD specific
+    private PropertyWidget createPreCoordinationWidget(Map<String, Object> conf, String property, 
+    		PreCoordinationWidgetController ctrl) {
+    	PreCoordinationWidget preCoordinationWidget = new PreCoordinationWidget(project, ctrl);
+    	preCoordinationWidget.setup(conf, new PropertyEntityData(property));
+    	return preCoordinationWidget;
+    }
+    
+    
+    //ICD specific
+    private PropertyWidget createPreCoordinationSuperclassWidget(Map<String, Object> conf, String property, 
+    		PreCoordinationWidgetController ctrl) {
+    	SuperclassSelectorWidget preCoordinationSuperclassWidget = new SuperclassSelectorWidget(project, ctrl);
+    	preCoordinationSuperclassWidget.setup(conf, new PropertyEntityData(property));
+    	return preCoordinationSuperclassWidget;
+    }
+    
+    
+    //ICD specific
+    public CustomScaleValueSelector createPreCoordinationCustomScaleValueSelectorWidget(Map<String, Object> conf, String property) {
+    	CustomScaleValueSelector scaleValueSelectorWidget = new CustomScaleValueSelector(project);
+    	scaleValueSelectorWidget.setup(conf, new PropertyEntityData(property));
+    	return scaleValueSelectorWidget;
+    }
+    
+    
+    //ICD specific
+    public FixedScaleValueSelector createPreCoordinationFixedScaleValueSelectorWidget(Map<String, Object> conf, String property) {
+    	FixedScaleValueSelector scaleValueSelectorWidget = new FixedScaleValueSelector(project);
+    	scaleValueSelectorWidget.setup(conf, new PropertyEntityData(property));
+    	return scaleValueSelectorWidget;
+    }
+    
+    
+    //ICD specific
+    public TreeValueSelector createPreCoordinationTreeValueSelectorWidget(Map<String, Object> conf, String property) {
+    	TreeValueSelector scaleValueSelectorWidget = new TreeValueSelector(project);
+    	scaleValueSelectorWidget.setup(conf, new PropertyEntityData(property));
+    	return scaleValueSelectorWidget;
     }
 
 

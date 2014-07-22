@@ -48,6 +48,7 @@ import edu.stanford.smi.protege.query.indexer.IndexUtilities;
 import edu.stanford.smi.protege.server.RemoteClientProject;
 import edu.stanford.smi.protege.server.RemoteServer;
 import edu.stanford.smi.protege.server.Session;
+import edu.stanford.smi.protege.server.job.CacheControlJob;
 import edu.stanford.smi.protege.server.metaproject.MetaProjectConstants;
 import edu.stanford.smi.protege.ui.FrameComparator;
 import edu.stanford.smi.protege.util.CollectionUtilities;
@@ -380,6 +381,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             throw new IllegalArgumentException("Add operation failed. Unknown project: " + projectName);
         }
         KnowledgeBase kb = project.getKnowledgeBase();
+        
+        //CacheControlJob.setCacheStatus(kb, true, true);
+        
         Instance subject = kb.getInstance(entityName);
         if (subject == null) {
             throw new IllegalArgumentException("Add operation failed. Unknown subject: " + entityName);
@@ -427,6 +431,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         Project project = getProject(projectName);
         if (project == null) { return;  }
         KnowledgeBase kb = project.getKnowledgeBase();
+        
+        //CacheControlJob.setCacheStatus(kb, true, true);
+        
         Instance subject = kb.getInstance(entityName);
         if (subject == null) { return; }
         Slot property = kb.getSlot(propertyEntity.getName());
@@ -476,6 +483,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             return;
         }
         KnowledgeBase kb = project.getKnowledgeBase();
+        
+        //CacheControlJob.setCacheStatus(kb, true, true);
+        
         boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
         synchronized (kb) {
             KBUtil.morphUser(kb, user);
@@ -1217,7 +1227,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
         Project project = getProject(projectName);
 
-        if (project == null) {
+        if (project == null || className == null) {
             return instancesData;
         }
 

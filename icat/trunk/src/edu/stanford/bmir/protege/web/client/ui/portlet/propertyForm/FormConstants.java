@@ -110,6 +110,18 @@ public class FormConstants {
     public static final String POSTCOORDINATION_GRID = "postcoordination_grid";
     public static final String SCALEEDITOR_GRID = "scaleeditor_grid";
     public static final String FIXEDSCALEVALUES_GRID = "fixedscalevalues_grid";
-
+    public static final String PRECOORDINATION_COMP = "precoordination_comp";
+    public static final String PRECOORDINATION_SUPERCLASS = "precoord_superclass";
+    public static final String PRECOORDINATION_CUST_SCALE_VALUE_SELECTOR = "precoord_custom_scale_value_selector";
+    public static final String PRECOORDINATION_FIX_SCALE_VALUE_SELECTOR = "precoord_fix_scale_value_selector";
+    public static final String PRECOORDINATION_TREE_VALUE_SELECTOR = "precoord_tree_value_selector";
+    
+//    public static final String VALUE_SELECTOR_TYPE = "selector_type";
+//    public static final String VALUE_SELECTOR_CUSTOM_SCALE = "custom_scale";
+//    public static final String VALUE_SELECTOR_VALUE_TREE= "value_tree";
+//    public static final String VALUE_SELECTOR_FIXED_SCALE = "fixed_scale";
+    public static final String SUPERCLASS_SELECTOR = "superclass_selector";
+    public static final String VALUE_SELECTORS = "value_selectors";
+    public static final String SHOW_IS_DEFINED = "show_is_defined";
 
 }
