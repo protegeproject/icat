@@ -1,14 +1,10 @@
 package edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import org.mortbay.log.Log;
-
 import com.google.gwt.core.client.GWT;
-import com.gwtext.client.core.SortDir;
 import com.gwtext.client.data.FieldDef;
 import com.gwtext.client.data.MemoryProxy;
 import com.gwtext.client.data.Record;
@@ -24,7 +20,6 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValuesList;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
-import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.InstanceGridWidget.GetTriplesHandler;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 
