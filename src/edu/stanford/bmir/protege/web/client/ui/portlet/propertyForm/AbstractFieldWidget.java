@@ -443,7 +443,7 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
             if (subject.equals(getSubject())) {
                 Collection<EntityData> newValues;
                 if (oldValues != null && oldValues.contains(oldEntityData)) {
-                    newValues = oldValues;
+                    newValues = new ArrayList<EntityData>(oldValues);
                     newValues.remove(oldEntityData);
                 }
                 else {
