@@ -1,4 +1,4 @@
-package edu.stanford.bmir.protege.web.client.ui.icd;
+package edu.stanford.bmir.protege.web.client.ui.icd.pc;
 
 import java.util.Collection;
 

@@ -1,6 +1,7 @@
-package edu.stanford.bmir.protege.web.client.ui.icd;
+package edu.stanford.bmir.protege.web.client.ui.icd.pc;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -30,6 +31,13 @@ public class FixedScaleValuePresenter extends AbstractPropertyWidget {
 	public FixedScaleValuePresenter(Project project) {
 		super(project);
 	}
+    
+    @Override
+    public void setValues(Collection<EntityData> values) {
+    	// Do nothing.
+    	// The content of this widget changes using different mechanism 
+    	// than setting values with setValues()    	
+    }
 
 	@Override
 	public Component getComponent() {
@@ -71,16 +79,19 @@ public class FixedScaleValuePresenter extends AbstractPropertyWidget {
     
 	private boolean setVisible(String property, boolean flag) {
 		Integer rowIndex = prop2RowMap.get(property);
-		int row = (rowIndex == null ? 0 : rowIndex.intValue());
-		if (flag) {
-			System.out.println("Show it! (" + property + ")");
-			table.getRowFormatter().setStyleName(row, "table-row-visible");
+		if (rowIndex != null) {
+			int row = rowIndex.intValue();
+			if (flag) {
+				System.out.println("Show it! (" + property + ")");
+				table.getRowFormatter().setStyleName(row, "table-row-visible");
+			}
+			else {
+				System.out.println("Hide it! (" + property + ")");
+				table.getRowFormatter().setStyleName(row, "table-row-hidden");
+			}
+			return !flag;
 		}
-		else {
-			System.out.println("Hide it! (" + property + ")");
-			table.getRowFormatter().setStyleName(row, "table-row-hidden");
-		}
-		return !flag;
+		return false;
 	}
 
 	protected class GetPostCoordinationAxesScalesHandler extends AbstractAsyncHandler<List<ScaleInfoData>> {
