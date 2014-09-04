@@ -18,6 +18,7 @@ import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidget;
+import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public class FixedScaleValuePresenter extends AbstractPropertyWidget {
@@ -25,6 +26,7 @@ public class FixedScaleValuePresenter extends AbstractPropertyWidget {
 	private Panel wrappingPanel;
 	private Grid table;
 	private Map<String, Integer> prop2RowMap = new HashMap<String, Integer>();
+	private Map<String, List<String>> prop2PropertiesMap = new HashMap<String, List<String>>();
 
 	protected  List<String> properties = new ArrayList<String>(); //stores allowed properties
 	
@@ -63,6 +65,7 @@ public class FixedScaleValuePresenter extends AbstractPropertyWidget {
 		ICDServiceManager.getInstance().getPostCoordinationAxesScales(
 				getProject().getProjectName(), properties, 
 				new GetPostCoordinationAxesScalesHandler(allowedProps));
+		initializePropertyMap();
 	}
 
     public Map<String, String> getAllowedProperties() {
@@ -76,6 +79,16 @@ public class FixedScaleValuePresenter extends AbstractPropertyWidget {
 
         return valueToDisplayTextMap;
     }
+
+	private void initializePropertyMap() {
+		Map<String, List<String>> propMap = (Map<String, List<String>>) getWidgetConfiguration().get(FormConstants.PROPERTY_MAP);
+		if (propMap != null) {
+			for (String prop : propMap.keySet()) {
+				List<String> propList = propMap.get(prop);
+				prop2PropertiesMap.put(prop, propList);
+			}
+		}
+	}
     
 	private boolean setVisible(String property, boolean flag) {
 		Integer rowIndex = prop2RowMap.get(property);
@@ -149,11 +162,32 @@ public class FixedScaleValuePresenter extends AbstractPropertyWidget {
 	}
 	
 	public void show(String propertyName) {
-		setVisible(propertyName, true);
+		//show either this property or all of its related properties (i.e. sub-properties), if they are specified
+		//Note: if a property has the list of its related properties specified, only the properties in that
+		//list will be shown, so in cases when it is desired that both this property and its related properties
+		//to be displayed, we need to explicitly specify this property as being a related property to itself.
+		List<String> propList = prop2PropertiesMap.get(propertyName);
+		if (propList != null) {
+			for (String prop : propList) {
+				setVisible(prop, true);
+			}
+		}
+		else {
+			setVisible(propertyName, true);
+		}
 	}
 
 	public void hide(String propertyName) {
+		//hide the property ...
 		setVisible(propertyName, false);
+
+		//and all of its related properties (i.e. sub-properties) specified
+		List<String> propList = prop2PropertiesMap.get(propertyName);
+		if (propList != null) {
+			for (String prop : propList) {
+				setVisible(prop, false);
+			}
+		}
 	}
 
 }

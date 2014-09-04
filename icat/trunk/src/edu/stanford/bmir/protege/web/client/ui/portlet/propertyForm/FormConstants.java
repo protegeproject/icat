@@ -110,6 +110,7 @@ public class FormConstants {
     public static final String POSTCOORDINATION_GRID = "postcoordination_grid";
     public static final String SCALEEDITOR_GRID = "scaleeditor_grid";
     public static final String FIXEDSCALEVALUES_GRID = "fixedscalevalues_grid";
+    public static final String PROPERTY_MAP = "property_map";
     public static final String PRECOORDINATION_COMP = "precoordination_comp";
     public static final String PRECOORDINATION_SUPERCLASS = "precoord_superclass";
     public static final String PRECOORDINATION_CUST_SCALE_VALUE_SELECTOR = "precoord_custom_scale_value_selector";
