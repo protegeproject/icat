@@ -18,6 +18,7 @@ import com.gwtext.client.data.MemoryProxy;
 import com.gwtext.client.data.ObjectFieldDef;
 import com.gwtext.client.data.Record;
 import com.gwtext.client.data.RecordDef;
+import com.gwtext.client.data.SimpleStore;
 import com.gwtext.client.data.SortState;
 import com.gwtext.client.data.Store;
 import com.gwtext.client.data.StringFieldDef;
@@ -26,6 +27,7 @@ import com.gwtext.client.widgets.Button;
 import com.gwtext.client.widgets.Panel;
 import com.gwtext.client.widgets.ToolbarButton;
 import com.gwtext.client.widgets.event.ButtonListenerAdapter;
+import com.gwtext.client.widgets.form.ComboBox;
 import com.gwtext.client.widgets.form.TextField;
 import com.gwtext.client.widgets.grid.CellMetadata;
 import com.gwtext.client.widgets.grid.ColumnConfig;
@@ -35,6 +37,7 @@ import com.gwtext.client.widgets.grid.GridEditor;
 import com.gwtext.client.widgets.grid.GridPanel;
 import com.gwtext.client.widgets.grid.GridView;
 import com.gwtext.client.widgets.grid.Renderer;
+import com.gwtext.client.widgets.grid.UserCustomCellEditor;
 import com.gwtext.client.widgets.grid.event.EditorGridListener;
 import com.gwtext.client.widgets.grid.event.EditorGridListenerAdapter;
 import com.gwtext.client.widgets.grid.event.GridCellListener;
@@ -220,10 +223,19 @@ public class AllPropertiesGrid extends EditorGridPanel {
         }
         return gridRowListener;
     }
-
+    
+    private boolean isEditableValueType(PropertyEntityData prop) {
+    	return isStringOrAnyValueType(prop) || isBooleanValueType(prop);
+    }
+    
     private boolean isStringOrAnyValueType(PropertyEntityData prop) {
         ValueType vt = prop.getValueType();
         return vt == null || ValueType.String.equals(vt) || ValueType.Literal.equals(vt) || ValueType.Any.equals(vt);
+    }
+
+    private boolean isBooleanValueType(PropertyEntityData prop) {
+        ValueType vt = prop.getValueType();
+        return ValueType.Boolean.equals(vt);
     }
 
     private boolean isInstanceOrClassValueType(PropertyEntityData prop) {
@@ -241,7 +253,7 @@ public class AllPropertiesGrid extends EditorGridPanel {
                     if (!project.hasWritePermission(GlobalSettings.getGlobalSettings().getUserName())) {
                         return false;
                     } // this editor only handles the editing of strings and any values
-                    return isStringOrAnyValueType((PropertyEntityData) store.getAt(rowIndex).getAsObject(PROPERTY));
+                    return isEditableValueType((PropertyEntityData) store.getAt(rowIndex).getAsObject(PROPERTY));
                 }
 
                 @Override
@@ -412,9 +424,11 @@ public class AllPropertiesGrid extends EditorGridPanel {
         ColumnConfig[] columns = new ColumnConfig[] { propCol, valueCol, languageCol };
 
         ColumnModel columnModel = new ColumnModel(columns);
+        columnModel.setUserCustomCellEditor(getUserCustomCellEditor());
         setColumnModel(columnModel);
 
     }
+
 
     Renderer valueRenderer = new Renderer() {
         public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum,
@@ -444,6 +458,28 @@ public class AllPropertiesGrid extends EditorGridPanel {
                     new String[] { ((EntityData)record.getAsObject(PROPERTY)).getBrowserText() });
         }
     };
+
+	private UserCustomCellEditor getUserCustomCellEditor() {
+		return new UserCustomCellEditor(){
+        	@Override
+        	public GridEditor getCellEditor(int colIndex, int rowIndex) {
+        		PropertyEntityData prop = (PropertyEntityData) store.getAt(rowIndex).getAsObject(PROPERTY);
+        		if (colIndex == 1 && isBooleanValueType(prop)) {
+                    final SimpleStore cbStore = new SimpleStore(new String[]{"displayText", "value"}, new Object[][]{{"true", Boolean.TRUE}, {"false", Boolean.FALSE}});
+                    cbStore.load();
+
+                    ComboBox cb = new ComboBox();
+                    cb.setStore(cbStore);
+                    cb.setDisplayField("displayText");
+                    cb.setValueField("value");
+                    cb.expand();	//unfortunately this seems to have no effect
+
+        			return new GridEditor(cb);
+        		}
+        		return super.getCellEditor(colIndex, rowIndex);
+        	}
+        };
+	}
 
 
     private ToolbarButton createButton;
@@ -519,7 +555,7 @@ public class AllPropertiesGrid extends EditorGridPanel {
         Record record = recordDef.createRecord(new Object[] { prop, null, "", null });
         stopEditing();
         store.insert(0, record);
-        if (isStringOrAnyValueType(prop)) {
+        if (isStringOrAnyValueType(prop) || isBooleanValueType(prop)) {
             startEditing(0, 1);
         } else if (ValueType.Instance.equals(prop.getValueType())){
             handleAddInstanceValue(prop);
