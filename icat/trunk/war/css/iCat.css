@@ -88,6 +88,13 @@
 	color: #826400;
 }
 
+.spec-tab-headerCPT {    /*CPT*/
+	background-color:#D4A00F !important;
+}
+.spec-tab-headerCPT span.x-tab-strip-text {
+	color: #461570;
+}
+
 .x-grid3-hd-inner .rotated-table-header1 {
 	transform-origin: left;
 	transform:rotate(-75deg) translate(-45px,20%);	/*translate arguments seem to be (vertical,horizontal)?*/
