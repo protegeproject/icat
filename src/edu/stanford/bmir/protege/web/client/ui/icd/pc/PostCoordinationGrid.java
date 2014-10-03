@@ -367,7 +367,7 @@ public class PostCoordinationGrid extends InstanceGridWidget {
         }
 
         public PostCoordinationGridColumnRenderer(final String fieldType, Map<String, String> valueToDisplayTextMap) {
-			super(fieldType, valueToDisplayTextMap);
+			super(fieldType, valueToDisplayTextMap, null);
             this.type = fieldType;
         }
 
