@@ -118,12 +118,15 @@ public class ReferenceFieldWidget extends InstanceGridWidget {
     }
 
     @Override
-    public String preRenderColumnContent(String content, String fieldType) {
+    public String preRenderColumnContent(String content, String fieldType, String emptyText) {
         if (fieldType != null && fieldType.equals("nolink")) {
-            //do nothing
+            content = getContentOrEmptyText(content, emptyText);
         } else {
             if (content.startsWith("http://")) {
                 content = "<a href= \"" + content + "\" target=\"_blank\">" + content + "</a>";
+            }
+            else {
+            	content = getContentOrEmptyText(content, emptyText);
             }
         }
         return content;

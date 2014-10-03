@@ -78,8 +78,8 @@ import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 import edu.stanford.bmir.protege.web.client.ui.ontology.search.DefaultSearchStringTypeEnum;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidgetWithNotes;
 import edu.stanford.bmir.protege.web.client.ui.util.SelectionUtil;
-import edu.stanford.bmir.protege.web.client.ui.util.UIConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.SelectionUtil.SelectionCallback;
+import edu.stanford.bmir.protege.web.client.ui.util.UIConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
@@ -1287,7 +1287,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
             return createComboBoxFieldRenderer(fieldType, config);
         }
 
-        InstanceGridColumnRenderer renderer = new InstanceGridColumnRenderer(fieldType, null);
+        InstanceGridColumnRenderer renderer = new InstanceGridColumnRenderer(fieldType, null, getColumnEmptyText(config));
         return renderer;
     }
 
@@ -1300,13 +1300,24 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 valueToDisplayTextMap.put(allowedValues.get(key), key);
             }
         }
-        return new InstanceGridColumnRenderer(fieldType, valueToDisplayTextMap);
+        return new InstanceGridColumnRenderer(fieldType, valueToDisplayTextMap, getColumnEmptyText(config));
     }
 
-
-    protected String preRenderColumnContent(String content, String fieldType) {
-        return content;
+    protected String getColumnEmptyText(Map<String, Object> config) {
+    	return UIUtil.getStringConfigurationProperty(config, FormConstants.EMPTY_TEXT, null);
     }
+
+    protected String preRenderColumnContent(String content, String fieldType, String emptyText) {
+    	return getContentOrEmptyText(content, emptyText);
+    }
+
+	protected String getContentOrEmptyText(String content, String emptyText) {
+		if ( (content == null || content.isEmpty()) &&
+    		 (emptyText != null && emptyText.length() > 0) ) {
+    		content = "<div style=\"color: gray;\">" + emptyText + "</div>";
+    	}
+		return content;
+	}
 
     @Override
     public void setValues(Collection<EntityData> values) {
@@ -1694,15 +1705,40 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     protected class InstanceGridColumnRenderer implements Renderer {
         private String type = "";
         private Map<String, String> valueToDisplayTextMap = null;
+        private String emptyTextPrefix;
+        private int emptyTextRefColumn = -1;
+        private String emptyTextSuffix;
 
         public InstanceGridColumnRenderer(final String fieldType) {
-            this(fieldType, null);
+            this(fieldType, null, null);
         }
 
-        public InstanceGridColumnRenderer(final String fieldType, Map<String, String> valueToDisplayTextMap) {
+        public InstanceGridColumnRenderer(final String fieldType, Map<String, String> valueToDisplayTextMap, String emptyText) {
             this.type = fieldType;
             this.valueToDisplayTextMap = valueToDisplayTextMap;
+            initializeEmptyTextComponents(emptyText);
         }
+        
+        private void initializeEmptyTextComponents(String emptyText) {
+        	if (emptyText == null) {
+//        		emptyText = "";
+        		emptyTextPrefix = "";
+        		emptyTextSuffix = "";
+        		return;
+        	}
+        	String[] split = ("?" + emptyText + "?").split("@" + FormConstants.COLUMN_PREFIX + "(\\d+)@");
+        	if (split.length > 1) {
+        		emptyTextPrefix = split[0].substring(1);
+        		emptyTextSuffix = split[1].substring(0, split[1].length()-1);
+        		String columnNr = emptyText.substring(emptyTextPrefix.length() + ("@" + FormConstants.COLUMN_PREFIX).length());
+        		columnNr = columnNr.substring(0, columnNr.indexOf("@"));
+        		emptyTextRefColumn = Integer.parseInt(columnNr) - 1;
+        	}
+        	else {
+        		emptyTextPrefix = emptyText;
+        		emptyTextSuffix = "";
+        	}
+		}
 
         public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum,
                 Store store) {
@@ -1740,11 +1776,23 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
             if (field == null) {
                 field = "";
             }
-            field = preRenderColumnContent(field, type);
+            String emptyText = getEmptyText(record);
+            field = preRenderColumnContent(field, type, emptyText);
             return Format.format(
                     "<style type=\"text/css\">.x-grid3-cell-inner, .x-grid3-hd-inner { white-space:normal !important; }</style> {0}",
                     new String[] { (field) });
         }
+
+        private String getEmptyText(Record record) {
+        	String emptyTextColumnContent = "";
+        	if (emptyTextRefColumn >= 0) {
+        		emptyTextColumnContent = record.getAsString(store.getFields()[emptyTextRefColumn]);
+        		if (emptyTextColumnContent == null) {
+        			emptyTextColumnContent = "";
+        		}
+        	}
+			return emptyTextPrefix + emptyTextColumnContent + emptyTextSuffix;
+		}
 
         private String renderLinkIcon(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum,
                 Store store) {
