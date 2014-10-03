@@ -4,15 +4,16 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gwt.core.client.GWT;
 import com.gwtext.client.data.DataProxy;
 import com.gwtext.client.data.MemoryProxy;
 
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.model.listener.OntologyListenerAdapter;
+import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
-import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.InstanceComboBox;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.RemoteValueComboBox;
 
 public class SuperclassSelectorWidget extends RemoteValueComboBox {
@@ -30,18 +31,16 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 	@Override
 	public void setup(Map<String, Object> widgetConfiguration,
 			PropertyEntityData propertyEntityData) {
+		System.out.println("Print setup superclass widget for subject: " + getSubject());
 		super.setup(widgetConfiguration, propertyEntityData);
 	}
 	
 	@Override
 	public void setSubject(EntityData subject) {
-//		comboBox.getStore().removeAll();
-//		comboBox.reset();
 		super.setSubject(subject);
-		System.out.println("Set subject: " + subject + " selected value: ''");
+		System.out.println("Set subject: " + subject );
 		setLoadingStatus(true);
 		ICDServiceManager.getInstance().getAllSuperEntities(getProject().getProjectName(), getSubject(), getFillValuesHandler());
-		//TODO experimental
 		widgetController.onSubjectChanged(subject);
 	}
 	
@@ -55,9 +54,8 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 	@Override
 	public void setValues(Collection<EntityData> values) {
 		Collection<EntityData> oldValues = getValues();
-		// TODO Auto-generated method stub
 		super.setValues(values);
-		System.out.println("Set values for superclass: " + values);
+		System.out.println("Set values for superclass, subject: " + getSubject() + ", values: " + values);
 		EntityData firstValue = null;
 		if ( ! values.isEmpty()) {
 			firstValue = values.iterator().next();
@@ -110,22 +108,7 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 			return fillValuesHandler;
 		}
 		else {
-			return fillValuesHandler = new InstanceComboBox.FillAllowedValuesCacheHandler() {
-				@Override
-				public void onFailure(Throwable caught) {
-					// TODO Auto-generated method stub
-					setLoadingStatus(false);
-					System.out.println("In fill values handler: FAILURE");
-					super.onFailure(caught);
-				}
-				@Override
-				public void onSuccess(List<EntityData> result) {
-					// TODO delete this class/method overriding
-					setLoadingStatus(false);
-					System.out.println("In fill values handler: " + result);
-					super.onSuccess(result);
-				}
-			};
+			return fillValuesHandler = new FillAllowedValuesCacheHandler();
 		}
 	}
 
@@ -136,7 +119,6 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 
 	@Override
 	protected void onChangeValue(EntityData subj, Object oldVal, Object newVal) {
-		// TODO Auto-generated method stub
 		super.onChangeValue(subj, oldVal, newVal);
 		selectionChanged((EntityData)newVal);
 	}
@@ -163,10 +145,7 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 	protected DataProxy createProxy() {
         readConfiguration();
 
-		MemoryProxy proxy = new MemoryProxy(new Object[][] {});
-        //proxy.setProjectName(getProject().getProjectName());
-        //String className = getSubject() != null ? getSubject().getName() : null;
-        //proxy.setClassName(className);
+		MemoryProxy proxy = new MemoryProxy(new Object[][] {{}});
         return proxy;
 	}
 
@@ -183,7 +162,42 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 
 	@Override
 	protected void cacheAllowedValues() {
+		System.out.println("Cache allowed values for: " + getSubject());
 		setLoadingStatus(true);
 		ICDServiceManager.getInstance().getAllSuperEntities(getProject().getProjectName(), getSubject(), getFillValuesHandler());
 	}
+	
+	/* Remote calls */
+	
+    private class FillAllowedValuesCacheHandler extends AbstractAsyncHandler<List<EntityData>> {
+    	
+        @Override
+        public void handleFailure(Throwable caught) {
+            GWT.log("Could not retrieve allowed values for combobox " + getProperty(), caught);
+        }
+
+        @Override
+        public void handleSuccess(List<EntityData> superclses) {
+            store.removeAll();
+            setLoadingStatus(false);
+			System.out.println("In fill values handler: " + superclses);
+			
+			Object[][] results = getRows(superclses);
+			System.out.println(" Results: " + results);
+			
+            store.setDataProxy(new MemoryProxy(results));
+            store.load();
+        }
+        
+        private Object[][] getRows(List<EntityData> superclses) {
+            Object[][] resultAsObjects = new Object[superclses.size()][2];
+            int i = 0;
+            for (EntityData supercls : superclses) {
+                resultAsObjects[i++] =new Object[]{supercls.getName(), supercls.getBrowserText()};
+            }
+            return resultAsObjects;
+        }
+
+    }
+	
 }
