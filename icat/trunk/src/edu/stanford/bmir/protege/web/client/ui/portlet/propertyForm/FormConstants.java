@@ -30,6 +30,7 @@ public class FormConstants {
 	public static final String MULTITEXTFIELD = "multitextfield";
 	public static final String INSTANCETEXTFIELD = "instancetextfield";
 	public static final String INSTANCEREFERENCE = "instancereference";
+	public static final String INTERNALREFERENCE = "internalreference";
 
 	public static final String CLASS_SELECTION_FIELD = "classselect";
 	public static final String PROPERTY_SELECTION_FIELD = "propertyselect";
@@ -87,6 +88,8 @@ public class FormConstants {
 	public static final String EMPTY_TEXT = "empty_text";
 	public static final String DEFAULT_COLUMN_TO_EDIT = "default_column_to_edit";
 	public static final String COPY_IF_TEMPLATE = "copy_if_template";
+	//internal reference
+	public static final String REFERENCED_VALUE_PROP="referenced_value_prop";
 
 	public static final String FIELD_TYPE_LINK_ICON = "linkicon";
 	public static final String FIELD_TYPE_CHECKBOX = "checkbox";

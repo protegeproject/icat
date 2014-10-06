@@ -117,4 +117,13 @@ public class ICDServiceManager {
         proxy.reorderSiblings(projectName, movedClass, targetClass, isBelow, parent, cb);
     }
 
+	public void createInternalReference(String projectName, EntityData entity,
+			String referenceClassName,
+			String referencePropertyName,
+			String referencedValuePropertyName,
+			EntityData referencedEntity, String user,
+			String operationDescription, AsyncCallback<EntityData> callback) {
+		proxy.createInternalReference(projectName, entity, referenceClassName, referencePropertyName,
+				referencedValuePropertyName, referencedEntity, user, operationDescription, callback);
+	}
 }

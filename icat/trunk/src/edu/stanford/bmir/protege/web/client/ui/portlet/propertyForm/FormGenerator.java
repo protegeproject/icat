@@ -227,7 +227,9 @@ public class FormGenerator {
                     	widget = createInstanceTextField(configMap, prop);
                     }  else if (component_type.equals(FormConstants.INSTANCEREFERENCE)) {
                     	widget = createInstanceReferenceField(configMap, prop);
-                    } else if (component_type.equals(FormConstants.GRID)) {
+                    } else if (component_type.equals(FormConstants.INTERNALREFERENCE)) {
+                    	widget = createInternalReferenceField(configMap, prop);
+                    }else if (component_type.equals(FormConstants.GRID)) {
                         widget = createGrid(configMap, prop);
                     } else if (component_type.equals(FormConstants.EXTERNALREFERENCE)) {
                         widget = createExternalReference(configMap, prop);
@@ -389,6 +391,12 @@ public class FormGenerator {
 
     private PropertyWidget createInstanceReferenceField(Map<String, Object> conf, String property) {
     	ClassInstanceReferenceFieldWidget widget = new ClassInstanceReferenceFieldWidget(project);
+    	widget.setup(conf, new PropertyEntityData(property));
+    	return widget;
+    }
+    
+    private PropertyWidget createInternalReferenceField(Map<String, Object> conf, String property) {
+    	InternalReferenceFieldWidget widget = new InternalReferenceFieldWidget(project);
     	widget.setup(conf, new PropertyEntityData(property));
     	return widget;
     }
