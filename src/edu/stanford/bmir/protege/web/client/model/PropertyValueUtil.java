@@ -17,24 +17,26 @@ import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 public class PropertyValueUtil {
 
     public void deletePropertyValue(String projectName, String entityName, String propName, ValueType propValueType,
-            String value, String user, String operationDescription, AsyncCallback<Void> asyncCallback) {
+            String value, boolean deleteIfFromTemplate, String user, 
+            String operationDescription, AsyncCallback<Void> asyncCallback) {
         EntityData oldEntityData = new EntityData(value);
         oldEntityData.setValueType(propValueType);
         OntologyServiceManager.getInstance().removePropertyValue(projectName, entityName,
-                new PropertyEntityData(propName), oldEntityData, user, operationDescription,
+                new PropertyEntityData(propName), oldEntityData, deleteIfFromTemplate, 
+                user, operationDescription,
                 new RemovePropertyValueHandler(entityName, propName, asyncCallback));
     }
 
     //TODO: assume value value type is the same as the property value type, fix later
     public void replacePropertyValue(String projectName, String entityName, String propName, ValueType propValueType,
-            String oldValue, String newValue, String user, String operationDescription,
+            String oldValue, String newValue, boolean copyIfTemplate, String user, String operationDescription,
             AsyncCallback<Void> asyncCallback) {
         EntityData oldEntityData = new EntityData(oldValue);
         oldEntityData.setValueType(propValueType);
         EntityData newEntityData = new EntityData(newValue);
         newEntityData.setValueType(propValueType);
         OntologyServiceManager.getInstance().replacePropertyValue(projectName, entityName,
-                new PropertyEntityData(propName), oldEntityData, newEntityData, user, operationDescription,
+                new PropertyEntityData(propName), oldEntityData, newEntityData, copyIfTemplate, user, operationDescription,
                 new ReplacePropertyValueHandler(entityName, propName, newEntityData, asyncCallback));
     }
 
@@ -58,11 +60,11 @@ public class PropertyValueUtil {
 
     //TODO: assume value value type is the same as the property value type, fix later
     public void addPropertyValue(String projectName, String entityName, String propName, ValueType propValueType,
-            String newValue, String user, String operationDescription, AsyncCallback<Void> asyncCallback) {
+            String newValue, boolean copyIfTemplate, String user, String operationDescription, AsyncCallback<Void> asyncCallback) {
         EntityData newEntityData = new EntityData(newValue);
         newEntityData.setValueType(propValueType);
         OntologyServiceManager.getInstance().addPropertyValue(projectName, entityName,
-                new PropertyEntityData(propName), newEntityData, user, operationDescription,
+                new PropertyEntityData(propName), newEntityData, copyIfTemplate, user, operationDescription,
                 new AddPropertyValueHandler(entityName, propName, asyncCallback));
     }
 

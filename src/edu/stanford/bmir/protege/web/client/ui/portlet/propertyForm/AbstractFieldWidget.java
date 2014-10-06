@@ -390,17 +390,28 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
         return wrappingPanel;
     }
 
+	protected boolean getCopyIfTemplateOption() {
+		return UIUtil.getBooleanConfigurationProperty(getWidgetConfiguration(), 
+				FormConstants.COPY_IF_TEMPLATE, getCopyIfTemplateDefault());
+	}
+
+	protected boolean getCopyIfTemplateDefault() {
+		return false;
+	}
+	
     protected void deletePropertyValue(EntityData subject, String propName, ValueType propValueType,
             EntityData oldEntityData, Object oldDisplayedValue, String operationDescription) {
         propertyValueUtil.deletePropertyValue(getProject().getProjectName(), subject.getName(), propName, propValueType,
-                oldEntityData.getName(), GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
+                oldEntityData.getName(), getCopyIfTemplateOption(), 
+                GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
                 new RemovePropertyValueHandler(subject, oldEntityData, values));
     }
 
     protected void replacePropertyValue(EntityData subject, String propName, ValueType propValueType,
             EntityData oldEntityData, EntityData newEntityData, Object oldDisplayedValue, String operationDescription) {
         propertyValueUtil.replacePropertyValue(getProject().getProjectName(), subject.getName(), propName, propValueType,
-                oldEntityData.getName(), newEntityData.getName(), GlobalSettings.getGlobalSettings().getUserName(),
+                oldEntityData.getName(), newEntityData.getName(), getCopyIfTemplateOption(),
+                GlobalSettings.getGlobalSettings().getUserName(),
                 operationDescription, new ReplacePropertyValueHandler(subject, oldEntityData, newEntityData, values));
     }
 
@@ -408,7 +419,8 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
     protected void addPropertyValue(EntityData subject, String propName, ValueType propValueType,
             EntityData newEntityData, Object oldDisplayedValue, String operationDescription) {
         propertyValueUtil.addPropertyValue(getProject().getProjectName(), subject.getName(), propName, propValueType,
-                newEntityData.getName(), GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
+                newEntityData.getName(), getCopyIfTemplateOption(),
+                GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
                 new AddPropertyValueHandler(subject, newEntityData, values));
     }
 

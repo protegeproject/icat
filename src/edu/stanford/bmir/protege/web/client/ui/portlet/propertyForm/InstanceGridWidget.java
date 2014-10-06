@@ -341,11 +341,23 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     protected void addExistingValues(Collection<EntityData> values) {
         //TODO: later optimize this in a single remote call
         for (EntityData value : values) {
-            OntologyServiceManager.getInstance().addPropertyValue(getProject().getProjectName(), getSubject().getName(), getProperty(), value,
-                    GlobalSettings.getGlobalSettings().getUserName(), getAddExistingOperationDescription(value), new AddExistingValueHandler(getSubject()));
+            OntologyServiceManager.getInstance().addPropertyValue(
+            		getProject().getProjectName(), getSubject().getName(), getProperty(), value, 
+            		getCopyIfTemplateOption(),
+                    GlobalSettings.getGlobalSettings().getUserName(), getAddExistingOperationDescription(value), 
+                    new AddExistingValueHandler(getSubject()));
         }
     }
 
+	protected boolean getCopyIfTemplateOption() {
+		return UIUtil.getBooleanConfigurationProperty(getWidgetConfiguration(), 
+				FormConstants.COPY_IF_TEMPLATE, getCopyIfTemplateDefault());
+	}
+
+	protected boolean getCopyIfTemplateDefault() {
+		return false;
+	}
+	
     protected void onInsertNewValue(EntityData newInstance) {
         Object[] empty = new Object[properties.size() + getExtraColumnCount()];
         empty[properties.size()] = newInstance.getName();
@@ -398,8 +410,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         String value = record.getAsString(INSTANCE_FIELD_NAME);
         if (value != null) {
             propertyValueUtil.deletePropertyValue(getProject().getProjectName(), getSubject().getName(),
-                    getProperty().getName(), ValueType.Instance, value, GlobalSettings.getGlobalSettings()
-                    .getUserName(), getDeleteValueOperationDescription(index), new RemovePropertyValueHandler(
+                    getProperty().getName(), ValueType.Instance, value, getCopyIfTemplateOption(), 
+                    GlobalSettings.getGlobalSettings().getUserName(), 
+                    getDeleteValueOperationDescription(index), new RemovePropertyValueHandler(
                             index));
 
         }
@@ -818,6 +831,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                     properties.get(colIndex), valueType == null ? null : ValueType.valueOf(valueType),
                             getStringValue(oldValue),
                             getStringValue(newValue),
+                    		getCopyIfTemplateOption(),
                             GlobalSettings.getGlobalSettings().getUserName(),
                             getReplaceValueOperationDescription(colIndex, oldValue, newValue),
                             new ReplacePropertyValueHandler(new EntityData(newValue == null ? null : newValue.toString(),
@@ -1589,19 +1603,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
         @Override
         public void handleSuccess(Void result) {
-            GWT.log("Success at removing value for " + getProperty().getBrowserText() + " and "
-                    + getSubject().getBrowserText(), null);
-            Record recordToRemove = store.getAt(removeInd);
-            if (recordToRemove != null) {
-                store.remove(recordToRemove);
-                updateActionLinks(isReplace());
-            }
-
-            //update shadow store
-            Record shadowRecordToRemove = shadowStore.getAt(removeInd);
-            if (shadowRecordToRemove != null) {
-                shadowStore.remove(shadowRecordToRemove);
-            }
+    		GWT.log("Success at removing value for " + getProperty().getBrowserText() + " and "
+    		        + getSubject().getBrowserText(), null);
+            removeRowFromStore(removeInd);
         }
     }
 
@@ -1894,7 +1898,21 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 	}
 
 
-    final class DeleteContextMenu extends Menu{
+    protected void removeRowFromStore(int removeInd) {
+		Record recordToRemove = store.getAt(removeInd);
+		if (recordToRemove != null) {
+		    store.remove(recordToRemove);
+		    updateActionLinks(isReplace());
+		}
+
+		//update shadow store
+		Record shadowRecordToRemove = shadowStore.getAt(removeInd);
+		if (shadowRecordToRemove != null) {
+		    shadowStore.remove(shadowRecordToRemove);
+		}
+	}
+
+	final class DeleteContextMenu extends Menu{
         public DeleteContextMenu(String menuText, String menuIcon, final Record record, final int rowIndex, final int colIndex) {
             MenuItem item = new MenuItem();
             item.setText(menuText);

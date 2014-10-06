@@ -141,13 +141,17 @@ public interface OntologyServiceAsync {
 	void getProperties(String projectName, List<String> props, AsyncCallback<List<EntityData>> cb);
 
     void addPropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity, EntityData value,
-            String user, String operationDescription, AsyncCallback<Void> cb);
+            boolean copyIfTemplate, String user, String operationDescription, AsyncCallback<Void> cb);
 
-    void removePropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
-            EntityData value, String user, String operationDescription, AsyncCallback<Void> cb);
+    void removePropertyValue(String projectName, String entityName,
+			PropertyEntityData propertyEntity, EntityData value,
+			boolean deleteIfFromTemplate, String user,
+			String operationDescription, AsyncCallback<Void> cb);
 
-    void replacePropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
-            EntityData oldValue, EntityData newValue, String user, String operationDescription, AsyncCallback<Void> cb);
+    void replacePropertyValue(String projectName, String entityName,
+			PropertyEntityData propertyEntity, EntityData oldValue,
+			EntityData newValue, boolean copyIfTemplate, String user,
+			String operationDescription, AsyncCallback<Void> cb);
 
     void setPropertyValues(String projectName, String entityName, PropertyEntityData propertyEntity,
             List<EntityData> values, String user, String operationDescription, AsyncCallback<Void> cb);

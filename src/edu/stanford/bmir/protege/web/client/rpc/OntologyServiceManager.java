@@ -231,18 +231,20 @@ public class OntologyServiceManager {
 	}
 
     public void addPropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
-            EntityData value, String user, String operationDescription, AsyncCallback<Void> cb) {
-        proxy.addPropertyValue(projectName, entityName, propertyEntity, value, user, operationDescription, cb);
+            EntityData value, boolean copyIfTemplate, String user, String operationDescription, AsyncCallback<Void> cb) {
+        proxy.addPropertyValue(projectName, entityName, propertyEntity, value, copyIfTemplate, user, operationDescription, cb);
     }
 
     public void removePropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
-            EntityData value, String user, String operationDescription, AsyncCallback<Void> cb) {
-        proxy.removePropertyValue(projectName, entityName, propertyEntity, value, user, operationDescription, cb);
+            EntityData value, boolean deleteIfFromTemplate, String user, String operationDescription, AsyncCallback<Void> cb) {
+        proxy.removePropertyValue(projectName, entityName, propertyEntity, value, deleteIfFromTemplate, 
+        		user, operationDescription, cb);
     }
 
     public void replacePropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
-            EntityData oldValue, EntityData newValue, String user, String operationDescription, AsyncCallback<Void> cb) {
-        proxy.replacePropertyValue(projectName, entityName, propertyEntity, oldValue, newValue, user,
+            EntityData oldValue, EntityData newValue, boolean copyIfTemplate, 
+            String user, String operationDescription, AsyncCallback<Void> cb) {
+        proxy.replacePropertyValue(projectName, entityName, propertyEntity, oldValue, newValue, copyIfTemplate, user,
                 operationDescription, cb);
     }
 
@@ -285,7 +287,8 @@ public class OntologyServiceManager {
         proxy.search(projectName, searchString, valueType, cb);
     }
 
-    public void search(String projectName, String searchString, ValueType valueType, int start, int limit, String sort, String dir, AsyncCallback<PaginationData<EntityData>> cb) {
+    public void search(String projectName, String searchString, ValueType valueType, 
+    		int start, int limit, String sort, String dir, AsyncCallback<PaginationData<EntityData>> cb) {
         proxy.search(projectName, searchString, valueType, start, limit, sort, dir, cb);
     }
 
