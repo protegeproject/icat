@@ -147,9 +147,15 @@ public class InstanceTextFieldWidget extends TextFieldWidget {
         }
         
         propertyValueUtil.deletePropertyValue(getProject().getProjectName(), subject.getName(), propName, propValueType,
-                oldEntityData.getName(), GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
+                oldEntityData.getName(), getCopyIfTemplateOption(), 
+                GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
                 new RemoveInstancePropertyValueHandler(subject, oldEntityData, getValues()));
     }
+
+    @Override
+	protected boolean getCopyIfTemplateDefault() {
+		return true;
+	}
 
     @Override
     protected void replacePropertyValue(EntityData subject, String propName, ValueType propValueType,
@@ -159,7 +165,7 @@ public class InstanceTextFieldWidget extends TextFieldWidget {
         
         if (oldInstanceEntityData != null) {
             propertyValueUtil.replacePropertyValue(getProject().getProjectName(), oldInstanceEntityData.getName(),
-                    property, null, oldEntityData.toString(), newEntityData.toString(), 
+                    property, null, oldEntityData.toString(), newEntityData.toString(), getCopyIfTemplateOption(),
                     GlobalSettings.getGlobalSettings().getUserName(), operationDescription, 
                     new ReplaceInstancePropertyValueHandler(subject, oldInstanceEntityData, 
                             oldEntityData, newEntityData, getValues()));

@@ -89,7 +89,6 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
     private static final long serialVersionUID = -4229789001933130232L;
     private static final int MIN_SEARCH_STRING_LENGTH = 3;
 
-
     protected Project getProject(String projectName) {
         return ProjectManagerFactory.getProtege3ProjectManager().getProject(projectName);
     }
@@ -375,7 +374,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
     }
 
     public void addPropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
-            EntityData valueEntityData, String user, String operationDescription) {
+            EntityData valueEntityData, boolean copyIfTemplate, String user, String operationDescription) {
         Project project = getProject(projectName);
         if (project == null) {
             throw new IllegalArgumentException("Add operation failed. Unknown project: " + projectName);
@@ -403,6 +402,10 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                         kb.beginTransaction(operationDescription);
                     }
 
+                    if (copyIfTemplate && KBUtil.isTemplateInstance(value)) {
+                    	value = KBUtil.getCopyOfTemplateInstance(value);
+                    }
+                    
                     subject.addOwnSlotValue(property, value);
 
                     if (runsInTransaction) {
@@ -426,8 +429,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         }
     }
 
-    public void removePropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
-            EntityData valueEntityData, String user, String operationDescription) {
+
+	public void removePropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
+            EntityData valueEntityData, boolean deleteIfFromTemplate, String user, String operationDescription) {
         Project project = getProject(projectName);
         if (project == null) { return;  }
         KnowledgeBase kb = project.getKnowledgeBase();
@@ -455,6 +459,11 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     kb.beginTransaction(operationDescription);
                 }
 
+                //TODO implement this 
+//                if (deleteIfFromTemplate && isCopyOfATemplateInstance(value) && isLastStatementWithObject(value)) {
+//                	kb.deleteInstance(value);
+//                }
+//                else
                 subject.removeOwnSlotValue(property, value);
 
                 if (runsInTransaction) {
@@ -477,7 +486,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
 
     public void replacePropertyValue(String projectName, String entityName, PropertyEntityData propertyEntity,
-            EntityData oldValue, EntityData newValue, String user, String operationDescription) {
+            EntityData oldValue, EntityData newValue, boolean copyIfTemplate, String user, String operationDescription) {
         Project project = getProject(projectName);
         if (project == null) {
             return;
@@ -494,11 +503,11 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     kb.beginTransaction(operationDescription);
                 }
                 if (newValue !=null && newValue.getName() != null) {
-                    addPropertyValue(projectName, entityName, propertyEntity, newValue, user, null);
+                    addPropertyValue(projectName, entityName, propertyEntity, newValue, copyIfTemplate, user, null);
                     KBUtil.morphUser(kb, user); //hack
                 }
                 if (oldValue != null && oldValue.getName() != null) {
-                    removePropertyValue(projectName, entityName, propertyEntity, oldValue, user, null);
+                    removePropertyValue(projectName, entityName, propertyEntity, oldValue, copyIfTemplate, user, null);
                     KBUtil.morphUser(kb, user); //hack
                 }
 
@@ -1915,7 +1924,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 }
                 KBUtil.morphUser(kb, user); //hack
                 PropertyEntityData propEntityData = createPropertyEntityData(slot, null, false);
-                addPropertyValue(projectName, subjectEntity, propEntityData, valueData, user, null);
+                addPropertyValue(projectName, subjectEntity, propEntityData, valueData, false, user, null);
                 KBUtil.morphUser(kb, user); //hack
                 if (runsInTransaction) {
                     kb.commitTransaction();
@@ -1963,7 +1972,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 EntityData valueData = createInstanceValue(projectName, instName, typeName,
                         subjectEntity, propertyEntity, user, null);
                 addPropertyValue(projectName, valueData.getName(), instancePropertyEntity,
-                        valueEntityData, user, null);
+                        valueEntityData, false, user, null);
                 KBUtil.morphUser(kb, user);
                 if (runsInTransaction){
                     kb.commitTransaction();

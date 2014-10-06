@@ -197,6 +197,10 @@ public class AllPropertiesGrid extends EditorGridPanel {
         });
     }
 
+	protected boolean getCopyIfTemplateOption() {
+		return false;
+	}
+
     private String getAddValueOpDescription(PropertyEntityData prop, EntityData value) {
         return UIUtil.getAppliedToTransactionString("Added " + UIUtil.getDisplayText(value) + " as value for property " + UIUtil.getDisplayText(prop) + " at " +
                 UIUtil.getDisplayText(_currentEntity), _currentEntity.getName());
@@ -204,7 +208,7 @@ public class AllPropertiesGrid extends EditorGridPanel {
 
 
     protected void addPropertyValue(String entityName, String propName, ValueType propValueType, String newValue, String operationDescription) {
-        propertyValueUtil.addPropertyValue(project.getProjectName(), entityName, propName, propValueType, newValue,
+        propertyValueUtil.addPropertyValue(project.getProjectName(), entityName, propName, propValueType, newValue, getCopyIfTemplateOption(),
                 GlobalSettings.getGlobalSettings().getUserName(), operationDescription, new ReplacePropertyValueHandler());
     }
 
@@ -309,13 +313,14 @@ public class AllPropertiesGrid extends EditorGridPanel {
     protected void replacePropertyValue(String entityName, String propName, ValueType propValueType, String oldValue,
             String newValue, String operationDescription) {
         propertyValueUtil.replacePropertyValue(project.getProjectName(), entityName, propName, propValueType, oldValue,
-                newValue, GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
+                newValue, getCopyIfTemplateOption(), GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
                 new ReplacePropertyValueHandler());
     }
 
     protected void deletePropertyValue(String entityName, String propName, ValueType propValueType, String value,
             String operationDescription) {
-        propertyValueUtil.deletePropertyValue(project.getProjectName(), entityName, propName, propValueType, value,
+        propertyValueUtil.deletePropertyValue(project.getProjectName(), 
+        		entityName, propName, propValueType, value, getCopyIfTemplateOption(),
                 GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
                 new RemovePropertyValueHandler());
 

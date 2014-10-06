@@ -194,18 +194,29 @@ public class InstanceCheckBoxWidget extends AbstractPropertyWidget {
     protected void addPropertyValue(String entityName, String propName, ValueType propValueType,
             EntityData newEntityData, String operationDescription) {
         propertyValueUtil.addPropertyValue(getProject().getProjectName(), entityName, propName, propValueType,
-                newEntityData.getName(), GlobalSettings.getGlobalSettings().getUserName(),
+                newEntityData.getName(), getCopyIfTemplateOption(),
+        		GlobalSettings.getGlobalSettings().getUserName(),
                 operationDescription, new AddPropertyValueHandler(newEntityData));
     }
 
     protected void removePropertyValue(String entityName, String propName, ValueType propValueType,
             EntityData newEntityData, String operationDescription) {
         propertyValueUtil.deletePropertyValue(getProject().getProjectName(), entityName, propName, propValueType,
-                newEntityData.getName(), GlobalSettings.getGlobalSettings().getUserName(),
-                        operationDescription, new RemovePropertyValueHandler(newEntityData));
+                newEntityData.getName(), getCopyIfTemplateOption(), 
+                GlobalSettings.getGlobalSettings().getUserName(),
+                operationDescription, new RemovePropertyValueHandler(newEntityData));
     }
 
 
+	protected boolean getCopyIfTemplateOption() {
+		return UIUtil.getBooleanConfigurationProperty(getWidgetConfiguration(), 
+				FormConstants.COPY_IF_TEMPLATE, getCopyIfTemplateDefault());
+	}
+
+	protected boolean getCopyIfTemplateDefault() {
+		return false;
+	}
+	
     protected String getAddValueOperationDescription(Object newValue, String newValueLabel) {
         return UIUtil.getAppliedToTransactionString("Added value " +
                 (newValue == null  ? "(empty)" : newValueLabel) + " for property " +
