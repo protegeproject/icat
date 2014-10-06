@@ -8,8 +8,6 @@ import java.util.Map;
 import com.gwtext.client.widgets.Component;
 import com.gwtext.client.widgets.Panel;
 
-import edu.stanford.bmir.icd.claml.ICDContentModel;
-import edu.stanford.bmir.icd.claml.ICDContentModelConstants;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
@@ -17,7 +15,7 @@ import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormGenerator;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
-import edu.stanford.bmir.protegex.icd.ICDConstants;
+import edu.stanford.bmir.whofic.icd.ICDContentModelConstants;
 
 public class PreCoordinationWidget extends AbstractPropertyWidget {
 
