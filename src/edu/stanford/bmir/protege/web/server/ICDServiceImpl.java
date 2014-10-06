@@ -11,9 +11,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
-import edu.stanford.bmir.icd.claml.ICDContentModel;
-import edu.stanford.bmir.icd.claml.ICDContentModel.PrecoordinationDefinitionComponent;
-import edu.stanford.bmir.icd.claml.ICDContentModelConstants;
+import edu.stanford.bmir.whofic.PrecoordinationDefinitionComponent;
+import edu.stanford.bmir.whofic.WHOFICContentModel;
+import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
+import edu.stanford.bmir.whofic.icd.ICDContentModel;
+import edu.stanford.bmir.whofic.ici.ICIContentModel;
 import edu.stanford.bmir.protege.icd.export.ExportICDClassesJob;
 import edu.stanford.bmir.protege.web.client.rpc.ICDService;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
@@ -147,7 +149,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
     }
 
     private boolean checkAndRecreateIndex(RDFSNamedClass parent, boolean recreateIndex) {
-        return new ICDContentModel(parent.getOWLModel()).checkIndexAndRecreate(parent, recreateIndex);
+        return getContentModel(parent.getOWLModel()).checkIndexAndRecreate(parent, recreateIndex);
     }
 
 
@@ -164,7 +166,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
 
     private boolean addChildToIndex(RDFSNamedClass parent, RDFSNamedClass cls, boolean isSiblingIndexValid) {
-        return new ICDContentModel(parent.getOWLModel()).addChildToIndex(parent, cls, isSiblingIndexValid);
+        return getContentModel(parent.getOWLModel()).addChildToIndex(parent, cls, isSiblingIndexValid);
     }
 
 
@@ -317,7 +319,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
         List<EntityPropertyValues> inhTagsList = new ArrayList<EntityPropertyValues>();
 
-        ICDContentModel cm = new ICDContentModel(owlModel);
+        WHOFICContentModel cm = getContentModel(owlModel);
         Map<RDFResource, List<RDFSNamedClass>> tag2inhFrom = cm.getInvolvedTags(cls);
 
         RDFResource localPrimaryTag = cm.getAssignedPrimaryTag(cls);
@@ -388,7 +390,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
             return subclassesData;
         }
 
-        ICDContentModel cm = new ICDContentModel(owlModel);
+        WHOFICContentModel cm = getContentModel(owlModel);
         RDFProperty displayStatusProp = cm.getDisplayStatusProperty();
         RDFProperty isObsoleteProp = cm.getIsObsoleteProperty();
         RDFProperty publicIdProp = cm.getPublicIdProperty();
@@ -415,7 +417,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         return subclassesData;
     }
 
-    private void setDisplayStatus(Cls cls, Slot displayStatusSlot, EntityData entity, ICDContentModel cm) {
+    private void setDisplayStatus(Cls cls, Slot displayStatusSlot, EntityData entity, WHOFICContentModel cm) {
         RDFResource status = (RDFResource) cls.getOwnSlotValue(displayStatusSlot);
         if (status == null) {
             return;
@@ -459,7 +461,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
             return null;
         }
         KnowledgeBase kb = project.getKnowledgeBase();
-        ICDContentModel cm = new ICDContentModel((OWLModel) kb);
+        WHOFICContentModel cm = getContentModel((OWLModel) kb);
 
         Cls cls = kb.getCls(subject);
         if (cls == null || (! (cls instanceof RDFResource))) {
@@ -472,8 +474,8 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
             return null;
         }
 
-        boolean convertToSynonym = ICDContentModelConstants.TERM_SYNONYM_CLASS.equals(indexType);
-        boolean convertToNarrower = ICDContentModelConstants.TERM_NARROWER_CLASS.equals(indexType);
+        boolean convertToSynonym = WHOFICContentModelConstants.TERM_SYNONYM_CLASS.equals(indexType);
+        boolean convertToNarrower = WHOFICContentModelConstants.TERM_NARROWER_CLASS.equals(indexType);
         boolean convertToBaseIndex = ! (convertToSynonym || convertToNarrower);
 
         RDFSNamedClass termSynonymClass = cm.getTermSynonymClass();
@@ -570,7 +572,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
             return null;
         }
         KnowledgeBase kb = project.getKnowledgeBase();
-        ICDContentModel cm = new ICDContentModel((OWLModel) kb);
+        WHOFICContentModel cm = getContentModel((OWLModel) kb);
 
         Cls cls = kb.getCls(subject);
         if (cls == null || (! (cls instanceof RDFResource))) {
@@ -651,7 +653,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
                              value + " for entity: " + entityName);
         }
 
-        ICDContentModel cm = new ICDContentModel((OWLModel) kb);
+        WHOFICContentModel cm = getContentModel((OWLModel) kb);
         RDFProperty synonymProperty = cm.getSynonymProperty();
         RDFProperty narrowerProperty = cm.getNarrowerProperty();
         RDFProperty baseIndexProperty = cm.getBaseIndexProperty();
@@ -692,14 +694,14 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
     	Project project = getProject(projectName);
     	KnowledgeBase kb = project.getKnowledgeBase();
-    	ICDContentModel cm = new ICDContentModel((OWLModel)kb);
+    	WHOFICContentModel cm = getContentModel((OWLModel)kb);
 
     	Slot allowedPcAxesProperty = cm.getAllowedPostcoordinationAxesProperty();
 		Slot allowedPcAxisPropertyProperty = cm.getAllowedPostcoordinationAxisPropertyProperty();
 		Slot requiredPcAxisPropertyProperty = cm.getRequiredPostcoordinationAxisPropertyProperty();
 
 		//need to create a copy of the constant array list in order to be able to modify if (e.g. by calling .retainAll())
-		List<String> pcAxisProperties = new ArrayList<String>(ICDContentModelConstants.PC_AXES_PROPERTIES_LIST);
+		List<String> pcAxisProperties = new ArrayList<String>(cm.getPostcoordinationAxesPropertyList());
 		if (reifiedProps != null) {
 			pcAxisProperties.retainAll(reifiedProps);
 		}
@@ -727,20 +729,22 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
     public List<EntityPropertyValues> getEntityPropertyValuesForPostCoordinationAxes(String projectName, List<String> entities, List<String> properties,
     		List<String> reifiedProps) {
-    	List<String> regularReifiedProperties = new ArrayList<String>(reifiedProps);
-    	List<String> specialReifiedProperties = new ArrayList<String>();
-    	for (String reifiedProp : reifiedProps) {
-    		if (ICDContentModelConstants.PC_AXES_PROPERTIES_LIST.contains(reifiedProp)) {
-    			regularReifiedProperties.remove(reifiedProp);
-    			specialReifiedProperties.add(reifiedProp);
-    		}
-    	}
-
     	ICDContentModel cm = null;
     	if (projectName != null) {
     		Project project = getProject(projectName);
     		if (project != null) {
     			cm = new ICDContentModel((OWLModel)project.getKnowledgeBase());
+    		}
+    	}
+
+    	List<String> regularReifiedProperties = new ArrayList<String>(reifiedProps);
+    	List<String> specialReifiedProperties = new ArrayList<String>();
+    	List<String> pcAxesPropertyList = (cm == null ? new ArrayList<String>() : 
+    		cm.getPostcoordinationAxesPropertyList());
+    	for (String reifiedProp : reifiedProps) {
+    		if (pcAxesPropertyList.contains(reifiedProp)) {
+    			regularReifiedProperties.remove(reifiedProp);
+    			specialReifiedProperties.add(reifiedProp);
     		}
     	}
 
@@ -816,7 +820,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         	return false;
         }
         OWLModel owlModel = (OWLModel) kb;
-        ICDContentModel cm = new ICDContentModel(owlModel);
+        WHOFICContentModel cm = getContentModel(owlModel);
 
         RDFResource subjResource = owlModel.getOWLNamedClass(subject);
         if (subjResource == null) {
@@ -839,8 +843,8 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         if (allowedPostCoordinationAxisPropertyProperty == null ||
         		requiredPostCoordinationAxisPropertyProperty == null) {
         	throw new RuntimeException("Invalid content model! The following properties could not be retrieved:" +
-        		(allowedPostCoordinationAxisPropertyProperty == null ? " " + ICDContentModelConstants.ALLOWED_POSTCOORDINATION_AXIS_PROPERTY_PROP : "") +
-        		(requiredPostCoordinationAxisPropertyProperty == null ? " " + ICDContentModelConstants.REQUIRED_POSTCOORDINATION_AXIS_PROPERTY_PROP : "") );
+        		(allowedPostCoordinationAxisPropertyProperty == null ? " " + WHOFICContentModelConstants.ALLOWED_POSTCOORDINATION_AXIS_PROPERTY_PROP : "") +
+        		(requiredPostCoordinationAxisPropertyProperty == null ? " " + WHOFICContentModelConstants.REQUIRED_POSTCOORDINATION_AXIS_PROPERTY_PROP : "") );
         }
 
         RDFProperty linViewProp = cm.getLinearizationViewProperty();
@@ -914,7 +918,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         	return false;
         }
         OWLModel owlModel = (OWLModel) kb;
-        ICDContentModel cm = new ICDContentModel(owlModel);
+        WHOFICContentModel cm = getContentModel(owlModel);
 
         RDFResource subjResource = owlModel.getOWLNamedClass(subject);
         if (subjResource == null) {
@@ -937,8 +941,8 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         if (allowedPostCoordinationAxisPropertyProperty == null ||
         		requiredPostCoordinationAxisPropertyProperty == null) {
         	throw new RuntimeException("Invalid content model! The following properties could not be retrieved:" +
-        		(allowedPostCoordinationAxisPropertyProperty == null ? " " + ICDContentModelConstants.ALLOWED_POSTCOORDINATION_AXIS_PROPERTY_PROP : "") +
-        		(requiredPostCoordinationAxisPropertyProperty == null ? " " + ICDContentModelConstants.REQUIRED_POSTCOORDINATION_AXIS_PROPERTY_PROP : "") );
+        		(allowedPostCoordinationAxisPropertyProperty == null ? " " + WHOFICContentModelConstants.ALLOWED_POSTCOORDINATION_AXIS_PROPERTY_PROP : "") +
+        		(requiredPostCoordinationAxisPropertyProperty == null ? " " + WHOFICContentModelConstants.REQUIRED_POSTCOORDINATION_AXIS_PROPERTY_PROP : "") );
         }
 
         RDFProperty linViewProp = cm.getLinearizationViewProperty();
@@ -986,7 +990,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
     }
 
 
-    private boolean isAxisPartOfAnyLinearization(ICDContentModel cm, RDFResource subjResource, RDFProperty postCoordProperty) {
+    private boolean isAxisPartOfAnyLinearization(WHOFICContentModel cm, RDFResource subjResource, RDFProperty postCoordProperty) {
     	RDFProperty allowedPostCoordinationAxesProperty = cm.getAllowedPostcoordinationAxesProperty();
         RDFProperty allowedPostCoordinationAxisPropertyProperty = cm.getAllowedPostcoordinationAxisPropertyProperty();
         RDFProperty requiredPostCoordinationAxisPropertyProperty = cm.getRequiredPostcoordinationAxisPropertyProperty();
@@ -1012,7 +1016,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
     	Project project = getProject(projectName);
     	KnowledgeBase kb = project.getKnowledgeBase();
-    	ICDContentModel cm = new ICDContentModel((OWLModel)kb);
+    	WHOFICContentModel cm = getContentModel((OWLModel)kb);
 
 		List<ScaleInfoData> res = new ArrayList<ScaleInfoData>();
 		for (String property : properties) {
@@ -1051,7 +1055,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		return res;
 	}
 
-	private String getDefinition(ICDContentModel cm, Instance inst) {
+	private String getDefinition(WHOFICContentModel cm, Instance inst) {
 		String definition = null;
 		if (inst instanceof RDFSNamedClass) {
 	        RDFResource defTerm = cm.getTerm(((RDFSNamedClass)inst), cm.getDefinitionProperty());
@@ -1073,7 +1077,6 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
         Project project = getProject(projectName);
         OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
-        ICDContentModel cm = new ICDContentModel(owlModel);
 
         Class<? extends RDFResource> type = null;
         RDFResource res = null;
@@ -1085,7 +1088,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         else {
         	type = RDFSClass.class;
         	res = owlModel.getRDFSNamedClass(entity.getName());
-    		top = cm.getICDCategoryClass();
+    		top = getTopCategoryClass(owlModel);
         }
 
         if (type != null && res != null) {
@@ -1164,7 +1167,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 			String projectName, String entity, List<String> properties) {
         Project project = getProject(projectName);
         OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
-        ICDContentModel cm = new ICDContentModel(owlModel);
+        WHOFICContentModel cm = getContentModel(owlModel);
 
         RDFSNamedClass cls = cm.getICDCategory(entity);
         Collection<PrecoordinationDefinitionComponent> propertyValues = cm.getPrecoordinationPropertyValues(cls, properties);
@@ -1208,7 +1211,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
         Project project = getProject(projectName);
         OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
-        ICDContentModel cm = new ICDContentModel(owlModel);
+        WHOFICContentModel cm = getContentModel(owlModel);
 
         RDFSNamedClass cls = cm.getICDCategory(entity);
 		return cm.setPrecoordinationDefinitionPropertyValue(cls, property, 
@@ -1221,7 +1224,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
         Project project = getProject(projectName);
         OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
-        ICDContentModel cm = new ICDContentModel(owlModel);
+        WHOFICContentModel cm = getContentModel(owlModel);
 
         RDFSNamedClass cls = cm.getICDCategory(entity);
 		return cm.changeIsDefinitionalFlag(cls, property, isDefinitionalFlag);
@@ -1238,7 +1241,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
         Project project = getProject(projectName);
         OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
-        ICDContentModel cm = new ICDContentModel(owlModel);
+        WHOFICContentModel cm = getContentModel(owlModel);
 
         RDFSNamedClass movedCls = owlModel.getRDFSNamedClass(movedClass);
         RDFSNamedClass targetCls = owlModel.getRDFSNamedClass(targetClass);
@@ -1275,5 +1278,16 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         return success;
         }
     }
+
+	protected WHOFICContentModel getContentModel(OWLModel owlModel) {
+		//return new ICIContentModel(owlModel);
+		return new ICDContentModel(owlModel);
+	}
+	
+	protected RDFResource getTopCategoryClass(OWLModel owlModel) {
+		//return new ICIContentModel(owlModel).getICICategoryClass();
+		return new ICDContentModel(owlModel).getICDCategoryClass();
+	}
+	
 
 }
