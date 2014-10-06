@@ -64,5 +64,11 @@ public interface ICDService extends RemoteService  {
 			String property, boolean isDefinitionalFlag);
 
     public boolean reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent);
+    
+    public EntityData createInternalReference(String projectName, 
+			EntityData entity, String referenceClassName,
+			String referencePropertyName, String referencedValuePropertyName,
+			EntityData referencedEntity,
+			String user, String operationDescription);
 
 }

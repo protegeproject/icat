@@ -35,6 +35,7 @@ import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.model.Slot;
 import edu.stanford.smi.protege.model.ValueType;
 import edu.stanford.smi.protege.util.CollectionUtilities;
+import edu.stanford.smi.protege.util.IDGenerator;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.RDFIndividual;
@@ -1289,5 +1290,93 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		return new ICDContentModel(owlModel).getICDCategoryClass();
 	}
 	
+	/**** Internal reference ***/
+	
+	public EntityData createInternalReference(String projectName, 
+			EntityData entity, String referenceClassName,
+			String referencePropertyName, String referencedValuePropertyName,
+			EntityData referencedEntity,
+			String user, String operationDescription) {
 
+		Project project = getProject(projectName);
+		KnowledgeBase kb = project.getKnowledgeBase();
+
+		Instance instance = kb instanceof OWLModel ?
+				((OWLModel) kb).getRDFResource(entity.getName()) :
+					kb.getInstance(entity.getName());
+
+		if (instance == null) {
+			throw new RuntimeException("Failed to import reference. Entity does not exist: " + entity.getName());
+		}
+
+		Slot referenceSlot = kb instanceof OWLModel ? 
+				((OWLModel) kb).getRDFProperty(referencePropertyName) :
+					kb.getSlot(referencePropertyName);
+
+		if (referenceSlot == null) {
+			throw new RuntimeException("Could not create reference for " + entity.getName()
+					+ " because the reference property is not part of the ontology. Property name: "
+					+ referencePropertyName);
+		}
+		
+		Slot referencedValueSlot = kb instanceof OWLModel ? 
+				((OWLModel) kb).getRDFProperty(referencedValuePropertyName) :
+					kb.getSlot(referencedValuePropertyName);
+
+		if (referencedValueSlot == null) {
+			throw new RuntimeException("Could not create reference for " + entity.getName()
+					+ " because the referenced value property is not part of the ontology. Property name: "
+					+ referencedValuePropertyName);
+		}
+		
+		Cls refClass = kb.getCls(referenceClassName);
+		
+		if (refClass == null) {
+			throw new RuntimeException("Could not create reference for " + entity.getName()
+					+ " because the reference class is not part of the ontology. Class name: "
+					+ referenceClassName);
+		}
+		
+		Instance refEntity = kb.getInstance(referencedEntity.getName());
+		
+		if (refEntity == null) {
+			throw new RuntimeException("Could not create reference for " + entity.getName()
+					+ " because the referenced entity not part of the ontology. Entity name: "
+					+ referencedEntity.getName());
+		}
+		
+		Instance refInstance = null;
+		synchronized (kb) {
+            KBUtil.morphUser(kb, user);
+
+            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+            try {
+                if (runsInTransaction) {
+                    kb.beginTransaction(operationDescription);
+                }
+                
+                refInstance = refClass.createDirectInstance(IDGenerator.getNextUniqueId());
+                
+                refInstance.setOwnSlotValue(referencedValueSlot, refEntity);
+                
+                instance.addOwnSlotValue(referenceSlot, refInstance);
+                
+                if (runsInTransaction) {
+                    kb.commitTransaction();
+                }
+            } catch (Exception e) {
+                Log.getLogger().log(Level.SEVERE,
+                        "Could not create internal reference in " + projectName + " for entity " + entity.getName(), e);
+                if (runsInTransaction) {
+                    kb.rollbackTransaction();
+                }
+                throw new RuntimeException("Could not create internal reference for entity " + entity.getName() + ". Message: "
+                        + e.getMessage(), e);
+            } finally {
+                KBUtil.restoreUser(kb);
+            }
+        }
+
+		return OntologyServiceImpl.createEntityData(refInstance);
+	}
 }
