@@ -86,6 +86,7 @@ public class FormConstants {
 	public static final String TOP_CLASS = "top_class";
 	public static final String EMPTY_TEXT = "empty_text";
 	public static final String DEFAULT_COLUMN_TO_EDIT = "default_column_to_edit";
+	public static final String COPY_IF_TEMPLATE = "copy_if_template";
 
 	public static final String FIELD_TYPE_LINK_ICON = "linkicon";
 	public static final String FIELD_TYPE_CHECKBOX = "checkbox";
