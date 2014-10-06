@@ -946,7 +946,7 @@
 												</entry>
 												<entry>
 													<string>height</string>
-													<string>150</string>
+													<string>100</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -13264,7 +13264,7 @@
         </portlets>
       </column>
     </columns>
-  </tab>
+  </tab-->
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.individuals.IndividualsTab</name>
     <label>Scales</label>
@@ -13272,7 +13272,7 @@
       <column>
         <width>0.33</width>
         <portlets>
-          <!- -portlet>
+          <!--portlet>
             <name>edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet</name>
             <height>400</height>
             <width>0</width>
@@ -13282,7 +13282,7 @@
 					<string>http://who.int/icd#PostcoordinationValueReferenceTerm</string>
 				</entry>
 			</properties>
-          </portlet- ->
+          </portlet-->
           <portlet>
             <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet</name>
             <height>600</height>
@@ -13294,7 +13294,7 @@
 				</entry>
 			</properties>
           </portlet>
-          <!- -portlet>
+          <!--portlet>
             <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet</name>
             <height>200</height>
             <width>0</width>
@@ -13304,7 +13304,7 @@
 					<string>http://who.int/icd#PostcoordinationScaleTerm</string>
 				</entry>
 			</properties>
-          </portlet- ->
+          </portlet-->
         </portlets>
       </column>
       <column>
@@ -13336,6 +13336,7 @@
             			<string>http://who.int/icd#referencedValue</string>
             			<string>http://who.int/icd#hasScaleValue</string>
             			<string>http://who.int/icd#label</string>
+            			<string>http://who.int/icd#isTemplate</string>
             			<string>http://protege.stanford.edu/plugins/owl/protege#isTemplate</string>
             		</list>
             	</entry>
@@ -13344,7 +13345,7 @@
         </portlets>
       </column>
     </columns>
-  </tab-->
+  </tab>
 
   </tabs>
 </project>
