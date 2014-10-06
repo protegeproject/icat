@@ -18,7 +18,6 @@ import com.gwtext.client.widgets.menu.Menu;
 import com.gwtext.client.widgets.menu.MenuItem;
 import com.gwtext.client.widgets.menu.event.BaseItemListenerAdapter;
 
-import edu.stanford.bmir.icd.claml.ICDContentModelConstants;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
@@ -28,6 +27,7 @@ import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.InstanceGrid
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.WidgetController;
 import edu.stanford.bmir.protege.web.client.ui.util.UIConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
+import edu.stanford.bmir.whofic.icd.ICDContentModelConstants;
 
 /**
  *  ICD specific widget showing the post coordination axes. Makes a specific service call.
