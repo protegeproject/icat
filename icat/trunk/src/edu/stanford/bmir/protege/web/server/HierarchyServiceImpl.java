@@ -7,10 +7,11 @@ import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-import edu.stanford.bmir.icd.claml.ICDContentModel;
 import edu.stanford.bmir.protege.web.client.rpc.HierarchyService;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.NotesData;
+import edu.stanford.bmir.whofic.WHOFICContentModel;
+import edu.stanford.bmir.whofic.icd.ICDContentModel;
 import edu.stanford.smi.protege.model.Cls;
 import edu.stanford.smi.protege.model.KnowledgeBase;
 import edu.stanford.smi.protege.model.Project;
@@ -47,7 +48,7 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
             throw new IllegalArgumentException("Class " + className + " does not exist.");
         }
 
-        ICDContentModel cm = new ICDContentModel((OWLModel) kb);
+        WHOFICContentModel cm = new ICDContentModel((OWLModel) kb);
 
         Collection<Cls> parentClsesToAdd = KBUtil.getCollection(kb, parentsToAdd, Cls.class);
         Collection<Cls> parentClsesToRemove = KBUtil.getCollection(kb, parentsToRemove, Cls.class);
