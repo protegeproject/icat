@@ -88,6 +88,10 @@ public abstract class AbstractSelectionFieldWidget extends TextFieldWidget {
                         SelectionDialog.this.parent.close();
                         onChangeValue(getSubject(), UIUtil.getFirstItem(getValues()), singleSelection);
                     }
+                    else {
+                        SelectionDialog.this.parent.close();
+                        onChangeValue(getSubject(), UIUtil.getFirstItem(getValues()), null);
+                    }
                 }
             });
 
