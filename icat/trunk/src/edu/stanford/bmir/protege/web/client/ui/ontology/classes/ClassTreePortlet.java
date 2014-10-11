@@ -93,6 +93,8 @@ import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
  */
 public class ClassTreePortlet extends AbstractEntityPortlet {
 
+    private static final String EMPTY_ROOT_ENTITY = "@Root@";
+
     private static final String SUFFIX_ID_LOCAL_ANNOTATION_COUNT = "_locAnnCnt";
     private static final String SUFFIX_ID_LOCAL_ANNOTATION_IMG = "_locAnnImg";
     protected static final String WATCH_ICON_STYLE_STRING = "style=\"position:relative; top:3px; left:2px;\"";
@@ -1163,12 +1165,17 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             final TreeNode[] selection = ((MultiSelectionModel) selectionModel).getSelectedNodes();
             for (final TreeNode node : selection) {
                 final EntityData ed = (EntityData) node.getUserObject();
-                selections.add(ed);
+                if ( ! EMPTY_ROOT_ENTITY.equals(ed.getName()) ) {
+                	selections.add(ed);
+                }
             }
         } else if (selectionModel instanceof DefaultSelectionModel) {
             final TreeNode node = ((DefaultSelectionModel) selectionModel).getSelectedNode();
             if (node != null) {
-                selections.add((EntityData) node.getUserObject());
+            	final EntityData ed = (EntityData) node.getUserObject();
+                if ( ! EMPTY_ROOT_ENTITY.equals(ed.getName()) ) {
+                	selections.add(ed);
+                }
             }
         }
         return selections;
@@ -1375,15 +1382,15 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         return getDirectChild(parentNode, childId) != null;
     }
 
-    protected void createRoot(EntityData rootEnitity) {
-        if (rootEnitity == null) {
+    protected void createRoot(EntityData rootEntity) {
+        if (rootEntity == null) {
             GWT.log("Root entity is null", null);
-            rootEnitity = new EntityData("Root", "Root node is not defined");
+            rootEntity = new EntityData(EMPTY_ROOT_ENTITY, "Root node is not defined");
         }
         remove(PLACE_HOLDER_PANEL);
 
         treePanel = createTreePanel();
-        final TreeNode root = createTreeNode(rootEnitity);
+        final TreeNode root = createTreeNode(rootEntity);
         treePanel.setRootNode(root);
         add(treePanel);
         createSelectionListener();
@@ -1396,7 +1403,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         }
 
         root.select();
-        getSubclasses(rootEnitity.getName(), root);
+        getSubclasses(rootEntity.getName(), root);
         root.expand(); // TODO: does not seem to work always
 
         if (initialSelection == null) { //try to cover the links, not ideal
