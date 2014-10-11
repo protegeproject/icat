@@ -19,6 +19,7 @@ import com.gwtext.client.data.StringFieldDef;
 import com.gwtext.client.widgets.Button;
 import com.gwtext.client.widgets.Component;
 import com.gwtext.client.widgets.MessageBox;
+import com.gwtext.client.widgets.Toolbar;
 import com.gwtext.client.widgets.ToolbarButton;
 import com.gwtext.client.widgets.event.ButtonListenerAdapter;
 import com.gwtext.client.widgets.form.ComboBox;
@@ -310,7 +311,10 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
                 onShowSearchWindow();
             }
         });
-        getTopToolbar().addButton(searchInWindowButton);
+        Toolbar topToolbar = getTopToolbar();
+        if (topToolbar != null) {
+        	topToolbar.addButton(searchInWindowButton);
+        }
     }
 
     private void onShowSearchWindow() {

@@ -465,6 +465,10 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
     protected void addToolbarButtons() {
         setTopToolbar(new Toolbar());
         final Toolbar toolbar = getTopToolbar();
+        
+        if (toolbar == null) {
+        	return;
+        }
 
         createButton = createCreateButton();
         if (createButton != null) {
