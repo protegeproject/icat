@@ -72,8 +72,10 @@ public class SelectionUtil {
     }
 
 
-    public static void selectIndividuals(Project project, Collection<EntityData> clses, boolean allowMultiple, boolean showClsesPanel, final SelectionCallback callback) {
-        final IndividualsWithClassSelectionPanel classSelectionPanel = new IndividualsWithClassSelectionPanel(project, clses, allowMultiple, showClsesPanel);
+    public static void selectIndividuals(Project project, Collection<EntityData> clses, 
+    		boolean showToolbar, boolean allowMultiple, boolean showClsesPanel, final SelectionCallback callback) {
+        final IndividualsWithClassSelectionPanel classSelectionPanel = new IndividualsWithClassSelectionPanel(
+        		project, clses, showToolbar, allowMultiple, showClsesPanel);
         final Window selectWindow = new com.gwtext.client.widgets.Window();
         selectWindow.setTitle("Select individuals");
         selectWindow.setWidth(800);

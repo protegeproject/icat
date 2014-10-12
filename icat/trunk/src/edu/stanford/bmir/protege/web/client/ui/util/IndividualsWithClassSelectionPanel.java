@@ -20,6 +20,7 @@ import edu.stanford.bmir.protege.web.client.ui.selection.SelectionListener;
 public class IndividualsWithClassSelectionPanel extends Panel {
     private Project project;
     private Collection<EntityData> clses;
+    private boolean showToolbar = true;
     private boolean allowMultipleSelection;
     private boolean showClsesPanel;
 
@@ -28,9 +29,11 @@ public class IndividualsWithClassSelectionPanel extends Panel {
     private Anchor seeAllClassesAnchor;
     private boolean seeAllClasses = false;
 
-    public IndividualsWithClassSelectionPanel(Project project, Collection<EntityData> clses, boolean allowMultipleSelection, boolean showClsesPanel) {
+    public IndividualsWithClassSelectionPanel(Project project, Collection<EntityData> clses, 
+    		boolean showToolbar, boolean allowMultipleSelection, boolean showClsesPanel) {
         this.project = project;
         this.clses = clses;
+        this.showToolbar = showToolbar;
         this.allowMultipleSelection = allowMultipleSelection;
         this.showClsesPanel = showClsesPanel;
         buildUI();
@@ -82,7 +85,7 @@ public class IndividualsWithClassSelectionPanel extends Panel {
     }
 
     protected IndividualsListPortlet createIndividualsListPorlet() {
-       IndividualsListPortlet indPortlet = new IndividualsListPortlet(project);
+       IndividualsListPortlet indPortlet = new IndividualsListPortlet(project, showToolbar);
        indPortlet.setDraggable(false);
        indPortlet.setClosable(false);
        indPortlet.setCollapsible(false);

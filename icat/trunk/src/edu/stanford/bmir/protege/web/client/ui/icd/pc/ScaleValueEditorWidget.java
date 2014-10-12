@@ -37,6 +37,11 @@ public class ScaleValueEditorWidget extends MultilevelInstanceGridWidget {
 		
 	}
 
+
+	@Override
+	protected boolean getShowToolbar() {
+		return false;
+	}
 	
 	@Override
 	protected Anchor createAddNewValueHyperlink() {

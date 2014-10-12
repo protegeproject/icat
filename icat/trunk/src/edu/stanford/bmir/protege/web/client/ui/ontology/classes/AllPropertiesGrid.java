@@ -186,7 +186,7 @@ public class AllPropertiesGrid extends EditorGridPanel {
         if (!(ValueType.Instance.equals(prop.getValueType()))) {
             return;
         }
-        SelectionUtil.selectIndividuals(project, prop.getAllowedValues(), true, true, new SelectionCallback() {
+        SelectionUtil.selectIndividuals(project, prop.getAllowedValues(), true, true, true, new SelectionCallback() {
             public void onSelect(Collection<EntityData> selection) {
                 if (selection == null) { return; }
                 //TODO: optimize: make one call for all values
