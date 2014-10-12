@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import edu.stanford.bmir.whofic.PrecoordinationDefinitionComponent;
 import edu.stanford.bmir.whofic.WHOFICContentModel;
 import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
 import edu.stanford.bmir.whofic.icd.ICDContentModel;
+import edu.stanford.bmir.whofic.icd.ICDContentModelConstants;
 import edu.stanford.bmir.whofic.ici.ICIContentModel;
 import edu.stanford.bmir.protege.icd.export.ExportICDClassesJob;
 import edu.stanford.bmir.protege.web.client.rpc.ICDService;
@@ -22,6 +24,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.icd.AllowedPostcoordinationValuesData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.PrecoordinationClassExpressionData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 import edu.stanford.bmir.protege.web.client.ui.icd.DisplayStatus;
@@ -37,6 +40,8 @@ import edu.stanford.smi.protege.model.ValueType;
 import edu.stanford.smi.protege.util.CollectionUtilities;
 import edu.stanford.smi.protege.util.IDGenerator;
 import edu.stanford.smi.protege.util.Log;
+import edu.stanford.smi.protegex.owl.model.OWLClass;
+import edu.stanford.smi.protegex.owl.model.OWLIndividual;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.RDFIndividual;
 import edu.stanford.smi.protegex.owl.model.RDFProperty;
@@ -1017,38 +1022,41 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
     	Project project = getProject(projectName);
     	KnowledgeBase kb = project.getKnowledgeBase();
-    	WHOFICContentModel cm = getContentModel((OWLModel)kb);
+        OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
+    	WHOFICContentModel cm = getContentModel(owlModel);
+    	
+    	RDFProperty referencedValueProperty = cm.getReferencedValueProperty();
 
 		List<ScaleInfoData> res = new ArrayList<ScaleInfoData>();
 		for (String property : properties) {
-			Slot propSlot = kb.getSlot(property);
-			if (propSlot == null) {
+			RDFProperty prop = owlModel.getRDFProperty(property);
+			if (prop == null) {
 				Log.getLogger().warning("No property found with name: " + property + " in method ICDSerivceImpl.getPostCoordinationAxesScales. " +
 						"Please check your configurations.");
 			}
 			else {
-				Collection<?> range = propSlot.getAllowedClses();
-				if (range == null || range.isEmpty()) {
+				//TODO deal with (or at least check for) multiple ranges (compare with rev. 27220)
+				RDFResource range = prop.getRange();
+				if (range == null) {
 					Log.getLogger().warning("It is not possible to retrieve the (fixed) scale values for property " + property + " because it's range ot set");
 				}
 				else {
-					Iterator<?> it = range.iterator();
-					Cls rangeCls = (Cls) it.next();
-					if (it.hasNext()) {
-						Log.getLogger().warning("Range if property " + property + " contains multiple classes. " +
-								"To calculate the (fixed) scale values, we will use only on of those, namely " + rangeCls.getName());
-					}
-					Collection<Instance> allValidValues = rangeCls.getDirectInstances();
+					OWLClass rangeCls = (OWLClass) range;
+					Collection<?> allValidValues = rangeCls.getInstances(false);
 					List<EntityData> propertyValues = new ArrayList<EntityData>();
 					List<String> propertyValueDefinitions = new ArrayList<String>();
-					for (Instance inst : allValidValues) {
-						//TODO get the referencedValue and get the title and definition from it
-						propertyValues.add(new EntityData(inst.getName(), inst.getBrowserText()));
-						propertyValueDefinitions.add(getDefinition(cm, inst));
+					for (Object rangeValue : allValidValues) {
+						//TODO get the referencedValue and get the title and definition from it - DONE check below
+						OWLIndividual ind = (OWLIndividual) rangeValue;
+						Instance refInst = (Instance) ind.getPropertyValue(referencedValueProperty);
+						propertyValues.add(new EntityData(ind.getName(), ind.getBrowserText()));
+						String definition = getDefinition(cm, refInst);
+						propertyValueDefinitions.add(definition);
 					}
 					//build property info:
 					ScaleInfoData propertyInfo = new ScaleInfoData(propertyValues);
 					propertyInfo.setProperty(new PropertyEntityData(property));
+					propertyInfo.setDefinitions(propertyValueDefinitions);
 					res.add(propertyInfo);
 				}
 			}
@@ -1205,6 +1213,165 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		}
 		return res;
 	}
+
+
+	@Override
+	public List<AllowedPostcoordinationValuesData> getAllowedPostCoordinationValues(
+			String projectName, String entity, List<String> customScaleProperties, 
+			List<String> treeValueProperties, List<String> fixedScaleProperties) {
+        Project project = getProject(projectName);
+        OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
+        WHOFICContentModel cm = getContentModel(owlModel);
+
+        RDFSNamedClass cls = cm.getICDCategory(entity);
+        RDFSNamedClass precoordSuperclass = cm.getPreecoordinationSuperclass(cls);
+        
+        List<AllowedPostcoordinationValuesData> res = new ArrayList<AllowedPostcoordinationValuesData>();
+        
+        List<String> allProperties = new ArrayList<String>(customScaleProperties);
+        allProperties.addAll(treeValueProperties);
+        allProperties.addAll(fixedScaleProperties);
+        
+        List<String> relevantProperties = (List<String>) getListOfSelectedPostCoordinationAxes(projectName, entity, allProperties);
+        List<String> relevantFixedScaleProperties = new ArrayList<String>(fixedScaleProperties);
+        relevantFixedScaleProperties.retainAll(relevantProperties);
+        Map<String,List<EntityData>> allowedFixedScaleValuesMap = 
+        		getAllowedFixedScaleValues(projectName, owlModel, precoordSuperclass, relevantFixedScaleProperties);
+        for (String propName : relevantProperties) {
+        	AllowedPostcoordinationValuesData allowedPostcoordinationValuesData = new AllowedPostcoordinationValuesData(propName);
+        	List<EntityData> propertyValues = null;
+        	if (customScaleProperties.contains(propName)) {
+        		propertyValues = getAllowedCustomScaleValues(cm, owlModel, precoordSuperclass, propName);
+        	}
+        	else if (treeValueProperties.contains(propName)) {
+        		propertyValues = getAllowedTreeNodeValues(cm, owlModel, precoordSuperclass, propName);
+        	}
+        	else if (fixedScaleProperties.contains(propName)) {
+        		propertyValues = allowedFixedScaleValuesMap.get(propName);
+        	}
+        	
+        	if (propertyValues == null) {
+        		allowedPostcoordinationValuesData.setValues(null);
+        	}
+        	else {
+	        	for (EntityData propValue : propertyValues) {
+	        		allowedPostcoordinationValuesData.addValue(propValue);
+	        	}
+        	}
+    		res.add(allowedPostcoordinationValuesData);
+        }
+
+        return res;
+	}
+
+	private List<EntityData> getAllowedCustomScaleValues(WHOFICContentModel cm, OWLModel owlModel,
+			RDFSNamedClass icdClass, String pcPropName) {
+		String scalePropName = ICDContentModelConstants.PC_AXIS_PROP_TO_VALUE_SET_PROP.get(pcPropName);
+		Collection<?> propertyValues = icdClass.getPropertyValues(owlModel.getRDFProperty(scalePropName));
+		if (propertyValues == null || propertyValues.isEmpty()) {
+			return null;
+		}
+		RDFSNamedClass pcScaleTermClass = cm.getPostcoordinationScaleTermClass();
+		RDFSNamedClass pcValueRefClass = cm.getPostcoordinationValueReferenceClass();
+		RDFProperty hasScaleValueProperty = cm.getHasScaleValueProperty();
+		RDFProperty referencedValueProperty = cm.getReferencedValueProperty();
+		
+		List<EntityData> res = new ArrayList<EntityData>();
+		for (Object propValue : propertyValues) {
+			if (propValue instanceof OWLIndividual) {
+				//get scale values 
+				OWLIndividual scaleValueTerm = (OWLIndividual) propValue;
+				if (scaleValueTerm.hasRDFType(pcScaleTermClass, true)) {
+					Collection<?> scaleValues = scaleValueTerm.getPropertyValues(hasScaleValueProperty);
+					for (Object scValue : scaleValues) {
+						if (scValue instanceof OWLIndividual) {
+//							//get referenced value
+//							Instance refValue = getReferencedValue((OWLIndividual) scValue, 
+//									pcValueRefClass, referencedValueProperty);
+//							if (refValue != null) {
+//								res.add(new EntityData(refValue.getName(), refValue.getBrowserText())); //set types as well, if relevant
+//							}
+							Instance scValInst = (OWLIndividual) scValue;
+							res.add(new EntityData(scValInst.getName(), scValInst.getBrowserText())); //set types as well, if relevant
+						}
+						else {
+							Log.getLogger().warning("Invalid scale value for PostcoordinationScaleTerm: " + scValue);
+						}
+					}
+				}
+				else {
+					Log.getLogger().warning("Scale value term " + scaleValueTerm + " does not have the right type");
+				}
+			}
+		}
+		return res;
+	}
+
+
+	protected Instance getReferencedValue(OWLIndividual scaleValueInd,
+			RDFSNamedClass pcValueRefClass, RDFProperty referencedValueProperty) {
+		if (scaleValueInd.hasRDFType(pcValueRefClass,true)) {
+			Object refValue = scaleValueInd.getPropertyValue(referencedValueProperty);
+			if (refValue instanceof Instance) {
+				return (Instance)refValue;
+			}
+			else {
+				Log.getLogger().warning("Invalid referenced value for PostcoordinationValueReference: " + scaleValueInd);
+			}
+		}
+		else {
+			Log.getLogger().warning("Scale value " + scaleValueInd + " does not have the right type");
+		}
+		return null;
+	}
+
+
+	private List<EntityData> getAllowedTreeNodeValues(WHOFICContentModel cm, OWLModel owlModel,
+			RDFSNamedClass icdClass, String pcPropName) {
+		
+		RDFSNamedClass pcValueRefClass = cm.getPostcoordinationValueReferenceClass();
+		RDFProperty referencedValueProperty = cm.getReferencedValueProperty();
+
+		Collection<?> propertyValues = icdClass.getPropertyValues(owlModel.getRDFProperty(pcPropName));
+		if (propertyValues == null || propertyValues.isEmpty()) {
+			return null;
+		}
+
+		List<EntityData> res = new ArrayList<EntityData>();
+		for (Object scValue : propertyValues) {
+			if (scValue instanceof OWLIndividual) {
+				//get referenced value
+				Instance refValue = getReferencedValue((OWLIndividual) scValue, 
+						pcValueRefClass, referencedValueProperty);
+				if (refValue != null) {
+					res.add(new EntityData(refValue.getName(), refValue.getBrowserText())); //set types as well, if relevant
+				}
+			}
+			else {
+				Log.getLogger().warning("Invalid scale value for PostcoordinationScaleTerm: " + scValue);
+			}
+		}
+		
+		return res;
+	}
+
+
+	private Map<String, List<EntityData>> getAllowedFixedScaleValues(String projectName, OWLModel owlModel,
+			RDFSNamedClass icdClass, List<String> relevantFixedScaleProperties) {
+        Map<String, List<EntityData>> res = new HashMap<String, List<EntityData>>();
+        
+        List<ScaleInfoData> postCoordinationAxesScales = getPostCoordinationAxesScales(projectName, relevantFixedScaleProperties);
+        for (ScaleInfoData scInfoData : postCoordinationAxesScales) {
+        	List<EntityData> values = new ArrayList<EntityData>();
+        	for (int i = 0; i < scInfoData.getValueCount(); i++) {
+        		values.add(scInfoData.getScaleValue(i));
+        	}
+    		res.put(scInfoData.getProperty().getName(), values);
+        }
+        
+        return res;
+	}
+
 
 	@Override
 	public boolean setPrecoordinationPropertyValue(String projectName, String entity,

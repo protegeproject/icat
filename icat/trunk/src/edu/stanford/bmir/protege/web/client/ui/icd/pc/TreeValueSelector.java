@@ -1,6 +1,7 @@
 package edu.stanford.bmir.protege.web.client.ui.icd.pc;
 
 import java.util.Collection;
+import java.util.List;
 
 import com.gwtext.client.widgets.Component;
 
@@ -83,6 +84,17 @@ public class TreeValueSelector extends AbstractScaleValueSelectorWidget implemen
 	@Override
 	protected void setFieldValue(EntityData value) {
 		valueSelWidget.getField().setValue(value == null ? "" : value.getBrowserText());
+	}
+
+	@Override
+	protected void setAllowedValues(List<EntityData> allowedValues) {
+		System.out.println("TreeValueSelector.setAllowedValues: " + allowedValues);
+		if (allowedValues == null || allowedValues.size() == 0 || allowedValues.size() > 1) { //we can treat last case separately if valueSelWidget will take multiple root classes
+			valueSelWidget.resetTopClass();
+		}
+		else {
+			valueSelWidget.setTopClass(allowedValues.get(0).getName());
+		}
 	}
 
 }

@@ -12,11 +12,11 @@ import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 
 public class ScaleInfoData implements Serializable {
 
-	private static final long serialVersionUID = 3711023050201654139L;
-
+	private static final long serialVersionUID = -8432493379797107101L;
+	
 	private PropertyEntityData property;
 	private LinkedHashMap<String, EntityData> scaleValues;
-	private List<EntityData> definitions;
+	private List<String> definitions;
 
 	@SuppressWarnings("unused")
 	private ScaleInfoData() {
@@ -27,7 +27,7 @@ public class ScaleInfoData implements Serializable {
 		for (EntityData value : values) {
 			this.scaleValues.put(value.getName(), value);
 		}
-		this.definitions = new ArrayList<EntityData>(values.size());
+		this.definitions = new ArrayList<String>(values.size());
 	}
 
 	public void setProperty(PropertyEntityData prop) {
@@ -37,8 +37,12 @@ public class ScaleInfoData implements Serializable {
 	public PropertyEntityData getProperty() {
 		return property;
 	}
+
+	public void setDefinitions(List<String> definitions) {
+		this.definitions = definitions;
+	}
 	
-	public void setDefinition(String scaleValueIndividual, EntityData scaleValueDefinition) {
+	public void setDefinition(String scaleValueIndividual, String scaleValueDefinition) {
 		int index = getIndexOf(scaleValueIndividual);
 		if (index >= 0) {
 			if (index > definitions.size()) {
@@ -76,7 +80,7 @@ public class ScaleInfoData implements Serializable {
 		return scaleValues.get(key);
 	}
 	
-	public EntityData getDefinition(int index) {
+	public String getDefinition(int index) {
 		return (index < 0 || index >= definitions.size() ? null : definitions.get(index));
 	}
 }

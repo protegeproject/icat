@@ -9,6 +9,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.icd.AllowedPostcoordinationValuesData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.PrecoordinationClassExpressionData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 
@@ -57,6 +58,12 @@ public interface ICDServiceAsync {
 	void getPreCoordinationClassExpressions(String projectName,
 			String entity, List<String> properties,
 			AsyncCallback<List<PrecoordinationClassExpressionData>> cb);
+
+	void getAllowedPostCoordinationValues(String projectName, String entity,
+			List<String> customScaleProperties,
+			List<String> treeValueProperties,
+			List<String> fixedScaleProperties,
+			AsyncCallback<List<AllowedPostcoordinationValuesData>> cb);
 
 	void setPrecoordinationPropertyValue(String projectName, String entity,
 			String property, EntityData oldValue, EntityData newValue,

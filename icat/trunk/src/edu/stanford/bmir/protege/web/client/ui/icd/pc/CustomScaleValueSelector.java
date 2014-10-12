@@ -1,17 +1,17 @@
 package edu.stanford.bmir.protege.web.client.ui.icd.pc;
 
 import java.util.Collection;
+import java.util.List;
 
 import com.gwtext.client.widgets.Component;
 
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
-import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.InstanceComboBox;
 
 public class CustomScaleValueSelector extends AbstractScaleValueSelectorWidget implements ValueSelectorComponent {
 
-	private InstanceComboBox valueCombobox;
+	private PreCoordinationPropertyValueComboBox valueCombobox;
 	
 	public CustomScaleValueSelector(Project project) {
 		super(project);
@@ -40,7 +40,7 @@ public class CustomScaleValueSelector extends AbstractScaleValueSelectorWidget i
 	@Override
 	protected void createValueSelector() {
 		if (valueCombobox == null) {
-			valueCombobox = new InstanceComboBox(getProject()) {
+			valueCombobox = new PreCoordinationPropertyValueComboBox(getProject()) {
 				@Override
 				protected void onChangeValue(EntityData subj, Object oldVal,
 						Object newVal) {
@@ -78,5 +78,11 @@ public class CustomScaleValueSelector extends AbstractScaleValueSelectorWidget i
 	protected void setFieldValue(EntityData value) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	protected void setAllowedValues(List<EntityData> allowedValues) {
+		System.out.println("CustomScaleValueSelector.setAllowedValues: " + allowedValues);
+		valueCombobox.updateAllowedValues(allowedValues);
 	}
 }

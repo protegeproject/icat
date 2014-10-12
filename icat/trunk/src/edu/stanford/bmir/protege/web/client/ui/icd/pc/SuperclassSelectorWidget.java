@@ -167,37 +167,5 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 		ICDServiceManager.getInstance().getAllSuperEntities(getProject().getProjectName(), getSubject(), getFillValuesHandler());
 	}
 	
-	/* Remote calls */
-	
-    private class FillAllowedValuesCacheHandler extends AbstractAsyncHandler<List<EntityData>> {
-    	
-        @Override
-        public void handleFailure(Throwable caught) {
-            GWT.log("Could not retrieve allowed values for combobox " + getProperty(), caught);
-        }
-
-        @Override
-        public void handleSuccess(List<EntityData> superclses) {
-            store.removeAll();
-            setLoadingStatus(false);
-			System.out.println("In fill values handler: " + superclses);
-			
-			Object[][] results = getRows(superclses);
-			System.out.println(" Results: " + results);
-			
-            store.setDataProxy(new MemoryProxy(results));
-            store.load();
-        }
-        
-        private Object[][] getRows(List<EntityData> superclses) {
-            Object[][] resultAsObjects = new Object[superclses.size()][2];
-            int i = 0;
-            for (EntityData supercls : superclses) {
-                resultAsObjects[i++] =new Object[]{supercls.getName(), supercls.getBrowserText()};
-            }
-            return resultAsObjects;
-        }
-
-    }
 	
 }

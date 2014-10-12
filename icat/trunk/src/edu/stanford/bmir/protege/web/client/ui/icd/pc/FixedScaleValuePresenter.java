@@ -95,11 +95,11 @@ public class FixedScaleValuePresenter extends AbstractPropertyWidget {
 		if (rowIndex != null) {
 			int row = rowIndex.intValue();
 			if (flag) {
-				System.out.println("Show it! (" + property + ")");
+				//System.out.println("Show it! (" + property + ")");
 				table.getRowFormatter().setStyleName(row, "table-row-visible");
 			}
 			else {
-				System.out.println("Hide it! (" + property + ")");
+				//System.out.println("Hide it! (" + property + ")");
 				table.getRowFormatter().setStyleName(row, "table-row-hidden");
 			}
 			return !flag;
@@ -152,8 +152,8 @@ public class FixedScaleValuePresenter extends AbstractPropertyWidget {
 				EntityData scaleValue = scaleInfo.getScaleValue(i);
 				if (scaleValue != null) {
 					g.setText(row, 0, scaleValue.getBrowserText());
-					EntityData scaleValueDef = scaleInfo.getDefinition(i);
-					g.setText(row, 1, scaleValueDef == null ? "" : scaleValueDef.getBrowserText());
+					String scaleValueDef = scaleInfo.getDefinition(i);
+					g.setText(row, 1, scaleValueDef == null ? "" : scaleValueDef);
 				}
 			}
 			
