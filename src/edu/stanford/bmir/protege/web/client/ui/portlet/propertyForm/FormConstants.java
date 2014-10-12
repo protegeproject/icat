@@ -88,6 +88,7 @@ public class FormConstants {
 	public static final String EMPTY_TEXT = "empty_text";
 	public static final String DEFAULT_COLUMN_TO_EDIT = "default_column_to_edit";
 	public static final String COPY_IF_TEMPLATE = "copy_if_template";
+	public static final String SHOW_TOOLBAR = "showToolbar";
 	//internal reference
 	public static final String REFERENCED_VALUE_PROP="referenced_value_prop";
 

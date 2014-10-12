@@ -331,7 +331,8 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         String type = UIUtil.getStringConfigurationProperty(getWidgetConfiguration(), FormConstants.ONT_TYPE, null);
         if (type == null) { return;  } //TODO: not type specified, maybe use range of property
 
-        SelectionUtil.selectIndividuals(getProject(), UIUtil.createCollection(new EntityData(type)), true, false, new SelectionCallback() {
+        SelectionUtil.selectIndividuals(getProject(), UIUtil.createCollection(new EntityData(type)), 
+        		getShowToolbar(), true, false, new SelectionCallback() {
             public void onSelect(Collection<EntityData> selection) {
                 addExistingValues(selection);
             }
@@ -348,6 +349,11 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                     new AddExistingValueHandler(getSubject()));
         }
     }
+
+    protected boolean getShowToolbar() {
+		return UIUtil.getBooleanConfigurationProperty(getWidgetConfiguration(), 
+				FormConstants.SHOW_TOOLBAR, true);
+	}
 
 	protected boolean getCopyIfTemplateOption() {
 		return UIUtil.getBooleanConfigurationProperty(getWidgetConfiguration(), 
@@ -712,7 +718,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
             }
         }
 
-        SelectionUtil.selectIndividuals(getProject(), clses, false, true, new SelectionCallback() {
+        SelectionUtil.selectIndividuals(getProject(), clses, getShowToolbar(), false, true, new SelectionCallback() {
             public void onSelect(Collection<EntityData> selection) {
                 replaceEntityValue(record, oldValue, rowIndex, colIndex, selection);
             }

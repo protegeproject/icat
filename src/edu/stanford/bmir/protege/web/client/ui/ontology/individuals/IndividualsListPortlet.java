@@ -45,6 +45,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
+import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.search.SearchUtil;
 import edu.stanford.bmir.protege.web.client.ui.selection.SelectionEvent;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
@@ -77,6 +78,8 @@ public class IndividualsListPortlet extends AbstractEntityPortlet {
      */
     protected EntityData preconfiguredClass;
 
+    private boolean showToolbar = true;
+
     private ToolbarButton createButton;
     private ToolbarButton deleteButton;
     private ToolbarButton watchButton;
@@ -96,6 +99,11 @@ public class IndividualsListPortlet extends AbstractEntityPortlet {
     public IndividualsListPortlet(Project project) {
         super(project);
     }
+    
+    public IndividualsListPortlet(Project project, final boolean showToolbar) {
+    	super(project);
+    	this.showToolbar = showToolbar;
+    }
 
     @Override
     public void initialize() {
@@ -106,9 +114,12 @@ public class IndividualsListPortlet extends AbstractEntityPortlet {
         add(individualsGrid);
         individualsGrid.addGridRowListener(getRowListener());
 
-        addToolbarButtons();
-
         initConfiguration();
+
+        if (showToolbar) {
+        	addToolbarButtons();
+        }
+
         if (preconfiguredClass != null) {
             setEntity(preconfiguredClass);
         }
@@ -134,6 +145,8 @@ public class IndividualsListPortlet extends AbstractEntityPortlet {
         }
         String preconfiguredClassName = (String) properties.get(PRECONFIGURED_CLASS);
         preconfiguredClass = new EntityData(preconfiguredClassName);
+
+        showToolbar = UIUtil.getBooleanConfigurationProperty(config, FormConstants.SHOW_TOOLBAR, showToolbar);
     }
 
     @Override
