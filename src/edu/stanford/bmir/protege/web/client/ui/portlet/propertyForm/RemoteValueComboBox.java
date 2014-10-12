@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.gwtext.client.data.ArrayReader;
 import com.gwtext.client.data.DataProxy;
 import com.gwtext.client.data.FieldDef;
+import com.gwtext.client.data.MemoryProxy;
 import com.gwtext.client.data.Record;
 import com.gwtext.client.data.RecordDef;
 import com.gwtext.client.data.Store;
@@ -203,24 +204,48 @@ public abstract class RemoteValueComboBox extends AbstractFieldWidget {
      */
 
     protected class FillAllowedValuesCacheHandler extends AbstractAsyncHandler<List<EntityData>> {
-
-    	public FillAllowedValuesCacheHandler() {
-    		
-    	}
     	
-        @Override
+        public FillAllowedValuesCacheHandler() {
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
         public void handleFailure(Throwable caught) {
             GWT.log("Could not retrieve allowed values for combobox " + getProperty(), caught);
         }
 
         @Override
-        public void handleSuccess(List<EntityData> instances) {
-            store.removeAll();
-            for (EntityData inst : instances) {
-                store.add(recordDef.createRecord(new Object[]{inst.getName(), UIUtil.getDisplayText(inst)}));
-            }
+        public void handleSuccess(List<EntityData> superclses) {
+        	loadDropDownValues(superclses);
         }
-
     }
+    
+	protected void loadDropDownValues(List<EntityData> instances) {
+		
+        store.removeAll();
+        setLoadingStatus(false);
+		System.out.println("In fill values handler: " + instances);
+		
+		Object[][] results = getRows(instances);
+		System.out.println(" Results: " + results);
+		
+        store.setDataProxy(new MemoryProxy(results));
+        store.load();
+	}
+    
+    private Object[][] getRows(List<EntityData> instances) {
+		if (instances != null) {
+			Object[][] resultAsObjects = new Object[instances.size()][2];
+	        int i = 0;
+	        for (EntityData inst : instances) {
+	            resultAsObjects[i++] =new Object[]{inst.getName(), UIUtil.getDisplayText(inst)};
+	        }
+	        return resultAsObjects;
+		}
+		else {
+			return new Object[0][2];
+		}
+    }
+
 
 }

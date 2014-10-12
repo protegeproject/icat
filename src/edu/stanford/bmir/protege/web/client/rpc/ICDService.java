@@ -9,6 +9,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.icd.AllowedPostcoordinationValuesData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.PrecoordinationClassExpressionData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 
@@ -56,6 +57,12 @@ public interface ICDService extends RemoteService  {
 
     public List<PrecoordinationClassExpressionData> getPreCoordinationClassExpressions(
 			String projectName, String entity, List<String> properties);
+
+	public List<AllowedPostcoordinationValuesData> getAllowedPostCoordinationValues(
+			String projectName, String entity,
+			List<String> customScaleProperties,
+			List<String> treeValueProperties,
+			List<String> fixedScaleProperties);
 
 	public boolean setPrecoordinationPropertyValue(String projectName, String entity,
 			String property, EntityData oldValue, EntityData newValue);

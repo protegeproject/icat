@@ -1,6 +1,7 @@
 package edu.stanford.bmir.protege.web.client.ui.icd.pc;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -91,6 +92,8 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 	public abstract void setComponentSubject(EntityData subject);
 	
 	protected abstract void setFieldValue(EntityData value);
+
+	protected abstract void setAllowedValues(List<EntityData> allowedValues);
 	
 	
 	public void onSelectionChanged(final EntityData oldValue, final EntityData newValue) {
