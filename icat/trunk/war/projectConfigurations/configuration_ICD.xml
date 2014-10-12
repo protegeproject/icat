@@ -3755,18 +3755,6 @@
 													<string>component_type</string>
 													<string>internalreference</string>
 												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry-->
 												<entry>
 													<string>index</string>
 													<string>6</string>
@@ -3834,18 +3822,6 @@
 													<string>component_type</string>
 													<string>internalreference</string>
 												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry-->
 												<entry>
 													<string>index</string>
 													<string>7</string>
@@ -3913,18 +3889,6 @@
 													<string>component_type</string>
 													<string>internalreference</string>
 												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry-->
 												<entry>
 													<string>index</string>
 													<string>8</string>
@@ -3992,18 +3956,6 @@
 													<string>component_type</string>
 													<string>internalreference</string>
 												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry-->
 												<entry>
 													<string>index</string>
 													<string>9</string>
@@ -4071,18 +4023,6 @@
 													<string>component_type</string>
 													<string>internalreference</string>
 												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry-->
 												<entry>
 													<string>index</string>
 													<string>10</string>
@@ -4164,18 +4104,6 @@
 													<string>component_type</string>
 													<string>fixedscalevalues_grid</string>
 												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry-->
 												<entry>
 													<string>index</string>
 													<string>12</string>
@@ -4184,10 +4112,6 @@
 													<string>height</string>
 													<string>120</string>
 												</entry>
-												<!--entry>
-													<string>multiple_values_allowed</string>
-													<boolean>true</boolean>
-												</entry-->
 								            	<entry>
 								            		<!--string>visible_properties</string-->
 								            		<string>allowed_values</string>
@@ -5378,7 +5302,7 @@
 																</entry>
 																<entry>
 																	<string>top_class</string>
-																	<string>http://who.int/icd#InfectiousAgents</string>
+																	<string>http://who.int/icd#InfectiousAgent</string>
 																</entry>
 																<entry>
 																	<string>label</string>
@@ -5390,7 +5314,7 @@
 																</entry>
 																<entry>
 																	<string>help</string>
-																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#infectiousAgent</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#infectiousAgent_value</string>
 																</entry>
 																<entry>
 																	<string>component_type</string>
@@ -5400,18 +5324,6 @@
 																	<string>show_add_existing</string>
 																	<boolean>false</boolean>
 																</entry>
-																<!--entry>
-																	<string>show_replace_existing</string>
-																	<boolean>true</boolean>
-																</entry>
-																<entry>
-																	<string>add_existing_value_desc</string>
-																	<string>Select scale</string>
-																</entry>
-																<entry>
-																	<string>replace_with_existing_value_desc</string>
-																	<string>Select another scale</string>
-																</entry-->
 																<entry>
 																	<string>index</string>
 																	<string>6</string>
@@ -5449,6 +5361,387 @@
 														</entry>
 														
 														<entry>
+															<string>http://who.int/icd#chemicalAgent</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>ChemicalAgent</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#ChemicalAgentReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#ChemicalAgent</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Chemical Agent</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>...</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#chemicalAgent_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<entry>
+																	<string>show_add_existing</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>7</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>Column1</string>
+																	<map>
+																		<entry>
+																			<string>header</string>
+																			<string>label</string>
+																		</entry>
+																		<entry>
+																			<string>width</string>
+																			<string>all</string>
+																		</entry>
+																		<entry>
+																			<string>property</string>
+																			<string>http://who.int/icd#label</string>
+																		</entry>
+																		<entry>
+																			<string>index</string>
+																			<string>0</string>
+																		</entry>
+																	</map>
+																</entry>
+															</map>
+														</entry>
+														
+														<entry>
+															<string>http://who.int/icd#medication</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>Medication</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#MedicationReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#Medication</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Medications</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>...</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#medication_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<entry>
+																	<string>show_add_existing</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>8</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>Column1</string>
+																	<map>
+																		<entry>
+																			<string>header</string>
+																			<string>label</string>
+																		</entry>
+																		<entry>
+																			<string>width</string>
+																			<string>all</string>
+																		</entry>
+																		<entry>
+																			<string>property</string>
+																			<string>http://who.int/icd#label</string>
+																		</entry>
+																		<entry>
+																			<string>index</string>
+																			<string>0</string>
+																		</entry>
+																	</map>
+																</entry>
+															</map>
+														</entry>
+														
+														<entry>
+															<string>http://who.int/icd#histopathology</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>Histopathology</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#HistopathologyReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#Histopathology</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Histopathology</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>...</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#histopathology_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<entry>
+																	<string>show_add_existing</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>9</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>Column1</string>
+																	<map>
+																		<entry>
+																			<string>header</string>
+																			<string>label</string>
+																		</entry>
+																		<entry>
+																			<string>width</string>
+																			<string>all</string>
+																		</entry>
+																		<entry>
+																			<string>property</string>
+																			<string>http://who.int/icd#label</string>
+																		</entry>
+																		<entry>
+																			<string>index</string>
+																			<string>0</string>
+																		</entry>
+																	</map>
+																</entry>
+															</map>
+														</entry>
+														
+														<entry>
+															<string>http://who.int/icd#laterality</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>Laterality</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#LateralityReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Laterality</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for 'laterality'</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#laterality_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>10</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+														
+														<entry>
+															<string>http://who.int/icd#relational</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>Relational</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#RelationalReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Relational</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for 'relational'</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#relational_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>11</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+														
+														<entry>
+															<string>http://who.int/icd#distribution</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>Distribution</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#DistributionReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Distribution</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for 'distribution'</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#distribution_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>12</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+														
+														<entry>
+															<string>http://who.int/icd#regional</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>Regional</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#RegionalReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Regional</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for 'regional'</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#regional_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>13</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+														
+														<entry>
 															<string>http://who.int/icd#specificAnatomy</string>
 															<map>
 																<entry>
@@ -5473,7 +5766,7 @@
 																</entry>
 																<entry>
 																	<string>help</string>
-																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#specificAnatomy</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#specificAnatomy_value</string>
 																</entry>
 																<entry>
 																	<string>component_type</string>
@@ -5483,21 +5776,9 @@
 																	<string>show_add_existing</string>
 																	<boolean>false</boolean>
 																</entry>
-																<!--entry>
-																	<string>show_replace_existing</string>
-																	<boolean>true</boolean>
-																</entry>
-																<entry>
-																	<string>add_existing_value_desc</string>
-																	<string>Select scale</string>
-																</entry>
-																<entry>
-																	<string>replace_with_existing_value_desc</string>
-																	<string>Select another scale</string>
-																</entry-->
 																<entry>
 																	<string>index</string>
-																	<string>7</string>
+																	<string>14</string>
 																</entry>
 																<entry>
 																	<string>height</string>
