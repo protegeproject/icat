@@ -5264,7 +5264,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for causality</string>
+																	<string>Choose a value for 'causality'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -5590,7 +5590,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for 'laterality'</string>
+																	<string>Choose a value for the 'laterality' topology property</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -5632,7 +5632,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for 'relational'</string>
+																	<string>Choose a value for the 'relational' topology property</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -5674,7 +5674,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for 'distribution'</string>
+																	<string>Choose a value for the 'distribution' topology property</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -5716,7 +5716,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for 'regional'</string>
+																	<string>Choose a value for the 'regional' topology property</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -5811,10 +5811,405 @@
 																</entry>
 															</map>
 														</entry>
+												
+														<entry>
+															<string>http://who.int/icd#serotype</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>Serotype</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#SerotypeReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Serotype</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'serotype' biological indicator</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#serotype_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>15</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+												
+														<entry>
+															<string>http://who.int/icd#durationOfComa</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>DurationOfComa</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#DurationOfComaReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Duration of Coma</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'duration of coma' consciousness measure</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#durationOfComa_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>16</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+												
+														<entry>
+															<string>http://who.int/icd#levelOfConsciousness</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>LevelOfConsciousness</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#LevelOfConsciousnessReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Level of Consciousness</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'level of consciousness' consciousness measure</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#levelOfConsciousness_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>17</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+												
+														<!--entry>
+															<string>http://who.int/icd#hasGCSScore</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>GCSScore</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#GCSScoreReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>GCS Score</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'GCS Score' of level of consciousness</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasGCSScore_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>18</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+												
+														<entry>
+															<string>http://who.int/icd#hasGCSEyeScore</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>GCSEyeScore</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#GCSEyeScoreReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>GCS Eye Score</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'GCS Eye Score' level of consciousness</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasGCSEyeScore_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>19</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+												
+														<entry>
+															<string>http://who.int/icd#hasGCSMotorScore</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>GCSMotorScore</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#GCSMotorScoreReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>GCS Motor Score</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'GCS Motor Score' level of consciousness</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasGCSMotorScore_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>20</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+												
+														<entry>
+															<string>http://who.int/icd#hasGCSVerbalScore</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>GCSVerbalScore</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#GCSVerbalScoreReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>GCS Verbal Score</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'GCS Verbal Score' level of consciousness'</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasGCSVerbalScore_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>21</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+												
+														<entry>
+															<string>http://who.int/icd#hasPupilReactionScore</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>PupilReactionScore</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#PupilReactionScoreReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Pupil Reaction Score</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'pupil reaction score' level of consciousness</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasPupilReactionScore_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>22</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry-->
+												
+														<entry>
+															<string>http://who.int/icd#diagnosisConfirmedBy</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>DiagnosisConfirmedBy</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#DiagnosisConfirmedByReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Diagnosis confirmed by</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for 'diagnosis confirmed by'</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#diagnosisConfirmedBy_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<!--string>23</string-->
+																	<string>18</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
 
 													</map>
 												</entry>
-												
+														
+								            	<!--entry>
+								            		<string>property_map</string>
+													<map>
+														<entry>
+															<string>http://who.int/icd#levelOfConsciousness</string>
+															<list>
+																<string>http://who.int/icd#hasGCSScore</string>
+										            			<string>http://who.int/icd#hasGCSEyeScore</string>
+										            			<string>http://who.int/icd#hasGCSMotorScore</string>
+										            			<string>http://who.int/icd#hasGCSVerbalScore</string>>
+										            			<string>http://who.int/icd#hasPupilReactionScore</string>
+															</list>
+														</entry>
+													</map>
+								            	</entry-->
+
 											</map>
 										</entry>
 										
