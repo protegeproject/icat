@@ -8730,46 +8730,6 @@
 				<width>0.60</width>
 				<portlets>
 				
-				<portlet>
-			<name>edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.PropertyFieldPortlet</name>
-			<height>290</height>
-			<width>0</width>
-			<properties>
-				<entry>
-					<string>tabs</string>
-					<list>
-						<map>
-							<entry>
-								<string>title</string>
-								<string>RDF types</string>
-							</entry>
-							<entry>
-								<string>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</string>
-	 							<map>
-									<entry>
-										<string>name</string>
-										<string>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</string>
-									</entry>
-									<entry>
-										<string>label</string>
-										<string>RDF types</string>
-									</entry>
-									<entry>
-										<string>component_type</string>
-										<string>classselect</string>
-									</entry>
-									<entry>
-										<string>index</string>
-										<string>0</string>
-									</entry>
-								</map>
-							</entry>											
-						</map>																				
-					</list>
-				</entry>
-			</properties>
-          </portlet>
-				
 					<portlet>
 						<name>edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.PropertyFieldPortlet</name>
 						<height>600</height>
@@ -8779,7 +8739,7 @@
 								<string>tabs</string>
 								<list>
 
-<!-- ICD International -> Definition -->
+<!-- Siblings -->
 									<map>
 										<entry>
 											<string>title</string>
@@ -8932,6 +8892,61 @@
 											</map>
 										</entry>
 										<!-- End sorting label -->			
+										
+										<!--  rdf:type -->
+										<entry>
+											<string>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>rdftype</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>rdf:type</string>
+												</entry>
+												<entry>																								
+													<string>index</string>
+													<string>3</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>200</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>grid</string>
+												</entry>
+												<entry>
+													<string>show_add_existing</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>rdf:type</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>:NAME</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>														
+													</map>
+												</entry>
+										</entry> <!-- end rdf:type -->
 										
 									</map> <!-- End tab Sibling Index -->
 									
