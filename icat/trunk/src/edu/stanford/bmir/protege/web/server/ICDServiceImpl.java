@@ -1235,7 +1235,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         allProperties.addAll(treeValueProperties);
         allProperties.addAll(fixedScaleProperties);
         
-        List<String> relevantProperties = (List<String>) getListOfSelectedPostCoordinationAxes(projectName, entity, allProperties);
+        List<String> relevantProperties = (List<String>) getListOfSelectedPostCoordinationAxes(projectName, precoordSuperclass.getName(), allProperties);
         List<String> relevantFixedScaleProperties = new ArrayList<String>(fixedScaleProperties);
         relevantFixedScaleProperties.retainAll(relevantProperties);
         Map<String,List<EntityData>> allowedFixedScaleValuesMap = 
