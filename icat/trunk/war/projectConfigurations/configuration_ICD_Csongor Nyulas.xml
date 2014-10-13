@@ -13991,7 +13991,7 @@
 	</tab>	
 
 
-  <!--tab>
+  <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
     <label>Classes</label>
     <columns>
@@ -14082,7 +14082,7 @@
       <column>
         <width>0.33</width>
         <portlets>
-          <!- -portlet>
+          <!--portlet>
             <name>edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet</name>
             <height>400</height>
             <width>0</width>
@@ -14092,7 +14092,7 @@
 					<string>http://who.int/icd#PostcoordinationValueReferenceTerm</string>
 				</entry>
 			</properties>
-          </portlet- ->
+          </portlet-->
           <portlet>
             <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet</name>
             <height>600</height>
@@ -14104,7 +14104,7 @@
 				</entry>
 			</properties>
           </portlet>
-          <!- -portlet>
+          <!--portlet>
             <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet</name>
             <height>200</height>
             <width>0</width>
@@ -14114,7 +14114,7 @@
 					<string>http://who.int/icd#PostcoordinationScaleTerm</string>
 				</entry>
 			</properties>
-          </portlet- ->
+          </portlet-->
         </portlets>
       </column>
       <column>
@@ -14154,7 +14154,7 @@
         </portlets>
       </column>
     </columns>
-  </tab-->
+  </tab>
 
   </tabs>
 </project>
