@@ -685,6 +685,10 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             // domain and range should not be necessarily retrieved
             triples.addAll(getTriples(inst, owlModel.getRDFSDomainProperty()));
             triples.addAll(getTriples(inst, owlModel.getRDFSRangeProperty()));
+			
+			//rdf:type might be useful
+			triples.addAll(getTriples(inst, owlModel.getRDFTypeProperty()));
+			
         }
 
         //TODO - should we show this or not?
