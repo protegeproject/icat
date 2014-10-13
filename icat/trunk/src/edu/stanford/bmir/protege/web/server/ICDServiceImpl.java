@@ -1227,6 +1227,9 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         RDFSNamedClass precoordSuperclass = cm.getPreecoordinationSuperclass(cls);
         
         List<AllowedPostcoordinationValuesData> res = new ArrayList<AllowedPostcoordinationValuesData>();
+        if (precoordSuperclass == null) {
+        	return res;
+        }
         
         List<String> allProperties = new ArrayList<String>(customScaleProperties);
         allProperties.addAll(treeValueProperties);
