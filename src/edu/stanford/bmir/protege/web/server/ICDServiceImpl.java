@@ -735,11 +735,11 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
     public List<EntityPropertyValues> getEntityPropertyValuesForPostCoordinationAxes(String projectName, List<String> entities, List<String> properties,
     		List<String> reifiedProps) {
-    	ICDContentModel cm = null;
+    	WHOFICContentModel cm = null;
     	if (projectName != null) {
     		Project project = getProject(projectName);
     		if (project != null) {
-    			cm = new ICDContentModel((OWLModel)project.getKnowledgeBase());
+    			cm = getContentModel((OWLModel)project.getKnowledgeBase());
     		}
     	}
 
@@ -1451,13 +1451,13 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
     }
 
 	protected WHOFICContentModel getContentModel(OWLModel owlModel) {
-		//return new ICIContentModel(owlModel);
-		return new ICDContentModel(owlModel);
+		return new ICIContentModel(owlModel);
+		//return new ICDContentModel(owlModel);
 	}
 	
 	protected RDFResource getTopCategoryClass(OWLModel owlModel) {
-		//return new ICIContentModel(owlModel).getICICategoryClass();
-		return new ICDContentModel(owlModel).getICDCategoryClass();
+		return new ICIContentModel(owlModel).getICICategoryClass();
+		//return new ICDContentModel(owlModel).getICDCategoryClass();
 	}
 	
 	/**** Internal reference ***/
