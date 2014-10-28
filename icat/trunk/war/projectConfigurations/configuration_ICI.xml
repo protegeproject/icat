@@ -4430,6 +4430,148 @@
 																</entry>
 															</map>
 														</entry>
+														
+														<entry>
+															<string>http://who.int/ici/contentModel#hasEntityAddedInProcedure</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>EntityAddedInProcedure</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/ici/contentModel#EntityAddedOrRemovedInProcedureReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/ici/foundationComponent#EntityAddedOrRemovedInProcedure</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Entity Added in Procedure</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>...</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasEntityAddedInProcedure_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<entry>
+																	<string>show_add_existing</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>3</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>Column1</string>
+																	<map>
+																		<entry>
+																			<string>header</string>
+																			<string>label</string>
+																		</entry>
+																		<entry>
+																			<string>width</string>
+																			<string>all</string>
+																		</entry>
+																		<entry>
+																			<string>property</string>
+																			<string>http://who.int/icd#referencedValue</string>
+																		</entry>
+																		<entry>
+																			<string>index</string>
+																			<string>0</string>
+																		</entry>
+																	</map>
+																</entry>
+															</map>
+														</entry>
+														
+														<entry>
+															<string>http://who.int/ici/contentModel#hasEntityRemovedInProcedure</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>EntityRemovedInProcedure</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/ici/contentModel#EntityAddedOrRemovedInProcedureReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/ici/foundationComponent#EntityAddedOrRemovedInProcedure</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Entity Removed in Procedure</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>...</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasEntityRemovedInProcedure_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<entry>
+																	<string>show_add_existing</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>4</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>Column1</string>
+																	<map>
+																		<entry>
+																			<string>header</string>
+																			<string>label</string>
+																		</entry>
+																		<entry>
+																			<string>width</string>
+																			<string>all</string>
+																		</entry>
+																		<entry>
+																			<string>property</string>
+																			<string>http://who.int/icd#referencedValue</string>
+																		</entry>
+																		<entry>
+																			<string>index</string>
+																			<string>0</string>
+																		</entry>
+																	</map>
+																</entry>
+															</map>
+														</entry>
 																		
 														<entry>
 															<string>http://who.int/ici/contentModel#hasRecipientType</string>
@@ -4441,6 +4583,10 @@
 																<entry>
 																	<string>ont_type</string>
 																	<string>http://who.int/ici/contentModel#RecipientTypeReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/ici/foundationComponent#RecipientType</string>
 																</entry>
 																<entry>
 																	<string>label</string>
@@ -4456,11 +4602,149 @@
 																</entry>
 																<entry>
 																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<entry>
+																	<string>show_add_existing</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>5</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>Column1</string>
+																	<map>
+																		<entry>
+																			<string>header</string>
+																			<string>label</string>
+																		</entry>
+																		<entry>
+																			<string>width</string>
+																			<string>all</string>
+																		</entry>
+																		<entry>
+																			<string>property</string>
+																			<string>http://who.int/icd#referencedValue</string>
+																		</entry>
+																		<entry>
+																			<string>index</string>
+																			<string>0</string>
+																		</entry>
+																	</map>
+																</entry>
+															</map>
+														</entry>
+																		
+														<entry>
+															<string>http://who.int/ici/contentModel#hasExtent</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>Extent</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/ici/contentModel#ExtentReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/ici/foundationComponent#Extent</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Extent</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for 'extent'</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasExtent_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<entry>
+																	<string>show_add_existing</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>6</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>Column1</string>
+																	<map>
+																		<entry>
+																			<string>header</string>
+																			<string>label</string>
+																		</entry>
+																		<entry>
+																			<string>width</string>
+																			<string>all</string>
+																		</entry>
+																		<entry>
+																			<string>property</string>
+																			<string>http://who.int/icd#referencedValue</string>
+																		</entry>
+																		<entry>
+																			<string>index</string>
+																			<string>0</string>
+																		</entry>
+																	</map>
+																</entry>
+															</map>
+														</entry>
+																		
+														<entry>
+															<string>http://who.int/ici/contentModel#hasComplexity</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>Complexity</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/ici/contentModel#ComplexityReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Complexity</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for 'complexity'</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasComplexity_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
 																	<string>precoord_fix_scale_value_selector</string>
 																</entry>
 																<entry>
 																	<string>index</string>
-																	<string>3</string>
+																	<string>7</string>
 																</entry>
 																<entry>
 																	<string>height</string>
@@ -4502,7 +4786,7 @@
 																</entry>
 																<entry>
 																	<string>index</string>
-																	<string>4</string>
+																	<string>8</string>
 																</entry>
 																<entry>
 																	<string>height</string>
