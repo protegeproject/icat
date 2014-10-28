@@ -2912,7 +2912,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -2991,7 +2991,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -3070,7 +3070,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -3149,7 +3149,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -3228,7 +3228,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -3307,7 +3307,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -3386,7 +3386,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -3465,7 +3465,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -3544,7 +3544,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -3623,7 +3623,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -3702,7 +3702,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -3781,7 +3781,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -3860,7 +3860,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -3939,7 +3939,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -4018,7 +4018,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -4290,7 +4290,7 @@
 													<string>value_selectors</string>
 													<map>
 														<entry>
-															<string>http://who.int/icd#hasAction</string>
+															<string>http://who.int/ici/contentModel#hasAction</string>
 															<map>
 																<entry>
 																	<string>name</string>
@@ -4298,11 +4298,11 @@
 																</entry>
 																<entry>
 																	<string>ont_type</string>
-																	<string>http://who.int/icd#ActionReferenceTerm</string>
+																	<string>http://who.int/ici/contentModel#ActionReferenceTerm</string>
 																</entry>
 																<entry>
 																	<string>top_class</string>
-																	<string>http://who.int/icd#Action</string>
+																	<string>http://who.int/ici/foundationComponent#Action</string>
 																</entry>
 																<entry>
 																	<string>label</string>
@@ -4349,7 +4349,7 @@
 																		</entry>
 																		<entry>
 																			<string>property</string>
-																			<string>http://who.int/icd#label</string>
+																			<string>http://who.int/icd#referencedValue</string>
 																		</entry>
 																		<entry>
 																			<string>index</string>
@@ -4361,7 +4361,7 @@
 														</entry>
 														
 														<entry>
-															<string>http://who.int/icd#hasEntityUsedInProcedure</string>
+															<string>http://who.int/ici/contentModel#hasEntityUsedInProcedure</string>
 															<map>
 																<entry>
 																	<string>name</string>
@@ -4369,11 +4369,11 @@
 																</entry>
 																<entry>
 																	<string>ont_type</string>
-																	<string>http://who.int/icd#EntityUsedInProcedureReferenceTerm</string>
+																	<string>http://who.int/ici/contentModel#EntityUsedInProcedureReferenceTerm</string>
 																</entry>
 																<entry>
 																	<string>top_class</string>
-																	<string>http://who.int/icd#EntityUsedInProcedure</string>
+																	<string>http://who.int/ici/foundationComponent#EntityUsedInProcedure</string>
 																</entry>
 																<entry>
 																	<string>label</string>
@@ -4420,7 +4420,7 @@
 																		</entry>
 																		<entry>
 																			<string>property</string>
-																			<string>http://who.int/icd#label</string>
+																			<string>http://who.int/icd#referencedValue</string>
 																		</entry>
 																		<entry>
 																			<string>index</string>
