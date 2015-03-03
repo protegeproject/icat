@@ -1428,10 +1428,11 @@
 													<string>Use</string>
 												</entry>
 										
-												<!-- Restrict editing of linearizations to WHO and Stanford teams -->
+												<!-- Restrict editing of linearizations to "linearization editors", WHO and Stanford teams -->
 												<entry>
 													<string>writeAccessGroups</string>
 													<list>
+														<string>LinearizationEditors</string>
 														<string>WHOTeam</string>
 														<string>Stanford</string>
 													</list>
@@ -1455,7 +1456,7 @@
 												</entry>
 												<entry>
 													<string>height</string>
-													<string>335</string>
+													<string>365</string>
 												</entry>
 												<entry>
 													<string>Column1</string>
