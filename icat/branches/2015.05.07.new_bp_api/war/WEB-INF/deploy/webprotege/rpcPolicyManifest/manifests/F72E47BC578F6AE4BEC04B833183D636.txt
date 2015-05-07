@@ -1,0 +1,2 @@
+serviceClass: edu.stanford.bmir.protege.web.client.rpc.ICDService
+path: 4CDE2E322A01E5D9A4B79BB3C7540698.gwt.rpc

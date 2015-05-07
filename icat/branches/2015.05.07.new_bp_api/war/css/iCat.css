@@ -1,0 +1,178 @@
+/*
+ * Cascading Style Sheet for iCAT - contains global styles and 
+ * styles used in application entry points iCat.java and iCatPS.java.
+ *
+ * Note: try to use GWT naming conventions of projectname-component when possible
+ */
+
+/* Styles for hyperlink menu items 
+  MAKE SURE THAT THESE VALUES ARE THE SAME WITH THE ON IN WebProtege.css
+  These CSS classes should be moved in Classes.css or even WebProtege.css when we add
+  context menu with external link functionality to more general widgets 
+  */ 
+.x-menu-item-active a.x-menu-item.hyperlink {
+	text-decoration: none !important;
+}
+.x-menu-item-active a.x-menu-item.hyperlink:link {
+	color: #327BAA;
+}  /* medium blue */
+.x-menu-item-active a.x-menu-item.hyperlink:visited {
+	color: #6F1488;
+}  /* purple */
+.x-menu-item-active a.x-menu-item.hyperlink:hover {
+	color: #DC7317;
+}  /* bright orange */
+
+.x-menu a.hyperlink {
+	text-decoration: none !important;
+}
+.x-menu a.hyperlink:link {
+	color: #327BAA;
+}  /* medium blue */
+.x-menu a.hyperlink:visited {
+	color: #6F1488;
+}  /* purple */
+.x-menu a.hyperlink:hover {
+	color: #DC7317;
+}  /* bright orange */
+
+
+
+/*
+* Special tab header styles
+*/
+.spec-tab-header1 {    /*GREEN*/
+	background-color:#D7DEBD !important;
+}
+.spec-tab-header1 span.x-tab-strip-text {
+	/*color: #578C85;*/
+	/*color: #19545F;*/
+	color: #4A4A00;
+}
+
+.spec-tab-header2 {    /*ORANGE*/
+	background-color:#FFC8AE !important;
+	/*background-color:#EED8C1 !important;*/
+}
+.spec-tab-header2 span.x-tab-strip-text {
+	/*color: #FF5500;*/
+	/*color: #CC000B;*/
+	color: #EB5321;
+}
+
+.spec-tab-header3 {    /*RED*/
+	background-color:#FFCCCC !important;
+}
+.spec-tab-header3 span.x-tab-strip-text {
+	color: #7F0000;
+}
+
+.spec-tab-header4 {    /*NEON GREEN*/
+	background-color:#CCFFCC !important;
+}
+.spec-tab-header4 span.x-tab-strip-text {
+	color: #007F00;
+}
+
+.spec-tab-header5 {    /*GRAY*/
+	background-color:#C8C8C8 !important;
+}
+.spec-tab-header5 span.x-tab-strip-text {
+	color: #585858;
+}
+
+.spec-tab-header6 {    /*YELLOW*/
+	background-color:#FFF585 !important;
+}
+.spec-tab-header6 span.x-tab-strip-text {
+	color: #826400;
+}
+
+.spec-tab-headerCPT {    /*CPT*/
+	background-color:#D4A00F !important;
+}
+.spec-tab-headerCPT span.x-tab-strip-text {
+	color: #461570;
+}
+
+.x-grid3-hd-inner .rotated-table-header1 {
+	transform-origin: left;
+	transform:rotate(-75deg) translate(-45px,20%);	/*translate arguments seem to be (vertical,horizontal)?*/
+	-ms-transform-origin: left; /* IE 9 */
+	-ms-transform:rotate(-75deg) translate(-45px,20%); /* IE 9 */
+	-webkit-transform-origin: left; /* Safari and Chrome */
+	-webkit-transform:rotate(-75deg) translate(-45px,20%); /* Safari and Chrome */
+	/** /background-color: #FFCCCC;/ **/
+	display:table-cell;
+	vertical-align:middle;
+	white-space: nowrap;
+}
+
+.table-cell-style1{
+	background-color: green;
+}
+.table-cell-style2{
+	background-color: red;
+}
+
+.x-tree-node-icon{
+	background-image:none;
+	width:0px;
+}
+.x-tree-node-leaf .x-tree-node-icon {
+    background-image:none;
+}
+.x-tree-node-collapsed .x-tree-node-icon {
+    background-image:none;
+}
+.x-tree-node-expanded .x-tree-node-icon {
+    background-image:none;
+}
+
+/*
+ * Display status icons for the ICD class tree
+ */
+ 
+.blue-display-status-icon {
+    background-image: url(../images/blue.png) !important;   
+}
+
+.yellow-display-status-icon {
+    background-image: url(../images/warning.png) !important;   
+}
+
+.red-display-status-icon {
+    background-image: url(../images/no.png) !important;   
+}
+
+/*
+ * Styles used in widgets related to post-coordination
+ */
+.table-row-hidden {
+	display:none;
+}
+
+.table-row-visible {
+	display:table-row;
+}
+
+table.fixedscalevalues-table {
+	border: 1px solid;
+	border-color: #99BBE8;
+	border-collapse: collapse;
+	margin: 0 0 10px 0;
+	min-width: 250px;
+}
+
+table.fixedscalevalues-table td
+{
+	border: 1px solid;
+	border-color: #99BBE8;
+	padding:1px 10px;
+}
+
+.fixedscalevalues-header {
+	background-color: lightgray;
+	font-weight: bold;
+	text-align: center;
+}

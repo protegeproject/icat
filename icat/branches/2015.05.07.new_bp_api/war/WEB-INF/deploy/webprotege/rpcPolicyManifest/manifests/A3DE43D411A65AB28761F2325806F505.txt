@@ -1,0 +1,2 @@
+serviceClass: edu.stanford.bmir.protege.web.client.rpc.NotificationService
+path: DCD9DB02B6959C1B7680FFDDC85CFC80.gwt.rpc
