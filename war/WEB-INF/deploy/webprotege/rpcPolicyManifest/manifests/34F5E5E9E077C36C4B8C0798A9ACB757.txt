@@ -1,0 +1,2 @@
+serviceClass: edu.stanford.bmir.protege.web.client.rpc.ProjectConfigurationService
+path: 73B9BC7D106265434BBF4A2CA4B97871.gwt.rpc

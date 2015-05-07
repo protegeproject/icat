@@ -10,6 +10,9 @@ import edu.stanford.bmir.protege.web.server.URLUtil;
 public class BioPortalUploadImpl extends RemoteServiceServlet implements BioPortalUpload {
 
 
+    private static final long serialVersionUID = -3433192334083558655L;
+
+
     public String uploadOntologyFromURL(String bpRestBase, String virtualOntologyId, String downloadLocation, String displayLabel, String userId, String format,
             String dateReleased, String contactName, String contactEmail, String abbreviation, String versionNumber,
             String homepage, String documentation, String publication, String viewingRestriction, String useracl,

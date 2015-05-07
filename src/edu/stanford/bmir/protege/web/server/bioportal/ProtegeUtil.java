@@ -3,8 +3,6 @@ package edu.stanford.bmir.protege.web.server.bioportal;
 import java.util.Collection;
 import java.util.Iterator;
 
-import org.ncbo.stanford.util.HTMLUtil;
-
 import edu.stanford.smi.protege.model.Frame;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 

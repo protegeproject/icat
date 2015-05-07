@@ -8,14 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 
-import org.ncbo.stanford.bean.concept.ClassBean;
-import org.ncbo.stanford.bean.ontology.OntologyBean;
-import org.ncbo.stanford.util.BioPortalServerConstants;
-import org.ncbo.stanford.util.BioPortalUtil;
-import org.ncbo.stanford.util.BioPortalViewOntologyMap;
-import org.ncbo.stanford.util.BioportalConcept;
-import org.ncbo.stanford.util.HTMLUtil;
-
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import edu.stanford.bmir.protege.web.client.rpc.BioPortalAccess;
@@ -36,6 +28,8 @@ import edu.stanford.smi.protegex.owl.model.OWLModel;
 
 
 public class BioPortalAccessImpl extends RemoteServiceServlet implements BioPortalAccess {
+
+    private static final long serialVersionUID = 3897425936722345820L;
 
     private static HashMap<String, BioPortalViewOntologyMap> bpViewOntologyMaps = new HashMap<String, BioPortalViewOntologyMap>();
 

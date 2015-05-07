@@ -3,8 +3,6 @@ package edu.stanford.bmir.protege.web.server.bioportal;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-import org.ncbo.stanford.util.HTMLUtil;
-
 import edu.stanford.smi.protege.model.BrowserSlotPattern;
 import edu.stanford.smi.protege.model.Cls;
 import edu.stanford.smi.protege.model.Instance;

@@ -1,0 +1,2 @@
+serviceClass: edu.stanford.bmir.protege.web.client.rpc.AdminService
+path: 2249D6FD378D725D16F6668930B81572.gwt.rpc

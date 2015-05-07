@@ -202,6 +202,10 @@
 	 rdfs:label="NewEntityProposal">
 	<rdfs:subClassOf rdf:resource="&kb;Proposal"/>
 </rdfs:Class>
+<rdfs:Class rdf:about="&kb;Ontology"
+	 rdfs:label="Ontology">
+	<rdfs:subClassOf rdf:resource="&kb;Ontology_Component"/>
+</rdfs:Class>
 <rdfs:Class rdf:about="&kb;Ontology_Class"
 	 rdfs:label="Ontology_Class">
 	<rdfs:subClassOf rdf:resource="&kb;Ontology_Component"/>
@@ -691,6 +695,18 @@
 	 rdfs:label="voteValue">
 	<rdfs:domain rdf:resource="&kb;Vote"/>
 	<rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+<rdf:Property rdf:about="&kb;watchedBranch"
+	 rdfs:label="watchedBranch">
+	<rdfs:range rdf:resource="&kb;Ontology_Component"/>
+	<rdfs:domain rdf:resource="&kb;User"/>
+	<a:inverseProperty rdf:resource="&kb;watchedBranchBy"/>
+</rdf:Property>
+<rdf:Property rdf:about="&kb;watchedBranchBy"
+	 rdfs:label="watchedBranchBy">
+	<rdfs:domain rdf:resource="&kb;Ontology_Component"/>
+	<rdfs:range rdf:resource="&kb;User"/>
+	<a:inverseProperty rdf:resource="&kb;watchedBranch"/>
 </rdf:Property>
 <rdf:Property rdf:about="&kb;watchedBy"
 	 rdfs:label="watchedBy">

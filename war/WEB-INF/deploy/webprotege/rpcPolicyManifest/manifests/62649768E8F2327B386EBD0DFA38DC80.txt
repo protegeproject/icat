@@ -1,0 +1,2 @@
+serviceClass: edu.stanford.bmir.protege.web.client.rpc.OntologyService
+path: F683217AE57BCDBE181D9E62E55C248C.gwt.rpc

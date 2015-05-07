@@ -1,111 +1,106 @@
-; Wed Dec 16 08:56:44 PST 2009
+; Tue Aug 13 14:28:23 PDT 2013
 ; 
-;+ (version "3.4.2")
-;+ (build "Build 560")
+;+ (version "3.5")
+;+ (build "Build 660")
 
-([annotation_collaborativeNewspaper_ProjectKB_Class41] of  String
-
-	(name "AnnotationStatus")
-	(string_value "description"))
-
-([annotation_collaborativeNewspaper_ProjectKB_Class42] of  String
+([annotation_collaborativeNewspaper_ProjectKB_Class10] of  String
 
 	(name "Annotation")
 	(string_value "subject"))
 
-([annotation_collaborativeNewspaper_ProjectKB_Class43] of  String
+([annotation_collaborativeNewspaper_ProjectKB_Class11] of  String
 
 	(name "Timestamp")
 	(string_value "date"))
 
-([annotation_collaborativeNewspaper_ProjectKB_Class44] of  String
+([annotation_collaborativeNewspaper_ProjectKB_Class12] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([annotation_collaborativeNewspaper_ProjectKB_Class45] of  String
+([annotation_collaborativeNewspaper_ProjectKB_Class13] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([annotation_collaborativeNewspaper_ProjectKB_Class46] of  String
+([annotation_collaborativeNewspaper_ProjectKB_Class14] of  String
 
 	(name "Vote")
 	(string_value "subject"))
 
-([annotation_collaborativeNewspaper_ProjectKB_Class47] of  String
+([annotation_collaborativeNewspaper_ProjectKB_Class15] of  String
 
 	(name "Change")
 	(string_value "context"))
 
-([annotation_collaborativeNewspaper_ProjectKB_Class48] of  String
+([annotation_collaborativeNewspaper_ProjectKB_Class16] of  String
 
 	(name "LinguisticEntity")
 	(string_value "label{+%28}language{%29}"))
 
-([annotation_collaborativeNewspaper_ProjectKB_Class49] of  String
+([annotation_collaborativeNewspaper_ProjectKB_Class17] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([annotation_collaborativeNewspaper_ProjectKB_Class5] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [annotation_collaborativeNewspaper_ProjectKB_Class6])
-	(widget_class_name "org.protege.owl.mm.ssm.ui.SpreadSheetMasterTab"))
-
-([annotation_collaborativeNewspaper_ProjectKB_Class50] of  String
+([annotation_collaborativeNewspaper_ProjectKB_Class18] of  String
 
 	(name "Ontology_Component")
 	(string_value "currentName"))
 
-([annotation_collaborativeNewspaper_ProjectKB_Class51] of  String
-
-	(name "ChangeStatus")
-	(string_value "description"))
-
-([annotation_collaborativeNewspaper_ProjectKB_Class52] of  String
-
-	(name "User")
-	(string_value "name"))
-
-([annotation_collaborativeNewspaper_ProjectKB_Class53] of  String
+([annotation_collaborativeNewspaper_ProjectKB_Class19] of  String
 
 	(name "Status")
 	(string_value "description"))
 
-([annotation_collaborativeNewspaper_ProjectKB_Class54] of  String
+([annotation_collaborativeNewspaper_ProjectKB_Class20] of  String
+
+	(name "ChangeStatus")
+	(string_value "description"))
+
+([annotation_collaborativeNewspaper_ProjectKB_Class21] of  String
+
+	(name "User")
+	(string_value "name"))
+
+([annotation_collaborativeNewspaper_ProjectKB_Class22] of  String
 
 	(name "Proposal")
 	(string_value "subject"))
 
-([annotation_collaborativeNewspaper_ProjectKB_Class55] of  Map_Entry
+([annotation_collaborativeNewspaper_ProjectKB_Class23] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([annotation_collaborativeNewspaper_ProjectKB_Class56] of  Map_Entry
+([annotation_collaborativeNewspaper_ProjectKB_Class24] of  Map_Entry
 
 	(key "annotation_proj_exists")
 	(key_class "java.lang.String")
 	(value "yes")
 	(value_class "java.lang.String"))
 
-([annotation_collaborativeNewspaper_ProjectKB_Class57] of  Map_Entry
+([annotation_collaborativeNewspaper_ProjectKB_Class25] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([annotation_collaborativeNewspaper_ProjectKB_Class58] of  Map_Entry
+([annotation_collaborativeNewspaper_ProjectKB_Class26] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
+
+([annotation_collaborativeNewspaper_ProjectKB_Class5] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [annotation_collaborativeNewspaper_ProjectKB_Class6])
+	(widget_class_name "edu.stanford.bmir.protegex.icd.ICDTab"))
 
 ([annotation_collaborativeNewspaper_ProjectKB_Class6] of  Property_List
 )
@@ -114,10 +109,15 @@
 
 	(is_hidden TRUE)
 	(property_list [annotation_collaborativeNewspaper_ProjectKB_Class8])
-	(widget_class_name "org.protege.owl.axiome.ui.AxiomeTab"))
+	(widget_class_name "edu.stanford.bmir.protegex.icd.diff.ICDDiff"))
 
 ([annotation_collaborativeNewspaper_ProjectKB_Class8] of  Property_List
 )
+
+([annotation_collaborativeNewspaper_ProjectKB_Class9] of  String
+
+	(name "AnnotationStatus")
+	(string_value "description"))
 
 ([annotation_ICD_ProjectKB_Class10112] of  Widget
 
@@ -203,20 +203,20 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[annotation_collaborativeNewspaper_ProjectKB_Class41]
-		[annotation_collaborativeNewspaper_ProjectKB_Class42]
-		[annotation_collaborativeNewspaper_ProjectKB_Class43]
-		[annotation_collaborativeNewspaper_ProjectKB_Class44]
-		[annotation_collaborativeNewspaper_ProjectKB_Class45]
-		[annotation_collaborativeNewspaper_ProjectKB_Class46]
-		[annotation_collaborativeNewspaper_ProjectKB_Class47]
-		[annotation_collaborativeNewspaper_ProjectKB_Class48]
-		[annotation_collaborativeNewspaper_ProjectKB_Class49]
-		[annotation_collaborativeNewspaper_ProjectKB_Class50]
-		[annotation_collaborativeNewspaper_ProjectKB_Class51]
-		[annotation_collaborativeNewspaper_ProjectKB_Class52]
-		[annotation_collaborativeNewspaper_ProjectKB_Class53]
-		[annotation_collaborativeNewspaper_ProjectKB_Class54]))
+		[annotation_collaborativeNewspaper_ProjectKB_Class9]
+		[annotation_collaborativeNewspaper_ProjectKB_Class10]
+		[annotation_collaborativeNewspaper_ProjectKB_Class11]
+		[annotation_collaborativeNewspaper_ProjectKB_Class12]
+		[annotation_collaborativeNewspaper_ProjectKB_Class13]
+		[annotation_collaborativeNewspaper_ProjectKB_Class14]
+		[annotation_collaborativeNewspaper_ProjectKB_Class15]
+		[annotation_collaborativeNewspaper_ProjectKB_Class16]
+		[annotation_collaborativeNewspaper_ProjectKB_Class17]
+		[annotation_collaborativeNewspaper_ProjectKB_Class18]
+		[annotation_collaborativeNewspaper_ProjectKB_Class19]
+		[annotation_collaborativeNewspaper_ProjectKB_Class20]
+		[annotation_collaborativeNewspaper_ProjectKB_Class21]
+		[annotation_collaborativeNewspaper_ProjectKB_Class22]))
 
 ([changes_ProjectKB_Class10] of  Property_List
 )
@@ -4097,10 +4097,10 @@
 ([changes_ProjectKB_Instance_10131] of  Map
 
 	(entries
-		[annotation_collaborativeNewspaper_ProjectKB_Class55]
-		[annotation_collaborativeNewspaper_ProjectKB_Class56]
-		[annotation_collaborativeNewspaper_ProjectKB_Class57]
-		[annotation_collaborativeNewspaper_ProjectKB_Class58]))
+		[annotation_collaborativeNewspaper_ProjectKB_Class23]
+		[annotation_collaborativeNewspaper_ProjectKB_Class24]
+		[annotation_collaborativeNewspaper_ProjectKB_Class25]
+		[annotation_collaborativeNewspaper_ProjectKB_Class26]))
 
 ([changes_ProjectKB_Instance_120] of  Property_List
 
@@ -6901,7 +6901,7 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_538928_Class4] of  Map
+([KB_136761_Class4] of  Map
 )
 
 ([KB_690954_Instance_0] of  String
@@ -7344,26 +7344,26 @@
 	(customized_instance_widgets
 		[changes_ProjectKB_Class50585]
 		[changes_ProjectKB_Instance_16]
+		[changes_ProjectKB_Instance_51393]
+		[STANDARD_FACET_FORM_WIDGET]
 		[changes_ProjectKB_Instance_51308]
 		[PAL_FORM_WIDGET]
+		[changes_ProjectKB_Instance_82926]
+		[changes_ProjectKB_Class40192]
+		[changes_ProjectKB_Instance_80822]
+		[changes_ProjectKB_Class30260]
+		[STANDARD_CLASS_FORM_WIDGET]
 		[changes_ProjectKB_Instance_40056]
+		[changes_ProjectKB_Class10086]
+		[changes_ProjectKB_Class30496]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
+		[changes_ProjectKB_Instance_51020]
 		[changes_ProjectKB_Instance_81267]
 		[changes_ProjectKB_Instance_50854]
 		[STANDARD_SLOT_FORM_WIDGET]
+		[changes_ProjectKB_Class10059]
 		[changes_ProjectKB_Class40150]
 		[changes_ProjectKB_Class10045]
-		[changes_ProjectKB_Instance_51393]
-		[STANDARD_FACET_FORM_WIDGET]
-		[changes_ProjectKB_Instance_82926]
-		[changes_ProjectKB_Instance_80822]
-		[changes_ProjectKB_Class40192]
-		[changes_ProjectKB_Class30260]
-		[STANDARD_CLASS_FORM_WIDGET]
-		[changes_ProjectKB_Class30496]
-		[changes_ProjectKB_Class10086]
-		[changes_ProjectKB_Instance_51020]
-		[changes_ProjectKB_Class10059]
 		[changes_ProjectKB_Class30101])
 	(default_cls_metaclass ":STANDARD-CLASS")
 	(default_facet_metaclass ":STANDARD-FACET")

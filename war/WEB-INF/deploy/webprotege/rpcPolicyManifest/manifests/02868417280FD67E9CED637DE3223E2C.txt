@@ -1,0 +1,2 @@
+serviceClass: edu.stanford.bmir.protege.web.client.rpc.ApplicationPropertiesService
+path: CA730E27016FDED86C603924F44D50F8.gwt.rpc

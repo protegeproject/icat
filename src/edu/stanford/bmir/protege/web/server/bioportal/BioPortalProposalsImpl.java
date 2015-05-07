@@ -1,7 +1,5 @@
 package edu.stanford.bmir.protege.web.server.bioportal;
 
-import org.ncbo.stanford.util.BioPortalServerConstants;
-
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import edu.stanford.bmir.protege.web.client.rpc.bioportal.BioportalProposals;

@@ -1,0 +1,2 @@
+serviceClass: edu.stanford.bmir.protege.web.client.rpc.ChAOService
+path: 35844882A2F2EE09BD39D80BBE0A0295.gwt.rpc

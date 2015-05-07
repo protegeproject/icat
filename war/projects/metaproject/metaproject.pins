@@ -1,7 +1,22 @@
-; Wed Sep 19 13:13:26 PDT 2012
+; Fri Aug 16 16:38:50 PDT 2013
 ; 
-;+ (version "3.4.8")
-;+ (build "Build 629")
+;+ (version "3.5")
+;+ (build "Build 660")
+
+([KB_727978_Class0] of  ProjectAppliedOperation
+
+	(name "MoveClass"))
+
+([KB_727978_Class1] of  GroupOperation
+
+	(allowedGroup [KB_727978_Class2])
+	(allowedOperation [KB_727978_Class0]))
+
+([KB_727978_Class2] of  Group
+
+	(member [metaproject_Instance_10006])
+	(name "NewspaperMovers")
+	(policyModifiableByClient TRUE))
 
 ([metaproject_Class0] of  User
 
@@ -73,6 +88,7 @@
 	(group
 		[metaproject_Instance_0]
 		[metaproject_Class20003])
+	(lastLogin "1376696195017")
 	(name "Admin")
 	(password "0235b8f25cacfecdb0adb560c95da1a9")
 	(salt "0b209d16f20a5dac"))
@@ -111,6 +127,8 @@
 		[metaproject_Instance_0]
 		[metaproject_Class30002]
 		[metaproject_Class20003])
+	(lastAccess "1376696145387")
+	(lastLogin "1376696141427")
 	(name "webprotege")
 	(password "f7bcce407455edd3befd66e6405da28d")
 	(salt "574c25cbabe1feed"))
@@ -129,7 +147,8 @@
 
 	(allowedGroupOperation
 		[metaproject_Instance_10008]
-		[metaproject_Class3])
+		[metaproject_Class3]
+		[KB_727978_Class1])
 	(description "Frames project")
 	(location "projects/newspaper/newspaper.pprj")
 	(name "Newspaper")
@@ -190,7 +209,9 @@
 
 ([metaproject_Instance_10006] of  User
 
-	(group [metaproject_Instance_0])
+	(group
+		[metaproject_Instance_0]
+		[KB_727978_Class2])
 	(name "Tania Tudorache")
 	(password "9c83beacd15689a57a2c993f5b0a570a")
 	(salt "391cfea10ef1406a"))
@@ -266,3 +287,7 @@
 
 	(description "The operation of writing to an ontology project.\n\n(Enforcement not implemented yet)")
 	(name "Write"))
+
+([Trash] of  ProjectCollection
+
+	(name "Trash"))

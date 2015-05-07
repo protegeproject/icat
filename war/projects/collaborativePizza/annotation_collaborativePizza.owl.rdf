@@ -60,6 +60,13 @@
 	<rdfs:label>http://www.co-ode.org/ontologies/pizza/2005/10/18/pizza.owl#DomainConcept</rdfs:label>
 	<kb:associatedAnnotations rdf:resource="&kb;annotation_collaborativePizza.owl_Class0"/>
 </kb:Ontology_Class>
+<kb:Ontology_Class rdf:about="&kb;annotation_collaborativePizza.owl_Class20000"
+	 kb:currentName="http://www.w3.org/2002/07/owl#Thing"
+	 rdfs:label="http://www.w3.org/2002/07/owl#Thing"/>
+<kb:Ontology_Class rdf:about="&kb;annotation_collaborativePizza.owl_Class20001">
+	<kb:currentName>http://www.co-ode.org/ontologies/pizza/2005/10/18/pizza.owl#IceCream</kb:currentName>
+	<rdfs:label>http://www.co-ode.org/ontologies/pizza/2005/10/18/pizza.owl#IceCream</rdfs:label>
+</kb:Ontology_Class>
 <kb:Explanation rdf:about="&kb;annotation_collaborativePizza.owl_Class3"
 	 kb:author="ttania"
 	 kb:subject="Re: This is a comment on the DomainConcept class"

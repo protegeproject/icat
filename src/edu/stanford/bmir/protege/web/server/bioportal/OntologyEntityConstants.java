@@ -1,7 +1,5 @@
 package edu.stanford.bmir.protege.web.server.bioportal;
 
-import org.ncbo.stanford.util.ProvenanceConstants;
-
 public class OntologyEntityConstants {
 
     /*

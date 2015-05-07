@@ -1,0 +1,2 @@
+serviceClass: edu.stanford.bmir.protege.web.client.rpc.HierarchyService
+path: 94A382AF1A7EF08BD2B384B09C72DF87.gwt.rpc

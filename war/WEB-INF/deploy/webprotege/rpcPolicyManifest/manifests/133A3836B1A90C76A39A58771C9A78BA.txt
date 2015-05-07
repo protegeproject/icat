@@ -1,0 +1,2 @@
+serviceClass: edu.stanford.bmir.protege.web.client.rpc.AuthenticateService
+path: C1D05CF95207E268F9691C294089C709.gwt.rpc

@@ -1,0 +1,2 @@
+serviceClass: edu.stanford.bmir.protege.web.client.rpc.OpenIdService
+path: BE8523AF9CE539EEA79675684CD9F79A.gwt.rpc

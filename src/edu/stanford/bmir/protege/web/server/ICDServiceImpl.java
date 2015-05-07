@@ -29,6 +29,8 @@ import edu.stanford.bmir.protege.web.client.rpc.data.icd.PrecoordinationClassExp
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 import edu.stanford.bmir.protege.web.client.ui.icd.DisplayStatus;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet;
+import edu.stanford.bmir.whofic.icd.ICDContentModel;
+import edu.stanford.bmir.whofic.icd.ICDContentModelConstants;
 import edu.stanford.smi.protege.collab.util.HasAnnotationCache;
 import edu.stanford.smi.protege.exception.ProtegeException;
 import edu.stanford.smi.protege.model.Cls;
