@@ -1,14 +1,29 @@
 package edu.stanford.bmir.protege.web.server;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.logging.Level;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.MultipartEntity;
+
+
+
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import edu.stanford.smi.protege.util.Log;
 
@@ -111,6 +126,31 @@ public class URLUtil {
         return encodedString;
     }
 
+	public static HttpResponse uploadMultipart(URI url, File file, String apiKey) {
+
+		HttpClient client = new DefaultHttpClient();
+		HttpPost post = new HttpPost(url);
+
+		MultipartEntity entity = new MultipartEntity();
+		entity.addPart("file", new FileBody(file));
+		try {
+			entity.addPart("apikey", new StringBody(apiKey));
+		} catch (UnsupportedEncodingException e) {
+			Log.getLogger().warning("Unspported encoding for: " + apiKey + ". URL: " + url +", message: " + e.getMessage());
+		}
+		post.setEntity(entity);
+
+		HttpResponse response = null;
+		try {
+			response = client.execute(post);
+		} catch (ClientProtocolException e) {
+			Log.getLogger().log(Level.WARNING, "Multipart upload failed: ", e);
+		} catch (IOException e) {
+			Log.getLogger().log(Level.WARNING, "Multipart upload failed: ", e);		
+		}
+		return response;
+	}
+    
     /**
      * Encodes the argument. If the argument is null, it will return the empty string.
      *
@@ -124,8 +164,11 @@ public class URLUtil {
 
     public static void main (String[] args) throws Exception{
         //BufferedReader reader = read(args[0]);
-        String url = "http://rest.bioontology.org/bioportal/search/Thyroiditis";
-        System.out.println(getURLContent(url));
+        //String url = "http://rest.bioontology.org/bioportal/search/Thyroiditis";
+        //System.out.println(getURLContent(url));
+    	HttpResponse r = uploadMultipart(URI.create("http://127.0.0.1:8888/rest/files/upload"), new File("/home/ttania/Desktop/proposals.png"), "123");
+    	System.out.println(r.getStatusLine());    	
+    	r.getEntity().writeTo(System.out);
     }
 
 }
