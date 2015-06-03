@@ -46,5 +46,8 @@ public class ApplicationPropertyNames {
 
     //ICD specific
     public static final String ICD_EXPORT_DIR_PROP = "icd.export.dir";
-
+    
+    //Upload directory
+    public static final String UPLOAD_DIR_PROP="upload.dir";
+    
 }

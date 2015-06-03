@@ -62,7 +62,6 @@ public class ApplicationProperties {
      * Open id Authentication setting
      */
     private static final boolean WEBPROTEGE_AUTHENTICATE_WITH_OPENID_DEFAULT = true;
-    private static final String APPLICATION_PATH_DEFAULT = "";
     private static final boolean LOGIN_WITH_HTTPS_DEFAULT = false;
 
     /*
@@ -70,6 +69,12 @@ public class ApplicationProperties {
      */
     private static final String ICD_EXPORT_PATH_DEFAULT = "." + File.separator;
 
+    /*
+     * WebProtege upload directory
+     */
+    
+    private static final String UPLOAD_DIRECTORY_DEFAULT = "/tmp/";
+    
     /*
      * Automatic save for local projects
      */
@@ -232,6 +237,12 @@ public class ApplicationProperties {
                 IMMEDIATE_NOTIFICATION_THREAD_INTERVAL_DEFAULT);
     }
 
+    public static String getUploadDirectory() {
+        String uploadDir =  edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.UPLOAD_DIR_PROP, UPLOAD_DIRECTORY_DEFAULT);
+        uploadDir = uploadDir.endsWith(File.separator) ? uploadDir : uploadDir + File.separator;
+        return uploadDir;
+    }
+        
     public static HashMap<String, String> getPropertiesForClient(){
         final Properties applicationProperties1 = edu.stanford.smi.protege.util.ApplicationProperties.getApplicationProperties();
         final Set<String> stringSet = applicationProperties1.stringPropertyNames();
