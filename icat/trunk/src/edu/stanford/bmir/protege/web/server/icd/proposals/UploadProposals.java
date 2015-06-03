@@ -42,12 +42,17 @@ public class UploadProposals {
 		FormDataBodyPart filePart = form.getField("file");
 		InputStream fileInputStream = filePart.getValueAs(InputStream.class);
 
-		String savePath = getServerPath();
-		saveFile(fileInputStream, savePath);
+		String serverPath = getServerPath();
+		try {
+			saveFile(fileInputStream, serverPath);
+		} catch (IOException e) {
+			Log.getLogger().log(Level.WARNING, "Could not write proposals file to: " + serverPath, e);
+			return Response.status(500).entity("Server error: Could not write proposals file to file system.").build();
+		}
 
-		String output = "File saved to server location: " + savePath;
+		UploadProposalsResponse response = new ImportProposals().importProposals(new File(serverPath));
 			
-		return Response.status(200).entity(output).build();
+		return Response.status(response.getHttpCode()).entity(response.getMessage()).build();
 	}
 
 	private boolean checkApiKey(String apiKey) {
@@ -66,9 +71,7 @@ public class UploadProposals {
 		return name.toString();
 	}
 		
-	private void saveFile(InputStream uploadedInputStream, String serverLocation) {
-
-		try {
+	private void saveFile(InputStream uploadedInputStream, String serverLocation) throws IOException {
 			OutputStream outpuStream = new FileOutputStream(new File(serverLocation));
 			int read = 0;
 			byte[] bytes = new byte[1024];
@@ -80,12 +83,8 @@ public class UploadProposals {
 
 			outpuStream.flush();
 			outpuStream.close();
-
+						
 			uploadedInputStream.close();
-		} catch (IOException e) {
-			Log.getLogger().log(Level.WARNING, "Could not write file to: " + serverLocation, e);
-		}
-		
 	}
 
 }
