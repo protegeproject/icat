@@ -20,6 +20,8 @@ import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
 import edu.stanford.bmir.protege.web.server.ApplicationProperties;
+import edu.stanford.bmir.protege.web.server.Protege3ProjectManager;
+import edu.stanford.smi.protege.server.metaproject.User;
 import edu.stanford.smi.protege.util.Log;
 
 @Path("/proposals")
@@ -29,13 +31,15 @@ public class UploadProposals {
 	@Path("/upload")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFile(FormDataMultiPart form) {
-
-		FormDataBodyPart filePart = form.getField("file");
+		
 		FormDataBodyPart apiKeyPart = form.getField("apikey");
-
-		//TODO: to be used in further calls
 		String apiKey = apiKeyPart.getValueAs(String.class);
 		
+		if (checkApiKey(apiKey) == false) {
+			return Response.status(401).entity("Not authorized to upload proposals to iCAT. Check your API KEY.").build();
+		}
+		
+		FormDataBodyPart filePart = form.getField("file");
 		InputStream fileInputStream = filePart.getValueAs(InputStream.class);
 
 		String savePath = getServerPath();
@@ -46,6 +50,15 @@ public class UploadProposals {
 		return Response.status(200).entity(output).build();
 	}
 
+	private boolean checkApiKey(String apiKey) {
+		//TODO: for the future: might want to check permission if the user is allowed to upload proposals
+		return getUser(apiKey) != null;
+	}
+	
+	private User getUser(String apiKey) {
+		return Protege3ProjectManager.getProjectManager().getMetaProjectManager().getMetaProject().getUserByApiKey(apiKey);
+	}
+	
 	private String getServerPath() {
 		StringBuffer name = new StringBuffer(ApplicationProperties.getUploadDirectory());
 		name.append(new SimpleDateFormat("yyyy.MM.dd_HH:mm:ss_").format(new Date()));		
