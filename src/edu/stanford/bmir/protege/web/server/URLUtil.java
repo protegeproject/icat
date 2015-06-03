@@ -166,7 +166,7 @@ public class URLUtil {
         //BufferedReader reader = read(args[0]);
         //String url = "http://rest.bioontology.org/bioportal/search/Thyroiditis";
         //System.out.println(getURLContent(url));
-    	HttpResponse r = uploadMultipart(URI.create("http://127.0.0.1:8888/rest/files/upload"), new File("/home/ttania/Desktop/proposals.png"), "123");
+    	HttpResponse r = uploadMultipart(URI.create("http://127.0.0.1:8888/rest/proposals/upload"), new File("/home/ttania/Desktop/proposals.png"), "123");
     	System.out.println(r.getStatusLine());    	
     	r.getEntity().writeTo(System.out);
     }

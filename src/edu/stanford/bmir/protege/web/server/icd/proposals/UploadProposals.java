@@ -1,4 +1,4 @@
-package edu.stanford.bmir.protege.web.server.upload;
+package edu.stanford.bmir.protege.web.server.icd.proposals;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,8 +22,8 @@ import com.sun.jersey.multipart.FormDataMultiPart;
 import edu.stanford.bmir.protege.web.server.ApplicationProperties;
 import edu.stanford.smi.protege.util.Log;
 
-@Path("/files")
-public class UploadFileService {
+@Path("/proposals")
+public class UploadProposals {
 	
 	@POST
 	@Path("/upload")
@@ -31,9 +31,11 @@ public class UploadFileService {
 	public Response uploadFile(FormDataMultiPart form) {
 
 		FormDataBodyPart filePart = form.getField("file");
+		FormDataBodyPart apiKeyPart = form.getField("apikey");
 
-		//ContentDisposition headerOfFilePart = filePart.getContentDisposition();
-
+		//TODO: to be used in further calls
+		String apiKey = apiKeyPart.getValueAs(String.class);
+		
 		InputStream fileInputStream = filePart.getValueAs(InputStream.class);
 
 		String savePath = getServerPath();
@@ -46,9 +48,7 @@ public class UploadFileService {
 
 	private String getServerPath() {
 		StringBuffer name = new StringBuffer(ApplicationProperties.getUploadDirectory());
-		name.append(new SimpleDateFormat("yyyy.MM.dd_HH:mm:ss_").format(new Date()));
-		name.append(".");
-		//TODO: maybe replace with apikey
+		name.append(new SimpleDateFormat("yyyy.MM.dd_HH:mm:ss_").format(new Date()));		
 		name.append(UUID.randomUUID().toString());
 		return name.toString();
 	}
