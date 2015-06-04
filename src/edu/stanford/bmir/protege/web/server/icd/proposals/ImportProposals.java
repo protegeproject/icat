@@ -9,7 +9,7 @@ public class ImportProposals {
 	}
 	
 	public UploadProposalsResponse importProposals(File proposalsFile) {
-		return null;
+		return new UploadProposalsResponse(200, "Uploaded to: " + proposalsFile.getAbsolutePath());
 	}
 	
 }
