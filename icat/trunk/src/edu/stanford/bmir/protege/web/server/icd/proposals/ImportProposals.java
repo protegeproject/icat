@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import com.google.gwt.dev.util.collect.HashMap;
 
 import edu.stanford.smi.protege.util.Log;
+import edu.stanford.smi.protegex.owl.model.OWLModel;
 
 /**
  * The class that does the actual import of the proposal into iCAT.
@@ -22,12 +23,17 @@ import edu.stanford.smi.protege.util.Log;
  *
  */
 public class ImportProposals {
-
+	
+	private String user;
+	private OWLModel owlModel;
+	
 	private Map<String, List<ICDProposal>> group2proposal = new HashMap<String, List<ICDProposal>>();
 	private UploadProposalsResponse response;
 		
-	public ImportProposals() {
-		response = new UploadProposalsResponse();
+	public ImportProposals(OWLModel owlModel, String user) {
+		this.owlModel = owlModel;
+		this.user = user;
+		this.response = new UploadProposalsResponse();
 	}
 
 	public UploadProposalsResponse importProposals(File proposalsFile) {
@@ -135,5 +141,6 @@ public class ImportProposals {
 	private void doImport(){
 		
 	}
+
 	
 }

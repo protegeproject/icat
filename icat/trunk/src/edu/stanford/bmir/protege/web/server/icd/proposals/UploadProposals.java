@@ -20,9 +20,12 @@ import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
 import edu.stanford.bmir.protege.web.server.ApplicationProperties;
+import edu.stanford.bmir.protege.web.server.ProjectManagerFactory;
 import edu.stanford.bmir.protege.web.server.Protege3ProjectManager;
+import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.server.metaproject.User;
 import edu.stanford.smi.protege.util.Log;
+import edu.stanford.smi.protegex.owl.model.OWLModel;
 
 @Path("/proposals")
 public class UploadProposals {
@@ -34,9 +37,17 @@ public class UploadProposals {
 		
 		FormDataBodyPart apiKeyPart = form.getField("apikey");
 		String apiKey = apiKeyPart.getValueAs(String.class);
-		
+			
 		if (checkApiKey(apiKey) == false) {
-			return Response.status(401).entity("Not authorized to upload proposals to iCAT. Check your API KEY.").build();
+			return Response.status(401).entity("Not authorized to upload proposals. Check your API KEY.").build();
+		}
+
+		FormDataBodyPart projectPart = form.getField("project");
+		String project = projectPart.getValueAs(String.class);
+		
+		OWLModel owlModel = getOWLModel(project);
+		if (owlModel == null ) {
+			return Response.status(401).entity("Invalid project name or no project argument specified.").build();
 		}
 		
 		FormDataBodyPart filePart = form.getField("file");
@@ -50,7 +61,7 @@ public class UploadProposals {
 			return Response.status(500).entity("Server error: Could not write proposals file to file system.").build();
 		}
 
-		UploadProposalsResponse response = new ImportProposals().importProposals(new File(serverPath));
+		UploadProposalsResponse response = new ImportProposals(owlModel, getUser(apiKey).getName()).importProposals(new File(serverPath));
 			
 		return Response.status(response.getHttpCode()).entity(response.getMessage()).build();
 	}
@@ -63,6 +74,14 @@ public class UploadProposals {
 	private User getUser(String apiKey) {
 		return Protege3ProjectManager.getProjectManager().getMetaProjectManager().getMetaProject().getUserByApiKey(apiKey);
 	}
+	
+	private OWLModel getOWLModel(String projectName) {
+		if (projectName == null) {
+			return null;
+		}
+        Project prj = ProjectManagerFactory.getProtege3ProjectManager().getProject(projectName);
+        return prj == null ? null : (OWLModel) prj.getKnowledgeBase();
+    }
 	
 	private String getServerPath() {
 		StringBuffer name = new StringBuffer(ApplicationProperties.getUploadDirectory());
