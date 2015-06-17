@@ -1,5 +1,7 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals;
 
+import edu.stanford.smi.protegex.owl.model.OWLModel;
+
 public class DeleteContentProposal extends ICDProposal {
 
 	public DeleteContentProposal(String contributionId, String contributableId,
@@ -12,6 +14,12 @@ public class DeleteContentProposal extends ICDProposal {
 				entryDateTime, status, rationale, proposalType,
 				proposalGroupId, url, propertyId, oldValue, newValue,
 				idFromValueSet, valueSetName);
+	}
+
+	@Override
+	public void importThis(OWLModel owlModel, UploadProposalsResponse response) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

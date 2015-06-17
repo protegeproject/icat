@@ -1,5 +1,7 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals;
 
+import edu.stanford.smi.protegex.owl.model.OWLModel;
+
 public class ICDProposalResponse extends ICDProposal {
 
 	private String comment; 
@@ -19,6 +21,12 @@ public class ICDProposalResponse extends ICDProposal {
 	public String getComment() {
 		return comment;
 	}
+
+	@Override
+	public void importThis(OWLModel owlModel, UploadProposalsResponse response) {
+		//does nothing		
+	}
+	
 	
 
 }

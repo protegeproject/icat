@@ -1,5 +1,7 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals;
 
+import edu.stanford.smi.protegex.owl.model.OWLModel;
+
 /**
  * A proposal structure for updating the iCAT content.
  * Proposals are usually sent via a web service, serialized as a CSV file.
@@ -9,7 +11,7 @@ package edu.stanford.bmir.protege.web.server.icd.proposals;
  * @author ttania
  *
  */
-public class ICDProposal { 
+public abstract class ICDProposal { 
 	
 	private String contributionId;
 	private String contributableId;
@@ -54,6 +56,13 @@ public class ICDProposal {
 		this.valueSetName = valueSetName;
 	}
 
+	
+	/**
+	 * To be implemented in the subclasses
+	 * @param owlModel 
+	 * @param response - the response of the import call that gathers all errors
+	 */
+	public abstract void importThis(OWLModel owlModel, UploadProposalsResponse response);
 	
 	public String getContributionId() {
 		return contributionId;
@@ -211,6 +220,9 @@ public class ICDProposal {
 
 	public void setValueSetName(String valueSetName) {
 		this.valueSetName = valueSetName;
-	}	
+	}
+
+
+	
 	
 }

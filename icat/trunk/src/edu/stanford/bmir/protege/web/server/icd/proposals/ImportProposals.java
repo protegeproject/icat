@@ -5,12 +5,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
 import com.google.gwt.dev.util.collect.HashMap;
 
+import edu.stanford.bmir.protege.web.server.KBUtil;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 
@@ -138,8 +140,32 @@ public class ImportProposals {
 		return ret.trim();
 	}
 	
-	private void doImport(){
-		
+	private void doImport() {
+		// do all imports from one group as a transaction
+
+		for (String groupId : group2proposal.keySet()) {
+			List<ICDProposal> proposalsInGroup = group2proposal.get(groupId);
+
+			synchronized (owlModel) {
+				KBUtil.morphUser(owlModel, user);
+				try {
+					//FIXME: Fill transaction name;
+					//Problem: only the top level transaction will be shown.. not good
+					owlModel.beginTransaction("Import of proposal " + groupId);
+					for (ICDProposal proposal : proposalsInGroup) {
+						proposal.importThis(owlModel, response);
+					}
+					owlModel.commitTransaction();
+				} catch (Exception e) {
+					Log.getLogger().log(Level.SEVERE, "error message", e);
+					owlModel.rollbackTransaction();
+					// FIXME: log error in the response
+					// throw new RuntimeException(e.getMessage(), e);
+				} finally {
+					KBUtil.restoreUser(owlModel);
+				}
+			} //end syncronized
+		} //end for
 	}
 
 	
