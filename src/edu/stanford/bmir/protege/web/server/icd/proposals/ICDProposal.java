@@ -1,5 +1,10 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals;
 
+import java.util.Date;
+import java.util.logging.Level;
+
+import edu.stanford.bmir.protege.web.server.KBUtil;
+import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 
 /**
@@ -60,9 +65,31 @@ public abstract class ICDProposal {
 	/**
 	 * To be implemented in the subclasses
 	 * @param owlModel 
-	 * @param response - the response of the import call that gathers all errors
+	 * @param importResult TODO
 	 */
-	public abstract void importThis(OWLModel owlModel, UploadProposalsResponse response);
+	protected abstract void importThis(OWLModel owlModel, ImportResult importResult);
+	
+	protected abstract String getTransactionDescription();
+	
+	public void doImport(OWLModel owlModel, String user, ImportResult importResult) {		
+		synchronized (owlModel) {
+			KBUtil.morphUser(owlModel, user);
+			try {
+				owlModel.beginTransaction("Import of proposal ");
+				importThis(owlModel, importResult);
+				owlModel.commitTransaction();
+				
+				importResult.recordResult(this.contributionId, null, ImportRowStatus.SUCCESS);
+			} catch (Exception e) {
+				Log.getLogger().log(Level.SEVERE, "error message", e);
+				owlModel.rollbackTransaction();
+				importResult.recordResult(this.contributionId, "Failed: " + e.getMessage(), ImportRowStatus.FAIL);
+			} finally {
+				KBUtil.restoreUser(owlModel);
+			}
+		} // end syncronized
+	}
+	
 	
 	public String getContributionId() {
 		return contributionId;
