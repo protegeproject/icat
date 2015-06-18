@@ -1,11 +1,12 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals;
 
-import java.util.Date;
 import java.util.logging.Level;
 
 import edu.stanford.bmir.protege.web.server.KBUtil;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
+import edu.stanford.smi.protegex.owl.model.RDFProperty;
+import edu.stanford.smi.protegex.owl.model.RDFResource;
 
 /**
  * A proposal structure for updating the iCAT content.
@@ -17,6 +18,10 @@ import edu.stanford.smi.protegex.owl.model.OWLModel;
  *
  */
 public abstract class ICDProposal { 
+	
+	public static final String TRANSACTION_TEXT_PREFIX = "Proposal import: ";
+	
+	private transient OWLModel owlModel;
 	
 	private String contributionId;
 	private String contributableId;
@@ -36,13 +41,14 @@ public abstract class ICDProposal {
 	private String valueSetName;
 	
 		
-	public ICDProposal(String contributionId, String contributableId,
+	public ICDProposal(OWLModel owlModel, String contributionId, String contributableId,
 			String entityId, String entityPublicId, String contributorFullName, String entryDateTime,
 			String status, String rationale, String proposalType,
 			String proposalGroupId, String url, String propertyId,
 			String oldValue, String newValue, String idFromValueSet,
 			String valueSetName) {
 		super();
+		this.owlModel = owlModel;
 		this.contributionId = contributionId;
 		this.contributableId = contributableId;
 		this.entityId = entityId;
@@ -64,24 +70,30 @@ public abstract class ICDProposal {
 	
 	/**
 	 * To be implemented in the subclasses
-	 * @param owlModel 
-	 * @param importResult TODO
+	 * @param importResult 
 	 */
-	protected abstract void importThis(OWLModel owlModel, ImportResult importResult);
+	protected abstract void importThis(ImportResult importResult);
 	
 	protected abstract String getTransactionDescription();
 	
-	public void doImport(OWLModel owlModel, String user, ImportResult importResult) {		
+	protected abstract boolean checkData(ImportResult importResult);
+	
+	public void doImport(String user, ImportResult importResult) {
+		
+		if (checkData(null) == false) {
+			return;
+		}
+		
 		synchronized (owlModel) {
 			KBUtil.morphUser(owlModel, user);
 			try {
-				owlModel.beginTransaction("Import of proposal ");
-				importThis(owlModel, importResult);
+				owlModel.beginTransaction(getTransactionDescription());
+				importThis(importResult);
 				owlModel.commitTransaction();
 				
 				importResult.recordResult(this.contributionId, null, ImportRowStatus.SUCCESS);
 			} catch (Exception e) {
-				Log.getLogger().log(Level.SEVERE, "error message", e);
+				Log.getLogger().log(Level.SEVERE, "Failed import of proposal id: " + this.contributionId, e);
 				owlModel.rollbackTransaction();
 				importResult.recordResult(this.contributionId, "Failed: " + e.getMessage(), ImportRowStatus.FAIL);
 			} finally {
@@ -90,6 +102,31 @@ public abstract class ICDProposal {
 		} // end syncronized
 	}
 	
+	
+	public RDFResource getEntity(){
+		return getOwlModel().getRDFResource(this.getEntityId());
+	}
+	
+	public RDFProperty getProperty(){
+		return owlModel.getRDFProperty(this.getPropertyId());
+	}
+	
+	public boolean checkEntityExists(ImportResult importResult) {
+		RDFResource entity = getEntity();
+		if (entity == null) {
+			importResult.recordResult(getContributionId(), "Entity does not exist: " + getEntityId(), ImportRowStatus.FAIL);
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean checkPropertyExists(ImportResult importResult) {
+		boolean exists = getProperty() != null;
+		if (exists == false) {
+			importResult.recordResult(contributionId, "Property " + propertyId +" does not exist.", ImportRowStatus.FAIL);
+		}
+		return exists;
+	}
 	
 	public String getContributionId() {
 		return contributionId;
@@ -244,12 +281,15 @@ public abstract class ICDProposal {
 		return valueSetName;
 	}
 
-
+	
 	public void setValueSetName(String valueSetName) {
 		this.valueSetName = valueSetName;
 	}
 
 
+	public OWLModel getOwlModel() {
+		return owlModel;
+	}
 	
 	
 }

@@ -32,12 +32,12 @@ public class ImportProposals {
 	}
 
 	public UploadProposalsResponse importProposals(File proposalsFile) {
-		readFile(proposalsFile);
+		processFile(proposalsFile);
 				
 		return response;
 	}
 
-	private void readFile(File proposalsFile) {
+	private void processFile(File proposalsFile) {
 		try {
 			BufferedReader input = new BufferedReader(new FileReader(proposalsFile));
 			try {
@@ -84,22 +84,22 @@ public class ImportProposals {
 		String valueSetName = getValue(values, 15);
 		
 		if (ProposalTypes.AddContent.toString().equals(proposalGroupId)) {
-				ICDProposalFactory.createAddContentProposal(contributionId, contributableId, 
+				ICDProposalFactory.createAddContentProposal(owlModel, contributionId, contributableId, 
 						entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
 						proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
-						doImport(owlModel, user, importResult);
+						doImport(user, importResult);
 				
 		} else if (ProposalTypes.EditContent.toString().equals(proposalGroupId)) {
-			ICDProposalFactory.createEditContentProposal(contributionId, contributableId, 
+			ICDProposalFactory.createEditContentProposal(owlModel, contributionId, contributableId, 
 					entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
 					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
-					doImport(owlModel, user, importResult);
+					doImport(user, importResult);
 			
 		} else if (ProposalTypes.DeleteContent.toString().equals(proposalGroupId)) {
-			ICDProposalFactory.createDeleteContentProposal(contributionId, contributableId, 
+			ICDProposalFactory.createDeleteContentProposal(owlModel, contributionId, contributableId, 
 					entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
 					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
-					doImport(owlModel, user, importResult);
+					doImport(user, importResult);
 			
 		} else {
 			Log.getLogger().warning("Unrecognized proposal type: " + proposalType);
