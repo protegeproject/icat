@@ -88,7 +88,8 @@ public class AddContentProposal extends ICDProposal {
 	@Override
 	protected String getTransactionDescription() {
 		StringBuffer buffer = new StringBuffer(ICDProposal.TRANSACTION_TEXT_PREFIX);
-		buffer.append("Added " + TextUtil.getPropertyName(getOwlModel(), getPropertyId()));
+		buffer.append("Added ");
+		buffer.append(TextUtil.getPropertyName(getOwlModel(), getPropertyId()));
 		buffer.append("New value: ");
 		buffer.append(this.getNewValue());
 		if (this.getIdFromValueSet() != null) {
@@ -96,8 +97,9 @@ public class AddContentProposal extends ICDProposal {
 			buffer.append(this.getIdFromValueSet());
 			buffer.append(", ");
 			buffer.append(this.getValueSetName());
+			buffer.append(") ");
 		}
-		buffer.append("). See the full proposal in the ICD browser: ");
+		buffer.append("See the full proposal in the ICD browser: ");
 		buffer.append(this.getUrl());
 		
 		return buffer.toString();
@@ -143,16 +145,16 @@ public class AddContentProposal extends ICDProposal {
 		while (i.hasNext() && notExists == true) {
 			Object value = i.next();			
 			if (isObjectProperty == true && value instanceof RDFResource) { //refied value 
-				notExists = checkReifiedValue(importResult, (RDFResource) value, newValue, idfromVS);
+				notExists = checkReifiedValueNotExists(importResult, (RDFResource) value, newValue, idfromVS);
 			} else { //simple value
-				notExists = checkSimpleValue(importResult, (RDFResource) value, newValue, idfromVS);
+				notExists = checkSimpleValueNotExists(importResult, (RDFResource) value, newValue, idfromVS);
 			}
 		}
 		
-		return true;
+		return notExists;
 	}
 	
-	private boolean checkSimpleValue(ImportResult importResult, Object value, String newValue, String idfromVS) {
+	private boolean checkSimpleValueNotExists(ImportResult importResult, Object value, String newValue, String idfromVS) {
 		if (value != null && newValue.equals(value.toString())) {
 			importResult.recordResult(this.getContributionId(), "Value already exists. Will not import.", ImportRowStatus.IGNORED);
 			return false;
@@ -161,7 +163,7 @@ public class AddContentProposal extends ICDProposal {
 	}
 
 
-	private boolean checkReifiedValue(ImportResult importResult, RDFResource value, String newValue, String idfromVS) {
+	private boolean checkReifiedValueNotExists(ImportResult importResult, RDFResource value, String newValue, String idfromVS) {
 		String label = (String) value.getPropertyValue(getOwlModel().getRDFProperty(WHOFICContentModelConstants.LABEL_PROP));		
 		String termId = (String) value.getPropertyValue(getOwlModel().getRDFProperty(WHOFICContentModelConstants.TERM_ID_PROP));
 		
