@@ -17,9 +17,15 @@ public class EditContentProposal extends ICDProposal {
 	}
 
 	@Override
-	public void importThis(OWLModel owlModel, UploadProposalsResponse response) {
+	public void importThis(OWLModel owlModel, ImportResult importResult) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	protected String getTransactionDescription() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

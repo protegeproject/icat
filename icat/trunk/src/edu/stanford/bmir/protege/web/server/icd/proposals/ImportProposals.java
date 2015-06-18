@@ -4,22 +4,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 
-import com.google.gwt.dev.util.collect.HashMap;
-
-import edu.stanford.bmir.protege.web.server.KBUtil;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 
 /**
  * The class that does the actual import of the proposal into iCAT.
- * Proposals from the same proposal group need to be imported as one transaction:
- * if one row fails, the entire group fails.
+ * Proposals are processed row by row.
  * 
  * @author ttania
  *
@@ -28,20 +20,20 @@ public class ImportProposals {
 	
 	private String user;
 	private OWLModel owlModel;
-	
-	private Map<String, List<ICDProposal>> group2proposal = new HashMap<String, List<ICDProposal>>();
+		
 	private UploadProposalsResponse response;
+	private ImportResult importResult;
 		
 	public ImportProposals(OWLModel owlModel, String user) {
 		this.owlModel = owlModel;
 		this.user = user;
 		this.response = new UploadProposalsResponse();
+		this.importResult = new ImportResult();
 	}
 
 	public UploadProposalsResponse importProposals(File proposalsFile) {
 		readFile(proposalsFile);
-		doImport();
-		
+				
 		return response;
 	}
 
@@ -92,39 +84,30 @@ public class ImportProposals {
 		String valueSetName = getValue(values, 15);
 		
 		if (ProposalTypes.AddContent.toString().equals(proposalGroupId)) {
-				addProposalRowToGroup(ICDProposalFactory.createAddContentProposal(contributionId, contributableId, 
+				ICDProposalFactory.createAddContentProposal(contributionId, contributableId, 
 						entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
-						proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName));
+						proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
+						doImport(owlModel, user, importResult);
+				
 		} else if (ProposalTypes.EditContent.toString().equals(proposalGroupId)) {
-			addProposalRowToGroup(ICDProposalFactory.createEditContentProposal(contributionId, contributableId, 
+			ICDProposalFactory.createEditContentProposal(contributionId, contributableId, 
 					entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
-					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName));
-		} else if (ProposalTypes.DeleteContent.toString().equals(proposalGroupId)) {
-			addProposalRowToGroup(ICDProposalFactory.createDeleteContentProposal(contributionId, contributableId, 
-					entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
-					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName));
-		} else {
-			logErrorRow(new ICDProposalResponse(contributionId, contributableId, entityId, entityPublicId, 
-					contributorFullName, entryDateTime, status, rationale, proposalType, proposalGroupId, url, 
-					propertyId, oldValue, newValue, idFromValueSet, valueSetName, "Unrecognized proposal type: " + proposalType));
-		}
+					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
+					doImport(owlModel, user, importResult);
 			
-	}
-
-	private void logErrorRow(ICDProposalResponse rowResponse) {
-		Log.getLogger().warning(rowResponse.getComment());
-		response.addRowError(rowResponse);
-	}
-
-	private void addProposalRowToGroup(ICDProposal proposal) {
-		List<ICDProposal> list = group2proposal.get(proposal.getProposalGroupId());
-		if (list == null) {
-			list = new ArrayList<ICDProposal>();
+		} else if (ProposalTypes.DeleteContent.toString().equals(proposalGroupId)) {
+			ICDProposalFactory.createDeleteContentProposal(contributionId, contributableId, 
+					entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
+					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
+					doImport(owlModel, user, importResult);
+			
+		} else {
+			Log.getLogger().warning("Unrecognized proposal type: " + proposalType);
+			importResult.recordResult(contributionId, "Unrecognized proposal type: " + proposalType, ImportRowStatus.FAIL);			
 		}
-		list.add(proposal);
-		group2proposal.put(proposal.getProposalGroupId(), list);
 	}
-	
+
+
 	private String getValue(String[] values, int i) {
 		return i < values.length ? removeQuotes(values[i]) : null;
 	}
@@ -138,34 +121,6 @@ public class ImportProposals {
 			ret = str.substring(1, str.length() - 1);
 		}
 		return ret.trim();
-	}
-	
-	private void doImport() {
-		// do all imports from one group as a transaction
-
-		for (String groupId : group2proposal.keySet()) {
-			List<ICDProposal> proposalsInGroup = group2proposal.get(groupId);
-
-			synchronized (owlModel) {
-				KBUtil.morphUser(owlModel, user);
-				try {
-					//FIXME: Fill transaction name;
-					//Problem: only the top level transaction will be shown.. not good
-					owlModel.beginTransaction("Import of proposal " + groupId);
-					for (ICDProposal proposal : proposalsInGroup) {
-						proposal.importThis(owlModel, response);
-					}
-					owlModel.commitTransaction();
-				} catch (Exception e) {
-					Log.getLogger().log(Level.SEVERE, "error message", e);
-					owlModel.rollbackTransaction();
-					// FIXME: log error in the response
-					// throw new RuntimeException(e.getMessage(), e);
-				} finally {
-					KBUtil.restoreUser(owlModel);
-				}
-			} //end syncronized
-		} //end for
 	}
 
 	
