@@ -111,6 +111,10 @@ public abstract class ICDProposal {
 		return owlModel.getRDFProperty(this.getPropertyId());
 	}
 	
+	public RDFResource getContributableEntity(){
+		return getOwlModel().getRDFResource(this.getContributableId());
+	}
+	
 	public boolean checkEntityExists(ImportResult importResult) {
 		RDFResource entity = getEntity();
 		if (entity == null) {
@@ -126,6 +130,15 @@ public abstract class ICDProposal {
 			importResult.recordResult(contributionId, "Property " + propertyId +" does not exist.", ImportRowStatus.FAIL);
 		}
 		return exists;
+	}
+	
+	public boolean checkContributableIdNotEmpty(ImportResult importResult) {
+		String contributableId = getContributableId();
+		if (contributableId == null || contributableId.isEmpty()) {
+			importResult.recordResult(contributionId, "contributableId is empty.", ImportRowStatus.FAIL);
+			return false;
+		}
+		return true;
 	}
 	
 	public String getContributionId() {

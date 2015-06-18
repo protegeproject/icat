@@ -2,6 +2,13 @@ package edu.stanford.bmir.protege.web.server.icd.proposals;
 
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 
+/**
+ * The Edit Proposal is for properties that have single cardinality, 
+ * e.g., title, definition, etc. 
+ * 
+ * @author ttania
+ *
+ */
 public class EditContentProposal extends ICDProposal {
 
 	public EditContentProposal(OWLModel owlModel, String contributionId, String contributableId,
@@ -24,8 +31,24 @@ public class EditContentProposal extends ICDProposal {
 
 	@Override
 	protected String getTransactionDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuffer buffer = new StringBuffer(ICDProposal.TRANSACTION_TEXT_PREFIX);
+		buffer.append("Edit ");
+		buffer.append(TextUtil.getPropertyName(getOwlModel(), getPropertyId()));
+		buffer.append("New value: ");
+		buffer.append(this.getNewValue());
+		if (this.getIdFromValueSet() != null) {
+			buffer.append(" (");
+			buffer.append(this.getIdFromValueSet());
+			buffer.append(", ");
+			buffer.append(this.getValueSetName());
+			buffer.append(")");
+		}
+		buffer.append(", Old value:");
+		buffer.append(this.getOldValue());		
+		buffer.append(". See the full proposal in the ICD browser: ");
+		buffer.append(this.getUrl());
+		
+		return buffer.toString();
 	}
 
 	@Override
