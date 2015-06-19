@@ -62,7 +62,7 @@ public class DeleteContentProposal extends ICDProposal {
 	protected boolean checkData(ImportResult importResult) {
 		return checkEntityExists(importResult) &&
 				checkPropertyExists(importResult) &&
-				//contributableId cannot be empty for object properties, but can  be for data properties
+				//contributableId cannot be empty for object properties, but can be for data properties
 				(getProperty() instanceof OWLDatatypeProperty || checkContributableIdNotEmpty(importResult) ) &&  
 				checkOldValueExists(importResult);
 				
