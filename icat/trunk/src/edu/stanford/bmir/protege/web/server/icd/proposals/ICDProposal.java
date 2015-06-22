@@ -3,8 +3,10 @@ package edu.stanford.bmir.protege.web.server.icd.proposals;
 import java.util.logging.Level;
 
 import edu.stanford.bmir.protege.web.server.KBUtil;
+import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
+import edu.stanford.smi.protegex.owl.model.OWLObjectProperty;
 import edu.stanford.smi.protegex.owl.model.RDFProperty;
 import edu.stanford.smi.protegex.owl.model.RDFResource;
 
@@ -78,6 +80,8 @@ public abstract class ICDProposal {
 	
 	protected abstract boolean checkData(ImportResult importResult);
 	
+		
+	
 	public void doImport(String user, ImportResult importResult) {
 		
 		if (checkData(null) == false) {
@@ -115,6 +119,10 @@ public abstract class ICDProposal {
 		return getOwlModel().getRDFResource(this.getContributableId());
 	}
 	
+	
+	// ******************* Checks ***************************/
+	
+	
 	public boolean checkEntityExists(ImportResult importResult) {
 		RDFResource entity = getEntity();
 		if (entity == null) {
@@ -139,7 +147,50 @@ public abstract class ICDProposal {
 			return false;
 		}
 		return true;
+	}	
+	
+	public boolean checkNewValueNotEmpty(ImportResult importResult) {
+		String newValue = this.getNewValue();
+		if (newValue == null) {
+			importResult.recordResult(getContributionId(), "New value is null. Expected non-null value.", ImportRowStatus.FAIL);
+			return false;
+		}
+		return true;
 	}
+	
+	public boolean checkOldValueExists(ImportResult importResult) {
+		String oldValue = this.getOldValue();
+				
+		RDFResource entity = getEntity();
+		RDFProperty prop = getProperty();
+		
+		boolean exists = false;
+		
+		if (prop instanceof OWLObjectProperty) {
+			RDFResource contributableEntity = getOwlModel().getRDFResource(this.getContributableId());
+			if (entity.hasPropertyValue(prop, contributableEntity) == true) {
+				RDFProperty labelProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.LABEL_PROP);
+				String label = (String) contributableEntity.getPropertyValue(labelProp);
+				if (oldValue != null && oldValue.equals(label)) {
+					exists = true;
+				}
+				importResult.recordResult(this.getContributionId(), "The label of the contributable id does not match the oldValue.", ImportRowStatus.FAIL);
+			}
+			importResult.recordResult(this.getContributionId(), "The entity does not have the contributable id as its reified value.", ImportRowStatus.FAIL);
+			exists = false;
+		} else {
+			if (entity.hasPropertyValue(prop, oldValue) == false) {
+				importResult.recordResult(this.getContributionId(), "The entity does not have oldValue as a value.", ImportRowStatus.FAIL);
+				exists = false;
+			}
+			exists = true;
+		}
+		
+		return exists;
+	}
+
+	// ******************* Geters and setters ***************************/
+	
 	
 	public String getContributionId() {
 		return contributionId;

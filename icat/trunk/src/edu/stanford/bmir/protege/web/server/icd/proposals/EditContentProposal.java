@@ -1,6 +1,10 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals;
 
+import edu.stanford.smi.protegex.owl.model.OWLDatatypeProperty;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
+import edu.stanford.smi.protegex.owl.model.OWLObjectProperty;
+import edu.stanford.smi.protegex.owl.model.RDFProperty;
+import edu.stanford.smi.protegex.owl.model.RDFResource;
 
 /**
  * The Edit Proposal is for properties that have single cardinality, 
@@ -25,8 +29,25 @@ public class EditContentProposal extends ICDProposal {
 
 	@Override
 	public void importThis(ImportResult importResult) {
-		// TODO Auto-generated method stub
+		RDFResource entity = getEntity();
+		RDFProperty prop = getProperty();
 		
+		if (prop instanceof OWLObjectProperty) {
+			importReifiedValue(entity, prop);
+		} else {
+			importSimpleValue(entity, prop);
+		}
+	}
+	
+	
+	private void importSimpleValue(RDFResource entity, RDFProperty prop) {
+		entity.setPropertyValue(prop, this.getNewValue());
+	}
+	
+
+	private void importReifiedValue(RDFResource entity, RDFProperty prop) {
+		RDFResource contributableEntity = getContributableEntity();
+		contributableEntity.delete();
 	}
 
 	@Override
@@ -53,8 +74,11 @@ public class EditContentProposal extends ICDProposal {
 
 	@Override
 	protected boolean checkData(ImportResult importResult) {
-		// TODO Auto-generated method stub
-		return false;
+		return checkEntityExists(importResult) &&
+				checkPropertyExists(importResult) &&				
+				//contributableId cannot be empty for object properties, but can be for data properties
+				(getProperty() instanceof OWLDatatypeProperty || checkContributableIdNotEmpty(importResult) ) &&  
+				checkOldValueExists(importResult);
 	}
 	
 	

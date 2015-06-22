@@ -115,16 +115,6 @@ public class AddContentProposal extends ICDProposal {
 				checkValueNotExists(importResult);
 	}
 
-
-	private boolean checkNewValueNotEmpty(ImportResult importResult) {
-		String newValue = this.getNewValue();
-		if (newValue == null) {
-			importResult.recordResult(getContributionId(), "New value is null. Expected non-null value.", ImportRowStatus.FAIL);
-			return false;
-		}
-		return true;
-	}
-
 	
 	@SuppressWarnings("rawtypes")
 	private boolean checkValueNotExists(ImportResult importResult) {
