@@ -1,5 +1,10 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals;
 
+import java.util.List;
+
+import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
+import edu.stanford.smi.protege.util.IDGenerator;
+import edu.stanford.smi.protegex.owl.model.OWLClass;
 import edu.stanford.smi.protegex.owl.model.OWLDatatypeProperty;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.OWLObjectProperty;
@@ -48,6 +53,37 @@ public class EditContentProposal extends ICDProposal {
 	private void importReifiedValue(RDFResource entity, RDFProperty prop) {
 		RDFResource contributableEntity = getContributableEntity();
 		contributableEntity.delete();
+		
+		@SuppressWarnings("unchecked")
+		List<RDFResource> ranges = (List<RDFResource>) prop.getUnionRangeClasses();
+			
+		OWLClass range = null;
+		if (ranges.isEmpty()){
+			range = getOwlModel().getOWLThingClass();
+		}
+		range = (OWLClass) ranges.iterator().next();
+				
+		if (range == null) {
+			range = getOwlModel().getOWLThingClass();
+		}
+		
+		RDFResource reifiedValue = range.createInstance(IDGenerator.getNextUniqueId());
+				
+		RDFProperty labelProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.LABEL_PROP);
+		reifiedValue.addPropertyValue(labelProp, this.getNewValue());
+		
+		if (this.getIdFromValueSet() != null) {
+			RDFProperty termIdProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.TERM_ID_PROP);
+			reifiedValue.addPropertyValue(termIdProp, this.getIdFromValueSet());
+		}
+		
+		if (this.getValueSetName() != null) {
+			RDFProperty valueSetProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.ONTOLOGYID_PROP);
+			reifiedValue.addPropertyValue(valueSetProp, this.getValueSetName());
+		}
+		
+		entity.addPropertyValue(prop, reifiedValue);
+		
 	}
 
 	@Override
