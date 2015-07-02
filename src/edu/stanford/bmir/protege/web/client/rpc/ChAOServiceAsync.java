@@ -1,11 +1,16 @@
 package edu.stanford.bmir.protege.web.client.rpc;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import edu.stanford.bmir.protege.web.client.rpc.data.*;
-
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
+import com.google.gwt.user.client.rpc.AsyncCallback;
+
+import edu.stanford.bmir.protege.web.client.rpc.data.ChangeData;
+import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.NotesData;
+import edu.stanford.bmir.protege.web.client.rpc.data.PaginationData;
+import edu.stanford.bmir.protege.web.client.rpc.data.ReviewData;
 
 /**
  * @author Csongor Nyulas <csongor.nyulas@stanford.edu>

@@ -1,12 +1,13 @@
 package edu.stanford.bmir.protege.web.client.rpc;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import edu.stanford.bmir.protege.web.client.rpc.data.ChangeData;
-import edu.stanford.bmir.protege.web.client.rpc.data.PaginationData;
-
 import java.util.Collection;
 import java.util.List;
+
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+
+import edu.stanford.bmir.protege.web.client.rpc.data.ChangeData;
+import edu.stanford.bmir.protege.web.client.rpc.data.PaginationData;
 
 /**
  * @author Sean Falconer <sean.falconer@stanford.edu>
