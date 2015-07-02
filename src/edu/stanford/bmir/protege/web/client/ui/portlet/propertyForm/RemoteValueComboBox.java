@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.ui.HTML;
 import com.gwtext.client.data.ArrayReader;
 import com.gwtext.client.data.DataProxy;
 import com.gwtext.client.data.FieldDef;
@@ -25,7 +24,6 @@ import edu.stanford.bmir.protege.web.client.model.listener.OntologyListenerAdapt
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
-import edu.stanford.bmir.protege.web.client.ui.util.UIConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public abstract class RemoteValueComboBox extends AbstractFieldWidget {

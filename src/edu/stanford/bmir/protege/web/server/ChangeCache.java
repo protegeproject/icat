@@ -1,15 +1,27 @@
 package edu.stanford.bmir.protege.web.server;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
 import edu.stanford.bmir.protegex.chao.ChAOKbManager;
 import edu.stanford.bmir.protegex.chao.change.api.Change;
 import edu.stanford.bmir.protegex.chao.change.api.ChangeFactory;
 import edu.stanford.bmir.protegex.chao.change.api.Composite_Change;
 import edu.stanford.bmir.protegex.chao.change.api.impl.DefaultChange;
 import edu.stanford.bmir.protegex.chao.ontologycomp.api.impl.DefaultOntology_Component;
-import edu.stanford.smi.protege.model.*;
-
-import java.util.*;
-import java.util.Map.Entry;
+import edu.stanford.smi.protege.model.Cls;
+import edu.stanford.smi.protege.model.Frame;
+import edu.stanford.smi.protege.model.Instance;
+import edu.stanford.smi.protege.model.KnowledgeBase;
+import edu.stanford.smi.protege.model.ModelUtilities;
+import edu.stanford.smi.protege.model.Slot;
 
 /**
  * Stores a cache of frame to change count references.

@@ -6,7 +6,7 @@ import com.gwtext.client.widgets.Panel;
 
 import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormGenerator;
-import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.WidgetController;;
+import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.WidgetController;
 
 public class PostCoordinationWidgetController extends WidgetController {
 
