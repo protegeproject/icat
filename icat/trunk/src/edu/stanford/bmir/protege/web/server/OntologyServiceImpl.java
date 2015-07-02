@@ -48,7 +48,6 @@ import edu.stanford.smi.protege.query.indexer.IndexUtilities;
 import edu.stanford.smi.protege.server.RemoteClientProject;
 import edu.stanford.smi.protege.server.RemoteServer;
 import edu.stanford.smi.protege.server.Session;
-import edu.stanford.smi.protege.server.job.CacheControlJob;
 import edu.stanford.smi.protege.server.metaproject.MetaProjectConstants;
 import edu.stanford.smi.protege.ui.FrameComparator;
 import edu.stanford.smi.protege.util.CollectionUtilities;

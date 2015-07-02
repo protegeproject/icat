@@ -1,16 +1,13 @@
 package edu.stanford.bmir.protege.web.client.ui.icd.pc;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
-import com.google.gwt.core.client.GWT;
 import com.gwtext.client.data.DataProxy;
 import com.gwtext.client.data.MemoryProxy;
 
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.model.listener.OntologyListenerAdapter;
-import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;

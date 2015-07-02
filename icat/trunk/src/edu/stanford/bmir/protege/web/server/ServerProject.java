@@ -1,11 +1,11 @@
 package edu.stanford.bmir.protege.web.server;
 
+import java.util.List;
+import java.util.logging.Level;
+
 import edu.stanford.bmir.protege.web.client.model.event.OntologyEvent;
 import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.util.Log;
-
-import java.util.List;
-import java.util.logging.Level;
 
 /*
  * Synchronization Issues:

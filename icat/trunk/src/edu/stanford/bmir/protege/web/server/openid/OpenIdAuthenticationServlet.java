@@ -3,8 +3,15 @@
  */
 package edu.stanford.bmir.protege.web.server.openid;
 
-import edu.stanford.bmir.protege.web.client.ui.login.constants.AuthenticationConstants;
-import edu.stanford.bmir.protege.web.client.ui.openid.constants.OpenIdConstants;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openid4java.consumer.ConsumerManager;
@@ -15,13 +22,8 @@ import org.openid4java.message.AuthRequest;
 import org.openid4java.message.ax.FetchRequest;
 import org.openid4java.message.sreg.SRegRequest;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
+import edu.stanford.bmir.protege.web.client.ui.login.constants.AuthenticationConstants;
+import edu.stanford.bmir.protege.web.client.ui.openid.constants.OpenIdConstants;
 
 /**
  * @author z.khan
