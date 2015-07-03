@@ -36,7 +36,7 @@ public class ImportResult {
 	public int getRowWithStatusCount(ImportRowStatus status) {
 		int count = 0;
 		for (ImportResultRow row : rows) {
-			if (status.toString().equals(row.getStatus())) {
+			if (status.equals(row.getStatus())) {
 				count ++;
 			}
 		}
