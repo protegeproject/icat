@@ -89,7 +89,7 @@ public class AddContentProposal extends ICDProposal {
 	protected String getTransactionDescription() {
 		StringBuffer buffer = new StringBuffer(ICDProposal.TRANSACTION_TEXT_PREFIX);
 		buffer.append("Added ");
-		buffer.append(TextUtil.getPropertyName(getOwlModel(), getPropertyId()));
+		buffer.append(ImportProposalsUtil.getPropertyName(getOwlModel(), getPropertyId()));
 		buffer.append("New value: ");
 		buffer.append(this.getNewValue());
 		if (this.getIdFromValueSet() != null) {
@@ -134,7 +134,7 @@ public class AddContentProposal extends ICDProposal {
 		Iterator i = values.iterator();
 		while (i.hasNext() && notExists == true) {
 			Object value = i.next();			
-			if (isObjectProperty == true && value instanceof RDFResource) { //refied value 
+			if (isObjectProperty == true && value instanceof RDFResource) { //reified value 
 				notExists = checkReifiedValueNotExists(importResult, (RDFResource) value, newValue, idfromVS);
 			} else { //simple value
 				notExists = checkSimpleValueNotExists(importResult, (RDFResource) value, newValue, idfromVS);
