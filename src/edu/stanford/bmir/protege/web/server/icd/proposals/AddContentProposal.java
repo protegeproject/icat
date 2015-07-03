@@ -74,6 +74,10 @@ public class AddContentProposal extends ICDProposal {
 		if (this.getIdFromValueSet() != null) {
 			RDFProperty termIdProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.TERM_ID_PROP);
 			reifiedValue.addPropertyValue(termIdProp, this.getIdFromValueSet());
+			
+			//fill in both shortid and termid, because it is not clear which one is used by different tools.. not ideal.
+			RDFProperty shortTermIdProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.BP_SHORT_TERM_ID_PROP);
+			reifiedValue.addPropertyValue(shortTermIdProp, this.getIdFromValueSet());
 		}
 		
 		if (this.getValueSetName() != null) {
@@ -156,9 +160,9 @@ public class AddContentProposal extends ICDProposal {
 	private boolean checkReifiedValueNotExists(ImportResult importResult, RDFResource value, String newValue, String idfromVS) {
 		String label = (String) value.getPropertyValue(getOwlModel().getRDFProperty(WHOFICContentModelConstants.LABEL_PROP));		
 		String termId = (String) value.getPropertyValue(getOwlModel().getRDFProperty(WHOFICContentModelConstants.TERM_ID_PROP));
+		String shortTermId = (String) value.getPropertyValue(getOwlModel().getRDFProperty(WHOFICContentModelConstants.BP_SHORT_TERM_ID_PROP));
 		
-		
-		if (newValue.equals(label) || (idfromVS != null && idfromVS.equals(termId)) ) {
+		if (newValue.equals(label) || (idfromVS != null && (idfromVS.equals(termId) || idfromVS.equals(shortTermId))) ) {
 			importResult.recordResult(this.getContributionId(), "Value already exists. Will not import.", ImportRowStatus.IGNORED);
 			return false;
 		}
