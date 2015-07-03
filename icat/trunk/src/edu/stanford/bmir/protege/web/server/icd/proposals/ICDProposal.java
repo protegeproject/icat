@@ -79,7 +79,6 @@ public abstract class ICDProposal {
 	protected abstract String getTransactionDescription();
 	
 	protected abstract boolean checkData(ImportResult importResult);
-	
 		
 	
 	public void doImport(String user, ImportResult importResult) {

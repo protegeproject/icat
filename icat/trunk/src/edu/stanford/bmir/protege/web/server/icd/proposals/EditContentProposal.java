@@ -75,6 +75,10 @@ public class EditContentProposal extends ICDProposal {
 		if (this.getIdFromValueSet() != null) {
 			RDFProperty termIdProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.TERM_ID_PROP);
 			reifiedValue.addPropertyValue(termIdProp, this.getIdFromValueSet());
+			
+			//fill in both shortid and termid, because it is not clear which one is used by different tools.. not ideal.
+			RDFProperty shortTermIdProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.BP_SHORT_TERM_ID_PROP);
+			reifiedValue.addPropertyValue(shortTermIdProp, this.getIdFromValueSet());
 		}
 		
 		if (this.getValueSetName() != null) {
