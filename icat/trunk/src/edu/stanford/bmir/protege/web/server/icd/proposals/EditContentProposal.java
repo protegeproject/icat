@@ -90,7 +90,7 @@ public class EditContentProposal extends ICDProposal {
 	protected String getTransactionDescription() {
 		StringBuffer buffer = new StringBuffer(ICDProposal.TRANSACTION_TEXT_PREFIX);
 		buffer.append("Edit ");
-		buffer.append(TextUtil.getPropertyName(getOwlModel(), getPropertyId()));
+		buffer.append(ImportProposalsUtil.getPropertyName(getOwlModel(), getPropertyId()));
 		buffer.append("New value: ");
 		buffer.append(this.getNewValue());
 		if (this.getIdFromValueSet() != null) {
