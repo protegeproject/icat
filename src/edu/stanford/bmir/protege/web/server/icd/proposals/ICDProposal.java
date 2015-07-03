@@ -90,7 +90,7 @@ public abstract class ICDProposal {
 		synchronized (owlModel) {
 			KBUtil.morphUser(owlModel, user);
 			try {
-				owlModel.beginTransaction(getTransactionDescription());
+				owlModel.beginTransaction(getTransactionDescription(),getEntityId());
 				importThis(importResult);
 				owlModel.commitTransaction();
 				
