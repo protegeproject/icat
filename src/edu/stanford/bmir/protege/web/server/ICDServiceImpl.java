@@ -1451,13 +1451,13 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
     }
 
 	protected WHOFICContentModel getContentModel(OWLModel owlModel) {
-		return new ICIContentModel(owlModel);
-		//return new ICDContentModel(owlModel);
+		//return new ICIContentModel(owlModel);
+		return new ICDContentModel(owlModel);
 	}
 	
 	protected RDFResource getTopCategoryClass(OWLModel owlModel) {
-		return new ICIContentModel(owlModel).getICICategoryClass();
-		//return new ICDContentModel(owlModel).getICDCategoryClass();
+		//return new ICIContentModel(owlModel).getICICategoryClass();
+		return new ICDContentModel(owlModel).getICDCategoryClass();
 	}
 	
 	/**** Internal reference ***/
