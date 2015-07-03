@@ -189,7 +189,7 @@ public abstract class ICDProposal {
 		return exists;
 	}
 
-	// ******************* Geters and setters ***************************/
+	// ******************* Getters and setters ***************************/
 	
 	
 	public String getContributionId() {
