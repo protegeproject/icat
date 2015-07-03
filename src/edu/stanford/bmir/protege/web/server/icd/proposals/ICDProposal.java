@@ -21,7 +21,8 @@ import edu.stanford.smi.protegex.owl.model.RDFResource;
  */
 public abstract class ICDProposal { 
 	
-	public static final String TRANSACTION_TEXT_PREFIX = "Proposal import: ";
+	public static final String TRANSACTION_TEXT_PREFIX = 
+			"<img src=\"images/import.gif\" style=\"padding-right: 5px; margin-bottom: -5px;\" /><b>Proposal import.</b> ";
 	
 	private transient OWLModel owlModel;
 	
@@ -105,6 +106,12 @@ public abstract class ICDProposal {
 		} // end syncronized
 	}
 	
+	public String getHtmlUrl() {
+		StringBuffer buffer = new StringBuffer("<a href=\"");
+		buffer.append(getUrl());
+		buffer.append("\" target=\"_blank\">See full proposal in the ICD Public Browser</a>");
+		return buffer.toString();
+	}
 	
 	public RDFResource getEntity(){
 		return getOwlModel().getRDFResource(this.getEntityId());
