@@ -95,7 +95,8 @@ public class EditContentProposal extends ICDProposal {
 		StringBuffer buffer = new StringBuffer(ICDProposal.TRANSACTION_TEXT_PREFIX);
 		buffer.append("Edit ");
 		buffer.append(ImportProposalsUtil.getPropertyName(getOwlModel(), getPropertyId()));
-		buffer.append(". New value: ");
+		buffer.append("<br /><br />");
+		buffer.append("New value: <i>");
 		buffer.append(this.getNewValue());
 		if (this.getIdFromValueSet() != null) {
 			buffer.append(" (");
@@ -104,10 +105,11 @@ public class EditContentProposal extends ICDProposal {
 			buffer.append(this.getValueSetName());
 			buffer.append(")");
 		}
-		buffer.append(", Old value: ");
-		buffer.append(this.getOldValue());		
-		buffer.append(". See the full proposal in the ICD browser: ");
-		buffer.append(this.getUrl());
+		buffer.append("</i><br /><br />");
+		buffer.append("Old value: <i>");
+		buffer.append(this.getOldValue());
+		buffer.append("</i><br /><br />");
+		buffer.append(getHtmlUrl());
 		
 		return buffer.toString();
 	}

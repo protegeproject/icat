@@ -1,7 +1,5 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals;
 
-import java.io.File;
-
 import edu.stanford.smi.protege.util.ApplicationProperties;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.RDFProperty;
