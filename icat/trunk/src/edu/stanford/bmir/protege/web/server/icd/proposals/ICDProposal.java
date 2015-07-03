@@ -84,7 +84,7 @@ public abstract class ICDProposal {
 	
 	public void doImport(String user, ImportResult importResult) {
 		
-		if (checkData(null) == false) {
+		if (checkData(importResult) == false) {
 			return;
 		}
 		
@@ -175,10 +175,11 @@ public abstract class ICDProposal {
 					exists = true;
 				}
 				importResult.recordResult(this.getContributionId(), "The label of the contributable id does not match the oldValue.", ImportRowStatus.FAIL);
+			} else {
+				importResult.recordResult(this.getContributionId(), "The entity does not have the contributable id as its reified value.", ImportRowStatus.FAIL);
+				exists = false;
 			}
-			importResult.recordResult(this.getContributionId(), "The entity does not have the contributable id as its reified value.", ImportRowStatus.FAIL);
-			exists = false;
-		} else {
+		} else { //datatype property
 			if (entity.hasPropertyValue(prop, oldValue) == false) {
 				importResult.recordResult(this.getContributionId(), "The entity does not have oldValue as a value.", ImportRowStatus.FAIL);
 				exists = false;

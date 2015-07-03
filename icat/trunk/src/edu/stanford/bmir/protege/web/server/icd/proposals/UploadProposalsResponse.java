@@ -8,7 +8,7 @@ public class UploadProposalsResponse {
 		
 
 	public UploadProposalsResponse() {
-		this(200, "Nothing imported so far.");
+		this(200, "");
 	}
 	
 	public UploadProposalsResponse(int httpCode, String message) {
@@ -29,6 +29,11 @@ public class UploadProposalsResponse {
 	}
 
 	public void setMessage(String message) {
+		this.message = message;
+	}
+	
+	public void setResponse(int httpCode, String message) {
+		this.httpCode = httpCode;
 		this.message = message;
 	}
 	
