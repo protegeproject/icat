@@ -61,7 +61,8 @@ public class UploadProposals {
 			return Response.status(500).entity("Server error: Could not write proposals file to file system.").build();
 		}
 
-		UploadProposalsResponse response = new ImportProposals(owlModel, getUser(apiKey).getName()).importProposals(new File(serverPath));
+		UploadProposalsResponse response = new ImportProposals(owlModel, getUser(apiKey).getName()).
+				importProposals(new File(serverPath));
 			
 		return Response.status(response.getHttpCode()).entity(response.getMessage()).build();
 	}

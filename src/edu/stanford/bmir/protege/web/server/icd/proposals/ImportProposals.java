@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Date;
 import java.util.logging.Level;
 
 import edu.stanford.smi.protege.util.Log;
@@ -38,30 +39,45 @@ public class ImportProposals {
 	}
 
 	private void processFile(File proposalsFile) {
+		long t0 = System.currentTimeMillis();
+		Log.getLogger().info("Started import of ICD proposals on " + new Date());
+		int count = 0;
 		try {
 			BufferedReader input = new BufferedReader(new FileReader(proposalsFile));
 			try {
 				String line = null;
 				while ((line = input.readLine()) != null) {
 					if (line != null) {
+						count ++;
 						try {
 							processLine(line);
 						} catch (Exception e) {
-							Log.getLogger().log(Level.WARNING," Could not read line: " + line, e);
+							Log.getLogger().log(Level.WARNING,"Could not process line: " + line, e);
+						}
+						if (count % 100 == 0) {
+							Log.getLogger().info("Imported "+ count + " ICD proposals. Date: " + new Date());
 						}
 					}
 				}				
 			} catch (IOException e) {
-				Log.getLogger().log(Level.WARNING, "Error at parsing csv file: " + proposalsFile.getAbsolutePath(), e);
-				return;
+				Log.getLogger().log(Level.WARNING, "Error at accessing ICD proposals CSV file: " + proposalsFile.getAbsolutePath(), e);
+				response.setResponse(500, "Error at accessing the ICD proposals CSV file on the server filesystem.");
 			} finally {
 				if (input != null) {
 					input.close();
 				}
 			}
 		} catch (IOException ex) {
-			Log.getLogger().log(Level.WARNING, "Error at accessing csv file: " + proposalsFile.getAbsolutePath(), ex);
+			Log.getLogger().log(Level.WARNING, "Error at accessing ICD Proposal CSV file: " + proposalsFile.getAbsolutePath(), ex);
+			response.setResponse(500, "Error at accessing the ICD proposals CSV file on the server filesystem.");
 		}
+		long importTime = (System.currentTimeMillis() - t0)/1000;
+		Log.getLogger().info("Ended import of ICD proposals on " + new Date() + 
+				". Imported "+ count +" lines. Import took: " + importTime + " seconds.");
+		response.setResponse(200, "Import successful. \n"
+				+ "Imported " + count + " lines.\n" +
+				"Import took " + importTime + " seconds.\n\n" +
+				"Date: " + new Date());
 	}
 
 	private void processLine(String line) {
@@ -83,19 +99,21 @@ public class ImportProposals {
 		String idFromValueSet = getValue(values, 14);
 		String valueSetName = getValue(values, 15);
 		
-		if (ProposalTypes.AddContent.toString().equals(proposalGroupId)) {
+		//TODO: check the status, import only if accept
+		
+		if (ProposalTypes.AddContentProposal.toString().equals(proposalType)) {
 				ICDProposalFactory.createAddContentProposal(owlModel, contributionId, contributableId, 
 						entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
 						proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
 						doImport(user, importResult);
 				
-		} else if (ProposalTypes.EditContent.toString().equals(proposalGroupId)) {
+		} else if (ProposalTypes.EditContentProposal.toString().equals(proposalType)) {
 			ICDProposalFactory.createEditContentProposal(owlModel, contributionId, contributableId, 
 					entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
 					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
 					doImport(user, importResult);
 			
-		} else if (ProposalTypes.DeleteContent.toString().equals(proposalGroupId)) {
+		} else if (ProposalTypes.DeleteContentProposal.toString().equals(proposalType)) {
 			ICDProposalFactory.createDeleteContentProposal(owlModel, contributionId, contributableId, 
 					entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
 					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
