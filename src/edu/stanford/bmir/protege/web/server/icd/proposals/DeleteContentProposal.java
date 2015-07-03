@@ -47,7 +47,7 @@ public class DeleteContentProposal extends ICDProposal {
 	protected String getTransactionDescription() {
 		StringBuffer buffer = new StringBuffer(ICDProposal.TRANSACTION_TEXT_PREFIX);
 		buffer.append("Delete ");
-		buffer.append(TextUtil.getPropertyName(getOwlModel(), getPropertyId()));
+		buffer.append(ImportProposalsUtil.getPropertyName(getOwlModel(), getPropertyId()));
 		buffer.append(", Deleted value:");
 		buffer.append(this.getOldValue());
 		buffer.append(". See the full proposal in the ICD browser: ");
