@@ -1,6 +1,7 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,10 @@ public class ImportResult {
 	
 	public void recordResult(String contributionId, String message, ImportRowStatus status) {
 		addRow(new ImportResultRow(contributionId, new Date(), status, message));
+	}
+	
+	public List<ImportResultRow> getRows(){
+		return Collections.unmodifiableList(rows);
 	}
 	
 }

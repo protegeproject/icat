@@ -33,7 +33,7 @@ public class ImportProposals {
 
 	public UploadProposalsResponse importProposals(File proposalsFile) {
 		processFile(proposalsFile);
-				
+		new ImportResultWriter(importResult).writeImportOutput(response);
 		return response;
 	}
 
@@ -65,7 +65,7 @@ public class ImportProposals {
 	}
 
 	private void processLine(String line) {
-		String[] values = line.split("\\|");
+		String[] values = line.split(ImportProposalsUtil.getInputSeparator());
 		String contributionId = getValue(values, 0);
 		String contributableId = getValue(values, 1);
 		String entityId = getValue(values, 2);
