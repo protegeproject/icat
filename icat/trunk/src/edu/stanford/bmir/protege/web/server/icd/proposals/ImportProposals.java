@@ -62,6 +62,7 @@ public class ImportProposals {
 			} catch (IOException e) {
 				Log.getLogger().log(Level.WARNING, "Error at accessing ICD proposals CSV file: " + proposalsFile.getAbsolutePath(), e);
 				response.setResponse(500, "Error at accessing the ICD proposals CSV file on the server filesystem.");
+				return;
 			} finally {
 				if (input != null) {
 					input.close();
@@ -70,13 +71,25 @@ public class ImportProposals {
 		} catch (IOException ex) {
 			Log.getLogger().log(Level.WARNING, "Error at accessing ICD Proposal CSV file: " + proposalsFile.getAbsolutePath(), ex);
 			response.setResponse(500, "Error at accessing the ICD proposals CSV file on the server filesystem.");
+			return;
 		}
+		
 		long importTime = (System.currentTimeMillis() - t0)/1000;
+		
+		int successRowCount = importResult.getSuccessRowCount();
+		int ignoreRowCount = importResult.getIgnoreRowCount();
+		int failRowCount = importResult.getFailRowCount();
 		Log.getLogger().info("Ended import of ICD proposals on " + new Date() + 
-				". Imported "+ count +" lines. Import took: " + importTime + " seconds.");
-		response.setResponse(200, "Import successful. \n"
-				+ "Imported " + count + " lines.\n" +
-				"Import took " + importTime + " seconds.\n\n" +
+				". Processed "+ count +" lines. Import took: " + importTime + " seconds.\n"
+						+ "Success rows: " + successRowCount + 
+						" Ignored rows: " + ignoreRowCount + 
+						" Failed rows: " + failRowCount);
+		response.setResponse(200,
+				"Processed " + count + " lines. \n" +
+				"Success rows: " + successRowCount + ". \n" + 
+				"Ignored rows: " + ignoreRowCount + ". \n" + 
+				"Failed rows: " + failRowCount + ". \n" + 
+				"Import took " + importTime + " seconds. \n\n" +
 				"Date: " + new Date());
 	}
 

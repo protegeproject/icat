@@ -21,4 +21,27 @@ public class ImportResult {
 		return Collections.unmodifiableList(rows);
 	}
 	
+	public int getSuccessRowCount() {
+		return getRowWithStatusCount(ImportRowStatus.SUCCESS);
+	}
+	
+	public int getIgnoreRowCount() {
+		return getRowWithStatusCount(ImportRowStatus.IGNORED);
+	}
+	
+	public int getFailRowCount() {
+		return getRowWithStatusCount(ImportRowStatus.FAIL);
+	}
+	
+	public int getRowWithStatusCount(ImportRowStatus status) {
+		int count = 0;
+		for (ImportResultRow row : rows) {
+			if (status.toString().equals(row.getStatus())) {
+				count ++;
+			}
+		}
+		return count;
+	}
+	
+	
 }
