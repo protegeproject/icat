@@ -20,7 +20,8 @@ public class ImportResultWriter {
 		this.importResult = importResult;
 	}
 	
-	public void writeImportOutput(UploadProposalsResponse response) {
+	// Only one thread should write to the file at a time
+	public synchronized void writeImportOutput(UploadProposalsResponse response) {
 		
 		checkExistingFile();
 		File outputFile = new File(ImportProposalsUtil.getResultOutputPath());
