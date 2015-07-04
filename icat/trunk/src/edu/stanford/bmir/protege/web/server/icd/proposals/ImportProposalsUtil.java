@@ -17,7 +17,8 @@ public class ImportProposalsUtil {
 	private static int RESULT_OUTPUT_FILE_MAX_SIZE_DEFAULT = 10 * 1000000; //10 MB
 	
 	private static final String NA = "NA";
-
+	private static final String ACCEPTED_STATUS = "Accepted";
+	
 	public static final String getPropertyName(OWLModel owlModel, String propertyId) {
 		RDFProperty prop = owlModel.getRDFProperty(propertyId);
 		return prop == null ? "(property not found)" : prop.getBrowserText(); 		
@@ -41,6 +42,10 @@ public class ImportProposalsUtil {
 	
 	public static String getNAString() {
 		return NA;
+	}
+	
+	public static String getAcceptedStatusString() {
+		return ACCEPTED_STATUS;
 	}
 	
 }
