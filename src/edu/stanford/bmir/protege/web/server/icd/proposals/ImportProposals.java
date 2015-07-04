@@ -45,7 +45,11 @@ public class ImportProposals {
 
 		int count = 0;
 		CSVReader reader = null;
+		boolean eventGenerationEnabled = true;
 		try {
+			//disable event generation, so that the clients do not get hundreds or thousand
+			//of events at the same time; big performance impact for the client
+			eventGenerationEnabled = owlModel.setGenerateEventsEnabled(false);
 			reader = new CSVReader(new FileReader(proposalsFile), '|');
 			String[] nextLine;
 			while ((nextLine = reader.readNext()) != null) {
@@ -66,6 +70,8 @@ public class ImportProposals {
 			response.setResponse(500, "Error at accessing the ICD proposals CSV file on the server filesystem.");
 			return;
 		} finally {
+			//renable events
+			owlModel.setGenerateEventsEnabled(eventGenerationEnabled);
 			if (reader != null) {
 				try {
 					reader.close();
@@ -114,7 +120,10 @@ public class ImportProposals {
 		String idFromValueSet = getValue(values, 14);
 		String valueSetName = getValue(values, 15);
 		
-		//TODO: check the status, import only if accept
+		if (ImportProposalsUtil.getAcceptedStatusString().equals(status) == false) {
+			importResult.recordResult(contributionId, "Proposal status is not 'Accepted'.", ImportRowStatus.IGNORED);
+			return;
+		}
 		
 		if ( ProposalTypes.AddContentProposal.toString().equals(proposalType) ||
 				//Public platform exception: definition and title have always edit proposals,
