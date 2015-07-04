@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Level;
 
+import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
+
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 
@@ -114,7 +116,11 @@ public class ImportProposals {
 		
 		//TODO: check the status, import only if accept
 		
-		if (ProposalTypes.AddContentProposal.toString().equals(proposalType)) {
+		if ( ProposalTypes.AddContentProposal.toString().equals(proposalType) ||
+				//Public platform exception: definition and title have always edit proposals,
+				//even if it is an add. In that case, the contributableId is NA.
+				( ProposalTypes.EditContentProposal.toString().equals(proposalType) && 
+				  ImportProposalsUtil.getNAString().equals(contributableId)) ) {
 				ICDProposalFactory.createAddContentProposal(owlModel, contributionId, contributableId, 
 						entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
 						proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
