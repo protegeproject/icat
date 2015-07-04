@@ -1,13 +1,12 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Level;
 
-import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
+import com.opencsv.CSVReader;
 
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
@@ -43,60 +42,61 @@ public class ImportProposals {
 	private void processFile(File proposalsFile) {
 		long t0 = System.currentTimeMillis();
 		Log.getLogger().info("Started import of ICD proposals on " + new Date());
+
 		int count = 0;
+		CSVReader reader = null;
 		try {
-			BufferedReader input = new BufferedReader(new FileReader(proposalsFile));
-			try {
-				String line = null;
-				while ((line = input.readLine()) != null) {
-					if (line != null) {
-						count ++;
-						try {
-							processLine(line);
-						} catch (Exception e) {
-							Log.getLogger().log(Level.WARNING,"Could not process line: " + line, e);
-						}
-						if (count % 100 == 0) {
-							Log.getLogger().info("Imported "+ count + " ICD proposals. Date: " + new Date());
-						}
-					}
-				}				
-			} catch (IOException e) {
-				Log.getLogger().log(Level.WARNING, "Error at accessing ICD proposals CSV file: " + proposalsFile.getAbsolutePath(), e);
-				response.setResponse(500, "Error at accessing the ICD proposals CSV file on the server filesystem.");
-				return;
-			} finally {
-				if (input != null) {
-					input.close();
+			reader = new CSVReader(new FileReader(proposalsFile), '|');
+			String[] nextLine;
+			while ((nextLine = reader.readNext()) != null) {
+				count++;
+				try {
+					processLine(nextLine);
+				} catch (Exception e) {
+					Log.getLogger().log(Level.WARNING, "Could not process line no. " + count, e);
+				}
+				
+				if (count % 100 == 0) {
+					Log.getLogger().info("Imported " + count + " ICD proposals. Date: "	+ new Date());
 				}
 			}
-		} catch (IOException ex) {
-			Log.getLogger().log(Level.WARNING, "Error at accessing ICD Proposal CSV file: " + proposalsFile.getAbsolutePath(), ex);
+		} catch (IOException e) {
+			Log.getLogger().log(Level.WARNING, "Error at accessing ICD proposals CSV file: "
+							+ proposalsFile.getAbsolutePath(), e);
 			response.setResponse(500, "Error at accessing the ICD proposals CSV file on the server filesystem.");
 			return;
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					Log.getLogger().log(Level.WARNING, "Error at closing the ICD proposals CSV file reader: "
+							+ proposalsFile.getAbsolutePath(), e);
+					response.setResponse(500, "Error at closing the ICD proposals CSV file reader.");
+					return;
+				}
+			}
 		}
-		
-		long importTime = (System.currentTimeMillis() - t0)/1000;
-		
+
+		long importTime = (System.currentTimeMillis() - t0) / 1000;
+
 		int successRowCount = importResult.getSuccessRowCount();
 		int ignoreRowCount = importResult.getIgnoreRowCount();
 		int failRowCount = importResult.getFailRowCount();
-		Log.getLogger().info("Ended import of ICD proposals on " + new Date() + 
-				". Processed "+ count +" lines. Import took: " + importTime + " seconds.\n"
-						+ "Success rows: " + successRowCount + 
-						" Ignored rows: " + ignoreRowCount + 
-						" Failed rows: " + failRowCount);
-		response.setResponse(200,
-				"Processed " + count + " lines. \n" +
-				"Success rows: " + successRowCount + ". \n" + 
-				"Ignored rows: " + ignoreRowCount + ". \n" + 
-				"Failed rows: " + failRowCount + ". \n" + 
-				"Import took " + importTime + " seconds. \n\n" +
-				"Date: " + new Date());
+		Log.getLogger().info(
+				"Ended import of ICD proposals on " + new Date()
+						+ ". Processed " + count + " lines. Import took: "
+						+ importTime + " seconds.\n" + "Success rows: "
+						+ successRowCount + " Ignored rows: " + ignoreRowCount
+						+ " Failed rows: " + failRowCount);
+		response.setResponse(200, "Processed " + count + " lines. \n"
+				+ "Success rows: " + successRowCount + ". \n"
+				+ "Ignored rows: " + ignoreRowCount + ". \n" + "Failed rows: "
+				+ failRowCount + ". \n" + "Import took " + importTime
+				+ " seconds. \n\n" + "Date: " + new Date());
 	}
 
-	private void processLine(String line) {
-		String[] values = line.split(ImportProposalsUtil.getInputSeparator());
+	private void processLine(String[] values) {
 		String contributionId = getValue(values, 0);
 		String contributableId = getValue(values, 1);
 		String entityId = getValue(values, 2);
@@ -146,19 +146,7 @@ public class ImportProposals {
 
 
 	private String getValue(String[] values, int i) {
-		return i < values.length ? removeQuotes(values[i]) : null;
+		return i < values.length ? values[i] : null;
 	}
-
-	private String removeQuotes(String str) {
-		if (str == null) {
-			return null;
-		}
-		String ret = str.trim();
-		if (str.startsWith("\"") && str.endsWith("\"")) {
-			ret = str.substring(1, str.length() - 1);
-		}
-		return ret.trim();
-	}
-
 	
 }

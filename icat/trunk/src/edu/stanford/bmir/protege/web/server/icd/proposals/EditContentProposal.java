@@ -98,7 +98,8 @@ public class EditContentProposal extends ICDProposal {
 		buffer.append("<br /><br />");
 		buffer.append("New value: <i>");
 		buffer.append(this.getNewValue());
-		if (this.getIdFromValueSet() != null) {
+		String idFromValueSet = this.getIdFromValueSet();
+		if (idFromValueSet != null && idFromValueSet.isEmpty() == false) {
 			buffer.append(" (");
 			buffer.append(this.getIdFromValueSet());
 			buffer.append(", ");
