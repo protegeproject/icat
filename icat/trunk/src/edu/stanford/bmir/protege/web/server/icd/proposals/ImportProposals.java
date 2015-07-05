@@ -6,8 +6,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Level;
 
-import com.opencsv.CSVReader;
-
+import au.com.bytecode.opencsv.CSVReader;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 
