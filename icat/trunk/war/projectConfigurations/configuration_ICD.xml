@@ -681,6 +681,7 @@
 											</map>
 										</entry>
 									</map>
+
 <!-- ICD International -> Definition (Post-Coordination Value Set) -->
 									<map>
 										<entry>
@@ -1760,6 +1761,254 @@
 											</map>
 										</entry>
 									</map>
+
+<!-- ICD International -> Linearization  (Post-Coordination Value Set) -->
+									<map>
+										<entry>
+											<string>title</string>
+											<string>Classification Properties (Value Set)</string>
+										</entry>
+										
+										<entry>
+											<string>types_all</string>
+											<list>
+												<string>http://who.int/icd#LinearizationSection</string>
+												<string>http://who.int/icd#ValueMetaClass</string>
+											</list>
+										</entry>
+										
+										<!-- entry>
+											<string>http://who.int/icd#hasType</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>Type</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Type</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>Some tooltip about the type</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>instanceradiobutton</string>
+												</entry>
+												<entry>
+													<string>allowed_values</string>
+													<map>
+														<entry>
+															<string>ExtensionCode</string>
+															<string>http://who.int/icd#ExtensionCode???</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>disabled</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>0</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>150</string>
+												</entry>
+											</map>
+										</entry -->
+										
+										<entry>
+											<string>http://who.int/icd#linearization</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>linearization</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Use</string>
+												</entry>
+										
+												<!-- Restrict editing of linearizations to "linearization editors", WHO and Stanford teams -->
+												<entry>
+													<string>writeAccessGroups</string>
+													<list>
+														<string>LinearizationEditors</string>
+														<string>WHOTeam</string>
+														<string>Stanford</string>
+													</list>
+												</entry>
+												
+												<entry>
+													<string>tooltip</string>
+													<string>DRAFT HINT: Specifies the linearization in which this category should be used</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://protegewiki.stanford.edu/wiki/ICatLinearization</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>icdlinearization_grid</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>1</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>420</string>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Linearization</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>190</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#linearizationView</string>
+														</entry>
+														<!-- entry>
+															<string>sorted</string>
+															<boolean>true</boolean>
+														</entry-->
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column2</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Is part of?</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Is Included In Linearization?</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<!-- string>150</string-->
+															<string>60</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isIncludedInLinearization</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>1</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column3</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Is grouping?</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Will this concept become a grouping (i.e. chapter, block, sub-block) in this linearization?</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<!-- string>150</string-->
+															<string>71</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isGrouping</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>2</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column4</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Linearization Parent</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#linearizationParent</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>3</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column5</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Sorting label</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Edit linearization specific sorting label only if it is different from the default sorting label</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>72</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#linearizationSortingLabel</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>4</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>topClass</string>
+													<string>http://who.int/icd#ICDCategory</string>
+												</entry>
+											</map>
+										</entry>
+									</map>
+
 <!-- ICD International -> Post-coordination -->
 									<map>
 										<entry>
@@ -6238,12 +6487,6 @@
 												<string>http://who.int/icd#TermSection</string>
 											</list>
 										</entry>
-										<entry>
-											<string>types_not</string>
-											<list>
-												<string>http://who.int/icd#ValueMetaClass</string>
-											</list>
-										</entry>
 										
 										<entry>
 											<string>http://who.int/icd#baseIndex</string>
@@ -6557,115 +6800,6 @@
 												</entry>
 											</map>
 										</entry>
-									</map>
-
-<!-- ICD International -> Terms (Post-Coordination Value Set) -->
-									<map>
-										<entry>
-											<string>title</string>
-											<string>Terms (Value Set)</string>
-										</entry>
-										
-										<entry>
-											<string>types_all</string>
-											<list>
-												<string>http://who.int/icd#TermSection</string>
-												<string>http://who.int/icd#ValueMetaClass</string>
-											</list>
-										</entry>
-										
-										<entry>
-											<string>http://who.int/icd#baseIndex</string>
-											<map>
-												<entry>
-													<string>name</string>
-													<string>BaseIndex</string>
-												</entry>
-												<entry>
-													<string>ont_type</string>
-													<string>http://who.int/icd#BaseIndexTerm</string>
-												</entry>
-												<entry>
-													<string>label</string>
-													<string>Base Index Terms</string>
-												</entry>
-												<entry>
-													<string>tooltip</string>
-													<string>Base Index Terms indicate language terms that may correspond with ICD entities and consist of Synonyms and Narrower Terms. Some of these base index terms may be used also as base inclusion terms (please mark them, if it is the case).</string>
-												</entry>
-												<entry>
-													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#baseIndexTerms</string>
-												</entry>
-												<entry>
-													<string>component_type</string>
-													<string>icdindex_grid</string>
-												</entry>
-												<entry>
-													<string>show_add_existing</string>
-													<boolean>false</boolean>
-												</entry>
-												<entry>
-													<string>index</string>
-													<string>0</string>
-												</entry>
-												<entry>
-													<string>height</string>
-													<string>200</string>
-												</entry>
-												<entry>
-													<string>Column1</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>label</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>all</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>0</string>
-														</entry>
-														<entry>
-															<string>field_editor</string>
-															<string>inline</string>
-														</entry>
-														<entry>
-															<string>sorted</string>
-															<boolean>true</boolean>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column2</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>types</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>50</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>1</string>
-														</entry>
-													</map>
-												</entry>
-											</map>
-										</entry>
-
 									</map>
 
 <!-- ICD International -> Clinical Description -->
