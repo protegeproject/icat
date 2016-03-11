@@ -177,6 +177,12 @@ public abstract class ICDProposal {
 			if (entity.hasPropertyValue(prop, contributableEntity) == true) {
 				RDFProperty labelProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.LABEL_PROP);
 				String label = (String) contributableEntity.getPropertyValue(labelProp);
+				if (label != null) {
+					label = label.trim();
+				}
+				if (oldValue != null) {
+					oldValue = oldValue.trim();
+				}
 				if (oldValue != null && oldValue.equals(label)) {
 					exists = true;
 				}
