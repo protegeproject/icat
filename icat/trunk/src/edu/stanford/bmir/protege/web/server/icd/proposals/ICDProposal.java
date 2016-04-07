@@ -185,8 +185,9 @@ public abstract class ICDProposal {
 				}
 				if (oldValue != null && oldValue.equals(label)) {
 					exists = true;
+				} else {
+					importResult.recordResult(this.getContributionId(), "The label of the contributable id does not match the oldValue.", ImportRowStatus.FAIL);
 				}
-				importResult.recordResult(this.getContributionId(), "The label of the contributable id does not match the oldValue.", ImportRowStatus.FAIL);
 			} else {
 				importResult.recordResult(this.getContributionId(), "The entity does not have the contributable id as its reified value.", ImportRowStatus.FAIL);
 				exists = false;
@@ -195,8 +196,9 @@ public abstract class ICDProposal {
 			if (entity.hasPropertyValue(prop, oldValue) == false) {
 				importResult.recordResult(this.getContributionId(), "The entity does not have oldValue as a value.", ImportRowStatus.FAIL);
 				exists = false;
+			} else {
+				exists = true;
 			}
-			exists = true;
 		}
 		
 		return exists;
