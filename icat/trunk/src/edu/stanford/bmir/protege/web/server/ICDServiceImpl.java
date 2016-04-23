@@ -121,10 +121,10 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
             }
         }
 
-   	 /* Add the public ID - before used to be in create class transaction, but now it is done 
- 	   as a separate operation, because it often fails, and because 
- 	   of an impossible to diagnose ClassNotFound for the org.apache.http.client.ClientProtocolException 
- 	 */
+	   	 /* Add the public ID - before used to be in create class transaction, but now it is done 
+	 	   	as a separate operation, because it often fails, and because 
+	 	   	of an impossible to diagnose ClassNotFound for the org.apache.http.client.ClientProtocolException 
+	 	 */
         try {
             publicId = ICDIDUtil.getPublicId(cls.getName());
             if (publicId == null) {
