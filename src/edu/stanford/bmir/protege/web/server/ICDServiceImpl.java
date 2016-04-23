@@ -104,14 +104,6 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
                     cls.setPropertyValue(cm.getSortingLabelProperty(), sortingLabel);
                 }
 
-                //add the public ID
-                publicId = ICDIDUtil.getPublicId(cls.getName());
-                if (publicId == null) {
-                    Log.getLogger().warning("Could not get public ID for newly created class: " + cls.getName());
-                } else {
-                    cls.setPropertyValue(cm.getPublicIdProperty(), publicId);
-                }
-
                 addChildToIndex(cls, superClsNames, isSiblingIndexValid);
 
                 if (runsInTransaction) {
@@ -129,6 +121,25 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
             }
         }
 
+   	 /* Add the public ID - before used to be in create class transaction, but now it is done 
+ 	   as a separate operation, because it often fails, and because 
+ 	   of an impossible to diagnose ClassNotFound for the org.apache.http.client.ClientProtocolException 
+ 	 */
+        try {
+            publicId = ICDIDUtil.getPublicId(cls.getName());
+            if (publicId == null) {
+                Log.getLogger().warning("Could not get public ID for newly created class: " + cls.getName());
+            } else {
+                cls.setPropertyValue(cm.getPublicIdProperty(), publicId);
+            }
+          //TT - 2016.04.23 - Throwable because of the ClassNotFound error, which we could not diagnose
+		} catch (Throwable e) { 
+			Log.getLogger().log(Level.WARNING, "Could not add public ID in " + projectName + " for class: " + clsName, e);
+		}
+        
+        //TODO: If the class creation fails for some reason, and the code makes it so far, then we
+        //should not return an entity, but rather throw an exception.
+        
         //TODO: the note is not created here anymore, but with a different remote call from the client
         //so, theoretically, we do no need the reason for change here, but it doesn't hurt for now
         EntityData entityData = createEntityData(cls, false);
