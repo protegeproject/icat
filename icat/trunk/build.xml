@@ -179,7 +179,7 @@
        <!-- protege-owl -->
        <fileset dir = "${protege.home}/plugins/${owl.path}" 
                 includes = "**/*.jar" 
-                excludes = "ekitspell.jar, json.jar, junit.jar, kazuki.jar, lucene-core-2.3.1.jar, swrl-jess-bridge.jar, commons-lang-2.0.jar"/>
+                excludes = "ekitspell.jar, json.jar, junit.jar, kazuki.jar, lucene-core-2.3.1.jar, swrl-jess-bridge.jar, commons-lang-2.0.jar, log4j-1.2.12.jar"/>
        <fileset dir = "${protege.home}/plugins/edu.stanford.smi.protegex.rdf_backend" 
                 includes = "**/*.jar"
                 excludes = "xerces.jar"/>
