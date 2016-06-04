@@ -1049,7 +1049,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 				//TODO deal with (or at least check for) multiple ranges (compare with rev. 27220)
 				RDFResource range = prop.getRange();
 				if (range == null) {
-					Log.getLogger().warning("It is not possible to retrieve the (fixed) scale values for property " + property + " because it's range ot set");
+					Log.getLogger().warning("It is not possible to retrieve the (fixed) scale values for property " + property + " because it's range is not set");
 				}
 				else {
 					OWLClass rangeCls = (OWLClass) range;
