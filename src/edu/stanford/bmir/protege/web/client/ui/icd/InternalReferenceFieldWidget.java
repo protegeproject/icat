@@ -1,4 +1,4 @@
-package edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm;
+package edu.stanford.bmir.protege.web.client.ui.icd;
 
 import java.util.Collection;
 import java.util.Map;
@@ -24,6 +24,9 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.ProjectConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet;
+import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
+import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.InstanceGridWidgetConstants;
+import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.ReferenceFieldWidget;
 import edu.stanford.bmir.protege.web.client.ui.selection.Selectable;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
@@ -165,7 +168,8 @@ public class InternalReferenceFieldWidget extends ReferenceFieldWidget {
 	
 	public Selectable getSelectable() {
 		if (selectable == null) {
-			ClassTreePortlet selectableTree = new ClassTreePortlet(getProject(), false, false, false, true, topClass);
+			ClassTreePortlet selectableTree = new ICDClassTreePortlet(getProject(), true, false, false, true, topClass);
+			selectableTree.disableCreate();
 			selectableTree.setDraggable(false);
 			selectableTree.setClosable(false);
 			selectableTree.setCollapsible(false);

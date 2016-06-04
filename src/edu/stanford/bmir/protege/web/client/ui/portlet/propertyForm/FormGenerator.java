@@ -22,6 +22,7 @@ import edu.stanford.bmir.protege.web.client.ui.icd.ICDIndexWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDLinearizationWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDTitleWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.InheritedTagsGrid;
+import edu.stanford.bmir.protege.web.client.ui.icd.InternalReferenceFieldWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.pc.CustomScaleValueSelector;
 import edu.stanford.bmir.protege.web.client.ui.icd.pc.FixedScaleValuePresenter;
 import edu.stanford.bmir.protege.web.client.ui.icd.pc.FixedScaleValueSelector;

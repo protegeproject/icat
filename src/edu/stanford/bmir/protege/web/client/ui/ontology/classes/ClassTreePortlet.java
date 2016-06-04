@@ -117,6 +117,8 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
     private boolean showToolbar = true;
     private boolean showTitle = true;
     private boolean showTools = true;
+    private boolean createEnabled = true;
+    private boolean deleteEnabled = true;
 
     private boolean allowsMultiSelection = false;
     private String hierarchyProperty = null;
@@ -361,7 +363,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             treePanel.setSelectionModel(new MultiSelectionModel());
         }
 
-        if (shouldEnableDragNDrop() == true) {
+        if (isDragNDropEnabled() == true) {
             treePanel.setEnableDD(true);
             addDragAndDropSupport();
         }
@@ -382,7 +384,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         return treePanel;
     }
 
-    protected boolean shouldEnableDragNDrop() {
+    protected boolean isDragNDropEnabled() {
         return true;
     }
 
@@ -496,6 +498,14 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         }
     }
 
+    protected boolean isCreateEnabled() {
+    	return createEnabled;
+    }
+
+    protected boolean isDeleteEnabled() {
+    	return deleteEnabled && getDeleteEnabled();
+    }
+    
     protected ToolbarButton createCreateButton() {
         createButton = new ToolbarButton(getCreateClsLabel());
         createButton.setCls("toolbar-button");
@@ -508,6 +518,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             }
         });
         createButton.setDisabled(!project.hasWritePermission(GlobalSettings.getGlobalSettings().getUserName()));
+        createButton.setDisabled(!isCreateEnabled());
         return createButton;
     }
 
@@ -525,7 +536,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             }
         });
         deleteButton.setDisabled(!project.hasWritePermission(GlobalSettings.getGlobalSettings().getUserName()));
-        deleteButton.setDisabled(!getDeleteEnabled());
+        deleteButton.setDisabled(!isDeleteEnabled());
         return deleteButton;
     }
 
@@ -1469,10 +1480,10 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
 
     public void updateButtonStates() {
         if (project.hasWritePermission(GlobalSettings.getGlobalSettings().getUserName())) {
-            if (createButton != null) {
+            if (createButton != null && isCreateEnabled()) {
                 createButton.enable();
             }
-            if (deleteButton != null && getDeleteEnabled()) {
+            if (deleteButton != null && isDeleteEnabled()) {
                 deleteButton.enable();
             }
         } else {
@@ -1489,6 +1500,26 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         }
     }
 
+    public void enableCreate() {
+    	createButton.enable();
+    	createEnabled = true;
+    }
+    
+    public void disableCreate() {
+    	createButton.disable();
+    	createEnabled = false;
+    }
+    
+    public void enableDelete() {
+    	deleteButton.enable();
+    	deleteEnabled = true;
+    }
+    
+    public void disableDelete() {
+    	deleteButton.disable();
+    	deleteEnabled = false;
+    }
+    
     public String getNodeClsName(final Node node) {
         final EntityData data = (EntityData) node.getUserObject();
         return data.getName();
