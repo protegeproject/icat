@@ -93,6 +93,7 @@ public class FormConstants {
 	public static final String REFERENCED_VALUE_PROP="referenced_value_prop";
 
 	public static final String FIELD_TYPE_LINK_ICON = "linkicon";
+	public static final String FIELD_TYPE_NO_LINK = "nolink";
 	public static final String FIELD_TYPE_CHECKBOX = "checkbox";
 	public static final String FIELD_TYPE_CHECKBOX_IMPORTANT = "checkbox_important";
 	public static final String FIELD_TYPE_RADIO = "radio";
