@@ -2830,7 +2830,7 @@
 														</entry>
 														<entry>
 															<string>tooltip</string>
-															<string>Injury specific -&gt; Fracture Subtype</string>
+															<string>Injury specific -&gt; Fracture -&gt; Fracture Subtype</string>
 														</entry>
 														<entry>
 															<string>headerCssClass</string>
@@ -2860,10 +2860,104 @@
 															<string>field_align</string>
 															<string>center</string>
 														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>ivory</string>
+														</entry>
 													</map>
 												</entry>
 												<entry>
 													<string>Column19</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Fracture Open/Close</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Injury specific -&gt; Fracture -&gt; Fracture Open/Close</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#fractureOpenOrClosed</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>18</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>ivory</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column20</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Joint involv. in Fracture</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Injury specific -&gt; Fracture -&gt; Joint involv. in Fracture</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#jointInvolvementInFracture</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>19</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>ivory</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column21</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2891,7 +2985,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>18</string>
+															<string>20</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2904,7 +2998,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column20</string>
+													<string>Column22</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2928,11 +3022,11 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#customBurnScaleValue</string>
+															<string>http://who.int/icd#burnQualifier</string>
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>19</string>
+															<string>21</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2945,7 +3039,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column21</string>
+													<string>Column23</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -2973,7 +3067,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>20</string>
+															<string>22</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -2990,7 +3084,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column22</string>
+													<string>Column24</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -3018,7 +3112,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>21</string>
+															<string>23</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -3035,7 +3129,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column23</string>
+													<string>Column25</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -3063,7 +3157,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>22</string>
+															<string>24</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -3080,15 +3174,15 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column24</string>
+													<string>Column26</string>
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Assocaiated With</string>
+															<string>Associated With</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
-															<string>Assocaiated With another ICD Entity</string>
+															<string>Associated With another ICD Entity</string>
 														</entry>
 														<entry>
 															<string>headerCssClass</string>
@@ -3108,7 +3202,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>23</string>
+															<string>25</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -4314,6 +4408,73 @@
 										</entry>
 										
 										<entry>
+											<string>http://who.int/icd#associatedWith</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>AssociatedWith</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#AssociatedWithReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#ICDCategory</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Associated With</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#associatedWith</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>11</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
 											<string>PCFixedScaleRuler</string>
 											<map>
 												<entry>
@@ -4326,7 +4487,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>11</string>
+													<string>12</string>
 												</entry>
 												<entry>
 													<string>load_url</string>
@@ -4360,7 +4521,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>12</string>
+													<string>13</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -4398,6 +4559,42 @@
 															<string>Serotype</string>
 									            			<string>http://who.int/icd#serotype</string><!--????-->
 														</entry>
+														
+														
+														<entry>
+															<string>Fracture Open or Closed</string>
+									            			<string>http://who.int/icd#fractureOpenOrClosed</string>
+														</entry>
+														<entry>
+															<string>Fracture Subtype</string>
+									            			<string>http://who.int/icd#fractureSubtype</string>
+														</entry>
+														<entry>
+															<string>Joint Involvement in Fracture</string>
+									            			<string>http://who.int/icd#jointInvolvementInFracture</string>
+														</entry>
+														<entry>
+															<string>Type of Injury</string>
+									            			<string>http://who.int/icd#typeOfInjury</string>
+														</entry>
+														<entry>
+															<string>Burn Qualifier</string>
+									            			<string>http://who.int/icd#burnQualifier</string>
+														</entry>
+														<entry>
+															<string>Extent of Burn by Body Surface</string>
+									            			<string>http://who.int/icd#extentOfBurnByBodySurface</string>
+														</entry>
+														<entry>
+															<string>Extent of Full Thickness Burn by Body Surface</string>
+									            			<string>http://who.int/icd#extentOfFullThicknessBurnByBodySurface</string>
+														</entry>
+														<entry>
+															<string>Outcome of Full Thickness Burn</string>
+									            			<string>http://who.int/icd#outcomeOfFullThicknessBurn</string>
+														</entry>
+														
+														
 														<entry>
 															<string>Duration of Coma</string>
 									            			<string>http://who.int/icd#durationOfComa</string>
@@ -4444,6 +4641,14 @@
 										            			<string>http://who.int/icd#hasGCSMotorScore</string>
 										            			<string>http://who.int/icd#hasGCSVerbalScore</string>>
 										            			<string>http://who.int/icd#hasPupilReactionScore</string>
+															</list>
+														</entry>
+														<entry>
+															<string>http://who.int/icd#burnQualifier</string>
+															<list>
+																<string>http://who.int/icd#extentOfBurnByBodySurface</string>
+										            			<string>http://who.int/icd#extentOfFullThicknessBurnByBodySurface</string>
+										            			<string>http://who.int/icd#outcomeOfFullThicknessBurn</string>
 															</list>
 														</entry>
 													</map>
