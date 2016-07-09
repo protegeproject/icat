@@ -107,8 +107,12 @@ public abstract class ICDProposal {
 	}
 	
 	public String getHtmlUrl() {
+		String url = getUrl();
+		if (url == null || url.length() == 0) {
+			return "";
+		}
 		StringBuffer buffer = new StringBuffer("<a href=\"");
-		buffer.append(getUrl());
+		buffer.append(url);
 		buffer.append("\" target=\"_blank\">See full proposal in the ICD Public Browser</a>");
 		return buffer.toString();
 	}
