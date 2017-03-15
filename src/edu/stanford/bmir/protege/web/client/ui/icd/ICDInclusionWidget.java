@@ -241,8 +241,8 @@ public class ICDInclusionWidget extends InstanceGridWidget {
                 } else {
                     Record record = getStore().getAt(rowIndex);
                     if (record != null) {
-                        String valueType = record.getAsString("valueType");
-                        if (valueType != null && (!valueType.equalsIgnoreCase("string"))) {
+                        String fieldValueType = (String) getColumnConfiguration(colIndex, FormConstants.FIELD_VALUE_TYPE);
+                        if (fieldValueType != null && (!fieldValueType.equalsIgnoreCase("string"))) {
                             //TODO - implement later
                         }
                     }

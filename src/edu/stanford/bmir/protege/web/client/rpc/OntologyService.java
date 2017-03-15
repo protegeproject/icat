@@ -172,6 +172,9 @@ public interface OntologyService extends RemoteService {
 
     public List<EntityData> getDirectTypes(String projectName, String instanceName);
 
+	public EntityData[] createPropertyValueInstances(String projectName, EntityData rootSubject, String[] properties, String[] types, String user,
+            String operationDescription);
+
     /*
      * Search
      */

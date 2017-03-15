@@ -275,6 +275,11 @@ public class OntologyServiceManager {
                 instancePropertyEntity, valueEntityData, user, operationDescription, cb);
     }
 
+	public void createPropertyValueInstances(String projectName, EntityData rootSubject, String[] properties,
+			String[] types, String user, String operationDescription, AbstractAsyncHandler<EntityData[]> cb) {
+		proxy.createPropertyValueInstances(projectName, rootSubject, properties, types, user, operationDescription, cb);
+	}
+
     /*
      * Search
      */

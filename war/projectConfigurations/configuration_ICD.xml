@@ -697,7 +697,7 @@
 												<string>http://who.int/icd#ValueMetaClass</string>
 											</list>
 										</entry>
-
+										
 										<entry>
 											<string>types_not</string>
 											<list>
@@ -2137,6 +2137,10 @@
 															<boolean>true</boolean>
 														</entry-->
 														<entry>
+															<string>read_only</string>
+															<boolean>true</boolean>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>0</string>
 														</entry>
@@ -2229,6 +2233,10 @@
 															<string>index</string>
 															<string>3</string>
 														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>class_browsertext</string>
+														</entry>
 													</map>
 												</entry>
 												<entry>
@@ -2236,23 +2244,84 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Sorting label</string>
+															<string>Coding notes</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
-															<string>Edit linearization specific sorting label only if it is different from the default sorting label</string>
+															<string>Edit linearization specific coding notes for this entity</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>72</string>
+															<string>74</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#linearizationSortingLabel</string>
+															<string>http://who.int/icd#label</string>
 														</entry>
 														<entry>
 															<string>index</string>
 															<string>4</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>string</string>
+														</entry>
+														<entry>
+															<string>subject_column_index</string>
+															<string>6</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>multiline_icon</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column6</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Coding notes (inst)</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Coding notes instance for this entity. Should not be edited</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>74</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#codingNote</string>
+														</entry>
+														<entry>
+															<string>ont_type</string>
+															<string>http://who.int/icd#CodingNoteTerm</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>5</string>
+														</entry>
+														<entry>
+															<string>hidden</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>read_only</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>instance_browsertext</string>
 														</entry>
 													</map>
 												</entry>
@@ -2540,6 +2609,10 @@
 															<boolean>true</boolean>
 														</entry-->
 														<entry>
+															<string>read_only</string>
+															<boolean>true</boolean>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>0</string>
 														</entry>
@@ -2763,7 +2836,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column25</string>
+													<string>Column27</string>
 													<map>
 														<entry>
 															<string>clone_of</string>
@@ -2771,7 +2844,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>24</string>
+															<string>26</string>
 														</entry>
 													</map>
 												</entry>
@@ -5124,6 +5197,10 @@
 															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
+															<string>field_type</string>
+															<string>class_browsertext</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>0</string>
 														</entry>
@@ -5297,7 +5374,7 @@
 																<string>http://who.int/icd#hasGCSScore</string>
 										            			<string>http://who.int/icd#hasGCSEyeScore</string>
 										            			<string>http://who.int/icd#hasGCSMotorScore</string>
-										            			<string>http://who.int/icd#hasGCSVerbalScore</string>>
+										            			<string>http://who.int/icd#hasGCSVerbalScore</string>
 										            			<string>http://who.int/icd#hasPupilReactionScore</string>
 															</list>
 														</entry>
@@ -7324,7 +7401,7 @@
 																<string>http://who.int/icd#hasGCSScore</string>
 										            			<string>http://who.int/icd#hasGCSEyeScore</string>
 										            			<string>http://who.int/icd#hasGCSMotorScore</string>
-										            			<string>http://who.int/icd#hasGCSVerbalScore</string>>
+										            			<string>http://who.int/icd#hasGCSVerbalScore</string>
 										            			<string>http://who.int/icd#hasPupilReactionScore</string>
 															</list>
 														</entry>
@@ -7512,8 +7589,8 @@
 															<string>http://who.int/icd#referencedCategory</string>
 														</entry>
 														<entry>
-															<string>field_type</string>
-															<string>class</string>
+															<string>field_editor</string>
+															<string>class_selector</string>
 														</entry>
 														<entry>
 															<string>top_class</string>
@@ -7605,7 +7682,7 @@
 														</entry>
 														<entry>
 															<string>field_type</string>
-															<string>class</string>
+															<string>class_browsertext</string>
 														</entry>
 														<entry>
 															<string>top_class</string>
@@ -11592,7 +11669,7 @@
 														</entry>
 														<entry>
 															<string>Speaking</string>
-															<string>http://who.int/icd#FunctionalImpactTerm_d335</string><!-- TODO check -->>
+															<string>http://who.int/icd#FunctionalImpactTerm_d335</string><!-- TODO check -->
 														</entry>
 														<entry>
 															<string>Attending school</string>
@@ -14215,6 +14292,10 @@
 															<boolean>true</boolean>
 														</entry-->
 														<entry>
+															<string>read_only</string>
+															<boolean>true</boolean>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>0</string>
 														</entry>
@@ -14404,6 +14485,10 @@
 															<string>sorted</string>
 															<boolean>true</boolean>
 														</entry-->
+														<entry>
+															<string>read_only</string>
+															<boolean>true</boolean>
+														</entry>
 														<entry>
 															<string>index</string>
 															<string>0</string>

@@ -1,5 +1,16 @@
 package edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm;
 
+/**
+ * This class defines the form constants that can be used to configure
+ * the layout of forms in WebProtege.<br><br>
+ * 
+ * Modification to this class should be reflected in the user documentation,
+ * available on the Protégé Wiki through pages like 
+ * <a href="http://protegewiki.stanford.edu/wiki/InstanceGridWidget">http://protegewiki.stanford.edu/wiki/InstanceGridWidget</a>
+ * 
+ * @author csnyulas
+ *
+ */
 public class FormConstants {
 
     public static final String CLICKS_TO_EDIT = "clicks_to_edit";
@@ -80,6 +91,7 @@ public class FormConstants {
     public static final String ENABLE_HEADER_MENU = "enable_header_menu";
     public static final String IS_SORTABLE = "sortable";
 	public static final String FIELD_TYPE = "field_type";
+	public static final String FIELD_VALUE_TYPE = "field_value_type";
 	public static final String FIELD_EDITOR = "field_editor";
 	public static final String FIELD_ALIGN = "field_align";
 	public static final String FIELD_BG_COLOR = "field_bg_color";
@@ -89,22 +101,32 @@ public class FormConstants {
 	public static final String DEFAULT_COLUMN_TO_EDIT = "default_column_to_edit";
 	public static final String COPY_IF_TEMPLATE = "copy_if_template";
 	public static final String SHOW_TOOLBAR = "showToolbar";
-	//internal reference
+	public static final String INSTANCE_DISPLAY_PROP = "instance_display_prop";
+	public static final String CREATE_MISSING_SUBJECTS = "create_missing_subjects";
+		//internal reference
 	public static final String REFERENCED_VALUE_PROP="referenced_value_prop";
 
 	public static final String FIELD_TYPE_LINK_ICON = "linkicon";
 	public static final String FIELD_TYPE_NO_LINK = "nolink";
+	public static final String FIELD_TYPE_MULTILINE_ICON = "multiline_icon";
 	public static final String FIELD_TYPE_CHECKBOX = "checkbox";
 	public static final String FIELD_TYPE_CHECKBOX_IMPORTANT = "checkbox_important";
 	public static final String FIELD_TYPE_RADIO = "radio";
 	public static final String FIELD_TYPE_COMBOBOX = "combobox";
-	public static final String FIELD_TYPE_CLASS = "class";
-	public static final String FIELD_TYPE_INSTANCE = "instance";
+	public static final String FIELD_TYPE_CLASS_BROWSER_TEXT = "class_browsertext";
+	public static final String FIELD_TYPE_INSTANCE_BROWSER_TEXT = "instance_browsertext";
+	public static final String FIELD_TYPE_INSTANCE_PROPERTY_VALUE = "instance_property_value";
+	public static final String FIELD_TYPE_INSTANCE_PROPERTY_ICON = "instance_property_icon";
 
+	//valid FIELD_VALUE_TYPE values are the string names of {@link edu.stanford.bmir.protege.web.client.rpc.data.ValueType} constants
+	//such as String, Symbol, Integer, Boolean, Instance, Class, etc.
+	
 	public static final String FIELD_EDITOR_INLINE = "inline";
 	public static final String FIELD_EDITOR_FLEXIBLE = "flexible";
 	public static final String FIELD_EDITOR_MULTILINE = "multiline";
 	public static final String FIELD_EDITOR_HTML = "html";
+	public static final String FIELD_EDITOR_CLASS_SELECTOR = "class_selector";
+	public static final String FIELD_EDITOR_INSTANCE_SELECTOR = "instance_selector";
 
 	/*
 	 * ICD specific

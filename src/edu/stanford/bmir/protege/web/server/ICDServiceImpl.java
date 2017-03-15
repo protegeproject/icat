@@ -16,6 +16,7 @@ import edu.stanford.bmir.protege.icd.export.ExportICDClassesJob;
 import edu.stanford.bmir.protege.web.client.rpc.ICDService;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
+import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValuesList;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.AllowedPostcoordinationValuesData;
@@ -53,8 +54,6 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
     private static final long serialVersionUID = -10148579388542388L;
     private static final String EXCEL_FILE_EXTENSION = ".xls";
-
-    private static final String PROPERTY_LINEARIZATION_PARENT = "http://who.int/icd#linearizationParent";
 
     //TODO: Event generation is currently disabled for class creation, because
     // it generates too many events and slows down significantly the class creation.
@@ -187,10 +186,10 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
     }
 
 
-    public List<EntityPropertyValues> getEntityPropertyValuesForLinearization(String projectName, List<String> entities, List<String> properties,
-            List<String> reifiedProps) {
-        List<EntityPropertyValues> entityPropertyValues = getEntityPropertyValues(projectName, entities, properties, reifiedProps);
-        return prepareLinearizationEntityPropertyValues(projectName, entities, entityPropertyValues, true);
+    public List<EntityPropertyValuesList> getEntityPropertyValuesForLinearization(String projectName, List<String> entities, String property,
+            List<String> reifiedProps, int[] subjectEntityColumns) {
+        List<EntityPropertyValuesList> entityPropertyValues = getMultilevelEntityPropertyValues(projectName, entities, property, reifiedProps, subjectEntityColumns);
+        return prepareLinearizationEntityPropertyValues(projectName, entities, reifiedProps, entityPropertyValues);
     }
 
 	private List<EntityPropertyValues> prepareLinearizationEntityPropertyValues(String projectName,
@@ -208,7 +207,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 	            List<EntityData> directParents = getParents(projectName, entities.get(0), true);
 	            if (directParents.size() == 1) {
 	                String parentBrowserText = directParents.get(0).getBrowserText();
-	                PropertyEntityData propLinParentED = new PropertyEntityData(PROPERTY_LINEARIZATION_PARENT);
+	                PropertyEntityData propLinParentED = new PropertyEntityData(WHOFICContentModelConstants.LINEARIZATION_PARENT_PROP);
 	                for (EntityPropertyValues entityPV : result) {
 	                    List<EntityData> values = entityPV.getPropertyValues(propLinParentED);
 	                    if (values == null ) {
@@ -233,6 +232,59 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         }
         Collections.sort(result, new LinearizationEPVComparator());
         return result;
+	}
+
+	private List<EntityPropertyValuesList> prepareLinearizationEntityPropertyValues(String projectName,
+			List<String> entities, List<String> reifiedProperties,
+			List<EntityPropertyValuesList> entityPropertyValues) {
+		if (entityPropertyValues == null){
+            entityPropertyValues = new ArrayList<EntityPropertyValuesList>();
+        }
+        ArrayList<EntityPropertyValuesList> result = new ArrayList<EntityPropertyValuesList>(entityPropertyValues);
+
+        if (true) {
+	        //update display label of linearization parent to default parent, if it makes sense
+	        if (entities != null && entities.size() == 1) {
+	            List<EntityData> directParents = getParents(projectName, entities.get(0), true);
+	            if (directParents.size() == 1) {
+	                String parentBrowserText = directParents.get(0).getBrowserText();
+	                int linParentPropertyIndex = getPropertyIndex(reifiedProperties, WHOFICContentModelConstants.LINEARIZATION_PARENT_PROP);
+	                for (EntityPropertyValuesList entityPV : result) {
+	                    List<EntityData> values = entityPV.getPropertyValues(linParentPropertyIndex);
+	                    if (values == null ) {
+	                        values = new ArrayList<EntityData>();
+	                    }
+	                    if ( values.isEmpty() ) {
+	                        values.add(new EntityData());
+	                    }
+	                    String linParentName = values.get(0).getName();
+	                    if (linParentName == null || "".equals(linParentName)) {
+	                        ArrayList<EntityData> newValues = new ArrayList<EntityData>();
+	                        for (EntityData value : values) {
+	                            value.setName(null);
+	                            value.setBrowserText("[" + parentBrowserText + "]");
+	                            newValues.add(value);
+	                        }
+	                        entityPV.setPropertyValues(linParentPropertyIndex, newValues);
+	                    }
+	                }
+	            }
+	        }
+        }
+        
+        int linViewPropertyIndex = getPropertyIndex(reifiedProperties, WHOFICContentModelConstants.LINEARIZATION_VIEW_PROP);
+        Collections.sort(result, new LinearizationEPVLComparator(linViewPropertyIndex));
+        return result;
+	}
+
+
+	private int getPropertyIndex(List<String> properties, String propertyName) {
+		int propIndex = -1;
+		
+		if (properties != null) {
+			propIndex = properties.indexOf(propertyName);
+		}
+		return propIndex;
 	}
 
     public String exportICDBranch(String projectName, String parentClass, String userName){
@@ -284,13 +336,13 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         return fileName.toString();
     }
 
-    private class LinearizationEPVComparator implements Comparator<EntityPropertyValues> {
+    private static class LinearizationEPVComparator implements Comparator<EntityPropertyValues> {
 
-        private final PropertyEntityData linearizationViewPED =
-            new PropertyEntityData("http://who.int/icd#linearizationView");
+        private static final PropertyEntityData linearizationViewPED =
+            new PropertyEntityData(WHOFICContentModelConstants.LINEARIZATION_VIEW_PROP);
 
-        public int compare(EntityPropertyValues epv1, EntityPropertyValues epv2) {
-            //We should not have null values, but if we happen to have we wish to leave the them at the end
+		public int compare(EntityPropertyValues epv1, EntityPropertyValues epv2) {
+            //We should not have null values, but if we happen to have we wish to leave them at the end
             if (epv1 == null) {
                 return 1;
             }
@@ -308,7 +360,49 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
             if (lins != null && lins.size() > 0) {
                 lin2 = lins.get(0);
             }
-            //We should not have null values, but if we happen to have we wish to leave the them at the end
+            //We should not have null values, but if we happen to have we wish to leave them at the end
+            if (lin1 == null) {
+                return 1;
+            }
+            if (lin2 == null) {
+                return -1;
+            }
+
+            return lin1.getBrowserText().compareTo(lin2.getBrowserText());
+        }
+    }
+
+    private static class LinearizationEPVLComparator implements Comparator<EntityPropertyValuesList> {
+        private final int linearizationViewPropIndex;
+
+        public LinearizationEPVLComparator(int linearizationViewPropertyIndex) {
+        	this.linearizationViewPropIndex = linearizationViewPropertyIndex;
+		}
+
+        public int compare(EntityPropertyValuesList epvl1, EntityPropertyValuesList epvl2) {
+            //We should not have null values, but if we happen to have we wish to leave them at the end
+            if (epvl1 == null) {
+                return 1;
+            }
+            if (epvl2 == null) {
+                return -1;
+            }
+            //We should always have values for the "linearizationView" property, but in case don't, we can't compare them meaningfully
+        	if (linearizationViewPropIndex == -1) {
+        		return 0;
+        	}
+            EntityData lin1 = null;
+            EntityData lin2 = null;
+            List<EntityData> lins;
+            lins = epvl1.getPropertyValues(linearizationViewPropIndex);
+            if (lins != null && lins.size() > 0) {
+                lin1 = lins.get(0);
+            }
+            lins = epvl2.getPropertyValues(linearizationViewPropIndex);
+            if (lins != null && lins.size() > 0) {
+                lin2 = lins.get(0);
+            }
+            //We should not have null values, but if we happen to have we wish to leave them at the end
             if (lin1 == null) {
                 return 1;
             }
@@ -322,7 +416,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
     //have to correspond to the ones in InheritedTagsGrid
     private final static String COL_TAG = "tag";
-    private final static String COL_INH_FOM = "inheritedFrom";
+    private final static String COL_INH_FROM = "inheritedFrom";
 
     public List<EntityPropertyValues> getSecondaryAndInheritedTags(String projectName, String clsName) {
         Project project = getProject(projectName);
@@ -343,7 +437,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
         Collection<RDFResource> localSecondaryTags = cm.getAssignedSecondaryTags(cls);
 
         PropertyEntityData tagEdProp = new PropertyEntityData(COL_TAG);
-        PropertyEntityData inhFromEdProp = new PropertyEntityData(COL_INH_FOM);
+        PropertyEntityData inhFromEdProp = new PropertyEntityData(COL_INH_FROM);
 
         for (Iterator<RDFResource> iteratorTags = tag2inhFrom.keySet().iterator(); iteratorTags.hasNext();) {
             RDFResource tagInst = iteratorTags.next();
@@ -459,8 +553,8 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
     class InheritedTagEpvComparator implements Comparator<EntityPropertyValues> {
         public int compare(EntityPropertyValues epv1, EntityPropertyValues epv2) {
-            Collection<EntityData> inhTags1 = epv1.getPropertyValues(new PropertyEntityData(COL_INH_FOM));
-            Collection<EntityData> inhTags2 = epv2.getPropertyValues(new PropertyEntityData(COL_INH_FOM));
+            Collection<EntityData> inhTags1 = epv1.getPropertyValues(new PropertyEntityData(COL_INH_FROM));
+            Collection<EntityData> inhTags2 = epv2.getPropertyValues(new PropertyEntityData(COL_INH_FROM));
             if (inhTags1.size() == inhTags2.size()) {
                 EntityData tag1 = CollectionUtilities.getFirstItem(epv1.getPropertyValues(new PropertyEntityData(COL_TAG)));
                 EntityData tag2 = CollectionUtilities.getFirstItem(epv2.getPropertyValues(new PropertyEntityData(COL_TAG)));

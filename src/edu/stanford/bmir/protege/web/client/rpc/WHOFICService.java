@@ -8,6 +8,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
+import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValuesList;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.AllowedPostcoordinationValuesData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.PrecoordinationClassExpressionData;
@@ -16,8 +17,8 @@ import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 @RemoteServiceRelativePath("who-fic")
 public interface WHOFICService extends RemoteService  {
 
-    public List<EntityPropertyValues> getEntityPropertyValuesForLinearization(String projectName, List<String> entities, List<String> properties,
-            List<String> reifiedProps);
+    public List<EntityPropertyValuesList> getEntityPropertyValuesForLinearization(String projectName, List<String> entities, String property,
+            List<String> reifiedProps, int[] subjectEntityColumns);
 
     public List<EntityPropertyValues> getSecondaryAndInheritedTags(String projectName, String clsName);
 

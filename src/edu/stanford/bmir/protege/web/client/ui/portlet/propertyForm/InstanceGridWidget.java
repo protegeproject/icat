@@ -93,6 +93,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     private static int OFFSET_COMMENT_COLUMN = 2;
     private static int OFFSET_MAX_COLUMN = OFFSET_COMMENT_COLUMN; //use 0 if all other column offsets are -1
 
+    public static final String INST_DISPL_PROPERTY_NAME = "inst_displ_property_name";
+    public static final String INST_DISPL_PROPERTY_VALUE = "inst_displ_property_value";
+    
     private Panel wrappingPanel;
     private EditorGridPanel grid;
 
@@ -362,6 +365,11 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
 	protected boolean getCopyIfTemplateDefault() {
 		return false;
+	}
+
+	protected boolean getCreateMissingSubjectsOption() {
+		return UIUtil.getBooleanConfigurationProperty(getWidgetConfiguration(), 
+				FormConstants.CREATE_MISSING_SUBJECTS, true);
 	}
 	
     protected void onInsertNewValue(EntityData newInstance) {
@@ -658,12 +666,25 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
         //FIXME: must treat differently if clicked to edit or to view!
 
-        final Record record = store.getAt(rowIndex);
-        String gridEditorOption = (String) getColumnConfiguration(colIndex, FormConstants.FIELD_EDITOR);
-
+    	//check write permissions on this grid
         if (!isWriteOperationAllowed()) {
             return;
         }
+        //check write permissions for this column
+        if (isReadOnlyColumn(colIndex)) {
+        	return;
+        }
+        //if it has a grid editor set, that will be used to edit this field - no extra action is needed 
+        if (hasGridEditor(colIndex)) {
+        	return;
+        }
+        
+        final Record record = store.getAt(rowIndex);
+        if ( ! isSubjectPresent(record, rowIndex, colIndex, getWarningMessageForMissingSubject(colIndex)) ) {
+        	return;
+        }
+        
+        String gridEditorOption = (String) getColumnConfiguration(colIndex, FormConstants.FIELD_EDITOR);
 
         //text editing
         if (record != null && gridEditorOption != null) {
@@ -671,18 +692,35 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 editWithPopupGridEditor(PopupGridEditor.TEXT_AREA, grid, rowIndex, colIndex, record);
             } else if (gridEditorOption.equals(FormConstants.FIELD_EDITOR_HTML)) {
                 editWithPopupGridEditor(PopupGridEditor.HTML, grid, rowIndex, colIndex, record);
+            } else if (gridEditorOption.equals(FormConstants.FIELD_EDITOR_CLASS_SELECTOR)) {
+            	editClassFieldType(record, rowIndex, colIndex);
+            } else if (gridEditorOption.equals(FormConstants.FIELD_EDITOR_INSTANCE_SELECTOR)) {
+            	editInstanceFieldType(record, rowIndex, colIndex);
             }
+            return;
         }
 
         String fieldType = (String) getColumnConfiguration(colIndex, FormConstants.FIELD_TYPE);
-        if (fieldType == null) {
+        String fieldValueType = (String) getColumnConfiguration(colIndex, FormConstants.FIELD_VALUE_TYPE);
+        if (fieldType == null && fieldValueType == null) {
             return;
         }
 
         //other value types editing
-        if (fieldType.equals(FormConstants.FIELD_TYPE_CLASS)) {
+        if (FormConstants.FIELD_TYPE_MULTILINE_ICON.equals(fieldType)) {
+            editWithPopupGridEditor(PopupGridEditor.TEXT_AREA, grid, rowIndex, colIndex, record);
+        }else if (FormConstants.FIELD_TYPE_CLASS_BROWSER_TEXT.equals(fieldType) || 
+        		ValueType.Cls.toString().equalsIgnoreCase(fieldValueType) ||
+                ValueType.Class.toString().equalsIgnoreCase(fieldValueType)) {
             editClassFieldType(record, rowIndex, colIndex);
-        }else if (fieldType.equals(FormConstants.FIELD_TYPE_INSTANCE)) {
+        }else if (FormConstants.FIELD_TYPE_INSTANCE_BROWSER_TEXT.equals(fieldType) ||
+                ValueType.Instance.toString().equalsIgnoreCase(fieldValueType)) {
+            editInstanceFieldType(record, rowIndex, colIndex);
+        }else if (FormConstants.FIELD_TYPE_INSTANCE_PROPERTY_VALUE.equals(fieldType)) {
+            editInstancePropertyValueFieldType(record, rowIndex, colIndex);
+        }else if (FormConstants.FIELD_TYPE_INSTANCE_PROPERTY_ICON.equals(fieldType)) {
+            editInstancePropertyIconFieldType(record, rowIndex, colIndex);
+        }else if (ValueType.Instance.toString().equalsIgnoreCase(fieldValueType)) {
             editInstanceFieldType(record, rowIndex, colIndex);
         }
     }
@@ -703,7 +741,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         });
     }
 
-    private void editInstanceFieldType(final Record record, final int rowIndex, final int colIndex) {
+    protected void editInstanceFieldType(final Record record, final int rowIndex, final int colIndex) {
         final EntityData oldValue = getEntityDataValueAt(record, rowIndex, colIndex);
 
         Collection<EntityData> clses = null;
@@ -725,7 +763,53 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         });
     }
 
-    private void editClassFieldType(final Record record, final int rowIndex, final int colIndex) {
+    protected void editInstancePropertyValueFieldType(final Record record, final int rowIndex, final int colIndex) {
+    	//TODO change everything
+        final EntityData oldValue = getEntityDataValueAt(record, rowIndex, colIndex);
+
+        Collection<EntityData> clses = null;
+
+        String topCls = (String) getColumnConfiguration(colIndex, FormConstants.ONT_TYPE);
+        if (topCls != null) {
+            if (topCls.equals(DefaultSearchStringTypeEnum.Entity.toString())) {
+                clses = UIUtil.createCollection(getSubject());
+            }
+            else {
+                clses = UIUtil.createCollection(new EntityData(topCls));
+            }
+        }
+
+        SelectionUtil.selectIndividuals(getProject(), clses, getShowToolbar(), false, true, new SelectionCallback() {
+            public void onSelect(Collection<EntityData> selection) {
+                replaceEntityValue(record, oldValue, rowIndex, colIndex, selection);
+            }
+        });
+    }
+
+    protected void editInstancePropertyIconFieldType(final Record record, final int rowIndex, final int colIndex) {
+    	//TODO change everything
+        final EntityData oldValue = getEntityDataValueAt(record, rowIndex, colIndex);
+
+        Collection<EntityData> clses = null;
+
+        String topCls = (String) getColumnConfiguration(colIndex, FormConstants.ONT_TYPE);
+        if (topCls != null) {
+            if (topCls.equals(DefaultSearchStringTypeEnum.Entity.toString())) {
+                clses = UIUtil.createCollection(getSubject());
+            }
+            else {
+                clses = UIUtil.createCollection(new EntityData(topCls));
+            }
+        }
+
+        SelectionUtil.selectIndividuals(getProject(), clses, getShowToolbar(), false, true, new SelectionCallback() {
+            public void onSelect(Collection<EntityData> selection) {
+                replaceEntityValue(record, oldValue, rowIndex, colIndex, selection);
+            }
+        });
+    }
+
+    protected void editClassFieldType(final Record record, final int rowIndex, final int colIndex) {
         final Object oldValue = getEntityDataValueAt(record, rowIndex, colIndex);
 
         String topCls = (String) getColumnConfiguration(colIndex, FormConstants.TOP_CLASS);
@@ -734,12 +818,17 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
             topCls = getSubject().getName();
         }
 
-        SelectionUtil.selectClses(getProject(), false, topCls, new SelectionCallback() {
+        selectClasses(record, rowIndex, colIndex, oldValue, topCls, new SelectionCallback() {
             public void onSelect(Collection<EntityData> selection) {
                 replaceEntityValue(record, oldValue, rowIndex, colIndex, selection);
             }
         });
     }
+
+	protected void selectClasses(final Record record, final int rowIndex, final int colIndex, final Object oldValue,
+			String topCls, SelectionCallback selectionCallback) {
+		SelectionUtil.selectClses(getProject(), false, topCls, selectionCallback);
+	}
 
     private void replaceEntityValue(Record record, Object oldValue,  int rowIndex,  int colIndex, Collection<EntityData> newValues) {
         //deal with one value for now, could be modified to handle all values
@@ -774,11 +863,17 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     protected void onContextMenuClicked(final int rowIndex, final int colIndex,  final EventObject e) {
         final Record record = store.getAt(rowIndex);
         if (record != null) {
-            if (isWriteOperationAllowed()) {
-                String colType = (String)getColumnConfiguration(colIndex, FormConstants.FIELD_TYPE);
-                if (ValueType.Instance.toString().equalsIgnoreCase(colType) ||
-                        ValueType.Cls.toString().equalsIgnoreCase(colType) ||
-                        ValueType.Class.toString().equalsIgnoreCase(colType)) {
+            if (isWriteOperationAllowed() && !isReadOnlyColumn(colIndex)) {
+                String fieldValueType = (String)getColumnConfiguration(colIndex, FormConstants.FIELD_VALUE_TYPE);
+                String fieldType = (String)getColumnConfiguration(colIndex, FormConstants.FIELD_TYPE);
+
+                if (ValueType.Instance.toString().equalsIgnoreCase(fieldValueType) ||
+                        ValueType.Cls.toString().equalsIgnoreCase(fieldValueType) ||
+                        ValueType.Class.toString().equalsIgnoreCase(fieldValueType) ||
+                        FormConstants.FIELD_TYPE_MULTILINE_ICON.equals(fieldType) ||
+                        FormConstants.FIELD_TYPE_INSTANCE_BROWSER_TEXT.equals(fieldType) ||
+                        FormConstants.FIELD_TYPE_INSTANCE_PROPERTY_VALUE.equals(fieldType) ||
+                        FormConstants.FIELD_TYPE_CLASS_BROWSER_TEXT.equals(fieldType)) {
                     String field = record.getFields()[colIndex];
                     String value = record.getAsString(field);
                     if (value != null && !value.isEmpty()) {
@@ -800,8 +895,11 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                     if (!isWriteOperationAllowed()) {
                         return false;
                     }
-                    String valueType = record.getAsString("valueType");
-                    return valueType == null || valueType.equalsIgnoreCase("string") || valueType.equalsIgnoreCase("any"); //TODO: allow only the editing of String values for now
+                    if ( ! isSubjectPresent(record, rowIndex, colIndex, getWarningMessageForMissingSubject(colIndex)) ) {
+                    	return false;
+                    }
+                    
+                    return hasGridEditor(colIndex);
                 }
 
                 @Override
@@ -826,29 +924,115 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
     private void changeValue(Record record, Object newValue, Object oldValue, int rowIndex, int colIndex) {
         //special handling rdfs:Literal
-        String valueType = record.getAsString("valueType");
-       // if (valueType == null) { //TODO: should be fixed
-       //     valueType = ValueType.String.name();
-       // }
+        String fieldValueType = (String) getColumnConfiguration(colIndex, FormConstants.FIELD_VALUE_TYPE);
+        if (fieldValueType != null && ! fieldValueType.equalsIgnoreCase("string") && ! fieldValueType.equalsIgnoreCase("any")) {
+        	System.out.println("Warning: Changing non-string column values in an InstanceGridWidget may fail "
+        			+ "(old value: " + oldValue + ", new value: " + newValue + ").");
+        };
+        
         String selSubject = getSubjectOfPropertyValue(record, rowIndex, colIndex);
         if (selSubject != null) {
-            //FIXME: don't use strings for the values, but entity data
-            propertyValueUtil.replacePropertyValue(getProject().getProjectName(), selSubject,
-                    properties.get(colIndex), valueType == null ? null : ValueType.valueOf(valueType),
-                            getStringValue(oldValue),
-                            getStringValue(newValue),
-                    		getCopyIfTemplateOption(),
-                            GlobalSettings.getGlobalSettings().getUserName(),
-                            getReplaceValueOperationDescription(colIndex, oldValue, newValue),
-                            new ReplacePropertyValueHandler(new EntityData(newValue == null ? null : newValue.toString(),
-                                    newValue == null ? null : newValue.toString())));
+            callReplacePropertyValueMethod(record, newValue, oldValue, colIndex, fieldValueType, selSubject);
+        }
+        else if (getCreateMissingSubjectsOption()) {
+        	createPropertyValueSubjectsAndReplacePropertyValue(record, newValue, oldValue, rowIndex, colIndex, fieldValueType);
+        }
+        else {
+        	MessageBox.alert("Can't save the value: subject null and create missing subject is set to false. "
+        			+ "This should never happen. Please report back to developers");
         }
     }
 
-    protected String getSubjectOfPropertyValue(Record record, int rowIndex, int colIndex) {
+	protected void callReplacePropertyValueMethod(Record record, Object newValue, Object oldValue, int colIndex, String fieldValueType,
+			String selSubject) {
+        //FIXME: don't use strings for the values, but entity data
+		propertyValueUtil.replacePropertyValue(getProject().getProjectName(), selSubject,
+		        properties.get(colIndex), fieldValueType == null ? null : ValueType.valueOf(fieldValueType),
+		                getStringValue(oldValue),
+		                getStringValue(newValue),
+		        		getCopyIfTemplateOption(),
+		                GlobalSettings.getGlobalSettings().getUserName(),
+		                getReplaceValueOperationDescription(colIndex, oldValue, newValue),
+		                new ReplacePropertyValueHandler(new EntityData(newValue == null ? null : newValue.toString(),
+		                        newValue == null ? null : newValue.toString())));
+	}
+
+	private void createPropertyValueSubjectsAndReplacePropertyValue(final Record record, final Object newValue, final Object oldValue, 
+			final int rowIndex, final int colIndex, final String fieldValueType) {
+		ArrayList<String> propertiesList = new ArrayList<String>();
+		ArrayList<String> typesList = new ArrayList<String>();
+		EntityData rootSubject = extractPropertyChainFromFirstNonNullSubjectAndReturnRootSubject(record, rowIndex, colIndex, propertiesList, typesList);
+		propertyValueUtil.createPropertyValueInstances(getProject().getProjectName(), rootSubject, 
+				propertiesList.toArray(new String[0]), 
+				typesList.toArray(new String[0]), 
+				GlobalSettings.getGlobalSettings().getUserName(),
+                getReplaceValueOperationDescription(colIndex, oldValue, newValue),
+                new CreatePropertyValueSubjectsHandler(rowIndex, colIndex, new Function() {
+			@Override
+			public void execute() {
+				callReplacePropertyValueMethod(record, newValue, oldValue, colIndex, fieldValueType, 
+						getSubjectOfPropertyValue(record, rowIndex, colIndex));
+			}
+		}));
+	}
+
+	/**
+	 * This method is implemented here only demonstratively, for the theoretical case that there is a row in 
+     * the grid that has no corresponding instance set. This should never happen in practice.
+     * The main reason for the existence of this method is to provide a stub that can be overridden
+     * in subclasses that allow different subjects for the property values in different columns, 
+     * as in the case of {@link MultilevelInstanceGridWidget}
+	 * @param colIndex 
+	 */
+    protected EntityData extractPropertyChainFromFirstNonNullSubjectAndReturnRootSubject(Record record, 
+    		int rowIndex, int colIndex, ArrayList<String> propertiesList, ArrayList<String> typesList) {
+    	String rowInstance = record.getAsString(INSTANCE_FIELD_NAME);
+    	if (rowInstance != null) {
+    		//add no property to the list as we have a valid subject for the row
+    		return new EntityData(rowInstance);
+    	}
+    	else {
+    		propertiesList.add(0, getProperty().getName());
+    		String type = UIUtil.getStringConfigurationProperty(
+    				getWidgetConfiguration(), FormConstants.ONT_TYPE, null);
+    		typesList.add(0, type);
+    		return getSubject();
+    	}
+	}
+
+	protected void fillInSubjectsOfColumns(int rowIndex, int colIndex, EntityData[] subjects) {
+		if (subjects != null && subjects.length > 0 && subjects[0] != null) {
+        	final Record record = store.getAt(rowIndex);
+        	record.set(INSTANCE_FIELD_NAME, subjects[0].getName());
+		}
+	}
+
+	protected String getSubjectOfPropertyValue(Record record, int rowIndex, int colIndex) {
     	return record.getAsString(INSTANCE_FIELD_NAME);
     }
     
+
+	protected boolean isSubjectPresent(Record record, int rowIndex, int colIndex, String warningMsgIfMissing) {
+		if (getSubjectOfPropertyValue(record, rowIndex, colIndex) != null) {
+			return true;
+        }
+		else {
+			if (getCreateMissingSubjectsOption()) {
+				//no subject for property, but we will create one on demand, so we can return true
+				return true;
+			}
+	        if (warningMsgIfMissing != null) {
+	            GWT.log(warningMsgIfMissing);
+	        	MessageBox.alert(warningMsgIfMissing);
+	        }
+	    	return false;
+		}
+	}
+
+	protected String getWarningMessageForMissingSubject(int colIndex) {
+		return "Can't edit property value for column '" + getColumnConfiguration(colIndex, FormConstants.HEADER) + "' as row subject is null.";
+	}
+	
     private String getStringValue(Object value) {
         if (value == null) { return null; }
         if (value instanceof EntityData) {
@@ -1202,31 +1386,72 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
 
     protected GridEditor createGridEditor(final String fieldType, final Map<String, Object> config) {
-
-        if (fieldType != null) {
-            if (fieldType.equals(FormConstants.FIELD_TYPE_COMBOBOX)) {
-                return createComboBoxGridEditor(config);
-            } else if (fieldType.equals(FormConstants.FIELD_TYPE_CLASS)) {
-                return createClassGridEditor(config);
-            } else if (fieldType.equals(FormConstants.FIELD_TYPE_INSTANCE)) {
-                return createInstanceGridEditor(config);
-            }
-        }
+    	if (isReadOnlyColumn(config)) {
+    		return null;
+    	}
 
         //TODO - use a text area as the default editor for now, support more later
         String gridEditorOption = (String) config.get(FormConstants.FIELD_EDITOR);
 
-        //null is default
-        if (gridEditorOption == null || gridEditorOption.equals(FormConstants.FIELD_EDITOR_INLINE)) {
-            return new GridEditor(new TextField());
-        } else if (gridEditorOption.equals(FormConstants.FIELD_EDITOR_MULTILINE)) {
-            return null;
-        } else if (gridEditorOption.equals(FormConstants.FIELD_EDITOR_HTML)) {
-            return null;
-        } else if (gridEditorOption.equals(FormConstants.FIELD_EDITOR_FLEXIBLE)) {
-            return createFlexibleGridEditor();
+		if (gridEditorOption != null) {
+	        if (gridEditorOption.equals(FormConstants.FIELD_EDITOR_INLINE)) {
+	            return new GridEditor(new TextField());
+	        } else if (gridEditorOption.equals(FormConstants.FIELD_EDITOR_MULTILINE)) {
+	            return null;
+	        } else if (gridEditorOption.equals(FormConstants.FIELD_EDITOR_HTML)) {
+	            return null;
+	        } else if (gridEditorOption.equals(FormConstants.FIELD_EDITOR_FLEXIBLE)) {
+	            return createFlexibleGridEditor();
+	        } else if (gridEditorOption.equals(FormConstants.FIELD_EDITOR_CLASS_SELECTOR)) {
+	        	return createClassGridEditor(config);
+	        } else if (gridEditorOption.equals(FormConstants.FIELD_EDITOR_INSTANCE_SELECTOR)) {
+	        	return createInstanceGridEditor(config);
+	        }
+        }
+        //if grid editor option is null, i.e. is unspecified, by default, 
+    	//try to figure out the right editor based on the filed type and field value type
+        if (fieldType != null) {
+            if (fieldType.equals(FormConstants.FIELD_TYPE_COMBOBOX)) {
+                return createComboBoxGridEditor(config);
+	        } else if (fieldType.equals(FormConstants.FIELD_TYPE_MULTILINE_ICON)) {
+	            return null;
+	        } else if (fieldType.equals(FormConstants.FIELD_TYPE_CHECKBOX) ||
+	        		fieldType.equals(FormConstants.FIELD_TYPE_CHECKBOX_IMPORTANT)) {
+	        	return null;
+            } else if (fieldType.equals(FormConstants.FIELD_TYPE_CLASS_BROWSER_TEXT)) {
+                return createClassGridEditor(config);
+            } else if (fieldType.equals(FormConstants.FIELD_TYPE_INSTANCE_BROWSER_TEXT) ||
+            		fieldType.equals(FormConstants.FIELD_TYPE_INSTANCE_PROPERTY_VALUE) || 
+            		fieldType.equals(FormConstants.FIELD_TYPE_INSTANCE_PROPERTY_ICON)) {
+            	return createInstanceGridEditor(config);
+            }
         }
 
+        String fieldValueType = (String) config.get(FormConstants.FIELD_VALUE_TYPE);
+        if (fieldValueType != null) {
+            if (fieldValueType.equals(ValueType.String) ||
+            		fieldValueType.equals(ValueType.Symbol) ||
+            		fieldValueType.equals(ValueType.Literal)) {
+            	return new GridEditor(new TextField());
+            }
+            else if (fieldValueType.equals(ValueType.Integer) ||
+            		fieldValueType.equals(ValueType.Float) ||
+            		fieldValueType.equals(ValueType.Boolean) ||
+            		fieldValueType.equals(ValueType.Date)) {
+            	return new GridEditor(new TextField());
+            }
+            else if (fieldValueType.equals(ValueType.Cls) ||
+            		fieldValueType.equals(ValueType.Class)) {
+            	return createClassGridEditor(config);
+            }
+            else if (fieldValueType.equals(ValueType.Instance)) {
+            	return createInstanceGridEditor(config);
+            }
+            else if (fieldValueType.equals(ValueType.Any)) {
+            	return new GridEditor(new TextArea());
+            }
+        }
+        
         //in other cases: create text field or text area depending on the size of the grid.
         //This behavior probably does not make sense anymore, and we should treat all the
         //different valid editor options above
@@ -1454,6 +1679,14 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         return colConfig.get(prop);
     }
 
+    protected final boolean isReadOnlyColumn(int colIndex) {
+    	return isReadOnlyColumn(getColumnConfiguration(colIndex));
+    }
+    
+    private boolean isReadOnlyColumn(Map<String, Object> columnConfiguration) {
+    	return UIUtil.getBooleanConfigurationProperty(columnConfiguration, FormConstants.READ_ONLY, false);
+    }
+    
     protected int getOffsetDeleteColumn() {
         return OFFSET_DELETE_COLUMN;
     }
@@ -1641,6 +1874,35 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     }
 
 
+    protected class CreatePropertyValueSubjectsHandler extends AbstractAsyncHandler<EntityData[]> {
+
+    	private int rowIndex;
+    	private int colIndex;
+        private Function nextAction;
+
+		public CreatePropertyValueSubjectsHandler(int rowIndex, int colIndex, Function nextAction) {
+			this.rowIndex = rowIndex;
+			this.colIndex = colIndex;
+			this.nextAction = nextAction;
+        }
+
+        @Override
+        public void handleFailure(Throwable caught) {
+            GWT.log("Error at generating missin property value subjects for " + getProperty().getBrowserText() + " and "
+                    + getSubject().getBrowserText(), caught);
+            MessageBox.alert("There was an error at generating missing property value subjects.");
+            InstanceGridWidget.this.refresh();
+        }
+
+        @Override
+        public void handleSuccess(EntityData[] results) {
+        	fillInSubjectsOfColumns(rowIndex, colIndex, results);
+            InstanceGridWidget.this.grid.getStore().commitChanges();
+            nextAction.execute();
+        }
+    }
+
+
     class AddPropertyValueHandler extends AbstractAsyncHandler<EntityData> {
 
         @Override
@@ -1769,6 +2031,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 if (type.equals(FormConstants.FIELD_TYPE_LINK_ICON)) {
                     return renderLinkIcon(value, cellMetadata, record, rowIndex, colNum, store);
                 }
+                if (type.equals(FormConstants.FIELD_TYPE_MULTILINE_ICON)) {
+                    return renderTextIcon(value, cellMetadata, record, rowIndex, colNum, store);
+                }
                 else if (type.equals(FormConstants.FIELD_TYPE_CHECKBOX)) {
                     return renderCheckBox(value, cellMetadata, record, rowIndex, colNum, store);
                 }
@@ -1811,6 +2076,16 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
             } else {
                 return "<a href= \"" + value + "\" target=\"_blank\">"
                 + "<img src=\"images/world_link.png\"></img>" + "</a>";
+            }
+        }
+
+        private String renderTextIcon(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum,
+                Store store) {
+            if (value == null || value.toString().length() == 0) {
+                return isReadOnlyColumn(colNum) ? "<img src=\"images/text_value_grey.png\"></img>" :
+                	"<img src=\"images/text_value_add.png\" title=\"Double click to add a coding note\"></img>";
+            } else {
+                return "<img src=\"images/text_value_dark.png\" title=\"" + value + "\"></img>";
             }
         }
 
