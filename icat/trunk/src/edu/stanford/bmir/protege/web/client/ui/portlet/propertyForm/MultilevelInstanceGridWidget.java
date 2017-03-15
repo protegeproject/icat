@@ -1,5 +1,6 @@
 package edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +58,7 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
 	}
 
 	
+	@Override
     protected void createColumns() {
         Map<String, Object> widgetConfig = getWidgetConfiguration();
         if (widgetConfig == null) {
@@ -155,7 +157,7 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
 
         @Override
         public void handleFailure(Throwable caught) {
-            GWT.log("Instance Grid Widget: Error at getting triples for " + getSubject(), caught);
+            GWT.log("Multi-level Instance Grid Widget: Error at getting triples for " + getSubject(), caught);
             updateActionLinks(isReplace());
         }
 
@@ -269,7 +271,65 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
     	}
     	else {
     		EntityData subjEntityData = (EntityData) getShadowStore().getAt(rowIndex).getAsObject(getPropertyFieldName(subjColIndex));
-    		return subjEntityData.getName();
+    		return subjEntityData == null ? null : subjEntityData.getName();
     	}
     }
+    
+    @Override
+    protected EntityData extractPropertyChainFromFirstNonNullSubjectAndReturnRootSubject(Record record, 
+    		int rowIndex, int colIndex, ArrayList<String> propertiesList, ArrayList<String> typesList) {
+    	int subjColIndex = subjectEntityColumns[colIndex];
+    	while (subjColIndex > -1) {
+    		EntityData subjEntityData = (EntityData) getShadowStore().getAt(rowIndex).getAsObject(getPropertyFieldName(subjColIndex));
+    		if (subjEntityData == null || subjEntityData.getName() == null) {
+    			propertiesList.add(0, (String) getColumnConfiguration(subjColIndex, FormConstants.PROPERTY));
+        		typesList.add(0, (String) getColumnConfiguration(subjColIndex, FormConstants.ONT_TYPE));
+    	    	subjColIndex = subjectEntityColumns[subjColIndex];
+    		}
+    		else {
+    			return subjEntityData;
+    		}
+    	}
+    	
+    	return super.extractPropertyChainFromFirstNonNullSubjectAndReturnRootSubject(record, rowIndex, subjColIndex, propertiesList, typesList);
+    }
+
+    @Override
+	protected void fillInSubjectsOfColumns(int rowIndex, int colIndex, EntityData[] subjects) {
+		if (subjects != null) {
+			int subjColIndex = subjectEntityColumns[colIndex];
+			int i = 0;
+			Record record = getStore().getAt(rowIndex);
+			Record shadowRecord = getShadowStore().getAt(rowIndex);
+			while (subjColIndex > -1 && i < subjects.length) {
+				EntityData subjectData = subjects[i];
+				String field = getPropertyFieldName(subjColIndex);
+				record.set(field, subjectData.getName());
+				shadowRecord.set(field, subjectData);
+				
+				//next elements
+				subjColIndex = subjectEntityColumns[subjColIndex];
+				i++;
+			}
+			if (subjColIndex > -1 && i < subjects.length) {
+				record.set(INSTANCE_FIELD_NAME, subjects[i].getName());
+			}
+		}
+	}
+
+    
+    @Override
+	protected String getWarningMessageForMissingSubject(int colIndex) {
+    	int subjColIndex = subjectEntityColumns[colIndex];
+		String subjReference;
+		if (subjColIndex == -1) {
+			subjReference = "row subject";
+		}
+		else {
+			subjReference = "subject in column '" + getColumnConfiguration(subjColIndex, FormConstants.HEADER) + "'";
+		}
+		return "Can't edit property value for column '" + getColumnConfiguration(colIndex, FormConstants.HEADER)
+                + "', as " + subjReference + " is missing.";
+	}
+
 }

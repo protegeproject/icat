@@ -40,6 +40,7 @@ import edu.stanford.smi.protege.model.Instance;
 import edu.stanford.smi.protege.model.KnowledgeBase;
 import edu.stanford.smi.protege.model.ModelUtilities;
 import edu.stanford.smi.protege.model.Project;
+import edu.stanford.smi.protege.model.SimpleInstance;
 import edu.stanford.smi.protege.model.Slot;
 import edu.stanford.smi.protege.model.ValueType;
 import edu.stanford.smi.protege.query.api.QueryApi;
@@ -881,7 +882,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
      * is in column 1, which for the instance "a" contains
      * multiple values ("i1" and "i2"). In order to disambiguate which instance
      * is the subject of the property value in column 2 and 3
-     * we needed to ensure that column 1 contains a single instance, therfore
+     * we needed to ensure that column 1 contains a single instance, therefore
      * we have split the multiple values in two different entries.
      * This splitting was not necessary for the values of properties
      * "p2" and "p3" ({"v21", "v22"} and {"v61", "v62"}) because
@@ -954,6 +955,16 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 		    }
 		    thereAreMoreValuesToRead = foundNewValues && epvsContainsNullPropValue;
 		}
+		
+		//set the properties for all epvs
+		List<PropertyEntityData> reifiedPropEDList = new ArrayList<PropertyEntityData>();
+		for (String propName : reifiedProperties) {
+			reifiedPropEDList.add(new PropertyEntityData(propName));
+		}
+	    for (EntityPropertyValuesList epv : epvs) {
+	    	epv.setProperties(reifiedPropEDList);;
+	    }
+		
 		return epvs;
 	}
 
@@ -970,6 +981,11 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 		List<EntityPropertyValuesList> epvsToBeSplit = new ArrayList<EntityPropertyValuesList>();
 
 		for (EntityPropertyValuesList epv : epvs) {
+			//skip the extraction of the property values that have been already extracted
+			if (epv.getPropertyValues(propIndex) != null) {
+				continue;
+			}
+			
     		if (subjEntityIndex == -1) {
     			epv.setPropertyValues(propIndex, createEntityList(valueInst.getOwnSlotValues(reifiedSlot)));
     			foundNewValues = true;
@@ -993,7 +1009,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
     				}
     			}
                 else {
-                	epv.setPropertyValues(propIndex, createEntityList(new ArrayList<Object>()));
+                	epv.setPropertyValues(propIndex, subjEntities == null ? null : createEntityList(new ArrayList<Object>()));
                 }
     		}
 		}
@@ -1177,16 +1193,28 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     entityData.setLocalAnnotationsCount(HasAnnotationCache.getAnnotationCount(objFrame));
                 }
                 ((PropertyEntityData) entityData).setPropertyType(OntologyServiceImpl.getPropertyType((Slot) objFrame));
+                entityData.setValueType(edu.stanford.bmir.protege.web.client.rpc.data.ValueType.Property);
             } else {
                 entityData = new EntityData(objFrame.getName(), getBrowserText(objFrame), null);
                 if (computeAnnotations) {
                     entityData.setChildrenAnnotationsCount(HasAnnotationCache.getChildrenAnnotationCount(objFrame));
                     entityData.setLocalAnnotationsCount(HasAnnotationCache.getAnnotationCount(objFrame));
                 }
+                entityData.setValueType(
+                		objFrame instanceof Cls ? edu.stanford.bmir.protege.web.client.rpc.data.ValueType.Cls : 
+                			(objFrame instanceof SimpleInstance ? edu.stanford.bmir.protege.web.client.rpc.data.ValueType.Instance : //this test may be too weak or too strong, depending how we want to deal with untyped resources and literals 
+                				edu.stanford.bmir.protege.web.client.rpc.data.ValueType.Any));
             }
             return entityData;
         } else {
-            return new EntityData(object.toString());
+            EntityData entityData = new EntityData(object.toString());
+            entityData.setValueType(
+            		object instanceof String ? edu.stanford.bmir.protege.web.client.rpc.data.ValueType.String :
+            			(object instanceof Boolean ? edu.stanford.bmir.protege.web.client.rpc.data.ValueType.Boolean :
+            				(object instanceof Integer ? edu.stanford.bmir.protege.web.client.rpc.data.ValueType.Integer :
+            					(object instanceof Float ? edu.stanford.bmir.protege.web.client.rpc.data.ValueType.Float :
+            						null)))); //TODO deal with Date, Symbol and Literal
+            return entityData;
         }
     }
 
@@ -1996,6 +2024,91 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         }
 
     }
+
+    
+    public EntityData[] createPropertyValueInstances(String projectName, EntityData rootSubject, String[] properties,
+    		String[] types, String user, String operationDescription){
+        Project project = getProject(projectName);
+
+        if (project == null) {
+            return null;
+        }
+        if (rootSubject == null) {
+            return null;
+        }
+        KnowledgeBase kb = project.getKnowledgeBase();
+        if (kb == null) {
+            return null;
+        }
+
+        EntityData[] res = new EntityData[properties.length];
+        
+        synchronized (kb) {
+            KBUtil.morphUser(kb, user);
+            // original operation description goes in our top-level change ....
+            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+            try {
+                if (runsInTransaction) {
+                    kb.beginTransaction(operationDescription);
+                }
+                // setting the operationDescription to null will ensure that we have no nested transactions (which are unnecessary) or duplicate changes...
+                
+                Instance subject = kb.getInstance(rootSubject.getName());
+                if (subject == null) {
+	                if (runsInTransaction) {
+	                    kb.commitTransaction();
+	                }
+	                return null;
+                }
+                
+                for (int i = 0; i < properties.length; i++) {
+                	String property = properties[i];
+                	String typeName = types[i];
+                	
+                    Cls type = (typeName == null) ? kb.getRootCls() : kb.getCls(typeName);
+
+                    if (type == null) {
+                        Log.getLogger().warning("Could not create instance of type " + typeName + ". Null type");
+                        throw new IllegalArgumentException("Could not create instance of type " + typeName
+                                + ". Null type");
+                    }
+
+                    Instance inst = type.createDirectInstance(null);
+                    
+                    EntityData instData = createEntityData(inst);
+                    if (instData != null) {
+                        instData.setTypes(CollectionUtilities.createCollection(new EntityData(typeName)));
+                    }
+                    res[i] = instData;
+                    
+                    Slot slot = kb.getSlot(property);
+                    if (slot == null) {
+                        Log.getLogger().warning("Could not add instance " + inst.getName() + " as value of property " + property + ". Property not found.");
+                        throw new IllegalArgumentException("Could not add instance " + inst.getName() + " as value of property " + 
+                        		property + ". Property not found.");
+                    }
+                    
+                    subject.addOwnSlotValue(slot, inst);
+                    subject = inst;
+				}
+                                
+                KBUtil.morphUser(kb, user);
+                if (runsInTransaction){
+                    kb.commitTransaction();
+                }
+                return res;
+            } catch (RuntimeException e) {
+                if (runsInTransaction) {
+                    kb.rollbackTransaction();
+                }
+                // no logging as we are rethrowing an exception already logged by our called methods.
+                throw e;
+            } finally {
+                KBUtil.restoreUser(kb);
+            }
+        }
+
+	}
 
     public EntityData renameEntity(String projectName, String oldName, String newName, String user,
             String operationDescription) {

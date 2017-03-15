@@ -1,13 +1,12 @@
 package edu.stanford.bmir.protege.web.client.rpc;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
-import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValuesList;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.AllowedPostcoordinationValuesData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.PrecoordinationClassExpressionData;
@@ -15,8 +14,8 @@ import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 
 public interface WHOFICServiceAsync {
 
-    void getEntityPropertyValuesForLinearization(String projectName, List<String> entities, List<String> properties,
-            List<String> reifiedProps, AsyncCallback<List<EntityPropertyValues>> cb);
+    void getEntityPropertyValuesForLinearization(String projectName, List<String> entities, String property,
+            List<String> reifiedProps, int[] subjectEntityColumns, AsyncCallback<List<EntityPropertyValuesList>> cb);
 
     void getSecondaryAndInheritedTags(String projectName, String clsName, AsyncCallback<List<EntityPropertyValues>> cb);
 

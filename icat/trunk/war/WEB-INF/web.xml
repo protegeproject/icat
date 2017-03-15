@@ -49,6 +49,11 @@
     </servlet>
 
     <servlet>
+        <servlet-name>WHOFICServiceImpl</servlet-name>
+        <servlet-class>edu.stanford.bmir.protege.web.server.ICDServiceImpl</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>FileServerServlet</servlet-name>
         <servlet-class>edu.stanford.bmir.protege.web.server.FileServerServlet</servlet-class>
     </servlet>
@@ -141,6 +146,11 @@
     <servlet-mapping>
         <servlet-name>ICDServiceImpl</servlet-name>
         <url-pattern>/webprotege/icd</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>WHOFICServiceImpl</servlet-name>
+        <url-pattern>/webprotege/who-fic</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

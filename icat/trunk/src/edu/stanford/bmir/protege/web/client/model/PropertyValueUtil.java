@@ -3,6 +3,7 @@ package edu.stanford.bmir.protege.web.client.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
@@ -15,12 +16,23 @@ import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 
 public class PropertyValueUtil {
+	
+	public EntityData createEntityData(String name, ValueType valueType, Map<String, String> propertiesMap) {
+		EntityData res = createEntityData(name, valueType);
+		res.setProperties(propertiesMap);
+		return res;
+	}
+
+	public EntityData createEntityData(String name, ValueType valueType) {
+		EntityData res = new EntityData(name);
+		res.setValueType(valueType);
+		return res;
+	}
 
     public void deletePropertyValue(String projectName, String entityName, String propName, ValueType propValueType,
             String value, boolean deleteIfFromTemplate, String user, 
             String operationDescription, AsyncCallback<Void> asyncCallback) {
-        EntityData oldEntityData = new EntityData(value);
-        oldEntityData.setValueType(propValueType);
+        EntityData oldEntityData = createEntityData(value, propValueType);
         OntologyServiceManager.getInstance().removePropertyValue(projectName, entityName,
                 new PropertyEntityData(propName), oldEntityData, deleteIfFromTemplate, 
                 user, operationDescription,
@@ -31,14 +43,25 @@ public class PropertyValueUtil {
     public void replacePropertyValue(String projectName, String entityName, String propName, ValueType propValueType,
             String oldValue, String newValue, boolean copyIfTemplate, String user, String operationDescription,
             AsyncCallback<Void> asyncCallback) {
-        EntityData oldEntityData = new EntityData(oldValue);
-        oldEntityData.setValueType(propValueType);
-        EntityData newEntityData = new EntityData(newValue);
-        newEntityData.setValueType(propValueType);
-        OntologyServiceManager.getInstance().replacePropertyValue(projectName, entityName,
+        EntityData oldEntityData = createEntityData(oldValue, propValueType);
+        EntityData newEntityData = createEntityData(newValue, propValueType);
+        replacePropertyValue(projectName, entityName, propName, oldEntityData, newEntityData, 
+        		copyIfTemplate, user, operationDescription, asyncCallback);
+    }
+
+	public void replacePropertyValue(String projectName, String entityName, String propName, 
+			EntityData oldEntityData, EntityData newEntityData, boolean copyIfTemplate,
+			String user, String operationDescription, AsyncCallback<Void> asyncCallback) {
+		OntologyServiceManager.getInstance().replacePropertyValue(projectName, entityName,
                 new PropertyEntityData(propName), oldEntityData, newEntityData, copyIfTemplate, user, operationDescription,
                 new ReplacePropertyValueHandler(entityName, propName, newEntityData, asyncCallback));
-    }
+	}
+
+	public void createPropertyValueInstances(String projectName, EntityData rootSubject, String[] properties, String[] types,
+			String user, String operationDescription, AbstractAsyncHandler<EntityData[]> asyncHandler) {
+		OntologyServiceManager.getInstance().createPropertyValueInstances(projectName, rootSubject,
+				properties, types, user, operationDescription, asyncHandler);
+	}
 
     //TODO: assume value value type is the same as the property value type, fix later
     public void setPropertyValues(String projectName, String entityName, String propName, ValueType propValueType,
@@ -61,8 +84,7 @@ public class PropertyValueUtil {
     //TODO: assume value value type is the same as the property value type, fix later
     public void addPropertyValue(String projectName, String entityName, String propName, ValueType propValueType,
             String newValue, boolean copyIfTemplate, String user, String operationDescription, AsyncCallback<Void> asyncCallback) {
-        EntityData newEntityData = new EntityData(newValue);
-        newEntityData.setValueType(propValueType);
+        EntityData newEntityData = createEntityData(newValue, propValueType);
         OntologyServiceManager.getInstance().addPropertyValue(projectName, entityName,
                 new PropertyEntityData(propName), newEntityData, copyIfTemplate, user, operationDescription,
                 new AddPropertyValueHandler(entityName, propName, asyncCallback));

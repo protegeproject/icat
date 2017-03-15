@@ -1,6 +1,5 @@
 package edu.stanford.bmir.protege.web.client.rpc;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
@@ -8,7 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
-import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValuesList;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.AllowedPostcoordinationValuesData;
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.PrecoordinationClassExpressionData;
@@ -16,7 +15,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 
 public class WHOFICServiceManager {
 
-    private static ICDServiceAsync proxy;
+    private static WHOFICServiceAsync proxy;
     static WHOFICServiceManager instance;
 
     public static WHOFICServiceManager getInstance() {
@@ -26,22 +25,13 @@ public class WHOFICServiceManager {
         return instance;
     }
 
-    private WHOFICServiceManager() {
-        proxy = (ICDServiceAsync) GWT.create(ICDService.class);
+    protected WHOFICServiceManager() {
+        proxy = GWT.create(WHOFICService.class);
     }
 
-    public void createICDCls(String projectName, String clsName, Collection<String> superClsNames, String title, String sortingLabel,
-               boolean createICDSpecificEntities, String user, String operationDescription, String reasonForChange, AsyncCallback<EntityData> cb) {
-        proxy.createICDCls(projectName, clsName, superClsNames, title, sortingLabel, createICDSpecificEntities, user, operationDescription, reasonForChange, cb);
-    }
-
-    public void getEntityPropertyValuesForLinearization(String projectName, List<String> entities, List<String> properties,
-            List<String> reifiedProps, AsyncCallback<List<EntityPropertyValues>> cb) {
-        proxy.getEntityPropertyValuesForLinearization(projectName, entities, properties, reifiedProps, cb);
-    }
-
-    public void exportICDBranch(String projectName, String topNode, String userName,  AsyncCallback<String> cb){
-        proxy.exportICDBranch(projectName, topNode, userName, cb);
+    public void getEntityPropertyValuesForLinearization(String projectName, List<String> entities, String property,
+            List<String> reifiedProps, int[] subjectEntityColumns, AsyncCallback<List<EntityPropertyValuesList>> cb) {
+        proxy.getEntityPropertyValuesForLinearization(projectName, entities, property, reifiedProps, subjectEntityColumns, cb);
     }
 
     public void getSecondaryAndInheritedTags(String projectName, String clsName, AsyncCallback<List<EntityPropertyValues>> cb) {

@@ -170,6 +170,9 @@ public interface OntologyServiceAsync {
     		String propertyEntity, PropertyEntityData instancePropertyEntity, EntityData valueEntityData, String user,
     		String operationDescription, AsyncCallback<EntityData> callback);
 
+	void createPropertyValueInstances(String projectName, EntityData rootSubject, String[] properties, String[] types,
+			String user, String operationDescription, AsyncCallback<EntityData[]> cb);
+
     /*
      * Search
      */
