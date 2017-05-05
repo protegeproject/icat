@@ -5531,7 +5531,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column16</string>
+													<string>Column13</string>
 													<map>
 														<entry>
 															<string>clone_of</string>
@@ -5539,7 +5539,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>15</string>
+															<string>12</string>
 														</entry>
 													</map>
 												</entry>
@@ -5582,6 +5582,10 @@
 															<string>field_align</string>
 															<string>center</string>
 														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>ivory</string>
+														</entry>
 													</map>
 												</entry>
 												<entry>
@@ -5589,11 +5593,11 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Intent Descriptor</string>
+															<string>Violence Descriptor</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
-															<string>Intent Descriptor (???)</string>
+															<string>Violence Descriptor (???)</string>
 														</entry>
 														<entry>
 															<string>headerCssClass</string>
@@ -5609,7 +5613,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#intentDescriptor</string>
+															<string>http://who.int/icd#violenceDescriptor</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -5625,7 +5629,7 @@
 														</entry>
 														<entry>
 															<string>field_bg_color</string>
-															<string>yellow</string>
+															<string>lightgray</string>
 														</entry>
 													</map>
 												</entry>
@@ -5672,6 +5676,10 @@
 															<string>field_align</string>
 															<string>center</string>
 														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>ivory</string>
+														</entry>
 													</map>
 												</entry>
 												<entry>
@@ -5679,11 +5687,11 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Counterpart&lt;BR&gt;In Collision</string>
+															<string>Transport Event&lt;BR&gt;Descriptor</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
-															<string>Transport Dimension -&gt; Counterpart In Collision (???)</string>
+															<string>Transport Event Descriptor -&gt; Counterpart + Mode of Transport + Role of the Injured Person + Type of Transport Injury Event</string>
 														</entry>
 														<entry>
 															<string>headerCssClass</string>
@@ -5699,7 +5707,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#counterPartInCollision</string>
+															<string>http://who.int/icd#transportEventDescriptor</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -5715,7 +5723,7 @@
 														</entry>
 														<entry>
 															<string>field_bg_color</string>
-															<string>yellow</string>
+															<string>lightgray</string>
 														</entry>
 													</map>
 												</entry>
@@ -5724,142 +5732,7 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Mode of Transport</string>
-														</entry>
-														<entry>
-															<string>tooltip</string>
-															<string>Transport Dimension -&gt; Mode of Transport (???)</string>
-														</entry>
-														<entry>
-															<string>headerCssClass</string>
-															<string>rotated-table-header1</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>45</string>
-														</entry>
-														<entry>
-															<string>height</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#modeOfTransport</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>5</string>
-														</entry>
-														<entry>
-															<string>field_type</string>
-															<string>checkbox_important</string>
-														</entry>
-														<entry>
-															<string>field_align</string>
-															<string>center</string>
-														</entry>
-														<entry>
-															<string>field_bg_color</string>
-															<string>yellow</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column7</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Setting of Event</string>
-														</entry>
-														<entry>
-															<string>tooltip</string>
-															<string>Transport Dimension -&gt; Setting of Event (???)</string>
-														</entry>
-														<entry>
-															<string>headerCssClass</string>
-															<string>rotated-table-header1</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>45</string>
-														</entry>
-														<entry>
-															<string>height</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#settingOfEvent</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>6</string>
-														</entry>
-														<entry>
-															<string>field_type</string>
-															<string>checkbox_important</string>
-														</entry>
-														<entry>
-															<string>field_align</string>
-															<string>center</string>
-														</entry>
-														<entry>
-															<string>field_bg_color</string>
-															<string>yellow</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column8</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Role of&lt;BR&gt;Injured Person</string>
-														</entry>
-														<entry>
-															<string>tooltip</string>
-															<string>Transport Dimension -&gt; Transport User Role of Injured Person (???)</string>
-														</entry>
-														<entry>
-															<string>headerCssClass</string>
-															<string>rotated-table-header1</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>45</string>
-														</entry>
-														<entry>
-															<string>height</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#transportUserRoleOfInjuredPerson</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>7</string>
-														</entry>
-														<entry>
-															<string>field_type</string>
-															<string>checkbox_important</string>
-														</entry>
-														<entry>
-															<string>field_align</string>
-															<string>center</string>
-														</entry>
-														<entry>
-															<string>field_bg_color</string>
-															<string>yellow</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column9</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Object&lt;BR&gt;Substance</string>
+															<string>Object or Substance&lt;BR&gt;prod. Injury</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
@@ -5883,7 +5756,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>8</string>
+															<string>5</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -5893,18 +5766,22 @@
 															<string>field_align</string>
 															<string>center</string>
 														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>ivory</string>
+														</entry>
 													</map>
 												</entry>
 												<entry>
-													<string>Column10</string>
+													<string>Column7</string>
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Counter Measure&lt;BR&gt;Descriptor</string>
+															<string>Sports Activity&lt;BR&gt;Descriptor</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
-															<string>Counter Measure Descriptor (???)</string>
+															<string>Counter Measure Descriptor</string>
 														</entry>
 														<entry>
 															<string>headerCssClass</string>
@@ -5920,11 +5797,11 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#counterMeasureDescriptor</string>
+															<string>http://who.int/icd#sportsActivityDescriptor</string>
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>9</string>
+															<string>6</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -5936,16 +5813,16 @@
 														</entry>
 														<entry>
 															<string>field_bg_color</string>
-															<string>yellow</string>
+															<string>lightgray</string>
 														</entry>
 													</map>
 												</entry>
 												<entry>
-													<string>Column11</string>
+													<string>Column8</string>
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Place of&lt;BR&gt;Occurrence</string>
+															<string>Place&lt;BR&gt;of Occurrence</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
@@ -5969,7 +5846,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>10</string>
+															<string>7</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -5979,10 +5856,14 @@
 															<string>field_align</string>
 															<string>center</string>
 														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>ivory</string>
+														</entry>
 													</map>
 												</entry>
 												<entry>
-													<string>Column12</string>
+													<string>Column9</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6010,7 +5891,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>11</string>
+															<string>8</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6022,20 +5903,20 @@
 														</entry>
 														<entry>
 															<string>field_bg_color</string>
-															<string>yellow</string>
+															<string>lightgray</string>
 														</entry>
 													</map>
 												</entry>
 												<entry>
-													<string>Column13</string>
+													<string>Column10</string>
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Activity&lt;BR&gt;When Injured</string>
+															<string>Activity&lt;BR&gt;when Injured</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
-															<string>Activity&lt;BR&gt;When Injured</string>
+															<string>Activity when Injured</string>
 														</entry>
 														<entry>
 															<string>headerCssClass</string>
@@ -6055,7 +5936,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>12</string>
+															<string>9</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6065,18 +5946,22 @@
 															<string>field_align</string>
 															<string>center</string>
 														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>ivory</string>
+														</entry>
 													</map>
 												</entry>
 												<entry>
-													<string>Column14</string>
+													<string>Column11</string>
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Activities&lt;BR&gt;Descriptor</string>
+															<string>Occupational&lt;BR&gt;Descriptor</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
-															<string>Activities Descriptor (???)</string>
+															<string>Occupational Descriptor</string>
 														</entry>
 														<entry>
 															<string>headerCssClass</string>
@@ -6092,11 +5977,11 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#activitiesDescriptor</string>
+															<string>http://who.int/icd#occupationalDescriptor</string>
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>13</string>
+															<string>10</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6108,12 +5993,12 @@
 														</entry>
 														<entry>
 															<string>field_bg_color</string>
-															<string>yellow</string>
+															<string>lightgray</string>
 														</entry>
 													</map>
 												</entry>
 												<entry>
-													<string>Column15</string>
+													<string>Column12</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6141,7 +6026,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>14</string>
+															<string>11</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6151,11 +6036,15 @@
 															<string>field_align</string>
 															<string>center</string>
 														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>ivory</string>
+														</entry>
 													</map>
 												</entry>
 												
 												<entry>
-													<string>Column42</string>
+													<string>Column39</string>
 													<map>
 														<entry>
 															<string>clone_of</string>
@@ -6163,12 +6052,12 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>41</string>
+															<string>38</string>
 														</entry>
 													</map>
 												</entry>
 												<entry>
-													<string>Column17</string>
+													<string>Column14</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6196,7 +6085,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>16</string>
+															<string>13</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6213,7 +6102,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column18</string>
+													<string>Column15</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6241,7 +6130,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>17</string>
+															<string>14</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6254,7 +6143,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column19</string>
+													<string>Column16</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6282,7 +6171,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>18</string>
+															<string>15</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6295,7 +6184,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column20</string>
+													<string>Column17</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6327,7 +6216,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>19</string>
+															<string>16</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6340,7 +6229,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column21</string>
+													<string>Column18</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6368,7 +6257,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>20</string>
+															<string>17</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6385,7 +6274,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column22</string>
+													<string>Column19</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6413,7 +6302,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>21</string>
+															<string>18</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6430,7 +6319,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column23</string>
+													<string>Column20</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6458,7 +6347,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>22</string>
+															<string>19</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6475,7 +6364,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column24</string>
+													<string>Column21</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6503,7 +6392,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>23</string>
+															<string>20</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6520,7 +6409,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column25</string>
+													<string>Column22</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6548,7 +6437,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>24</string>
+															<string>21</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6561,7 +6450,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column26</string>
+													<string>Column25</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6589,7 +6478,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>27</string>
+															<string>24</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6606,7 +6495,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column27</string>
+													<string>Column26</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6634,7 +6523,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>28</string>
+															<string>25</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6651,7 +6540,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column28</string>
+													<string>Column23</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6679,7 +6568,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>25</string>
+															<string>22</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6696,7 +6585,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column29</string>
+													<string>Column24</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6724,7 +6613,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>26</string>
+															<string>23</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6741,7 +6630,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column30</string>
+													<string>Column27</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6769,7 +6658,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>29</string>
+															<string>26</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6782,7 +6671,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column31</string>
+													<string>Column28</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6810,7 +6699,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>30</string>
+															<string>27</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6827,7 +6716,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column32</string>
+													<string>Column29</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6855,7 +6744,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>31</string>
+															<string>28</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6872,7 +6761,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column33</string>
+													<string>Column30</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6900,7 +6789,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>32</string>
+															<string>29</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6917,7 +6806,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column34</string>
+													<string>Column31</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6945,7 +6834,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>33</string>
+															<string>30</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6962,7 +6851,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column35</string>
+													<string>Column32</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6990,7 +6879,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>34</string>
+															<string>31</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7007,7 +6896,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column36</string>
+													<string>Column33</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7035,7 +6924,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>35</string>
+															<string>32</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7048,7 +6937,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column37</string>
+													<string>Column34</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7076,7 +6965,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>36</string>
+															<string>33</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7089,7 +6978,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column38</string>
+													<string>Column35</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7117,7 +7006,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>37</string>
+															<string>34</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7134,7 +7023,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column39</string>
+													<string>Column36</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7162,7 +7051,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>38</string>
+															<string>35</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7179,7 +7068,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column40</string>
+													<string>Column37</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7207,7 +7096,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>39</string>
+															<string>36</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7224,7 +7113,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column41</string>
+													<string>Column38</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7252,7 +7141,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>40</string>
+															<string>37</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7274,13 +7163,13 @@
 												</entry-->
 											</map>
 										</entry>
-												
+										
 										<entry>
-											<string>PCCustomScaleRuler</string>
+											<string>PCECValueHierarchyRuler</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>PCCustomScaleRuler</string>
+													<string>PCECValueHierarchyRuler</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -7289,6 +7178,765 @@
 												<entry>
 													<string>index</string>
 													<string>1</string>
+												</entry>
+												<entry>
+													<string>load_url</string>
+													<string>../html/ruler_pc_ec_value_hierarchy.html</string>
+												</entry>
+											</map>
+										</entry>
+												
+										<entry>
+											<string>http://who.int/icd#intent</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>Intent</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#IntentReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#ICECI_C.1</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Intent</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#intent</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>2</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#violenceDescriptor</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>ViolenceDescriptor</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#ViolenceDescriptorReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#ICECI_VIOLENCE_MODULE</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Violence Descriptor</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#violenceDescriptor</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>3</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#mechanismOfInjury</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>MechanismOfInjury</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#MechanismOfInjuryReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#ICECI_C.2</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Mechanism of Injury</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#mechanismOfInjury</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>4</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#transportEventDescriptor</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>TransportEventDescriptor</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#TransportEventDescriptorReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#ICECI_TRANSPORT_MODULE</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Transport Event Descriptor</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#transportEventDescriptor</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>5</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#objectOrSubstanceProducingInjury</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>ObjectOrSubstanceProducingInjury</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#ObjectOrSubstanceProducingInjuryReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#ICECI_C.3</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Object or Substance Producing Injury</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#objectOrSubstanceProducingInjury</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>6</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#sportsActivityDescriptor</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>SportsActivityDescriptor</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#SportsActivityDescriptorReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#ICECI_SPORTS_MODULE</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Sports Activity Descriptor</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#sportsActivityDescriptor</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>7</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#placeOfOccurrence</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>PlaceOfOccurrence</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#PlaceOfOccurrenceReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#ICECI_C.4</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Place of Occurrence</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#placeOfOccurrence</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>8</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#placeOfOccurrenceDescriptor</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>PlaceOfOccurrenceDescriptor</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#PlaceOfOccurrenceDescriptorReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#ICECI_PLACE_MODULE</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Place of Occurrence Descriptor</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#placeOfOccurrenceDescriptor</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>9</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#activityWhenInjured</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>ActivityWhenInjured</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#ActivityWhenInjuredReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#ICECI_C.5</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Activity when Injured</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#activityWhenInjured</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>10</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#occupationalDescriptor</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>OccupationalDescriptor</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#OccupationalDescriptorReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#ICECI_OCCUPATIONAL_MODULE</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Occupational Descriptor</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#occupationalDescriptor</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>11</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#substanceUse</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>SubstanceUse</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#SubstanceUseReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#ICECI_CORE_MODULE</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Substance Use</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#substanceUse</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>12</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>PCECCustomScaleRuler</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>PCECCustomScaleRuler</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>htmlMessage</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>13</string>
 												</entry>
 												<entry>
 													<string>load_url</string>
@@ -7350,7 +7998,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>2</string>
+													<string>14</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -7619,7 +8267,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>3</string>
+													<string>15</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -7884,7 +8532,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>4</string>
+													<string>16</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -8097,11 +8745,11 @@
 										</entry>
 										
 										<entry>
-											<string>PCValueHierarchyRuler</string>
+											<string>PCECValueHierarchyRuler</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>PCValueHierarchyRuler</string>
+													<string>PCECValueHierarchyRuler</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -8109,7 +8757,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>5</string>
+													<string>17</string>
 												</entry>
 												<entry>
 													<string>load_url</string>
@@ -8152,7 +8800,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>6</string>
+													<string>18</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -8220,7 +8868,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>7</string>
+													<string>19</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -8288,7 +8936,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>8</string>
+													<string>20</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -8355,7 +9003,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>9</string>
+													<string>21</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -8423,7 +9071,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>10</string>
+													<string>22</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -8490,7 +9138,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>11</string>
+													<string>23</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -8529,11 +9177,11 @@
 										</entry>
 										
 										<entry>
-											<string>PCFixedScaleRuler</string>
+											<string>PCECFixedScaleRuler</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>PCFixedScaleRuler</string>
+													<string>PCECFixedScaleRuler</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -8541,7 +9189,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>12</string>
+													<string>24</string>
 												</entry>
 												<entry>
 													<string>load_url</string>
@@ -8555,7 +9203,7 @@
 											<map>
 												<entry>
 													<string>name</string>
-													<string>FixedScalePostcoordinationAxis</string>
+													<string>FixedScalePostcoordinationAxisEC</string>
 												</entry>
 												<entry>
 													<string>label</string>
@@ -8575,7 +9223,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>13</string>
+													<string>25</string>
 												</entry>
 												<entry>
 													<string>height</string>
