@@ -10270,6 +10270,342 @@
 																</entry>
 															</map>
 														</entry>
+
+														<entry>
+															<string>http://who.int/icd#fractureSubtype</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>FractureSubtype</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#FractureSubtypeReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Fracture Subtype</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'fracture subtype' of fracture qualifier</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#fractureSubtype_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>16</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+												
+														<entry>
+															<string>http://who.int/icd#fractureOpenOrClosed</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>FractureOpenOrClosed</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#FractureOpenOrClosedReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Fracture Open or Closed</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'fracture open or closed' fracture qualifier</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#fractureOpenOrClosed_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>17</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+												
+														<entry>
+															<string>http://who.int/icd#jointInvolvementInFracture</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>JointInvolvementInFracture</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#JointInvlolvementInFractureReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Joint Involvement In Fracture</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'joint involvement in fracture' fracture qualifier</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#jointInvolvementInFracture_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>18</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+												
+														<entry>
+															<string>http://who.int/icd#typeOfInjury</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>TypeOfInjury</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#TypeOfInjuryReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Type of Injury</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'type of injury' injury qualifier</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#typeOfInjury_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>19</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+												
+														<entry>
+															<string>http://who.int/icd#burnQualifier</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>BurnQualifier</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#BurnQualifierReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Burn Qualifier</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'burn qualifier' injury qualifier</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#burnQualifier_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>20</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+												
+														<entry>
+															<string>http://who.int/icd#extentOfBurnByBodySurface</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>ExtentOfBurnByBodySurface</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#ExtentOfBurnByBodySurfaceReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Extent of Burn by Body Surface</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'extent of burn by body surface' burn qualifier</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#extentOfBurnByBodySurface_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>21</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+												
+														<entry>
+															<string>http://who.int/icd#extentOfFullThicknessBurnByBodySurface</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>ExtentOfFullThicknessBurnByBodySurface</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#ExtentOfFullThicknessBurnByBodySurfaceReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Extent of Full Thickness Burn by Body Surface</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'extent of full thickness burn by body surface' burn qualifier</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#extentOfFullThicknessBurnByBodySurface_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>22</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
+												
+														<entry>
+															<string>http://who.int/icd#outcomeOfFullThicknessBurn</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>OutcomeOfFullThicknessBurn</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#OutcomeOfFullThicknessBurnReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Outcome of Full Thickness Burn</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'outcome of full thickness burn' burn qualifier</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#outcomeOfFullThicknessBurn_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_fix_scale_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>23</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>60</string>
+																</entry>
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+															</map>
+														</entry>
 												
 														<entry>
 															<string>http://who.int/icd#durationOfComa</string>
@@ -10300,7 +10636,7 @@
 																</entry>
 																<entry>
 																	<string>index</string>
-																	<string>16</string>
+																	<string>24</string>
 																</entry>
 																<entry>
 																	<string>height</string>
@@ -10342,7 +10678,7 @@
 																</entry>
 																<entry>
 																	<string>index</string>
-																	<string>17</string>
+																	<string>25</string>
 																</entry>
 																<entry>
 																	<string>height</string>
@@ -10355,7 +10691,7 @@
 															</map>
 														</entry>
 												
-														<!--entry>
+														<entry>
 															<string>http://who.int/icd#hasGCSScore</string>
 															<map>
 																<entry>
@@ -10384,7 +10720,7 @@
 																</entry>
 																<entry>
 																	<string>index</string>
-																	<string>18</string>
+																	<string>26</string>
 																</entry>
 																<entry>
 																	<string>height</string>
@@ -10426,7 +10762,7 @@
 																</entry>
 																<entry>
 																	<string>index</string>
-																	<string>19</string>
+																	<string>27</string>
 																</entry>
 																<entry>
 																	<string>height</string>
@@ -10468,7 +10804,7 @@
 																</entry>
 																<entry>
 																	<string>index</string>
-																	<string>20</string>
+																	<string>28</string>
 																</entry>
 																<entry>
 																	<string>height</string>
@@ -10498,7 +10834,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for the 'GCS Verbal Score' level of consciousness'</string>
+																	<string>Choose a value for the 'GCS Verbal Score' level of consciousness</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -10510,7 +10846,7 @@
 																</entry>
 																<entry>
 																	<string>index</string>
-																	<string>21</string>
+																	<string>29</string>
 																</entry>
 																<entry>
 																	<string>height</string>
@@ -10552,7 +10888,7 @@
 																</entry>
 																<entry>
 																	<string>index</string>
-																	<string>22</string>
+																	<string>30</string>
 																</entry>
 																<entry>
 																	<string>height</string>
@@ -10563,7 +10899,7 @@
 																	<boolean>false</boolean>
 																</entry>
 															</map>
-														</entry-->
+														</entry>
 												
 														<entry>
 															<string>http://who.int/icd#diagnosisConfirmedBy</string>
@@ -10594,8 +10930,7 @@
 																</entry>
 																<entry>
 																	<string>index</string>
-																	<!--string>23</string-->
-																	<string>18</string>
+																	<string>31</string>
 																</entry>
 																<entry>
 																	<string>height</string>
@@ -10622,6 +10957,14 @@
 										            			<string>http://who.int/icd#hasGCSMotorScore</string>
 										            			<string>http://who.int/icd#hasGCSVerbalScore</string>
 										            			<string>http://who.int/icd#hasPupilReactionScore</string>
+															</list>
+														</entry>
+														<entry>
+															<string>http://who.int/icd#burnQualifier</string>
+															<list>
+																<string>http://who.int/icd#extentOfBurnByBodySurface</string>
+										            			<string>http://who.int/icd#extentOfFullThicknessBurnByBodySurface</string>
+										            			<string>http://who.int/icd#outcomeOfFullThicknessBurn</string>
 															</list>
 														</entry>
 													</map>
