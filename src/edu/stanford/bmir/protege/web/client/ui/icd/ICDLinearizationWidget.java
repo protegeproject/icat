@@ -53,6 +53,11 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
     private String fieldNameParent = null;
     private int colIndexParent = -1;
 
+    private String fieldNameIsPart = null;
+    private int colIndexIsPart = -1;
+    private String fieldNameIsAuxAxisChild = null;
+    private int colIndexIsAuxAxisChild = -1;
+
     private Record currentRecord;
     private Record currentShadowStoreRecord;
     private Window selectWindow;
@@ -110,6 +115,17 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
 
         }
 
+        //set special columns name and column index:
+        String colName = colConfig.getHeader().toLowerCase();
+        if (colName.contains("part") || colName.contains("incl")) {
+        	fieldNameIsPart = colConfig.getDataIndex();
+        	colIndexIsPart = index;
+        }
+        else if (colName.contains("aux") && colName.contains("child")) {
+        	fieldNameIsAuxAxisChild = colConfig.getDataIndex();
+        	colIndexIsAuxAxisChild = index;
+        }
+        
         return colConfig;
     }
 
@@ -442,4 +458,17 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
         }
 
     }
+
+    @Override
+    protected String getWarningText(Object value, Record record, int rowIndex, int colNum, Store store) {
+    	if (colIndexIsPart > -1 && colIndexIsAuxAxisChild > -1 &&
+    			(colNum == colIndexIsPart || colNum == colIndexIsAuxAxisChild) &&
+    			Boolean.valueOf(record.getAsString(fieldNameIsPart)) == true &&		//we are using this method of evaluation as record.getAsBoolean() does not return the set value, but rather it returns "true" if any value is set (true or false)
+    			Boolean.valueOf(record.getAsString(fieldNameIsAuxAxisChild)) == true ) {
+    		return "It is not permitted to have both \"Is part of the linearization\" and \"Is auxiliary axis child\" checked at the same time";
+    	}
+    	else {
+    		return null;
+    	}
+	}
 }
