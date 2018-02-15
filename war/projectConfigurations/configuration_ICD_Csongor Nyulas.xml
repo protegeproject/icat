@@ -2904,7 +2904,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column27</string>
+													<string>Column29</string>
 													<map>
 														<entry>
 															<string>clone_of</string>
@@ -2912,7 +2912,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>26</string>
+															<string>28</string>
 														</entry>
 													</map>
 												</entry>
@@ -4958,6 +4958,73 @@
 										</entry>
 										
 										<entry>
+											<string>http://who.int/icd#timeInLife</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>TimeInLife</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#TimeInLifeReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#Temporality_Time_in_Life</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Time in Life</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#timeInLife</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>6</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
 											<string>http://who.int/icd#infectiousAgent</string>
 											<map>
 												<entry>
@@ -4991,7 +5058,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>6</string>
+													<string>7</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -5059,7 +5126,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>7</string>
+													<string>8</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -5127,7 +5194,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>8</string>
+													<string>9</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -5194,7 +5261,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>9</string>
+													<string>10</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -5262,7 +5329,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>10</string>
+													<string>11</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -5329,7 +5396,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>11</string>
+													<string>12</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -5400,7 +5467,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>12</string>
+													<string>13</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -5471,7 +5538,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>13</string>
+													<string>14</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -5522,7 +5589,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>14</string>
+													<string>15</string>
 												</entry>
 												<entry>
 													<string>load_url</string>
@@ -5556,7 +5623,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>15</string>
+													<string>16</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -5566,10 +5633,10 @@
 								            		<!--string>visible_properties</string-->
 								            		<string>allowed_values</string>
 													<map>
-														<entry>
+														<!--entry>
 															<string>Time in Life</string>
 									            			<string>http://who.int/icd#timeInLife</string>
-														</entry>
+														</entry-->
 														<entry>
 															<string>Causality</string>
 									            			<string>http://who.int/icd#causality</string><!--????-->
@@ -6344,7 +6411,7 @@
 												</entry>
 												
 												<entry>
-													<string>Column39</string>
+													<string>Column41</string>
 													<map>
 														<entry>
 															<string>clone_of</string>
@@ -6352,7 +6419,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>38</string>
+															<string>40</string>
 														</entry>
 													</map>
 												</entry>
@@ -6709,7 +6776,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column22</string>
+													<string>Column23</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6737,7 +6804,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>21</string>
+															<string>22</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6750,7 +6817,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column25</string>
+													<string>Column26</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6778,7 +6845,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>24</string>
+															<string>25</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6795,7 +6862,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column26</string>
+													<string>Column27</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6823,7 +6890,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>25</string>
+															<string>26</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6840,7 +6907,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column23</string>
+													<string>Column24</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6868,7 +6935,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>22</string>
+															<string>23</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6885,7 +6952,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column24</string>
+													<string>Column25</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6913,7 +6980,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>23</string>
+															<string>24</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6930,7 +6997,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column27</string>
+													<string>Column28</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6958,7 +7025,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>26</string>
+															<string>27</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -6971,7 +7038,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column28</string>
+													<string>Column29</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -6999,7 +7066,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>27</string>
+															<string>28</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7016,7 +7083,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column29</string>
+													<string>Column30</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7044,7 +7111,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>28</string>
+															<string>29</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7061,7 +7128,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column30</string>
+													<string>Column31</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7089,7 +7156,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>29</string>
+															<string>30</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7106,7 +7173,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column31</string>
+													<string>Column32</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7134,7 +7201,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>30</string>
+															<string>31</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7151,7 +7218,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column32</string>
+													<string>Column33</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7179,7 +7246,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>31</string>
+															<string>32</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7196,7 +7263,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column33</string>
+													<string>Column34</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7224,7 +7291,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>32</string>
+															<string>33</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7237,7 +7304,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column34</string>
+													<string>Column35</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7265,7 +7332,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>33</string>
+															<string>34</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7278,7 +7345,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column35</string>
+													<string>Column36</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7306,7 +7373,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>34</string>
+															<string>35</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7323,7 +7390,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column36</string>
+													<string>Column37</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7351,7 +7418,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>35</string>
+															<string>36</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7368,7 +7435,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column37</string>
+													<string>Column38</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7396,7 +7463,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>36</string>
+															<string>37</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -7413,7 +7480,97 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column38</string>
+													<string>Column22</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Causing Condition</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Has causing condition another ICD Entity</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#hasCausingCondition</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>21</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgreen</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column39</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Has Manifestation</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Has manifestation another ICD Entity</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#hasManifestation</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>38</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgreen</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column40</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -7441,7 +7598,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>37</string>
+															<string>39</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -9067,6 +9224,73 @@
 										</entry>
 										
 										<entry>
+											<string>http://who.int/icd#timeInLife</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>TimeInLife</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#TimeInLifeReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#Temporality_Time_in_Life</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Time in Life</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#timeInLife</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>18</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
 											<string>http://who.int/icd#infectiousAgent</string>
 											<map>
 												<entry>
@@ -9100,7 +9324,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>18</string>
+													<string>19</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -9168,7 +9392,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>19</string>
+													<string>20</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -9236,7 +9460,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>20</string>
+													<string>21</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -9303,7 +9527,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>21</string>
+													<string>22</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -9371,7 +9595,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>22</string>
+													<string>23</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -9438,7 +9662,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>23</string>
+													<string>24</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -9509,7 +9733,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>24</string>
+													<string>25</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -9580,7 +9804,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>25</string>
+													<string>26</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -9631,7 +9855,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>26</string>
+													<string>27</string>
 												</entry>
 												<entry>
 													<string>load_url</string>
@@ -9665,7 +9889,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>27</string>
+													<string>28</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -9675,10 +9899,10 @@
 								            		<!--string>visible_properties</string-->
 								            		<string>allowed_values</string>
 													<map>
-														<entry>
+														<!--entry>
 															<string>Time in Life</string>
 									            			<string>http://who.int/icd#timeInLife</string>
-														</entry>
+														</entry-->
 														<entry>
 															<string>Causality</string>
 									            			<string>http://who.int/icd#causality</string><!--????-->
