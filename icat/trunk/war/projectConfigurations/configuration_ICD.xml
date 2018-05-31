@@ -4310,6 +4310,10 @@
 															<string>@Column7@</string>
 														</entry>
 														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
+														</entry>
+														<entry>
 															<string>hidden</string>
 															<string>false</string>
 														</entry>
@@ -4575,6 +4579,10 @@
 															<string>@Column7@</string>
 														</entry>
 														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
+														</entry>
+														<entry>
 															<string>hidden</string>
 															<string>false</string>
 														</entry>
@@ -4838,6 +4846,10 @@
 														<entry>
 															<string>empty_text</string>
 															<string>@Column7@</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
 														</entry>
 														<entry>
 															<string>hidden</string>
@@ -7664,7 +7676,7 @@
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>...</string>
+													<string>Choose a value for the 'intent' property</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -7731,7 +7743,7 @@
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>...</string>
+													<string>Choose a value for the 'violence descriptor' property</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -7798,7 +7810,7 @@
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>...</string>
+													<string>Choose a value for the 'mechanism of injury' property</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -7865,7 +7877,7 @@
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>...</string>
+													<string>Choose a value for the 'transport event descriptor' property</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -7932,7 +7944,7 @@
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>...</string>
+													<string>Choose a value for the 'object or substance producing injury' property</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -7999,7 +8011,7 @@
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>...</string>
+													<string>Choose a value for the 'sports activity descriptor' property</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -8066,7 +8078,7 @@
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>...</string>
+													<string>Choose a value for the 'place of occurrence' property</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -8133,7 +8145,7 @@
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>...</string>
+													<string>Choose a value for the 'place of occurrence descriptor' property</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -8200,7 +8212,7 @@
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>...</string>
+													<string>Choose a value for the 'activity when injured' property</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -8267,7 +8279,7 @@
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>...</string>
+													<string>Choose a value for the 'occupational descriptor' property</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -8334,7 +8346,7 @@
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>...</string>
+													<string>Choose a value for the 'substance use' property</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -8574,6 +8586,10 @@
 														<entry>
 															<string>empty_text</string>
 															<string>@Column7@</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
 														</entry>
 														<entry>
 															<string>hidden</string>
@@ -8841,6 +8857,10 @@
 															<string>@Column7@</string>
 														</entry>
 														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
+														</entry>
+														<entry>
 															<string>hidden</string>
 															<string>false</string>
 														</entry>
@@ -9104,6 +9124,10 @@
 														<entry>
 															<string>empty_text</string>
 															<string>@Column7@</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
 														</entry>
 														<entry>
 															<string>hidden</string>
@@ -11641,6 +11665,7 @@
 										
 										
 									</map>
+
 
 
 <!-- ICD International -> Pre-coordination (External Causes)-->
