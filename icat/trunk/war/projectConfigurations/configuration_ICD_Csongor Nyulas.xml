@@ -4310,6 +4310,10 @@
 															<string>@Column7@</string>
 														</entry>
 														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
+														</entry>
+														<entry>
 															<string>hidden</string>
 															<string>false</string>
 														</entry>
@@ -4575,6 +4579,10 @@
 															<string>@Column7@</string>
 														</entry>
 														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
+														</entry>
+														<entry>
 															<string>hidden</string>
 															<string>false</string>
 														</entry>
@@ -4838,6 +4846,10 @@
 														<entry>
 															<string>empty_text</string>
 															<string>@Column7@</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
 														</entry>
 														<entry>
 															<string>hidden</string>
@@ -8576,6 +8588,10 @@
 															<string>@Column7@</string>
 														</entry>
 														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
+														</entry>
+														<entry>
 															<string>hidden</string>
 															<string>false</string>
 														</entry>
@@ -8841,6 +8857,10 @@
 															<string>@Column7@</string>
 														</entry>
 														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
+														</entry>
+														<entry>
 															<string>hidden</string>
 															<string>false</string>
 														</entry>
@@ -9104,6 +9124,10 @@
 														<entry>
 															<string>empty_text</string>
 															<string>@Column7@</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
 														</entry>
 														<entry>
 															<string>hidden</string>
