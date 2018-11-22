@@ -3,12 +3,16 @@ package edu.stanford.bmir.protege.web.server.icd.proposals;
 import java.util.logging.Level;
 
 import edu.stanford.bmir.protege.web.server.KBUtil;
+import edu.stanford.bmir.protege.web.server.icd.proposals.util.LookupUtil;
 import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
+import edu.stanford.bmir.whofic.icd.ICDContentModel;
 import edu.stanford.smi.protege.util.Log;
+import edu.stanford.smi.protegex.owl.model.OWLIndividual;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.OWLObjectProperty;
 import edu.stanford.smi.protegex.owl.model.RDFProperty;
 import edu.stanford.smi.protegex.owl.model.RDFResource;
+import edu.stanford.smi.protegex.owl.model.RDFSNamedClass;
 
 /**
  * A proposal structure for updating the iCAT content.
@@ -25,6 +29,7 @@ public abstract class ICDProposal {
 			"<img src=\"images/import.gif\" style=\"padding-right: 5px; margin-bottom: -5px;\" /><b>Proposal import.</b> ";
 	
 	private transient OWLModel owlModel;
+	private transient ICDContentModel icdContentModel;
 	
 	private String contributionId;
 	private String contributableId;
@@ -52,6 +57,7 @@ public abstract class ICDProposal {
 			String valueSetName) {
 		super();
 		this.owlModel = owlModel;
+		this.icdContentModel = new ICDContentModel(owlModel);
 		this.contributionId = contributionId;
 		this.contributableId = contributableId;
 		this.entityId = entityId;
@@ -142,6 +148,19 @@ public abstract class ICDProposal {
 		return true;
 	}
 	
+	public boolean checkEntityIsAClass(ImportResult importResult) {
+		RDFResource entity = getEntity();
+		if (entity == null) {
+			importResult.recordResult(getContributionId(), "Entity does not exist: " + getEntityId(), ImportRowStatus.FAIL);
+			return false;
+		}
+		if ( !(entity instanceof RDFSNamedClass)) {
+			importResult.recordResult(getContributionId(), "Entity is not a class: " + getEntityId(), ImportRowStatus.FAIL);
+			return false;
+		}
+		return true;
+	}
+	
 	public boolean checkPropertyExists(ImportResult importResult) {
 		boolean exists = getProperty() != null;
 		if (exists == false) {
@@ -150,11 +169,35 @@ public abstract class ICDProposal {
 		return exists;
 	}
 	
+	public boolean checkPropertyIsValidPostCoordinationAxis(ImportResult importResult) {
+		boolean isValidPCAxis = ImportProposalsUtil.getLookupUtil(getICDContentModel()).isPostCoordinationAxis(getPropertyId());
+		if (isValidPCAxis == false) {
+			importResult.recordResult(contributionId, "Property " + propertyId +" is not a valid post-coordination axis.", ImportRowStatus.FAIL);
+		}
+		return isValidPCAxis;
+	}
+	
 	public boolean checkContributableIdNotEmpty(ImportResult importResult) {
 		String contributableId = getContributableId();
 		if (contributableId == null || contributableId.isEmpty()) {
 			importResult.recordResult(contributionId, "contributableId is empty.", ImportRowStatus.FAIL);
 			return false;
+		}
+		return true;
+	}	
+	
+	public boolean checkContributableIdIsValidLinearizationViewl(ImportResult importResult) {
+		String contributableId = getContributableId();
+		if (contributableId == null || contributableId.isEmpty()) {
+			importResult.recordResult(contributionId, "contributableId is empty.", ImportRowStatus.FAIL);
+			return false;
+		}
+		else {
+			OWLIndividual linView = owlModel.getOWLIndividual(contributableId);
+			if (linView == null || ! linView.hasRDFType( getICDContentModel().getLinearizationViewClass(), true)) {
+				importResult.recordResult(contributionId, "Contributable id is " + contributableId + ". It is expected to be a valid linearization view instance.", ImportRowStatus.FAIL);
+				return false;
+			}
 		}
 		return true;
 	}	
@@ -168,6 +211,22 @@ public abstract class ICDProposal {
 		return true;
 	}
 	
+	public boolean checkNewValueIsValidPostCoordinationAxisProperty(ImportResult importResult) {
+		String newValue = this.getNewValue();
+		if (newValue == null) {
+			importResult.recordResult(getContributionId(), "New value is null. Expected a valid post-coordination axis property name.", ImportRowStatus.FAIL);
+			return false;
+		}
+		else {
+			boolean isValidPCAxis = ImportProposalsUtil.getLookupUtil(getICDContentModel()).isPostCoordinationAxis(newValue);
+			if (isValidPCAxis == false) {
+				importResult.recordResult(contributionId, "New Value " + newValue +" is not a valid post-coordination axis.", ImportRowStatus.FAIL);
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public boolean checkOldValueExists(ImportResult importResult) {
 		String oldValue = this.getOldValue();
 				
@@ -372,6 +431,11 @@ public abstract class ICDProposal {
 
 	public OWLModel getOwlModel() {
 		return owlModel;
+	}
+
+
+	public ICDContentModel getICDContentModel() {
+		return icdContentModel;
 	}
 	
 	
