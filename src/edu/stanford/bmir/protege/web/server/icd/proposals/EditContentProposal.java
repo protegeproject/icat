@@ -61,7 +61,9 @@ public class EditContentProposal extends ICDProposal {
 		if (ranges.isEmpty()){
 			range = getOwlModel().getOWLThingClass();
 		}
-		range = (OWLClass) ranges.iterator().next();
+		else {
+			range = (OWLClass) ranges.iterator().next();
+		}
 				
 		if (range == null) {
 			range = getOwlModel().getOWLThingClass();

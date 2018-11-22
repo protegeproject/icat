@@ -1,5 +1,9 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals;
 
 public enum ProposalTypes {
-	EditContentProposal, AddContentProposal, DeleteContentProposal;
+	EditContentProposal, AddContentProposal, DeleteContentProposal, 
+	CreateSubclassProposal, 
+	AddAllowedPostCoordinationAxisProposal, AddRequiredPostCoordinationAxisProposal, RemovePostCoordinationAxisProposal,
+	AddCustomScaleProposal,	DeleteCustomScaleProposal,
+	AddPostCoordinationAxisValueProposal, DeletePostCoordinationAxisValueProposal;
 }

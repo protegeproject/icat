@@ -146,6 +146,57 @@ public class ImportProposals {
 					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
 					doImport(user, importResult);
 			
+		} else if (ProposalTypes.CreateSubclassProposal.toString().equals(proposalType)) {
+			ICDProposalFactory.createCreateSubclassProposal(owlModel, contributionId, contributableId, 
+					entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
+					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
+					doImport(user, importResult);
+			
+		} else if (ProposalTypes.AddAllowedPostCoordinationAxisProposal.toString().equals(proposalType)) {
+			ICDProposalFactory.createAddAllowedPostCoordinationAxisProposal(owlModel, contributionId, contributableId, 
+					entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
+					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
+					doImport(user, importResult);
+			
+		} else if (ProposalTypes.AddRequiredPostCoordinationAxisProposal.toString().equals(proposalType)) {
+			ICDProposalFactory.createAddRequiredPostCoordinationAxisProposal(owlModel, contributionId, contributableId, 
+					entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
+					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
+					doImport(user, importResult);
+			
+		} else if (ProposalTypes.RemovePostCoordinationAxisProposal.toString().equals(proposalType)) {
+			ICDProposalFactory.createRemovePostCoordinationAxisProposal(owlModel, contributionId, contributableId, 
+					entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
+					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
+					doImport(user, importResult);
+			
+		} else if (ProposalTypes.AddCustomScaleProposal.toString().equals(proposalType)) {
+//TODO
+//			ICDProposalFactory.createEditContentProposal(owlModel, contributionId, contributableId, 
+//					entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
+//					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
+//					doImport(user, importResult);
+			
+		} else if (ProposalTypes.DeleteCustomScaleProposal.toString().equals(proposalType)) {
+//TODO
+//			ICDProposalFactory.createEditContentProposal(owlModel, contributionId, contributableId, 
+//					entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
+//					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
+//					doImport(user, importResult);
+			
+		} else if (ProposalTypes.AddPostCoordinationAxisValueProposal.toString().equals(proposalType)) {
+			ICDProposalFactory.createAddPostCoordinationAxisValueProposal(owlModel, contributionId, contributableId, 
+					entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
+					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
+					doImport(user, importResult);
+			
+		} else if (ProposalTypes.DeletePostCoordinationAxisValueProposal.toString().equals(proposalType)) {
+			ICDProposalFactory.createDeletePostCoordinationAxisValueProposal(owlModel, contributionId, contributableId, 
+					entityId, entityPublicId, contributorFullName, entryDateTime, status, rationale, 
+					proposalType, proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName).
+					doImport(user, importResult);
+			
+			
 		} else {
 			Log.getLogger().warning("Unrecognized proposal type: " + proposalType);
 			importResult.recordResult(contributionId, "Unrecognized proposal type: " + proposalType, ImportRowStatus.FAIL);			
