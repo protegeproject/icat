@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.logging.Level;
 
+import edu.stanford.bmir.protege.web.server.ICDIDUtil;
 import edu.stanford.bmir.protege.web.server.icd.proposals.util.LookupUtil;
 import edu.stanford.bmir.whofic.icd.ICDContentModel;
 import edu.stanford.smi.protege.util.Log;
@@ -55,6 +56,25 @@ public class CreateSubclassProposal extends ICDProposal {
         cm.addChildToIndex(parent, newICDClass, isSiblingIndexValid);
 
         ImportProposalsUtil.getLookupUtil(cm).addCategoryIDTitlePair(newICDClass.getName(), newTitle);
+
+        //---- copied and adapted from ICDServiceImpl.createICDClass ---- //
+		/* Add the public ID - before used to be in create class transaction, but now it is done 
+		   as a separate operation, because it often fails, and because 
+		   of an impossible to diagnose ClassNotFound for the org.apache.http.client.ClientProtocolException 
+		*/
+		try {
+			String publicId = ICDIDUtil.getPublicId(newICDClass.getName());
+		    if (publicId == null) {
+		        Log.getLogger().warning("Could not get public ID for newly created class: " + newICDClass.getName());
+		    } else {
+		        newICDClass.setPropertyValue(cm.getPublicIdProperty(), publicId);
+		    }
+		  //TT - 2016.04.23 - Throwable because of the ClassNotFound error, which we could not diagnose
+		} catch (Throwable e) { 
+			Log.getLogger().log(Level.WARNING, "Could not add public ID for class: " + newICDClass.getName(), e);
+		}
+        //---- END copied section ---- //
+
 	}
 
 	
