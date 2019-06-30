@@ -6,7 +6,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Level;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -17,6 +21,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.ProjectConfiguration;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.TabColumnConfiguration;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.TabConfiguration;
+import edu.stanford.smi.protege.server.metaproject.Group;
 import edu.stanford.smi.protege.util.Log;
 
 public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implements ProjectConfigurationService {
@@ -39,6 +44,12 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
 	public static File getConfigurationFile(String projectName, String userName) {
 	    File configFile = getProjectAndUserConfigurationFile(projectName, userName);
 	    if (!configFile.exists()) {
+		    Iterator<File> it = getProjectAndUserGroupConfigurationFiles(projectName, userName).iterator();
+	    	while (!configFile.exists() && it.hasNext()) {
+	    		configFile = it.next();
+	    	}
+	    }
+	    if (!configFile.exists()) {
 	        configFile = new File(getProjectConfigPrefix() + "_" + projectName + ".xml");
 	    }
 	    if (!configFile.exists()) {
@@ -52,6 +63,24 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
 
 	public static File getProjectAndUserConfigurationFile(String projectName, String userName) {
 	    return new File(getProjectConfigPrefix() + "_" + projectName + "_" + userName + ".xml");
+	}
+
+	public static Set<File> getProjectAndUserGroupConfigurationFiles(String projectName, String userName) {
+		Set<Group> groups = Protege3ProjectManager.getProjectManager().getMetaProjectManager().getUser(userName).getGroups();
+		Set<File> res = new TreeSet<File>(new Comparator<File>() {
+			public int compare(File f1, File f2) {
+				return f1.getName().compareTo(f2.getName());
+			}
+		});
+		if (groups != null) {
+			for (Group g : groups) {
+				String groupName = g.getName();
+				if (groupName != null) {
+					res.add( new File(getProjectConfigPrefix() + "_" + projectName + "_" + groupName + ".xml") );
+				}
+			}
+		}
+	    return res;
 	}
 
 
