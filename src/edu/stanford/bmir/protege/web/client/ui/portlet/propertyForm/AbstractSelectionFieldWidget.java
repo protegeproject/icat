@@ -54,8 +54,7 @@ public abstract class AbstractSelectionFieldWidget extends TextFieldWidget {
         window.setTitle("Select value");
         window.setClosable(true);
         window.setPaddings(7);
-        window.setWidth(250);
-        window.setHeight(350);
+        setWindowSize(window);
         window.setLayout(new FitLayout());
         //window.setCloseAction(Window.HIDE);
         window.add(new SelectionDialog(window, createSelectable()));
@@ -63,6 +62,11 @@ public abstract class AbstractSelectionFieldWidget extends TextFieldWidget {
     }
 
     public abstract Selectable createSelectable();
+
+    public void setWindowSize(Window window) {
+        window.setWidth(250);
+        window.setHeight(350);
+    }
 
     /*
      * Internal class

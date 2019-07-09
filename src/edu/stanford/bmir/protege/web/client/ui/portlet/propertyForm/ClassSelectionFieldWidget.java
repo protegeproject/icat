@@ -2,6 +2,8 @@ package edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm;
 
 import java.util.Map;
 
+import com.gwtext.client.widgets.Window;
+
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.ui.generated.ClassTreeFactory;
@@ -30,9 +32,21 @@ public class ClassSelectionFieldWidget extends AbstractSelectionFieldWidget {
 	public void setTopClass(String topClass) {
 		this.topClass = topClass;
 	}
+
+	@Override
+	public void setWindowSize(Window window) {
+        window.setWidth(450);
+        window.setHeight(300);
+    }
 	
 	public Selectable createSelectable() {
-		ClassTreePortlet classTreePortlet = ClassTreeFactory.getICDClassTreePortlet(getProject(), false, false, false, false, topClass);
+		ClassTreePortlet classTreePortlet = ClassTreeFactory.getICDClassTreePortlet(getProject(), true, false, false, false, topClass);
+
+		classTreePortlet.disableCreate();
+		classTreePortlet.setDraggable(false);
+		classTreePortlet.setClosable(false);
+		classTreePortlet.setCollapsible(false);
+
 		return classTreePortlet;
 	}
 	
