@@ -38,7 +38,7 @@ public class DeletePostCoordinationAxisValueProposal extends ICDProposal {
 			icdCat.removePropertyValue(property, refTerm);
 		}
 		else {
-			Log.getLogger().log(Level.WARNING, "Property value " + getContributableId() + " (" + getOldValue() + ") for" + property + " on " + getEntityId() + " could not be found.");;
+			Log.getLogger().log(Level.WARNING, "Property value " + getContributableId() + " (" + getOldValue() + ") for " + property + " on " + getEntityId() + " could not be found.");;
 		}
 		
 	}
@@ -81,6 +81,8 @@ public class DeletePostCoordinationAxisValueProposal extends ICDProposal {
 	public RDFResource getReferenceTermToBeDeleted() {
 		RDFResource entity = getEntity();
 		RDFProperty property = getProperty();
+		RDFResource value = getOwlModel().getRDFResource(getOldValue());
+		
 		
 		ICDContentModel cm = getICDContentModel();
 		Collection<?> propertyValues = entity.getPropertyValues(property);
@@ -96,14 +98,14 @@ public class DeletePostCoordinationAxisValueProposal extends ICDProposal {
 				RDFIndividual valueInst = (RDFIndividual)propValue;
 				if (valueInst.equals(getContributableEntity())) {
 					Object referencedValue = valueInst.getPropertyValue(referencedValueProperty);
-					if (!getOldValue().equals(referencedValue)) {
+					if (!value.equals(referencedValue)) {
 						Log.getLogger().log(Level.WARNING, "Old value " + getOldValue() + " is not set as referenced value on " + getContributableId());
 					}
 					return valueInst;
 				}
 				else {
 					Object referencedValue = valueInst.getPropertyValue(referencedValueProperty);
-					if (getOldValue().equals(referencedValue)) {
+					if (value.equals(referencedValue)) {
 						return valueInst;
 					}
 				}
