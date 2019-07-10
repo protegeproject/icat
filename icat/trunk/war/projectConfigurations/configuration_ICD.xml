@@ -4520,7 +4520,7 @@
 												</entry>
 												<entry>
 													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasSeverity</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasAlternativeSeverity1</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -4793,7 +4793,7 @@
 												</entry>
 												<entry>
 													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasSeverity</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasAlternativeSeverity2</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -9703,7 +9703,7 @@
 												</entry>
 												<entry>
 													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasSeverity</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasAlternativeSeverity1</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -9976,7 +9976,7 @@
 												</entry>
 												<entry>
 													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasSeverity</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasAlternativeSeverity2</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -14301,7 +14301,7 @@
 																</entry>
 																<entry>
 																	<string>multiple_values_allowed</string>
-																	<boolean>true</boolean>
+																	<boolean>false</boolean>
 																</entry>
 																<entry>
 																	<string>Column1</string>
