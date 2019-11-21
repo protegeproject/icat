@@ -207,10 +207,11 @@ ul.x-tab-strip li {
 /******************************************************************
  Global styles checkboxes
  *****************************************************************/
-/* .checkbox {
+/*.checkbox {
 	text-align: center;
+	vertical-align: middle;
 	padding: 0px 10px 0px 10px;
-} */
+}*/
 
 /******************************************************************
  Global styles for TreePanel objects
@@ -451,10 +452,31 @@ ul.disc {
 
 }
 
+.x-grid3-row td, .x-grid3-summary-row td {
+	vertical-align: middle;
+}
+
 .x-grid3-cell-inner.grid-cell-warning,
 .x-grid3-cell-inner .grid-cell-warning, 
 .grid-cell-warning .x-grid3-cell-inner  {
 	background: yellow;
+}
+
+.x-form-check-wrap {
+	padding-top: 1px;
+	padding-bottom: 2px;
+}
+
+.instance-grid-comment,
+.instance-grid-delete {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.instance-grid-deprecated {
+	color:GRAY;
+	font-style:italic;
+	text-decoration: none;
 }
 
 /******************************************************************

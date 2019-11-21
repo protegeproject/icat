@@ -1139,6 +1139,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     protected Renderer createDeleteColumnRenderer() {
         return new Renderer() {
             public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum, Store store) {
+            	cellMetadata.setCssClass("instance-grid-delete");
                 boolean isDeleteEnabled = (Boolean) value;
                 return isDeleteEnabled ?
                         "<img src=\"images/delete.png\" title=\" Click on the icon to remove value.\"></img>" :
@@ -1159,7 +1160,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         return new Renderer() {
             public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum,
                     Store store) {
-                // TODO: add a css for this
+            	cellMetadata.setCssClass("instance-grid-comment");
                 String text = "<img src=\"images/comment.gif\" title=\""
                     + " Click on the icon to add new note(s).\"></img>";
                 int annotationsCount = (value == null ? 0 : value instanceof Integer ? ((Integer) value) : ((Long) value).intValue());
@@ -1167,7 +1168,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                     text = "<img src=\"images/comment.gif\" title=\""
                         + UIUtil.getNiceNoteCountText(annotationsCount)
                         + " on this value. \nClick on the icon to see existing or to add new note(s).\"></img>"
-                        + "<span style=\"vertical-align:super;font-size:95%;color:#15428B;font-weight:bold;\">"
+                        + "<span style=\"vertical-align:super; font-size:95%; color:#15428B; font-weight:bold;\">"
                         + "&nbsp;" + annotationsCount + "</span>";
                 }
                 return text;
@@ -2106,7 +2107,13 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
             }
 
             if (unknown) {
-                return "<img class=\"checkbox\" src=\"" + UIConstants.ICON_CHECKBOX_UNKNOWN + "\"/>";//<div style=\"text-align: center;\"> IMG_TAG </div>;
+            	Boolean defaultCheckboxValue = getDefaultCheckboxValue(colNum);
+            	if (defaultCheckboxValue == null)  {
+            		return "<img class=\"checkbox\" src=\"" + UIConstants.ICON_CHECKBOX_UNKNOWN + "\"/>";//<div style=\"text-align: center;\"> IMG_TAG </div>;
+            	}
+            	else {
+                	checked = defaultCheckboxValue;
+                }
             }
 
             return "<img class=\"checkbox\" " +
@@ -2115,7 +2122,16 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                     "\"/>";//<div style=\"text-align: center;\"> IMG_TAG </div>;
         }
 
-        private String renderRadioButton(final Object value, final CellMetadata cellMetadata,
+        private Boolean getDefaultCheckboxValue(int colIndex) {
+        	Map<String, Object> columnConfiguration = getColumnConfiguration(colIndex);
+        	
+        	boolean defCheckBoxValueFalse = UIUtil.getBooleanConfigurationProperty(columnConfiguration, FormConstants.CHECKBOX_DEFAULT_VALUE, false);
+        	boolean defCheckBoxValueTrue = UIUtil.getBooleanConfigurationProperty(columnConfiguration, FormConstants.CHECKBOX_DEFAULT_VALUE, true);
+        	
+			return (defCheckBoxValueFalse == defCheckBoxValueTrue ? defCheckBoxValueFalse : null);
+		}
+
+		private String renderRadioButton(final Object value, final CellMetadata cellMetadata,
                 final Record record, final int rowIndex, final int colNum, final Store store) {
             boolean checked = false;
             boolean unknown = (value == null);
@@ -2162,7 +2178,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 }
             });
             return Format.format(
-                    "<div id='{0}' style='padding:4px 0px 0px 0px;width:100%;height:20px;'></div>", id);
+            		//the styling below seems to have no effect and is being ignored. 
+            		//The x-form-check-wrap CSS class provides the necessary styling instead.
+            		"<div id='{0}' style='width:100%; height:100%;'></div>", id);
 
         }
     }

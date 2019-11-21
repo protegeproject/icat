@@ -84,7 +84,7 @@
   <tabs>
 	<tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.ontology.home.MyICDTab</name>
-		<label>My ICD</label>
+		<label>My ICD (Admin)</label>
 		<properties>
 			<entry>
 				<string>closable</string>
@@ -16395,6 +16395,43 @@
 													<map>
 														<entry>
 															<string>header</string>
+															<string>Deprecated</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Check this if the term is deprecated (i.e. not to be used in the future).</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>71</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isDeprecated</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>checkbox_default</string>
+															<string>false</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column2</string>
+													<map>
+														<entry>
+															<string>header</string>
 															<string>label</string>
 														</entry>
 														<entry>
@@ -16407,11 +16444,15 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>0</string>
+															<string>1</string>
 														</entry>
 														<entry>
 															<string>field_editor</string>
 															<string>inline</string>
+														</entry>
+														<entry>
+															<string>default_column_to_edit</string>
+															<boolean>true</boolean>
 														</entry>
 														<entry>
 															<string>sorted</string>
@@ -16420,7 +16461,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column2</string>
+													<string>Column3</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -16436,7 +16477,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>1</string>
+															<string>2</string>
 														</entry>
 													</map>
 												</entry>
@@ -16724,6 +16765,43 @@
 													<map>
 														<entry>
 															<string>header</string>
+															<string>Deprecated</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Check this if the term is deprecated (i.e. not to be used in the future).</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>71</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isDeprecated</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>checkbox_default</string>
+															<string>false</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column2</string>
+													<map>
+														<entry>
+															<string>header</string>
 															<string>label</string>
 														</entry>
 														<entry>
@@ -16736,11 +16814,15 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>0</string>
+															<string>1</string>
 														</entry>
 														<entry>
 															<string>field_editor</string>
 															<string>inline</string>
+														</entry>
+														<entry>
+															<string>default_column_to_edit</string>
+															<boolean>true</boolean>
 														</entry>
 														<entry>
 															<string>sorted</string>
@@ -16749,7 +16831,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column2</string>
+													<string>Column3</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -16765,7 +16847,149 @@
 														</entry>
 														<entry>
 															<string>index</string>
+															<string>2</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+
+										<entry>
+											<string>http://who.int/icd#baseExclusion</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>BaseExclusion</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#BaseExclusionTerm</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Base Exclusion Terms</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>Exclusion terms help users eliminate entities that should be assigned to a different ICD category because of differences in meaning or terminology. Base exclusion terms are independent of linearizations, and are used during the linearization process to create the exclusions of a category.</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#base_exclusions</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>grid</string>
+												</entry>
+												<entry>
+													<string>show_add_existing</string>
+													<boolean>false</boolean>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>2</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>130</string>
+												</entry>
+												<entry>
+													<string>Column2</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Alternative label (optional)</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>150</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#label</string>
+														</entry>
+														<entry>
+															<string>index</string>
 															<string>1</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Reference</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedCategory</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>class_browsertext</string>
+														</entry>
+														<entry>
+															<string>top_class</string>
+															<string>http://who.int/icd#ICDCategory</string>
+														</entry>
+														<entry>
+															<string>default_column_to_edit</string>
+															<boolean>true</boolean>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column3</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Exclusion Type</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<!--string>165</string-->
+															<string>85</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#exclusionType</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>2</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>combobox</string>
+														</entry>
+														<entry>
+															<string>allowed_values</string>
+															<map>
+																<entry>
+																	<!--string>Type 2 Exclusion (Rule Out)</string-->
+																	<string>Rule Out</string>
+																	<string>http://who.int/icd#rule_out</string>
+																</entry>
+																<entry>
+																	<!--string>Type 3 Exclusion (Also Code)</string-->
+																	<string>Also Code</string>
+																	<string>http://who.int/icd#also_code</string>
+																</entry>
+																<entry>
+																	<!--string>Type 4 Exclusion (Do Not Code)</string-->
+																	<string>Do Not Code</string>
+																	<string>http://who.int/icd#do_not_code</string>
+																</entry>
+															</map>
 														</entry>
 													</map>
 												</entry>
