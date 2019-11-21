@@ -109,7 +109,7 @@ public class InstanceGridWidgetConstants {
     }
 
     public static String getIconLink(String text, String icon) {
-        return "<table style=\"padding:3px 0px;\"><tr><td style=\"vertical-align:text-center; padding: 0px 3px 0px 0px;\"><img src=\"" + icon + "\" ></img></td><td>" + text + "</td></tr></table>";
+        return "<table style=\"padding:3px 0px;\"><tr><td style=\"vertical-align:middle; padding: 0px 3px 0px 0px;\"><img src=\"" + icon + "\" ></img></td><td>" + text + "</td></tr></table>";
     }
 
     /*

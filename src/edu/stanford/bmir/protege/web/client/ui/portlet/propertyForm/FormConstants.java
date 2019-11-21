@@ -118,6 +118,8 @@ public class FormConstants {
 	public static final String FIELD_TYPE_INSTANCE_PROPERTY_VALUE = "instance_property_value";
 	public static final String FIELD_TYPE_INSTANCE_PROPERTY_ICON = "instance_property_icon";
 
+	public static final String CHECKBOX_DEFAULT_VALUE = "checkbox_default";
+	
 	//valid FIELD_VALUE_TYPE values are the string names of {@link edu.stanford.bmir.protege.web.client.rpc.data.ValueType} constants
 	//such as String, Symbol, Integer, Boolean, Instance, Class, etc.
 	

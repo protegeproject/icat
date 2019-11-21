@@ -55,6 +55,9 @@ public class ICDIndexWidget extends InstanceGridWidget {
     private String fieldNameType = null;
     private int colIndexType = -1;
 
+    private String fieldNameIsDeprecated = null;
+    private int colIndexIsDeprecated = -1;
+
     public ICDIndexWidget(Project project) {
         super(project);
     }
@@ -98,14 +101,41 @@ public class ICDIndexWidget extends InstanceGridWidget {
 //                //do not allow users to rearrange instance order
 //                colConfig.setSortable(false);
 
+                //set special columns name and column index:
+                String colName = colConfig.getHeader().toLowerCase();
+
                 //hide and extract info from column storing the parent instance name
-                if (colConfig.getHeader().toLowerCase().contains("type")) {
+                if (colName.contains("type")) {
                 	propertyNameType = property;
                     fieldNameType = colConfig.getDataIndex();
                     //either this, or there is a better way to get colIndexParent using prop2Index (see below)
                     //colIndexParent = Integer.parseInt(key.substring(FormConstants.COLUMN_PREFIX.length())) - 1; //Column1 -> index 0, Column2 -> index 1, etc.
                     colConfig.setHidden(true);
                 }
+                
+              if (colName.contains("deprecated") ) {
+                	fieldNameIsDeprecated = colConfig.getDataIndex();
+                	colIndexIsDeprecated = index;
+                }
+
+              if (colName.contains("label") ) {
+	              colConfig.setRenderer(new Renderer() {
+	                  public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum, Store store) {
+	                      String entityDataValue = (String) value;
+	                      if (entityDataValue == null) {
+	                          return entityDataValue;
+	                      }
+	                      else {
+	                    	  if (Boolean.valueOf(record.getAsString(fieldNameIsDeprecated)) == true ) {
+	                    		  return "<DIV class=\"instance-grid-deprecated\">" + entityDataValue + "</DIV>";
+	                    	  }
+	                    	  else {
+	                    		  return "<DIV >" + entityDataValue + "</DIV>";
+	                    	  }
+		                  }
+	                  }
+		              });
+              }
             }
         }
 
@@ -442,7 +472,13 @@ public class ICDIndexWidget extends InstanceGridWidget {
     			record.getAsBoolean(NARROWER_FIELD_NAME) == false &&
     			(colNum == properties.size() + OFFSET_SYNONYM_COLUMN ||
     			 colNum == properties.size() + OFFSET_NARROWER_COLUMN) ) {
-    		return "Please choose one of the possible base index types: &quot;synonym&quot; or &quot;narrower&quot;";
+    		return "Please choose one of the possible base index types: &quot;synonym&quot; or &quot;narrower&quot;.";
+    	}
+    	else if (record.getAsBoolean(INCLUSION_FIELD_NAME) == true &&
+				Boolean.valueOf(record.getAsString(fieldNameIsDeprecated)) == true && 
+    			(colNum == colIndexIsDeprecated  ||
+    			 colNum == properties.size() + OFFSET_INCLUSION_COLUMN) ) {
+    		return "Deprecated terms should not be marked as inclusion terms. Please uncheck either the &quot;inclusion&quot; or the &quot;deprecated&quot; checkboxes.";
     	}
     	else {
     		return null;
