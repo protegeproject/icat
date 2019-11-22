@@ -24181,7 +24181,7 @@
 		<controllingPortlet reference="../columns/column/portlets/portlet[2]" />
 	</tab>
 
-	<tab>
+	<!--tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.ontology.reviews.ReviewsTab</name>
 		<label>Reviews</label>
 		<properties>
@@ -24228,7 +24228,7 @@
 			</column>
 		</columns>
 		<controllingPortlet reference="../columns/column/portlets/portlet[2]" ></controllingPortlet>
-	</tab>	
+	</tab-->	
 
 	<tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.tab.UserDefinedTab</name>
@@ -24325,6 +24325,10 @@
 							<entry>
 								<string>topClass</string>
 								<string>http://who.int/icd#ICDCategory</string>
+							</entry>
+							<entry>
+								<string>retire_class_enabled</string>
+								<string>false</string>
 							</entry>
 						</properties>
 					</portlet>
