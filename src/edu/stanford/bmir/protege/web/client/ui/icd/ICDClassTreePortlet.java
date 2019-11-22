@@ -99,10 +99,10 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
 	}
 
     private void openExternalLink(EntityData entity) {
-        String className = entity.getName();
+        String publicId = getPublicId(entity);
         //TODO get URL base from configuration
-        String baseUrl = "http://apps.who.int/classifications/icd11/browse/f/en#/";
-        String url = baseUrl + URL.encodePathSegment(className);
+        String baseUrl = "https://icd.who.int/dev11/f/en#/";
+        String url = baseUrl + (publicId != null && publicId.length() > 0 ? URL.encodePathSegment(publicId) : "");
         Window.open(url,  "_blank", "");
     }
 
@@ -121,13 +121,17 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
 
     private void showPublicID(EntityData entity) {
         String classDisplayName = entity.getBrowserText();
-        String publicID = entity.getProperty(PUBLIC_ID_PROP);
+        String publicID = getPublicId(entity);
         String message = "The public ID of the class ";
         message += "<BR>&nbsp;&nbsp;&nbsp;&nbsp;<I>" + classDisplayName + "</I>";
         message += "<BR>is:";
         message += "<BR>&nbsp;&nbsp;&nbsp;&nbsp;<B>" + (publicID == null || publicID.length() == 0 ? "--- not set ---" : publicID) + "</B>";
         MessageBox.alert("Public ID", message);
     }
+
+	private String getPublicId(EntityData entity) {
+		return entity.getProperty(PUBLIC_ID_PROP);
+	}
 
     @Override
     protected void onCreateCls() {
