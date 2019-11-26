@@ -341,6 +341,7 @@ public abstract class AbstractTab extends Portal {
 
         setTitle(getLabel());
         setClosable(tabConfiguration.getClosable());
+        setHeaderClass(tabConfiguration.getHeaderCssClass());
         addColumns();
         addPorteltsToColumns();
         setupControllingPortlet();

@@ -24391,6 +24391,12 @@
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
     <label>Classes</label>
+    <properties>
+      <entry>
+        <string>headerCssClass</string>
+        <string>spec-tab-header5</string>
+      </entry>
+	</properties>
     <columns>
       <column>      
         <width>0.33</width>
@@ -24434,6 +24440,12 @@
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.individuals.IndividualsTab</name>
     <label>Individuals</label>
+    <properties>
+      <entry>
+        <string>headerCssClass</string>
+        <string>spec-tab-header5</string>
+      </entry>
+	</properties>
     <columns>
       <column>
         <width>0.33</width>
@@ -24475,6 +24487,12 @@
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.individuals.IndividualsTab</name>
     <label>Scales</label>
+    <properties>
+      <entry>
+        <string>headerCssClass</string>
+        <string>spec-tab-header5</string>
+      </entry>
+	</properties>
     <columns>
       <column>
         <width>0.33</width>
