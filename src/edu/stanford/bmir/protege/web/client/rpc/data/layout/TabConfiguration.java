@@ -32,7 +32,7 @@ public class TabConfiguration extends GenericConfiguration implements Serializab
 		this.label = label;
 	}
     public String getHeaderCssClass() {
-        return headerCssClass;
+    	return getStringProperty(FormConstants.HEADER_CSS_CLASS, headerCssClass);
     }
     public void setHeaderCssClass(String className) {
         this.headerCssClass = className;
