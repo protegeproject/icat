@@ -50,6 +50,7 @@ public abstract class AbstractTab extends Portal {
     private TabConfiguration tabConfiguration;
     private final LinkedHashMap<PortalColumn, List<EntityPortlet>> columnToPortletsMap;
     private final LinkedHashMap<TabColumnConfiguration, PortalColumn> tabColumnConfigToColumn;
+    private boolean showTabForUser;
 
     private Comparator<PortletConfiguration> portletComparator;
     // TODO: cache the portlets for performance
@@ -346,6 +347,8 @@ public abstract class AbstractTab extends Portal {
         addPorteltsToColumns();
         setupControllingPortlet();
 
+        showTabForUser = tabConfiguration.userPartOfShowGroup();
+
         add(portal);
     }
 
@@ -549,6 +552,10 @@ public abstract class AbstractTab extends Portal {
         if (tabConfiguration != null) {
             tabConfiguration.setHeaderCssClass(className);
         }
+    }
+    
+    public boolean showTabForUser() {
+    	return showTabForUser;
     }
 
 }
