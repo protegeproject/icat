@@ -29,7 +29,9 @@ public class LayoutManager {
 			AbstractTab tab = createTab(tabName);
 			if (tab != null) {
 				setupTab(tab, tabConfig);
-				tabs.add(tab);
+				if (tab.showTabForUser()) {
+					tabs.add(tab);
+				}
 			}
 		}
 		return tabs;
