@@ -17,13 +17,12 @@ import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet;
+import edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortletConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
 import edu.stanford.bmir.protege.web.client.ui.selection.Selectable;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public class ManageHierarchyPortlet extends AbstractEntityPortlet {
-
-    private static final String TOP_CLASS_PROP = "topClass";
 
     private static final String CREATE_CLASS_ENABLED_PROP ="create_class_enabled";
     private static final boolean CREATE_CLASS_ENABLED_DEFAULT = true;
@@ -99,7 +98,7 @@ public class ManageHierarchyPortlet extends AbstractEntityPortlet {
             return topClass;
         }
         if (topClass == null) {
-            topClass = (String) props.get(TOP_CLASS_PROP);
+            topClass = UIUtil.getStringConfigurationProperty(props, getProject().getProjectConfiguration(), ClassTreePortletConstants.TOP_CLASS_PROP, null);
         }
         return topClass ;
     }

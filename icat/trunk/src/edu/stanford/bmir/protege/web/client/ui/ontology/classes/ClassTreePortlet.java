@@ -1115,13 +1115,13 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             return topClass;
         }
         // TODO: move from here
-        final String title = (String) props.get("label");
-        setTitle(title == null ? "Class Tree" : title);
+        setTitle(UIUtil.getStringConfigurationProperty(props, getProject().getProjectConfiguration(), "label", "Class Tree"));
+        
         hierarchyProperty = (String) props.get("hierarchyProperty");
 
         //cache it so that we can set it
         if (topClass == null) {
-            topClass = (String) props.get(ClassTreePortletConstants.TOP_CLASS_PROP);
+            topClass = UIUtil.getStringConfigurationProperty(props, getProject().getProjectConfiguration(), ClassTreePortletConstants.TOP_CLASS_PROP, null);
         }
         return topClass;
     }

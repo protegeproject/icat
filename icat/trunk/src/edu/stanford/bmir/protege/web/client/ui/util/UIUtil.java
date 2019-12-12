@@ -236,7 +236,14 @@ public class UIUtil {
     public static String getStringConfigurationProperty(
             Map<String, Object> config, ProjectConfiguration projectConfiguration, String prop, String defaultValue) {
         String projectDefaultValue = getStringConfigurationProperty(projectConfiguration, prop, defaultValue);
-        return getStringConfigurationProperty(config, prop, projectDefaultValue);
+        String localValue = getStringConfigurationProperty(config, prop, projectDefaultValue);
+        if (localValue.startsWith("@") && localValue.endsWith("@")) {
+        	String projectProperty = localValue.substring(1, localValue.length() - 1);
+        	return getStringConfigurationProperty(projectConfiguration, projectProperty, defaultValue);
+        }
+        else {
+        	return getStringConfigurationProperty(config, prop, projectDefaultValue);
+        }
     }
 
     public static int getIntegerConfigurationProperty(

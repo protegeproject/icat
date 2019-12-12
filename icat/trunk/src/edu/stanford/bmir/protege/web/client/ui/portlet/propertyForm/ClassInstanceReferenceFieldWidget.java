@@ -120,7 +120,8 @@ public class ClassInstanceReferenceFieldWidget extends ReferenceFieldWidget {
     @Override
     public void setup(Map<String, Object> widgetConfiguration, PropertyEntityData propertyEntityData) {
         super.setup(widgetConfiguration, propertyEntityData);
-        this.topClass = (String) widgetConfiguration.get(FormConstants.TOP_CLASS);
+        this.topClass = UIUtil.getStringConfigurationProperty(widgetConfiguration, 
+				getProject().getProjectConfiguration(), FormConstants.TOP_CLASS, null);
         this.objectType = (String)widgetConfiguration.get(FormConstants.ONT_TYPE);
         this.ontologyIdPropertyName =  (String)bpSearchProperties.get(BioPortalConstants.CONFIG_PROPERTY_ONTOLGY_ID_PROPERTY);
         this.conceptIdPropertyName =  (String)bpSearchProperties.get(BioPortalConstants.CONFIG_PROPERTY_CONCEPT_ID_PROPERTY);
