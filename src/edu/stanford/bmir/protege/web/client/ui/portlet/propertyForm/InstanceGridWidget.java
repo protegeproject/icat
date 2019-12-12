@@ -812,7 +812,8 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     protected void editClassFieldType(final Record record, final int rowIndex, final int colIndex) {
         final Object oldValue = getEntityDataValueAt(record, rowIndex, colIndex);
 
-        String topCls = (String) getColumnConfiguration(colIndex, FormConstants.TOP_CLASS);
+        String topCls = UIUtil.getStringConfigurationProperty(getColumnConfiguration(colIndex), 
+				getProject().getProjectConfiguration(), FormConstants.TOP_CLASS, null);
 
         if (topCls != null && topCls.equals(DefaultSearchStringTypeEnum.Entity.toString())) {
             topCls = getSubject().getName();

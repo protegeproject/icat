@@ -81,7 +81,7 @@ public class ICDInclusionWidget extends InstanceGridWidget {
     public void setup(Map<String, Object> widgetConfiguration, PropertyEntityData propertyEntityData) {
         super.setup(widgetConfiguration, propertyEntityData);
         //topClass = UIUtil.getStringConfigurationProperty(getWidgetConfiguration(), TOP_CLASS_PROP, null);
-        this.topClass = (String) widgetConfiguration.get(FormConstants.TOP_CLASS);
+        this.topClass = UIUtil.getStringConfigurationProperty(widgetConfiguration, getProject().getProjectConfiguration(), FormConstants.TOP_CLASS, null);
     }
 
     @Override

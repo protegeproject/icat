@@ -92,7 +92,8 @@ public class InternalReferenceFieldWidget extends ReferenceFieldWidget {
 	@Override
 	public void setup(Map<String, Object> widgetConfiguration, PropertyEntityData propertyEntityData) {
 		super.setup(widgetConfiguration, propertyEntityData);
-		this.topClass = (String) widgetConfiguration.get(FormConstants.TOP_CLASS);
+		this.topClass =  UIUtil.getStringConfigurationProperty(widgetConfiguration, 
+				getProject().getProjectConfiguration(), FormConstants.TOP_CLASS, null);
 		this.termClass = (String)widgetConfiguration.get(FormConstants.ONT_TYPE);
 		this.referencedValueProperty = UIUtil.getStringConfigurationProperty(widgetConfiguration, 
 				getProject().getProjectConfiguration(), FormConstants.REFERENCED_VALUE_PROP, null);

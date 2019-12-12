@@ -9,6 +9,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.ui.generated.ClassTreeFactory;
 import edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet;
 import edu.stanford.bmir.protege.web.client.ui.selection.Selectable;
+import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public class ClassSelectionFieldWidget extends AbstractSelectionFieldWidget {
 
@@ -26,7 +27,8 @@ public class ClassSelectionFieldWidget extends AbstractSelectionFieldWidget {
 	}
 
 	public void resetTopClass() {
-		this.topClass = (String) getWidgetConfiguration().get(FormConstants.TOP_CLASS);
+		this.topClass = UIUtil.getStringConfigurationProperty(getWidgetConfiguration(), 
+				getProject().getProjectConfiguration(), FormConstants.TOP_CLASS, null);
 	}
 
 	public void setTopClass(String topClass) {

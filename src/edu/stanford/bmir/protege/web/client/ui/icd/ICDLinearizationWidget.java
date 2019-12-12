@@ -71,7 +71,7 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
     @Override
     public void setup(Map<String, Object> widgetConfiguration, PropertyEntityData propertyEntityData) {
         super.setup(widgetConfiguration, propertyEntityData);
-        topClass = UIUtil.getStringConfigurationProperty(getWidgetConfiguration(), TOP_CLASS_PROP, null);
+        topClass = UIUtil.getStringConfigurationProperty(getWidgetConfiguration(), getProject().getProjectConfiguration(), TOP_CLASS_PROP, null);
     }
 
     @Override
