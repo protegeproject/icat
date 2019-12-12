@@ -81,11 +81,11 @@
 		</entry>
 		<entry>
 			<string>root_class</string>
-			<string>http://who.int/icd#ICDCategory</string>
+			<string>http://who.int/icd#Substances</string>
 		</entry>
 		<entry>
 			<string>class_hierarchy_label</string>
-			<string>ICD Categories</string>
+			<string>Substances</string>
 		</entry>
 	</properties>
 	

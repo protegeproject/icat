@@ -81,11 +81,11 @@
 		</entry>
 		<entry>
 			<string>root_class</string>
-			<string>http://who.int/icd#ICDCategory</string>
+			<string>http://who.int/icd#3484_6075012b_9a45_426f_82f7_08df9dce6573</string>
 		</entry>
 		<entry>
 			<string>class_hierarchy_label</string>
-			<string>ICD Categories</string>
+			<string>Health Devices, Equipment and Supplies</string>
 		</entry>
 	</properties>
 	
