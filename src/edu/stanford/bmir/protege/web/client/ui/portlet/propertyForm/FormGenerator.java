@@ -17,6 +17,7 @@ import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDInclusionWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDIndexWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDLinearizationWidget;
@@ -208,6 +209,7 @@ public class FormGenerator {
             if (value instanceof Map) {
             	Map<String, Object> configMap = (Map<String, Object>) value;
                 String component_type = (String) configMap.get(FormConstants.COMPONENT_TYPE);
+                WidgetConfiguration widgetConfig = new WidgetConfiguration(configMap);
                 if (component_type != null) {
                     PropertyWidget widget = null;
                     if (component_type.equals(FormConstants.TEXTFIELD)) {
@@ -280,7 +282,9 @@ public class FormGenerator {
                     	widget = createPreCoordinationTreeValueSelectorWidget(configMap, prop);
                     }
 
-                    if (widget != null && widget.getComponent() != null) {
+                    boolean showWidgetForUser = widgetConfig.userPartOfShowGroup();
+                    
+                    if (widget != null && widget.getComponent() != null && showWidgetForUser) {
                         widgets.add(widget);
                         panel.add(widget.getComponent());
                         addToMap(panel, widget);
