@@ -1119,6 +1119,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
             ColumnConfig deleteCol = createDeleteColumn();
             fieldDef[colCount + offsetDeleteColumn] = new BooleanFieldDef(DELETE_FIELD_NAME);
             columns[colCount + offsetDeleteColumn] = deleteCol;
+            if (isReadOnly()) {
+            	deleteCol.setHidden(true);
+            }
         }
 
         int offsetCommentColumn = getOffsetCommentColumn();
@@ -1709,6 +1712,17 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         return multiValue;
     }
 
+
+	protected boolean isDeleteColumn(int colIndex) {
+        int offsetDeleteColumn = getOffsetDeleteColumn();
+		return offsetDeleteColumn != -1 && colIndex == properties.size() + offsetDeleteColumn;
+	}
+	
+	protected boolean isCommentColumn(int colIndex) {
+		int offsetCommentColumn = getOffsetCommentColumn();
+		return offsetCommentColumn != -1 && colIndex == properties.size() + offsetCommentColumn;
+	}
+
     /*
      * Remote calls
      */
@@ -1781,11 +1795,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         }
 
         protected void onCellClickOrDblClick(GridPanel grid, final int rowIndex, int colIndex, EventObject e) {
-            int offsetDeleteColumn = getOffsetDeleteColumn();
-            int offsetCommentColumn = getOffsetCommentColumn();
-            if (offsetDeleteColumn != -1 && colIndex == properties.size() + offsetDeleteColumn) {
+            if (isDeleteColumn(colIndex)) {
                 onDeleteColumnClicked(rowIndex);
-            } else if (offsetCommentColumn != -1 && colIndex == properties.size() + offsetCommentColumn) {
+            } else if (isCommentColumn(colIndex)) {
                 onCommentColumnClicked(rowIndex);
             } else {
                 if (clicksToEdit == 1) {
@@ -1809,7 +1821,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
         @Override
         public void onCellDblClick(GridPanel grid, int rowIndex, int colIndex, EventObject e) {
-            if (clicksToEdit == 2) {
+            if (clicksToEdit == 2 && (! isDeleteColumn(colIndex)) && (! isCommentColumn(colIndex))) {
                 onValueColumnClicked(grid, rowIndex, colIndex);
             }
         }
