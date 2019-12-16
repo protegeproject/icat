@@ -212,8 +212,6 @@ public class ICDInclusionWidget extends InstanceGridWidget {
             }
 
             private void onCellClickOrDblClick(GridPanel grid, final int rowIndex, int colIndex, EventObject e) {
-                // int offsetDeleteColumn = getOffsetDeleteColumn();
-                int offsetCommentColumn = getOffsetCommentColumn();
                 if (e.getTarget(".checkbox", 1) != null) {
                     Record record = getStore().getAt(rowIndex);
                     if (record != null) {
@@ -236,7 +234,7 @@ public class ICDInclusionWidget extends InstanceGridWidget {
                             selectNewICDCategory(record, field);
                         }
                     }
-                } else if (offsetCommentColumn != -1 && colIndex == properties.size() + offsetCommentColumn) {
+                } else if (isCommentColumn(colIndex)) {
                     onCommentColumnClicked(rowIndex);
                 } else {
                     Record record = getStore().getAt(rowIndex);
