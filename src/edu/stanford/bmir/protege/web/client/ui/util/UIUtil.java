@@ -183,12 +183,13 @@ public class UIUtil {
     	}
     }
 
-    public static List getListConfigurationProperty(Map<String, Object> config, String prop) {
+    public static List<String> getListConfigurationProperty(Map<String, Object> config, String prop) {
         if (config == null) {
             return null;
         }
         try {
-            List listValue = (List) config.get(prop);
+        	@SuppressWarnings("unchecked")
+			List<String> listValue = (List<String>) config.get(prop);
             return listValue;
         }
         catch (Exception e) {
@@ -209,7 +210,8 @@ public class UIUtil {
      * @param config a widget configuration represented by a String-to-Object map
      * @return the "allowed values" map
      */
-    public static Map<String, String> getAllowedValuesConfigurationProperty(Map<String, Object> config) {
+    @SuppressWarnings("unchecked")
+	public static Map<String, String> getAllowedValuesConfigurationProperty(Map<String, Object> config) {
         if (config == null) {
             return null;
         }
