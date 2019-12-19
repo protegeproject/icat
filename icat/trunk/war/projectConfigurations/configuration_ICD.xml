@@ -1262,6 +1262,12 @@
 										<entry>
 											<string>http://who.int/icd#externalReference</string>
 											<map>
+											    <entry>
+												    <string>showOnlyForGroups</string>
+												    <list>
+													    <string>WHOTeam</string>
+												    </list>
+											    </entry>
 												<entry>
 													<string>name</string>
 													<string>ExternalReference</string>
@@ -1913,6 +1919,12 @@
 										<entry>
 											<string>http://who.int/icd#externalReference</string>
 											<map>
+											    <entry>
+												    <string>showOnlyForGroups</string>
+												    <list>
+													    <string>WHOTeam</string>
+												    </list>
+											    </entry>
 												<entry>
 													<string>name</string>
 													<string>ExternalReference</string>
