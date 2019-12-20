@@ -87,7 +87,7 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
 	protected void addMenuItemShowExternalLink(final EntityData entity, Menu contextMenu) {
 		MenuItem menuExternalLink = new MenuItem();
         //TODO load text from configuration
-        menuExternalLink.setText("Link to ICD-11 Beta Browser");
+        menuExternalLink.setText("Link to ICD-11 Public Browser");
         menuExternalLink.setCls("hyperlink");
         menuExternalLink.addListener(new BaseItemListenerAdapter() {
             @Override
