@@ -1,6 +1,5 @@
 package edu.stanford.bmir.protege.web.client.rpc;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -61,7 +60,7 @@ public interface WHOFICService extends RemoteService  {
 			List<String> fixedScaleProperties);
 
 	public boolean setPrecoordinationPropertyValue(String projectName, String entity,
-			String property, EntityData oldValue, EntityData newValue);
+			String property, EntityData oldValue, EntityData newValue, String user, String operationDescription);
 
 	public boolean changeIsDefinitionalFlag(String projectName, String entity,
 			String property, boolean isDefinitionalFlag);

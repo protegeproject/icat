@@ -30,7 +30,6 @@ import edu.stanford.bmir.whofic.WHOFICContentModel;
 import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
 import edu.stanford.bmir.whofic.icd.ICDContentModel;
 import edu.stanford.bmir.whofic.icd.ICDContentModelConstants;
-import edu.stanford.bmir.whofic.ici.ICIContentModel;
 import edu.stanford.smi.protege.collab.util.HasAnnotationCache;
 import edu.stanford.smi.protege.exception.ProtegeException;
 import edu.stanford.smi.protege.model.Cls;
@@ -1486,15 +1485,44 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
 	@Override
 	public boolean setPrecoordinationPropertyValue(String projectName, String entity,
-			String property, EntityData oldValue, EntityData newValue) {
+			String property, EntityData oldValue, EntityData newValue, String user, String operationDescription) {
 
         Project project = getProject(projectName);
-        OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
-        WHOFICContentModel cm = getContentModel(owlModel);
+        OWLModel kb = (OWLModel) project.getKnowledgeBase();
+        WHOFICContentModel cm = getContentModel(kb);
 
         RDFSNamedClass cls = cm.getICDCategory(entity);
-		return cm.setPrecoordinationDefinitionPropertyValue(cls, property, 
-				(oldValue == null ? null : oldValue.getName()), (newValue == null ? null : newValue.getName()));
+        
+        boolean returnValue = false;
+        
+        boolean eventsEnabled = kb.setGenerateEventsEnabled(false);
+        boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+        synchronized (kb) {
+            KBUtil.morphUser(kb, user);
+            try {
+                if (runsInTransaction) {
+                    kb.beginTransaction(operationDescription);
+                }
+                
+                returnValue = cm.setPrecoordinationDefinitionPropertyValue(cls, property, 
+        				(oldValue == null ? null : oldValue.getName()), (newValue == null ? null : newValue.getName()));
+                
+                if (runsInTransaction) {
+                    kb.commitTransaction();
+                }
+            } catch (Exception e) {
+                Log.getLogger().log(Level.SEVERE, "Error at editing the logical definition in " + projectName + " class: " + cls, e);
+                if (runsInTransaction) {
+                    kb.rollbackTransaction();
+                }
+                throw new RuntimeException("Error at editing the logical definition in " + projectName + " class: " + cls + ". Message: " + e.getMessage(), e);
+            } finally {
+                KBUtil.restoreUser(kb);
+                kb.setGenerateEventsEnabled(eventsEnabled);
+            }
+        }
+        
+		return returnValue;
 	}
 	
 	@Override
