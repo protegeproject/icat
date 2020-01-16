@@ -60,7 +60,8 @@ public interface WHOFICServiceAsync {
 			AsyncCallback<List<AllowedPostcoordinationValuesData>> cb);
 
 	void setPrecoordinationPropertyValue(String projectName, String entity,
-			String property, EntityData oldValue, EntityData newValue,
+			String property, EntityData oldValue, EntityData newValue, String user, 
+			String operationDescription,
 			AsyncCallback<Boolean> cb);
 
 	void changeIsDefinitionalFlag(String projectName, String entity,

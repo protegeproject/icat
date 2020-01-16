@@ -101,8 +101,10 @@ public class WHOFICServiceManager {
 	
 	public void setPrecoordinationPropertyValue(String projectName,
 			String entity, String property, 
-			EntityData oldValue, EntityData newValue, AsyncCallback<Boolean> cb) {
-		proxy.setPrecoordinationPropertyValue(projectName, entity, property, oldValue, newValue, cb);
+			EntityData oldValue, EntityData newValue, 
+			String user, String operationDescription, AsyncCallback<Boolean> cb) {
+		proxy.setPrecoordinationPropertyValue(projectName, entity, property, oldValue, newValue, user, 
+				operationDescription, cb);
 	}
 
 	public void changeIsDefinitionalFlag(String projectName, String entity,

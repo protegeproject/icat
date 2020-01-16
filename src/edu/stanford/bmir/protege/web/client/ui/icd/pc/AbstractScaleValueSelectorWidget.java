@@ -10,9 +10,11 @@ import com.gwtext.client.widgets.Panel;
 import com.gwtext.client.widgets.form.Checkbox;
 import com.gwtext.client.widgets.form.event.CheckboxListenerAdapter;
 
+import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
@@ -101,11 +103,13 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 		//TODO
 		ICDServiceManager.getInstance().setPrecoordinationPropertyValue(
 				getProject().getProjectName(), getSubject().getName(), getProperty().getName(), 
-				oldValue, newValue, new AsyncCallback<Boolean>() {
+				oldValue, newValue, GlobalSettings.getGlobalSettings().getUserName(), 
+				getEditOperationDescription(getSubject(), getProperty(), oldValue, newValue),
+				
+				new AsyncCallback<Boolean>() {
 
 					@Override
 					public void onFailure(Throwable arg0) {
-						// TODO Auto-generated method stub
 						System.out.println("failed to change value");
 						//TODO reset value to old value
 						updateFieldValue(oldValue);
@@ -136,6 +140,14 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 				});
 	}
 	
+	
+	private String getEditOperationDescription(EntityData subject, PropertyEntityData prop, 
+			EntityData oldValue, EntityData newValue) {
+		String text = "Edited logical definition. Property: " + UIUtil.getDisplayText(prop) + 
+				", Old value: " + UIUtil.getDisplayText(oldValue) + 
+				", New value: " + UIUtil.getDisplayText(newValue);
+		return UIUtil.getAppliedToTransactionString(text, subject.getName());
+	}
 	
 	
 	private void createIsDefinitionalCheckbox() {
