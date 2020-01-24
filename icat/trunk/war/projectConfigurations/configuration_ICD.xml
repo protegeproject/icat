@@ -2098,6 +2098,14 @@
 										<entry>
 											<string>http://who.int/icd#linearization</string>
 											<map>
+											    <entry>
+												    <string>showOnlyForGroups</string>
+												    <list>
+														<string>LinearizationEditors</string>
+														<string>WHOTeam</string>
+														<string>Stanford</string>
+												    </list>
+											    </entry>
 												<entry>
 													<string>name</string>
 													<string>linearization</string>
@@ -2113,7 +2121,6 @@
 													<list>
 														<string>LinearizationEditors</string>
 														<string>WHOTeam</string>
-														<string>Stanford</string>
 													</list>
 												</entry>
 												
@@ -2387,6 +2394,641 @@
 										</entry>
 										
 										<entry>
+											<string>http://who.int/icd#linearization[1]</string>
+											<map>
+											    <entry>
+												    <string>doNotShowForGroups</string>
+												    <list>
+														<string>LinearizationEditors</string>
+														<string>WHOTeam</string>
+												    </list>
+											    </entry>
+												<entry>
+													<string>name</string>
+													<string>linearization</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Use (read-only)</string>
+												</entry>
+										
+												<entry>
+													<string>group_specific_allowed_values</string>
+													<map>
+														<entry>
+															<string>World</string>
+															<list>
+																<string>http://who.int/icd#Morbidity</string>
+															</list>
+														</entry>
+													</map>
+												</entry>
+												
+												<entry>
+													<string>tooltip</string>
+													<string>Shows the "most important" linearizations in which this category may be used. The information in this list is just for reference, and it is therefore not editable.</string>
+												</entry>
+												<!--entry>
+													<string>help</string>
+													<string>http://protegewiki.stanford.edu/wiki/ICatLinearization</string>
+												</entry-->
+												<entry>
+													<string>component_type</string>
+													<string>icdlinearization_grid</string>
+												</entry>
+												<entry>
+													<string>read_only</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>2</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>70</string>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Linearization</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>190</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#linearizationView</string>
+														</entry>
+														<!-- entry>
+															<string>sorted</string>
+															<boolean>true</boolean>
+														</entry-->
+														<entry>
+															<string>read_only</string>
+															<boolean>true</boolean>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column2</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Is part of?</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Is Included In Linearization?</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<!-- string>150</string-->
+															<string>60</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isIncludedInLinearization</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>1</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column3</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Is grouping?</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Will this concept become a grouping (i.e. chapter, block, sub-block) in this linearization?</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<!-- string>150</string-->
+															<string>71</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isGrouping</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>2</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column4</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Aux.ax.child?</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Is this an auxiliary axis child? &lt;br&gt; If checked its terms will become index terms on the 'unspecified' residuals, instead on the 'other specified' residuals, of the nearest ancestor included in the linearization.</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<!-- string>150</string-->
+															<string>76</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isAuxiliaryAxisChild</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>3</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column5</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Linearization Parent</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#linearizationParent</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>4</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>class_browsertext</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column6</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Coding notes</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Edit linearization specific coding notes for this entity</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>75</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#label</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>5</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>string</string>
+														</entry>
+														<entry>
+															<string>subject_column_index</string>
+															<string>7</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>multiline_icon</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column7</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Coding notes (inst)</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Coding notes instance for this entity. Should not be edited</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>75</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#codingNote</string>
+														</entry>
+														<entry>
+															<string>ont_type</string>
+															<string>http://who.int/icd#CodingNoteTerm</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>6</string>
+														</entry>
+														<entry>
+															<string>hidden</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>read_only</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>instance_browsertext</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>topClass</string>
+													<string>@root_class@</string>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#linearization[2]</string>
+											<map>
+											    <entry>
+												    <string>doNotShowForGroups</string>
+												    <list>
+														<string>LinearizationEditors</string>
+														<string>WHOTeam</string>
+												    </list>
+											    </entry>
+												<entry>
+													<string>name</string>
+													<string>linearization</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Use (editable)</string>
+												</entry>
+										
+												<!-- Restrict editing of linearizations to "linearization editors", WHO and Stanford teams -->
+												<entry>
+													<string>writeAccessGroups</string>
+													<list>
+														<string>DermatologyLinearizationEditors</string>
+														<string>Stanford</string>
+													</list>
+												</entry>
+
+												<entry>
+													<string>group_specific_allowed_values</string>
+													<map>
+														<entry>
+															<string>Stanford</string>
+															<list>
+																<string>http://who.int/icd#Morbidity</string>
+																<string>http://who.int/icd#SMoL</string>
+																<string>http://who.int/icd#Primary_Care_High_RS</string>
+																<string>http://who.int/icd#Primary_Care_Low_RS</string>
+																<string>http://who.int/icd#Research</string>
+																<string>http://who.int/icd#Speciality_Adaptation_Mental_Health</string>
+																<string>http://who.int/icd#Specialty_Adaptation_Dermatology</string>
+																<string>http://who.int/icd#Specialty_Adaptation_Rare_Diseases</string>
+																<string>http://who.int/icd#ICD-O</string>
+															</list>
+														</entry>
+														<entry>
+															<string>DermatologyLinearizationEditors</string>
+															<list>
+																<string>http://who.int/icd#Specialty_Adaptation_Dermatology</string>
+															</list>
+														</entry>
+													</map>
+												</entry>
+												
+												<entry>
+													<string>tooltip</string>
+													<string>DRAFT HINT: Specifies the linearization in which this category should be used</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://protegewiki.stanford.edu/wiki/ICatLinearization</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>icdlinearization_grid</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>3</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>100</string>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Linearization</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>190</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#linearizationView</string>
+														</entry>
+														<!-- entry>
+															<string>sorted</string>
+															<boolean>true</boolean>
+														</entry-->
+														<entry>
+															<string>read_only</string>
+															<boolean>true</boolean>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column2</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Is part of?</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Is Included In Linearization?</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<!-- string>150</string-->
+															<string>75</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isIncludedInLinearization</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>1</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column3</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Is grouping?</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Will this concept become a grouping (i.e. chapter, block, sub-block) in this linearization?</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<!-- string>150</string-->
+															<string>75</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isGrouping</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>2</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column4</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Aux.ax.child?</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Is this an auxiliary axis child? &lt;br&gt; If checked its terms will become index terms on the 'unspecified' residuals, instead on the 'other specified' residuals, of the nearest ancestor included in the linearization.</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<!-- string>150</string-->
+															<string>76</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isAuxiliaryAxisChild</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>3</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column5</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Linearization Parent</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#linearizationParent</string>
+														</entry>
+														<entry>
+															<string>hidden</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>read_only</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>4</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>class_browsertext</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column6</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Coding notes</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Edit linearization specific coding notes for this entity</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#label</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>5</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>string</string>
+														</entry>
+														<entry>
+															<string>subject_column_index</string>
+															<string>5</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>multiline_icon</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column7</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Coding notes (inst)</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Coding notes instance for this entity. Should not be edited</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#codingNote</string>
+														</entry>
+														<entry>
+															<string>ont_type</string>
+															<string>http://who.int/icd#CodingNoteTerm</string>
+														</entry>
+														<entry>
+															<string>hidden</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>read_only</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>6</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>instance_browsertext</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>topClass</string>
+													<string>@root_class@</string>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
 											<string>http://who.int/icd#suppressOtherSpecifiedResiduals</string>
 											<map>
 												<entry>
@@ -2415,7 +3057,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>2</string>
+													<string>4</string>
 												</entry>
 											</map>
 										</entry>
@@ -2453,7 +3095,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>3</string>
+													<string>5</string>
 												</entry>
 											</map>
 										</entry>
@@ -2491,7 +3133,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>4</string>
+													<string>6</string>
 												</entry>
 												<entry>
 													<string>property</string>
@@ -2533,7 +3175,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>5</string>
+													<string>7</string>
 												</entry>
 												<entry>
 													<string>property</string>
@@ -2604,6 +3246,14 @@
 										<entry>
 											<string>http://who.int/icd#linearization</string>
 											<map>
+											    <entry>
+												    <string>showOnlyForGroups</string>
+												    <list>
+														<string>LinearizationEditors</string>
+														<string>WHOTeam</string>
+														<string>Stanford</string>
+												    </list>
+											    </entry>
 												<entry>
 													<string>name</string>
 													<string>linearization</string>
@@ -2619,7 +3269,6 @@
 													<list>
 														<string>LinearizationEditors</string>
 														<string>WHOTeam</string>
-														<string>Stanford</string>
 													</list>
 												</entry>
 												
@@ -2637,7 +3286,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>1</string>
+													<string>0</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -2813,6 +3462,523 @@
 														<entry>
 															<string>property</string>
 															<string>http://who.int/icd#linearizationSortingLabel</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>inline</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>5</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>topClass</string>
+													<string>@root_class@</string>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#linearization[1]</string>
+											<map>
+											    <entry>
+												    <string>doNotShowForGroups</string>
+												    <list>
+														<string>LinearizationEditors</string>
+														<string>WHOTeam</string>
+												    </list>
+											    </entry>
+												<entry>
+													<string>name</string>
+													<string>linearization</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Use (read-only)</string>
+												</entry>
+										
+												<entry>
+													<string>group_specific_allowed_values</string>
+													<map>
+														<entry>
+															<string>World</string>
+															<list>
+																<string>http://who.int/icd#Morbidity</string>
+															</list>
+														</entry>
+													</map>
+												</entry>
+												
+												<entry>
+													<string>tooltip</string>
+													<string>Shows the "most important" linearizations in which this category may be used. The information in this list is just for reference, and it is therefore not editable.</string>
+												</entry>
+												<!--entry>
+													<string>help</string>
+													<string>http://protegewiki.stanford.edu/wiki/ICatLinearization</string>
+												</entry-->
+												<entry>
+													<string>component_type</string>
+													<string>icdlinearization_grid</string>
+												</entry>
+												<entry>
+													<string>read_only</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>1</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>70</string>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Linearization</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>190</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#linearizationView</string>
+														</entry>
+														<!-- entry>
+															<string>sorted</string>
+															<boolean>true</boolean>
+														</entry-->
+														<entry>
+															<string>read_only</string>
+															<boolean>true</boolean>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column2</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Is part of?</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Is Included In Linearization?</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<!-- string>150</string-->
+															<string>60</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isIncludedInLinearization</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>1</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column3</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Is grouping?</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Will this concept become a grouping (i.e. chapter, block, sub-block) in this linearization?</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<!-- string>150</string-->
+															<string>71</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isGrouping</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>2</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column4</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Aux.ax.child?</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Is this an auxiliary axis child? &lt;br&gt; If checked its terms will become index terms on the 'unspecified' residuals, instead on the 'other specified' residuals, of the nearest ancestor included in the linearization.</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<!-- string>150</string-->
+															<string>76</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isAuxiliaryAxisChild</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>3</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column5</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Linearization Parent</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#linearizationParent</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>4</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column6</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Sorting label</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Edit linearization specific sorting label only if it is different from the default sorting label</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>72</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#linearizationSortingLabel</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>inline</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>5</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>topClass</string>
+													<string>@root_class@</string>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#linearization[2]</string>
+											<map>
+											    <entry>
+												    <string>doNotShowForGroups</string>
+												    <list>
+														<string>LinearizationEditors</string>
+														<string>WHOTeam</string>
+												    </list>
+											    </entry>
+												<entry>
+													<string>name</string>
+													<string>linearization</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Use (editable)</string>
+												</entry>
+										
+												<!-- Restrict editing of linearizations to "linearization editors", WHO and Stanford teams -->
+												<entry>
+													<string>writeAccessGroups</string>
+													<list>
+														<string>DermatologyLinearizationEditors</string>
+														<string>Stanford</string>
+													</list>
+												</entry>
+
+												<entry>
+													<string>group_specific_allowed_values</string>
+													<map>
+														<entry>
+															<string>Stanford</string>
+															<list>
+																<string>http://who.int/icd#Morbidity</string>
+																<string>http://who.int/icd#SMoL</string>
+																<string>http://who.int/icd#Primary_Care_High_RS</string>
+																<string>http://who.int/icd#Primary_Care_Low_RS</string>
+																<string>http://who.int/icd#Research</string>
+																<string>http://who.int/icd#Speciality_Adaptation_Mental_Health</string>
+																<string>http://who.int/icd#Specialty_Adaptation_Dermatology</string>
+																<string>http://who.int/icd#Specialty_Adaptation_Rare_Diseases</string>
+																<string>http://who.int/icd#ICD-O</string>
+															</list>
+														</entry>
+														<entry>
+															<string>DermatologyLinearizationEditors</string>
+															<list>
+																<string>http://who.int/icd#Specialty_Adaptation_Dermatology</string>
+															</list>
+														</entry>
+													</map>
+												</entry>
+												
+												<entry>
+													<string>tooltip</string>
+													<string>DRAFT HINT: Specifies the linearization in which this category should be used</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://protegewiki.stanford.edu/wiki/ICatLinearization</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>icdlinearization_grid</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>2</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>100</string>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Linearization</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>190</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#linearizationView</string>
+														</entry>
+														<!-- entry>
+															<string>sorted</string>
+															<boolean>true</boolean>
+														</entry-->
+														<entry>
+															<string>read_only</string>
+															<boolean>true</boolean>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column2</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Is part of?</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Is Included In Linearization?</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<!-- string>150</string-->
+															<string>75</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isIncludedInLinearization</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>1</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column3</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Is grouping?</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Will this concept become a grouping (i.e. chapter, block, sub-block) in this linearization?</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<!-- string>150</string-->
+															<string>75</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isGrouping</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>2</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column4</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Aux.ax.child?</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Is this an auxiliary axis child? &lt;br&gt; If checked its terms will become index terms on the 'unspecified' residuals, instead on the 'other specified' residuals, of the nearest ancestor included in the linearization.</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<!-- string>150</string-->
+															<string>76</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#isAuxiliaryAxisChild</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>3</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column5</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Linearization Parent</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#linearizationParent</string>
+														</entry>
+														<entry>
+															<string>hidden</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>read_only</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>4</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column6</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Sorting label</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Edit linearization specific sorting label only if it is different from the default sorting label</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>75</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#linearizationSortingLabel</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>inline</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -23576,6 +24742,10 @@
 															<string>http://who.int/icd#linearizationSortingLabel</string>
 														</entry>
 														<entry>
+															<string>field_editor</string>
+															<string>inline</string>
+														</entry>
+														<entry>
 															<string>index</string>
 															<string>4</string>
 														</entry>
@@ -23767,6 +24937,10 @@
 														<entry>
 															<string>property</string>
 															<string>http://who.int/icd#linearizationSortingLabel</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>inline</string>
 														</entry>
 														<entry>
 															<string>index</string>
