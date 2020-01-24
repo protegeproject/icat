@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
@@ -75,6 +76,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.ontology.search.DefaultSearchStringTypeEnum;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidgetWithNotes;
 import edu.stanford.bmir.protege.web.client.ui.util.SelectionUtil;
@@ -126,9 +128,12 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
    // protected String[] columnEditorConfigurations;
     //FIXME: Should not be protected!! Fix logic in subclasses!
     protected String autoExpandColId;
-
+    
     private String fieldNameSorted = null;
 
+    protected Set<String> allowedValues = null;
+    protected int allowedValuesColumnIndex = 0;
+ 
     //when creating a new instance, the editor for this column will automatically be activated
     private int defaultColumnToEdit = 0;
 
@@ -1605,21 +1610,35 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         int i = 0;
         Object[][] data = new Object[entityPropertyValues.size()][properties.size() + getExtraColumnCount()];
         for (EntityPropertyValues epv : entityPropertyValues) {
-            for (PropertyEntityData ped : epv.getProperties()) {
-                if (asEntityData == true) {
-                    List<EntityData> values = epv.getPropertyValues(ped);
-                    //FIXME: just take the first
-                    EntityData value = UIUtil.getFirstItem(values);
-                    data[i][getIndexOfProperty(ped.getName())] = value;
-                } else {
-                    data[i][getIndexOfProperty(ped.getName())] = getCellText(epv, ped);
-                }
+        	if (isAllowedValueForUser(epv)) {
+	            for (PropertyEntityData ped : epv.getProperties()) {
+	                if (asEntityData == true) {
+	                    List<EntityData> values = epv.getPropertyValues(ped);
+	                    //FIXME: just take the first
+	                    EntityData value = UIUtil.getFirstItem(values);
+	                    data[i][getIndexOfProperty(ped.getName())] = value;
+	                } else {
+	                    data[i][getIndexOfProperty(ped.getName())] = getCellText(epv, ped);
+	                }
+	            }
+	
+	            if (!asEntityData) {
+	                setExtraColumnValues(data[i], epv);
+	            }
+	            i++;
+        	}
+        }
+        //if some rows were filtered out
+        if (i < entityPropertyValues.size()) {
+        	//data = Arrays.copyOf(data, i);
+        	int newRowCount = i;
+        	//data = Arrays.stream(data).map(a ->  Arrays.copyOf(a, newSize)).toArray(Object[][]::new);
+        	int colCount = (data.length > 0 ? data[0].length : 0);
+        	Object[][] newData = new Object[newRowCount][colCount];
+            for (int j = 0; j < newRowCount; j++) {
+                System.arraycopy(data[j], 0, newData[j], 0, data[j].length);
             }
-
-            if (!asEntityData) {
-                setExtraColumnValues(data[i], epv);
-            }
-            i++;
+            data = newData;
         }
         return data;
     }
@@ -2210,6 +2229,10 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 	}
 
 
+    protected boolean isAllowedValueForUser(EntityPropertyValues epv) {
+    	return true;
+    }
+    
     protected void removeRowFromStore(int removeInd) {
 		Record recordToRemove = store.getAt(removeInd);
 		if (recordToRemove != null) {

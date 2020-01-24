@@ -66,11 +66,13 @@ public class FormConstants {
 	public static final String COMPONENT_TYPE = "component_type";
 	public static final String ALLOWED_VALUES = "allowed_values";
 	public static final String ALLOWED_VALUES_ONLY = "allowed_values_only";
+	public static final String GROUP_SPECIFIC_ALLOWED_VALUES = "group_specific_allowed_values";
 	public static final String READ_ONLY = "read_only";
 	public static final String DISABLED = "disabled";
 	public static final String PAGE_SIZE = "page_size";
 	public static final String WRITE_ACCESS_GROUPS = "writeAccessGroups";	//we should not use camel case in property names
 	public static final String SHOW_ONLY_FOR_GROUPS = "showOnlyForGroups";	//we should not use camel case in property names
+	public static final String DO_NOT_SHOW_FOR_GROUPS = "doNotShowForGroups";	//we should not use camel case in property names
 
 	/*
 	 * Instance field widget

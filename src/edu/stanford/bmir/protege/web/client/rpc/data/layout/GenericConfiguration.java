@@ -84,8 +84,16 @@ public class GenericConfiguration implements Serializable {
 	
 
 	/**	 * 
-	 * @return true if the user is member of a group whose name is listed 
-	 *               under the "showOnlyForGroups" property, or the property is not defined
+	 * @return <ul>
+	 *               <li><code>true</code> if the user is member of a group whose name is listed 
+	 *               under the "showOnlyForGroups" property, </li>
+	 *               <li><code>false</code> if the "showOnlyForGroups" property is defined but
+	 *               the user is not member of a group whose name is listed under that property, </li>
+	 *               <li><code>false</code> if the user is member of a group whose name is listed 
+	 *               under the "doNotShowForGroups" property, </li>
+	 *               <li><code>true</code> if the "doNotShowForGroups" property is defined but
+	 *               the user is not member of a group whose name is listed under that property, </li>
+	 *               <li><code>true</code> in case neither property is defined.</li>
 	 * @see AbstractPropertyWidget.userPartOfWriteAccessGroup
 	 */
     public boolean userPartOfShowGroup() {
@@ -93,21 +101,33 @@ public class GenericConfiguration implements Serializable {
             return false;
         }
 
-        List<String> showGroups = UIUtil.getListConfigurationProperty(getProperties(), FormConstants.SHOW_ONLY_FOR_GROUPS);
-        if (showGroups == null) {
-            return true;
-        }
         Collection<String> userGroups = GlobalSettings.getGlobalSettings().getUser().getGroups();
         if (userGroups == null) {
             return false;
         }
-        for (String showGroup : showGroups) {
-            if (userGroups.contains(showGroup)) {
-                return true;
-            }
+
+        List<String> doNotShowGroups = UIUtil.getListConfigurationProperty(getProperties(), FormConstants.DO_NOT_SHOW_FOR_GROUPS);
+
+        if (doNotShowGroups != null) {
+	        for (String doNotshowGroup : doNotShowGroups) {
+	            if (userGroups.contains(doNotshowGroup)) {
+	                return false;
+	            }
+	        }
         }
 
-        return false;
+        List<String> showGroups = UIUtil.getListConfigurationProperty(getProperties(), FormConstants.SHOW_ONLY_FOR_GROUPS);
+
+        if (showGroups != null) {
+	        for (String showGroup : showGroups) {
+	            if (userGroups.contains(showGroup)) {
+	                return true;
+	            }
+	        }
+	        return false;
+        }
+        
+        return true;
     }
 	
 }

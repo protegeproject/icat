@@ -32,8 +32,10 @@ import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
+import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValuesList;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.MultilevelInstanceGridWidget;
@@ -72,6 +74,7 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
     public void setup(Map<String, Object> widgetConfiguration, PropertyEntityData propertyEntityData) {
         super.setup(widgetConfiguration, propertyEntityData);
         topClass = UIUtil.getStringConfigurationProperty(getWidgetConfiguration(), getProject().getProjectConfiguration(), TOP_CLASS_PROP, null);
+        allowedValues = new WidgetConfiguration(getWidgetConfiguration()).getUserSpecificAllowedValues();
     }
 
     @Override
@@ -104,8 +107,10 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
                 public String render(Object value, CellMetadata cellMetadata, Record record, int rowIndex, int colNum, Store store) {
                     String entityDataValue = (String) value;
                     if (entityDataValue == null ) {
-                        return "<DIV style=\"color:GRAY\">Click here to select a parent</DIV>";
-                    } else if (entityDataValue.startsWith("[") && entityDataValue.endsWith("]") ) {
+                        return "<DIV style=\"color:GRAY\">" +
+                        		(isReadOnlyColumn(colNum) ? "Parent not set" : "Click here to select a parent") + "</DIV>";
+                    } else if (isReadOnlyColumn(colNum) ||
+                    		(entityDataValue.startsWith("[") && entityDataValue.endsWith("]") )) {
                         return "<DIV style=\"color:GRAY\">" + entityDataValue + "</DIV>";
                     } else {
                         return entityDataValue;
@@ -164,7 +169,7 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
                 if (e.getTarget(".checkbox", 1) != null) {
                     Record record = getStore().getAt(rowIndex);
                     if (record != null) {
-                        if (isWriteOperationAllowed()) {
+                        if (isWriteOperationAllowed() && !isReadOnlyColumn(colIndex)) {
                             String field = record.getFields()[colIndex];
                             String value = record.getAsString(field);
                             if (Boolean.parseBoolean(value) == true) {
@@ -178,7 +183,7 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
                 } else if (colIndex == colIndexParent) {
                     Record record = getStore().getAt(rowIndex);
                     if (record != null) {
-                        if (isWriteOperationAllowed()) {
+                        if (isWriteOperationAllowed() && !isReadOnlyColumn(colIndex)) {
                         	Record shadowStoreRecord = getShadowStore().getAt(rowIndex);
                             String field = record.getFields()[colIndex];
                             selectNewParents(record, shadowStoreRecord, field);
@@ -205,7 +210,7 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
                 if (e.getTarget(".checkbox", 1) != null) {
                     final Record record = getStore().getAt(rowIndex);
                     if (record != null) {
-                        if (isWriteOperationAllowed()) {
+                        if (isWriteOperationAllowed() && !isReadOnlyColumn(colIndex)) {
                             String field = record.getFields()[colIndex];
                             String value = record.getAsString(field);
                             if (value != null && !"".equals(value)) {
@@ -219,7 +224,7 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
                 } else if (colIndex == colIndexParent) {
                     Record record = getStore().getAt(rowIndex);
                     if (record != null) {
-                        if (isWriteOperationAllowed()) {
+                        if (isWriteOperationAllowed() && !isReadOnlyColumn(colIndex)) {
                             if (colIndexParent >= 0) {
                                 String field = record.getFields()[colIndexParent];
                                 String value = record.getAsString(field);
@@ -408,6 +413,27 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
     }
 
     @Override
+    protected boolean isAllowedValueForUser(EntityPropertyValuesList epv) {
+    	if (allowedValues == null) {
+    		return true;
+    	}
+    	else {
+    		if (allowedValuesColumnIndex < 0 || allowedValuesColumnIndex >= epv.getProperties().size()) {
+    			return true;
+    		}
+    		
+			List<EntityData> allowedValuesPropertyValues = epv.getPropertyValues(allowedValuesColumnIndex);
+			if (allowedValuesPropertyValues == null) {
+				return true;
+			}
+			
+			EntityData firstAllowedValuesPropertyValue = allowedValuesPropertyValues.get(0);
+    		return firstAllowedValuesPropertyValue == null  ?  true  : 
+    			allowedValues.contains(firstAllowedValuesPropertyValue.getName());
+    	}
+    }
+    
+    @Override
     protected void setExtraColumnValues(Object[] datarow, EntityPropertyValues epv) {
         super.setExtraColumnValues(datarow, epv);
 
@@ -450,7 +476,7 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
     @Override
     protected void editClassFieldType(Record record, int rowIndex, int colIndex) {
         if (record != null) {
-            if (isWriteOperationAllowed()) {
+            if (isWriteOperationAllowed() && !isReadOnlyColumn(colIndex)) {
             	Record shadowStoreRecord = getShadowStore().getAt(rowIndex);
                 String field = record.getFields()[colIndex];
                 selectNewParents(record, shadowStoreRecord, field);

@@ -183,14 +183,28 @@ public class UIUtil {
     	}
     }
 
-    public static List<String> getListConfigurationProperty(Map<String, Object> config, String prop) {
+    public static <T> List<T> getListConfigurationProperty(Map<String, Object> config, String prop) {
         if (config == null) {
             return null;
         }
         try {
         	@SuppressWarnings("unchecked")
-			List<String> listValue = (List<String>) config.get(prop);
+			List<T> listValue = (List<T>) config.get(prop);
             return listValue;
+        }
+        catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static <K, V> Map<K, V> getMapConfigurationProperty(Map<String, Object> config, String prop) {
+        if (config == null) {
+            return null;
+        }
+        try {
+        	@SuppressWarnings("unchecked")
+			Map<K, V> mapValue = (Map<K, V>) config.get(prop);
+            return mapValue;
         }
         catch (Exception e) {
             return null;
@@ -199,9 +213,9 @@ public class UIUtil {
 
     /**
      * Returns a {@link Map} of allowed values from a widget configuration,
-     * where the keys in the map represent the different possible values,
-     * and for each key the associated values in the map are the display
-     * label corresponding for that value.
+     * where the keys in the map represent the different possible options (labels) displayed on the screen,
+     * and for each key the associated values in the map are the underlying value in the ontology
+     * corresponding for that label.
      * <p>
      * If the allowed values in the configuration file is represented by a
      * simple list of String values, this method will build a map from it,

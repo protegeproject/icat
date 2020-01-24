@@ -52,11 +52,11 @@ public class EntityPropertyValuesList implements Serializable {
     }
     
     public PropertyEntityData getProperty(int propIndex) {
-    	return propIndex > properties.size() - 1 ? null : properties.get(propIndex);
+    	return propIndex < 0 || propIndex > properties.size() - 1 ? null : properties.get(propIndex);
     }
 
     public List<EntityData> getPropertyValues(int propIndex) {
-        return propIndex > propertyValues.size() - 1 ? null : propertyValues.get(propIndex);
+        return propIndex < 0 || propIndex > propertyValues.size() - 1 ? null : propertyValues.get(propIndex);
     }
     
     public void setProperties(List<PropertyEntityData> properties) {
