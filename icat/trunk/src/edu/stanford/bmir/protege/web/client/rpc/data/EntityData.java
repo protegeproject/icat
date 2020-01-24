@@ -32,6 +32,12 @@ public class EntityData implements Serializable {
     }
 
     public EntityData(String name, String browserText, Collection<EntityData> types) {
+    	//remove index of form [1], [2], etc. from the end of the name,.
+    	if (name != null && name.matches("(.*)\\[\\d+\\]$")) {
+    		name = name.substring(0, name.lastIndexOf("[") );
+    		
+    	}
+
         this.name = name;
         this.browserText = browserText;
         this.types = types;

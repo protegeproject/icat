@@ -229,23 +229,47 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
         int i = 0;
         Object[][] data = new Object[entityPropertyValues.size()][properties.size() + getExtraColumnCount()];
         for (EntityPropertyValuesList epv : entityPropertyValues) {
-            for (int j = 0; j < properties.size(); j++) {
-                if (asEntityData == true) {
-                    List<EntityData> values = epv.getPropertyValues(j);
-                    //FIXME: just take the first
-                    EntityData value = UIUtil.getFirstItem(values);
-                    data[i][j] = value;
-                } else {
-                    data[i][j] = UIUtil.prettyPrintList(epv.getPropertyValues(j));
-                }
+        	if (isAllowedValueForUser(epv)) {
+	            for (int j = 0; j < properties.size(); j++) {
+	                if (asEntityData == true) {
+	                    List<EntityData> values = epv.getPropertyValues(j);
+	                    //FIXME: just take the first
+	                    EntityData value = UIUtil.getFirstItem(values);
+	                    data[i][j] = value;
+	                } else {
+	                    data[i][j] = UIUtil.prettyPrintList(epv.getPropertyValues(j));
+	                }
+	            }
+	
+	            if (!asEntityData) {
+	                setExtraColumnValues(data[i], epv);
+	            }
+	            i++;
+        	}
+        }
+        //if some rows were filtered out
+        if (i < entityPropertyValues.size()) {
+        	//data = Arrays.copyOf(data, i);
+        	int newRowCount = i;
+        	//data = Arrays.stream(data).map(a ->  Arrays.copyOf(a, newSize)).toArray(Object[][]::new);
+        	int colCount = (data.length > 0 ? data[0].length : 0);
+        	Object[][] newData = new Object[newRowCount][colCount];
+            for (int j = 0; j < newRowCount; j++) {
+                System.arraycopy(data[j], 0, newData[j], 0, data[j].length);
             }
-
-            if (!asEntityData) {
-                setExtraColumnValues(data[i], epv);
-            }
-            i++;
+            data = newData;
         }
         return data;
+    }
+
+    @Override
+    @Deprecated
+    protected boolean isAllowedValueForUser(EntityPropertyValues epv) {
+    	return true;
+    }
+
+    protected boolean isAllowedValueForUser(EntityPropertyValuesList epv) {
+    	return true;
     }
 
     /**

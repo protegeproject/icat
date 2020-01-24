@@ -21,6 +21,9 @@ import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
+import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.InstanceGridWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.WidgetController;
@@ -47,6 +50,12 @@ public class PostCoordinationGrid extends InstanceGridWidget {
 		super(project);
 		this.widgetController = widgetController;
 	}
+
+    @Override
+    public void setup(Map<String, Object> widgetConfiguration, PropertyEntityData propertyEntityData) {
+        super.setup(widgetConfiguration, propertyEntityData);
+        allowedValues = new WidgetConfiguration(getWidgetConfiguration()).getUserSpecificAllowedValues();
+    }
 
     @Override
 	protected int getClicksToEdit() {
@@ -115,6 +124,30 @@ public class PostCoordinationGrid extends InstanceGridWidget {
                 new GetSelectedPostCoordinationAxesHandler(currentSubject, properties));
     }
 
+
+	@Override
+    protected boolean isAllowedValueForUser(EntityPropertyValues epv) {
+    	if (allowedValues == null) {
+    		return true;
+    	}
+    	else {
+    		PropertyEntityData[] properties = epv.getProperties().toArray( new PropertyEntityData[0] );
+    		if (allowedValuesColumnIndex < 0 || allowedValuesColumnIndex >= properties.length) {
+    			return true;
+    		}
+    		
+			List<EntityData> allowedValuesPropertyValues = epv.getPropertyValues(properties[allowedValuesColumnIndex]);
+			if (allowedValuesPropertyValues == null) {
+				return true;
+			}
+			
+			EntityData firstAllowedValuesPropertyValue = allowedValuesPropertyValues.get(0);
+    		return firstAllowedValuesPropertyValue == null  ?  true  : 
+    			allowedValues.contains(firstAllowedValuesPropertyValue.getName());
+    	}
+    }
+
+	
     @Override
     protected void onValueColumnClicked(GridPanel grid, int rowIndex,
     		int colIndex) {
@@ -415,4 +448,5 @@ public class PostCoordinationGrid extends InstanceGridWidget {
 	    }
 	}
 
+	
 }
