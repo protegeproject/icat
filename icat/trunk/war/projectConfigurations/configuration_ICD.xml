@@ -2748,6 +2748,12 @@
 																<string>http://who.int/icd#Specialty_Adaptation_Dermatology</string>
 															</list>
 														</entry>
+														<entry>
+															<string>http://who.int/icd#TAG_Dermatology</string>
+															<list>
+																<string>http://who.int/icd#Specialty_Adaptation_Dermatology</string>
+															</list>
+														</entry>
 													</map>
 												</entry>
 												
@@ -3770,6 +3776,12 @@
 														</entry>
 														<entry>
 															<string>DermatologyLinearizationEditors</string>
+															<list>
+																<string>http://who.int/icd#Specialty_Adaptation_Dermatology</string>
+															</list>
+														</entry>
+														<entry>
+															<string>http://who.int/icd#TAG_Dermatology</string>
 															<list>
 																<string>http://who.int/icd#Specialty_Adaptation_Dermatology</string>
 															</list>
