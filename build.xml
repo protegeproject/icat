@@ -219,7 +219,8 @@
      <javac srcdir = "${src}"
             destdir = "${classes}" 
             debug="on"
-            includeAntRuntime="false">
+            includeAntRuntime="false"
+     		source="1.8">
        <classpath refid = "project.classpath"/>  
      </javac>
      <copy todir="${classes}">
@@ -280,6 +281,47 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
        <antcall target="copy.rpc.in.war" />
    </target>
     
+	
+	   <target name    = "compile.draft.js" 
+	           depends = "compile,check.js.compiled, stage.war" 
+	           unless  = "js.up.to.date">
+	       <!-- Must use fork="true" here.  If not, GWTCompiler fails with
+	           "No source path entries; expect subsequent failures".   
+	            No explanation is given in forums about why adding this
+	           attribute solves errors.  See thread on GWT forum: 
+	http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e06aba18b 
+	          -->
+	       <java classname = "com.google.gwt.dev.Compiler" 
+	             fork = "true" 
+	             maxmemory = "500M">
+	           <classpath>
+	               <path refid="project.classpath"/>
+	               <pathelement path="${classes}"/>
+	               <pathelement path="${src}"/>
+	           </classpath>
+	           <jvmarg value="-Xss100M"/>
+
+	       	   <arg line="-draftCompile" />
+	       	
+	           <arg line = "-war"/>
+	           <arg line = "${war}"/>
+
+	           <arg line = "-style"/>
+	           <arg line = "OBF"/>
+
+	           <arg line = "-logLevel"/>
+	           <arg line = "INFO"/>
+
+	           <arg value = "${gwt.xml.target}"/>
+
+	           <arg value = "${gwt.xml.target.authenticate}"/>
+	       </java>
+	       <touch file="${war}/BUILT"/>
+
+	       <antcall target="copy.rpc.in.war" />
+	   </target>
+	
+	
    <target name="copy.rpc.in.war" if="set.if.deploy.in.root">
     <echo message="Copying the rpc files in war (workaround for GWT + proxy bug)"/>     
        <copy todir="${war}">
@@ -345,8 +387,8 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
        </java>
    </target>
 
-   <target name    = "hosted" 
-           depends = "webprotege.lib,stage.war">
+   <target name = "hosted" 
+           depends = "webprotege.lib,stage.war,compile.draft.js">
      <copy todir="${war}/WEB-INF/lib" file="${gwt.dir}/gwt-user.jar"/>
      
      <java classname = "com.google.gwt.dev.DevMode" 
