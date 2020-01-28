@@ -30,6 +30,14 @@ public class AdminServiceManager {
         return instance;
     }
 
+    public void getUsers(String userName, AsyncCallback<List<UserData>> callback) {
+        proxy.getUsers(userName, callback);
+    }
+    
+    public void switchUser(String oldUser, String newUser, AsyncCallback<UserData> callback) {
+        proxy.switchUser(oldUser, newUser, callback);
+    }
+    
     public void getUserEmail(String userName, AsyncCallback<String> callback) {
         proxy.getUserEmail(userName, callback);
     }

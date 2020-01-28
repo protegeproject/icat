@@ -35,6 +35,10 @@ public interface AdminService extends RemoteService {
 
     void changePassword(String userName, String password);
 
+    List<UserData> getUsers(String userName);
+    
+    UserData switchUser(String oldUser, String newUser);
+    
     String getUserEmail(String userName);
 
     void setUserEmail(String userName, String email);

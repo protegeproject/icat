@@ -2,7 +2,10 @@ package edu.stanford.bmir.protege.web.server;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import edu.stanford.bmir.protege.web.client.rpc.data.UserData;
@@ -16,6 +19,8 @@ import edu.stanford.smi.protege.server.metaproject.ServerInstance;
 import edu.stanford.smi.protege.server.metaproject.User;
 
 public abstract class AbstractMetaProjectManager implements MetaProjectManager {
+	
+	private final static String SIGN_IS_AS_OP = "SignInAs";
 
     public boolean hasValidCredentials(String userName, String password) {
         if (getMetaProject() == null) {
@@ -40,6 +45,44 @@ public abstract class AbstractMetaProjectManager implements MetaProjectManager {
         user.setPassword(password);
     }
 
+    public List<UserData> getUsers(String userName) {
+    	 List<UserData> users = new ArrayList<UserData>();
+         if (userName == null) {
+             return users;
+         }
+         
+         if (isServerOperationAllowed(userName, SIGN_IS_AS_OP) == false) {
+        	 throw new IllegalStateException("User " + userName + " does not have the permission to"
+        	 		+ " sign in as a different user.");
+         }
+         
+         final MetaProject metaProject = getMetaProject();
+      
+         Set<User> userObjs = metaProject.getUsers();
+         
+         return getSortedUserList(userObjs);
+    }
+    
+    
+    private List<UserData> getSortedUserList(Set<User> userObjs) {
+    	List<UserData> users = new ArrayList<UserData>();
+    
+    	for (User user : userObjs) {
+			users.add(AuthenticationUtil.createUserData(user.getName()));
+		}
+    	
+    	Collections.sort(users, new Comparator<UserData>() {
+
+			@Override
+			public int compare(UserData o1, UserData o2) {
+				return o1.getName().compareTo(o2.getName());
+			}
+		});
+    	
+    	return users;
+    }
+    
+    
     public String getUserEmail(String userName) {
         final MetaProject metaProject = getMetaProject();
         if (metaProject == null) {
@@ -116,6 +159,34 @@ public abstract class AbstractMetaProjectManager implements MetaProjectManager {
         return allowedOps;
     }
 
+    public boolean isServerOperationAllowed(String userName, String operation) {
+     if (userName == null) {
+         return false;
+     }
+     
+     final MetaProject metaProject = getMetaProject();
+     if (metaProject == null) {
+         throw new IllegalStateException("Metaproject is set to null");
+     }
+     
+     Operation op = metaProject.getOperation(operation);
+     
+     if (op == null) {
+    	 return false;
+     }
+     
+     Policy policy = metaProject.getPolicy();
+     User user = policy.getUserByName(userName);
+     ServerInstance firstServerInstance = metaProject.getPolicy().getFirstServerInstance();
+
+     if (user == null || firstServerInstance == null) {
+         return false;
+     }
+     
+     return policy.isOperationAuthorized(user, op, firstServerInstance);
+    }
+    
+    
     public UserData getUserAssociatedWithOpenId(String userOpenId) {
         UserData userData = null;
 

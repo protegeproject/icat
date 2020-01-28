@@ -64,6 +64,10 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
     public void changePassword(String userName, String password) {
         Protege3ProjectManager.getProjectManager().getMetaProjectManager().changePassword(userName, password);
     }
+    
+    public List<UserData> getUsers(String userName) {
+    	return Protege3ProjectManager.getProjectManager().getMetaProjectManager().getUsers(userName);
+    }
 
     public String getUserEmail(String userName) {
         return Protege3ProjectManager.getProjectManager().getMetaProjectManager().getUserEmail(userName);
@@ -161,6 +165,16 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
         }
 
         return isverified == true ? AuthenticationUtil.createUserData(userName) : null;
+    }
+    
+    public UserData switchUser(String oldUser, String newUser) {
+    	 HttpServletRequest request = this.getThreadLocalRequest();
+         HttpSession session = request.getSession();
+         
+         session.setAttribute(AuthenticationConstants.USER, newUser);
+         Log.getLogger().info("User " + oldUser + " logged in as " + newUser);
+         
+         return AuthenticationUtil.createUserData(newUser);
     }
 
     private static String encodeBytes(byte[] bytes) {

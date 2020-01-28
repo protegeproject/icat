@@ -54,7 +54,8 @@ public class TopPanel extends Panel {
     private final Images images = (Images) GWT.create(Images.class);
     private HorizontalPanel optionsLinks;
     private MenuBar verticalOptionsMenu;
-    private MenuItem addUser;
+    private MenuItem addUserMenuItem;
+    private MenuItem signInAsMenuItem;
 
     public interface Images extends ImageBundle {
         public AbstractImagePrototype iCatLogo();
@@ -134,6 +135,9 @@ public class TopPanel extends Panel {
                     if (operations.contains(PermissionConstants.CREATE_USERS)) {
                         addUserMenuItem();
                     }
+                    if (operations.contains(PermissionConstants.SIGN_IN_AS)) {
+                    	addSignInAsMenuItem();
+                    }
                 }
 
                 public void onFailure(Throwable caught) {
@@ -141,7 +145,12 @@ public class TopPanel extends Panel {
                 }
             });
         } else { //logout
-            verticalOptionsMenu.removeItem(addUser);
+        	if (addUserMenuItem != null) {
+        		verticalOptionsMenu.removeItem(addUserMenuItem);
+        	}
+        	if (signInAsMenuItem != null) {
+        		verticalOptionsMenu.removeItem(signInAsMenuItem);
+        	}
             optionsLinks.setVisible(false);
         }
     }
@@ -232,7 +241,7 @@ public class TopPanel extends Panel {
     }
 
     protected void addChangePasswordMenuItem() {
-        MenuItem changePassword = new MenuItem("Change Password", new Command() {
+        MenuItem changePassword = new MenuItem("Change password", new Command() {
             public void execute() {
                 final LoginUtil loginUtil = new LoginUtil();
                 Boolean isLoginWithHttps = ClientApplicationPropertiesCache.getLoginWithHttps();
@@ -248,7 +257,7 @@ public class TopPanel extends Panel {
     }
 
     protected void addUserMenuItem() {
-        addUser = new MenuItem("Add User", new Command() {
+        addUserMenuItem = new MenuItem("Add user", new Command() {
             public void execute() {
                 Boolean isLoginWithHttps = ClientApplicationPropertiesCache.getLoginWithHttps();
                 LoginUtil loginUtil = new LoginUtil();
@@ -259,17 +268,27 @@ public class TopPanel extends Panel {
                 }
             }
         });
-        verticalOptionsMenu.addItem(addUser);
+        verticalOptionsMenu.addItem(addUserMenuItem);
     }
 
     protected void addEditProfileMenuItem() {
-        MenuItem editProfile = new MenuItem("Edit Profile", new Command() {
+        MenuItem editProfile = new MenuItem("Edit profile", new Command() {
             public void execute() {
                 EditProfileUtil eProfileUtil = new EditProfileUtil();
                 eProfileUtil.editProfile();
             }
         });
         verticalOptionsMenu.addItem(editProfile);
+    }
+    
+    protected void addSignInAsMenuItem() {
+         signInAsMenuItem = new MenuItem("Sign in as user", new Command() {
+            public void execute() {
+                SignInAsUserUtil util = new SignInAsUserUtil();
+                util.signInAs();
+            }
+        });
+        verticalOptionsMenu.addItem(signInAsMenuItem);
     }
 
     protected String getUserNameText() {
