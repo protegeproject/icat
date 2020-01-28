@@ -15,6 +15,10 @@ import edu.stanford.bmir.protege.web.client.rpc.data.UserData;
 public interface AdminServiceAsync {
 
     void changePassword(String userName, String password, AsyncCallback<Void> callback);
+    
+    void getUsers(String userName, AsyncCallback<List<UserData>> callback);
+    
+    void switchUser(String oldUser, String newUser, AsyncCallback<UserData> callback);
 
     void getUserEmail(String userName, AsyncCallback<String> callback);
 

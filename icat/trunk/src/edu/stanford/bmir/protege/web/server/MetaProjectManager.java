@@ -2,6 +2,7 @@ package edu.stanford.bmir.protege.web.server;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import edu.stanford.bmir.protege.web.client.rpc.data.ProjectData;
 import edu.stanford.bmir.protege.web.client.rpc.data.UserData;
@@ -17,6 +18,8 @@ public interface MetaProjectManager {
     public UserData registerUser(String userName, String password);
 
     public void changePassword(String userName, String password);
+    
+    public List<UserData> getUsers(String userName);
 
     public String getUserEmail(String userName);
 
@@ -29,6 +32,8 @@ public interface MetaProjectManager {
     public Collection<Operation> getAllowedOperations(String project, String userName);
 
     public Collection<Operation> getAllowedServerOperations(String userName);
+    
+    public boolean isServerOperationAllowed(String userName, String operation);
 
     public Project openProject(String name);
 

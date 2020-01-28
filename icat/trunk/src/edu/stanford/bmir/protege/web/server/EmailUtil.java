@@ -27,7 +27,12 @@ public class EmailUtil {
             return;
         }
 
-        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+        //TT: was
+       // Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+        
+        //TT: is, but not sure it works
+        java.security.Security.setProperty("ssl.SocketFactory.provider", "sun.security.ssl.SSLSocketFactoryImpl");
+        java.security.Security.setProperty("ssl.ServerSocketFactory.provider", "sun.security.ssl.SSLSocketFactoryImpl");
 
         Properties props = new Properties();
         props.put("mail.smtp.host", ApplicationProperties.getSmtpHostName());
