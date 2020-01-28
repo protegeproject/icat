@@ -63,8 +63,8 @@
        <property name="bioportal2.lib"  location="${protege.home}/plugins/edu.stanford.bmir.protegex.bp.ref/bioportal-services-lib.jar"/> 
        <property name="lucene1.lib"     location="${protege.home}/plugins/edu.stanford.smi.protegex.query.lucene/luceneQueryPlugin.jar"/>
        <property name="lucene2.lib"     location="${protege.home}/plugins/edu.stanford.smi.protegex.query.lucene/lucene-core.jar"/>        
+  	   <property name="icd.lib"         location="${protege.home}/plugins/edu.stanford.bmir.icd.misc/icd.jar"/>
    </target>
-    
 
     <target name = "checkProtegeLibs" depends="useProtegeHome">
       <condition property="libs.found">
@@ -82,6 +82,7 @@
           <available file="${bioportal2.lib}"              type = "file"/>
           <available file="${lucene1.lib}"                 type = "file"/>
           <available file="${lucene2.lib}"                 type = "file"/>
+          <available file="${icd.lib}"                 type = "file"/>
         </and>
       </condition>
       <path id = "project.classpath">    
@@ -98,6 +99,7 @@
         <pathelement location="${bioportal2.lib}"/>
         <pathelement location="${lucene1.lib}"/>
         <pathelement location="${lucene2.lib}"/>
+      	<pathelement location="${icd.lib}"/>
         <fileset dir="${lib}"/>
       </path>       
     </target>
