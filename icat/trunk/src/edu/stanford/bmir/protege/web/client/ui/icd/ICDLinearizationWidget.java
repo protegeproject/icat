@@ -46,6 +46,8 @@ import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
 
     private static final String TOP_CLASS_PROP = "topClass";
+    
+    private static final String NO_PARENT_SELECTED = "<Linearization parent not set>";
 
     private static int OFFSET_DELETE_COLUMN = -1;
     private static int OFFSET_COMMENT_COLUMN = 1;;
@@ -340,9 +342,6 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
     }
     
     private ListBox getParents() {
-    	//TODO: add horizontal scroll, if needed
-    	//TODO: select current lin parent
-    	//TODO: maybe, check if you can unselect, and ask if delete current lin parent
     	ListBox lb = new ListBox();
     	
     	EntityData subject = getSubject();
@@ -362,6 +361,9 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
 			public void onSuccess(List<EntityData> parents) {
 				List<EntityData> directParents = new ArrayList<EntityData>();
 				
+				lb.addItem(NO_PARENT_SELECTED);
+				directParents.add(new EntityData(NO_PARENT_SELECTED, NO_PARENT_SELECTED));
+				
 				for (EntityData parent : parents) {
 					lb.addItem(UIUtil.getDisplayText(parent));
 					directParents.add(parent);
@@ -372,6 +374,8 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
 				
 				lb.setMultipleSelect(false);
 				
+				selectOldParent(lb, directParents);
+				
 				showParentsList(lb, directParents);
 			}
 			
@@ -380,8 +384,34 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
         return lb;
     }
     
+    private void selectOldParent(ListBox lb, List<EntityData> directParents) {
+
+    	EntityData oldParent = (EntityData)currentShadowStoreRecord.getAsObject(fieldNameParent);
+    	int index = getOldParentIndex(directParents, oldParent);
+    	
+    	if (index != -1) {
+    		lb.setSelectedIndex(index);
+    		lb.setItemText(index, "* " + lb.getItemText(index));
+    	}
+
+  	}
     
-    private void showParentsList(final ListBox parentsListBox, final List<EntityData> directParents) {
+    private int getOldParentIndex(List<EntityData> directParents, EntityData oldParent) {
+    	if (oldParent == null) {
+    		return 0;
+    	}
+    	
+    	for (int i = 0; i < directParents.size(); i++) {
+			EntityData parent = directParents.get(i);
+			if (parent.equals(oldParent)) {
+				return i;
+			}
+		}
+    	
+    	return -1;
+    }
+
+	private void showParentsList(final ListBox parentsListBox, final List<EntityData> directParents) {
     	Window win = createParentsSelectionWindow();
         
         Button cancelButton = new Button("Cancel");
@@ -405,21 +435,24 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
                 }
                 
                 EntityData parent = directParents.get(selectedIndex);
-                
+                if (NO_PARENT_SELECTED.equals(parent.getName())) { //this is a delete case
+                	parent = null;
+                }
+               
                 if (currentRecord != null) {
 
                     EntityData oldParent = (EntityData)currentShadowStoreRecord.getAsObject(fieldNameParent);
 
                     if (fieldNameParent != null) {
                     	//this is optimistic
-                        currentRecord.set(fieldNameParent, parent.getBrowserText());
+                        currentRecord.set(fieldNameParent, parent == null ? null : parent.getBrowserText());
                         currentShadowStoreRecord.set(fieldNameParent, parent);
                     }
                     if (colIndexParent >= 0) {
                         updateInstanceValue(currentRecord, colIndexParent, oldParent, parent, ValueType.Instance, false); //false - because above we have already set the lin. parent name optimistically
                     }
                 }
-
+                              
                 win.hide();
                 win.close();
             }
@@ -428,11 +461,12 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
         win.add(parentsListBox);
         win.addButton(selectButton);
         win.addButton(cancelButton);
-        
+       
         win.setModal(true);
        
         win.show();
         win.center();
+        
 	}
     
     private Window createParentsSelectionWindow() {
@@ -449,6 +483,7 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
         win.setPlain(true);
         return win;
     }
+
 
 
 
