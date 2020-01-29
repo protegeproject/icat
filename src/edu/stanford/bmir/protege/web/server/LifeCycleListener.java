@@ -12,6 +12,9 @@ public class LifeCycleListener implements ServletContextListener {
         System.out.println("Initializing WebProtege...");
         ServletContext context = sce.getServletContext();
         String webappRoot = context.getRealPath("/");
+        if (webappRoot.endsWith("/") == false) {
+        	webappRoot = webappRoot + "/";
+        }
 
         initPaths(webappRoot);
 
