@@ -364,6 +364,7 @@ Styles for the ontology container
 
 .gwt-ListBox {
 	font-family: arial, tahoma, helvetica, sans-serif;
+	overflow: auto;
 }
 
 /******************************************************************
