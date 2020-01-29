@@ -1,18 +1,19 @@
 package edu.stanford.bmir.protege.web.client.ui.icd;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.ListBox;
 import com.gwtext.client.core.EventObject;
 import com.gwtext.client.core.Position;
 import com.gwtext.client.data.FieldDef;
 import com.gwtext.client.data.Record;
 import com.gwtext.client.data.Store;
 import com.gwtext.client.widgets.Button;
-import com.gwtext.client.widgets.Component;
 import com.gwtext.client.widgets.MessageBox;
 import com.gwtext.client.widgets.Window;
 import com.gwtext.client.widgets.event.ButtonListenerAdapter;
@@ -30,16 +31,15 @@ import com.gwtext.client.widgets.menu.event.BaseItemListenerAdapter;
 import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
+import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValuesList;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
-import edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.MultilevelInstanceGridWidget;
-import edu.stanford.bmir.protege.web.client.ui.selection.Selectable;
 import edu.stanford.bmir.protege.web.client.ui.util.UIConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
@@ -62,10 +62,10 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
 
     private Record currentRecord;
     private Record currentShadowStoreRecord;
-    private Window selectWindow;
-    private Selectable selectable;
-    private String topClass;
 
+    //not used anymore, can be deleted
+    private String topClass;
+    
     public ICDLinearizationWidget(Project project) {
         super(project);
     }
@@ -268,15 +268,7 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
         });
     }
 
-    protected void selectNewParents(Record record, Record shadowStoreRecord, String field) {
-        currentRecord = record;
-        currentShadowStoreRecord = shadowStoreRecord;
-        selectWindow = getSelectionWindow();
-        if (!selectWindow.isVisible()) {
-            selectWindow.show();
-            selectWindow.center();
-        }
-    }
+
 
     protected void updateInstanceValue(Record record, int colIndex, Object oldValue, Object newValue,
             ValueType valueType, final boolean updateLinParentName) {
@@ -339,78 +331,126 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
         return OFFSET_MAX_COLUMN + 1; //1 for the instance field
     }
 
-    protected Window getSelectionWindow() {
-        if (selectWindow == null) {
-            selectWindow = new com.gwtext.client.widgets.Window();
-            selectWindow.setTitle("Select parent");
-            selectWindow.setWidth(600);
-            selectWindow.setHeight(480);
-            selectWindow.setMinWidth(300);
-            selectWindow.setMinHeight(350);
-            selectWindow.setLayout(new FitLayout());
-            selectWindow.setPaddings(5);
-            selectWindow.setButtonAlign(Position.CENTER);
+    
+    protected void selectNewParents(Record record, Record shadowStoreRecord, String field) {
+        currentRecord = record;
+        currentShadowStoreRecord = shadowStoreRecord;
+ 
+        getParents();
+    }
+    
+    private ListBox getParents() {
+    	//TODO: add horizontal scroll, if needed
+    	//TODO: select current lin parent
+    	//TODO: maybe, check if you can unselect, and ask if delete current lin parent
+    	ListBox lb = new ListBox();
+    	
+    	EntityData subject = getSubject();
+    	if (subject == null || subject.getName() == null) {
+    		return lb;
+    	}
+    	
+    	OntologyServiceManager.getInstance().getParents(getProject().getProjectName(), subject.getName(), true, 
+    			new AsyncCallback<List<EntityData>>() {
+			
+    		@Override
+			public void onFailure(Throwable caught) {
+				MessageBox.alert("Error", "There was an error at retrieving the direct parents.");
+			}
+    		
+			@Override
+			public void onSuccess(List<EntityData> parents) {
+				List<EntityData> directParents = new ArrayList<EntityData>();
+				
+				for (EntityData parent : parents) {
+					lb.addItem(UIUtil.getDisplayText(parent));
+					directParents.add(parent);
+				}
+				
+				int visibileRows = parents.size();
+				lb.setVisibleItemCount(visibileRows <= 1 ? 2: visibileRows);
+				
+				lb.setMultipleSelect(false);
+				
+				showParentsList(lb, directParents);
+			}
+			
+		});
+    	
+        return lb;
+    }
+    
+    
+    private void showParentsList(final ListBox parentsListBox, final List<EntityData> directParents) {
+    	Window win = createParentsSelectionWindow();
+        
+        Button cancelButton = new Button("Cancel");
+        cancelButton.addListener(new ButtonListenerAdapter() {
+            @Override
+            public void onClick(Button button, EventObject e) {
+                win.hide();
+                win.close();
+            }
+        });
 
-            selectWindow.setCloseAction(Window.HIDE);
-            selectWindow.setPlain(true);
-
-            com.gwtext.client.widgets.Button cancelButton = new com.gwtext.client.widgets.Button("Cancel");
-            cancelButton.addListener(new ButtonListenerAdapter() {
-                @Override
-                public void onClick(Button button, EventObject e) {
-                    selectWindow.hide();
+        Button selectButton = new Button("Select");
+        selectButton.addListener(new ButtonListenerAdapter() {
+            @Override
+            public void onClick(Button button, EventObject e) {
+            	int selectedIndex = parentsListBox.getSelectedIndex();
+                
+                if (selectedIndex == -1) {
+                    MessageBox.alert("No selection", "No class selected. Please select a parent from the list.");
+                    return;
                 }
-            });
+                
+                EntityData parent = directParents.get(selectedIndex);
+                
+                if (currentRecord != null) {
 
-            com.gwtext.client.widgets.Button selectButton = new com.gwtext.client.widgets.Button("Select");
-            selectButton.addListener(new ButtonListenerAdapter() {
-                @Override
-                public void onClick(Button button, EventObject e) {
-                    Collection<EntityData> selection = getSelectable().getSelection();
-                    if (selection == null || selection.size() == 0) {
-                        MessageBox.alert("No selection", "No class selected. Please select a class from the tree.");
-                        return;
+                    EntityData oldParent = (EntityData)currentShadowStoreRecord.getAsObject(fieldNameParent);
+
+                    if (fieldNameParent != null) {
+                    	//this is optimistic
+                        currentRecord.set(fieldNameParent, parent.getBrowserText());
+                        currentShadowStoreRecord.set(fieldNameParent, parent);
                     }
-
-                    if (currentRecord != null) {
-                        EntityData firstSelectedParent = UIUtil.getFirstItem(selection);
-
-                        EntityData oldValue = (EntityData)currentShadowStoreRecord.getAsObject(fieldNameParent);
-
-                        if (fieldNameParent != null) {
-                        	//this is optimistic
-                            currentRecord.set(fieldNameParent, firstSelectedParent.getBrowserText());
-                            currentShadowStoreRecord.set(fieldNameParent, firstSelectedParent);
-                        }
-                        if (colIndexParent >= 0) {
-                            updateInstanceValue(currentRecord, colIndexParent, oldValue, firstSelectedParent, ValueType.Instance, false); //false - because above we have already set the lin. parent name optimistically
-                        }
+                    if (colIndexParent >= 0) {
+                        updateInstanceValue(currentRecord, colIndexParent, oldParent, parent, ValueType.Instance, false); //false - because above we have already set the lin. parent name optimistically
                     }
-
-                    selectWindow.hide();
                 }
-            });
 
-            selectWindow.add((Component) getSelectable());
-            selectWindow.addButton(selectButton);
-            selectWindow.addButton(cancelButton);
-        }
-        return selectWindow;
+                win.hide();
+                win.close();
+            }
+        });
+
+        win.add(parentsListBox);
+        win.addButton(selectButton);
+        win.addButton(cancelButton);
+        
+        win.setModal(true);
+       
+        win.show();
+        win.center();
+	}
+    
+    private Window createParentsSelectionWindow() {
+    	Window win = new Window();
+        win.setTitle("Select linearization parent (one of the direct Foundation parents)");
+        win.setWidth(400);
+        win.setHeight(200);
+       
+        win.setLayout(new FitLayout());
+        win.setPaddings(5);
+        win.setButtonAlign(Position.CENTER);
+
+        win.setCloseAction(Window.HIDE);
+        win.setPlain(true);
+        return win;
     }
 
 
-    public Selectable getSelectable() {
-        if (selectable == null) {
-            ClassTreePortlet selectableTree = new ICDClassTreePortlet(getProject(), true, false, false, true, topClass);
-            selectableTree.setDraggable(false);
-            selectableTree.setClosable(false);
-            selectableTree.setCollapsible(false);
-            selectableTree.setHeight(300);
-            selectableTree.setWidth(450);
-            selectable = selectableTree;
-        }
-        return selectable;
-    }
 
     @Override
     protected boolean isAllowedValueForUser(EntityPropertyValuesList epv) {
