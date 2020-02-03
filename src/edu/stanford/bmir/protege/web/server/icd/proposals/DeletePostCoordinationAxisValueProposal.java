@@ -1,12 +1,10 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.logging.Level;
 
 import edu.stanford.bmir.whofic.icd.ICDContentModel;
 import edu.stanford.smi.protege.util.Log;
-import edu.stanford.smi.protegex.owl.model.OWLClass;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.OWLProperty;
 import edu.stanford.smi.protegex.owl.model.RDFIndividual;

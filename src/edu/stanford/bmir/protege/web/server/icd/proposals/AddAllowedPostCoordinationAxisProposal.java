@@ -1,6 +1,5 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals;
 
-import edu.stanford.bmir.protege.web.server.icd.proposals.ModifyPostCoordinationAxisProposal.Action;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 
 /**
