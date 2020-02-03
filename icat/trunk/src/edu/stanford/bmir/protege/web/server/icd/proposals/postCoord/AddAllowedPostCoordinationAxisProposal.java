@@ -1,18 +1,18 @@
-package edu.stanford.bmir.protege.web.server.icd.proposals;
+package edu.stanford.bmir.protege.web.server.icd.proposals.postCoord;
 
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 
 /**
- * A proposal class to remove an allowed postcoordination axis from an existing class.
+ * A proposal class to add an allowed postcoordination axis to an existing class.
  * The axis is specified by the name of the specific postcoordinationAxis property 
  * (e.g. "http://who.int/icd#hasSeverity") in the "new value" column. 
  * 
  * @author csnyulas
  *
  */
-public class RemoveAllowedPostCoordinationAxisProposal extends ModifyPostCoordinationAxisProposal {
+public class AddAllowedPostCoordinationAxisProposal extends ModifyPostCoordinationAxisProposal {
 
-	public RemoveAllowedPostCoordinationAxisProposal(OWLModel owlModel, String contributionId, String contributableId,
+	public AddAllowedPostCoordinationAxisProposal(OWLModel owlModel, String contributionId, String contributableId,
 			String entityId, String entityPublicId, String contributorFullName, String entryDateTime, String status,
 			String rationale, String proposalType, String proposalGroupId, String url, String propertyId,
 			String oldValue, String newValue, String idFromValueSet, String valueSetName) {
@@ -22,14 +22,12 @@ public class RemoveAllowedPostCoordinationAxisProposal extends ModifyPostCoordin
 
 	@Override
 	protected Action getAction() {
-		return Action.REMOVE;
+		return Action.ADD;
 	}
 
 	@Override
 	protected boolean isRequiredFlag() {
-		//this method should not be called in case of this class
-		throw new UnsupportedOperationException();
-		//alternatively we can just return false, as the returned value should be irrelevant
-		//return false;
+		return false;
 	}
+
 }

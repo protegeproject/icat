@@ -1,8 +1,10 @@
-package edu.stanford.bmir.protege.web.server.icd.proposals;
+package edu.stanford.bmir.protege.web.server.icd.proposals.postCoord;
 
 import java.util.Collection;
 import java.util.logging.Level;
 
+import edu.stanford.bmir.protege.web.server.icd.proposals.ICDProposal;
+import edu.stanford.bmir.protege.web.server.icd.proposals.ImportResult;
 import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
 import edu.stanford.bmir.whofic.icd.ICDContentModel;
 import edu.stanford.smi.protege.util.Log;

@@ -5,5 +5,6 @@ public enum ProposalTypes {
 	CreateSubclassProposal, 
 	AddAllowedPostCoordinationAxisProposal, AddRequiredPostCoordinationAxisProposal, RemovePostCoordinationAxisProposal,
 	AddCustomScaleProposal,	DeleteCustomScaleProposal,
-	AddPostCoordinationAxisValueProposal, DeletePostCoordinationAxisValueProposal;
+	AddPostCoordinationAxisValueProposal, DeletePostCoordinationAxisValueProposal,
+	EditLogicalDefinition, AddLogicalDefinition, DeleteLogicalDefinition;
 }

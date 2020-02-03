@@ -1,5 +1,10 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals;
 
+import edu.stanford.bmir.protege.web.server.icd.proposals.postCoord.AddAllowedPostCoordinationAxisProposal;
+import edu.stanford.bmir.protege.web.server.icd.proposals.postCoord.AddPostCoordinationAxisValueProposal;
+import edu.stanford.bmir.protege.web.server.icd.proposals.postCoord.AddRequiredPostCoordinationAxisProposal;
+import edu.stanford.bmir.protege.web.server.icd.proposals.postCoord.DeletePostCoordinationAxisValueProposal;
+import edu.stanford.bmir.protege.web.server.icd.proposals.postCoord.RemoveAllowedPostCoordinationAxisProposal;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 
 public class ICDProposalFactory {
