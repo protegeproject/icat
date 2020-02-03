@@ -3,7 +3,6 @@ package edu.stanford.bmir.protege.web.server.icd.proposals;
 import java.util.logging.Level;
 
 import edu.stanford.bmir.protege.web.server.KBUtil;
-import edu.stanford.bmir.protege.web.server.icd.proposals.util.LookupUtil;
 import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
 import edu.stanford.bmir.whofic.icd.ICDContentModel;
 import edu.stanford.smi.protege.util.Log;
