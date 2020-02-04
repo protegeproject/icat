@@ -13,7 +13,7 @@ import edu.stanford.smi.protegex.owl.model.OWLProperty;
 import edu.stanford.smi.protegex.owl.model.RDFResource;
 import edu.stanford.smi.protegex.owl.model.RDFSNamedClass;
 
-public class AddPostCoordinationAxisValueProposal extends ICDProposal {
+public class AddPostCoordinationAxisValueProposal extends PostcoordinationProposal {
 
 	public AddPostCoordinationAxisValueProposal(OWLModel owlModel, String contributionId, String contributableId, String entityId,
 			String entityPublicId, String contributorFullName, String entryDateTime, String status, String rationale,

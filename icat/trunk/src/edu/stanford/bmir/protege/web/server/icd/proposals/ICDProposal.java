@@ -6,7 +6,6 @@ import edu.stanford.bmir.protege.web.server.KBUtil;
 import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
 import edu.stanford.bmir.whofic.icd.ICDContentModel;
 import edu.stanford.smi.protege.util.Log;
-import edu.stanford.smi.protegex.owl.model.OWLIndividual;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.OWLObjectProperty;
 import edu.stanford.smi.protegex.owl.model.RDFProperty;
@@ -168,13 +167,7 @@ public abstract class ICDProposal {
 		return exists;
 	}
 	
-	public boolean checkPropertyIsValidPostCoordinationAxis(ImportResult importResult) {
-		boolean isValidPCAxis = ImportProposalsUtil.getLookupUtil(getICDContentModel()).isPostCoordinationAxis(getPropertyId());
-		if (isValidPCAxis == false) {
-			importResult.recordResult(contributionId, "Property " + propertyId +" is not a valid post-coordination axis.", ImportRowStatus.FAIL);
-		}
-		return isValidPCAxis;
-	}
+
 	
 	public boolean checkContributableIdNotEmpty(ImportResult importResult) {
 		String contributableId = getContributableId();
@@ -185,21 +178,7 @@ public abstract class ICDProposal {
 		return true;
 	}	
 	
-	public boolean checkContributableIdIsValidLinearizationViewl(ImportResult importResult) {
-		String contributableId = getContributableId();
-		if (contributableId == null || contributableId.isEmpty()) {
-			importResult.recordResult(contributionId, "contributableId is empty.", ImportRowStatus.FAIL);
-			return false;
-		}
-		else {
-			OWLIndividual linView = owlModel.getOWLIndividual(contributableId);
-			if (linView == null || ! linView.hasRDFType( getICDContentModel().getLinearizationViewClass(), true)) {
-				importResult.recordResult(contributionId, "Contributable id is " + contributableId + ". It is expected to be a valid linearization view instance.", ImportRowStatus.FAIL);
-				return false;
-			}
-		}
-		return true;
-	}	
+	
 	
 	public boolean checkNewValueNotEmpty(ImportResult importResult) {
 		String newValue = this.getNewValue();
@@ -210,21 +189,6 @@ public abstract class ICDProposal {
 		return true;
 	}
 	
-	public boolean checkNewValueIsValidPostCoordinationAxisProperty(ImportResult importResult) {
-		String newValue = this.getNewValue();
-		if (newValue == null) {
-			importResult.recordResult(getContributionId(), "New value is null. Expected a valid post-coordination axis property name.", ImportRowStatus.FAIL);
-			return false;
-		}
-		else {
-			boolean isValidPCAxis = ImportProposalsUtil.getLookupUtil(getICDContentModel()).isPostCoordinationAxis(newValue);
-			if (isValidPCAxis == false) {
-				importResult.recordResult(contributionId, "New Value " + newValue +" is not a valid post-coordination axis.", ImportRowStatus.FAIL);
-				return false;
-			}
-		}
-		return true;
-	}
 
 	public boolean checkOldValueExists(ImportResult importResult) {
 		String oldValue = this.getOldValue();

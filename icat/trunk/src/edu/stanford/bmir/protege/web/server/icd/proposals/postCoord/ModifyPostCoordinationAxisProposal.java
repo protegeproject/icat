@@ -23,7 +23,7 @@ import edu.stanford.smi.protegex.owl.model.RDFSNamedClass;
  * @author csnyulas
  *
  */
-public abstract class ModifyPostCoordinationAxisProposal extends ICDProposal {
+public abstract class ModifyPostCoordinationAxisProposal extends PostcoordinationProposal {
 
 	protected enum Action { ADD, REMOVE };
 
