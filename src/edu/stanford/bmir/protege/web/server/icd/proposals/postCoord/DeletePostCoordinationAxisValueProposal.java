@@ -14,7 +14,7 @@ import edu.stanford.smi.protegex.owl.model.RDFProperty;
 import edu.stanford.smi.protegex.owl.model.RDFResource;
 import edu.stanford.smi.protegex.owl.model.RDFSNamedClass;
 
-public class DeletePostCoordinationAxisValueProposal extends ICDProposal {
+public class DeletePostCoordinationAxisValueProposal extends PostcoordinationProposal {
 
 	public DeletePostCoordinationAxisValueProposal(OWLModel owlModel, String contributionId, String contributableId, String entityId,
 			String entityPublicId, String contributorFullName, String entryDateTime, String status, String rationale,
