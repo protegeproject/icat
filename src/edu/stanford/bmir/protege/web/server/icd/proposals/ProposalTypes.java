@@ -6,5 +6,6 @@ public enum ProposalTypes {
 	AddAllowedPostCoordinationAxisProposal, AddRequiredPostCoordinationAxisProposal, RemovePostCoordinationAxisProposal,
 	AddCustomScaleProposal,	DeleteCustomScaleProposal,
 	AddPostCoordinationAxisValueProposal, DeletePostCoordinationAxisValueProposal,
-	EditLogicalDefinition, AddLogicalDefinition, DeleteLogicalDefinition;
+	EditLogicalDefinition, AddLogicalDefinition, DeleteLogicalDefinition,
+	EditLogicalDefinitionNonDef, AddLogicalDefinitionNonDef, DeleteLogicalDefinitionNonDef;
 }

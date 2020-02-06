@@ -1,5 +1,8 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals;
 
+import edu.stanford.bmir.protege.web.server.icd.proposals.logDef.AddLogicalDefinitionProposal;
+import edu.stanford.bmir.protege.web.server.icd.proposals.logDef.DeleteLogicalDefinitionProposal;
+import edu.stanford.bmir.protege.web.server.icd.proposals.logDef.EditLogicalDefinitionProposal;
 import edu.stanford.bmir.protege.web.server.icd.proposals.postCoord.AddAllowedPostCoordinationAxisProposal;
 import edu.stanford.bmir.protege.web.server.icd.proposals.postCoord.AddPostCoordinationAxisValueProposal;
 import edu.stanford.bmir.protege.web.server.icd.proposals.postCoord.AddRequiredPostCoordinationAxisProposal;
@@ -53,6 +56,9 @@ public class ICDProposalFactory {
 				contributorFullName, entryDateTime, status, rationale, proposalType, 
 				proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName);
 	}
+	
+	
+	/******************* Post-coordination *********************/
 	
 	public static AddAllowedPostCoordinationAxisProposal createAddAllowedPostCoordinationAxisProposal(OWLModel owlModel, String contributionId, String contributableId,
 			String entityId, String entityPublicId, String contributorFullName, String entryDateTime,
@@ -109,5 +115,40 @@ public class ICDProposalFactory {
 				proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName);
 	}
 
+	/******************* Logical Definitions *********************/
+	
+	
+	public static AddLogicalDefinitionProposal createAddLogicalDefinitionProposal(OWLModel owlModel, String contributionId, String contributableId,
+			String entityId, String entityPublicId, String contributorFullName, String entryDateTime,
+			String status, String rationale, String proposalType,
+			String proposalGroupId, String url, String propertyId,
+			String oldValue, String newValue, String idFromValueSet,
+			String valueSetName, boolean isDefining) {
+		return new AddLogicalDefinitionProposal(owlModel, contributionId, contributableId, entityId, entityPublicId,
+				contributorFullName, entryDateTime, status, rationale, proposalType, 
+				proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName, isDefining);
+	}
+	
+	public static DeleteLogicalDefinitionProposal createDeleteLogicalDefinitionProposal(OWLModel owlModel, String contributionId, String contributableId,
+			String entityId, String entityPublicId, String contributorFullName, String entryDateTime,
+			String status, String rationale, String proposalType,
+			String proposalGroupId, String url, String propertyId,
+			String oldValue, String newValue, String idFromValueSet,
+			String valueSetName, boolean isDefining) {
+		return new DeleteLogicalDefinitionProposal(owlModel, contributionId, contributableId, entityId, entityPublicId,
+				contributorFullName, entryDateTime, status, rationale, proposalType, 
+				proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName, isDefining);
+	}
+	
+	public static EditLogicalDefinitionProposal createEditLogicalDefinitionProposal(OWLModel owlModel, String contributionId, String contributableId,
+			String entityId, String entityPublicId, String contributorFullName, String entryDateTime,
+			String status, String rationale, String proposalType,
+			String proposalGroupId, String url, String propertyId,
+			String oldValue, String newValue, String idFromValueSet,
+			String valueSetName, boolean isDefining) {
+		return new EditLogicalDefinitionProposal(owlModel, contributionId, contributableId, entityId, entityPublicId,
+				contributorFullName, entryDateTime, status, rationale, proposalType, 
+				proposalGroupId, url, propertyId, oldValue, newValue, idFromValueSet, valueSetName, isDefining);
+	}
 	
 }

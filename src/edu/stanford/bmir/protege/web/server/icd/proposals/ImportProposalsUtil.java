@@ -56,9 +56,9 @@ public class ImportProposalsUtil {
 	public static String getNAString() {
 		return NA;
 	}
-	
-	public static String getAcceptedStatusString() {
-		return ACCEPTED_STATUS;
+
+	public static boolean isAccepted(String status) {
+		return ACCEPTED_STATUS.equalsIgnoreCase(status);
 	}
 	
 	public static final LookupUtil getLookupUtil(ICDContentModel cm) {
