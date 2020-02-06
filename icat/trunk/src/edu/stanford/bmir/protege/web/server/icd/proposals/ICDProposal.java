@@ -159,6 +159,100 @@ public abstract class ICDProposal {
 		return true;
 	}
 	
+	public boolean checkContribuableIsAClass(ImportResult importResult) {
+		if (checkContributableIdNotEmpty(importResult) == false) {
+			return false;
+		}
+		
+		RDFResource entity = getContributableEntity();
+		if (entity == null) {
+			importResult.recordResult(getContributionId(), "The contribuable does not exist: " + getEntityId(), ImportRowStatus.FAIL);
+			return false;
+		}
+		if ( !(entity instanceof RDFSNamedClass)) {
+			importResult.recordResult(getContributionId(), "The contribuable is not a class: " + getEntityId(), ImportRowStatus.FAIL);
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean checkNewValueIsAClass(ImportResult importResult) {
+		if (checkNewValueNotEmpty(importResult) == false) {
+			return false;
+		}
+		
+		String newValue = getNewValue();
+		RDFResource entity = getOwlModel().getRDFResource(newValue);
+		
+		if (entity == null) {
+			importResult.recordResult(getContributionId(), "The new value does not exist: " + getEntityId(), ImportRowStatus.FAIL);
+			return false;
+		}
+		if ( !(entity instanceof RDFSNamedClass)) {
+			importResult.recordResult(getContributionId(), "The new value is not a class: " + getEntityId(), ImportRowStatus.FAIL);
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean checkNewValueIsARDFResource(ImportResult importResult) {
+		if (checkNewValueNotEmpty(importResult) == false) {
+			return false;
+		}
+		
+		String value = getNewValue();
+		RDFResource entity = getOwlModel().getRDFResource(value);
+		
+		if (entity == null) {
+			importResult.recordResult(getContributionId(), "The new value does not exist: " + getEntityId(), ImportRowStatus.FAIL);
+			return false;
+		}
+		if ( !(entity instanceof RDFResource)) {
+			importResult.recordResult(getContributionId(), "The new value is not a RDF Resource: " + getEntityId(), ImportRowStatus.FAIL);
+			return false;
+		}
+		return true;
+	}
+	
+	
+	public boolean checkOldValueIsAClass(ImportResult importResult) {
+		if (checkOldValueNotEmpty(importResult) == false) {
+			return false;
+		}
+		
+		String value = getOldValue();
+		RDFResource entity = getOwlModel().getRDFResource(value);
+		
+		if (entity == null) {
+			importResult.recordResult(getContributionId(), "The old value does not exist: " + getEntityId(), ImportRowStatus.FAIL);
+			return false;
+		}
+		if ( !(entity instanceof RDFSNamedClass)) {
+			importResult.recordResult(getContributionId(), "The old value is not a class: " + getEntityId(), ImportRowStatus.FAIL);
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean checkOldValueIsARDFResource(ImportResult importResult) {
+		if (checkOldValueNotEmpty(importResult) == false) {
+			return false;
+		}
+		
+		String value = getOldValue();
+		RDFResource entity = getOwlModel().getRDFResource(value);
+		
+		if (entity == null) {
+			importResult.recordResult(getContributionId(), "The old value does not exist: " + getEntityId(), ImportRowStatus.FAIL);
+			return false;
+		}
+		if ( !(entity instanceof RDFResource)) {
+			importResult.recordResult(getContributionId(), "The old value is not a RDF Resource: " + getEntityId(), ImportRowStatus.FAIL);
+			return false;
+		}
+		return true;
+	}
+	
 	public boolean checkPropertyExists(ImportResult importResult) {
 		boolean exists = getProperty() != null;
 		if (exists == false) {
@@ -166,7 +260,6 @@ public abstract class ICDProposal {
 		}
 		return exists;
 	}
-	
 
 	
 	public boolean checkContributableIdNotEmpty(ImportResult importResult) {
@@ -184,6 +277,15 @@ public abstract class ICDProposal {
 		String newValue = this.getNewValue();
 		if (newValue == null) {
 			importResult.recordResult(getContributionId(), "New value is null. Expected non-null value.", ImportRowStatus.FAIL);
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean checkOldValueNotEmpty(ImportResult importResult) {
+		String oldValue = this.getOldValue();
+		if (oldValue == null) {
+			importResult.recordResult(getContributionId(), "Old value is null. Expected non-null value.", ImportRowStatus.FAIL);
 			return false;
 		}
 		return true;
