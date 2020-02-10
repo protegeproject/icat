@@ -21,6 +21,7 @@ import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.HierarchyServiceManager;
+import edu.stanford.bmir.protege.web.client.rpc.iCATException;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.ui.selection.Selectable;
 import edu.stanford.bmir.protege.web.client.ui.selection.SelectionEvent;
@@ -54,11 +55,11 @@ public class ChangeParentPanel extends FormPanel implements Selectable {
 
         HTML explanationHtml = new HTML("Please select a class that you want to move in the hierarchy.<br />" +
                 "Then <b>add</b> or <b>remove parents</b> in the <i>Parents</i> field.<br />" +
-                "Operations are performed only after clicking on the <i>Move in hierarchy</i> button." );
+                "Operations are performed only after clicking on the <i>Change parents</i> button." );
         explanationHtml.setStylePrimaryName("explanation");
         add(explanationHtml);
 
-        classField = new ClassSelectionField(project, "Class to move in hierarchy", false, topClass);
+        classField = new ClassSelectionField(project, "Class", false, topClass);
         add(classField, new AnchorLayoutData("100% - 53"));
         classField.addSelectionListener(selectionListener = new SelectionListener() {
             public void selectionChanged(SelectionEvent event) {
@@ -68,14 +69,14 @@ public class ChangeParentPanel extends FormPanel implements Selectable {
 
 
         parentsPanel = new ParentsPanel(project);
-        add(parentsPanel,  new AnchorLayoutData("100% - 53"));
+        add(parentsPanel, new AnchorLayoutData("100% - 53"));
 
         reasonField = new TextAreaField();
         reasonField.setLabel("Reason for change:");
         ((TextArea)reasonField.getFieldComponent()).setHeight(120);
         add(reasonField, new AnchorLayoutData("100% - 53"));
 
-        Button createButton = new Button("Move in hierarchy");
+        Button createButton = new Button("Change parents");
         createButton.addListener(new ButtonListenerAdapter() {
             @Override
             public void onClick(Button button, EventObject e) {
@@ -114,14 +115,14 @@ public class ChangeParentPanel extends FormPanel implements Selectable {
         final String reasonForChange = reasonField.getValueAsString();
 
         if (clsName == null) {
-            MessageBox.alert("No class selected", "No class to move in hierarchy is selected." +
-            		"<br />Please select a class in the <i>Class to move in hierarchy</i> field.");
+            MessageBox.alert("No class selected", "No class to change parents is selected." +
+            		"<br />Please select a class in the <i>Class to change parents</i> field.");
             return;
         }
 
         if (clsName.equals(topClass)) {
             MessageBox.alert("Operation not allowed", "It is not allowed to move the top level class in the hierarchy." +
-                    "<br />Please select another class in the <i>Class to move in hierarchy</i> field.");
+                    "<br />Please select another class in the <i>Class to change parents</i> field.");
             return;
         }
 
@@ -251,9 +252,14 @@ public class ChangeParentPanel extends FormPanel implements Selectable {
         @Override
         public void handleFailure(Throwable caught) {
             getEl().unmask();
-            GWT.log("Error at move in hierarchy for class " + classField.getClsValue(), caught);
-            MessageBox.alert("Error", "There was an error at performing the change parents operation.<br />" +
-            		"Message: " + caught.getMessage());
+            GWT.log("Error at changing parents for class " + classField.getClsValue(), caught);
+            String errorMsg = "\"There was an error at performing the change parents operation.";
+            
+            if (caught instanceof iCATException) {
+            	errorMsg = errorMsg + "<br />" + "Message: " + caught.getMessage();
+            }
+            
+            MessageBox.alert("Error", errorMsg);
         }
 
         @Override

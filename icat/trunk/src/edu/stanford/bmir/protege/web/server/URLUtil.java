@@ -26,7 +26,7 @@ import edu.stanford.smi.protege.util.Log;
 
 public class URLUtil {
 
-    public static BufferedReader read(String url) throws Exception {
+    public static BufferedReader read(String url) throws IOException {
         return new BufferedReader(
                 new InputStreamReader(
                         new URL(url).openStream()));
@@ -43,6 +43,8 @@ public class URLUtil {
                 urlString.append(line);
                 line = reader.readLine();
             }
+            
+            reader.close();
         } catch (Exception e) {
             if (Log.getLogger().isLoggable(Level.FINE)) {
                 Log.getLogger().log(Level.FINE, "Could not access: " + url, e);
@@ -50,6 +52,7 @@ public class URLUtil {
                 Log.getLogger().warning("Could not access: " + url + " Error: " + e.getMessage() + ". Enable fine logging for more.");
             }
         }
+        
         return urlString.toString();
     }
 

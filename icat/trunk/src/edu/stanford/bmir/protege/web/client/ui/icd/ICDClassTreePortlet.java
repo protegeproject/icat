@@ -188,22 +188,28 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
     }
 
     @Override
-    protected void moveClass(final EntityData cls, final EntityData oldParent, final EntityData newParent) {
-        if (oldParent.equals(newParent)) {
+    protected void onMoveClass(TreeNode target, TreeNode dropNode) {
+    	EntityData cls = (EntityData) dropNode.getUserObject();
+    	EntityData oldParent = (EntityData) dropNode.getParentNode().getUserObject();
+    	EntityData newParent = (EntityData) target.getUserObject();
+    	
+    	if (oldParent.equals(newParent)) {
             return;
         }
-
-        HierarchyServiceManager.getInstance().changeParent(
-                project.getProjectName(),
-                cls.getName(),
-                UIUtil.createCollection(newParent.getName()),
-                UIUtil.createCollection(oldParent.getName()),
-                GlobalSettings.getGlobalSettings().getUserName(),
-                UIUtil.getAppliedToTransactionString(getMoveClsOperationDescription(cls, oldParent, newParent), cls.getName()),
-                (String) null,
-                new MoveClassHandler(cls.getName(), oldParent.getName(), newParent.getName()));
+    	
+    	 HierarchyServiceManager.getInstance().changeParent(
+                 project.getProjectName(),
+                 cls.getName(),
+                 UIUtil.createCollection(newParent.getName()),
+                 UIUtil.createCollection(oldParent.getName()),
+                 GlobalSettings.getGlobalSettings().getUserName(),
+                 UIUtil.getAppliedToTransactionString(getMoveClsOperationDescription(cls, oldParent, newParent), cls.getName()),
+                 (String) null,
+                 new MoveClassHandler(target, dropNode, (TreeNode) dropNode.getParentNode(),
+                		 cls.getName(), oldParent.getName(), newParent.getName()));
+    	
     }
-
+    
 
     @Override
     protected void onReorderNode(TreeNode movedNode, TreeNode targetNode, boolean isBelow) {

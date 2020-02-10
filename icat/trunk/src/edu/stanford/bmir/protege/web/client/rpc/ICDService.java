@@ -14,5 +14,10 @@ public interface ICDService extends WHOFICService  {
 
     public String exportICDBranch(String projectName, String topNode, String userName);
 
-
+    public boolean isNonRetireableClass(String projectName, String clsName);
+    
+    public boolean isInRetiredTree(String projectName, String clsName);
+    
+    public Collection<EntityData> getClsesInRetiredTree(String projectName, Collection<EntityData> clses);
+    
 }

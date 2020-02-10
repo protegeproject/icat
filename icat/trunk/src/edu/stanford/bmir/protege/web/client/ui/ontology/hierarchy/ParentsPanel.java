@@ -16,6 +16,7 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.gwtext.client.core.EventObject;
@@ -33,6 +34,7 @@ import com.gwtext.client.widgets.layout.FitLayout;
 
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
+import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet;
@@ -352,11 +354,9 @@ public class ParentsPanel extends Panel {
                         MessageBox.alert("No selection", "No class selected. Please select a class from the tree.");
                         return;
                     }
-                    Collection<EntityData> allParents = new HashSet<EntityData>(entityToParentPanelMap.keySet());
-                    allParents.addAll(selection);
-
-                    updatePanel(allParents);
-                    selectWindow.hide();
+                    
+                    //check if any of the parents are in retired and this is not a retirable class
+                   checkParentsSelection(selection, selectWindow);
                 }
             });
 
@@ -366,7 +366,92 @@ public class ParentsPanel extends Panel {
         }
         return selectWindow;
     }
+    
+    
+    private void checkParentsSelection(Collection<EntityData> allNewParents, final Window selectionWindow) {
+    	EntityData clsData = getClsEntity();
+    	if (clsData == null || clsData.getName() == null) {
+    		addNewParents(allNewParents, selectionWindow);
+    		return;
+    	}
+    	
+    	ICDServiceManager.getInstance().isNonRetireableClass(project.getProjectName(), getClsEntity().getName(), 
+    			new AsyncCallback<Boolean>() {
+			
+    		@Override
+			public void onFailure(Throwable caught) {
+				MessageBox.alert("Error", "There was an error at retrieving the non-retirable status for class " + 
+						clsData.getBrowserText() + ". Please try again later.");
+				selectWindow.hide();
+				
+			}
+    		
+			@Override
+			public void onSuccess(Boolean result) {
+				if (result == true) {
+					ICDServiceManager.getInstance().getClsesInRetiredTree(project.getProjectName(), allNewParents, 
+							new AsyncCallback<Collection<EntityData>>() {
 
+								@Override
+								public void onFailure(Throwable caught) {
+									MessageBox.alert("Error", "There was an error at checking the non-retired new parents for class " + 
+											clsData.getBrowserText() + ". Please try again later.");
+									selectWindow.hide();
+								}
+
+								@Override
+								public void onSuccess(Collection<EntityData> retiredParents) {
+									if (retiredParents.size() > 0) { //some parents are retired
+										removeNonRetiredParents(allNewParents, retiredParents, selectionWindow);
+									} else {
+										addNewParents(allNewParents, selectionWindow);
+									}
+								}
+
+							});
+				} else {
+					addNewParents(allNewParents, selectionWindow);
+				}
+			}
+		});
+    	
+    }
+    
+    private void removeNonRetiredParents(Collection<EntityData> allNewParents,
+			Collection<EntityData> retiredParents, Window selectionWindow) {
+		
+		MessageBox.alert("Retired parents", "Some of the selected parents are in a retired tree, and the class <b>" + 
+				getClsEntity().getBrowserText() + "</b> is not retirable. <br /><br /> The following parents are retired and "
+						+ "will NOT be added: <br /><br />" + getRetireParentsString(retiredParents));
+		
+		allNewParents.removeAll(retiredParents);
+		
+		Collection<EntityData> allParents = new HashSet<EntityData>(entityToParentPanelMap.keySet());
+        allParents.addAll(allNewParents);
+        
+		updatePanel(allParents);
+		selectWindow.hide();
+	}
+    
+    
+    
+    private String getRetireParentsString(Collection<EntityData> allNewParents) {
+		String ret = new String();
+		for (EntityData parent : allNewParents) {
+			ret = ret + "<b>" + parent.getBrowserText() + "</b> <br />";
+		}
+		return ret;
+	}
+
+	private void addNewParents(Collection<EntityData> allNewParents, final Window selectionWindow) {
+    	 Collection<EntityData> allParents = new HashSet<EntityData>(entityToParentPanelMap.keySet());
+         allParents.addAll(allNewParents);
+
+         updatePanel(allParents);
+         selectWindow.hide();
+    }
+    
+    
     public Selectable getSelectable() {
         if (selectable == null) {
             //FIXME: ICD specific!!!

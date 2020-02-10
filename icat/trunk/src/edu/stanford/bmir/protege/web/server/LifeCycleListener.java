@@ -19,6 +19,8 @@ public class LifeCycleListener implements ServletContextListener {
         initPaths(webappRoot);
 
         initProjectManagers();
+        
+        initRetirementManager();
     }
 
     public void initProjectManagers() {
@@ -42,6 +44,14 @@ public class LifeCycleListener implements ServletContextListener {
         //this line has to be after setting the system property
         Log.getLogger().info("WebProtege running in: " + webappRoot);
         FileUtil.init(webappRoot); //needed
+    }
+    
+    /**
+     * Initializes the non-retirable classes from a URL.
+     * This is ICD specific, but it won't do any harm in a non-ICD project.
+     */
+    public void initRetirementManager() {
+    	RetirementManager.init();
     }
 
     public void contextDestroyed(ServletContextEvent sce) {

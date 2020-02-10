@@ -31,4 +31,18 @@ public class ICDServiceManager extends WHOFICServiceManager {
     public void exportICDBranch(String projectName, String topNode, String userName,  AsyncCallback<String> cb){
         proxy.exportICDBranch(projectName, topNode, userName, cb);
     }
+    
+    public void isNonRetireableClass(String projectName, String clsName, AsyncCallback<Boolean> cb) {
+    	proxy.isNonRetireableClass(projectName, clsName, cb);
+    }
+    
+    public void isInRetiredTree(String projectName, String clsName, AsyncCallback<Boolean> cb) {
+    	proxy.isInRetiredTree(projectName, clsName, cb);
+    }
+    
+    public void getClsesInRetiredTree(String projectName, Collection<EntityData> clses,
+			AsyncCallback<Collection<EntityData>> callback) {
+    	proxy.getClsesInRetiredTree(projectName, clses, callback);
+    }
+    
 }
