@@ -69,6 +69,7 @@ import edu.stanford.bmir.protege.web.client.model.listener.OntologyListenerAdapt
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.ChAOServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
+import edu.stanford.bmir.protege.web.client.rpc.iCATException;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.Triple;
@@ -256,6 +257,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
                 }
             };
         }
+        
     }
 
     private void showInternalID(EntityData entity) {
@@ -705,9 +707,10 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
                             GWT.log("Move to the same parent");
                             return false;
                         }
-                        final boolean success = Window.confirm("Are you sure you want to move "
-                                + getNodeBrowserText(dropNode) + " from parent "
-                                + getNodeBrowserText(dropNode.getParentNode()) + " to parent " + getNodeBrowserText(target) + " ?");
+                        final boolean success = Window.confirm("Are you sure you want to move class '"
+                                + getNodeBrowserText(dropNode) + "'\n\nfrom parent:\n'"
+                                + getNodeBrowserText(dropNode.getParentNode()) + "'\n\nto parent:\n'" + 
+                                getNodeBrowserText(target) + "' ?");
                         if (success) {
                              onMoveClass(target, dropNode);
                              return true;
@@ -748,8 +751,24 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
 
 
     protected void onMoveClass(final TreeNode target, final TreeNode dropNode) {
-            moveClass((EntityData) dropNode.getUserObject(), (EntityData) dropNode.getParentNode().getUserObject(),
-                    (EntityData) target.getUserObject());
+    	EntityData cls = (EntityData) dropNode.getUserObject();
+    	EntityData oldParent = (EntityData) dropNode.getParentNode().getUserObject();
+    	EntityData newParent = (EntityData) target.getUserObject();
+    	
+    	if (oldParent.equals(newParent)) {
+            return;
+        }
+    	
+        OntologyServiceManager.getInstance().moveCls(
+                project.getProjectName(),
+                cls.getName(),
+                oldParent.getName(),
+                newParent.getName(),
+                false,
+                GlobalSettings.getGlobalSettings().getUserName(),
+                UIUtil.getAppliedToTransactionString(getMoveClsOperationDescription(cls, oldParent, newParent),
+                        cls.getName()), new MoveClassHandler(target, dropNode, (TreeNode) dropNode.getParentNode(),
+                        		cls.getName(), oldParent.getName(), newParent.getName()));
     }
 
     protected void onSubclassAdded(final EntityData parent, final Collection<EntityData> subclasses,
@@ -1135,21 +1154,6 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         this.topClass = topClass;
     }
 
-    protected void moveClass(final EntityData cls, final EntityData oldParent, final EntityData newParent) {
-        if (oldParent.equals(newParent)) {
-            return;
-        }
-
-        OntologyServiceManager.getInstance().moveCls(
-                project.getProjectName(),
-                cls.getName(),
-                oldParent.getName(),
-                newParent.getName(),
-                false,
-                GlobalSettings.getGlobalSettings().getUserName(),
-                UIUtil.getAppliedToTransactionString(getMoveClsOperationDescription(cls, oldParent, newParent),
-                        cls.getName()), new MoveClassHandler(cls.getName(), oldParent.getName(), newParent.getName()));
-    }
 
     protected String getMoveClsOperationDescription(final EntityData cls, final EntityData oldParent,
             final EntityData newParent) {
@@ -1702,20 +1706,29 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
 
     public class MoveClassHandler extends AbstractAsyncHandler<List<EntityData>> {
         private final String clsName;
-        private final String oldParentName;
-        private final String newParentName;
+        private final TreeNode targetNode;
+        private final TreeNode oldParentNode;
+        private final TreeNode dropNode;
 
-        public MoveClassHandler(final String clsName, final String oldParentName, final String newParentName) {
+        public MoveClassHandler(TreeNode targetNode, TreeNode dropNode, TreeNode oldParentNode,
+        		final String clsName, final String oldParentName, final String newParentName) {
             this.clsName = clsName;
-            this.oldParentName = oldParentName;
-            this.newParentName = newParentName;
+            this.targetNode = targetNode;
+            this.dropNode = dropNode;
+            this.oldParentNode = oldParentNode;
         }
 
         @Override
         public void handleFailure(final Throwable caught) {
             GWT.log("Error at moving class", caught);
-            MessageBox.alert("There were errors at moving class.<br>" + " Message: " + caught.getMessage());
-            // TODO: refresh oldParent and newParent
+            if (caught instanceof iCATException) {
+            	MessageBox.alert("Error at moving class", caught.getMessage()) ;
+            } else {
+            	MessageBox.alert("Error at moving class", "There was an error on the server at moving class.") ;
+            };
+            
+            oldParentNode.appendChild(dropNode);
+            targetNode.removeChild(dropNode);
         }
 
         @Override

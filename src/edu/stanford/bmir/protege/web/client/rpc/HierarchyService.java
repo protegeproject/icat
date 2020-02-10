@@ -19,9 +19,11 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 public interface HierarchyService extends RemoteService{
 
     List<EntityData> changeParent(String project, String className, Collection<String> parentsToAdd, Collection<String> parentsToRemove,
-            String user, String operationDescription, String reasonForChange);
+            String user, String operationDescription, String reasonForChange) throws iCATException;
 
     void retireClasses(String project, Collection<String> classesToRetireNames, boolean retireChildren, String newParent,
             String reasonForChange, String operationDescription, String user);
+    
+    void bogusCall(iCATException ex);
 
 }

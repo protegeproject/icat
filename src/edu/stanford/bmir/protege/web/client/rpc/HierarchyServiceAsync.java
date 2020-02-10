@@ -17,4 +17,6 @@ public interface HierarchyServiceAsync {
             String newParent, String reasonForChange, String operationDescription, String user,
             AsyncCallback<Void> callback);
 
+	void bogusCall(iCATException ex, AsyncCallback<Void> callback);
+
 }

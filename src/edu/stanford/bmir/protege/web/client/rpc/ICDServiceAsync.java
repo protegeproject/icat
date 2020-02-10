@@ -13,5 +13,11 @@ public interface ICDServiceAsync extends WHOFICServiceAsync {
 
     void exportICDBranch(String projectName, String topNode, String userName, AsyncCallback<String> cb);
 
+	void isNonRetireableClass(String projectName, String clsName, AsyncCallback<Boolean> callback);
+
+	void isInRetiredTree(String projectName, String clsName, AsyncCallback<Boolean> callback);
+
+	void getClsesInRetiredTree(String projectName, Collection<EntityData> clses,
+			AsyncCallback<Collection<EntityData>> callback);
 
 }

@@ -1569,13 +1569,27 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
     public void addSuperCls(String projectName, String clsName, String superClsName, String user,
             String operationDescription) {
+    	
         Project project = getProject(projectName);
         KnowledgeBase kb = project.getKnowledgeBase();
         Cls cls = kb.getCls(clsName);
         Cls superCls = kb.getCls(superClsName);
+        
         if (cls == null || superCls == null) {
             return;
         }
+        
+    	if (kb instanceof OWLModel && superCls instanceof RDFSNamedClass) {
+
+			if (RetirementManager.isNonRetirableId(clsName) == true && 
+					RetirementManager.isInRetiredTree((OWLModel)kb, (RDFSNamedClass)superCls)) {
+				throw new RuntimeException("Cannot add new parent: " + superCls.getBrowserText() + 
+                        " to class " + cls.getBrowserText() + 
+                        ". The class is non-retirable as it has been already released."); 
+			}
+			
+		}
+        
 
         synchronized (kb) {
             KBUtil.morphUser(kb, user);
@@ -1644,7 +1658,8 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         }
     }
 
-    public List<EntityData> moveCls(String projectName, String clsName, String oldParentName, String newParentName, boolean checkForCycles,
+    public List<EntityData> moveCls(String projectName, String clsName, String oldParentName, String newParentName,
+    		boolean checkForCycles,
             String user,  String operationDescription) {
         Project project = getProject(projectName);
         KnowledgeBase kb = project.getKnowledgeBase();
@@ -1657,6 +1672,19 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             return null;
         }
 
+		if (kb instanceof OWLModel && newParent instanceof RDFSNamedClass) {
+
+			if (RetirementManager.isNonRetirableId(clsName) == true && 
+					RetirementManager.isInRetiredTree((OWLModel)kb, (RDFSNamedClass)newParent)) {
+				throw new RuntimeException("Cannot move class: " + cls.getBrowserText() + 
+						"from old parent: " + oldParent.getBrowserText()
+                        + " to new parent: " + newParent.getBrowserText() + 
+                        ". Class " + cls.getBrowserText() + " is non-retirable as it has been already released."); 
+			}
+			
+		}
+        
+        
         synchronized (kb) {
             KBUtil.morphUser(kb, user);
 

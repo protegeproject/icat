@@ -8,6 +8,7 @@ import java.util.List;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import edu.stanford.bmir.protege.web.client.rpc.HierarchyService;
+import edu.stanford.bmir.protege.web.client.rpc.iCATException;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.NotesData;
 import edu.stanford.bmir.whofic.WHOFICContentModel;
@@ -39,7 +40,8 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
     }
 
     public List<EntityData> changeParent(String project, String className, Collection<String> parentsToAdd,
-            Collection<String> parentsToRemove, String user, String operationDescription, String reasonForChange) {
+            Collection<String> parentsToRemove, String user, String operationDescription, String reasonForChange)
+    		throws iCATException {
         Project prj = getProject(project);
         KnowledgeBase kb = prj.getKnowledgeBase();
 
@@ -52,6 +54,10 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
 
         Collection<Cls> parentClsesToAdd = KBUtil.getCollection(kb, parentsToAdd, Cls.class);
         Collection<Cls> parentClsesToRemove = KBUtil.getCollection(kb, parentsToRemove, Cls.class);
+        
+        if (checkNonRetireableClsHasRetiredNewParent((OWLModel) kb, cls, parentClsesToAdd) == true) {
+        	throw new iCATException("Cannot retire class " + cls.getBrowserText() + " because it is non-retirable.");
+        }
 
         synchronized (kb) {
             KBUtil.morphUser(kb, user);
@@ -129,6 +135,28 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
         }
 
         return res;
+    }
+    
+    
+    private boolean checkNonRetireableClsHasRetiredNewParent(OWLModel owlModel, Cls cls, Collection<Cls> parents) {
+    	
+    	if (cls instanceof RDFSNamedClass == false) {
+    		return false;
+    	}
+    	
+    	if (RetirementManager.isNonRetirableId(cls.getName()) == false) {
+    		return false;
+    	}
+    	
+    	
+    	for (Cls parent : parents) {
+			if (parent instanceof RDFSNamedClass == true && 
+					RetirementManager.isInRetiredTree(owlModel, (RDFSNamedClass)parent)) {
+				return true;
+			}
+		}
+    	
+    	return false;
     }
 
     /*
@@ -235,6 +263,12 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
             ((RDFSNamedClass)cls).setDeprecated(true);
         }
     }
+
+	@Override
+	public void bogusCall(iCATException ex) {
+		//this call does nothing, it just forces the GWT compiled to compile the iCATException class..
+		//weird..
+	}
 
 
 }
