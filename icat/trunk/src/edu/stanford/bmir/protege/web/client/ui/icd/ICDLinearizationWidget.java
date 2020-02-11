@@ -342,7 +342,7 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
     }
     
     private ListBox getParents() {
-    	ListBox lb = new ListBox();
+    	final ListBox lb = new ListBox();
     	
     	EntityData subject = getSubject();
     	if (subject == null || subject.getName() == null) {
@@ -412,7 +412,7 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
     }
 
 	private void showParentsList(final ListBox parentsListBox, final List<EntityData> directParents) {
-    	Window win = createParentsSelectionWindow();
+    	final Window win = createParentsSelectionWindow();
         
         Button cancelButton = new Button("Cancel");
         cancelButton.addListener(new ButtonListenerAdapter() {
