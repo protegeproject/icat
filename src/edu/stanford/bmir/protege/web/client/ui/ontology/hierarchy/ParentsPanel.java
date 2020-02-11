@@ -368,8 +368,8 @@ public class ParentsPanel extends Panel {
     }
     
     
-    private void checkParentsSelection(Collection<EntityData> allNewParents, final Window selectionWindow) {
-    	EntityData clsData = getClsEntity();
+    private void checkParentsSelection(final Collection<EntityData> allNewParents, final Window selectionWindow) {
+    	final EntityData clsData = getClsEntity();
     	if (clsData == null || clsData.getName() == null) {
     		addNewParents(allNewParents, selectionWindow);
     		return;
