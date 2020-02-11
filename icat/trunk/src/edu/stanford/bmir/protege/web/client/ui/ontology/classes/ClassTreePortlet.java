@@ -666,7 +666,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             }
 
             public void onSuccess(Boolean result) {
-                if (!result) {
+               /* if (!result) {
                     MessageBox
                     .alert("No results",
                             "No results were found. Please try a different query. <br />"
@@ -675,6 +675,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
                                     + "&nbsp;&nbsp;&nbsp;&nbsp;(Wildcards are automatically added before and after query strings that&nbsp;&nbsp;&nbsp;&nbsp;<br />"
                                     + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;have at least 3 characters AND do not already start or end with a wildcard.)&nbsp;&nbsp;&nbsp;&nbsp;");
                 }
+                */
             }
         };
     }
