@@ -1,6 +1,5 @@
 package edu.stanford.bmir.protege.web.server;
 
-import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,7 +46,6 @@ import edu.stanford.smi.protege.model.ValueType;
 import edu.stanford.smi.protege.query.api.QueryApi;
 import edu.stanford.smi.protege.query.api.QueryConfiguration;
 import edu.stanford.smi.protege.query.indexer.IndexUtilities;
-import edu.stanford.smi.protege.query.indexer.StdIndexer;
 import edu.stanford.smi.protege.server.RemoteClientProject;
 import edu.stanford.smi.protege.server.RemoteServer;
 import edu.stanford.smi.protege.server.Session;
@@ -2653,21 +2651,13 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 	private List<EntityData> searchWithLuceneOwnSlots(KnowledgeBase kb, QueryConfiguration qConf, String searchString) {
 		List<EntityData> searchResults = new ArrayList<EntityData>();
 		
-		//searching only with the Standard indexer for now
-		StdIndexer indexer = IndexUtilities.getStandardIndexer(kb);
-		if (indexer == null) {
-			Log.getLogger().warning("Could not find Lucene standard indexer. Will not execute Lucene queries");
-			return searchResults;
-		}
-
-		Collection<Frame> resultFrames = new ArrayList<Frame>();
 		try {
-			resultFrames = indexer.executeQuery(qConf.getSearchableSlots(), searchString);
+			Collection<Frame> resultFrames = IndexUtilities.searchLuceneOwnSlots(kb, qConf.getSearchableSlots(), searchString);
 			searchResults.addAll(createEntityList(resultFrames));
-		} catch (IOException e) {
-			if (Log.getLogger().getLevel() == Level.FINE) {
-				Log.getLogger().log(Level.FINE, "Could not execute Lucene query " + searchString, e);
-			}
+		} catch (Exception e) {
+			//if (Log.getLogger().getLevel() == Level.FINE) {
+				Log.getLogger().log(Level.WARNING, "Could not execute Lucene query " + searchString, e);
+			//}
 		}
 		
 		return searchResults;
