@@ -1,5 +1,6 @@
 package edu.stanford.bmir.protege.web.server;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,6 +47,7 @@ import edu.stanford.smi.protege.model.ValueType;
 import edu.stanford.smi.protege.query.api.QueryApi;
 import edu.stanford.smi.protege.query.api.QueryConfiguration;
 import edu.stanford.smi.protege.query.indexer.IndexUtilities;
+import edu.stanford.smi.protege.query.indexer.StdIndexer;
 import edu.stanford.smi.protege.server.RemoteClientProject;
 import edu.stanford.smi.protege.server.RemoteServer;
 import edu.stanford.smi.protege.server.Session;
@@ -2530,90 +2532,147 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         return search(projectName, searchString, null);
     }
 
-    public List<EntityData> search(String projectName, String searchString, edu.stanford.bmir.protege.web.client.rpc.data.ValueType valueType) {
-        Project project = getProject(projectName);
-        KnowledgeBase kb = project.getKnowledgeBase();
+	public List<EntityData> search(String projectName, String searchString,
+			edu.stanford.bmir.protege.web.client.rpc.data.ValueType valueType) {
+		
+		KnowledgeBase kb = getProject(projectName).getKnowledgeBase();
+		
+		searchString = expandSearchString(searchString);
 
-        if ((!searchString.startsWith("*"))
-                && (!searchString.endsWith("*"))
-                && searchString.length() >= MIN_SEARCH_STRING_LENGTH) {
-            if (!searchString.startsWith("*")) {
-                searchString = "*" + searchString;
-            }
+		QueryConfiguration qConf = new QueryApi(kb).install();
+		if (qConf != null) {
+			//Lucene search
+			return searchWithLucene(kb, qConf, searchString);
+		}
 
-            if (!searchString.endsWith("*")) {
-                searchString = searchString + "*";
-            }
-        }
+		// Classic Protege search
+		return searchWithProtege(kb, searchString, valueType);
+	}
+    
+	private String expandSearchString(String searchString) {
+		if (searchString.length() < MIN_SEARCH_STRING_LENGTH) {
+			return searchString;
+		}
+		
+		if (searchString.startsWith("*") == false) {
+			searchString = "*" + searchString;
+		}
+		
+		if (searchString.endsWith("*") == false) {
+			searchString = searchString + "*";
+		}
+		
+		return searchString;
+	}
+	
+	private List<EntityData> searchWithProtege(KnowledgeBase kb, String searchString, 
+			edu.stanford.bmir.protege.web.client.rpc.data.ValueType valueType) {
+		Collection<Frame> matchedFrames = new ArrayList<Frame>();
 
-        Collection<Frame> matchedFrames = new ArrayList<Frame>();;
+		matchedFrames = new HashSet<Frame>(
+				kb.getMatchingFrames(kb.getSystemFrames().getNameSlot(), null, false, searchString, -1));
+		
+		if (kb instanceof OWLModel) {
+			matchedFrames.addAll(kb.getMatchingFrames(((OWLSystemFrames) kb.getSystemFrames()).getRdfsLabelProperty(),
+					null, false, searchString, -1));
+		}
 
-        QueryConfiguration qConf = new QueryApi(kb).install();
+		Log.getLogger().info("Search string: " + searchString + "  Search results count: "
+				+ (matchedFrames == null ? "0" : matchedFrames.size()));
 
-        if (qConf == null) {
-            //Classic Protege search
-            matchedFrames = new HashSet<Frame>(kb.getMatchingFrames(kb.getSystemFrames().getNameSlot(), null,
-                    false, searchString, -1));
-            if (isOWLOntology(project)) {
-                matchedFrames.addAll(kb.getMatchingFrames(((OWLSystemFrames) kb.getSystemFrames()).getRdfsLabelProperty(), null,
-                        false, searchString, -1));
-            }
-        }
-        else {
-            //search only class value type. The abstract indexer knows about this
-            Map<String, String> browerTextToFrameNameMap = IndexUtilities.getBrowserTextToFrameNameMap(kb, searchString);
-            List<EntityData> searchResults = new ArrayList<EntityData>();
-            for (String browserText : browerTextToFrameNameMap.keySet()) {
-                searchResults.add(new EntityData(browerTextToFrameNameMap.get(browserText), browserText));
-            }
+		// filter & sort frames
+		List<Frame> sortedFrames = new ArrayList<Frame>();
+		switch (valueType) {
+		case Cls:
+			for (Frame frame : matchedFrames) {
+				if (frame instanceof Cls && !frame.isSystem() && !(frame instanceof OWLAnonymousClass)) {
+					sortedFrames.add(frame);
+				}
+			}
+			break;
+		case Instance:
+			for (Frame frame : matchedFrames) {
+				if (frame instanceof Instance && !frame.isSystem() && !(frame instanceof OWLAnonymousClass)) {
+					sortedFrames.add(frame);
+				}
+			}
+			break;
+		case Property:
+			for (Frame frame : matchedFrames) {
+				if (frame instanceof Slot && !frame.isSystem() && !(frame instanceof OWLAnonymousClass)) {
+					sortedFrames.add(frame);
+				}
+			}
+			break;
+		default: // case valueType == null or not one of the above
+			for (Frame frame : matchedFrames) {
+				if (!frame.isSystem() && !(frame instanceof OWLAnonymousClass)) {
+					sortedFrames.add(frame);
+				}
+			}
+			break;
+		}
 
-            return searchResults;
-        }
+		// Collections.sort(sortedFrames, new FrameComparator());
 
-        //Log.getLogger().info("Search string: " + searchString + "  Search results count: " + (matchedFrames == null ? "0" : matchedFrames.size()));
+		return createEntityList(sortedFrames);
+	}
+	
+    private List<EntityData> searchWithLucene(KnowledgeBase kb, QueryConfiguration qConf, String searchString) {
+    	
+    	List<EntityData> searchResults = new ArrayList<EntityData>();
+    	
+    	searchResults.addAll(searchWithLuceneBrowserText(kb, searchString));
+    	
+    	Collection<EntityData> ownSlotSearchResults = searchWithLuceneOwnSlots(kb, qConf, searchString);
+    	
+    	for (EntityData res : ownSlotSearchResults) {
+			if (searchResults.contains(res) == false) {
+				searchResults.add(res);
+			}
+		}
 
-        //filter & sort frames
-        ArrayList<Frame> sortedFrames = new ArrayList<Frame>();
-        switch (valueType) {
-        case Cls:
-            for (Frame frame : matchedFrames) {
-                if (frame instanceof Cls && !frame.isSystem() && !(frame instanceof OWLAnonymousClass)) {
-                    sortedFrames.add(frame);
-                }
-            }
-            break;
-        case Instance:
-            for (Frame frame : matchedFrames) {
-                if (frame instanceof Instance && !frame.isSystem() && !(frame instanceof OWLAnonymousClass)) {
-                    sortedFrames.add(frame);
-                }
-            }
-            break;
-        case Property:
-            for (Frame frame : matchedFrames) {
-                if (frame instanceof Slot && !frame.isSystem() && !(frame instanceof OWLAnonymousClass)) {
-                    sortedFrames.add(frame);
-                }
-            }
-            break;
-        default:    //case valueType == null or not one of the above
-        for (Frame frame : matchedFrames) {
-            if (!frame.isSystem() && !(frame instanceof OWLAnonymousClass)) {
-                sortedFrames.add(frame);
-            }
-        }
-        break;
-        }
-
-        // Collections.sort(sortedFrames, new FrameComparator());
-
-        ArrayList<EntityData> results = new ArrayList<EntityData>();
-        for (Frame frame : sortedFrames) {
-            results.add(createEntityData(frame));
-        }
-
-        return results;
+        return searchResults;
     }
+    
+	private List<EntityData> searchWithLuceneBrowserText(KnowledgeBase kb, String searchString) {
+		List<EntityData> searchResults = new ArrayList<EntityData>();
+
+		// search only class value type. The abstract indexer knows about this
+		Map<String, String> browerTextToFrameNameMap = IndexUtilities.getBrowserTextToFrameNameMap(kb, searchString);
+
+		// search in the browser text first
+		for (String browserText : browerTextToFrameNameMap.keySet()) {
+			searchResults.add(new EntityData(browerTextToFrameNameMap.get(browserText), browserText));
+		}
+
+		return searchResults;
+	}
+	
+	
+	private List<EntityData> searchWithLuceneOwnSlots(KnowledgeBase kb, QueryConfiguration qConf, String searchString) {
+		List<EntityData> searchResults = new ArrayList<EntityData>();
+		
+		//searching only with the Standard indexer for now
+		StdIndexer indexer = IndexUtilities.getStandardIndexer(kb);
+		if (indexer == null) {
+			Log.getLogger().warning("Could not find Lucene standard indexer. Will not execute Lucene queries");
+			return searchResults;
+		}
+
+		Collection<Frame> resultFrames = new ArrayList<Frame>();
+		try {
+			resultFrames = indexer.executeQuery(qConf.getSearchableSlots(), searchString);
+			searchResults.addAll(createEntityList(resultFrames));
+		} catch (IOException e) {
+			if (Log.getLogger().getLevel() == Level.FINE) {
+				Log.getLogger().log(Level.FINE, "Could not execute Lucene query " + searchString, e);
+			}
+		}
+		
+		return searchResults;
+	}
+	
 
     public ArrayList<EntityData> getPathToRoot(String projectName, String entityName) {
         Project project = getProject(projectName);
