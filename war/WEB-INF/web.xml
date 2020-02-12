@@ -5,11 +5,6 @@
 
 <web-app>
 
-    <!-- Listener for initializing and disposing WebProtege -->
-    <listener>
-        <listener-class>edu.stanford.bmir.protege.web.server.LifeCycleListener</listener-class>
-    </listener>
-
     <!-- Filter to control the GWT cache -->
 
 	<filter>
@@ -22,6 +17,12 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
    
+
+    <!-- Listener for initializing and disposing WebProtege -->
+    <listener>
+        <listener-class>edu.stanford.bmir.protege.web.server.LifeCycleListener</listener-class>
+    </listener>
+
 
 	<!-- WebProtege servlets -->
 
@@ -233,11 +234,6 @@
         <url-pattern>/webprotege/bpaccess</url-pattern>
     </servlet-mapping>
 
-    <!-- Default page to serve -->
-    <welcome-file-list>
-        <welcome-file>WebProtege.html</welcome-file>
-    </welcome-file-list>
-
     <security-constraint>
         <display-name>excluded</display-name>
         <web-resource-collection>
@@ -249,5 +245,10 @@
             <transport-guarantee>NONE</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
+    
+        <!-- Default page to serve -->
+    <welcome-file-list>
+        <welcome-file>WebProtege.html</welcome-file>
+    </welcome-file-list>
 
 </web-app>
