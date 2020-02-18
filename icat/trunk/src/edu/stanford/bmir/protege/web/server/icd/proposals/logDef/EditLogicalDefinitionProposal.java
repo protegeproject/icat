@@ -4,6 +4,7 @@ import edu.stanford.bmir.protege.web.server.icd.proposals.ICDProposal;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ImportProposalsUtil;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ImportResult;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ImportRowStatus;
+import edu.stanford.bmir.whofic.icd.ICDContentModel;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 
 /**
@@ -31,7 +32,7 @@ public class EditLogicalDefinitionProposal extends LogicalDefinitionProposal {
 	protected void importThis(ImportResult importResult) {
 		boolean res = getLogicalDefinitionUtil().editLogicalDefinition(getEntityCls(), getLogDefParent(),
 				getProperty(), getOldFillerResource(), getNewFillerResource(), 
-				ICDPostCoordinationMaps.isHasValueRestriction(getPropertyId()), isDefining());
+				ICDContentModel.isLogicalDefinitionWithHasValueRestriction(getPropertyId()), isDefining());
 		
 		if (res == false) {
 			importResult.recordResult(getContributionId(), "Could not edit logical definition for: " + getEntityId() +
