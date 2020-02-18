@@ -3,6 +3,7 @@ package edu.stanford.bmir.protege.web.server.icd.proposals.logDef;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ICDProposal;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ImportProposalsUtil;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ImportResult;
+import edu.stanford.bmir.whofic.icd.ICDContentModel;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 
 public class AddLogicalDefinitionProposal extends LogicalDefinitionProposal {
@@ -20,7 +21,7 @@ public class AddLogicalDefinitionProposal extends LogicalDefinitionProposal {
 	protected void importThis(ImportResult importResult) {
 		getLogicalDefinitionUtil().createLogicalDefinition(getEntityCls(), getLogDefParent(),
 				getProperty(), getNewFillerResource(), 
-				ICDPostCoordinationMaps.isHasValueRestriction(getPropertyId()), isDefining());
+				ICDContentModel.isLogicalDefinitionWithHasValueRestriction(getPropertyId()), isDefining());
 	}
 
 	@Override
