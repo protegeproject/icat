@@ -36,10 +36,6 @@ public class RetirementManager {
 	
 	private static boolean isInitialized = false;
 
-	static {
-		init();
-	}
-	
 	public static boolean isNonRetirableId(String id) {
 		if (isInitialized == false) {
 			init();
