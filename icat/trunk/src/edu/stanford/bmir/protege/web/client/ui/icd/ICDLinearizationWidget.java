@@ -385,25 +385,24 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
     }
     
     private void selectOldParent(ListBox lb, List<EntityData> directParents) {
-
     	EntityData oldParent = (EntityData)currentShadowStoreRecord.getAsObject(fieldNameParent);
+    	
     	int index = getOldParentIndex(directParents, oldParent);
     	
     	if (index != -1) {
     		lb.setSelectedIndex(index);
     		lb.setItemText(index, "* " + lb.getItemText(index));
     	}
-
   	}
     
     private int getOldParentIndex(List<EntityData> directParents, EntityData oldParent) {
-    	if (oldParent == null) {
+    	if (oldParent == null || oldParent.getName() == null) {
     		return 0;
     	}
     	
     	for (int i = 0; i < directParents.size(); i++) {
 			EntityData parent = directParents.get(i);
-			if (parent.equals(oldParent)) {
+			if (parent != null && parent.equals(oldParent)) {
 				return i;
 			}
 		}
