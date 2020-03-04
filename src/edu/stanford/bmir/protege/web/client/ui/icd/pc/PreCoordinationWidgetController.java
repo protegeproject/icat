@@ -98,11 +98,9 @@ public class PreCoordinationWidgetController extends WidgetController {
 
 	public void onSuperclassChanged(EntityData newSuperclass) {
 		if (newSuperclass != null) {
-			//TODO continue here widgetController.hideAllWidgets();
 			getPossiblePostcoordinationAxes(newSuperclass);
 		}
 		else {
-			//widgetController.hideAllWidgets();
 			hideAllWidgets();
 		}
 	}
@@ -125,11 +123,11 @@ public class PreCoordinationWidgetController extends WidgetController {
 
 		@Override
 		public void handleSuccess(List<String> result) {
-			// TODO Auto-generated method stub
 			System.out.println(result.size() + " props: " + result);
 			for (String prop : result) {
-			//	widgetController.showWidgetForProperty(prop);
-				showWidgetForProperty(prop);
+				for (String relProp : getAllRelatedProperties(prop)) {
+					showWidgetForProperty(relProp);
+				}
 			}
 		}
 		
@@ -137,13 +135,12 @@ public class PreCoordinationWidgetController extends WidgetController {
 
 	public void onSubjectChanged(EntityData subject) {
 		if (subject != null) {
-			//TODO continue here widgetController.hideAllWidgets();
+			//TODO continue here hideAllWidgets();
 			getSuperclassValue();
 			getPropertyValues(subject);
 			getPossiblePropertyValues(subject);
 		}
 		else {
-			//widgetController.hideAllWidgets();
 			hideAllWidgets();
 		}
 	}

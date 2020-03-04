@@ -115,7 +115,7 @@ public class PropertyFieldPortlet extends AbstractEntityPortlet {
             Collection<PropertyWidget> widgets = formGenerator.getWidgetsInTab(activeTab);
             if (widgets == null) { return; }
             for (PropertyWidget widget : widgets) {
-                ((AbstractPropertyWidget)widget).fillValues(); //TODO: move this to interface?
+                widget.fillValues();
             }
         }
     }
