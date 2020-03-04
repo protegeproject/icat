@@ -110,8 +110,8 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
                     String entityDataValue = (String) value;
                     if (entityDataValue == null ) {
                         return "<DIV style=\"color:GRAY\">" +
-                        		(isReadOnlyColumn(colNum) ? "Parent not set" : "Click here to select a parent") + "</DIV>";
-                    } else if (isReadOnlyColumn(colNum) ||
+                        		(isReadOnly() || isReadOnlyColumn(colNum) ? "Parent not set" : "Select a parent") + "</DIV>";
+                    } else if (//isReadOnlyColumn(colNum) ||		//parents in read only columns should not be rendered in gray, a because it may be confused with "default" parents
                     		(entityDataValue.startsWith("[") && entityDataValue.endsWith("]") )) {
                         return "<DIV style=\"color:GRAY\">" + entityDataValue + "</DIV>";
                     } else {
