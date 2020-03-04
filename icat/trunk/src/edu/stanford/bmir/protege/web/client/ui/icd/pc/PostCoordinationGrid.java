@@ -26,7 +26,6 @@ import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.InstanceGridWidget;
-import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.WidgetController;
 import edu.stanford.bmir.protege.web.client.ui.util.UIConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
@@ -44,9 +43,9 @@ public class PostCoordinationGrid extends InstanceGridWidget {
     private static int OFFSET_COMMENT_COLUMN = 1;
     private static int OFFSET_MAX_COLUMN = OFFSET_COMMENT_COLUMN;
 
-    private WidgetController widgetController;
+    private PostCoordinationWidgetController widgetController;
 	
-	public PostCoordinationGrid(Project project, WidgetController widgetController) {
+	public PostCoordinationGrid(Project project, PostCoordinationWidgetController widgetController) {
 		super(project);
 		this.widgetController = widgetController;
 	}
@@ -55,6 +54,7 @@ public class PostCoordinationGrid extends InstanceGridWidget {
     public void setup(Map<String, Object> widgetConfiguration, PropertyEntityData propertyEntityData) {
         super.setup(widgetConfiguration, propertyEntityData);
         allowedValues = new WidgetConfiguration(getWidgetConfiguration()).getUserSpecificAllowedValues();
+        widgetController.initializePropertyMap(widgetConfiguration);
     }
 
     @Override

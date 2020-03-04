@@ -1,6 +1,7 @@
 package edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Map;
 
 import com.gwtext.client.widgets.Panel;
 
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 
 public class WidgetController {
@@ -16,6 +18,7 @@ public class WidgetController {
 	private FormGenerator formGenerator;
 	private PropertyWidget controllingWidget;
 	private Map<String, PropertyWidget> property2Widget = null;
+	private Map<String, List<String>> property2PropertiesMap = new HashMap<String, List<String>>();
 
 	public WidgetController(Panel tabPanel, FormGenerator formGenerator) {
 		this.tabPanel = tabPanel;
@@ -51,10 +54,7 @@ public class WidgetController {
 
 		for (String propertyName : property2Widget.keySet()) {
 			if (!propertyName.equals(ctrlProperty)) {
-				PropertyWidget widget = getWidgetForProperty(propertyName);
-				if (widget != null) {
-					widget.getComponent().hide();
-				}
+				hideWidgetForProperty(propertyName);
 			}
 		}
 	}
@@ -62,14 +62,20 @@ public class WidgetController {
 	public void hideWidgetForProperty(String propertyName) {
 		PropertyWidget widget = getWidgetForProperty(propertyName);
 		if (widget != null) {
-			widget.getComponent().hide();
+			boolean toHide = new WidgetConfiguration(widget.getWidgetConfiguration()).getBooleanProperty(FormConstants.HIDDEN, true);
+			if ( toHide ) {
+				widget.getComponent().hide();
+			}
 		}
 	}
 
 	public void showWidgetForProperty(String propertyName) {
 		PropertyWidget widget = getWidgetForProperty(propertyName);
 		if (widget != null) {
-			widget.getComponent().show();
+			boolean isHidden = new WidgetConfiguration(widget.getWidgetConfiguration()).getBooleanProperty(FormConstants.HIDDEN, false);
+			if ( ! isHidden ) {
+				widget.getComponent().show();
+			}
 		}
 	}
 	
@@ -94,4 +100,32 @@ public class WidgetController {
 	protected PropertyWidget getControllingWidget() {
 		return controllingWidget;
 	}
+
+	public void initializePropertyMap(Map<String, Object> widgetConfiguration) {
+		Map<String, List<String>> propMap = (Map<String, List<String>>) widgetConfiguration.get(FormConstants.PROPERTY_MAP);
+		if (propMap != null) {
+			for (String prop : propMap.keySet()) {
+				List<String> propList = propMap.get(prop);
+				property2PropertiesMap.put(prop, propList);
+			}
+		}
+	}
+
+	/**
+	 * returns a list containing this property or all of its related properties (i.e. sub-properties), if they are specified
+	 * Note: if a property has the list of its related properties specified, only the properties in that
+	 * list will be returned, so in cases when it is desired that both this property and its related properties
+	 * to be displayed/hidden, we need to explicitly specify this property as being a related property to itself.
+	 * @param propertyName the name of a property
+	 * @return
+	 */
+	public List<String> getAllRelatedProperties(String propertyName) {
+		List<String> propList = property2PropertiesMap.get(propertyName);
+		if (propList == null) {
+			propList = Arrays.asList(propertyName);
+		}
+		
+		return propList;
+	}
+
 }

@@ -35,7 +35,7 @@ import edu.stanford.bmir.protege.web.client.ui.ontology.search.BioPortalConstant
 import edu.stanford.bmir.protege.web.client.ui.ontology.search.BioPortalSearchComponent;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
-public class ReferenceFieldWidget extends InstanceGridWidget {
+public class ReferenceFieldWidget extends MultilevelInstanceGridWidget {
 
     private BioPortalSearchComponent bpSearchComponent = null;
     protected Map<String, Object> bpSearchProperties;

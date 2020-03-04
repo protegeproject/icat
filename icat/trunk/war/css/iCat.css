@@ -88,6 +88,13 @@
 	color: #826400;
 }
 
+.spec-tab-header7 {    /*BROWN - BurlyWood/SaddleBrown*/
+	background-color:#DEB887 !important;
+}
+.spec-tab-header7 span.x-tab-strip-text {
+	color: #8B4513;
+}
+
 .spec-tab-headerCPT {    /*CPT*/
 	background-color:#D4A00F !important;
 }

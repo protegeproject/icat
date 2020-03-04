@@ -259,7 +259,7 @@ public class FormGenerator {
                     } else if (component_type.equals(FormConstants.ICDINCLUSION_GRID)) { //ICD specific
                         widget = createICDInclusionGrid(configMap, prop);
                     } else if (component_type.equals(FormConstants.POSTCOORDINATION_GRID)) { //ICD specific
-                    	WidgetController ctrl = new PostCoordinationWidgetController(panel, this);
+                    	PostCoordinationWidgetController ctrl = new PostCoordinationWidgetController(panel, this);
                         widget = createPostCoordinationGrid(configMap, prop, ctrl);
                         ctrl.setControllingWidget(widget);
                     } else if (component_type.equals(FormConstants.SCALEEDITOR_GRID)) { //ICD specific
@@ -418,7 +418,7 @@ public class FormGenerator {
         return widget;
     }
 
-    protected PropertyWidget createHtmlMessage(Map<String, Object> conf, String prop) {
+    public PropertyWidget createHtmlMessage(Map<String, Object> conf, String prop) {
         HtmlMessageWidget widget = new HtmlMessageWidget(project);
         widget.setup(conf, new PropertyEntityData(prop));
         return widget;
@@ -481,7 +481,7 @@ public class FormGenerator {
 
     //ICD specific
     private PropertyWidget createPostCoordinationGrid(Map<String, Object> conf, String property, 
-    		WidgetController ctrl) {
+    		PostCoordinationWidgetController ctrl) {
     	PostCoordinationGrid postCoordinationWidget = new PostCoordinationGrid(project, ctrl);
         postCoordinationWidget.setup(conf, new PropertyEntityData(property));
         return postCoordinationWidget;
@@ -514,7 +514,7 @@ public class FormGenerator {
     
     
     //ICD specific
-    private PropertyWidget createPreCoordinationSuperclassWidget(Map<String, Object> conf, String property, 
+    public SuperclassSelectorWidget createPreCoordinationSuperclassWidget(Map<String, Object> conf, String property, 
     		PreCoordinationWidgetController ctrl) {
     	SuperclassSelectorWidget preCoordinationSuperclassWidget = new SuperclassSelectorWidget(project, ctrl);
     	preCoordinationSuperclassWidget.setup(conf, new PropertyEntityData(property));

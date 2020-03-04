@@ -11,7 +11,9 @@ import com.gwtext.client.widgets.Panel;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidget;
+import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormGenerator;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
@@ -30,6 +32,12 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
 		super(project);
 		this.widgetController = widgetController;
 	}
+
+    @Override
+    public void setup(Map<String, Object> widgetConfiguration, PropertyEntityData propertyEntityData) {
+        super.setup(widgetConfiguration, propertyEntityData);
+        widgetController.initializePropertyMap(widgetConfiguration);
+    }
 
 	@Override
 	public Component getComponent() {
@@ -70,11 +78,15 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
 
 	private SuperclassSelectorWidget createSuperClassSelectorWidget(
 			Map<String, Object> configMap, String prop) {
-		SuperclassSelectorWidget superclassSelector = new SuperclassSelectorWidget(getProject(), widgetController);
-		//superclassSelector.setup(getWidgetConfiguration(), new PropertyEntityData("http://www.w3.org/2000/01/rdf-schema#subClassOf", "Pre-coordination Parent", null));
-		//superclassSelector.setup(getWidgetConfiguration(), new PropertyEntityData(ICDContentModelConstants.PRECOORDINATION_SUPERCLASS_PROP, "Pre-coordination Parent", null));
-		superclassSelector.setup(configMap, new PropertyEntityData(prop));
-		//TODO check superclassSelector.createComponent();
+//		SuperclassSelectorWidget superclassSelector = new SuperclassSelectorWidget(getProject(), widgetController);
+//		//superclassSelector.setup(getWidgetConfiguration(), new PropertyEntityData("http://www.w3.org/2000/01/rdf-schema#subClassOf", "Pre-coordination Parent", null));
+//		//superclassSelector.setup(getWidgetConfiguration(), new PropertyEntityData(ICDContentModelConstants.PRECOORDINATION_SUPERCLASS_PROP, "Pre-coordination Parent", null));
+//		superclassSelector.setup(configMap, new PropertyEntityData(prop));
+//		//TODO check superclassSelector.createComponent();
+		
+		FormGenerator formGenerator = widgetController.getFormGenerator();
+		SuperclassSelectorWidget superclassSelector = formGenerator.createPreCoordinationSuperclassWidget(configMap, prop, widgetController);
+		
 		superclassSelector.setPreCoordinationWidget(this);
 		return superclassSelector;
 	}
@@ -88,7 +100,7 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
 			Object value = propConfigMap.get(prop);
 			if (value instanceof Map) {
 				Map<String, Object> config = (Map<String, Object>)value;
-				AbstractScaleValueSelectorWidget widget = createScaleValueSelectorWidget(config, prop);
+				AbstractScaleValueSelectorWidget widget = createScaleValueSelectorWidget(config, prop, propertyValuePanel);
 	            if (widget != null && widget.getComponent() != null) {
 	            	propertyValuePanel.add(widget.getComponent());
 	            	
@@ -106,7 +118,7 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
 	}
 	
 	private AbstractScaleValueSelectorWidget createScaleValueSelectorWidget(
-				Map<String, Object> configMap, String prop) {
+				Map<String, Object> configMap, String prop, Panel containerPanel) {
 		FormGenerator formGenerator = widgetController.getFormGenerator();
         String component_type = (String) configMap.get(FormConstants.COMPONENT_TYPE);
         AbstractScaleValueSelectorWidget widget = null;
@@ -116,6 +128,10 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
         	widget = formGenerator.createPreCoordinationFixedScaleValueSelectorWidget(configMap, prop);
         } else if (component_type.equals(FormConstants.PRECOORDINATION_TREE_VALUE_SELECTOR)) { //ICD specific
         	widget = formGenerator.createPreCoordinationTreeValueSelectorWidget(configMap, prop);
+        } else if (component_type.equals(FormConstants.HTMLMESSAGE)) {
+        	PropertyWidget propWidget = formGenerator.createHtmlMessage(configMap, prop);
+        	containerPanel.add(propWidget.getComponent());
+        	//we generate the HTML Message widget but we return null, as this is not a scale value selector widget
         }
 		//TODO see that this is solved
 		//widget.setPreCoordinationWidget(this);

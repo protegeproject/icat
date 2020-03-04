@@ -37,13 +37,18 @@ public abstract class AbstractSelectionFieldWidget extends TextFieldWidget {
     }
 
     protected Anchor createAddEntityLink() {
-        Anchor addLink = new Anchor("&nbsp<img src=\"images/add.png\" " + ADD_ICON_STYLE_STRING + "></img>", true);
+    	boolean enabled = ( !isReadOnly() && !isDisabled());
+        Anchor addLink = ( enabled ?
+        		new Anchor("&nbsp<img src=\"images/add.png\" " + ADD_ICON_STYLE_STRING + "></img>", true) :
+        		new Anchor("&nbsp<img src=\"images/add_grey.png\" " + ADD_ICON_STYLE_STRING + "></img>", true) );
         addLink.setWidth("22px");
         addLink.setHeight("22px");
-        addLink.setTitle("Add new value");
+        addLink.setTitle(enabled ? "Add new value" : "Add value is not allowed");
         addLink.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                onSelectEntity();
+            	if (!isReadOnly() && !isDisabled()) {
+            		onSelectEntity();
+            	}
             }
         });
         return addLink;

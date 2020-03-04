@@ -16,6 +16,7 @@ import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.Triple;
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
@@ -41,6 +42,11 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
         setWidgetConfiguration(widgetConfiguration);
 
         createComponent();
+        
+//        boolean isHidden = new WidgetConfiguration(widgetConfiguration).getBooleanProperty(FormConstants.HIDDEN, false);
+//        if (isHidden) {
+//        	getComponent().hide();
+//        }
     }
 
 
@@ -64,16 +70,20 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
     }
 
     //TODO we should probably make this abstract
+    @Override
     public Collection<EntityData> getValues() {
         return new ArrayList<EntityData>();
     }
 
+    @Override
     abstract public void setValues(Collection<EntityData> values);
 
+    @Override
     public EntityData getSubject() {
         return subject;
     }
 
+    @Override
     public void setSubject(EntityData subject) {
         this.subject = subject;
     }
@@ -85,6 +95,7 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
     /**
      * Load new values only if the new subject is different than the old subject and the widget is currently displayed.
      */
+    @Override
     public void fillValues() {
         if (!isSameSubject()) {
             List<String> subjects = new ArrayList<String>();
@@ -111,10 +122,12 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
         (oldDisplayedSubject == null && getSubject() == null);
     }
 
+    @Override
     public void setProperty(PropertyEntityData property) {
         this.property = property;
     }
 
+    @Override
     public PropertyEntityData getProperty() {
         return property;
     }
@@ -127,6 +140,7 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
         this.widgetConfiguration = widgetConfiguration; //TODO: maybe need to save
     }
 
+    @Override
     public Map<String, Object> getWidgetConfiguration() {
         return widgetConfiguration;
     }
@@ -233,6 +247,7 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
         return isLoading;
     }
 
+    @Override
     public void refresh() {
         oldDisplayedSubject = null;
         fillValues();
@@ -257,7 +272,6 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
             //TODO: notify the user somehow
         }
 
-        @Override
         public void handleSuccess(List<Triple> triples) { //TODO - make a call to get only the prop values
             /*
              * This check is necessary because of the async nature of the call.

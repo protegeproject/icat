@@ -1,11 +1,13 @@
 package edu.stanford.bmir.protege.web.client.ui.portlet;
 
 import java.util.Collection;
+import java.util.Map;
 
 import com.gwtext.client.widgets.Component;
 
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 
 /**
  * The interface for widgets used to display the value of a property at a
@@ -21,6 +23,8 @@ import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
  */
 public interface PropertyWidget {
 
+    Map<String, Object> getWidgetConfiguration();
+    
     Collection<EntityData> getValues();
 
     /**
@@ -33,6 +37,8 @@ public interface PropertyWidget {
      */
     void setValues(Collection<EntityData> values);
 
+    void fillValues();
+    
     void setSubject(EntityData subject);
 
     void setProperty(PropertyEntityData property);
