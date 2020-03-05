@@ -1069,7 +1069,7 @@
 													</map>
 												</entry>
 											</map>
-										</entry>
+										</entry-->
 
 										<entry>
 											<string>http://who.int/icd#isObsolete</string>
@@ -1089,6 +1089,7 @@
 												<entry>
 													<string>writeAccessGroups</string>
 													<list>
+														<string>ObsoleteEditors</string>
 														<string>WHOTeam</string>
 														<string>Stanford</string>
 													</list>
@@ -1112,7 +1113,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>7</string>
+													<string>5</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -1121,7 +1122,7 @@
 											</map>
 										</entry>
 										
-										<entry>
+										<!--entry>
 											<string>http://who.int/icd#editorialStatusDefinition</string>
 											<map>
 												<entry>
@@ -1726,7 +1727,7 @@
 													</map>
 												</entry>
 											</map>
-										</entry>
+										</entry-->
 
 										<entry>
 											<string>http://who.int/icd#isObsolete</string>
@@ -1746,6 +1747,7 @@
 												<entry>
 													<string>writeAccessGroups</string>
 													<list>
+														<string>ObsoleteEditors</string>
 														<string>WHOTeam</string>
 														<string>Stanford</string>
 													</list>
@@ -1769,7 +1771,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>7</string>
+													<string>5</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -1778,7 +1780,7 @@
 											</map>
 										</entry>
 										
-										<entry>
+										<!--entry>
 											<string>http://who.int/icd#editorialStatusDefinition</string>
 											<map>
 												<entry>
