@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import edu.stanford.bmir.protege.web.server.KBUtil;
 import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
 import edu.stanford.bmir.whofic.icd.ICDContentModel;
+import edu.stanford.smi.protege.model.Frame;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.OWLObjectProperty;
@@ -130,7 +131,7 @@ public abstract class ICDProposal {
 	}
 	
 	public RDFResource getContributableEntity(){
-		return getOwlModel().getRDFResource(this.getContributableId());
+		return getRDFResource(this.getContributableId());
 	}
 	
 	
@@ -301,7 +302,13 @@ public abstract class ICDProposal {
 		boolean exists = false;
 		
 		if (prop instanceof OWLObjectProperty) {
-			RDFResource contributableEntity = getOwlModel().getRDFResource(this.getContributableId());
+			RDFResource contributableEntity = getRDFResource(this.getContributableId());
+			
+			if (contributableEntity == null) {
+				importResult.recordResult(this.getContributionId(), "Could not find the contributable (term) with id: " + this.getContributableId(), ImportRowStatus.FAIL);
+				return false;
+			}
+			
 			if (entity.hasPropertyValue(prop, contributableEntity) == true) {
 				RDFProperty labelProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.LABEL_PROP);
 				String label = (String) contributableEntity.getPropertyValue(labelProp);
@@ -330,6 +337,23 @@ public abstract class ICDProposal {
 		}
 		
 		return exists;
+	}
+	
+	//TT: this is a workaround for the problem that
+	//many iCAT ids are not absolute URIs, and the owlModel.getResource(name) 
+	//will try to expand these names, and fails..
+	private RDFResource getRDFResource(String name) {
+		RDFResource res = getOwlModel().getRDFResource(name);
+		
+		if(res != null) { //this is the good case
+			return res;
+		}
+		
+		//this is the fallback for non-absolute URIs
+		@SuppressWarnings("deprecation")
+		Frame frame = getOwlModel().getFrame(name);
+		
+		return frame instanceof RDFResource ? (RDFResource) frame : null;
 	}
 
 	// ******************* Getters and setters ***************************/
