@@ -40,7 +40,6 @@ import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.model.Slot;
 import edu.stanford.smi.protege.model.ValueType;
 import edu.stanford.smi.protege.util.CollectionUtilities;
-import edu.stanford.smi.protege.util.IDGenerator;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLClass;
 import edu.stanford.smi.protegex.owl.model.OWLIndividual;
@@ -1688,7 +1687,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 					kb.beginTransaction(operationDescription);
 				}
 
-				refInstance = refClass.createDirectInstance(IDGenerator.getNextUniqueId());
+				refInstance = refClass.createDirectInstance(iCATIdGenerator.getNextUniqueId(kb));
 
 				refInstance.setOwnSlotValue(referencedValueSlot, refEntity);
 

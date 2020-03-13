@@ -52,7 +52,6 @@ import edu.stanford.smi.protege.server.Session;
 import edu.stanford.smi.protege.server.metaproject.MetaProjectConstants;
 import edu.stanford.smi.protege.ui.FrameComparator;
 import edu.stanford.smi.protege.util.CollectionUtilities;
-import edu.stanford.smi.protege.util.IDGenerator;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protege.util.Tree;
 import edu.stanford.smi.protege.util.URIUtilities;
@@ -1912,7 +1911,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     + ". Null type");
         }
 
-        instName = (instName == null) ? IDGenerator.getNextUniqueId() : instName;
+        instName = (instName == null) ? iCATIdGenerator.getNextUniqueId(kb) : instName;
         
         Instance inst = null;
         synchronized (kb) {
