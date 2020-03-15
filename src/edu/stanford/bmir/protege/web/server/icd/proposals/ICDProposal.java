@@ -353,7 +353,7 @@ public abstract class ICDProposal {
 		@SuppressWarnings("deprecation")
 		Frame frame = getOwlModel().getFrame(name);
 		
-		return frame instanceof RDFResource ? (RDFResource) frame : null;
+		return frame != null && frame instanceof RDFResource ? (RDFResource) frame : null;
 	}
 
 	// ******************* Getters and setters ***************************/

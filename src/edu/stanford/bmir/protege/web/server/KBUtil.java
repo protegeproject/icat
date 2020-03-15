@@ -25,14 +25,32 @@ import edu.stanford.smi.protege.server.framestore.RemoteClientFrameStore;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLClass;
 import edu.stanford.smi.protegex.owl.model.OWLHasValue;
+import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.OWLNamedClass;
 import edu.stanford.smi.protegex.owl.model.RDFProperty;
+import edu.stanford.smi.protegex.owl.model.RDFResource;
 
 public class KBUtil {
 
     public static final String PROPERTY_IS_TEMPLATE = "http://protege.stanford.edu/plugins/owl/protege#isTemplate";
     public static final Map<KnowledgeBase, Slot> isTemplateSlotMap = new HashMap<KnowledgeBase, Slot>();
 
+    
+    // Going through a lot of pains to get the cls, when using Frames methods,
+    // if a short name is used..
+    public static Cls getCls(KnowledgeBase kb, String clsName) {
+    	Cls cls = kb.getCls(clsName);
+    	if (cls == null && kb instanceof OWLModel) {
+    		RDFResource res = ((OWLModel)kb).getRDFResource(clsName);
+    		if (res != null && res instanceof Cls) {
+    			cls = (Cls) res;
+    		}
+    	}
+    	
+    	return cls;
+    }
+    
+    
     public static void morphUser(KnowledgeBase kb, String user) {
         if (kb.getProject().isMultiUserClient()) {
             Session s = (Session) RemoteClientFrameStore.getCurrentSession(kb);

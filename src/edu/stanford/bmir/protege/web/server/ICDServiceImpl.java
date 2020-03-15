@@ -26,6 +26,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 import edu.stanford.bmir.protege.web.client.ui.icd.DisplayStatus;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ImportProposalsUtil;
+import edu.stanford.bmir.whofic.IcdIdGenerator;
 import edu.stanford.bmir.whofic.PrecoordinationDefinitionComponent;
 import edu.stanford.bmir.whofic.WHOFICContentModel;
 import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
@@ -1687,7 +1688,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 					kb.beginTransaction(operationDescription);
 				}
 
-				refInstance = refClass.createDirectInstance(iCATIdGenerator.getNextUniqueId(kb));
+				refInstance = refClass.createDirectInstance(IcdIdGenerator.getNextUniqueId(kb));
 
 				refInstance.setOwnSlotValue(referencedValueSlot, refEntity);
 
