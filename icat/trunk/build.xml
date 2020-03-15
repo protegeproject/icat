@@ -198,6 +198,7 @@
      <copy todir = "${war}/WEB-INF/lib" file="${chat.lib}"/>
      <copy todir = "${war}/WEB-INF/lib" file="${collab.lib}"/>
      <copy todir = "${war}/WEB-INF/lib" file="${standard.lib}"/>
+     <copy todir = "${war}/WEB-INF/lib" file="${icd.lib}"/>
      <antcall target="replace.projects"/>
      <antcall target="copy.alt.war.template"/>
      
