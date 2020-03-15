@@ -45,7 +45,7 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
         Project prj = getProject(project);
         KnowledgeBase kb = prj.getKnowledgeBase();
 
-        Cls cls = kb.getCls(className);
+        Cls cls = KBUtil.getCls(kb, className);
         if (cls == null) {
             throw new IllegalArgumentException("Class " + className + " does not exist.");
         }
@@ -266,7 +266,7 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
 
 	@Override
 	public void bogusCall(iCATException ex) {
-		//this call does nothing, it just forces the GWT compiled to compile the iCATException class..
+		//this call does nothing, it just forces the GWT compiler to compile the iCATException class..
 		//weird..
 	}
 

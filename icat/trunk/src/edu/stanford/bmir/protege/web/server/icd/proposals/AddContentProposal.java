@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import edu.stanford.bmir.protege.web.server.iCATIdGenerator;
+import edu.stanford.bmir.whofic.IcdIdGenerator;
 import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
 import edu.stanford.smi.protegex.owl.model.OWLClass;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
@@ -68,7 +68,7 @@ public class AddContentProposal extends ICDProposal {
 			range = getOwlModel().getOWLThingClass();
 		}
 		
-		RDFResource reifiedValue = range.createInstance(iCATIdGenerator.getNextUniqueId(getOwlModel()));
+		RDFResource reifiedValue = range.createInstance(IcdIdGenerator.getNextUniqueId(getOwlModel()));
 				
 		RDFProperty labelProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.LABEL_PROP);
 		reifiedValue.addPropertyValue(labelProp, this.getNewValue());

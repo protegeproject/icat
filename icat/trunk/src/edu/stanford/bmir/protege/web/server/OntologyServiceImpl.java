@@ -32,6 +32,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.PropertyType;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.Triple;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
+import edu.stanford.bmir.whofic.IcdIdGenerator;
 import edu.stanford.smi.protege.collab.util.HasAnnotationCache;
 import edu.stanford.smi.protege.model.Cls;
 import edu.stanford.smi.protege.model.Frame;
@@ -1911,7 +1912,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     + ". Null type");
         }
 
-        instName = (instName == null) ? iCATIdGenerator.getNextUniqueId(kb) : instName;
+        instName = (instName == null) ? IcdIdGenerator.getNextUniqueId(kb) : instName;
         
         Instance inst = null;
         synchronized (kb) {
@@ -2099,7 +2100,8 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                         throw new IllegalArgumentException("Could not create instance of type " + typeName
                                 + ". Null type");
                     }
-
+                    
+                    //this should be fine for OWL, as it will use the expand short names flag
                     Instance inst = type.createDirectInstance(null);
                     
                     EntityData instData = createEntityData(inst);
