@@ -2,10 +2,9 @@ package edu.stanford.bmir.protege.web.server.icd.proposals;
 
 import java.util.logging.Level;
 
-import edu.stanford.bmir.protege.web.server.KBUtil;
+import edu.stanford.bmir.protege.web.server.WebProtegeKBUtil;
 import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
 import edu.stanford.bmir.whofic.icd.ICDContentModel;
-import edu.stanford.smi.protege.model.Frame;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.OWLObjectProperty;
@@ -94,7 +93,7 @@ public abstract class ICDProposal {
 		}
 		
 		synchronized (owlModel) {
-			KBUtil.morphUser(owlModel, user);
+			WebProtegeKBUtil.morphUser(owlModel, user);
 			try {
 				owlModel.beginTransaction(getTransactionDescription(),getEntityId());
 				importThis(importResult);
@@ -106,7 +105,7 @@ public abstract class ICDProposal {
 				owlModel.rollbackTransaction();
 				importResult.recordResult(this.contributionId, "Failed: " + e.getMessage(), ImportRowStatus.FAIL);
 			} finally {
-				KBUtil.restoreUser(owlModel);
+				WebProtegeKBUtil.restoreUser(owlModel);
 			}
 		} // end syncronized
 	}
@@ -123,15 +122,15 @@ public abstract class ICDProposal {
 	}
 	
 	public RDFResource getEntity(){
-		return getOwlModel().getRDFResource(this.getEntityId());
+		return edu.stanford.bmir.whofic.KBUtil.getRDFResource(getOwlModel(), this.getEntityId());
 	}
 	
 	public RDFProperty getProperty(){
-		return owlModel.getRDFProperty(this.getPropertyId());
+		return edu.stanford.bmir.whofic.KBUtil.getRDFProperty(owlModel, this.getPropertyId());
 	}
 	
 	public RDFResource getContributableEntity(){
-		return getRDFResource(this.getContributableId());
+		return edu.stanford.bmir.whofic.KBUtil.getRDFResource(owlModel, this.getContributableId());
 	}
 	
 	
@@ -183,7 +182,7 @@ public abstract class ICDProposal {
 		}
 		
 		String newValue = getNewValue();
-		RDFResource entity = getOwlModel().getRDFResource(newValue);
+		RDFResource entity = edu.stanford.bmir.whofic.KBUtil.getRDFResource(getOwlModel(), newValue);
 		
 		if (entity == null) {
 			importResult.recordResult(getContributionId(), "The new value does not exist: " + getEntityId(), ImportRowStatus.FAIL);
@@ -202,7 +201,7 @@ public abstract class ICDProposal {
 		}
 		
 		String value = getNewValue();
-		RDFResource entity = getOwlModel().getRDFResource(value);
+		RDFResource entity = edu.stanford.bmir.whofic.KBUtil.getRDFResource(getOwlModel(), value);
 		
 		if (entity == null) {
 			importResult.recordResult(getContributionId(), "The new value does not exist: " + getEntityId(), ImportRowStatus.FAIL);
@@ -222,7 +221,7 @@ public abstract class ICDProposal {
 		}
 		
 		String value = getOldValue();
-		RDFResource entity = getOwlModel().getRDFResource(value);
+		RDFResource entity = edu.stanford.bmir.whofic.KBUtil.getRDFResource(getOwlModel(), value);
 		
 		if (entity == null) {
 			importResult.recordResult(getContributionId(), "The old value does not exist: " + getEntityId(), ImportRowStatus.FAIL);
@@ -241,7 +240,7 @@ public abstract class ICDProposal {
 		}
 		
 		String value = getOldValue();
-		RDFResource entity = getOwlModel().getRDFResource(value);
+		RDFResource entity = edu.stanford.bmir.whofic.KBUtil.getRDFResource(getOwlModel(), value);
 		
 		if (entity == null) {
 			importResult.recordResult(getContributionId(), "The old value does not exist: " + getEntityId(), ImportRowStatus.FAIL);
@@ -302,7 +301,7 @@ public abstract class ICDProposal {
 		boolean exists = false;
 		
 		if (prop instanceof OWLObjectProperty) {
-			RDFResource contributableEntity = getRDFResource(this.getContributableId());
+			RDFResource contributableEntity = edu.stanford.bmir.whofic.KBUtil.getRDFResource(owlModel ,this.getContributableId());
 			
 			if (contributableEntity == null) {
 				importResult.recordResult(this.getContributionId(), "Could not find the contributable (term) with id: " + this.getContributableId(), ImportRowStatus.FAIL);
@@ -310,7 +309,7 @@ public abstract class ICDProposal {
 			}
 			
 			if (entity.hasPropertyValue(prop, contributableEntity) == true) {
-				RDFProperty labelProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.LABEL_PROP);
+				RDFProperty labelProp = edu.stanford.bmir.whofic.KBUtil.getRDFProperty(getOwlModel(), WHOFICContentModelConstants.LABEL_PROP);
 				String label = (String) contributableEntity.getPropertyValue(labelProp);
 				if (label != null) {
 					label = label.replaceAll("\\s+", " ").trim();
@@ -339,22 +338,6 @@ public abstract class ICDProposal {
 		return exists;
 	}
 	
-	//TT: this is a workaround for the problem that
-	//many iCAT ids are not absolute URIs, and the owlModel.getResource(name) 
-	//will try to expand these names, and fails..
-	private RDFResource getRDFResource(String name) {
-		RDFResource res = getOwlModel().getRDFResource(name);
-		
-		if(res != null) { //this is the good case
-			return res;
-		}
-		
-		//this is the fallback for non-absolute URIs
-		@SuppressWarnings("deprecation")
-		Frame frame = getOwlModel().getFrame(name);
-		
-		return frame != null && frame instanceof RDFResource ? (RDFResource) frame : null;
-	}
 
 	// ******************* Getters and setters ***************************/
 	

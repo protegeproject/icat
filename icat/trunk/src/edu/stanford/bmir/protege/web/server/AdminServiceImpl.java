@@ -48,7 +48,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
 
 
     public UserData getCurrentUserInSession() {
-        String user = KBUtil.getUserInSession(getThreadLocalRequest());
+        String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
         return user == null ? null : AuthenticationUtil.createUserData(user);
     }
 
@@ -275,7 +275,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements AdminServi
         final String exportFilePath = exportDirectory + fileName;
         String downloadedFile = exportFilePath + ".zip";
 
-        Log.getLogger().info("Started download of " + projectName + " on " + new Date() + " by user " + KBUtil.getUserInSession(getThreadLocalRequest()));
+        Log.getLogger().info("Started download of " + projectName + " on " + new Date() + " by user " + WebProtegeKBUtil.getUserInSession(getThreadLocalRequest()));
         long t0 = System.currentTimeMillis();
 
         try {

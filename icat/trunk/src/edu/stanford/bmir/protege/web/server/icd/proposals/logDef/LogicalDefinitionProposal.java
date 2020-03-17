@@ -1,5 +1,6 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals.logDef;
 
+import edu.stanford.bmir.protege.web.server.WebProtegeKBUtil;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ICDProposal;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ImportResult;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ImportRowStatus;
@@ -40,15 +41,15 @@ public abstract class LogicalDefinitionProposal extends ICDProposal {
 	}
 	
 	protected RDFSNamedClass getLogDefParent() {
-		return getOwlModel().getRDFSNamedClass(getIdFromValueSet());
+		return edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(getOwlModel(), getIdFromValueSet());
 	}
 	
 	protected RDFResource getNewValueEntity() {
-		return getOwlModel().getRDFResource(getNewValue());
+		return edu.stanford.bmir.whofic.KBUtil.getRDFResource(getOwlModel(), getNewValue());
 	}
 	
 	protected RDFResource getOldValueEntity() {
-		return getOwlModel().getRDFResource(getOldValue());
+		return edu.stanford.bmir.whofic.KBUtil.getRDFResource(getOwlModel(), getOldValue());
 	}
 	
 	protected RDFSNamedClass getEntityCls() {
@@ -81,7 +82,7 @@ public abstract class LogicalDefinitionProposal extends ICDProposal {
 		}
 		
 		String parentId = getIdFromValueSet();
-		RDFResource entity = getOwlModel().getRDFResource(parentId);
+		RDFResource entity = edu.stanford.bmir.whofic.KBUtil.getRDFResource(getOwlModel(), parentId);
 		
 		if (entity == null) {
 			importResult.recordResult(getContributionId(), "The log def parent (idFromValueSet) does not exist for " + getEntityId(), ImportRowStatus.FAIL);

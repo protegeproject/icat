@@ -22,7 +22,7 @@ import edu.stanford.bmir.protege.web.client.rpc.BioPortalAccess;
 import edu.stanford.bmir.protege.web.client.rpc.data.BioPortalReferenceData;
 import edu.stanford.bmir.protege.web.client.rpc.data.BioPortalSearchData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
-import edu.stanford.bmir.protege.web.server.KBUtil;
+import edu.stanford.bmir.protege.web.server.WebProtegeKBUtil;
 import edu.stanford.bmir.protege.web.server.OntologyServiceImpl;
 import edu.stanford.bmir.protege.web.server.ProjectManagerFactory;
 import edu.stanford.bmir.protege.web.server.URLUtil;
@@ -186,9 +186,9 @@ public class BioPortalAccessImpl extends RemoteServiceServlet implements BioPort
                 ReferenceModel referenceModel = null;
                 Instance refInstance = null;
                 synchronized (kb) {
-                    KBUtil.morphUser(kb, user);
+                    WebProtegeKBUtil.morphUser(kb, user);
 
-                    boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+                    boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
                     try {
                         if (runsInTransaction) {
                             kb.beginTransaction(operationDescription);
@@ -234,7 +234,7 @@ public class BioPortalAccessImpl extends RemoteServiceServlet implements BioPort
                         throw new RuntimeException("Could not import reference for entity " + entityName + ". Message: "
                                 + e.getMessage(), e);
                     } finally {
-                        KBUtil.restoreUser(kb);
+                        WebProtegeKBUtil.restoreUser(kb);
                     }
                 }
                 return OntologyServiceImpl.createEntityData(refInstance);
@@ -250,8 +250,8 @@ public class BioPortalAccessImpl extends RemoteServiceServlet implements BioPort
         KnowledgeBase kb = project.getKnowledgeBase();
 
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
-            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+            WebProtegeKBUtil.morphUser(kb, user);
+            boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
@@ -263,9 +263,9 @@ public class BioPortalAccessImpl extends RemoteServiceServlet implements BioPort
 
                 subj.removeOwnSlotValue(pred, obj);
 
-                KBUtil.morphUser(kb, user); //hack
+                WebProtegeKBUtil.morphUser(kb, user); //hack
                 final EntityData data = createExternalReference(projectName, entityName, bpRefData, user, operationDescription);
-                KBUtil.morphUser(kb, user); //hack
+                WebProtegeKBUtil.morphUser(kb, user); //hack
 
                 if (runsInTransaction) {
                     kb.commitTransaction();
@@ -279,7 +279,7 @@ public class BioPortalAccessImpl extends RemoteServiceServlet implements BioPort
                 }
                 throw new RuntimeException("Could not replace reference for entity " + entityName + ". Message: " + e.getMessage(), e);
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
     }

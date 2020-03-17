@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.logging.Level;
 
 import edu.stanford.bmir.protege.web.server.ICDIDUtil;
+import edu.stanford.bmir.protege.web.server.WebProtegeKBUtil;
 import edu.stanford.bmir.protege.web.server.icd.proposals.util.LookupUtil;
 import edu.stanford.bmir.whofic.icd.ICDContentModel;
 import edu.stanford.smi.protege.util.Log;
@@ -101,12 +102,12 @@ public class CreateSubclassProposal extends ICDProposal {
 
 	@Override
 	public RDFResource getEntity(){
-		RDFResource entity = getOwlModel().getRDFResource(this.getEntityId());
+		RDFResource entity = edu.stanford.bmir.whofic.KBUtil.getRDFResource(getOwlModel(), this.getEntityId());
 		if (entity == null) {
 			StringBuffer warningMsg = new StringBuffer("'" + this.getEntityId() + "' is not a valid entity IRI. Trying to match by title...");
 			String catId = ImportProposalsUtil.getLookupUtil(getICDContentModel()).getCategoryIDForTitle(this.getEntityId());
 			if (catId != null) {
-				entity = getOwlModel().getRDFResource(catId);
+				entity = edu.stanford.bmir.whofic.KBUtil.getRDFResource(getOwlModel(), catId);
 			}
 			if (entity == null) {
 				warningMsg.append(" Couldn't find entity with that title.");

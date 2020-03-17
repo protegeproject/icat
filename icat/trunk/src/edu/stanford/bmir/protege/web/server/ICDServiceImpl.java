@@ -65,6 +65,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 	public EntityData createICDCls(final String projectName, String clsName, Collection<String> superClsNames,
 			String title, String sortingLabel, boolean createICDSpecificEntities, final String user,
 			final String operationDescription, final String reasonForChange) {
+		
 		Project project = getProject(projectName);
 		KnowledgeBase kb = project.getKnowledgeBase();
 
@@ -73,15 +74,15 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		RDFSNamedClass cls = null;
 		String publicId = null;
 
-		if (clsName != null && ((OWLModel) kb).getRDFSNamedClass(clsName) != null) {
+		if (clsName != null && edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass( ((OWLModel) kb), clsName) != null) {
 			throw new RuntimeException("A class with the same name '" + clsName + "' already exists in the model.");
 		}
 
 		boolean eventsEnabled = kb.setGenerateEventsEnabled(false);
 
-		boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+		boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
 		synchronized (kb) {
-			KBUtil.morphUser(kb, user);
+			WebProtegeKBUtil.morphUser(kb, user);
 			try {
 				if (runsInTransaction) {
 					kb.beginTransaction(operationDescription);
@@ -120,7 +121,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 				}
 				throw new RuntimeException("Error at creating class " + clsName + ". Message: " + e.getMessage(), e);
 			} finally {
-				KBUtil.restoreUser(kb);
+				WebProtegeKBUtil.restoreUser(kb);
 				kb.setGenerateDeletingFrameEventsEnabled(eventsEnabled);
 			}
 		}
@@ -167,7 +168,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 	private boolean checkAndRecreateIndex(OWLModel owlModel, Collection<String> superClsNames, boolean recreateIndex) {
 		boolean success = true;
 		for (String superclsname : superClsNames) {
-			RDFSNamedClass parent = owlModel.getRDFSNamedClass(superclsname);
+			RDFSNamedClass parent = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(owlModel, superclsname);
 			if (parent != null) {
 				success = success && checkAndRecreateIndex(parent, recreateIndex);
 			}
@@ -182,7 +183,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 	private boolean addChildToIndex(RDFSNamedClass cls, Collection<String> superClsNames, boolean isSiblingIndexValid) {
 		boolean success = true;
 		for (String superclsname : superClsNames) {
-			RDFSNamedClass parent = cls.getOWLModel().getRDFSNamedClass(superclsname);
+			RDFSNamedClass parent = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(cls.getOWLModel(), superclsname);
 			if (parent != null) {
 				success = success && addChildToIndex(parent, cls, isSiblingIndexValid);
 			}
@@ -305,7 +306,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		}
 		KnowledgeBase kb = project.getKnowledgeBase();
 
-		Cls cls = kb.getCls(parentClass);
+		Cls cls = edu.stanford.bmir.whofic.KBUtil.getCls(kb, parentClass);
 		if (cls == null) {
 			return null;
 		}
@@ -444,7 +445,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		}
 
 		OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
-		RDFSNamedClass cls = owlModel.getRDFSNamedClass(clsName);
+		RDFSNamedClass cls = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(owlModel, clsName);
 		if (cls == null) {
 			return null;
 		}
@@ -520,7 +521,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
 		ArrayList<SubclassEntityData> subclassesData = new ArrayList<SubclassEntityData>();
 
-		RDFSNamedClass superCls = owlModel.getRDFSNamedClass(className);
+		RDFSNamedClass superCls = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(owlModel, className);
 		if (superCls == null) {
 			return subclassesData;
 		}
@@ -544,7 +545,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 				subclassEntityData.setProperty(ICDClassTreePortlet.PUBLIC_ID_PROP,
 						(String) subcls.getOwnSlotValue(publicIdProp));
 
-				String user = KBUtil.getUserInSession(getThreadLocalRequest());
+				String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
 				if (user != null) {
 					subclassEntityData
 							.setWatch(WatchedEntitiesCache.getCache(project).getWatchType(user, subcls.getName()));
@@ -601,13 +602,13 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		KnowledgeBase kb = project.getKnowledgeBase();
 		WHOFICContentModel cm = getContentModel((OWLModel) kb);
 
-		Cls cls = kb.getCls(subject);
+		Cls cls = edu.stanford.bmir.whofic.KBUtil.getCls(kb, subject);
 		if (cls == null || (!(cls instanceof RDFResource))) {
 			return null;
 		}
 		RDFResource subjResource = (RDFResource) cls;
 
-		Instance indexInst = kb.getInstance(indexEntity);
+		Instance indexInst = edu.stanford.bmir.whofic.KBUtil.getInstance(kb, indexEntity);
 		if (indexInst == null) {
 			return null;
 		}
@@ -620,12 +621,12 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		RDFSNamedClass termNarrowerClass = cm.getTermNarrowerClass();
 		RDFSNamedClass termBaseIndexClass = cm.getTermBaseIndexClass();
 
-		String user = KBUtil.getUserInSession(getThreadLocalRequest());
+		String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
 		String operationDescription = "Made base index term '" + indexInst.getBrowserText() + "' a "
 				+ (convertToSynonym ? "synonym" : convertToNarrower ? "narrower term" : "(unspecified) base index");
 
 		synchronized (kb) {
-			KBUtil.morphUser(kb, user);
+			WebProtegeKBUtil.morphUser(kb, user);
 			try {
 
 				kb.beginTransaction(operationDescription, subject);
@@ -687,13 +688,13 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 				throw new RuntimeException("Error at changing index type for: " + subject + " and index entity: "
 						+ indexEntity + ". Message: " + e.getMessage(), e);
 			} finally {
-				KBUtil.restoreUser(kb);
+				WebProtegeKBUtil.restoreUser(kb);
 			}
 		}
 
 		EntityPropertyValues res = new EntityPropertyValues(new EntityData(subject));
 		for (String reifiedPropName : reifiedProps) {
-			Slot reifiedSlot = kb.getSlot(reifiedPropName);
+			Slot reifiedSlot = edu.stanford.bmir.whofic.KBUtil.getSlot(kb, reifiedPropName);
 			if (reifiedSlot != null) {
 				res.addPropertyValues(new PropertyEntityData(reifiedSlot.getName()),
 						createEntityList(indexInst.getOwnSlotValues(reifiedSlot)));
@@ -712,25 +713,25 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		KnowledgeBase kb = project.getKnowledgeBase();
 		WHOFICContentModel cm = getContentModel((OWLModel) kb);
 
-		Cls cls = kb.getCls(subject);
+		Cls cls = edu.stanford.bmir.whofic.KBUtil.getCls(kb, subject);
 		if (cls == null || (!(cls instanceof RDFResource))) {
 			return null;
 		}
 		RDFResource subjResource = (RDFResource) cls;
 
-		Instance indexInst = kb.getInstance(indexEntity);
+		Instance indexInst = edu.stanford.bmir.whofic.KBUtil.getInstance(kb, indexEntity);
 		if (indexInst == null) {
 			return null;
 		}
 
-		String user = KBUtil.getUserInSession(getThreadLocalRequest());
+		String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
 		String operationDescription = (isInclusionFlag
 				? "Made base index term '" + indexInst.getBrowserText() + "' also a base inclusion term."
 				: "Removed base index term '" + indexInst.getBrowserText()
 						+ "' from the list of base inclusion terms.");
 
 		synchronized (kb) {
-			KBUtil.morphUser(kb, user);
+			WebProtegeKBUtil.morphUser(kb, user);
 			try {
 
 				kb.beginTransaction(operationDescription, subject);
@@ -762,13 +763,13 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 				throw new RuntimeException("Error at changing inclusion flag for: " + subject + " and index entity: "
 						+ indexEntity + ". Message: " + e.getMessage(), e);
 			} finally {
-				KBUtil.restoreUser(kb);
+				WebProtegeKBUtil.restoreUser(kb);
 			}
 		}
 
 		EntityPropertyValues res = new EntityPropertyValues(new EntityData(subject));
 		for (String reifiedPropName : reifiedProps) {
-			Slot reifiedSlot = kb.getSlot(reifiedPropName);
+			Slot reifiedSlot = edu.stanford.bmir.whofic.KBUtil.getSlot(kb, reifiedPropName);
 			if (reifiedSlot != null) {
 				res.addPropertyValues(new PropertyEntityData(reifiedSlot.getName()),
 						createEntityList(indexInst.getOwnSlotValues(reifiedSlot)));
@@ -784,12 +785,12 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 			return;
 		}
 		KnowledgeBase kb = project.getKnowledgeBase();
-		Instance subject = kb.getInstance(entityName);
+		Instance subject = edu.stanford.bmir.whofic.KBUtil.getInstance(kb, entityName);
 		if (subject == null) {
 			return;
 		}
 
-		Instance valueInst = kb.getInstance(value);
+		Instance valueInst = edu.stanford.bmir.whofic.KBUtil.getInstance(kb, value);
 		if (valueInst == null) {
 			throw new RuntimeException("Cannot find index term to remove: " + value + " for entity: " + entityName);
 		}
@@ -800,8 +801,8 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		RDFProperty baseIndexProperty = cm.getBaseIndexProperty();
 
 		synchronized (kb) {
-			KBUtil.morphUser(kb, user);
-			boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+			WebProtegeKBUtil.morphUser(kb, user);
+			boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
 			try {
 				if (runsInTransaction) {
 					kb.beginTransaction(operationDescription);
@@ -822,7 +823,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 				}
 				throw new RuntimeException(e.getMessage(), e);
 			} finally {
-				KBUtil.restoreUser(kb);
+				WebProtegeKBUtil.restoreUser(kb);
 			}
 		}
 	}
@@ -846,7 +847,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 			pcAxisProperties.retainAll(reifiedProps);
 		}
 
-		Instance subjInst = kb.getInstance(entity);
+		Instance subjInst = edu.stanford.bmir.whofic.KBUtil.getInstance(kb, entity);
 		Collection<?> pcSpecs = subjInst.getOwnSlotValues(allowedPcAxesProperty);
 		for (Object pcSpec : pcSpecs) {
 			Instance pcSpecInst = (Instance) pcSpec;
@@ -855,7 +856,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 				Collection<?> requiredPcAxisPropertyValues = pcSpecInst
 						.getOwnSlotValues(requiredPcAxisPropertyProperty);
 				for (String pcAxisPropName : pcAxisProperties) {
-					Slot pcAxisProperty = kb.getSlot(pcAxisPropName);
+					Slot pcAxisProperty = edu.stanford.bmir.whofic.KBUtil.getSlot(kb, pcAxisPropName);
 					if (allowedPcAxisPropertyValues.contains(pcAxisProperty)
 							|| requiredPcAxisPropertyValues.contains(pcAxisProperty)) {
 						selectedPCAxisProperties.add(pcAxisPropName);
@@ -913,12 +914,12 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		if (allowedPcAxisProperty != null && pcAxisProperties != null && pcAxisProperties.size() > 0) {
 			for (EntityPropertyValues epv : entityPropValues) {
 				String instanceName = epv.getSubject().getName();
-				Instance valueInst = kb.getInstance(instanceName);
+				Instance valueInst = edu.stanford.bmir.whofic.KBUtil.getInstance(kb, instanceName);
 				if (valueInst != null) {
 					Collection<?> allowedPcAxisPropertyValues = valueInst.getOwnSlotValues(allowedPcAxisProperty);
 					Collection<?> requiredPcAxisPropertyValues = valueInst.getOwnSlotValues(requiredPcAxisProperty);
 					for (String pcAxisPropName : pcAxisProperties) {
-						Slot pcAxisProperty = kb.getSlot(pcAxisPropName);
+						Slot pcAxisProperty = edu.stanford.bmir.whofic.KBUtil.getSlot(kb, pcAxisPropName);
 						int value = 0;
 						if (allowedPcAxisPropertyValues.contains(pcAxisProperty)) {
 							value |= 1;
@@ -961,17 +962,17 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		OWLModel owlModel = (OWLModel) kb;
 		WHOFICContentModel cm = getContentModel(owlModel);
 
-		RDFResource subjResource = owlModel.getOWLNamedClass(subject);
+		RDFResource subjResource = edu.stanford.bmir.whofic.KBUtil.getOWLNamedClass(owlModel, subject);
 		if (subjResource == null) {
 			return false;
 		}
 
-		RDFResource postCoordInd = owlModel.getOWLIndividual(postcoordinationEntity);
+		RDFResource postCoordInd = edu.stanford.bmir.whofic.KBUtil.getOWLIndividual(owlModel, postcoordinationEntity);
 		if (postCoordInd == null) {
 			return false;
 		}
 
-		RDFProperty postCoordProperty = owlModel.getOWLProperty(postcoordinationProperty);
+		RDFProperty postCoordProperty = edu.stanford.bmir.whofic.KBUtil.getOWLProperty(owlModel, postcoordinationProperty);
 		if (postCoordProperty == null) {
 			return false;
 		}
@@ -995,14 +996,14 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
 		boolean axisAlreadyUsed = isAxisPartOfAnyLinearization(cm, subjResource, postCoordProperty);
 
-		String user = KBUtil.getUserInSession(getThreadLocalRequest());
+		String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
 		String linViewName = (linView == null ? "" : linView.getBrowserText());
 		String operationDescription = "Added '" + postCoordProperty.getBrowserText() + "' as "
 				+ (isRequiredFlag ? "a required" : "an allowed") + " post-coordination axis " + "in the " + linViewName
 				+ " linearization of " + subjResource.getBrowserText() + ".";
 
 		synchronized (kb) {
-			KBUtil.morphUser(kb, user);
+			WebProtegeKBUtil.morphUser(kb, user);
 			try {
 
 				kb.beginTransaction(operationDescription, subject);
@@ -1038,7 +1039,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 						+ " for: " + subject + " and post-coordination specification: " + postcoordinationEntity + " ("
 						+ linViewName + ")" + ". Message: " + e.getMessage(), e);
 			} finally {
-				KBUtil.restoreUser(kb);
+				WebProtegeKBUtil.restoreUser(kb);
 			}
 		}
 
@@ -1066,17 +1067,17 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		OWLModel owlModel = (OWLModel) kb;
 		WHOFICContentModel cm = getContentModel(owlModel);
 
-		RDFResource subjResource = owlModel.getOWLNamedClass(subject);
+		RDFResource subjResource = edu.stanford.bmir.whofic.KBUtil.getOWLNamedClass(owlModel, subject);
 		if (subjResource == null) {
 			return false;
 		}
 
-		RDFResource postCoordInd = owlModel.getOWLIndividual(postcoordinationEntity);
+		RDFResource postCoordInd = edu.stanford.bmir.whofic.KBUtil.getOWLIndividual(owlModel, postcoordinationEntity);
 		if (postCoordInd == null) {
 			return false;
 		}
 
-		RDFProperty postCoordProperty = owlModel.getOWLProperty(postcoordinationProperty);
+		RDFProperty postCoordProperty = edu.stanford.bmir.whofic.KBUtil.getOWLProperty(owlModel, postcoordinationProperty);
 		if (postCoordProperty == null) {
 			return false;
 		}
@@ -1098,14 +1099,14 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		RDFProperty linViewProp = cm.getLinearizationViewProperty();
 		RDFResource linView = (RDFResource) postCoordInd.getPropertyValue(linViewProp);
 
-		String user = KBUtil.getUserInSession(getThreadLocalRequest());
+		String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
 		String linViewName = (linView == null ? "" : linView.getBrowserText());
 		String operationDescription = "Removed '" + postCoordProperty.getBrowserText() + "' as "
 				+ "a possible post-coordination axis " + "in the " + linViewName + " linearization of "
 				+ subjResource.getBrowserText() + ".";
 
 		synchronized (kb) {
-			KBUtil.morphUser(kb, user);
+			WebProtegeKBUtil.morphUser(kb, user);
 			try {
 
 				kb.beginTransaction(operationDescription, subject);
@@ -1135,7 +1136,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 						+ " for: " + subject + " and post-coordination specification: " + postcoordinationEntity + " ("
 						+ linViewName + ")" + ". Message: " + e.getMessage(), e);
 			} finally {
-				KBUtil.restoreUser(kb);
+				WebProtegeKBUtil.restoreUser(kb);
 			}
 		}
 
@@ -1178,7 +1179,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
 		List<ScaleInfoData> res = new ArrayList<ScaleInfoData>();
 		for (String property : properties) {
-			RDFProperty prop = owlModel.getRDFProperty(property);
+			RDFProperty prop = edu.stanford.bmir.whofic.KBUtil.getRDFProperty(owlModel, property);
 			if (prop == null) {
 				Log.getLogger()
 						.warning("No property found with name: " + property
@@ -1246,10 +1247,10 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		RDFResource top = null;
 		if (entity instanceof PropertyEntityData) {
 			type = RDFProperty.class;
-			res = owlModel.getRDFProperty(entity.getName());
+			res = edu.stanford.bmir.whofic.KBUtil.getRDFProperty(owlModel, entity.getName());
 		} else {
 			type = RDFSClass.class;
-			res = owlModel.getRDFSNamedClass(entity.getName());
+			res = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(owlModel, entity.getName());
 			top = getTopCategoryClass(owlModel);
 		}
 
@@ -1338,9 +1339,9 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 			ValueType valueType = defComp.getValueType();
 			RDFResource valueRes = null;
 			if (valueType == ValueType.INSTANCE) {
-				valueRes = owlModel.getRDFIndividual(value);
+				valueRes = edu.stanford.bmir.whofic.KBUtil.getRDFIndividual(owlModel, value);
 			} else if (valueType == ValueType.CLS) {
-				valueRes = owlModel.getOWLNamedClass(value);
+				valueRes = edu.stanford.bmir.whofic.KBUtil.getOWLNamedClass(owlModel, value);
 			}
 
 			if (valueRes != null) {
@@ -1412,14 +1413,12 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 	private List<EntityData> getAllowedCustomScaleValues(WHOFICContentModel cm, OWLModel owlModel,
 			RDFSNamedClass icdClass, String pcPropName) {
 		String scalePropName = ICDContentModelConstants.PC_AXIS_PROP_TO_VALUE_SET_PROP.get(pcPropName);
-		Collection<?> propertyValues = icdClass.getPropertyValues(owlModel.getRDFProperty(scalePropName));
+		Collection<?> propertyValues = icdClass.getPropertyValues(edu.stanford.bmir.whofic.KBUtil.getRDFProperty(owlModel, scalePropName));
 		if (propertyValues == null || propertyValues.isEmpty()) {
 			return null;
 		}
 		RDFSNamedClass pcScaleTermClass = cm.getPostcoordinationScaleTermClass();
-		RDFSNamedClass pcValueRefClass = cm.getPostcoordinationValueReferenceClass();
 		RDFProperty hasScaleValueProperty = cm.getHasScaleValueProperty();
-		RDFProperty referencedValueProperty = cm.getReferencedValueProperty();
 
 		List<EntityData> res = new ArrayList<EntityData>();
 		for (Object propValue : propertyValues) {
@@ -1474,7 +1473,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		RDFSNamedClass pcValueRefClass = cm.getPostcoordinationValueReferenceClass();
 		RDFProperty referencedValueProperty = cm.getReferencedValueProperty();
 
-		Collection<?> propertyValues = icdClass.getPropertyValues(owlModel.getRDFProperty(pcPropName));
+		Collection<?> propertyValues = icdClass.getPropertyValues(edu.stanford.bmir.whofic.KBUtil.getRDFProperty(owlModel, pcPropName));
 		if (propertyValues == null || propertyValues.isEmpty()) {
 			return null;
 		}
@@ -1527,9 +1526,9 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		boolean returnValue = false;
 
 		boolean eventsEnabled = kb.setGenerateEventsEnabled(false);
-		boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+		boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
 		synchronized (kb) {
-			KBUtil.morphUser(kb, user);
+			WebProtegeKBUtil.morphUser(kb, user);
 			try {
 				if (runsInTransaction) {
 					kb.beginTransaction(operationDescription);
@@ -1550,7 +1549,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 				throw new RuntimeException("Error at editing the logical definition in " + projectName + " class: "
 						+ cls + ". Message: " + e.getMessage(), e);
 			} finally {
-				KBUtil.restoreUser(kb);
+				WebProtegeKBUtil.restoreUser(kb);
 				kb.setGenerateEventsEnabled(eventsEnabled);
 			}
 		}
@@ -1574,7 +1573,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 	public boolean reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow,
 			String parent) {
 
-		String user = KBUtil.getUserInSession(getThreadLocalRequest());
+		String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
 		if (user == null) {
 			return false;
 		}
@@ -1583,9 +1582,9 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
 		WHOFICContentModel cm = getContentModel(owlModel);
 
-		RDFSNamedClass movedCls = owlModel.getRDFSNamedClass(movedClass);
-		RDFSNamedClass targetCls = owlModel.getRDFSNamedClass(targetClass);
-		RDFSNamedClass parentCls = owlModel.getRDFSNamedClass(parent);
+		RDFSNamedClass movedCls = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(owlModel, movedClass);
+		RDFSNamedClass targetCls = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(owlModel, targetClass);
+		RDFSNamedClass parentCls = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(owlModel, parent);
 
 		if (movedCls == null || targetClass == null || parentCls == null) {
 			return false;
@@ -1599,7 +1598,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
 		boolean eventsEnabled = owlModel.setGenerateEventsEnabled(false);
 		synchronized (owlModel) {
-			KBUtil.morphUser(owlModel, user);
+			WebProtegeKBUtil.morphUser(owlModel, user);
 			try {
 				owlModel.beginTransaction(opDescription, movedClass);
 
@@ -1611,7 +1610,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 				owlModel.rollbackTransaction();
 				throw new RuntimeException("Error on operation: " + opDescription, e);
 			} finally {
-				KBUtil.restoreUser(owlModel);
+				WebProtegeKBUtil.restoreUser(owlModel);
 				owlModel.setGenerateEventsEnabled(eventsEnabled);
 			}
 
@@ -1638,15 +1637,15 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		Project project = getProject(projectName);
 		KnowledgeBase kb = project.getKnowledgeBase();
 
-		Instance instance = kb instanceof OWLModel ? ((OWLModel) kb).getRDFResource(entity.getName())
-				: kb.getInstance(entity.getName());
+		Instance instance = kb instanceof OWLModel ? edu.stanford.bmir.whofic.KBUtil.getRDFResource(((OWLModel) kb), entity.getName())
+				: edu.stanford.bmir.whofic.KBUtil.getInstance(kb, entity.getName());
 
 		if (instance == null) {
 			throw new RuntimeException("Failed to import reference. Entity does not exist: " + entity.getName());
 		}
 
-		Slot referenceSlot = kb instanceof OWLModel ? ((OWLModel) kb).getRDFProperty(referencePropertyName)
-				: kb.getSlot(referencePropertyName);
+		Slot referenceSlot = kb instanceof OWLModel ? edu.stanford.bmir.whofic.KBUtil.getRDFProperty(((OWLModel) kb), referencePropertyName)
+				: edu.stanford.bmir.whofic.KBUtil.getSlot(kb, referencePropertyName);
 
 		if (referenceSlot == null) {
 			throw new RuntimeException("Could not create reference for " + entity.getName()
@@ -1654,8 +1653,8 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 					+ referencePropertyName);
 		}
 
-		Slot referencedValueSlot = kb instanceof OWLModel ? ((OWLModel) kb).getRDFProperty(referencedValuePropertyName)
-				: kb.getSlot(referencedValuePropertyName);
+		Slot referencedValueSlot = kb instanceof OWLModel ? edu.stanford.bmir.whofic.KBUtil.getRDFProperty(((OWLModel) kb), referencedValuePropertyName)
+				: edu.stanford.bmir.whofic.KBUtil.getSlot(kb, referencedValuePropertyName);
 
 		if (referencedValueSlot == null) {
 			throw new RuntimeException("Could not create reference for " + entity.getName()
@@ -1663,14 +1662,14 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 					+ referencedValuePropertyName);
 		}
 
-		Cls refClass = kb.getCls(referenceClassName);
+		Cls refClass = edu.stanford.bmir.whofic.KBUtil.getCls(kb, referenceClassName);
 
 		if (refClass == null) {
 			throw new RuntimeException("Could not create reference for " + entity.getName()
 					+ " because the reference class is not part of the ontology. Class name: " + referenceClassName);
 		}
 
-		Instance refEntity = kb.getInstance(referencedEntity.getName());
+		Instance refEntity = edu.stanford.bmir.whofic.KBUtil.getInstance(kb, referencedEntity.getName());
 
 		if (refEntity == null) {
 			throw new RuntimeException("Could not create reference for " + entity.getName()
@@ -1680,9 +1679,9 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
 		Instance refInstance = null;
 		synchronized (kb) {
-			KBUtil.morphUser(kb, user);
+			WebProtegeKBUtil.morphUser(kb, user);
 
-			boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+			boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
 			try {
 				if (runsInTransaction) {
 					kb.beginTransaction(operationDescription);
@@ -1706,7 +1705,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 				throw new RuntimeException("Could not create internal reference for entity " + entity.getName()
 						+ ". Message: " + e.getMessage(), e);
 			} finally {
-				KBUtil.restoreUser(kb);
+				WebProtegeKBUtil.restoreUser(kb);
 			}
 		}
 
@@ -1717,7 +1716,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 	public boolean isNonRetireableClass(String projectName, String clsName) {
 		Project project = getProject(projectName);
 		KnowledgeBase kb = project.getKnowledgeBase();
-		Cls cls = kb.getCls(clsName);
+		Cls cls = edu.stanford.bmir.whofic.KBUtil.getCls(kb, clsName);
 
 		if (cls == null) {
 			return false;
@@ -1734,7 +1733,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 	public boolean isInRetiredTree(String projectName, String clsName) {
 		Project project = getProject(projectName);
 		KnowledgeBase kb = project.getKnowledgeBase();
-		Cls cls = kb.getCls(clsName);
+		Cls cls = edu.stanford.bmir.whofic.KBUtil.getCls(kb, clsName);
 
 		if (cls == null) {
 			return false;

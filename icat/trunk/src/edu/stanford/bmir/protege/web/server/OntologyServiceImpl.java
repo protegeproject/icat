@@ -33,6 +33,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.Triple;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 import edu.stanford.bmir.whofic.IcdIdGenerator;
+import edu.stanford.bmir.whofic.KBUtil;
 import edu.stanford.smi.protege.collab.util.HasAnnotationCache;
 import edu.stanford.smi.protege.model.Cls;
 import edu.stanford.smi.protege.model.Frame;
@@ -181,7 +182,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
         KnowledgeBase kb = project.getKnowledgeBase();
 
-        final Instance instance = kb.getInstance(instanceName);
+        final Instance instance = KBUtil.getInstance(kb, instanceName);
         if (instance == null) {
             return null;
         }
@@ -199,7 +200,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         }
         KnowledgeBase kb = project.getKnowledgeBase();
 
-        Cls superCls = kb.getCls(className);
+        Cls superCls = KBUtil.getCls(kb, className);
         if (superCls == null) {
             return subclassesData;
         }
@@ -217,7 +218,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 subclassEntityData.setLocalAnnotationsCount(HasAnnotationCache.getAnnotationCount(subcls));
                 subclassEntityData.setChildrenAnnotationsCount(HasAnnotationCache.getChildrenAnnotationCount(subcls));
 
-                String user = KBUtil.getUserInSession(getThreadLocalRequest());
+                String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
                 if (user != null) {
                     subclassEntityData.setWatch(WatchedEntitiesCache.getCache(project).getWatchType(user, subcls.getName()));
                 }
@@ -256,7 +257,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
         EntityData rootEd =  createEntityData(root);
 
-        String user = KBUtil.getUserInSession(getThreadLocalRequest());
+        String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
         rootEd.setWatch(WatchedEntitiesCache.getCache(project).getWatchType(user, root.getName()));
 
         return rootEd;
@@ -273,7 +274,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         Frame frame = kb.getFrame(entityName);
 
         if (frame == null && kb instanceof OWLModel) {
-            frame = ((OWLModel) kb).getRDFResource(entityName);
+            frame = KBUtil.getRDFResource(((OWLModel) kb), entityName);
         }
 
         if (frame == null) {
@@ -282,7 +283,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
         EntityData ed = createEntityData(frame);
         ed.setTypes(createEntityList(((Instance) frame).getDirectTypes()));
-        ed.setWatch(WatchedEntitiesCache.getCache(project).getWatchType(KBUtil.getUserInSession(getThreadLocalRequest()), frame.getName()));
+        ed.setWatch(WatchedEntitiesCache.getCache(project).getWatchType(WebProtegeKBUtil.getUserInSession(getThreadLocalRequest()), frame.getName()));
 
         return ed;
     }
@@ -301,7 +302,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         if (propertyName == null) { // property root case
             subproperties.addAll(getRootProperties(kb));
         } else {
-            Slot superProperty = kb.getSlot(propertyName);
+            Slot superProperty = KBUtil.getSlot(kb, propertyName);
             if (superProperty == null) {
                 return subpropertyData;
             }
@@ -340,7 +341,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         KnowledgeBase kb = project.getKnowledgeBase();
 
         for (String prop : props) {
-			Slot slot = kb.getSlot(prop);
+			Slot slot = KBUtil.getSlot(kb, prop);
 			if (slot != null) {
 				PropertyEntityData entityData = createPropertyEntityData(slot, null, true);
 	            entityData.setPropertyType(getPropertyType(slot));
@@ -384,11 +385,11 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         
         //CacheControlJob.setCacheStatus(kb, true, true);
         
-        Instance subject = kb.getInstance(entityName);
+        Instance subject = KBUtil.getInstance(kb, entityName);
         if (subject == null) {
             throw new IllegalArgumentException("Add operation failed. Unknown subject: " + entityName);
         }
-        Slot property = kb.getSlot(propertyEntity.getName());
+        Slot property = KBUtil.getSlot(kb, propertyEntity.getName());
         if (property == null) {
             new IllegalArgumentException("Add operation failed. Unknown property: " + propertyEntity.getName());
         }
@@ -396,15 +397,15 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         Object value = getProtegeObject(kb, valueEntityData, property);
         if (value != null) {
             synchronized (kb) {
-                KBUtil.morphUser(kb, user);
-                boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+                WebProtegeKBUtil.morphUser(kb, user);
+                boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
                 try {
                     if (runsInTransaction) {
                         kb.beginTransaction(operationDescription);
                     }
 
-                    if (copyIfTemplate && KBUtil.isTemplateInstance(value)) {
-                    	value = KBUtil.getCopyOfTemplateInstance(value);
+                    if (copyIfTemplate && WebProtegeKBUtil.isTemplateInstance(value)) {
+                    	value = WebProtegeKBUtil.getCopyOfTemplateInstance(value);
                     }
                     
                     subject.addOwnSlotValue(property, value);
@@ -422,7 +423,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     }
                     throw new RuntimeException(e.getMessage(), e);
                 } finally {
-                    KBUtil.restoreUser(kb);
+                    WebProtegeKBUtil.restoreUser(kb);
                 }
             }
         } else {
@@ -439,9 +440,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         
         //CacheControlJob.setCacheStatus(kb, true, true);
         
-        Instance subject = kb.getInstance(entityName);
+        Instance subject = KBUtil.getInstance(kb, entityName);
         if (subject == null) { return; }
-        Slot property = kb.getSlot(propertyEntity.getName());
+        Slot property = KBUtil.getSlot(kb, propertyEntity.getName());
         if (property == null) { return; }
 
         Object value = getProtegeObject(kb, valueEntityData, property);
@@ -453,8 +454,8 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         }
 
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
-            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+            WebProtegeKBUtil.morphUser(kb, user);
+            boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
@@ -480,7 +481,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 }
                 throw new RuntimeException(e.getMessage(), e);
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
     }
@@ -496,20 +497,20 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         
         //CacheControlJob.setCacheStatus(kb, true, true);
         
-        boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+        boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
+            WebProtegeKBUtil.morphUser(kb, user);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
                 }
                 if (newValue !=null && newValue.getName() != null) {
                     addPropertyValue(projectName, entityName, propertyEntity, newValue, copyIfTemplate, user, null);
-                    KBUtil.morphUser(kb, user); //hack
+                    WebProtegeKBUtil.morphUser(kb, user); //hack
                 }
                 if (oldValue != null && oldValue.getName() != null) {
                     removePropertyValue(projectName, entityName, propertyEntity, oldValue, copyIfTemplate, user, null);
-                    KBUtil.morphUser(kb, user); //hack
+                    WebProtegeKBUtil.morphUser(kb, user); //hack
                 }
 
                 if (runsInTransaction) {
@@ -523,7 +524,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     kb.rollbackTransaction();
                 }
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
     }
@@ -535,11 +536,11 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             throw new IllegalArgumentException("Set operation failed. Unknown project: " + projectName);
         }
         KnowledgeBase kb = project.getKnowledgeBase();
-        Instance subject = kb.getInstance(entityName);
+        Instance subject = KBUtil.getInstance(kb, entityName);
         if (subject == null) {
             throw new IllegalArgumentException("Set operation failed. Unknown subject: " + entityName);
         }
-        Slot property = kb.getSlot(propertyEntity.getName());
+        Slot property = KBUtil.getSlot(kb, propertyEntity.getName());
         if (property == null) {
             new IllegalArgumentException("Set operation failed. Unknown property: " + propertyEntity.getName());
         }
@@ -552,9 +553,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 throw new IllegalArgumentException("Set operation failed. Invalid value: " + entityData.getName());
             }
         }
-        boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+        boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
+            WebProtegeKBUtil.morphUser(kb, user);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
@@ -575,7 +576,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 }
                 throw new RuntimeException(e.getMessage(), e);
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
     }
@@ -598,11 +599,11 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         case Symbol:
             return value;
         case Instance:
-            return kb.getInstance(value);
+            return KBUtil.getInstance(kb, value);
         case Cls:
-            return kb.getCls(value);
+            return KBUtil.getCls(kb, value);
         case Class:
-            return kb.getCls(value);
+            return KBUtil.getCls(kb, value);
         case Integer:
             try {
                 return new Integer(value);
@@ -658,7 +659,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         }
 
         KnowledgeBase kb = project.getKnowledgeBase();
-        Instance inst = kb.getInstance(entityName);
+        Instance inst = KBUtil.getInstance(kb, entityName);
         if (inst == null) {
             return triples;
         }
@@ -712,10 +713,10 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         KnowledgeBase kb = project.getKnowledgeBase();
 
         for (String entityName : entities) {
-            Instance inst = kb.getInstance(entityName);
+            Instance inst = KBUtil.getInstance(kb, entityName);
             if (inst != null) {
                 for (String propName : properties) {
-                    Slot slot = kb.getSlot(propName);
+                    Slot slot = KBUtil.getSlot(kb, propName);
                     if (slot != null) {
                         triples.addAll(getTriples(inst, slot, true));
                     }
@@ -735,17 +736,17 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         KnowledgeBase kb = project.getKnowledgeBase();
 
         for (String entityName : entities) {
-            Instance inst = kb.getInstance(entityName);
+            Instance inst = KBUtil.getInstance(kb, entityName);
             if (inst != null) {
                 for (String propName : properties) {
-                    Slot slot = kb.getSlot(propName);
+                    Slot slot = KBUtil.getSlot(kb, propName);
                     if (slot != null) {
                         Collection values = inst.getOwnSlotValues(slot);
                         for (Object value : values) {
                             if (value instanceof Instance) {
                                 Instance valueInst = (Instance) value;
                                 for (String reifiedPropName : reifiedProperties) {
-                                    Slot reifiedSlot = kb.getSlot(reifiedPropName);
+                                    Slot reifiedSlot = KBUtil.getSlot(kb, reifiedPropName);
                                     if (reifiedPropName != null) {
                                         triples.addAll(getTriples(valueInst, reifiedSlot, false));
                                     }
@@ -770,10 +771,10 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         KnowledgeBase kb = project.getKnowledgeBase();
 
         for (String entityName : entities) {
-            Instance inst = kb.getInstance(entityName);
+            Instance inst = KBUtil.getInstance(kb, entityName);
             if (inst != null) {
                 for (String propName : properties) {
-                    Slot slot = kb.getSlot(propName);
+                    Slot slot = KBUtil.getSlot(kb, propName);
                     if (slot != null) {
                         Collection values = inst.getOwnSlotValues(slot);
                         for (Object value : values) {
@@ -782,7 +783,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                                 EntityPropertyValues epv = new EntityPropertyValues(createEntityData(valueInst));
                                 for (String reifiedPropName : reifiedProperties) {
                                 	if (reifiedPropName != null) { //for example in case of clone columns
-	                                    Slot reifiedSlot = kb.getSlot(reifiedPropName);
+	                                    Slot reifiedSlot = KBUtil.getSlot(kb, reifiedPropName);
 	                                    if (reifiedSlot != null) {
 	                                        epv.addPropertyValues(new PropertyEntityData(reifiedSlot.getName()), createEntityList(valueInst.getOwnSlotValues(reifiedSlot)));
 	                                    }
@@ -910,9 +911,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         KnowledgeBase kb = project.getKnowledgeBase();
 
         for (String entityName : entities) {
-            Instance inst = kb.getInstance(entityName);
+            Instance inst = KBUtil.getInstance(kb, entityName);
             if (inst != null) {
-                Slot slot = kb.getSlot(property);
+                Slot slot = KBUtil.getSlot(kb, property);
                 if (slot != null) {
                     Collection<?> values = inst.getOwnSlotValues(slot);
                     for (Object value : values) {
@@ -941,7 +942,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 		    	String reifiedPropName = reifiedProperties.get(i);
 		    	if (reifiedPropName != null) { //for example in case of clone columns
 		    		int subjEntityIndex = subjectEntityIndexes[i];
-		            Slot reifiedSlot = kb.getSlot(reifiedPropName);
+		            Slot reifiedSlot = KBUtil.getSlot(kb, reifiedPropName);
 		            if (reifiedSlot != null) {
 		            	foundNewValues |= fillInPropertyValues(kb, valueInst,
 		            			reifiedSlot, i, subjEntityIndex, epvs);
@@ -998,7 +999,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
     				}
     				else {
 	    				//take the first subject entity
-	    				Instance subjEntity = kb.getInstance(subjEntities.get(0).getName());
+	    				Instance subjEntity = KBUtil.getInstance(kb, subjEntities.get(0).getName());
 	    				if (subjEntity != null) {
 	            			epv.setPropertyValues(propIndex, createEntityList(subjEntity.getOwnSlotValues(reifiedSlot)));
 	            			foundNewValues = true;
@@ -1147,7 +1148,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             return triples;
         }
         KnowledgeBase kb = project.getKnowledgeBase();
-        Cls cls = kb.getCls(className);
+        Cls cls = KBUtil.getCls(kb, className);
         if (cls == null) {
             return triples;
         }
@@ -1273,7 +1274,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         }
 
         KnowledgeBase kb = project.getKnowledgeBase();
-        Cls cls = kb.getCls(className);
+        Cls cls = KBUtil.getCls(kb, className);
 
         if (cls == null) {
             return instancesData;
@@ -1422,13 +1423,13 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         Project project = getProject(projectName);
         KnowledgeBase kb = project.getKnowledgeBase();
 
-        Cls superCls = superClsName == null ? kb.getRootCls() : kb.getCls(superClsName);
+        Cls superCls = superClsName == null ? kb.getRootCls() : KBUtil.getCls(kb, superClsName);
         EntityData clsEntity = null;
         Cls cls = null;
 
-        boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+        boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
+            WebProtegeKBUtil.morphUser(kb, user);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
@@ -1460,7 +1461,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 }
                 throw new RuntimeException("Error at creating class " + clsName + ". Message: " + e.getMessage(), e);
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
 
@@ -1476,20 +1477,20 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         Project project = getProject(projectName);
         KnowledgeBase kb = project.getKnowledgeBase();
 
-        Cls superCls = superClsName == null ? kb.getRootCls() : kb.getCls(superClsName);
+        Cls superCls = superClsName == null ? kb.getRootCls() : KBUtil.getCls(kb, superClsName);
         EntityData clsEntity = null;
         Cls cls = null;
 
-        Slot property = kb.getSlot(propertyName);
+        Slot property = KBUtil.getSlot(kb, propertyName);
         Object value = getProtegeObject(kb, propertyValue, property);
         if (propertyValue != null && value == null) {
             Log.getLogger().log(Level.WARNING, "Could not set property value " + propertyValue +
                     " for property " + property + " in create cls with property method.");
         }
 
-        boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+        boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
+            WebProtegeKBUtil.morphUser(kb, user);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
@@ -1523,7 +1524,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 }
                 throw new RuntimeException("Error at creating class " + clsName + ". Message: " + e.getMessage(), e);
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
 
@@ -1543,8 +1544,8 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             return;
         }
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
-            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+            WebProtegeKBUtil.morphUser(kb, user);
+            boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
@@ -1562,7 +1563,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 }
                 throw new RuntimeException("Error at deleting " + entityName + ". Message: " + e.getMessage(), e);
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
     }
@@ -1572,8 +1573,8 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
     	
         Project project = getProject(projectName);
         KnowledgeBase kb = project.getKnowledgeBase();
-        Cls cls = kb.getCls(clsName);
-        Cls superCls = kb.getCls(superClsName);
+        Cls cls = KBUtil.getCls(kb, clsName);
+        Cls superCls = KBUtil.getCls(kb, superClsName);
         
         if (cls == null || superCls == null) {
             return;
@@ -1592,8 +1593,8 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         
 
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
-            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+            WebProtegeKBUtil.morphUser(kb, user);
+            boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
@@ -1615,7 +1616,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 throw new RuntimeException("Error at adding to class " + clsName + " superclass: " + superClsName
                         + ". Message: " + e.getMessage(), e);
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
     }
@@ -1625,14 +1626,14 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         Project project = getProject(projectName);
         KnowledgeBase kb = project.getKnowledgeBase();
 
-        Cls cls = kb.getCls(clsName);
-        Cls superCls = kb.getCls(superClsName);
+        Cls cls = KBUtil.getCls(kb, clsName);
+        Cls superCls = KBUtil.getCls(kb, superClsName);
         if (cls == null || superCls == null) {
             return;
         }
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
-            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+            WebProtegeKBUtil.morphUser(kb, user);
+            boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
@@ -1653,7 +1654,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 throw new RuntimeException("Error at removing from class " + clsName + " superclass: " + superClsName
                         + ". Message: " + e.getMessage(), e);
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
     }
@@ -1664,9 +1665,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         Project project = getProject(projectName);
         KnowledgeBase kb = project.getKnowledgeBase();
 
-        Cls cls = kb.getCls(clsName);
-        Cls oldParent = kb.getCls(oldParentName);
-        Cls newParent = kb.getCls(newParentName);
+        Cls cls = KBUtil.getCls(kb, clsName);
+        Cls oldParent = KBUtil.getCls(kb, oldParentName);
+        Cls newParent = KBUtil.getCls(kb, newParentName);
 
         if (cls == null || oldParent == null || newParent == null) {
             return null;
@@ -1686,9 +1687,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         
         
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
+            WebProtegeKBUtil.morphUser(kb, user);
 
-            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+            boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
@@ -1716,7 +1717,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 throw new RuntimeException("Error at moving class: " + clsName + " old parent: " + oldParentName
                         + " new parent: " + newParentName + ". Message: " + e.getMessage(), e);
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
 
@@ -1727,7 +1728,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 //if contains loop
                 if (owlcls.getSuperclasses(true).contains(owlcls)) {
                     ArrayList<OWLClass> cyclePath = new ArrayList<OWLClass>();
-                    KBUtil.getPathToSuperClass(owlcls, owlcls, cyclePath);
+                    WebProtegeKBUtil.getPathToSuperClass(owlcls, owlcls, cyclePath);
                     //if we really found a cycle (i.e. there was a real cycle that did not involve anonymous classes)
                     if (cyclePath.size() > 1) {
                         res = OntologyServiceImpl.createEntityList(cyclePath);
@@ -1738,7 +1739,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 //if contains loop
                 if (cls.getSuperclasses().contains(cls)) {
                     ArrayList<Cls> cyclePath = new ArrayList<Cls>();
-                    KBUtil.getPathToSuperClass(cls, cls, cyclePath);
+                    WebProtegeKBUtil.getPathToSuperClass(cls, cls, cyclePath);
                     res = OntologyServiceImpl.createEntityList(cyclePath);
                 }
             }
@@ -1756,7 +1757,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         }
 
         KnowledgeBase kb = project.getKnowledgeBase();
-        Cls cls = kb.getCls(className);
+        Cls cls = KBUtil.getCls(kb, className);
         if (cls == null) {
             return parents;
         }
@@ -1803,13 +1804,13 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             throw new RuntimeException("An entity with the same name already exists!");
         }
 
-        boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+        boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
 
         if (isOWLOntology(project)) { // OWL
             OWLModel owlModel = (OWLModel) kb;
             RDFProperty property = null;
             synchronized (kb) {
-                KBUtil.morphUser(kb, user);
+                WebProtegeKBUtil.morphUser(kb, user);
                 try {
                     if (runsInTransaction) {
                         kb.beginTransaction(operationDescription);
@@ -1823,7 +1824,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                         property = owlModel.createAnnotationProperty(propertyName);
                     }
                     if (superPropName != null) {
-                        RDFProperty superProp = owlModel.getRDFProperty(superPropName);
+                        RDFProperty superProp = KBUtil.getRDFProperty(owlModel, superPropName);
                         if (superProp != null) {
                             property.addSuperproperty(superProp);
                         }
@@ -1841,14 +1842,14 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     throw new RuntimeException("Error at creating property: " + propertyName + ". Message: "
                             + e.getMessage(), e);
                 } finally {
-                    KBUtil.restoreUser(kb);
+                    WebProtegeKBUtil.restoreUser(kb);
                 }
             }
             return createEntityData(property, false);
         } else { // Frames
             Slot slot = null;
             synchronized (kb) {
-                KBUtil.morphUser(kb, user);
+                WebProtegeKBUtil.morphUser(kb, user);
                 try {
                     if (runsInTransaction) {
                         kb.beginTransaction(operationDescription);
@@ -1857,7 +1858,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     slot = kb.createSlot(propertyName);
                     slot.setValueType(propertyType == PropertyType.OBJECT ? ValueType.INSTANCE : ValueType.STRING);
                     if (superPropName != null) {
-                        Slot superSlot = kb.getSlot(superPropName);
+                        Slot superSlot = KBUtil.getSlot(kb, superPropName);
                         if (superSlot != null) {
                             slot.addDirectSuperslot(superSlot);
                         }
@@ -1875,7 +1876,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     throw new RuntimeException("Error at creating property: " + propertyName + ". Message: "
                             + e.getMessage(), e);
                 } finally {
-                    KBUtil.restoreUser(kb);
+                    WebProtegeKBUtil.restoreUser(kb);
                 }
             }
             return createEntityData(slot, false);
@@ -1904,7 +1905,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         Project project = getProject(projectName);
         KnowledgeBase kb = project.getKnowledgeBase();
 
-        Cls type = (typeName == null) ? kb.getRootCls() : kb.getCls(typeName);
+        Cls type = (typeName == null) ? kb.getRootCls() : KBUtil.getCls(kb, typeName);
 
         if (type == null) {
             Log.getLogger().warning("Could not create instance " + instName + " of type " + typeName + ". Null type");
@@ -1916,9 +1917,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         
         Instance inst = null;
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
+            WebProtegeKBUtil.morphUser(kb, user);
 
-            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+            boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
@@ -1936,7 +1937,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 }
                 throw new IllegalArgumentException("Could not create instance " + instName + " of type " + typeName);
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
         EntityData instData = createEntityData(inst);
@@ -1951,7 +1952,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
         Project project = getProject(projectName);
         KnowledgeBase kb = project.getKnowledgeBase();
-        Slot slot = kb.getSlot(propertyEntity);
+        Slot slot = KBUtil.getSlot(kb, propertyEntity);
 
         if (slot == null) {
             Log.getLogger().warning("Invalid property name: " + propertyEntity);
@@ -1969,9 +1970,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         EntityData valueData = null;
 
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
+            WebProtegeKBUtil.morphUser(kb, user);
 
-            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+            boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
@@ -1984,10 +1985,10 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     }
                     return null;
                 }
-                KBUtil.morphUser(kb, user); //hack
+                WebProtegeKBUtil.morphUser(kb, user); //hack
                 PropertyEntityData propEntityData = createPropertyEntityData(slot, null, false);
                 addPropertyValue(projectName, subjectEntity, propEntityData, valueData, false, user, null);
-                KBUtil.morphUser(kb, user); //hack
+                WebProtegeKBUtil.morphUser(kb, user); //hack
                 if (runsInTransaction) {
                     kb.commitTransaction();
                 }
@@ -2002,7 +2003,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 throw new RuntimeException("Could not create instance  " + instName + " of type " + typeName
                         + " for " + subjectEntity + " " + propertyEntity + ". Message: " + e.getMessage(), e);
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
 
@@ -2023,9 +2024,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         }
 
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
+            WebProtegeKBUtil.morphUser(kb, user);
             // original operation description goes in our top-level change ....
-            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+            boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
@@ -2035,7 +2036,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                         subjectEntity, propertyEntity, user, null);
                 addPropertyValue(projectName, valueData.getName(), instancePropertyEntity,
                         valueEntityData, false, user, null);
-                KBUtil.morphUser(kb, user);
+                WebProtegeKBUtil.morphUser(kb, user);
                 if (runsInTransaction){
                     kb.commitTransaction();
                 }
@@ -2047,7 +2048,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 // no logging as we are rethrowing an exception already logged by our called methods.
                 throw e;
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
 
@@ -2072,16 +2073,16 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         EntityData[] res = new EntityData[properties.length];
         
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
+            WebProtegeKBUtil.morphUser(kb, user);
             // original operation description goes in our top-level change ....
-            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+            boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
                 }
                 // setting the operationDescription to null will ensure that we have no nested transactions (which are unnecessary) or duplicate changes...
                 
-                Instance subject = kb.getInstance(rootSubject.getName());
+                Instance subject = KBUtil.getInstance(kb, rootSubject.getName());
                 if (subject == null) {
 	                if (runsInTransaction) {
 	                    kb.commitTransaction();
@@ -2093,7 +2094,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 	String property = properties[i];
                 	String typeName = types[i];
                 	
-                    Cls type = (typeName == null) ? kb.getRootCls() : kb.getCls(typeName);
+                    Cls type = (typeName == null) ? kb.getRootCls() : KBUtil.getCls(kb, typeName);
 
                     if (type == null) {
                         Log.getLogger().warning("Could not create instance of type " + typeName + ". Null type");
@@ -2110,7 +2111,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     }
                     res[i] = instData;
                     
-                    Slot slot = kb.getSlot(property);
+                    Slot slot = KBUtil.getSlot(kb, property);
                     if (slot == null) {
                         Log.getLogger().warning("Could not add instance " + inst.getName() + " as value of property " + property + ". Property not found.");
                         throw new IllegalArgumentException("Could not add instance " + inst.getName() + " as value of property " + 
@@ -2121,7 +2122,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     subject = inst;
 				}
                                 
-                KBUtil.morphUser(kb, user);
+                WebProtegeKBUtil.morphUser(kb, user);
                 if (runsInTransaction){
                     kb.commitTransaction();
                 }
@@ -2133,7 +2134,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 // no logging as we are rethrowing an exception already logged by our called methods.
                 throw e;
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
 
@@ -2158,9 +2159,9 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         }
 
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
+            WebProtegeKBUtil.morphUser(kb, user);
 
-            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+            boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
@@ -2181,7 +2182,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 throw new RuntimeException("Could not rename entity, old name: " + oldName + " to new name: " + newName
                         + ". Message: " + e.getMessage(), e);
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
         return createEntityData(newFrame);
@@ -2195,7 +2196,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             return "";
         }
         OWLModel owlModel = (OWLModel) kb;
-        OWLNamedClass cls = owlModel.getOWLNamedClass(className);
+        OWLNamedClass cls = KBUtil.getOWLNamedClass(owlModel, className);
         if (cls == null) {
             return "";
         }
@@ -2284,7 +2285,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             return null;
         }
         OWLModel owlModel = (OWLModel) kb;
-        OWLNamedClass cls = owlModel.getOWLNamedClass(className);
+        OWLNamedClass cls = KBUtil.getOWLNamedClass(owlModel, className);
         if (cls == null) {
             return null;
         }
@@ -2328,14 +2329,14 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             return null;
         }
         OWLModel owlModel = (OWLModel) kb;
-        OWLNamedClass cls = owlModel.getOWLNamedClass(className);
+        OWLNamedClass cls = KBUtil.getOWLNamedClass(owlModel, className);
         if (cls == null) {
             return null;
         }
 
         synchronized (kb) {
-            String user = KBUtil.getUserInSession(getThreadLocalRequest());
-            KBUtil.morphUser(kb, user);
+            String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
+            WebProtegeKBUtil.morphUser(kb, user);
             try {
                 ConditionsTableModel ctm = new ConditionsTableModel(cls.getOWLModel());
                 ctm.setCls(cls);
@@ -2345,7 +2346,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
                 //validity checks
                 RDFSClass conditionToDelete = ctm.getClass(row);
-                RDFResource conditionFromClient = owlModel.getRDFResource(conditionItem.getName());
+                RDFResource conditionFromClient = KBUtil.getRDFResource(owlModel, conditionItem.getName());
                 if (conditionToDelete == null || conditionFromClient == null || (!conditionToDelete.equals(conditionFromClient))) {
                     throw new IllegalArgumentException("Cannot delete condition from class " + cls.getBrowserText() +". Condition is not present at class.");
                 }
@@ -2355,7 +2356,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 Log.getLogger().log(Level.WARNING, "Error at deleting condition " + conditionItem.getName() + " from class " + className, e);
                 throw new RuntimeException("Error at deleting condition " + conditionItem.getName() + " from class " + className);
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
         return getClassConditions(projectName, className);
@@ -2419,14 +2420,14 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             return null;
         }
         OWLModel owlModel = (OWLModel) kb;
-        OWLNamedClass cls = owlModel.getOWLNamedClass(className);
+        OWLNamedClass cls = KBUtil.getOWLNamedClass(owlModel, className);
         if (cls == null) {
             return null;
         }
 
         synchronized (kb) {
-            String user = KBUtil.getUserInSession(getThreadLocalRequest());
-            KBUtil.morphUser(kb, user);
+            String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
+            WebProtegeKBUtil.morphUser(kb, user);
             try {
                 ConditionsTableModel ctm = new ConditionsTableModel(cls.getOWLModel());
                 ctm.setCls(cls);
@@ -2435,7 +2436,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 //do the transaction and opdescription
                 //validity checks
                 RDFSClass conditionToDelete = ctm.getClass(row);
-                RDFResource conditionFromClient = owlModel.getRDFResource(conditionItem.getName());
+                RDFResource conditionFromClient = KBUtil.getRDFResource(owlModel, conditionItem.getName());
                 if (conditionToDelete == null || conditionFromClient == null || (!conditionToDelete.equals(conditionFromClient))) {
                     throw new IllegalArgumentException("Cannot replace condition from class " + cls.getBrowserText() +". Condition is not present at class.");
                 }
@@ -2444,7 +2445,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 Log.getLogger().log(Level.WARNING, "Error at parsing class expression: " + newCondition + " for class " + className, e);
                 throw new RuntimeException("Could not parse expression " + newCondition);
             }  finally { //treat exceptions, transactions, etc?
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
 
@@ -2460,14 +2461,14 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             return null;
         }
         OWLModel owlModel = (OWLModel) kb;
-        OWLNamedClass cls = owlModel.getOWLNamedClass(className);
+        OWLNamedClass cls = KBUtil.getOWLNamedClass(owlModel, className);
         if (cls == null) {
             return null;
         }
 
         synchronized (kb) {
-            String user = KBUtil.getUserInSession(getThreadLocalRequest());
-            KBUtil.morphUser(kb, user);
+            String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
+            WebProtegeKBUtil.morphUser(kb, user);
             try {
                 ConditionsTableModel ctm = new ConditionsTableModel(cls.getOWLModel());
                 ctm.setCls(cls);
@@ -2485,7 +2486,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 Log.getLogger().log(Level.WARNING, "Error at adding new condition: " + newCondition + " for class " + className, e);
                 throw new RuntimeException( "Error at adding new condition: " + newCondition + " for class " + className);
             } finally {  //treat exceptions, transactions, etc?
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
 
@@ -2677,7 +2678,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         }
 
         // for now it works only with classes
-        Cls entity = kb.getCls(entityName);
+        Cls entity = KBUtil.getCls(kb, entityName);
         List clsPath = ModelUtilities.getPathToRoot(entity);
 
         for (Iterator iterator = clsPath.iterator(); iterator.hasNext();) {
