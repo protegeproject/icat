@@ -90,69 +90,6 @@
 	</properties>
 	
   <tabs>
-	<tab>
-		<name>edu.stanford.bmir.protege.web.client.ui.ontology.home.MyICDTab</name>
-		<label>My ICD</label>
-		<properties>
-			<entry>
-				<string>closable</string>
-				<boolean>false</boolean>
-			</entry>
-		</properties>
-		
-		<columns>
-			<column>      
-				<width>1</width>
-				<portlets>									
-					<portlet>
-					<name>edu.stanford.bmir.protege.web.client.ui.portlet.html.HtmlMessagePortlet</name>
-					<height>500</height>
-					<properties>
-						<entry>
-							<string>label</string>
-							<string>Welcome to ICD 11 Revision</string>
-						</entry>
-						<entry>
-							<string>load_url</string>
-							<string>../html/welcome.html</string>
-						</entry>
-					</properties>
-					</portlet>
-				</portlets>
-			</column>
-		<!-- Commented out the statistics because we don't keep them up to date	
-			<column>      
-				<width>0.50</width>
-				<portlets>					
-					<portlet>
-					<name>edu.stanford.bmir.protege.web.client.ui.portlet.html.HtmlMessagePortlet</name>
-					<height>500</height> 
-					<properties>
-						<entry>
-							<string>label</string>
-							<string>Statistics of the most active chapters</string>
-						</entry>
-						<entry>
-							<string>load_url</string>
-							<string>../html/stats.html</string>
-						</entry>
-					</properties>
-					</portlet>
-				</portlets>
-			</column>
-	-->
-	<!-- 	<column>
-				<width>0.5</width>
-				<portlets>
-					<portlet>
-						<name>edu.stanford.bmir.protege.web.client.ui.ontology.changes.WatchedEntitiesPortlet</name>
-						<height>600</height>
-					</portlet>
-				</portlets>
-			</column>
-      -->
-		</columns>
-	</tab>
 	
 	<tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
@@ -29691,6 +29628,39 @@
       </column>
     </columns>
   </tab>
+  
+  <tab>
+		<name>edu.stanford.bmir.protege.web.client.ui.ontology.home.MyICDTab</name>
+		<label>My ICD</label>
+		<properties>
+			<entry>
+				<string>closable</string>
+				<boolean>false</boolean>
+			</entry>
+		</properties>
+		
+		<columns>
+			<column>      
+				<width>1</width>
+				<portlets>									
+					<portlet>
+					<name>edu.stanford.bmir.protege.web.client.ui.portlet.html.HtmlMessagePortlet</name>
+					<height>500</height>
+					<properties>
+						<entry>
+							<string>label</string>
+							<string>Welcome to ICD 11 Revision</string>
+						</entry>
+						<entry>
+							<string>load_url</string>
+							<string>../html/welcome.html</string>
+						</entry>
+					</properties>
+					</portlet>
+				</portlets>
+			</column>
+		</columns>
+	</tab>
 
   </tabs>
 </project>
