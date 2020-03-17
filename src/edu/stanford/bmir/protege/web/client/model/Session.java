@@ -34,7 +34,10 @@ public class Session {
 
         sessionPropertiesMap.clear();
 
-        SystemEventManager.getSystemEventManager().notifyLoginChanged(oldUserData == null ? null : oldUserData.getName(), userData == null ? null : userData.getName());
+        SystemEventManager.getSystemEventManager().
+        	notifyLoginChanged(oldUserData == null ? 
+        			null : oldUserData.getName(), userData == null ? 
+        					null : userData.getName());
     }
 
     public String getSessionProperty(String property) {
