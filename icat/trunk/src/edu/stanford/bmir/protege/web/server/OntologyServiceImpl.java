@@ -1427,6 +1427,8 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         EntityData clsEntity = null;
         Cls cls = null;
 
+        clsName = clsName == null ? IcdIdGenerator.getNextUniqueId(kb) : clsName;
+        
         boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
         synchronized (kb) {
             WebProtegeKBUtil.morphUser(kb, user);
@@ -1488,6 +1490,8 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                     " for property " + property + " in create cls with property method.");
         }
 
+        clsName = clsName == null ? IcdIdGenerator.getNextUniqueId(kb) : clsName;
+        
         boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
         synchronized (kb) {
             WebProtegeKBUtil.morphUser(kb, user);
@@ -2102,8 +2106,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                                 + ". Null type");
                     }
                     
-                    //this should be fine for OWL, as it will use the expand short names flag
-                    Instance inst = type.createDirectInstance(null);
+                    Instance inst = type.createDirectInstance(IcdIdGenerator.getNextUniqueId(kb));
                     
                     EntityData instData = createEntityData(inst);
                     if (instData != null) {
