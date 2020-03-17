@@ -266,31 +266,32 @@ public class LoginUtil {
         logout(true, null);
     }
 
-    public static void logout(boolean showConfirmation, final AsyncCallback<Void> callback) {
-        if (showConfirmation == true) {
-        MessageBox.confirm("Log out", "Are you sure you want to log out?", new MessageBox.ConfirmCallback() {
-            public void execute(String btnID) {
-                if (btnID.equalsIgnoreCase("yes")) {
-                   logoutNoConfirmation(callback);
-                }
-            }
-        });
-        } else {
-            logoutNoConfirmation(callback);
-        }
-    }
+	public static void logout(boolean showConfirmation, final AsyncCallback<Void> callback) {
+		if (showConfirmation == true) {
+			MessageBox.confirm("Log out", "Are you sure you want to log out?", new MessageBox.ConfirmCallback() {
+				public void execute(String btnID) {
+					if (btnID.equalsIgnoreCase("yes")) {
+						logoutNoConfirmation(callback);
+					}
+				}
+			});
+		} else {
+			logoutNoConfirmation(callback);
+		}
+	}
 
     private static void logoutNoConfirmation(final AsyncCallback<Void> callback) {
-        GlobalSettings.getGlobalSettings().setUser(null);
+        
         AdminServiceManager.getInstance().logout(new AsyncCallback<Void>() {
             public void onFailure(Throwable caught) {
-                MessageBox.alert(AuthenticationConstants.ASYNCHRONOUS_CALL_FAILURE_MESSAGE);
+                MessageBox.alert("Error","There was an error trying to log out. Please try again later.");
                 if (callback != null) {
                     callback.onFailure(caught);
                 }
             }
 
             public void onSuccess(Void result) {
+            	GlobalSettings.getGlobalSettings().setUser(null);
                 if (callback != null) {
                     callback.onSuccess(result);
                 }
