@@ -61,6 +61,8 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 	// The effect is that some other class trees do not get the event, and will not
 	// update. We will keep this limitation for now, given the increase in
 	// performance.
+	
+	// createICDSpecificEntities flag is disregarded. Always create them.
 	@SuppressWarnings("rawtypes")
 	public EntityData createICDCls(final String projectName, String clsName, Collection<String> superClsNames,
 			String title, String sortingLabel, boolean createICDSpecificEntities, final String user,
@@ -92,7 +94,8 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
 				boolean isSiblingIndexValid = checkAndRecreateIndex((OWLModel) kb, superClsNames, false);
 
-				cls = cm.createICDCategory(clsName, superClsNames, true, createICDSpecificEntities);
+				// createICDSpecificEntities flag is disregarded. Always create them.
+				cls = cm.createICDCategory(clsName, superClsNames);
 
 				if (clsName != null) {
 					cls.addPropertyValue(cm.getIcdCodeProperty(), clsName);
