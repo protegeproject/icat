@@ -1,5 +1,6 @@
 package edu.stanford.bmir.protege.web.server.icd.proposals.postCoord;
 
+import edu.stanford.bmir.protege.web.server.WebProtegeKBUtil;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ICDProposal;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ImportProposalsUtil;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ImportResult;
@@ -33,7 +34,7 @@ public abstract class PostcoordinationProposal extends ICDProposal {
 			return false;
 		}
 		else {
-			OWLIndividual linView = getOwlModel().getOWLIndividual(contributableId);
+			OWLIndividual linView = edu.stanford.bmir.whofic.KBUtil.getOWLIndividual(getOwlModel(), contributableId);
 			if (linView == null || ! linView.hasRDFType( getICDContentModel().getLinearizationViewClass(), true)) {
 				importResult.recordResult(getContributionId(), "Contributable id is " + contributableId + ". It is expected to be a valid linearization view instance.", ImportRowStatus.FAIL);
 				return false;

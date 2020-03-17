@@ -25,31 +25,16 @@ import edu.stanford.smi.protege.server.framestore.RemoteClientFrameStore;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLClass;
 import edu.stanford.smi.protegex.owl.model.OWLHasValue;
-import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.OWLNamedClass;
 import edu.stanford.smi.protegex.owl.model.RDFProperty;
-import edu.stanford.smi.protegex.owl.model.RDFResource;
 
-public class KBUtil {
+public class WebProtegeKBUtil {
 
     public static final String PROPERTY_IS_TEMPLATE = "http://protege.stanford.edu/plugins/owl/protege#isTemplate";
     public static final Map<KnowledgeBase, Slot> isTemplateSlotMap = new HashMap<KnowledgeBase, Slot>();
-
     
-    // Going through a lot of pains to get the cls, when using Frames methods,
-    // if a short name is used..
-    public static Cls getCls(KnowledgeBase kb, String clsName) {
-    	Cls cls = kb.getCls(clsName);
-    	if (cls == null && kb instanceof OWLModel) {
-    		RDFResource res = ((OWLModel)kb).getRDFResource(clsName);
-    		if (res != null && res instanceof Cls) {
-    			cls = (Cls) res;
-    		}
-    	}
-    	
-    	return cls;
-    }
-    
+	
+	/************** User and remote things methods *******************/
     
     public static void morphUser(KnowledgeBase kb, String user) {
         if (kb.getProject().isMultiUserClient()) {
@@ -73,29 +58,14 @@ public class KBUtil {
     public static boolean shouldRunInTransaction(String operationDescription) {
         return operationDescription != null && operationDescription.length() > 0;
     }
-
-    @SuppressWarnings("unchecked")
-    public static <X> Collection<X> getCollection(KnowledgeBase kb, Collection<String> names, Class<? extends X> javaInterface) {
-        Collection<X> entities = new HashSet<X>();
-        if (names == null) {
-            return entities;
-        }
-        for (String name : names) {
-            Frame frame = kb.getFrame(name);
-            if (frame != null && javaInterface.isAssignableFrom(frame.getClass())) {
-                entities.add((X)frame);
-            }
-        }
-        return entities;
-    }
-
+    
     //TODO: not the best util class for this method.. find a better one
     public static String getUserInSession(HttpServletRequest request) {
         final HttpSession session = request.getSession();
 
         return (String) session.getAttribute(AuthenticationConstants.USER);
     }
-
+    
     public static String getRemoteProjectName(Project prj) {
         URI uri = prj.getProjectURI();
         if (uri == null) { return null; }
@@ -111,6 +81,26 @@ public class KBUtil {
         }
         return null;
     }
+
+    /**************** Collection methods ***************/
+    
+    @SuppressWarnings("unchecked")
+    public static <X> Collection<X> getCollection(KnowledgeBase kb, Collection<String> names, Class<? extends X> javaInterface) {
+        Collection<X> entities = new HashSet<X>();
+        if (names == null) {
+            return entities;
+        }
+        for (String name : names) {
+            Frame frame = kb.getFrame(name);
+            if (frame != null && javaInterface.isAssignableFrom(frame.getClass())) {
+                entities.add((X)frame);
+            }
+        }
+        return entities;
+    }
+
+
+    /****************** Path to root methods *****************/
 
 
     /**
@@ -232,7 +222,7 @@ public class KBUtil {
     }
     
     
-    //******* Template class/instance operations
+    //******* Template class/instance operations ***********/
     
 	public static boolean isTemplateInstance(Object value) {
 		if (value instanceof Instance) {

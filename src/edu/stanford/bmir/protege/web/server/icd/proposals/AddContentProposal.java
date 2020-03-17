@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import edu.stanford.bmir.protege.web.server.WebProtegeKBUtil;
 import edu.stanford.bmir.whofic.IcdIdGenerator;
 import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
 import edu.stanford.smi.protegex.owl.model.OWLClass;
@@ -70,20 +71,20 @@ public class AddContentProposal extends ICDProposal {
 		
 		RDFResource reifiedValue = range.createInstance(IcdIdGenerator.getNextUniqueId(getOwlModel()));
 				
-		RDFProperty labelProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.LABEL_PROP);
+		RDFProperty labelProp = edu.stanford.bmir.whofic.KBUtil.getRDFProperty(getOwlModel(), WHOFICContentModelConstants.LABEL_PROP);
 		reifiedValue.addPropertyValue(labelProp, this.getNewValue());
 		
 		if (this.getIdFromValueSet() != null) {
-			RDFProperty termIdProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.TERM_ID_PROP);
+			RDFProperty termIdProp = edu.stanford.bmir.whofic.KBUtil.getRDFProperty(getOwlModel(), WHOFICContentModelConstants.TERM_ID_PROP);
 			reifiedValue.addPropertyValue(termIdProp, this.getIdFromValueSet());
 			
 			//fill in both shortid and termid, because it is not clear which one is used by different tools.. not ideal.
-			RDFProperty shortTermIdProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.BP_SHORT_TERM_ID_PROP);
+			RDFProperty shortTermIdProp = edu.stanford.bmir.whofic.KBUtil.getRDFProperty(getOwlModel(), WHOFICContentModelConstants.BP_SHORT_TERM_ID_PROP);
 			reifiedValue.addPropertyValue(shortTermIdProp, this.getIdFromValueSet());
 		}
 		
 		if (this.getValueSetName() != null) {
-			RDFProperty valueSetProp = getOwlModel().getRDFProperty(WHOFICContentModelConstants.ONTOLOGYID_PROP);
+			RDFProperty valueSetProp = edu.stanford.bmir.whofic.KBUtil.getRDFProperty(getOwlModel(), WHOFICContentModelConstants.ONTOLOGYID_PROP);
 			reifiedValue.addPropertyValue(valueSetProp, this.getValueSetName());
 		}
 		
@@ -130,8 +131,8 @@ public class AddContentProposal extends ICDProposal {
 		String newValue = this.getNewValue();
 		String idfromVS = this.getIdFromValueSet();
 				
-		RDFResource entity = getOwlModel().getRDFResource(this.getEntityId());		
-		RDFProperty prop = getOwlModel().getRDFProperty(getPropertyId());
+		RDFResource entity = edu.stanford.bmir.whofic.KBUtil.getRDFResource(getOwlModel(), this.getEntityId());		
+		RDFProperty prop = edu.stanford.bmir.whofic.KBUtil.getRDFProperty(getOwlModel(), getPropertyId());
 		boolean isObjectProperty = prop instanceof OWLObjectProperty;
 		
 		Collection values = entity.getPropertyValues(prop);

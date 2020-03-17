@@ -2,6 +2,7 @@ package edu.stanford.bmir.protege.web.server.icd.proposals.postCoord;
 
 import java.util.List;
 
+import edu.stanford.bmir.protege.web.server.WebProtegeKBUtil;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ICDProposal;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ImportResult;
 import edu.stanford.bmir.whofic.icd.ICDContentModel;
@@ -27,8 +28,8 @@ public class AddPostCoordinationAxisValueProposal extends PostcoordinationPropos
 	@Override
 	public void importThis(ImportResult importResult) {
 		ICDContentModel cm = getICDContentModel();
-		RDFResource value = getOwlModel().getRDFResource(getNewValue());
-		OWLProperty property = getOwlModel().getOWLProperty(getPropertyId());
+		RDFResource value = edu.stanford.bmir.whofic.KBUtil.getRDFResource(getOwlModel(), getNewValue());
+		OWLProperty property = edu.stanford.bmir.whofic.KBUtil.getOWLProperty(getOwlModel(), getPropertyId());
 
 		RDFSNamedClass icdCat = cm.getICDClass(getEntityId());
 		
@@ -52,7 +53,7 @@ public class AddPostCoordinationAxisValueProposal extends PostcoordinationPropos
        	
 
 		String refTermClsName = range.getName();
-		OWLNamedClass refTermCls = getOwlModel().getOWLNamedClass(refTermClsName); //TODO: make sure range is not null
+		OWLNamedClass refTermCls = edu.stanford.bmir.whofic.KBUtil.getOWLNamedClass(getOwlModel(), refTermClsName); //TODO: make sure range is not null
 		if (refTermCls == null) {
 			Log.getLogger().warning("Could not find term reference class: " + refTermClsName);
 			return;

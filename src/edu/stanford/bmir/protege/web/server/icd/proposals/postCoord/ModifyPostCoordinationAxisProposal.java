@@ -3,6 +3,7 @@ package edu.stanford.bmir.protege.web.server.icd.proposals.postCoord;
 import java.util.Collection;
 import java.util.logging.Level;
 
+import edu.stanford.bmir.protege.web.server.WebProtegeKBUtil;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ICDProposal;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ImportResult;
 import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
@@ -44,7 +45,7 @@ public abstract class ModifyPostCoordinationAxisProposal extends Postcoordinatio
 	@Override
 	public void importThis(ImportResult importResult) {
 		ICDContentModel cm = getICDContentModel();
-		OWLProperty postCoordProperty = getOwlModel().getOWLProperty(getNewValue());
+		OWLProperty postCoordProperty = edu.stanford.bmir.whofic.KBUtil.getOWLProperty(getOwlModel(), getNewValue());
 
         RDFProperty allowedPostCoordinationAxisPropertyProperty = cm.getAllowedPostcoordinationAxisPropertyProperty();
         RDFProperty requiredPostCoordinationAxisPropertyProperty = cm.getRequiredPostcoordinationAxisPropertyProperty();
@@ -112,7 +113,7 @@ public abstract class ModifyPostCoordinationAxisProposal extends Postcoordinatio
 //	@Override
 	public RDFResource getLinearizationSpecification(String linearizationViewName) {
 		ICDContentModel cm = getICDContentModel();
-		OWLIndividual linViewInd = getOwlModel().getOWLIndividual(linearizationViewName);
+		OWLIndividual linViewInd = edu.stanford.bmir.whofic.KBUtil.getOWLIndividual(getOwlModel(), linearizationViewName);
 		RDFSNamedClass icdCat = cm.getICDCategory(getEntityId());
 		Collection<RDFResource> pcSpecifications = cm.getAllowedPostcoorcdinationSpecifications(icdCat); //TODO refactor the name of this method to fix typo
 		for (RDFResource pcSpecification : pcSpecifications) {

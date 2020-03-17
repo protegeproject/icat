@@ -3,6 +3,7 @@ package edu.stanford.bmir.protege.web.server.icd.proposals.postCoord;
 import java.util.Collection;
 import java.util.logging.Level;
 
+import edu.stanford.bmir.protege.web.server.WebProtegeKBUtil;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ICDProposal;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ImportResult;
 import edu.stanford.bmir.whofic.icd.ICDContentModel;
@@ -29,7 +30,7 @@ public class DeletePostCoordinationAxisValueProposal extends PostcoordinationPro
 	public void importThis(ImportResult importResult) {
 		ICDContentModel cm = getICDContentModel();
 //		RDFResource value = getOwlModel().getRDFResource(getNewValue());
-		OWLProperty property = getOwlModel().getOWLProperty(getPropertyId());
+		OWLProperty property = edu.stanford.bmir.whofic.KBUtil.getOWLProperty(getOwlModel(), getPropertyId());
 
 		RDFSNamedClass icdCat = cm.getICDClass(getEntityId());
 
@@ -81,7 +82,7 @@ public class DeletePostCoordinationAxisValueProposal extends PostcoordinationPro
 	public RDFResource getReferenceTermToBeDeleted() {
 		RDFResource entity = getEntity();
 		RDFProperty property = getProperty();
-		RDFResource value = getOwlModel().getRDFResource(getOldValue());
+		RDFResource value = edu.stanford.bmir.whofic.KBUtil.getRDFResource(getOwlModel(), getOldValue());
 		
 		
 		ICDContentModel cm = getICDContentModel();

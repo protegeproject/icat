@@ -45,23 +45,23 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
         Project prj = getProject(project);
         KnowledgeBase kb = prj.getKnowledgeBase();
 
-        Cls cls = KBUtil.getCls(kb, className);
+        Cls cls = edu.stanford.bmir.whofic.KBUtil.getCls(kb, className);
         if (cls == null) {
             throw new IllegalArgumentException("Class " + className + " does not exist.");
         }
 
         WHOFICContentModel cm = new ICDContentModel((OWLModel) kb);
 
-        Collection<Cls> parentClsesToAdd = KBUtil.getCollection(kb, parentsToAdd, Cls.class);
-        Collection<Cls> parentClsesToRemove = KBUtil.getCollection(kb, parentsToRemove, Cls.class);
+        Collection<Cls> parentClsesToAdd = WebProtegeKBUtil.getCollection(kb, parentsToAdd, Cls.class);
+        Collection<Cls> parentClsesToRemove = WebProtegeKBUtil.getCollection(kb, parentsToRemove, Cls.class);
         
         if (checkNonRetireableClsHasRetiredNewParent((OWLModel) kb, cls, parentClsesToAdd) == true) {
         	throw new iCATException("Cannot retire class " + cls.getBrowserText() + " because it is non-retirable.");
         }
 
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
-            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+            WebProtegeKBUtil.morphUser(kb, user);
+            boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
@@ -98,7 +98,7 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
                 }
                 throw new RuntimeException(e.getMessage(), e);
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
 
@@ -108,7 +108,7 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
             //if contains loop
             if (owlcls.getSuperclasses(true).contains(owlcls)) {
                 ArrayList<OWLClass> cyclePath = new ArrayList<OWLClass>();
-                KBUtil.getPathToSuperClass(owlcls, owlcls, cyclePath);
+                WebProtegeKBUtil.getPathToSuperClass(owlcls, owlcls, cyclePath);
                 //if we really found a cycle (i.e. there was a real cycle that did not involve anonymous classes)
                 if (cyclePath.size() > 1) {
                     res = OntologyServiceImpl.createEntityList(cyclePath);
@@ -119,7 +119,7 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
             //if contains loop
             if (cls.getSuperclasses().contains(cls)) {
                 ArrayList<Cls> cyclePath = new ArrayList<Cls>();
-                KBUtil.getPathToSuperClass(cls, cls, cyclePath);
+                WebProtegeKBUtil.getPathToSuperClass(cls, cls, cyclePath);
                 res = OntologyServiceImpl.createEntityList(cyclePath);
             }
         }
@@ -167,13 +167,13 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
         Project prj = getProject(project);
         KnowledgeBase kb = prj.getKnowledgeBase();
 
-        Collection<Cls> classesToRetire = KBUtil.getCollection(kb, classesToRetireNames, Cls.class);
+        Collection<Cls> classesToRetire = WebProtegeKBUtil.getCollection(kb, classesToRetireNames, Cls.class);
         Cls retiredSuperCls = getRetiredSuperclass(kb);
-        Cls newParent = newParentName == null ? null : kb.getCls(newParentName);
+        Cls newParent = newParentName == null ? null : edu.stanford.bmir.whofic.KBUtil.getCls(kb, newParentName);
 
         synchronized (kb) {
-            KBUtil.morphUser(kb, user);
-            boolean runsInTransaction = KBUtil.shouldRunInTransaction(operationDescription);
+            WebProtegeKBUtil.morphUser(kb, user);
+            boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
             try {
                 if (runsInTransaction) {
                     kb.beginTransaction(operationDescription);
@@ -204,7 +204,7 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
                 }
                 throw new RuntimeException(e.getMessage(), e);
             } finally {
-                KBUtil.restoreUser(kb);
+                WebProtegeKBUtil.restoreUser(kb);
             }
         }
     }
@@ -218,7 +218,7 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
                 retiredSuperclass = ((OWLModel)kb).createOWLNamedClass(RETIRED_CLASSES);
             }
         } else {
-            retiredSuperclass = kb.getCls(RETIRED_CLASSES);
+            retiredSuperclass = edu.stanford.bmir.whofic.KBUtil.getCls(kb, RETIRED_CLASSES);
             if (retiredSuperclass == null) {
                 retiredSuperclass = kb.createCls(RETIRED_CLASSES, kb.getRootClses());
             }
