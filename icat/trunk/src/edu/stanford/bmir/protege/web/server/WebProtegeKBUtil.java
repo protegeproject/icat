@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import edu.stanford.bmir.protege.web.client.ui.login.constants.AuthenticationConstants;
+import edu.stanford.bmir.whofic.IcdIdGenerator;
 import edu.stanford.smi.protege.model.Cls;
 import edu.stanford.smi.protege.model.DefaultKnowledgeBase;
 import edu.stanford.smi.protege.model.Frame;
@@ -22,9 +23,11 @@ import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.model.Slot;
 import edu.stanford.smi.protege.server.Session;
 import edu.stanford.smi.protege.server.framestore.RemoteClientFrameStore;
+import edu.stanford.smi.protege.util.IDGenerator;
 import edu.stanford.smi.protege.util.Log;
 import edu.stanford.smi.protegex.owl.model.OWLClass;
 import edu.stanford.smi.protegex.owl.model.OWLHasValue;
+import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.OWLNamedClass;
 import edu.stanford.smi.protegex.owl.model.RDFProperty;
 
@@ -268,7 +271,9 @@ public class WebProtegeKBUtil {
 				KnowledgeBase kb = instValue.getKnowledgeBase();
 				Cls nonTemplateType = getNonTemplateType(instValue);
 				if (nonTemplateType != null) {
-					Instance copyInst = kb.createInstance(null, nonTemplateType);
+					String name = (kb instanceof OWLModel) ? 
+							IcdIdGenerator.getNextUniqueId((OWLModel) kb) : IDGenerator.getNextUniqueId();
+					Instance copyInst = kb.createInstance(name, nonTemplateType);
 					copyPropertyValues(instValue, copyInst);
 					return copyInst;
 				}
