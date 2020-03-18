@@ -87,6 +87,10 @@
 			<string>class_hierarchy_label</string>
 			<string>Health Devices, Equipment and Supplies</string>
 		</entry>
+		<entry>
+			<string>sortable</string>
+			<string>false</string>
+		</entry>
 	</properties>
 	
   <tabs>
@@ -29629,9 +29633,9 @@
     </columns>
   </tab>
   
- <tab>
+  <tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.ontology.home.MyICDTab</name>
-		<label>My ICD</label>
+		<label>Help</label>
 		<properties>
 			<entry>
 				<string>closable</string>

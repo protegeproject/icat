@@ -140,7 +140,7 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
     @Override
     protected void fillValues(List<String> subjects, List<String> props) {
         getStore().removeAll();
-        //FIXME shadowStore.removeAll();
+        getShadowStore().removeAll();
         OntologyServiceManager.getInstance().getMultilevelEntityPropertyValues(
         		getProject().getProjectName(), subjects, UIUtil.getFirstItem(props), properties, 
                 subjectEntityColumns, new GetTriplesHandler(getSubject()));
@@ -182,7 +182,9 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
                 
 //TODO see if we really want to support this here
 //                if (fieldNameSorted != null) {
-//                    store.sort(fieldNameSorted, SortDir.ASC);   //WARNING! This seems to be very slow
+//                    //WARNING! This seems to be slow
+//                    store.sort(fieldNameSorted, SortDir.ASC);
+//                    shadowStore.sort(fieldNameSorted, SortDir.ASC);
 //                }
             }
 
@@ -247,7 +249,9 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
 	            i++;
         	}
         }
-        //if some rows were filtered out
+        
+        //if some rows were filtered out create a reduced sized copy of the data array,
+        //containing only the filled in rows
         if (i < entityPropertyValues.size()) {
         	//data = Arrays.copyOf(data, i);
         	int newRowCount = i;

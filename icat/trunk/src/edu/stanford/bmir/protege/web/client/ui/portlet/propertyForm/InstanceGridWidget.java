@@ -76,7 +76,6 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
-import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.ontology.search.DefaultSearchStringTypeEnum;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidgetWithNotes;
 import edu.stanford.bmir.protege.web.client.ui.util.SelectionUtil;
@@ -419,7 +418,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         EntityData oldValue = getEntityDataValueAt(record, rowIndex, colIndex);
 
         record.set(field, (String)null);
-        shadowStore.getRecordAt(rowIndex).set(field, (EntityData)null);
+        //shadowStore record will be set in functions called from changeValue, before the replacePropertyValue service call
 
         changeValue(record, null, oldValue, rowIndex, colIndex);
     }
@@ -563,7 +562,8 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 	}
 
 	protected boolean getIsSortable(Map<String, Object> columnConfig) {
-		boolean isSortableGrid = UIUtil.getBooleanConfigurationProperty(getWidgetConfiguration(), FormConstants.IS_SORTABLE, getIsSortableDefault());
+		boolean isSortableGrid = UIUtil.getBooleanConfigurationProperty(getWidgetConfiguration(),
+				getProject().getProjectConfiguration(), FormConstants.IS_SORTABLE, getIsSortableDefault());
 		return UIUtil.getBooleanConfigurationProperty(columnConfig, FormConstants.IS_SORTABLE, isSortableGrid);
 	}
 
@@ -740,6 +740,8 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 if (editor.hasValueChanged()) {
                     String newValue = editor.getValue();
                     record.set(field, newValue);
+                    //shadowStore record will be set in functions called from changeValue, before the replacePropertyValue service call
+
                     changeValue(record, newValue, value, rowIndex, colIndex);
                 }
             }
@@ -845,7 +847,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         EntityData newValue = UIUtil.getFirstItem(newValues);
         final String field = record.getFields()[colIndex];
         record.set(field, UIUtil.getDisplayText(newValue));
-        shadowStore.getRecordAt(rowIndex).set(field, newValue);
+        //shadowStore record will be set in functions called from changeValue, before the replacePropertyValue service call
 
         changeValue(record, newValue, oldValue, rowIndex, colIndex);
     }
@@ -912,6 +914,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 public void onAfterEdit(GridPanel grid, Record record, String field, Object newValue, Object oldValue,
                         int rowIndex, int colIndex) {
                     EntityData oldValueEntityData = getEntityDataValueAt(record, rowIndex,colIndex);
+                    //store record has been modified at this point
+                    //shadowStore record will be set in functions called from changeValue, before the replacePropertyValue service call
+
                     changeValue(record, newValue, oldValueEntityData, rowIndex, colIndex);
                 }
             };
@@ -938,7 +943,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         
         String selSubject = getSubjectOfPropertyValue(record, rowIndex, colIndex);
         if (selSubject != null) {
-            callReplacePropertyValueMethod(record, newValue, oldValue, colIndex, fieldValueType, selSubject);
+            callReplacePropertyValueMethod(newValue, oldValue, rowIndex, colIndex, fieldValueType, selSubject);
         }
         else if (getCreateMissingSubjectsOption()) {
         	createPropertyValueSubjectsAndReplacePropertyValue(record, newValue, oldValue, rowIndex, colIndex, fieldValueType);
@@ -949,9 +954,12 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         }
     }
 
-	protected void callReplacePropertyValueMethod(Record record, Object newValue, Object oldValue, int colIndex, String fieldValueType,
+	protected void callReplacePropertyValueMethod(Object newValue, Object oldValue, int rowIndex, int colIndex, String fieldValueType,
 			String selSubject) {
         //FIXME: don't use strings for the values, but entity data
+		EntityData newEntityData = (newValue instanceof EntityData || newValue == null ? (EntityData)newValue : 
+						new EntityData(newValue.toString(), newValue.toString()));
+		shadowStore.getRecordAt(rowIndex).set(store.getFields()[colIndex], newEntityData);
 		propertyValueUtil.replacePropertyValue(getProject().getProjectName(), selSubject,
 		        properties.get(colIndex), fieldValueType == null ? null : ValueType.valueOf(fieldValueType),
 		                getStringValue(oldValue),
@@ -959,8 +967,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 		        		getCopyIfTemplateOption(),
 		                GlobalSettings.getGlobalSettings().getUserName(),
 		                getReplaceValueOperationDescription(colIndex, oldValue, newValue),
-		                new ReplacePropertyValueHandler(new EntityData(newValue == null ? null : newValue.toString(),
-		                        newValue == null ? null : newValue.toString())));
+		                new ReplacePropertyValueHandler(newEntityData));
 	}
 
 	private void createPropertyValueSubjectsAndReplacePropertyValue(final Record record, final Object newValue, final Object oldValue, 
@@ -976,7 +983,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 new CreatePropertyValueSubjectsHandler(rowIndex, colIndex, new Function() {
 			@Override
 			public void execute() {
-				callReplacePropertyValueMethod(record, newValue, oldValue, colIndex, fieldValueType, 
+				callReplacePropertyValueMethod(newValue, oldValue, rowIndex, colIndex, fieldValueType, 
 						getSubjectOfPropertyValue(record, rowIndex, colIndex));
 			}
 		}));
@@ -1628,7 +1635,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 	            i++;
         	}
         }
-        //if some rows were filtered out
+        
+        //if some rows were filtered out create a reduced sized copy of the data array,
+        //containing only the filled in rows
         if (i < entityPropertyValues.size()) {
         	//data = Arrays.copyOf(data, i);
         	int newRowCount = i;
@@ -1777,7 +1786,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 shadowStore.load();
 
                 if (fieldNameSorted != null) {
-                    store.sort(fieldNameSorted, SortDir.ASC);   //WARNING! This seems to be very slow
+                	//WARNING! This seems to be slow
+                    store.sort(fieldNameSorted, SortDir.ASC);
+                    shadowStore.sort(fieldNameSorted, SortDir.ASC);
                 }
             }
 
@@ -1902,6 +1913,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         @Override
         public void handleSuccess(Void result) {
             InstanceGridWidget.this.grid.getStore().commitChanges();
+            InstanceGridWidget.this.getShadowStore().commitChanges();
             updateActionLinks(isReplace());
         }
     }

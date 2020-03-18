@@ -87,6 +87,10 @@
 			<string>class_hierarchy_label</string>
 			<string>ICD Categories</string>
 		</entry>
+		<entry>
+			<string>sortable</string>
+			<string>false</string>
+		</entry>
 	</properties>
 	
   <tabs>
