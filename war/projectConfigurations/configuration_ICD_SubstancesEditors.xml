@@ -87,6 +87,10 @@
 			<string>class_hierarchy_label</string>
 			<string>Substances</string>
 		</entry>
+		<entry>
+			<string>sortable</string>
+			<string>false</string>
+		</entry>
 	</properties>
 	
   <tabs>
@@ -29631,7 +29635,7 @@
   
   <tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.ontology.home.MyICDTab</name>
-		<label>My ICD</label>
+		<label>Help</label>
 		<properties>
 			<entry>
 				<string>closable</string>
