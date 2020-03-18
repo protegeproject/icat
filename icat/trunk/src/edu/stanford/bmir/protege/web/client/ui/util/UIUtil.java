@@ -255,10 +255,10 @@ public class UIUtil {
         String localValue = getStringConfigurationProperty(config, prop, projectDefaultValue);
         if (localValue.startsWith("@") && localValue.endsWith("@")) {
         	String projectProperty = localValue.substring(1, localValue.length() - 1);
-        	return getStringConfigurationProperty(projectConfiguration, projectProperty, defaultValue);
+        	return getStringConfigurationProperty(projectConfiguration, projectProperty, localValue);
         }
         else {
-        	return getStringConfigurationProperty(config, prop, projectDefaultValue);
+        	return localValue;
         }
     }
 
