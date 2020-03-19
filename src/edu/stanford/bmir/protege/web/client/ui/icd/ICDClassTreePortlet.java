@@ -258,7 +258,7 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
         searchCb.setWidth(150);
         searchCb.setPageSize(10);
         searchCb.setMinChars(3);
-        searchCb.setQueryDelay(1);
+        searchCb.setQueryDelay(500);
         searchCb.setHideTrigger(true);
         searchCb.setHideLabel(true);
         searchCb.setResizable(true);
