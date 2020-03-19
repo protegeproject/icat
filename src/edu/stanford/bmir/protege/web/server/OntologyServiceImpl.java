@@ -494,7 +494,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             return;
         }
         KnowledgeBase kb = project.getKnowledgeBase();
-        
+      
         //CacheControlJob.setCacheStatus(kb, true, true);
         
         boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
@@ -2540,7 +2540,8 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 		
 		KnowledgeBase kb = getProject(projectName).getKnowledgeBase();
 		
-		searchString = expandSearchString(searchString);
+		searchString = searchString.replaceAll("\\s+", " ");
+		searchString = searchString.trim();
 
 		QueryConfiguration qConf = new QueryApi(kb).install();
 		if (qConf != null) {
@@ -2553,6 +2554,12 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 	}
     
 	private String expandSearchString(String searchString) {
+		//TODO: not happy with this method. We should use the query exander 
+		//If there are spaces, it will do the wrong thing: "*diabe mel*"
+		
+		searchString = searchString.replaceAll("\\s+", " ");
+		searchString = searchString.trim();
+		
 		if (searchString.length() < MIN_SEARCH_STRING_LENGTH) {
 			return searchString;
 		}
@@ -2562,7 +2569,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 		}
 		
 		if (searchString.endsWith("*") == false) {
-			searchString = searchString + "*";
+			searchString = searchString + "*"; 
 		}
 		
 		return searchString;
@@ -2625,7 +2632,8 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
     	
     	List<EntityData> searchResults = new ArrayList<EntityData>();
     	
-    	searchResults.addAll(searchWithLuceneBrowserText(kb, searchString));
+    	List<EntityData> luceneBrowserTextResults = searchWithLuceneBrowserText(kb, searchString);
+		searchResults.addAll(luceneBrowserTextResults);
     	
     	Collection<EntityData> ownSlotSearchResults = searchWithLuceneOwnSlots(kb, qConf, searchString);
     	
@@ -2656,8 +2664,23 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 	private List<EntityData> searchWithLuceneOwnSlots(KnowledgeBase kb, QueryConfiguration qConf, String searchString) {
 		List<EntityData> searchResults = new ArrayList<EntityData>();
 		
+		if (searchString.length() == 0) {
+			return searchResults;
+		}
+		
+		Set<Slot> searchableSlots = qConf.getSearchableSlots(); 
+		//remove the name slot, as we have already searched on the name
+		searchableSlots.remove(kb.getNameSlot());
+		
+		if (searchableSlots.size() == 0) {
+			return searchResults;
+		}
+		
+		searchString = expandSearchString(searchString);
+		
 		try {
-			Collection<Frame> resultFrames = IndexUtilities.searchLuceneOwnSlots(kb, qConf.getSearchableSlots(), searchString);
+			
+			Collection<Frame> resultFrames = IndexUtilities.searchLuceneOwnSlots(kb, searchableSlots, searchString);
 			searchResults.addAll(createEntityList(resultFrames));
 		} catch (Exception e) {
 			//if (Log.getLogger().getLevel() == Level.FINE) {
