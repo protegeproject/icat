@@ -1790,8 +1790,13 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 
                 if (fieldNameSorted != null) {
                 	//WARNING! This seems to be slow
+                	printStore(store, "Store before sort");
                     store.sort(fieldNameSorted, SortDir.ASC);
+                    printStore(store, "Store after sort");
+                    
+                    printStore(shadowStore, "Shadow store before sort");
                     shadowStore.sort(fieldNameSorted, SortDir.ASC);
+                    printStore(shadowStore, "Shadow after sort");
                     //WARNING: this sort still might keep the two data stores in a different order, 
                     //as it seems that there are different sorting algorithms used :(
                 }
@@ -1803,6 +1808,21 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
             setLoadingStatus(false);
 
         }
+    }
+    
+    private void printStore(Store myStore, String storeName) {
+    	GWT.log("---- " + storeName + " -----");
+    	String[] fields = myStore.getFields();
+    	for (int i = 0; i < myStore.getCount(); i++) {
+			Record rec = myStore.getAt(i);
+			String str = "";
+			for (int j = 0; j < fields.length; j++) {
+				str = str + fields[j] + ": " + rec.getAsString(fields[j]) +", ";
+			}
+			str = str.substring(0, str.length() - 2);
+			GWT.log(str);
+		}
+    	GWT.log("--------------------");
     }
 
     protected String getCellText(EntityPropertyValues epv, PropertyEntityData ped) {
