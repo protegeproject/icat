@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class EntityData implements Serializable, Comparable<EntityData> {
+public class EntityData implements Serializable {
 
     private static final long serialVersionUID = 8012327979110652428L;
     private String name;
@@ -171,38 +171,4 @@ public class EntityData implements Serializable, Comparable<EntityData> {
         }
         properties.put(prop, value);
     }
-
-	@Override
-	public int compareTo(EntityData o) {
-		if (o == null) {
-			throw new NullPointerException("Comparing " + this.toString() + " to null is not permitted.");
-		}
-		
-		if (getName() == null && o.getName() == null ) {
-			return compare(getBrowserText(), o.getBrowserText());
-		}
-		
-		return compare(getName(), o.getName());
-	}
-	
-	private int compare(String thisString, String otherString) {
-		if (thisString == null) {
-			if (otherString == null) {
-				return 0;
-			}
-			else {
-				return -1;
-			}
-		}
-		else {
-			if (otherString == null) {
-				return 1;
-			}
-			else {
-				return thisString.compareTo( otherString);
-				//alternative (in case we want case insensitive sorting):
-				//return thisString.toLowerCase().compareTo( otherString.toLowerCase() );
-			}
-		}
-	}
 }
