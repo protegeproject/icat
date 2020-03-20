@@ -1811,6 +1811,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     }
     
     private void printStore(Store myStore, String storeName) {
+    	if (GWT.isProdMode() == true) {
+    		return;
+    	}
     	GWT.log("---- " + storeName + " -----");
     	String[] fields = myStore.getFields();
     	for (int i = 0; i < myStore.getCount(); i++) {
