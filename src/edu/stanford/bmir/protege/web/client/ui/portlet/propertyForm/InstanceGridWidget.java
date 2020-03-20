@@ -1785,10 +1785,15 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
                 shadowStore.setDataProxy(new MemoryProxy(shadowData));
                 shadowStore.load();
 
+        		//WARNING: the order of elements in store and shadowStore can be different
+                //(seems to be related to how upper case letters are treated differently during sort)
+                
                 if (fieldNameSorted != null) {
                 	//WARNING! This seems to be slow
                     store.sort(fieldNameSorted, SortDir.ASC);
                     shadowStore.sort(fieldNameSorted, SortDir.ASC);
+                    //WARNING: this sort still might keep the two data stores in a different order, 
+                    //as it seems that there are different sorting algorithms used :(
                 }
             }
 
@@ -1943,6 +1948,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         public void handleSuccess(EntityData[] results) {
         	fillInSubjectsOfColumns(rowIndex, colIndex, results);
             InstanceGridWidget.this.grid.getStore().commitChanges();
+            InstanceGridWidget.this.getShadowStore().commitChanges();
             nextAction.execute();
         }
     }
