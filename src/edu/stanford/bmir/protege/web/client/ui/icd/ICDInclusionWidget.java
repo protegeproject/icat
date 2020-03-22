@@ -11,7 +11,6 @@ import com.gwtext.client.core.EventObject;
 import com.gwtext.client.core.Position;
 import com.gwtext.client.data.FieldDef;
 import com.gwtext.client.data.Record;
-import com.gwtext.client.data.RecordDef;
 import com.gwtext.client.data.Store;
 import com.gwtext.client.data.StringFieldDef;
 import com.gwtext.client.widgets.Button;
@@ -141,7 +140,8 @@ public class ICDInclusionWidget extends InstanceGridWidget {
         createParentEntityColumn(fieldDef, columns, colCount);
         createActionColumns(fieldDef, columns, colCount);
 
-        recordDef = new RecordDef(fieldDef);
+        //recordDef = new RecordDef(fieldDef);
+        recordDef = createRecordDef(fieldDef);
 
         ColumnModel columnModel = new ColumnModel(columns);
         getGridPanel().setColumnModel(columnModel);

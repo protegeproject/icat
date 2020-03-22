@@ -186,7 +186,8 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
                     Record record = getStore().getAt(rowIndex);
                     if (record != null) {
                         if (isWriteOperationAllowed() && !isReadOnlyColumn(colIndex)) {
-                        	Record shadowStoreRecord = getShadowStore().getAt(rowIndex);
+                        	//Record shadowStoreRecord = getShadowStore().getAt(rowIndex);
+                        	Record shadowStoreRecord = getShadowRecord(rowIndex);
                             String field = record.getFields()[colIndex];
                             selectNewParents(record, shadowStoreRecord, field);
                         }
@@ -255,7 +256,9 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
                         public void onClick(BaseItem item, EventObject e) {
                           super.onClick(item, e);
                           String field = record.getFields()[colIndex];
-                          EntityData value = (EntityData)getShadowStore().getAt(rowIndex).getAsObject(field);
+                          //EntityData value = (EntityData)getShadowStore().getAt(rowIndex).getAsObject(field);
+                          Record shadowRecord = getShadowRecord(rowIndex);
+                          EntityData value = (EntityData) shadowRecord.getAsObject(field);
                           record.set(field, (String)null);
                           updateInstanceValue(record, colIndex, value == null ? "" : value, record.getAsString(field), valueType, resetParentDisplayName);
                           //alternative solution, if we don't want to refresh the widget, but prefer to display a non-precise message
@@ -529,7 +532,8 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
 
     @Override
     protected void fillValues(List<String> subjects, List<String> props) {
-        getStore().removeAll();
+        //getStore().removeAll();
+    	removeAllValuesFromStores();
 		ICDServiceManager.getInstance().getEntityPropertyValuesForLinearization(getProject().getProjectName(), subjects, UIUtil.getFirstItem(props), properties,
                 subjectEntityColumns, new GetTriplesHandler(getSubject()));
     }
@@ -551,7 +555,8 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
     protected void editClassFieldType(Record record, int rowIndex, int colIndex) {
         if (record != null) {
             if (isWriteOperationAllowed() && !isReadOnlyColumn(colIndex)) {
-            	Record shadowStoreRecord = getShadowStore().getAt(rowIndex);
+            	//Record shadowStoreRecord = getShadowStore().getAt(rowIndex);
+            	Record shadowStoreRecord = getShadowRecord(rowIndex);
                 String field = record.getFields()[colIndex];
                 selectNewParents(record, shadowStoreRecord, field);
             }

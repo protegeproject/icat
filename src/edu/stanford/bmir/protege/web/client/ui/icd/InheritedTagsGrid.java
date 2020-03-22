@@ -42,7 +42,8 @@ public class InheritedTagsGrid extends InstanceGridWidget {
 
     @Override
     protected void fillValues(List<String> subjects, List<String> props) {
-        getStore().removeAll();
+       // getStore().removeAll();
+    	removeAllValuesFromStores();
         ICDServiceManager.getInstance().getSecondaryAndInheritedTags(getProject().getProjectName(), getSubject().getName(),
                 new GetTriplesHandler(getSubject()));
     }
@@ -64,7 +65,8 @@ public class InheritedTagsGrid extends InstanceGridWidget {
     @Override
     protected Object[][] createDataArray(List<EntityPropertyValues> entityPropertyValues) {
         int i = 0;
-        Object[][] data = new Object[entityPropertyValues.size()][properties.size() + getExtraColumnCount()];
+        Object[][] data = new Object[entityPropertyValues.size()][properties.size() + getExtraColumnCount() + 1];
+        
         for (EntityPropertyValues epv : entityPropertyValues) {
             boolean isInherited = false;
             for (PropertyEntityData ped : epv.getProperties()) {

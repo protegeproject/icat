@@ -10,7 +10,6 @@ import com.gwtext.client.core.EventObject;
 import com.gwtext.client.data.BooleanFieldDef;
 import com.gwtext.client.data.FieldDef;
 import com.gwtext.client.data.Record;
-import com.gwtext.client.data.RecordDef;
 import com.gwtext.client.data.Store;
 import com.gwtext.client.data.StringFieldDef;
 import com.gwtext.client.widgets.grid.CellMetadata;
@@ -153,7 +152,8 @@ public class ICDIndexWidget extends InstanceGridWidget {
         createCheckboxColumns(fieldDef, columns, colCount);
         createActionColumns(fieldDef, columns, colCount);
 
-        recordDef = new RecordDef(fieldDef);
+        //recordDef = new RecordDef(fieldDef);
+        recordDef = createRecordDef(fieldDef);
 
         ColumnModel columnModel = new ColumnModel(columns);
         getGridPanel().setColumnModel(columnModel);

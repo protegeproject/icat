@@ -116,7 +116,8 @@ public class PostCoordinationGrid extends InstanceGridWidget {
 
     @Override
     protected void fillValues(List<String> subjects, List<String> props) {
-        getStore().removeAll();
+        //getStore().removeAll();
+    	removeAllValuesFromStores(); //before it would only empty the store, not the shadowStore, probably an oversight
         EntityData currentSubject = getSubject();
 		ICDServiceManager.getInstance().getEntityPropertyValuesForPostCoordinationAxes(getProject().getProjectName(), subjects, props, properties, 
                 new GetTriplesHandler(currentSubject));
