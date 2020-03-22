@@ -145,8 +145,9 @@ public class ScaleValueEditorWidget extends MultilevelInstanceGridWidget {
 
     @Override
     protected void removeRowFromStore(int removeInd) {
-    	getStore().removeAll();
-		updateActionLinks(isReplace());
-    	getShadowStore().removeAll();
+    	//getStore().removeAll();
+    	//getShadowStore().removeAll();
+    	removeAllValuesFromStores();
+    	updateActionLinks(isReplace());
 	}
 }

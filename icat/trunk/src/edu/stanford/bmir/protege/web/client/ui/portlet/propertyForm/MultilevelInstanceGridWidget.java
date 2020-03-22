@@ -7,10 +7,7 @@ import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
 import com.gwtext.client.data.FieldDef;
-import com.gwtext.client.data.MemoryProxy;
 import com.gwtext.client.data.Record;
-import com.gwtext.client.data.RecordDef;
-import com.gwtext.client.data.Store;
 import com.gwtext.client.widgets.grid.ColumnConfig;
 import com.gwtext.client.widgets.grid.ColumnModel;
 
@@ -108,7 +105,8 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
         createInstanceColumn(fieldDef, columns, colCount);
         createActionColumns(fieldDef, columns, colCount);
 
-        recordDef = new RecordDef(fieldDef);
+        //recordDef = new RecordDef(fieldDef);
+        recordDef = createRecordDef(fieldDef);
 
         ColumnModel columnModel = new ColumnModel(columns);
         getGridPanel().setColumnModel(columnModel);
@@ -139,8 +137,9 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
 
     @Override
     protected void fillValues(List<String> subjects, List<String> props) {
-        getStore().removeAll();
-        getShadowStore().removeAll();
+        //getStore().removeAll();
+        //getShadowStore().removeAll();
+    	removeAllValuesFromStores();
         OntologyServiceManager.getInstance().getMultilevelEntityPropertyValues(
         		getProject().getProjectName(), subjects, UIUtil.getFirstItem(props), properties, 
                 subjectEntityColumns, new GetTriplesHandler(getSubject()));
@@ -163,42 +162,50 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
 
         @Override
         public void handleSuccess(List<EntityPropertyValuesList> entityPropertyValues) {
-            if (!UIUtil.equals(mySubject, getSubject())) {  return; }
-            Store store = getStore();
-            Store shadowStore = getShadowStore();
-            
-            store.removeAll();
-            shadowStore.removeAll();
+        	  if (!UIUtil.equals(mySubject, getSubject())) {  return; }
+              
+              //store.removeAll();
+              //shadowStore.removeAll();
+              removeAllValuesFromStores();
 
-            if (entityPropertyValues != null) {
-                Object[][] data = createDataArrayFromValueList(entityPropertyValues);
-                store.setDataProxy(new MemoryProxy(data));
-                store.load();
+              if (entityPropertyValues != null) {
+            	  fillStoresWithLists(entityPropertyValues);
+                 
+            	  /*
+                  if (fieldNameSorted != null) {
+                  	//WARNING! This seems to be slow
+                      store.sort(fieldNameSorted, SortDir.ASC);
+                  }
+                  */
+              }
 
-                //load also the shadow store
-                Object[][] shadowData = createDataArrayFromValueList(entityPropertyValues, true);
-                shadowStore.setDataProxy(new MemoryProxy(shadowData));
-                shadowStore.load();
-                
-//TODO see if we really want to support this here
-//                if (fieldNameSorted != null) {
-//                    //WARNING! This seems to be slow
-//                    store.sort(fieldNameSorted, SortDir.ASC);
-//                    shadowStore.sort(fieldNameSorted, SortDir.ASC);
-//                }
-            }
+              setOldDisplayedSubject(getSubject());
 
-            setOldDisplayedSubject(getSubject());
-
-            updateActionLinks(isReplace());
-            setLoadingStatus(false);
-
-        }
+              updateActionLinks(isReplace());
+              setLoadingStatus(false);
+          }
     }
 
+   	protected void fillStoresWithLists(List<EntityPropertyValuesList> entityPropertyValues) {
+		//the stores have the same number of rows
+		Object[][] data = createDataArrayFromValueList(entityPropertyValues);
+		Object[][] shadowData = createDataArrayFromValueList(entityPropertyValues, true);
+		
+		for (int i = 0; i < shadowData.length; i++) {
+			Record shadowRec = createShadowRecord(shadowData[i]);
+			addShadowRecord(shadowRec);
+			
+			data[i][data[i].length - 1] = shadowRec.getId();
+			Record realRec = createRecord(data[i]);
+			addRecord(realRec);
+		}
+	}
+    
+    
     @Override
     protected Object[][] createDataArray(List<EntityPropertyValues> entityPropertyValues, boolean asEntityData) {
     	System.out.println("Make sure that this method will not be called");
+    	GWT.log("The method createDataArray in MultilevelInstanceGridWidget should never be called!");
         int i = 0;
         Object[][] data = new Object[entityPropertyValues.size()][properties.size() + getExtraColumnCount()];
         for (EntityPropertyValues epv : entityPropertyValues) {
@@ -229,7 +236,16 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
 
     protected Object[][] createDataArrayFromValueList(List<EntityPropertyValuesList> entityPropertyValues, boolean asEntityData) {
         int i = 0;
-        Object[][] data = new Object[entityPropertyValues.size()][properties.size() + getExtraColumnCount()];
+        //Object[][] data = new Object[entityPropertyValues.size()][properties.size() + getExtraColumnCount()];
+       
+        int rowCount = entityPropertyValues.size();
+        int colCount = (asEntityData == true) ? 
+        		properties.size() :
+        		properties.size() + getExtraColumnCount() + 1; //+1 because of the linked shadow store id field. It must not be included in the columns..
+        
+        Object[][] data = new Object[rowCount][colCount];
+ 
+        
         for (EntityPropertyValuesList epv : entityPropertyValues) {
         	if (isAllowedValueForUser(epv)) {
 	            for (int j = 0; j < properties.size(); j++) {
@@ -256,7 +272,7 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
         	//data = Arrays.copyOf(data, i);
         	int newRowCount = i;
         	//data = Arrays.stream(data).map(a ->  Arrays.copyOf(a, newSize)).toArray(Object[][]::new);
-        	int colCount = (data.length > 0 ? data[0].length : 0);
+        	colCount = (data.length > 0 ? data[0].length : 0);
         	Object[][] newData = new Object[newRowCount][colCount];
             for (int j = 0; j < newRowCount; j++) {
                 System.arraycopy(data[j], 0, newData[j], 0, data[j].length);
@@ -298,7 +314,9 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
     		return record.getAsString(INSTANCE_FIELD_NAME);
     	}
     	else {
-    		EntityData subjEntityData = (EntityData) getShadowStore().getAt(rowIndex).getAsObject(getPropertyFieldName(subjColIndex));
+    		//EntityData subjEntityData = (EntityData) getShadowStore().getAt(rowIndex).getAsObject(getPropertyFieldName(subjColIndex));
+    		Record shadowRec = getShadowRecord(rowIndex);
+    		EntityData subjEntityData = (EntityData) shadowRec.getAsObject(getPropertyFieldName(subjColIndex));
     		return subjEntityData == null ? null : subjEntityData.getName();
     	}
     }
@@ -308,7 +326,10 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
     		int rowIndex, int colIndex, ArrayList<String> propertiesList, ArrayList<String> typesList) {
     	int subjColIndex = subjectEntityColumns[colIndex];
     	while (subjColIndex > -1) {
-    		EntityData subjEntityData = (EntityData) getShadowStore().getAt(rowIndex).getAsObject(getPropertyFieldName(subjColIndex));
+    		//EntityData subjEntityData = (EntityData) getShadowStore().getAt(rowIndex).getAsObject(getPropertyFieldName(subjColIndex));
+    		Record shadowRec = getShadowRecord(rowIndex);
+    		EntityData subjEntityData = (EntityData) shadowRec.getAsObject(getPropertyFieldName(subjColIndex));
+    		
     		if (subjEntityData == null || subjEntityData.getName() == null) {
     			propertiesList.add(0, (String) getColumnConfiguration(subjColIndex, FormConstants.PROPERTY));
         		typesList.add(0, (String) getColumnConfiguration(subjColIndex, FormConstants.ONT_TYPE));
@@ -328,7 +349,8 @@ public class MultilevelInstanceGridWidget extends InstanceGridWidget {
 			int subjColIndex = subjectEntityColumns[colIndex];
 			int i = 0;
 			Record record = getStore().getAt(rowIndex);
-			Record shadowRecord = getShadowStore().getAt(rowIndex);
+			//Record shadowRecord = getShadowStore().getAt(rowIndex);
+			Record shadowRecord = getShadowRecord(rowIndex);
 			while (subjColIndex > -1 && i < subjects.length) {
 				EntityData subjectData = subjects[i];
 				String field = getPropertyFieldName(subjColIndex);

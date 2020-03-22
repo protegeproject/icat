@@ -89,6 +89,12 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     protected static String INSTANCE_FIELD_NAME = "@instance@";
     protected static String DELETE_FIELD_NAME = "@delete@";
     protected static String COMMENT_FIELD_NAME = "@comment@";
+    
+    //This is added in the shadow store, and it will have the same
+    //value as of the one of the sort field (if it exists).
+    //It is used to make sure that the store and shadowStore are 
+    //sorted consistently.
+    private static String LINKED_SHADOW_REC_ID = "@linkedShadowRecId@";
 
     private static int OFFSET_DELETE_COLUMN = 1;   //use -1 if not present
     private static int OFFSET_COMMENT_COLUMN = 2;
@@ -377,14 +383,15 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 	}
 	
     protected void onInsertNewValue(EntityData newInstance) {
-        Object[] empty = new Object[properties.size() + getExtraColumnCount()];
-        empty[properties.size()] = newInstance.getName();
-        setExtraColumnValues(empty, new EntityPropertyValues(newInstance));
-
-        Record newRecord = recordDef.createRecord(empty);
+    	Record newRecord = createEmptyRecord(newInstance);
+    	
         grid.stopEditing();
+        
+        Record shadowRecord = shadowRecordDef.createRecord(new Object[properties.size()]);
+        newRecord.set(LINKED_SHADOW_REC_ID, shadowRecord.getId());
+        
         store.insert(0, newRecord);
-        shadowStore.insert(0, shadowRecordDef.createRecord(new Object[properties.size()]));
+        shadowStore.insert(0, shadowRecord);
 
         if (hasGridEditor(defaultColumnToEdit)) {
             grid.startEditing(0, defaultColumnToEdit);
@@ -392,6 +399,17 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
             onValueColumnClicked(grid, 0, defaultColumnToEdit);
         }
     }
+    
+    
+    protected Record createEmptyRecord(EntityData inst) {
+    	Object[] empty = new Object[properties.size() + getExtraColumnCount() + 1];
+        empty[properties.size()] = inst.getName();
+        setExtraColumnValues(empty, new EntityPropertyValues(inst));
+
+        Record newRecord = recordDef.createRecord(empty);
+        return newRecord;
+    }
+    
 
     private boolean hasGridEditor(int columnIndex) {
         return colIndex2Editor.get(columnIndex) != null;
@@ -519,7 +537,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
             multiValue = UIUtil.getBooleanConfigurationProperty(widgetConfig, FormConstants.MULTIPLE_VALUES_ALLOWED, true);
         }
 
-        createColumns();
+        createColumns(); //should be called before createStore
         createStore();
         attachListeners();
 
@@ -586,7 +604,6 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         grid.setStore(store);
         store.load();
 
-        //create also shadow store
         createShadowStore();
     }
 
@@ -596,6 +613,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         for (int i = 0; i < properties.size(); i++) {
             fieldDefs[i] = new ObjectFieldDef(getPropertyFieldName(i));
         }
+        
         shadowRecordDef = new RecordDef(fieldDefs);
 
         ArrayReader reader = new ArrayReader(shadowRecordDef);
@@ -929,8 +947,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 		//this would work only for columns that represent property names
 		//String field = getPropertyFieldName(colIndex);
 		String field = record.getFields()[colIndex];
+		Record shadowRec = getShadowRecord(record);
 
-		return (EntityData) shadowStore.getRecordAt(rowIndex).getAsObject(field);
+		return (EntityData) shadowRec.getAsObject(field);
 	}
 
     private void changeValue(Record record, Object newValue, Object oldValue, int rowIndex, int colIndex) {
@@ -959,7 +978,13 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         //FIXME: don't use strings for the values, but entity data
 		EntityData newEntityData = (newValue instanceof EntityData || newValue == null ? (EntityData)newValue : 
 						new EntityData(newValue.toString(), newValue.toString()));
-		shadowStore.getRecordAt(rowIndex).set(store.getFields()[colIndex], newEntityData);
+		
+		//shadowStore.getRecordAt(rowIndex).set(store.getFields()[colIndex], newEntityData);
+		Record shadowRec = getShadowRecord(rowIndex);
+		if (shadowRec != null) { //should never happen
+			shadowRec.set(store.getFields()[colIndex], newEntityData);
+		}
+		
 		propertyValueUtil.replacePropertyValue(getProject().getProjectName(), selSubject,
 		        properties.get(colIndex), fieldValueType == null ? null : ValueType.valueOf(fieldValueType),
 		                getStringValue(oldValue),
@@ -969,7 +994,17 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 		                getReplaceValueOperationDescription(colIndex, oldValue, newValue),
 		                new ReplacePropertyValueHandler(newEntityData));
 	}
-
+	
+	protected Record getShadowRecord(Record record) {
+		String shadowRecId = record.getAsString(LINKED_SHADOW_REC_ID);
+		return shadowRecId == null ? null : shadowStore.getById(shadowRecId);
+	}
+	
+	protected Record getShadowRecord(int realIndex) {
+		Record realRec = store.getRecordAt(realIndex);
+		return realRec == null ? null : getShadowRecord(realRec);
+	}
+	
 	private void createPropertyValueSubjectsAndReplacePropertyValue(final Record record, final Object newValue, final Object oldValue, 
 			final int rowIndex, final int colIndex, final String fieldValueType) {
 		ArrayList<String> propertiesList = new ArrayList<String>();
@@ -1075,6 +1110,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         }
 
         FieldDef[] fieldDef = new FieldDef[colCount + getExtraColumnCount()];
+        
         ColumnConfig[] columns = new ColumnConfig[colCount + getExtraColumnCount()];
         String[] props = new String[colCount];
 
@@ -1103,11 +1139,27 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         createInstanceColumn(fieldDef, columns, colCount);
         createActionColumns(fieldDef, columns, colCount);
 
-        recordDef = new RecordDef(fieldDef);
+        createRecordDef(fieldDef);
+        //recordDef = new RecordDef(fieldDef);
 
         ColumnModel columnModel = new ColumnModel(columns);
         grid.setColumnModel(columnModel);
     }
+
+    protected RecordDef createRecordDef(FieldDef[] fieldDef) {
+    	FieldDef[] newFieldDef = new FieldDef[fieldDef.length + 1];
+    	//creating the copy with one element bigger, so that we can add the linkedShadowRecId to the store.
+    	System.arraycopy(fieldDef, 0, newFieldDef, 0, fieldDef.length);
+    	newFieldDef = addLinkedShadowRecField(newFieldDef);
+    	recordDef = new RecordDef(newFieldDef);
+    	return recordDef;
+    }
+    
+    
+	private FieldDef[] addLinkedShadowRecField(FieldDef[] fieldDef) {
+		fieldDef[fieldDef.length-1] = new StringFieldDef(LINKED_SHADOW_REC_ID);
+		return fieldDef;		
+	}
 
 	protected void createInstanceColumn(FieldDef[] fieldDef, ColumnConfig[] columns, int colCount) {
         ColumnConfig instCol = new ColumnConfig("", INSTANCE_FIELD_NAME, 25);
@@ -1237,6 +1289,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 	}
 
     //FIXME: protect against invalid config xml
+    //this is not a good method: it modifies the fieldDef as well..
     protected ColumnConfig createColumn(Map<String, Object> columnConfig, 
     		FieldDef[] fieldDef, ColumnConfig[] columnConfigs, String property, int index) {
         ColumnConfig gridColConfig = new ColumnConfig();
@@ -1613,9 +1666,17 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         return createDataArray(entityPropertyValues, false);
     }
 
+    //asEntityData == true, is used by the shadowStore
     protected Object[][] createDataArray(List<EntityPropertyValues> entityPropertyValues, boolean asEntityData) {
         int i = 0;
-        Object[][] data = new Object[entityPropertyValues.size()][properties.size() + getExtraColumnCount()];
+        
+        int rowCount = entityPropertyValues.size();
+        int colCount = (asEntityData == true) ? 
+        		properties.size() :
+        		properties.size() + getExtraColumnCount() + 1; //+1 because of the linked shadow store id field. It must not be included in the columns..
+        
+        Object[][] data = new Object[rowCount][colCount];
+        
         for (EntityPropertyValues epv : entityPropertyValues) {
         	if (isAllowedValueForUser(epv)) {
 	            for (PropertyEntityData ped : epv.getProperties()) {
@@ -1642,7 +1703,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         	//data = Arrays.copyOf(data, i);
         	int newRowCount = i;
         	//data = Arrays.stream(data).map(a ->  Arrays.copyOf(a, newSize)).toArray(Object[][]::new);
-        	int colCount = (data.length > 0 ? data[0].length : 0);
+        	colCount = (data.length > 0 ? data[0].length : 0);
         	Object[][] newData = new Object[newRowCount][colCount];
             for (int j = 0; j < newRowCount; j++) {
                 System.arraycopy(data[j], 0, newData[j], 0, data[j].length);
@@ -1688,10 +1749,6 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         return store;
     }
     
-    protected Store getShadowStore() {
-    	return shadowStore;
-    }
-
     /*
      * Not quite right: it depends on the configuration that the column is named: "Column2" and the index is 1.
      * Should make it more robust. Column name should not matter.
@@ -1772,33 +1829,17 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         @Override
         public void handleSuccess(List<EntityPropertyValues> entityPropertyValues) {
             if (!UIUtil.equals(mySubject, getSubject())) {  return; }
-            store.removeAll();
-            shadowStore.removeAll();
+           
+            //store.removeAll();
+            //shadowStore.removeAll();
+            removeAllValuesFromStores();
 
             if (entityPropertyValues != null) {
-                Object[][] data = createDataArray(entityPropertyValues);
-                store.setDataProxy(new MemoryProxy(data));
-                store.load();
-
-                //load also the shadow store
-                Object[][] shadowData = createDataArray(entityPropertyValues, true);
-                shadowStore.setDataProxy(new MemoryProxy(shadowData));
-                shadowStore.load();
-
-        		//WARNING: the order of elements in store and shadowStore can be different
-                //(seems to be related to how upper case letters are treated differently during sort)
+                fillStores(entityPropertyValues);
                 
                 if (fieldNameSorted != null) {
                 	//WARNING! This seems to be slow
-                	printStore(store, "Store before sort");
                     store.sort(fieldNameSorted, SortDir.ASC);
-                    printStore(store, "Store after sort");
-                    
-                    printStore(shadowStore, "Shadow store before sort");
-                    shadowStore.sort(fieldNameSorted, SortDir.ASC);
-                    printStore(shadowStore, "Shadow after sort");
-                    //WARNING: this sort still might keep the two data stores in a different order, 
-                    //as it seems that there are different sorting algorithms used :(
                 }
             }
 
@@ -1806,14 +1847,48 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
             updateActionLinks(isReplace());
             setLoadingStatus(false);
-
         }
     }
-    
-    private void printStore(Store myStore, String storeName) {
-    	if (GWT.isProdMode() == true) {
-    		return;
-    	}
+
+
+	protected void fillStores(List<EntityPropertyValues> entityPropertyValues) {
+		//the stores have the same number of rows
+		Object[][] data = createDataArray(entityPropertyValues);
+		Object[][] shadowData = createDataArray(entityPropertyValues, true);
+		
+		for (int i = 0; i < shadowData.length; i++) {
+			Record shadowRec = createShadowRecord(shadowData[i]);
+			addShadowRecord(shadowRec);
+			
+			data[i][data[i].length - 1] = shadowRec.getId();
+			Record realRec = createRecord(data[i]);
+			addRecord(realRec);
+		}
+	}
+	
+	
+	protected void removeAllValuesFromStores() {
+		store.removeAll();
+		shadowStore.removeAll();
+	}
+	
+	protected Record createRecord(Object[] rowData) {
+		return recordDef.createRecord(rowData);
+	}
+	
+	protected Record createShadowRecord(Object[] rowData) {
+		return shadowRecordDef.createRecord(rowData);
+	}
+
+	protected void addRecord(Record rec) {
+		store.add(rec);
+	}
+	
+	protected void addShadowRecord(Record rec) {
+		shadowStore.add(rec);
+	}
+	
+	private void printStore(Store myStore, String storeName) {
     	GWT.log("---- " + storeName + " -----");
     	String[] fields = myStore.getFields();
     	for (int i = 0; i < myStore.getCount(); i++) {
@@ -1940,8 +2015,11 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
         @Override
         public void handleSuccess(Void result) {
-            InstanceGridWidget.this.grid.getStore().commitChanges();
-            InstanceGridWidget.this.getShadowStore().commitChanges();
+            //InstanceGridWidget.this.grid.getStore().commitChanges();
+            //InstanceGridWidget.this.getShadowStore().commitChanges();
+        	store.commitChanges();
+        	shadowStore.commitChanges();
+        	
             updateActionLinks(isReplace());
         }
     }
@@ -1970,8 +2048,12 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         @Override
         public void handleSuccess(EntityData[] results) {
         	fillInSubjectsOfColumns(rowIndex, colIndex, results);
-            InstanceGridWidget.this.grid.getStore().commitChanges();
-            InstanceGridWidget.this.getShadowStore().commitChanges();
+        	
+            //InstanceGridWidget.this.grid.getStore().commitChanges();
+            //InstanceGridWidget.this.getShadowStore().commitChanges();
+        	store.commitChanges();
+        	shadowStore.commitChanges();
+        	
             nextAction.execute();
         }
     }
@@ -2276,16 +2358,20 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     
     protected void removeRowFromStore(int removeInd) {
 		Record recordToRemove = store.getAt(removeInd);
-		if (recordToRemove != null) {
-		    store.remove(recordToRemove);
-		    updateActionLinks(isReplace());
+		
+		if (recordToRemove == null) {
+			return;
 		}
-
-		//update shadow store
-		Record shadowRecordToRemove = shadowStore.getAt(removeInd);
-		if (shadowRecordToRemove != null) {
-		    shadowStore.remove(shadowRecordToRemove);
+		
+		Record shadowRecToRemove = getShadowRecord(recordToRemove);
+		
+		store.remove(recordToRemove);
+		
+		if (shadowRecToRemove != null) {
+			shadowStore.remove(shadowRecToRemove);
 		}
+		
+		updateActionLinks(isReplace());
 	}
 
 	final class DeleteContextMenu extends Menu{
