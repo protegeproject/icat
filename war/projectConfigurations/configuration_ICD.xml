@@ -5387,21 +5387,25 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_pc_custom_scales.html</string>
+													<string>../html/ruler_pc_value_hierarchy.html</string>
 												</entry>
 											</map>
 										</entry>
 										
 										<entry>
-											<string>http://who.int/icd#hasSeverityScale</string>
+											<string>http://who.int/icd#hasSeverity</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>SeverityScale</string>
+													<string>Severity</string>
 												</entry>
 												<entry>
 													<string>ont_type</string>
-													<string>http://who.int/icd#TemplateSeverityScaleTerm</string>
+													<string>http://who.int/icd#SeverityReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#SeverityScaleValue</string>
 												</entry>
 												<entry>
 													<string>label</string>
@@ -5413,35 +5417,11 @@
 												</entry>
 												<entry>
 													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasSeverity</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#severity</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
-													<string>scaleeditor_grid</string>
-												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry>
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>replace_with_new_value_desc</string>
-													<string>Delete scale</string>
-												</entry-->
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
+													<string>internalreference</string>
 												</entry>
 												<entry>
 													<string>index</string>
@@ -5453,30 +5433,22 @@
 												</entry>
 												<entry>
 													<string>multiple_values_allowed</string>
-													<boolean>false</boolean>
-												</entry>
-												<entry>
-													<string>insert_copy</string>
-													<boolean>false</boolean>
+													<boolean>true</boolean>
 												</entry>
 												<entry>
 													<string>Column1</string>
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Name</string>
+															<string>value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>150</string>
+															<string>220</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -5489,23 +5461,23 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value</string>
+															<string>Definition (inst) Ref. Value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>100</string>
+															<string>50</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#hasScaleValue</string>
+															<string>http://who.int/icd#definition</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>0</string>
+															<string>1</string>
 														</entry>
 														<entry>
 															<string>hidden</string>
-															<string>false</string>
+															<string>true</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -5518,36 +5490,7 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value Label</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>150</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>2</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column4</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Local Definition</string>
+															<string>definition</string>
 														</entry>
 														<entry>
 															<string>width</string>
@@ -5555,110 +5498,15 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#description</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>empty_text</string>
-															<string>@Column7@</string>
-														</entry>
-														<entry>
-															<string>field_editor</string>
-															<string>multiline</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>false</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>3</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column5</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Referenced Value (inst)</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#referencedValue</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>4</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column6</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition (inst) Ref. Value</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#definition</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>5</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>5</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column7</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition Ref. Value</string>
-														</entry>
-														<entry>
-															<string>property</string>
 															<string>http://who.int/icd#label</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>6</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>2</string>
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>6</string>
+															<string>2</string>
 														</entry>
 													</map>
 												</entry>
@@ -5666,15 +5514,19 @@
 										</entry>
 										
 										<entry>
-											<string>http://who.int/icd#hasAlternativeSeverity1Scale</string>
+											<string>http://who.int/icd#hasAlternativeSeverity1</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>AlternativeSeverity1Scale</string>
+													<string>AlternativeSeverity1</string>
 												</entry>
 												<entry>
 													<string>ont_type</string>
-													<string>http://who.int/icd#TemplateSeverityScaleTerm</string>
+													<string>http://who.int/icd#SeverityReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#SeverityScaleValue</string>
 												</entry>
 												<entry>
 													<string>label</string>
@@ -5686,35 +5538,11 @@
 												</entry>
 												<entry>
 													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasAlternativeSeverity1</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#alternativeSeverity1</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
-													<string>scaleeditor_grid</string>
-												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry>
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>replace_with_new_value_desc</string>
-													<string>Delete scale</string>
-												</entry-->
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
+													<string>internalreference</string>
 												</entry>
 												<entry>
 													<string>index</string>
@@ -5726,30 +5554,22 @@
 												</entry>
 												<entry>
 													<string>multiple_values_allowed</string>
-													<boolean>false</boolean>
-												</entry>
-												<entry>
-													<string>insert_copy</string>
-													<boolean>false</boolean>
+													<boolean>true</boolean>
 												</entry>
 												<entry>
 													<string>Column1</string>
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Name</string>
+															<string>value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>150</string>
+															<string>220</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -5762,23 +5582,23 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value</string>
+															<string>Definition (inst) Ref. Value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>100</string>
+															<string>50</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#hasScaleValue</string>
+															<string>http://who.int/icd#definition</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>0</string>
+															<string>1</string>
 														</entry>
 														<entry>
 															<string>hidden</string>
-															<string>false</string>
+															<string>true</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -5791,36 +5611,7 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value Label</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>150</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>2</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column4</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Local Definition</string>
+															<string>definition</string>
 														</entry>
 														<entry>
 															<string>width</string>
@@ -5828,110 +5619,15 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#description</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>empty_text</string>
-															<string>@Column7@</string>
-														</entry>
-														<entry>
-															<string>field_editor</string>
-															<string>multiline</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>false</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>3</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column5</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Referenced Value (inst)</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#referencedValue</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>4</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column6</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition (inst) Ref. Value</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#definition</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>5</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>5</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column7</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition Ref. Value</string>
-														</entry>
-														<entry>
-															<string>property</string>
 															<string>http://who.int/icd#label</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>6</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>2</string>
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>6</string>
+															<string>2</string>
 														</entry>
 													</map>
 												</entry>
@@ -5939,15 +5635,19 @@
 										</entry>
 										
 										<entry>
-											<string>http://who.int/icd#hasAlternativeSeverity2Scale</string>
+											<string>http://who.int/icd#hasAlternativeSeverity2</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>AlternativeSeverity2Scale</string>
+													<string>AlternativeSeverity2</string>
 												</entry>
 												<entry>
 													<string>ont_type</string>
-													<string>http://who.int/icd#TemplateSeverityScaleTerm</string>
+													<string>http://who.int/icd#SeverityReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#SeverityScaleValue</string>
 												</entry>
 												<entry>
 													<string>label</string>
@@ -5959,35 +5659,11 @@
 												</entry>
 												<entry>
 													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasAlternativeSeverity2</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#alternativeSeverity2</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
-													<string>scaleeditor_grid</string>
-												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry>
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>replace_with_new_value_desc</string>
-													<string>Delete scale</string>
-												</entry-->
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
+													<string>internalreference</string>
 												</entry>
 												<entry>
 													<string>index</string>
@@ -5999,30 +5675,22 @@
 												</entry>
 												<entry>
 													<string>multiple_values_allowed</string>
-													<boolean>false</boolean>
-												</entry>
-												<entry>
-													<string>insert_copy</string>
-													<boolean>false</boolean>
+													<boolean>true</boolean>
 												</entry>
 												<entry>
 													<string>Column1</string>
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Name</string>
+															<string>value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>150</string>
+															<string>220</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -6035,23 +5703,23 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value</string>
+															<string>Definition (inst) Ref. Value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>100</string>
+															<string>50</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#hasScaleValue</string>
+															<string>http://who.int/icd#definition</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>0</string>
+															<string>1</string>
 														</entry>
 														<entry>
 															<string>hidden</string>
-															<string>false</string>
+															<string>true</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -6064,36 +5732,7 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value Label</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>150</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>2</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column4</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Local Definition</string>
+															<string>definition</string>
 														</entry>
 														<entry>
 															<string>width</string>
@@ -6101,110 +5740,15 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#description</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>empty_text</string>
-															<string>@Column7@</string>
-														</entry>
-														<entry>
-															<string>field_editor</string>
-															<string>multiline</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>false</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>3</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column5</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Referenced Value (inst)</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#referencedValue</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>4</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column6</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition (inst) Ref. Value</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#definition</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>5</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>5</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column7</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition Ref. Value</string>
-														</entry>
-														<entry>
-															<string>property</string>
 															<string>http://who.int/icd#label</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>6</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>2</string>
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>6</string>
+															<string>2</string>
 														</entry>
 													</map>
 												</entry>
@@ -6212,15 +5756,19 @@
 										</entry>
 										
 										<entry>
-											<string>http://who.int/icd#hasCourseScale</string>
+											<string>http://who.int/icd#course</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>CourseScale</string>
+													<string>Course</string>
 												</entry>
 												<entry>
 													<string>ont_type</string>
-													<string>http://who.int/icd#TemplateCourseScaleTerm</string>
+													<string>http://who.int/icd#CourseReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#Temporality_Course</string>
 												</entry>
 												<entry>
 													<string>label</string>
@@ -6236,31 +5784,7 @@
 												</entry>
 												<entry>
 													<string>component_type</string>
-													<string>scaleeditor_grid</string>
-												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry>
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>replace_with_new_value_desc</string>
-													<string>Delete scale</string>
-												</entry-->
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
+													<string>internalreference</string>
 												</entry>
 												<entry>
 													<string>index</string>
@@ -6272,26 +5796,22 @@
 												</entry>
 												<entry>
 													<string>multiple_values_allowed</string>
-													<boolean>false</boolean>
+													<boolean>true</boolean>
 												</entry>
 												<entry>
 													<string>Column1</string>
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Name</string>
+															<string>value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>150</string>
+															<string>220</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -6304,23 +5824,23 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value</string>
+															<string>Definition (inst) Ref. Value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>100</string>
+															<string>50</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#hasScaleValue</string>
+															<string>http://who.int/icd#definition</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>0</string>
+															<string>1</string>
 														</entry>
 														<entry>
 															<string>hidden</string>
-															<string>false</string>
+															<string>true</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -6333,36 +5853,7 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value Label</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>150</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>2</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column4</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Local Definition</string>
+															<string>definition</string>
 														</entry>
 														<entry>
 															<string>width</string>
@@ -6370,110 +5861,15 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#description</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>empty_text</string>
-															<string>@Column7@</string>
-														</entry>
-														<entry>
-															<string>field_editor</string>
-															<string>multiline</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>false</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>3</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column5</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Referenced Value (inst)</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#referencedValue</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>4</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column6</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition (inst) Ref. Value</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#definition</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>5</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>5</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column7</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition Ref. Value</string>
-														</entry>
-														<entry>
-															<string>property</string>
 															<string>http://who.int/icd#label</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>6</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>2</string>
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>6</string>
+															<string>2</string>
 														</entry>
 													</map>
 												</entry>
@@ -6481,15 +5877,19 @@
 										</entry>
 										
 										<entry>
-											<string>http://who.int/icd#hasPatternActivityClinicalStatusScale</string>
+											<string>http://who.int/icd#temporalPatternAndOnset</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>TemporalPatternAndOnsetScale</string>
+													<string>TempPatAndOnset</string>
 												</entry>
 												<entry>
 													<string>ont_type</string>
-													<string>http://who.int/icd#TemplateTemporalPatternAndOnsetScaleTerm</string>
+													<string>http://who.int/icd#TemporalPatternAndOnsetReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#Temporality_Pattern_Activity_Clinical_Status</string>
 												</entry>
 												<entry>
 													<string>label</string>
@@ -6505,31 +5905,7 @@
 												</entry>
 												<entry>
 													<string>component_type</string>
-													<string>scaleeditor_grid</string>
-												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry>
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>replace_with_new_value_desc</string>
-													<string>Delete scale</string>
-												</entry-->
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
+													<string>internalreference</string>
 												</entry>
 												<entry>
 													<string>index</string>
@@ -6541,26 +5917,22 @@
 												</entry>
 												<entry>
 													<string>multiple_values_allowed</string>
-													<boolean>false</boolean>
+													<boolean>true</boolean>
 												</entry>
 												<entry>
 													<string>Column1</string>
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Name</string>
+															<string>value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>150</string>
+															<string>220</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -6573,23 +5945,23 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value</string>
+															<string>Definition (inst) Ref. Value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>100</string>
+															<string>50</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#hasScaleValue</string>
+															<string>http://who.int/icd#definition</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>0</string>
+															<string>1</string>
 														</entry>
 														<entry>
 															<string>hidden</string>
-															<string>false</string>
+															<string>true</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -6602,36 +5974,7 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value Label</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>150</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>2</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column4</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Local Definition</string>
+															<string>definition</string>
 														</entry>
 														<entry>
 															<string>width</string>
@@ -6639,110 +5982,15 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#description</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>empty_text</string>
-															<string>@Column7@</string>
-														</entry>
-														<entry>
-															<string>field_editor</string>
-															<string>multiline</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>false</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>3</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column5</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Referenced Value (inst)</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#referencedValue</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>4</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column6</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition (inst) Ref. Value</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#definition</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>5</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>5</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column7</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition Ref. Value</string>
-														</entry>
-														<entry>
-															<string>property</string>
 															<string>http://who.int/icd#label</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>6</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>2</string>
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>6</string>
+															<string>2</string>
 														</entry>
 													</map>
 												</entry>
@@ -6766,7 +6014,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_pc_value_hierarchy.html</string>
+													<string>../html/ruler_pc_empty.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -13221,11 +12469,11 @@
 										</entry>
 										
 										<entry>
-											<string>PCECCustomScaleRuler</string>
+											<string>PCCustomScaleRuler</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>PCECCustomScaleRuler</string>
+													<string>PCCustomScaleRuler</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -13237,21 +12485,25 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_pc_custom_scales.html</string>
+													<string>../html/ruler_pc_value_hierarchy.html</string>
 												</entry>
 											</map>
 										</entry>
 										
 										<entry>
-											<string>http://who.int/icd#hasSeverityScale</string>
+											<string>http://who.int/icd#hasSeverity</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>SeverityScale</string>
+													<string>Severity</string>
 												</entry>
 												<entry>
 													<string>ont_type</string>
-													<string>http://who.int/icd#TemplateSeverityScaleTerm</string>
+													<string>http://who.int/icd#SeverityReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#SeverityScaleValue</string>
 												</entry>
 												<entry>
 													<string>label</string>
@@ -13263,35 +12515,11 @@
 												</entry>
 												<entry>
 													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasSeverity</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#severity</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
-													<string>scaleeditor_grid</string>
-												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry>
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>replace_with_new_value_desc</string>
-													<string>Delete scale</string>
-												</entry-->
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
+													<string>internalreference</string>
 												</entry>
 												<entry>
 													<string>index</string>
@@ -13303,30 +12531,22 @@
 												</entry>
 												<entry>
 													<string>multiple_values_allowed</string>
-													<boolean>false</boolean>
-												</entry>
-												<entry>
-													<string>insert_copy</string>
-													<boolean>false</boolean>
+													<boolean>true</boolean>
 												</entry>
 												<entry>
 													<string>Column1</string>
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Name</string>
+															<string>value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>150</string>
+															<string>220</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -13339,23 +12559,23 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value</string>
+															<string>Definition (inst) Ref. Value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>100</string>
+															<string>50</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#hasScaleValue</string>
+															<string>http://who.int/icd#definition</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>0</string>
+															<string>1</string>
 														</entry>
 														<entry>
 															<string>hidden</string>
-															<string>false</string>
+															<string>true</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -13368,36 +12588,7 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value Label</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>150</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>2</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column4</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Local Definition</string>
+															<string>definition</string>
 														</entry>
 														<entry>
 															<string>width</string>
@@ -13405,110 +12596,15 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#description</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>empty_text</string>
-															<string>@Column7@</string>
-														</entry>
-														<entry>
-															<string>field_editor</string>
-															<string>multiline</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>false</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>3</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column5</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Referenced Value (inst)</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#referencedValue</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>4</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column6</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition (inst) Ref. Value</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#definition</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>5</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>5</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column7</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition Ref. Value</string>
-														</entry>
-														<entry>
-															<string>property</string>
 															<string>http://who.int/icd#label</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>6</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>2</string>
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>6</string>
+															<string>2</string>
 														</entry>
 													</map>
 												</entry>
@@ -13516,15 +12612,19 @@
 										</entry>
 										
 										<entry>
-											<string>http://who.int/icd#hasAlternativeSeverity1Scale</string>
+											<string>http://who.int/icd#hasAlternativeSeverity1</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>AlternativeSeverity1Scale</string>
+													<string>AlternativeSeverity1</string>
 												</entry>
 												<entry>
 													<string>ont_type</string>
-													<string>http://who.int/icd#TemplateSeverityScaleTerm</string>
+													<string>http://who.int/icd#SeverityReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#SeverityScaleValue</string>
 												</entry>
 												<entry>
 													<string>label</string>
@@ -13536,35 +12636,11 @@
 												</entry>
 												<entry>
 													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasAlternativeSeverity1</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#alternativeSeverity1</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
-													<string>scaleeditor_grid</string>
-												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry>
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>replace_with_new_value_desc</string>
-													<string>Delete scale</string>
-												</entry-->
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
+													<string>internalreference</string>
 												</entry>
 												<entry>
 													<string>index</string>
@@ -13576,30 +12652,22 @@
 												</entry>
 												<entry>
 													<string>multiple_values_allowed</string>
-													<boolean>false</boolean>
-												</entry>
-												<entry>
-													<string>insert_copy</string>
-													<boolean>false</boolean>
+													<boolean>true</boolean>
 												</entry>
 												<entry>
 													<string>Column1</string>
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Name</string>
+															<string>value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>150</string>
+															<string>220</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -13612,23 +12680,23 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value</string>
+															<string>Definition (inst) Ref. Value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>100</string>
+															<string>50</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#hasScaleValue</string>
+															<string>http://who.int/icd#definition</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>0</string>
+															<string>1</string>
 														</entry>
 														<entry>
 															<string>hidden</string>
-															<string>false</string>
+															<string>true</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -13641,36 +12709,7 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value Label</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>150</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>2</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column4</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Local Definition</string>
+															<string>definition</string>
 														</entry>
 														<entry>
 															<string>width</string>
@@ -13678,110 +12717,15 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#description</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>empty_text</string>
-															<string>@Column7@</string>
-														</entry>
-														<entry>
-															<string>field_editor</string>
-															<string>multiline</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>false</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>3</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column5</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Referenced Value (inst)</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#referencedValue</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>4</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column6</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition (inst) Ref. Value</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#definition</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>5</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>5</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column7</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition Ref. Value</string>
-														</entry>
-														<entry>
-															<string>property</string>
 															<string>http://who.int/icd#label</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>6</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>2</string>
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>6</string>
+															<string>2</string>
 														</entry>
 													</map>
 												</entry>
@@ -13789,15 +12733,19 @@
 										</entry>
 										
 										<entry>
-											<string>http://who.int/icd#hasAlternativeSeverity2Scale</string>
+											<string>http://who.int/icd#hasAlternativeSeverity2</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>AlternativeSeverity2Scale</string>
+													<string>AlternativeSeverity2</string>
 												</entry>
 												<entry>
 													<string>ont_type</string>
-													<string>http://who.int/icd#TemplateSeverityScaleTerm</string>
+													<string>http://who.int/icd#SeverityReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#SeverityScaleValue</string>
 												</entry>
 												<entry>
 													<string>label</string>
@@ -13809,35 +12757,11 @@
 												</entry>
 												<entry>
 													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasAlternativeSeverity2</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#alternativeSeverity2</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
-													<string>scaleeditor_grid</string>
-												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry>
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>replace_with_new_value_desc</string>
-													<string>Delete scale</string>
-												</entry-->
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
+													<string>internalreference</string>
 												</entry>
 												<entry>
 													<string>index</string>
@@ -13849,30 +12773,22 @@
 												</entry>
 												<entry>
 													<string>multiple_values_allowed</string>
-													<boolean>false</boolean>
-												</entry>
-												<entry>
-													<string>insert_copy</string>
-													<boolean>false</boolean>
+													<boolean>true</boolean>
 												</entry>
 												<entry>
 													<string>Column1</string>
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Name</string>
+															<string>value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>150</string>
+															<string>220</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -13885,23 +12801,23 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value</string>
+															<string>Definition (inst) Ref. Value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>100</string>
+															<string>50</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#hasScaleValue</string>
+															<string>http://who.int/icd#definition</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>0</string>
+															<string>1</string>
 														</entry>
 														<entry>
 															<string>hidden</string>
-															<string>false</string>
+															<string>true</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -13914,36 +12830,7 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value Label</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>150</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>2</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column4</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Local Definition</string>
+															<string>definition</string>
 														</entry>
 														<entry>
 															<string>width</string>
@@ -13951,110 +12838,15 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#description</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>empty_text</string>
-															<string>@Column7@</string>
-														</entry>
-														<entry>
-															<string>field_editor</string>
-															<string>multiline</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>false</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>3</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column5</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Referenced Value (inst)</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#referencedValue</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>4</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column6</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition (inst) Ref. Value</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#definition</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>5</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>5</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column7</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition Ref. Value</string>
-														</entry>
-														<entry>
-															<string>property</string>
 															<string>http://who.int/icd#label</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>6</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>2</string>
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>6</string>
+															<string>2</string>
 														</entry>
 													</map>
 												</entry>
@@ -14062,15 +12854,19 @@
 										</entry>
 										
 										<entry>
-											<string>http://who.int/icd#hasCourseScale</string>
+											<string>http://who.int/icd#course</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>CourseScale</string>
+													<string>Course</string>
 												</entry>
 												<entry>
 													<string>ont_type</string>
-													<string>http://who.int/icd#TemplateCourseScaleTerm</string>
+													<string>http://who.int/icd#CourseReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#Temporality_Course</string>
 												</entry>
 												<entry>
 													<string>label</string>
@@ -14086,31 +12882,7 @@
 												</entry>
 												<entry>
 													<string>component_type</string>
-													<string>scaleeditor_grid</string>
-												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry>
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>replace_with_new_value_desc</string>
-													<string>Delete scale</string>
-												</entry-->
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
+													<string>internalreference</string>
 												</entry>
 												<entry>
 													<string>index</string>
@@ -14122,26 +12894,22 @@
 												</entry>
 												<entry>
 													<string>multiple_values_allowed</string>
-													<boolean>false</boolean>
+													<boolean>true</boolean>
 												</entry>
 												<entry>
 													<string>Column1</string>
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Name</string>
+															<string>value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>150</string>
+															<string>220</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -14154,23 +12922,23 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value</string>
+															<string>Definition (inst) Ref. Value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>100</string>
+															<string>50</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#hasScaleValue</string>
+															<string>http://who.int/icd#definition</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>0</string>
+															<string>1</string>
 														</entry>
 														<entry>
 															<string>hidden</string>
-															<string>false</string>
+															<string>true</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -14183,36 +12951,7 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value Label</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>150</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>2</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column4</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Local Definition</string>
+															<string>definition</string>
 														</entry>
 														<entry>
 															<string>width</string>
@@ -14220,110 +12959,15 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#description</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>empty_text</string>
-															<string>@Column7@</string>
-														</entry>
-														<entry>
-															<string>field_editor</string>
-															<string>multiline</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>false</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>3</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column5</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Referenced Value (inst)</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#referencedValue</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>4</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column6</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition (inst) Ref. Value</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#definition</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>5</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>5</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column7</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition Ref. Value</string>
-														</entry>
-														<entry>
-															<string>property</string>
 															<string>http://who.int/icd#label</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>6</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>2</string>
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>6</string>
+															<string>2</string>
 														</entry>
 													</map>
 												</entry>
@@ -14331,15 +12975,19 @@
 										</entry>
 										
 										<entry>
-											<string>http://who.int/icd#hasPatternActivityClinicalStatusScale</string>
+											<string>http://who.int/icd#temporalPatternAndOnset</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>TemporalPatternAndOnsetScale</string>
+													<string>TempPatAndOnset</string>
 												</entry>
 												<entry>
 													<string>ont_type</string>
-													<string>http://who.int/icd#TemplateTemporalPatternAndOnsetScaleTerm</string>
+													<string>http://who.int/icd#TemporalPatternAndOnsetReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#Temporality_Pattern_Activity_Clinical_Status</string>
 												</entry>
 												<entry>
 													<string>label</string>
@@ -14355,31 +13003,7 @@
 												</entry>
 												<entry>
 													<string>component_type</string>
-													<string>scaleeditor_grid</string>
-												</entry>
-												<!--entry>
-													<string>show_replace_existing</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>add_existing_value_desc</string>
-													<string>Select scale</string>
-												</entry>
-												<entry>
-													<string>replace_with_existing_value_desc</string>
-													<string>Select another scale</string>
-												</entry>
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>replace_with_new_value_desc</string>
-													<string>Delete scale</string>
-												</entry-->
-												<entry>
-													<string>show_replace_new</string>
-													<boolean>true</boolean>
+													<string>internalreference</string>
 												</entry>
 												<entry>
 													<string>index</string>
@@ -14391,26 +13015,22 @@
 												</entry>
 												<entry>
 													<string>multiple_values_allowed</string>
-													<boolean>false</boolean>
+													<boolean>true</boolean>
 												</entry>
 												<entry>
 													<string>Column1</string>
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Name</string>
+															<string>value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>150</string>
+															<string>220</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>http://who.int/icd#referencedValue</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -14423,23 +13043,23 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value</string>
+															<string>Definition (inst) Ref. Value</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>100</string>
+															<string>50</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#hasScaleValue</string>
+															<string>http://who.int/icd#definition</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>0</string>
+															<string>1</string>
 														</entry>
 														<entry>
 															<string>hidden</string>
-															<string>false</string>
+															<string>true</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -14452,36 +13072,7 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Scale Value Label</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>150</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>2</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column4</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Local Definition</string>
+															<string>definition</string>
 														</entry>
 														<entry>
 															<string>width</string>
@@ -14489,110 +13080,15 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#description</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>empty_text</string>
-															<string>@Column7@</string>
-														</entry>
-														<entry>
-															<string>field_editor</string>
-															<string>multiline</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>false</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>3</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column5</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Referenced Value (inst)</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#referencedValue</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>4</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column6</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition (inst) Ref. Value</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>100</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#definition</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>5</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>5</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column7</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition Ref. Value</string>
-														</entry>
-														<entry>
-															<string>property</string>
 															<string>http://who.int/icd#label</string>
 														</entry>
 														<entry>
 															<string>subject_column_index</string>
-															<string>6</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
+															<string>2</string>
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>6</string>
+															<string>2</string>
 														</entry>
 													</map>
 												</entry>
@@ -14600,11 +13096,11 @@
 										</entry>
 										
 										<entry>
-											<string>PCECValueHierarchyRuler</string>
+											<string>PCValueHierarchyRuler</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>PCECValueHierarchyRuler</string>
+													<string>PCValueHierarchyRuler</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -14616,7 +13112,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_pc_value_hierarchy.html</string>
+													<string>../html/ruler_pc_empty.html</string>
 												</entry>
 											</map>
 										</entry>
