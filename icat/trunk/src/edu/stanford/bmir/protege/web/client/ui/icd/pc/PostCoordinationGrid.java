@@ -354,11 +354,25 @@ public class PostCoordinationGrid extends InstanceGridWidget {
 
 
     public void activateValueSelectionWidget(String pcAxisProperty) {
-    	widgetController.showWidgetForProperty(ICDConstants.PC_AXIS_PROP_TO_VALUE_SET_PROP.get(pcAxisProperty));
+    	String propertyName = ICDConstants.PC_AXIS_PROP_TO_VALUE_SET_PROP.get(pcAxisProperty);
+		widgetController.showWidgetForProperty(propertyName);
+		//TODO undo this temporary solution, which shows both the property and the scale property itself, if applicable
+		//Important is to make sure that PC axis values that were previously scales 
+		//and are now value hierarchies, are activate/deactivate when necessary
+		if (pcAxisProperty != null && ! pcAxisProperty.equals(propertyName)) {
+			widgetController.showWidgetForProperty(pcAxisProperty);
+		}
 	}
 
     public void deactivateValueSelectionWidget(String pcAxisProperty) {
-    	widgetController.hideWidgetForProperty(ICDConstants.PC_AXIS_PROP_TO_VALUE_SET_PROP.get(pcAxisProperty));
+    	String propertyName = ICDConstants.PC_AXIS_PROP_TO_VALUE_SET_PROP.get(pcAxisProperty);
+		widgetController.hideWidgetForProperty(propertyName);
+		//TODO undo this temporary solution, which shows both the property and the scale property itself, if applicable
+		//Important is to make sure that PC axis values that were previously scales 
+		//and are now value hierarchies, are activate/deactivate when necessary
+		if (pcAxisProperty != null && ! pcAxisProperty.equals(propertyName)) {
+			widgetController.hideWidgetForProperty(pcAxisProperty);
+		}
 	}
 
     
