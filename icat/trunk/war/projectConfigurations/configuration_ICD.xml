@@ -18278,6 +18278,10 @@
 																	<string>http://who.int/icd#TemplateSeverityReferenceTerm</string>
 																</entry>
 																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#SeverityScaleValue</string>
+																</entry>
+																<entry>
 																	<string>label</string>
 																	<string>Severity</string>
 																</entry>
@@ -18291,7 +18295,7 @@
 																</entry>
 																<entry>
 																	<string>component_type</string>
-																	<string>precoord_custom_scale_value_selector</string>
+																	<string>precoord_tree_value_selector</string>
 																</entry>
 																<entry>
 																	<string>index</string>
@@ -18300,10 +18304,6 @@
 																<entry>
 																	<string>height</string>
 																	<string>60</string>
-																</entry>
-																<entry>
-																	<string>multiple_values_allowed</string>
-																	<boolean>false</boolean>
 																</entry>
 															</map>
 														</entry>
@@ -18320,6 +18320,10 @@
 																	<string>http://who.int/icd#TemplateSeverityReferenceTerm</string>
 																</entry>
 																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#SeverityScaleValue</string>
+																</entry>
+																<entry>
 																	<string>label</string>
 																	<string>Alternative Severity 1</string>
 																</entry>
@@ -18333,7 +18337,7 @@
 																</entry>
 																<entry>
 																	<string>component_type</string>
-																	<string>precoord_custom_scale_value_selector</string>
+																	<string>precoord_tree_value_selector</string>
 																</entry>
 																<entry>
 																	<string>index</string>
@@ -18342,10 +18346,6 @@
 																<entry>
 																	<string>height</string>
 																	<string>60</string>
-																</entry>
-																<entry>
-																	<string>multiple_values_allowed</string>
-																	<boolean>false</boolean>
 																</entry>
 															</map>
 														</entry>
@@ -18362,6 +18362,10 @@
 																	<string>http://who.int/icd#TemplateSeverityReferenceTerm</string>
 																</entry>
 																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#SeverityScaleValue</string>
+																</entry>
+																<entry>
 																	<string>label</string>
 																	<string>Alternative Severity 2</string>
 																</entry>
@@ -18375,7 +18379,7 @@
 																</entry>
 																<entry>
 																	<string>component_type</string>
-																	<string>precoord_custom_scale_value_selector</string>
+																	<string>precoord_tree_value_selector</string>
 																</entry>
 																<entry>
 																	<string>index</string>
@@ -18384,10 +18388,6 @@
 																<entry>
 																	<string>height</string>
 																	<string>60</string>
-																</entry>
-																<entry>
-																	<string>multiple_values_allowed</string>
-																	<boolean>false</boolean>
 																</entry>
 															</map>
 														</entry>
@@ -18404,6 +18404,10 @@
 																	<string>http://who.int/icd#TemplateCourseReferenceTerm</string>
 																</entry>
 																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#Temporality_Course</string>
+																</entry>
+																<entry>
 																	<string>label</string>
 																	<string>Course</string>
 																</entry>
@@ -18417,7 +18421,7 @@
 																</entry>
 																<entry>
 																	<string>component_type</string>
-																	<string>precoord_custom_scale_value_selector</string>
+																	<string>precoord_tree_value_selector</string>
 																</entry>
 																<entry>
 																	<string>index</string>
@@ -18426,10 +18430,6 @@
 																<entry>
 																	<string>height</string>
 																	<string>60</string>
-																</entry>
-																<entry>
-																	<string>multiple_values_allowed</string>
-																	<boolean>false</boolean>
 																</entry>
 															</map>
 														</entry>
@@ -18446,6 +18446,10 @@
 																	<string>http://who.int/icd#TemplateTemporalPatternAndOnsetReferenceTerm</string>
 																</entry>
 																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#Temporality_Pattern_Activity_Clinical_Status</string>
+																</entry>
+																<entry>
 																	<string>label</string>
 																	<string>Temporal Pattern and Onset</string>
 																</entry>
@@ -18459,7 +18463,7 @@
 																</entry>
 																<entry>
 																	<string>component_type</string>
-																	<string>precoord_custom_scale_value_selector</string>
+																	<string>precoord_tree_value_selector</string>
 																</entry>
 																<entry>
 																	<string>index</string>
@@ -18468,10 +18472,6 @@
 																<entry>
 																	<string>height</string>
 																	<string>60</string>
-																</entry>
-																<entry>
-																	<string>multiple_values_allowed</string>
-																	<boolean>false</boolean>
 																</entry>
 															</map>
 														</entry>
