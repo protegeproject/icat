@@ -167,6 +167,9 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 				System.out.println("not a user change. do nothing");
 				return;
 			}
+			if ( ! isWriteOperationAllowed() ) {
+				return;
+			}
 			ICDServiceManager.getInstance().changeIsDefinitionalFlag(
 					getProject().getProjectName(), getSubject().getName(), getProperty().getName(), 
 					checked, new AsyncCallback<Boolean>() {
