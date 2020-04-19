@@ -23,6 +23,7 @@ import com.gwtext.client.widgets.layout.AnchorLayout;
 import com.gwtext.client.widgets.layout.AnchorLayoutData;
 import com.gwtext.client.widgets.layout.FitLayout;
 
+import edu.stanford.bmir.protege.web.client.model.PermissionConstants;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
@@ -144,7 +145,7 @@ public class RestrictionsPortlet extends AbstractEntityPortlet{
                 int row = cellForEvent.getRowIndex();
                 lastActionRow = row;
 
-                if (!UIUtil.confirmOperationAllowed(project)) {
+                if ( ! isEditClassRestrictionsPermitted(true) ) {
                     return;
                 }
 
@@ -162,6 +163,10 @@ public class RestrictionsPortlet extends AbstractEntityPortlet{
                 }
             }
         };
+    }
+
+    protected boolean isEditClassRestrictionsPermitted(boolean showAlerts) {
+        return UIUtil.checkOperationAllowed(project, PermissionConstants.EDIT_CLASS_RESTRICTIONS, "Warning", "Editing of class restrictions is not permitted.", true, showAlerts) ;
     }
 
     protected void updateButtonStates() {

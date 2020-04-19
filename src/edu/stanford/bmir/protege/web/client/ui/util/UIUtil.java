@@ -129,6 +129,10 @@ public class UIUtil {
     	return (config == null ? defaultValue : config.getBooleanProperty(prop, defaultValue));
     }
 
+    public static <T> List<T> getListConfigurationProperty(GenericConfiguration config, String prop, List<T> defaultValue) {
+    	return (config == null ? defaultValue : config.getListProperty(prop, defaultValue));
+    }
+
     public static String getStringConfigurationProperty(Map<String, Object> config, String prop, String defaultValue) {
     	if (config == null) {
     		return defaultValue;
@@ -184,16 +188,23 @@ public class UIUtil {
     }
 
     public static <T> List<T> getListConfigurationProperty(Map<String, Object> config, String prop) {
+    	return getListConfigurationProperty(config, prop, null);
+    }
+
+    public static <T> List<T> getListConfigurationProperty(Map<String, Object> config, String prop, List <T> defaultValue) {
         if (config == null) {
-            return null;
+            return defaultValue;
         }
         try {
         	@SuppressWarnings("unchecked")
 			List<T> listValue = (List<T>) config.get(prop);
+        	if (listValue == null) {
+        		return defaultValue;
+        	}
             return listValue;
         }
         catch (Exception e) {
-            return null;
+            return defaultValue;
         }
     }
 
@@ -272,6 +283,12 @@ public class UIUtil {
             Map<String, Object> config, ProjectConfiguration projectConfiguration, String prop, boolean defaultValue) {
         boolean projectDefaultValue = getBooleanConfigurationProperty(projectConfiguration, prop, defaultValue);
         return UIUtil.getBooleanConfigurationProperty(config, prop, projectDefaultValue);
+    }
+
+    public static <T> List<T> getListConfigurationProperty(
+    		Map<String, Object> config, ProjectConfiguration projectConfiguration, String prop, List<T> defaultValue) {
+    	List<T> projectDefaultValue = getListConfigurationProperty(projectConfiguration, prop, defaultValue);
+    	return UIUtil.getListConfigurationProperty(config, prop, projectDefaultValue);
     }
 
     public static void setConfigurationValue(Map<String, Object> config, String prop, Object value) {
@@ -359,11 +376,7 @@ public class UIUtil {
         }
     }
 
-    public static boolean confirmOperationAllowed(Project project) {
-        return checkOperationAllowed(project, true);
-    }
-
-    public static boolean checkOperationAllowed(Project project, boolean showUserAlerts) {
+    public static boolean checkWriteOperationAllowed(Project project, boolean showUserAlerts) {
         return checkOperationAllowed(project, PermissionConstants.WRITE, "", "", true, showUserAlerts);
     }
 

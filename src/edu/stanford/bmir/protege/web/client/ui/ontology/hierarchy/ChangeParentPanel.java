@@ -18,6 +18,7 @@ import com.gwtext.client.widgets.form.TextArea;
 import com.gwtext.client.widgets.layout.AnchorLayoutData;
 
 import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
+import edu.stanford.bmir.protege.web.client.model.PermissionConstants;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.HierarchyServiceManager;
@@ -80,7 +81,7 @@ public class ChangeParentPanel extends FormPanel implements Selectable {
         createButton.addListener(new ButtonListenerAdapter() {
             @Override
             public void onClick(Button button, EventObject e) {
-                if (UIUtil.confirmOperationAllowed(project)) {
+                if ( isChangeParentPermitted(true) ) {
                     onMove();
                 }
             }
@@ -154,6 +155,9 @@ public class ChangeParentPanel extends FormPanel implements Selectable {
         });
     }
 
+    protected boolean isChangeParentPermitted(boolean showAlerts) {
+        return UIUtil.checkOperationAllowed(project, PermissionConstants.MOVE_CLS, "Warning", "The change parents operation is not permitted.", true, showAlerts) ;
+    }
 
     private String getMoveConfirmMessage() {
         Set<EntityData> parentsToAdd = parentsPanel.getParentsToAdd();

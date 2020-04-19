@@ -112,10 +112,8 @@ public class ManageHierarchyPortlet extends AbstractEntityPortlet {
         createClassHtml.setStylePrimaryName("manage-button");
         createClassHtml.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                if (UIUtil.confirmOperationAllowed(getProject())) {
-                    if (isClassCreatePermitted(true) == true) {
-                        onCreateCls();
-                    }
+                if ( isClassCreatePermitted(true) ) {
+                    onCreateCls();
                 }
             }
         });
@@ -127,7 +125,7 @@ public class ManageHierarchyPortlet extends AbstractEntityPortlet {
         retireClassHtml.setStylePrimaryName("manage-button");
         retireClassHtml.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                if (UIUtil.confirmOperationAllowed(getProject())) {
+                if ( isClassRetirePermitted(true) ) {
                     //TT: Retire disabled at request of WHO on 14.07.2010. Will be restored in future versions.
                     //onRetireCls();
                     //TODO: ICD specific code!
@@ -235,6 +233,10 @@ public class ManageHierarchyPortlet extends AbstractEntityPortlet {
 
     protected boolean isChangeParentPermitted(boolean showAlerts) {
         return UIUtil.checkOperationAllowed(getProject(), PermissionConstants.MOVE_CLS, "Warning", "The change parents operation is not permitted.", true, showAlerts) ;
+    }
+
+    protected boolean isClassRetirePermitted(boolean showAlerts) {
+        return UIUtil.checkOperationAllowed(getProject(), PermissionConstants.RETIRE_CLS, "Warning", "The retire class operation is not permitted.", true, showAlerts) ;
     }
 
 

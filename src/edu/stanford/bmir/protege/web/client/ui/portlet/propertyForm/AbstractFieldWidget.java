@@ -269,7 +269,7 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
         	}
 
             private void onCellClickOrDblClick(ClickEvent event) {
-                if (UIUtil.confirmIsLoggedIn()) {
+                if ( isCommentingPermitted(true) ) {
                     onEditNotes();
                 }
             }

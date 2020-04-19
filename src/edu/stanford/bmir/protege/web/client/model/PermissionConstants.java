@@ -7,6 +7,10 @@ public class PermissionConstants {
 
     public static final String CREATE_CLS = "CreateClass";
     public static final String MOVE_CLS = "MoveClass";
+    public static final String RETIRE_CLS = "RetireClass";
+    public static final String DELETE_CLS = "DeleteClass";
+    public static final String EDIT_CLASS_RESTRICTIONS = "EditClassRestrictions";
+    public static final String COMMENT = "Comment";
 
     public static final String CREATE_USERS = "CreateUsers";
     

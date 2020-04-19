@@ -200,7 +200,7 @@ public class BioPortalSearchComponent extends GridPanel {
             @Override
             public void onCellClick(GridPanel grid, int rowIndex, int colindex, EventObject e) {
                 if (grid.getColumnModel().getDataIndex(colindex).equals("importLink")) {
-                    if (UIUtil.confirmOperationAllowed(project)) {
+                    if ( UIUtil.checkWriteOperationAllowed(project, true) ) {
                         Record record = grid.getStore().getAt(rowIndex);
                         onImportReference(record);
                     }

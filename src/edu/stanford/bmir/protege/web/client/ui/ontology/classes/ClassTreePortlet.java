@@ -519,7 +519,9 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
                 }
             }
         });
-        createButton.setDisabled(!project.hasWritePermission(GlobalSettings.getGlobalSettings().getUserName()));
+        if ( ! hasCreatePermission(false) ) {
+        	disableCreate();
+        }
         createButton.setDisabled(!isCreateEnabled());
         return createButton;
     }

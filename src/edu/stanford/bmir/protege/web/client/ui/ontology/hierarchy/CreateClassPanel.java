@@ -19,6 +19,7 @@ import com.gwtext.client.widgets.form.event.TextFieldListenerAdapter;
 import com.gwtext.client.widgets.layout.AnchorLayoutData;
 
 import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
+import edu.stanford.bmir.protege.web.client.model.PermissionConstants;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.ChAOServiceManager;
@@ -125,7 +126,7 @@ public class CreateClassPanel extends FormPanel implements Selectable {
         createButton.addListener(new ButtonListenerAdapter() {
             @Override
             public void onClick(Button button, EventObject e) {
-                if (UIUtil.confirmOperationAllowed(project)) {
+                if ( isClassCreatePermitted(true) ) {
                     onCreate();
                 }
             }
@@ -145,6 +146,11 @@ public class CreateClassPanel extends FormPanel implements Selectable {
 
         addButton(createButton);
         addButton(cancelButton);
+    }
+
+
+    private boolean isClassCreatePermitted(boolean showAlerts) {
+        return UIUtil.checkOperationAllowed(project, PermissionConstants.CREATE_CLS, "Warning", "The create class operation is not permitted.", true, showAlerts) ;
     }
 
     private void onTitleChange(String searchText) {

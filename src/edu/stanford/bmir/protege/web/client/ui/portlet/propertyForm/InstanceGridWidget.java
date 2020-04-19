@@ -678,7 +678,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     protected void onCommentColumnClicked(final int rowIndex) {
         Record record = store.getAt(rowIndex);
         if (record != null) {
-            if (UIUtil.confirmOperationAllowed(getProject())) {
+            if ( isCommentingPermitted(true) ) {
                 onEditNotes(rowIndex);
             }
         }

@@ -155,7 +155,7 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
             return Boolean.valueOf(isPartOfUsers);
         }
 
-        List<String> writeAccessGroups = UIUtil.getListConfigurationProperty(widgetConfiguration, FormConstants.WRITE_ACCESS_GROUPS);
+        List<String> writeAccessGroups = UIUtil.getListConfigurationProperty(widgetConfiguration, getProject().getProjectConfiguration(), FormConstants.WRITE_ACCESS_GROUPS, null);
         if (writeAccessGroups == null) {
             setPartOfWriteAccessGroup(true);
             return true;
@@ -189,7 +189,7 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
     }
     
     public boolean isWriteOperationAllowed(boolean showUserAlerts) {
-        if (!UIUtil.checkOperationAllowed(getProject(), showUserAlerts)) {
+        if ( ! UIUtil.checkWriteOperationAllowed(getProject(), showUserAlerts) ) {
             return false;
         }
         if (isReadOnly()) {
