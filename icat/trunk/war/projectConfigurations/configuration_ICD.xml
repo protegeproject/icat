@@ -91,6 +91,13 @@
 			<string>sortable</string>
 			<string>false</string>
 		</entry>
+		<entry>
+			<string>writeAccessGroups</string>
+			<list>
+				<string>WHOTeam</string>
+				<string>PropertyValueEditors</string>
+			</list>
+		</entry>
 	</properties>
 	
   <tabs>

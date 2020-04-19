@@ -82,6 +82,22 @@ public class GenericConfiguration implements Serializable {
         }
     }
 	
+    public <T> List<T> getListProperty(String prop, List<T> defaultValue) {
+        if (properties == null) {
+            return defaultValue;
+        }
+        try {
+            @SuppressWarnings("unchecked")
+            List<T> listValue = (List<T>) properties.get(prop);
+            if (listValue == null) {
+            	return defaultValue;
+            }
+            return listValue;
+        }
+        catch (Exception e) {
+            return defaultValue;
+        }
+    }
 
 	/**	 * 
 	 * @return <ul>
