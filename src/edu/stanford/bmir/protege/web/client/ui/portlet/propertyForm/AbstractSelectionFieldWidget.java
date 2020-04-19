@@ -46,7 +46,7 @@ public abstract class AbstractSelectionFieldWidget extends TextFieldWidget {
         addLink.setTitle(enabled ? "Add new value" : "Add value is not allowed");
         addLink.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-            	if (!isReadOnly() && !isDisabled()) {
+            	if (!isReadOnly() && !isDisabled() && isWriteOperationAllowed()) {
             		onSelectEntity();
             	}
             }

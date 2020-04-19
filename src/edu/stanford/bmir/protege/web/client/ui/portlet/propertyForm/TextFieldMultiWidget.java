@@ -41,7 +41,7 @@ public class TextFieldMultiWidget extends AbstractPropertyWidget {
         addNewLink = new Anchor("&nbsp&nbsp<img src=\"images/add.png\"></img>&nbsp Add new value", true);
         addNewLink.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                if (!isReadOnly() && !isDisabled()) {
+                if (!isReadOnly() && !isDisabled() && isWriteOperationAllowed()) {
                     onAddNewValue();
                 }
             }
