@@ -152,6 +152,16 @@ public class PostCoordinationGrid extends InstanceGridWidget {
     @Override
     protected void onValueColumnClicked(GridPanel grid, int rowIndex,
     		int colIndex) {
+
+    	//check write permissions on this grid
+        if (!isWriteOperationAllowed()) {
+            return;
+        }
+        //check write permissions for this column
+        if (isReadOnlyColumn(colIndex)) {
+        	return;
+        }
+
         String fieldType = (String) getColumnConfiguration(colIndex, FormConstants.FIELD_TYPE);
         if (FormConstants.FIELD_TYPE_CHECKBOX_IMPORTANT.equals(fieldType)) {
 	        GWT.log("Radio checked in col: " + colIndex);
