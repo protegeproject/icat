@@ -168,6 +168,7 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 				return;
 			}
 			if ( ! isWriteOperationAllowed() ) {
+				field.setChecked( ! checked );
 				return;
 			}
 			ICDServiceManager.getInstance().changeIsDefinitionalFlag(
