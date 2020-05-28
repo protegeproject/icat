@@ -63,6 +63,10 @@ public class ChangesPortlet extends AbstractEntityPortlet {
 	public void initialize() {
 		createGrid();
 		setHeight(200);
+		addChangesGrid();
+	}
+	
+	protected void addChangesGrid() {
 		add(changesGrid);
 	}
 

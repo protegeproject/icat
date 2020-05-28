@@ -46,6 +46,8 @@ public class ApplicationPropertyNames {
 
     //ICD specific
     public static final String ICD_EXPORT_DIR_PROP = "icd.export.dir";
+    public static final String OLD_CHANGES_MAX_DATE_PROP = "max.old.changes.date";
+	public static final String OLD_CHANGES_BASE_URL = "max.old.changes.base.url";
     
     //Upload directory
     public static final String UPLOAD_DIR_PROP="upload.dir";
