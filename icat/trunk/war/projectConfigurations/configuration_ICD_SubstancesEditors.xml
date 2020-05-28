@@ -27816,7 +27816,7 @@
 				<width>0.60</width>
 				<portlets>
 					<portlet>
-					<name>edu.stanford.bmir.protege.web.client.ui.ontology.changes.ChangesPortlet</name>
+					<name>edu.stanford.bmir.protege.web.client.ui.icd.ICDChangesPortlet</name>
 					<height>600</height>
 					</portlet>
 				</portlets>
