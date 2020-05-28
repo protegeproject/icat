@@ -47,6 +47,15 @@ public class ClientApplicationPropertiesCache {
     public static String getHomepageNotificationHtml() {
         return cache.get(ApplicationPropertyNames.HOMEPAGE_NOTIFICATION_HTML);
     }
+    
+    public static String getOldChangesMaxDate() {
+        return cache.get(ApplicationPropertyNames.OLD_CHANGES_MAX_DATE_PROP);
+    }
+    
+    public static String getOldChangesBaseUrl() {
+        return cache.get(ApplicationPropertyNames.OLD_CHANGES_BASE_URL);
+    }
+    
 
     public static void initialize(final AsyncCallback<Map<String, String>> callback){
         ApplicationPropertiesServiceManager.getInstance().initialize(new AsyncCallback<Map<String, String>>(){

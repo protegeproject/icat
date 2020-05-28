@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import edu.stanford.bmir.protege.web.client.model.Project;
+import edu.stanford.bmir.protege.web.client.ui.icd.ICDChangesPortlet;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDExportImportPortlet;
 import edu.stanford.bmir.protege.web.client.ui.ontology.changeanalysis.ChangeAnalysisTab;
@@ -164,6 +165,8 @@ public class UIFactory {
             return new BioPortalProposalsPortlet(project);
         } else if (portletJavaClassName.equals(RestrictionsPortlet.class.getName())) {
             return new RestrictionsPortlet(project);
+        } else if (portletJavaClassName.equals(ICDChangesPortlet.class.getName())) {
+        	return new ICDChangesPortlet(project);
         }
         return null;
     }
@@ -198,7 +201,8 @@ public class UIFactory {
                 ManageHierarchyPortlet.class.getName(), SuperclassesPortlet.class.getName(), ChangesPortlet.class.getName(),
                 WatchedEntitiesPortlet.class.getName(), NotesTreePortlet.class.getName(),
                 NotesTreePortlet.class.getName(),
-                BioPortalProposalsPortlet.class.getName()};
+                BioPortalProposalsPortlet.class.getName(),
+                ICDChangesPortlet.class.getName()};
 
         List<String> portletsList = Arrays.asList(portlets);
         Collections.sort(portletsList, new Comparator<String>() {
