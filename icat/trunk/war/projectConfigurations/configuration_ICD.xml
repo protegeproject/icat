@@ -89,7 +89,7 @@
 		</entry>
 		<entry>
 			<string>root_class_icf</string>
-			<string>http://who.int/icf#ICFEntity</string>
+			<string>http://who.int/icd#ICFEntity</string>
 		</entry>
 		<entry>
 			<string>class_hierarchy_label_icf</string>
