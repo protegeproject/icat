@@ -81,15 +81,15 @@
 		</entry>
 		<entry>
 			<string>root_class</string>
-			<string>http://who.int/icd#ICDCategory</string>
+			<string>http://who.int/icd#ClassificationEntity</string>
 		</entry>
 		<entry>
 			<string>class_hierarchy_label</string>
-			<string>ICD Categories</string>
+			<string>WHO-FIC Entities</string>
 		</entry>
 		<entry>
 			<string>root_class_icf</string>
-			<string>http://who.int/icd#ICFEntity</string>
+			<string>http://who.int/icf#ICFEntity</string>
 		</entry>
 		<entry>
 			<string>class_hierarchy_label_icf</string>
@@ -112,7 +112,7 @@
 	
 	<tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
-		<label>ICD Content</label>
+		<label>WHO-FIC</label>
 		<properties>
 			<entry>
 				<string>closable</string>
@@ -27873,7 +27873,7 @@
 
 	<tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.ontology.notes.NotesTab</name>
-		<label>Category Notes and Discussions</label>
+		<label>Notes and Discussions</label>
 		<properties>
 			<entry>
 				<string>closable</string>
@@ -28129,7 +28129,7 @@
 
 	<tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
-		<label>ICF Content</label>
+		<label>ICF</label>
 		<properties>
 			<entry>
 				<string>closable</string>
