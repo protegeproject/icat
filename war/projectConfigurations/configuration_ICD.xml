@@ -29840,6 +29840,162 @@
 												</entry>
 											</map>
 										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#suppressOtherSpecifiedResiduals</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>suppressOtherSpecifiedResiduals</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Suppress 'Other Specified' Residuals</string>
+												</entry>
+												<entry>
+													<string>label_width</string>
+													<string>270</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>If checked 'Other Specified' residual child class will not be generated</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#suppressOtherSpecifiedResiduals</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>checkbox</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>4</string>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#suppressUnspecifiedResiduals</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>suppressUnspecifiedResiduals</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Suppress 'Unspecified' Residuals</string>
+												</entry>
+												<entry>
+													<string>label_width</string>
+													<string>270</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>If checked 'Unspecified' residual child class will not be generated</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#suppressUnspecifiedResiduals</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>checkbox</string>
+												</entry>
+												<entry>
+													<string>width</string>
+													<string>130</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>5</string>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#otherSpecifiedResidualTitle</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>otherSpecifiedResidualTitle</string>
+												</entry>
+                                                <entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#TitleTerm</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>'Other Specified' Residual Title</string>
+												</entry>
+												<entry>
+													<string>label_width</string>
+													<string>200</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>The &quot;Other Specified&quot; Residual Title is the title to be used for the "other specified" residual class</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#otherSpecifiedResidualTitle</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>instancetextfield</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>6</string>
+												</entry>
+												<entry>
+													<string>property</string>
+													<string>http://who.int/icd#label</string>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#unspecifiedResidualTitle</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>unspecifiedResidualTitle</string>
+												</entry>
+                                                <entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#TitleTerm</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>'Unspecified' Residual Title</string>
+												</entry>
+												<entry>
+													<string>label_width</string>
+													<string>200</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>The &quot;Unspecified&quot; Residual Title is the title to be used for the "unspecified" residual class</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#unspecifiedResidualTitle</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>instancetextfield</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>7</string>
+												</entry>
+												<entry>
+													<string>property</string>
+													<string>http://who.int/icd#label</string>
+												</entry>
+											</map>
+										</entry>
 									</map>
 
 <!-- ICD International -> Terms (ICF Categories) -->
