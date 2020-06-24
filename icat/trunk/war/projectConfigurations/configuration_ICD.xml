@@ -4181,8 +4181,7 @@
 													<string>group_specific_allowed_values</string>
 													<map>
 														<entry>
-															<string>AdminGroup</string>
-															<!--string>DermatologyLinearizationEditors</string-->
+															<string>DermatologyLinearizationEditors</string>
 															<list>
 																<!--string>http://who.int/icd#Morbidity</string-->
 																<string>http://who.int/icd#Specialty_Adaptation_Dermatology</string>
