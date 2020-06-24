@@ -28273,6 +28273,12 @@
 											<string>types_not</string>
 											<list>
 												<string>http://who.int/icd#ValueMetaClass</string>
+												<string>http://who.int/icd#ICFSection</string>
+												<string>http://who.int/icd#ICFStructuralComponentSection</string>
+												<string>http://who.int/icd#ICFQualifierSection</string>
+												<string>http://who.int/icd#ICHISection</string>
+												<string>http://who.int/icd#ICHIAxesSection</string>
+												<string>http://who.int/icd#ICHIExtensionCodeSection</string>
 											</list>
 										</entry>
 										
