@@ -17977,7 +17977,7 @@
 									</map>
 
 
-<!-- ICD International -> Pre-coordination (all, incl. External Causes)-->
+<!-- ICD International -> Pre-coordination (all ICD, incl. External Causes)-->
 									<map>
 										<entry>
 											<string>title</string>
@@ -21225,6 +21225,478 @@
 																</entry>
 															</map>
 														</entry>
+													</map>
+												</entry>
+
+											</map>
+										</entry>
+										
+										
+									</map>
+
+<!-- ICD International -> Pre-coordination (ICHI Interventions)-->
+									<map>
+										<entry>
+											<string>title</string>
+											<string>Logical Definitions</string>
+										</entry>
+
+										<entry>
+											<string>headerCssClass</string>
+											<string>spec-tab-header1</string>
+										</entry>
+										
+										<entry>
+											<string>types_any</string>
+											<list>
+												<!--string>http://who.int/icd#ClinicalDescriptionSection</string-->
+												<!--string>http://who.int/icd#ExternalCauseSection</string-->
+												<!--string>http://who.int/icd#LinearizationSection</string-->
+												<string>http://who.int/icd#ICHIPostcoordinationSection</string>
+											</list>
+										</entry>
+
+										<entry>
+											<string>PCPrecoordinationValues</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>PCPrecoordinationValues</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Pre-coordination</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#fixedScales</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>precoordination_comp</string>
+												</entry>
+												<!--entry>
+													<string>show_replace_existing</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>add_existing_value_desc</string>
+													<string>Select scale</string>
+												</entry>
+												<entry>
+													<string>replace_with_existing_value_desc</string>
+													<string>Select another scale</string>
+												</entry-->
+												<entry>
+													<string>index</string>
+													<string>0</string>
+												</entry>
+												<!-- entry>
+													<string>height</string>
+													<string>120</string>
+												</entry-->
+												<!--entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry-->
+												<entry>
+													<string>root_class</string>
+													<string>@root_class_ichi@</string>
+												</entry>
+														
+								            	<entry>
+								            		<string>property_map</string>
+													<map>
+														<entry>
+															<string>http://who.int/icd#aspectsOfArmedConflict</string>
+															<list>
+																<string>http://who.int/icd#typeOfArmedConflict</string>
+																<string>http://who.int/icd#roleOfInjuredPersonInArmedConflict</string>
+															</list>
+														</entry>
+													</map>
+								            	</entry>
+												
+												<entry>
+													<string>superclass_selector</string>
+													<map>
+														<entry>
+															<string>http://who.int/icd#precoordinationSuperclass</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>PCPrecSuperclass</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Select superclass</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Precoordination superclass</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#precoord_superclass</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_superclass</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>0</string>
+																</entry>
+															</map>
+														</entry>
+													</map>
+												</entry>
+														
+												<entry>
+													<string>value_selectors</string>
+													<map>
+
+
+										<entry>
+											<string>http://who.int/icd#hasTarget</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>HasTarget</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#SeverityReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#Target</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Target</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>Choose a value for 'target'</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasTarget_value</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>precoord_tree_value_selector</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>2</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>20</string>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#hasAction</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>HasAction</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#CausingConditionReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#Action</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Action</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>Choose a value for 'action'</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasAction_value</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>precoord_tree_value_selector</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>3</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>20</string>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#hasMeans</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>HasMeans</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#ManifestingConditionReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#Means</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Means</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>Choose a value for 'means'</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasMeans_value</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>precoord_tree_value_selector</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>4</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>20</string>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#additionalTarget</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>AdditionalTarget</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#AssociatedWithReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#Target</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Additional Target</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>Choose a value for 'additional target'</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#additionalTarget_value</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>precoord_tree_value_selector</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>5</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>20</string>
+												</entry>
+											</map>
+										</entry>
+										
+														
+														<!--entry>
+															<string>http://who.int/icd#activityWhenInjured</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>ActivityWhenInjured</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#ActivityWhenInjuredReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#ICECI_C.5</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Activity when Injured</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'activity when injured' property</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#activityWhenInjured_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>1</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+															</map>
+														</entry>
+																												
+														<entry>
+															<string>http://who.int/icd#hasCausingCondition</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>HasCausingCondition</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#CausingConditionReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#ICDCategory</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Has Causing Condition</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for 'has causing condition'</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasCausingCondition_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>68</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+															</map>
+														</entry>
+														
+														<entry>
+															<string>http://who.int/icd#hasManifestation</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>HasManifestation</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#ManifestingConditionReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#ICDCategory</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Has Manifestation</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for 'has manifestation'</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasManifestation_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>69</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+															</map>
+														</entry>
+														
+														<entry>
+															<string>http://who.int/icd#associatedWith</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>AssociatedWith</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#AssociatedWithReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#ICDCategory</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Associated With</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for 'associated with'</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#associatedWith_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>70</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+															</map>
+														</entry-->
 													</map>
 												</entry>
 
