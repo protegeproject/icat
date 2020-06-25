@@ -1977,6 +1977,7 @@
 										</entry>
 									</map>
 
+									<map ref="icf_title_tab"/>
 
 <!-- ICD International -> Linearization -->
 									<map>
@@ -29849,7 +29850,7 @@
 								<list>
 
 <!-- ICD International -> Definition (ICF Categories) -->
-									<map>
+									<map id="icf_title_tab">
 										<entry>
 											<string>title</string>
 											<string>Title &amp; Definition (ICF)</string>
