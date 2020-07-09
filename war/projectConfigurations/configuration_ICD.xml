@@ -81,7 +81,7 @@
 		</entry>
 		<entry>
 			<string>root_class</string>
-			<string>http://who.int/icd#ClassificationEntity</string>
+			<string>http://who.int/icd#ClassificationEntityForICat</string>
 		</entry>
 		<entry>
 			<string>class_hierarchy_label</string>
