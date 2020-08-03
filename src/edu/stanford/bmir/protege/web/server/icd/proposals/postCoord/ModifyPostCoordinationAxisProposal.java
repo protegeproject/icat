@@ -115,7 +115,7 @@ public abstract class ModifyPostCoordinationAxisProposal extends Postcoordinatio
 		ICDContentModel cm = getICDContentModel();
 		OWLIndividual linViewInd = edu.stanford.bmir.whofic.KBUtil.getOWLIndividual(getOwlModel(), linearizationViewName);
 		RDFSNamedClass icdCat = cm.getICDCategory(getEntityId());
-		Collection<RDFResource> pcSpecifications = cm.getAllowedPostcoorcdinationSpecifications(icdCat); //TODO refactor the name of this method to fix typo
+		Collection<RDFResource> pcSpecifications = cm.getAllowedPostcoordinationSpecifications(icdCat); //TODO refactor the name of this method to fix typo
 		for (RDFResource pcSpecification : pcSpecifications) {
 			RDFResource linearization = (RDFResource) pcSpecification.getPropertyValue(cm.getLinearizationViewProperty());
 			if (linViewInd.equals(linearization)) {
