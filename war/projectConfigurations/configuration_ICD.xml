@@ -29523,7 +29523,7 @@
 
 	<tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.ontology.notes.NotesTab</name>
-		<label>Notes and Discussions</label>
+		<label>Notes</label>
 		<properties>
 			<entry>
 				<string>closable</string>
@@ -29561,7 +29561,8 @@
 				<width>0.60</width>
 				<portlets>
 					<portlet>
-						<name>edu.stanford.bmir.protege.web.client.ui.ontology.notes.NotesTreePortlet</name>
+						<!-- <name>edu.stanford.bmir.protege.web.client.ui.ontology.notes.NotesTreePortlet</name> -->
+						<name>edu.stanford.bmir.protege.web.client.ui.icd.ICDNotesPortlet</name>
 						<height>600</height>
 						<width>0</width>
 					</portlet>
