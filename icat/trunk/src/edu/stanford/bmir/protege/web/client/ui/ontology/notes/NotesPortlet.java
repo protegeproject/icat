@@ -31,10 +31,18 @@ public class NotesPortlet extends AbstractEntityPortlet {
 	
 	public void initialize() {
 		setTitle("Notes");
-		notesGrid = new NotesGrid(project, topLevel);
-		add(notesGrid);
+		createGrid();
+		addNotesGrid();
 	}
 
+	protected void createGrid() {
+		notesGrid = new NotesGrid(project, topLevel);
+	}
+	
+	protected void addNotesGrid() {
+		add(notesGrid);
+	}
+	
 	public ArrayList getSelection() {
 		//TODO: Implement later
 		return null;

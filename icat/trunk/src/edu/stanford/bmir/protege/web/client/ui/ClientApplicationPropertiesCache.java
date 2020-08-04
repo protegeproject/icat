@@ -56,6 +56,14 @@ public class ClientApplicationPropertiesCache {
         return cache.get(ApplicationPropertyNames.OLD_CHANGES_BASE_URL);
     }
     
+    public static String getOldNotesMaxDate() {
+        return cache.get(ApplicationPropertyNames.OLD_NOTES_MAX_DATE_PROP);
+    }
+    
+    public static String getOldNotesBaseUrl() {
+        return cache.get(ApplicationPropertyNames.OLD_NOTES_BASE_URL);
+    }
+    
 
     public static void initialize(final AsyncCallback<Map<String, String>> callback){
         ApplicationPropertiesServiceManager.getInstance().initialize(new AsyncCallback<Map<String, String>>(){
