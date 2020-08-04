@@ -48,6 +48,8 @@ public class ApplicationPropertyNames {
     public static final String ICD_EXPORT_DIR_PROP = "icd.export.dir";
     public static final String OLD_CHANGES_MAX_DATE_PROP = "max.old.changes.date";
 	public static final String OLD_CHANGES_BASE_URL = "max.old.changes.base.url";
+	public static final String OLD_NOTES_MAX_DATE_PROP = "max.old.notes.date";
+	public static final String OLD_NOTES_BASE_URL = "max.old.notes.base.url";
     
     //Upload directory
     public static final String UPLOAD_DIR_PROP="upload.dir";

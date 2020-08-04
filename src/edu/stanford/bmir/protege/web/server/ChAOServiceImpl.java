@@ -282,7 +282,7 @@ public class ChAOServiceImpl extends RemoteServiceServlet implements ChAOService
     public NotesData createNote(String projectName, NotesData newNote, boolean topLevel) {
         Project project = ProjectManagerFactory.getProtege3ProjectManager().getProject(projectName);
         KnowledgeBase kb = project.getKnowledgeBase();
-        KnowledgeBase changeKb = ChAOUtil.getChangesKb(kb);
+        KnowledgeBase changeKb = ChAOKbManager.getChAOKb(kb);
         if (changeKb == null) {
             return null;
         }
