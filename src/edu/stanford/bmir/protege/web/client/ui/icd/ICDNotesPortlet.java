@@ -78,7 +78,7 @@ public class ICDNotesPortlet extends NotesPortlet {
 	private String getOldChangesURL() {
 		String id = getEntity().getName();
 		id = id.replaceAll(FILE_NAME_REPLACE_REGEX, FILE_NAME_REPLACE_WITH);
-		return baseOldNotesURL + "/" + id;
+		return baseOldNotesURL + "/" + id + ".html";
 		
 	}
 

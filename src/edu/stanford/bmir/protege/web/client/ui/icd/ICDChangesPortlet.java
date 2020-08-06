@@ -78,7 +78,7 @@ public class ICDChangesPortlet extends ChangesPortlet {
 	private String getOldChangesURL() {
 		String id = getEntity().getName();
 		id = id.replaceAll(FILE_NAME_REPLACE_REGEX, FILE_NAME_REPLACE_WITH);
-		return baseOldChangesURL + "/" + id;
+		return baseOldChangesURL + "/" + id + ".html";
 		
 	}
 
