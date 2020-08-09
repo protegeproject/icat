@@ -43,8 +43,8 @@ public class ICDChangesPortlet extends ChangesPortlet {
 	private void createExtendedUI() {
 		Panel panel = new Panel();
 		panel.setLayout(new RowLayout());
-		panel.add(changesGrid, new RowLayoutData("95%"));
 		panel.add(createAnchorPanel(), new RowLayoutData("5%"));
+		panel.add(changesGrid, new RowLayoutData("95%"));
 		add(panel);
 		
 	}
