@@ -1260,6 +1260,12 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
                 path = path.subList(topIndex, path.size());
             }
         }
+        
+        //set the entity first, so that the other portlets show the content before
+        //the selection of the path in the tree (which might take a long time),
+        //so we give the user what they need faster
+        EntityData entityToSelect = path.get(path.size() - 1);
+        setEntity(entityToSelect);
 
         selectPathInTree(path, treePanel.getRootNode(), 0);
     }
@@ -1840,7 +1846,10 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
                 if (path.size() - 1 == index) {
                     pathTreeNode.select();
                     final EntityData entityData = (EntityData) pathTreeNode.getUserObject();
-                    setEntity(entityData);
+                    
+                    if (getEntity() != null && getEntity().equals(entityData) == false) {
+                    	setEntity(entityData);
+                    }
                 } else {
                     selectPathInTree(path, pathTreeNode, index + 1);
                 }
