@@ -186,6 +186,8 @@ public interface OntologyService extends RemoteService {
     public List<EntityData> search(String projectName, String searchString, ValueType valueType);
 
     public List<EntityData> getPathToRoot(String projectName, String entityName);
+    
+    public List<EntityData> getPathToSupercls(String projectName, String entityName, String superclsName);
 
 
 }

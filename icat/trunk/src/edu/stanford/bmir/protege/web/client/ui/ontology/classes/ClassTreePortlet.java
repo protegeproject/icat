@@ -1169,7 +1169,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
     }
 
     public void getPathToRoot(final EntityData entity) {
-        OntologyServiceManager.getInstance().getPathToRoot(project.getProjectName(), entity.getName(),
+        OntologyServiceManager.getInstance().getPathToSupercls(project.getProjectName(), entity.getName(), topClass,
                 new GetPathToRootHandler());
     }
 

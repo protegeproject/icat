@@ -2714,6 +2714,29 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
         return path;
     }
+    
+    public ArrayList<EntityData> getPathToSupercls(String projectName, String entityName, String superclsName) {
+        Project project = getProject(projectName);
+        KnowledgeBase kb = project.getKnowledgeBase();
+
+        ArrayList<EntityData> path = new ArrayList<EntityData>();
+
+        // for now it works only with classes
+        Cls cls = KBUtil.getCls(kb, entityName);
+        Cls superCls = KBUtil.getCls(kb, superclsName);
+        
+        if (cls == null || superCls == null) {
+            return path;
+        }
+        
+        List<Cls> clsPath = ModelUtilities.getPathToSupercls(cls, superCls);
+        
+        for (Cls clsInPath : clsPath) {
+        	path.add(createEntityData(clsInPath, false));
+		}
+
+        return path;
+    }
 
 
 }
