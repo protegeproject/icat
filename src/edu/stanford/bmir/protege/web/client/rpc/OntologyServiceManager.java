@@ -300,6 +300,10 @@ public class OntologyServiceManager {
     public void getPathToRoot(String projectName, String entityName, AsyncCallback<List<EntityData>> cb) {
         proxy.getPathToRoot(projectName, entityName, cb);
     }
+    
+    public void getPathToSupercls(String projectName, String entityName, String superclsName, AsyncCallback<List<EntityData>> cb) {
+        proxy.getPathToSupercls(projectName, entityName, superclsName, cb);
+    }
 
     public void getDirectTypes(String projectName, String instanceName, AsyncCallback<List<EntityData>> cb){
         proxy.getDirectTypes(projectName, instanceName, cb);

@@ -186,7 +186,9 @@ public interface OntologyServiceAsync {
 
     void getPathToRoot(String projectName, String entityName, AsyncCallback<List<EntityData>> cb);
 
+    void getPathToSupercls(String projectName, String entityName, String superclsName, AsyncCallback<List<EntityData>> cb);
 
+    
     void getDirectTypes(String projectName, String instanceName, AsyncCallback<List<EntityData>> cb);
 
 
