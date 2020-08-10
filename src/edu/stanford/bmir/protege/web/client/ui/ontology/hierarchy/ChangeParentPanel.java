@@ -40,10 +40,14 @@ public class ChangeParentPanel extends FormPanel implements Selectable {
     //hack for IE 6, which does not show the text area
     private TextAreaField reasonField;
     private String topClass;
+    
+    //we need this to update the selection in the tree
+	private ManageHierarchyPortlet manageHierarchyPortlet;
 
 
-    public ChangeParentPanel(Project project) {
+    public ChangeParentPanel(Project project, ManageHierarchyPortlet manageHierarchyPortlet) {
         this.project = project;
+        this.manageHierarchyPortlet = manageHierarchyPortlet;
         buildUI();
     }
 
@@ -56,7 +60,7 @@ public class ChangeParentPanel extends FormPanel implements Selectable {
 
         HTML explanationHtml = new HTML("Please select a class that you want to move in the hierarchy.<br />" +
                 "Then <b>add</b> or <b>remove parents</b> in the <i>Parents</i> field.<br />" +
-                "Operations are performed only after clicking on the <i>Change parents</i> button." );
+                "Operations are performed only after clicking the <i>Change parents</i> button." );
         explanationHtml.setStylePrimaryName("explanation");
         add(explanationHtml);
 
@@ -216,9 +220,10 @@ public class ChangeParentPanel extends FormPanel implements Selectable {
             @Override
             public void run() {
                 project.forceGetEvents();
+                manageHierarchyPortlet.getTab().getControllingPortlet().setSelection(getSelection());
             }
         };
-        timer.schedule(500);
+        timer.schedule(1000);
     }
 
     @Override

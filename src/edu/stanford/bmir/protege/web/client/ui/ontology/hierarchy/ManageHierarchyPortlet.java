@@ -186,7 +186,7 @@ public class ManageHierarchyPortlet extends AbstractEntityPortlet {
 
     protected void onChangeParents() {
         wrappingPanel.clear();
-        ChangeParentPanel changeParentPanel = new ChangeParentPanel(project);
+        ChangeParentPanel changeParentPanel = new ChangeParentPanel(project, this);
         changeParentPanel.setTopClass(topClass);
         changeParentPanel.setParentsClses(UIUtil.createCollection(getEntity()));
         wrappingPanel.add(changeParentPanel);
