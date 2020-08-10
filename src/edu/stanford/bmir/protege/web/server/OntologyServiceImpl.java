@@ -2720,10 +2720,20 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         KnowledgeBase kb = project.getKnowledgeBase();
 
         ArrayList<EntityData> path = new ArrayList<EntityData>();
-
+        
+        if (entityName == null) {
+        	return path;
+        }
+        
         // for now it works only with classes
         Cls cls = KBUtil.getCls(kb, entityName);
-        Cls superCls = KBUtil.getCls(kb, superclsName);
+        
+        Cls superCls = null;
+        if (superclsName == null) {
+        	superCls = kb.getRootCls();
+        } else {
+        	superCls = KBUtil.getCls(kb, superclsName);
+        }
         
         if (cls == null || superCls == null) {
             return path;
