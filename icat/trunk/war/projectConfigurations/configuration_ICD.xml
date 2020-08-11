@@ -126,6 +126,13 @@
 				<string>closable</string>
 				<boolean>false</boolean>
 			</entry>
+		    <entry>
+			    <string>doNotShowForGroups</string>
+			    <list>
+					<string>ICFEditors</string>
+					<string>ICHIEditors</string>
+			    </list>
+		    </entry>
 		</properties>
 
 		<columns>
