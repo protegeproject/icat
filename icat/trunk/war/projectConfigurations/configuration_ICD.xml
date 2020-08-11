@@ -1977,9 +1977,9 @@
 										</entry>
 									</map>
 
-									<xi:include href="../projectConfigurations/tabs_ICD/TitleAndDefinition_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/TitleAndDefinition_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-									<xi:include href="../projectConfigurations/tabs_ICD/TitleAndDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/TitleAndDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 <!-- ICD International -> Linearization -->
 									<map>
@@ -3160,9 +3160,9 @@
 										</entry>
 									</map>
 
-									<xi:include href="../projectConfigurations/tabs_ICD/Linearization_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/Linearization_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-									<xi:include href="../projectConfigurations/tabs_ICD/Linearization_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/Linearization_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 <!-- ICD International -> Linearization  (Post-Coordination Value Set) -->
 									<map>
@@ -16820,7 +16820,7 @@
 									</map>
 
 
-									<xi:include href="../projectConfigurations/tabs_ICD/PostCoordination_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/PostCoordination_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 
 <!-- ICD International -> Pre-coordination (all ICD, incl. External Causes)-->
@@ -20080,7 +20080,7 @@
 										
 									</map>
 
-									<xi:include href="../projectConfigurations/tabs_ICD/LogicalDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/LogicalDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 <!-- ICD International -> Terms -->
 									<map>
@@ -20749,9 +20749,9 @@
 
 									</map>
 
-									<xi:include href="../projectConfigurations/tabs_ICD/Terms_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/Terms_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-									<xi:include href="../projectConfigurations/tabs_ICD/Terms_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/Terms_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 <!-- ICD International -> Clinical Description -->
 									<map>
@@ -27972,11 +27972,11 @@
 								<string>tabs</string>
 								<list>
 
-									<xi:include href="../projectConfigurations/tabs_ICD/TitleAndDefinition_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/TitleAndDefinition_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-									<xi:include href="../projectConfigurations/tabs_ICD/Linearization_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/Linearization_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-									<xi:include href="../projectConfigurations/tabs_ICD/Terms_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/Terms_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 								</list>
 							</entry>
@@ -28060,15 +28060,15 @@
 								<string>tabs</string>
 								<list>
 
-									<xi:include href="../projectConfigurations/tabs_ICD/TitleAndDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/TitleAndDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-									<xi:include href="../projectConfigurations/tabs_ICD/Linearization_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/Linearization_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-									<xi:include href="../projectConfigurations/tabs_ICD/PostCoordination_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/PostCoordination_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-									<xi:include href="../projectConfigurations/tabs_ICD/LogicalDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/LogicalDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-									<xi:include href="../projectConfigurations/tabs_ICD/Terms_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="projectConfigurations/tabs_ICD/Terms_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 								</list>
 							</entry>
