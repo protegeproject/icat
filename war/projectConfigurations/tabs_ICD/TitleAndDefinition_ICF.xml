@@ -10,7 +10,13 @@
 											<list>
 												<string>http://who.int/icd#DefinitionSection</string>
 												<string>http://who.int/icd#TermSection</string>
+											</list>
+										</entry>
+										<entry>
+											<string>types_any</string>
+											<list>
 												<string>http://who.int/icd#ICFStructuralComponentSection</string>
+												<string>http://who.int/icd#ICFQualifierSection</string>
 											</list>
 										</entry>
 										

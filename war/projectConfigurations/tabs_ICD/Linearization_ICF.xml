@@ -9,7 +9,13 @@
 											<string>types_all</string>
 											<list>
 												<string>http://who.int/icd#LinearizationSection</string>
+											</list>
+										</entry>
+										<entry>
+											<string>types_any</string>
+											<list>
 												<string>http://who.int/icd#ICFStructuralComponentSection</string>
+												<string>http://who.int/icd#ICFQualifierSection</string>
 											</list>
 										</entry>
 										
@@ -103,7 +109,7 @@
 												</entry>
 												<entry>
 													<string>height</string>
-													<string>420</string>
+													<string>320</string>
 												</entry>
 												<entry>
 													<string>Column1</string>
