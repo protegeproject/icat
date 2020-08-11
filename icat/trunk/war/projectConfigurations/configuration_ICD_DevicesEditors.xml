@@ -88,6 +88,22 @@
 			<string>Health Devices, Equipment and Supplies</string>
 		</entry>
 		<entry>
+			<string>root_class_icf</string>
+			<string>http://who.int/icd#ICFEntity</string>
+		</entry>
+		<entry>
+			<string>class_hierarchy_label_icf</string>
+			<string>ICF Entities</string>
+		</entry>
+		<entry>
+			<string>root_class_ichi</string>
+			<string>http://who.int/icd#ICHIEntity</string>
+		</entry>
+		<entry>
+			<string>class_hierarchy_label_ichi</string>
+			<string>ICHI Entities</string>
+		</entry>
+		<entry>
 			<string>sortable</string>
 			<string>false</string>
 		</entry>
@@ -104,12 +120,19 @@
 	
 	<tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
-		<label>ICD Content</label>
+		<label>WHO-FIC</label>
 		<properties>
 			<entry>
 				<string>closable</string>
 				<boolean>false</boolean>
 			</entry>
+		    <entry>
+			    <string>doNotShowForGroups</string>
+			    <list>
+					<string>ICFEditors</string>
+					<string>ICHIEditors</string>
+			    </list>
+		    </entry>
 		</properties>
 
 		<columns>
@@ -150,7 +173,7 @@
 								<string>tabs</string>
 								<list>
 
-<!-- ICD International -> Definition -->
+<!-- ICD International -> Definition (minus Post-Coordination Value Set, ICF and ICHI)-->
 									<map>
 										<entry>
 											<string>title</string>
@@ -167,6 +190,11 @@
 											<string>types_not</string>
 											<list>
 												<string>http://who.int/icd#ValueMetaClass</string>
+												<string>http://who.int/icd#ICFStructuralComponentSection</string>
+												<string>http://who.int/icd#ICFQualifierSection</string>
+												<string>http://who.int/icd#ICHISection</string>
+												<string>http://who.int/icd#ICHIAxesSection</string>
+												<string>http://who.int/icd#ICHIExtensionCodeSection</string>
 											</list>
 										</entry>
 										
@@ -242,11 +270,11 @@
 												</entry>
 												<entry>
 													<string>label</string>
-													<string>ICD Title</string>
+													<string>Title</string>
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>The &quot;ICD Title&quot; is the term for any ICD concept (unit, entity or category) which labels the intended concept in a meaningful, unambiguous way</string>
+													<string>The &quot;Title&quot; is the term for any ICD concept (unit, entity or category) which labels the intended concept in a meaningful, unambiguous way</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -284,7 +312,7 @@
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>The &quot;Fully Specified Name&quot; is a term that describes the entity in a clear and understandable way and usually contains more details than the &quot;ICD Title&quot;. THIS FIELD MAY BE LEFT EMPTY. In that case the &quot;ICD Title&quot; will be used also as the &quot;Fully Specified Name&quot;</string>
+													<string>The &quot;Fully Specified Name&quot; is a term that describes the entity in a clear and understandable way and usually contains more details than the &quot;Title&quot;. THIS FIELD MAY BE LEFT EMPTY. In that case the &quot;Title&quot; will be used also as the &quot;Fully Specified Name&quot;</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -638,7 +666,7 @@
 										</entry>
 									</map>
 
-<!-- ICD International -> Definition (Post-Coordination Value Set - minus ICECI) -->
+<!-- ICD International -> Definition (Post-Coordination Value Set - minus ICECI, ICF and ICHI) -->
 									<map>
 										<entry>
 											<string>title</string>
@@ -658,6 +686,11 @@
 											<string>types_not</string>
 											<list>
 												<string>http://who.int/icd#ICECIMetaClass</string>
+												<string>http://who.int/icd#ICFStructuralComponentSection</string>
+												<string>http://who.int/icd#ICFQualifierSection</string>
+												<string>http://who.int/icd#ICHISection</string>
+												<string>http://who.int/icd#ICHIAxesSection</string>
+												<string>http://who.int/icd#ICHIExtensionCodeSection</string>
 											</list>
 										</entry>
 										
@@ -734,11 +767,11 @@
 												</entry>
 												<entry>
 													<string>label</string>
-													<string>ICD Title</string>
+													<string>Title</string>
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>The &quot;ICD Title&quot; is the term for any ICD concept (unit, entity or category) which labels the intended concept in a meaningful, unambiguous way</string>
+													<string>The &quot;Title&quot; is the term for any ICD concept (unit, entity or category) which labels the intended concept in a meaningful, unambiguous way</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -776,7 +809,7 @@
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>The &quot;Fully Specified Name&quot; is a term that describes the entity in a clear and understandable way and usually contains more details than the &quot;ICD Title&quot;. THIS FIELD MAY BE LEFT EMPTY. In that case the &quot;ICD Title&quot; will be used also as the &quot;Fully Specified Name&quot;</string>
+													<string>The &quot;Fully Specified Name&quot; is a term that describes the entity in a clear and understandable way and usually contains more details than the &quot;Title&quot;. THIS FIELD MAY BE LEFT EMPTY. In that case the &quot;Title&quot; will be used also as the &quot;Fully Specified Name&quot;</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -1392,11 +1425,11 @@
 												</entry>
 												<entry>
 													<string>label</string>
-													<string>ICD Title</string>
+													<string>Title</string>
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>The &quot;ICD Title&quot; is the term for any ICD concept (unit, entity or category) which labels the intended concept in a meaningful, unambiguous way</string>
+													<string>The &quot;Title&quot; is the term for any ICD concept (unit, entity or category) which labels the intended concept in a meaningful, unambiguous way</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -1434,7 +1467,7 @@
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>The &quot;Fully Specified Name&quot; is a term that describes the entity in a clear and understandable way and usually contains more details than the &quot;ICD Title&quot;. THIS FIELD MAY BE LEFT EMPTY. In that case the &quot;ICD Title&quot; will be used also as the &quot;Fully Specified Name&quot;</string>
+													<string>The &quot;Fully Specified Name&quot; is a term that describes the entity in a clear and understandable way and usually contains more details than the &quot;Title&quot;. THIS FIELD MAY BE LEFT EMPTY. In that case the &quot;Title&quot; will be used also as the &quot;Fully Specified Name&quot;</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -1961,8 +1994,11 @@
 										</entry>
 									</map>
 
+									<xi:include href="projectConfigurations/tabs_ICD/TitleAndDefinition_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-<!-- ICD International -> Linearization -->
+									<xi:include href="projectConfigurations/tabs_ICD/TitleAndDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+<!-- ICD International -> Linearization (minus Post-Coordination Value Set, ICF and ICHI)-->
 									<map>
 										<entry>
 											<string>title</string>
@@ -1979,6 +2015,12 @@
 											<string>types_not</string>
 											<list>
 												<string>http://who.int/icd#ValueMetaClass</string>
+												<string>http://who.int/icd#ICFSection</string>
+												<string>http://who.int/icd#ICFStructuralComponentSection</string>
+												<string>http://who.int/icd#ICFQualifierSection</string>
+												<string>http://who.int/icd#ICHISection</string>
+												<string>http://who.int/icd#ICHIAxesSection</string>
+												<string>http://who.int/icd#ICHIExtensionCodeSection</string>
 											</list>
 										</entry>
 										
@@ -3141,7 +3183,11 @@
 										</entry>
 									</map>
 
-<!-- ICD International -> Linearization  (Post-Coordination Value Set) -->
+									<xi:include href="projectConfigurations/tabs_ICD/Linearization_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+									<xi:include href="projectConfigurations/tabs_ICD/Linearization_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+<!-- ICD International -> Linearization  (Post-Coordination Value Set - minus ICF and ICHI) -->
 									<map>
 										<entry>
 											<string>title</string>
@@ -3153,6 +3199,17 @@
 											<list>
 												<string>http://who.int/icd#LinearizationSection</string>
 												<string>http://who.int/icd#ValueMetaClass</string>
+											</list>
+										</entry>
+										<entry>
+											<string>types_not</string>
+											<list>
+												<string>http://who.int/icd#ICFSection</string>
+												<string>http://who.int/icd#ICFStructuralComponentSection</string>
+												<string>http://who.int/icd#ICFQualifierSection</string>
+												<string>http://who.int/icd#ICHISection</string>
+												<string>http://who.int/icd#ICHIAxesSection</string>
+												<string>http://who.int/icd#ICHIExtensionCodeSection</string>
 											</list>
 										</entry>
 										
@@ -3405,27 +3462,84 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Sorting label</string>
+															<string>Coding notes</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
-															<string>Edit linearization specific sorting label only if it is different from the default sorting label</string>
+															<string>Edit linearization specific coding notes for this entity</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>72</string>
+															<string>75</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#linearizationSortingLabel</string>
-														</entry>
-														<entry>
-															<string>field_editor</string>
-															<string>inline</string>
+															<string>http://who.int/icd#label</string>
 														</entry>
 														<entry>
 															<string>index</string>
 															<string>5</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>string</string>
+														</entry>
+														<entry>
+															<string>subject_column_index</string>
+															<string>7</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>multiline_icon</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column7</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Coding notes (inst)</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Coding notes instance for this entity. Should not be edited</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>75</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#codingNote</string>
+														</entry>
+														<entry>
+															<string>ont_type</string>
+															<string>http://who.int/icd#CodingNoteTerm</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>6</string>
+														</entry>
+														<entry>
+															<string>hidden</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>read_only</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>instance_browsertext</string>
 														</entry>
 													</map>
 												</entry>
@@ -3648,27 +3762,84 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Sorting label</string>
+															<string>Coding notes</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
-															<string>Edit linearization specific sorting label only if it is different from the default sorting label</string>
+															<string>Edit linearization specific coding notes for this entity</string>
 														</entry>
 														<entry>
 															<string>width</string>
-															<string>72</string>
+															<string>75</string>
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#linearizationSortingLabel</string>
-														</entry>
-														<entry>
-															<string>field_editor</string>
-															<string>inline</string>
+															<string>http://who.int/icd#label</string>
 														</entry>
 														<entry>
 															<string>index</string>
 															<string>5</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>string</string>
+														</entry>
+														<entry>
+															<string>subject_column_index</string>
+															<string>7</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>multiline_icon</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column7</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Coding notes (inst)</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Coding notes instance for this entity. Should not be edited</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>75</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#codingNote</string>
+														</entry>
+														<entry>
+															<string>ont_type</string>
+															<string>http://who.int/icd#CodingNoteTerm</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>6</string>
+														</entry>
+														<entry>
+															<string>hidden</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>read_only</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>instance_browsertext</string>
 														</entry>
 													</map>
 												</entry>
@@ -3924,11 +4095,11 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Sorting label</string>
+															<string>Coding notes</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
-															<string>Edit linearization specific sorting label only if it is different from the default sorting label</string>
+															<string>Edit linearization specific coding notes for this entity</string>
 														</entry>
 														<entry>
 															<string>width</string>
@@ -3936,15 +4107,72 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#linearizationSortingLabel</string>
-														</entry>
-														<entry>
-															<string>field_editor</string>
-															<string>inline</string>
+															<string>http://who.int/icd#label</string>
 														</entry>
 														<entry>
 															<string>index</string>
 															<string>5</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>string</string>
+														</entry>
+														<entry>
+															<string>subject_column_index</string>
+															<string>7</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>multiline_icon</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>multiline</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column7</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Coding notes (inst)</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Coding notes instance for this entity. Should not be edited</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>75</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#codingNote</string>
+														</entry>
+														<entry>
+															<string>ont_type</string>
+															<string>http://who.int/icd#CodingNoteTerm</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>6</string>
+														</entry>
+														<entry>
+															<string>hidden</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>read_only</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>instance_browsertext</string>
 														</entry>
 													</map>
 												</entry>
@@ -3997,6 +4225,20 @@
 														<string>Stanford</string>
 													</list>
 												</entry-->
+										
+												<entry>
+													<string>group_specific_allowed_values</string>
+													<map>
+														<entry>
+															<string>DermatologyLinearizationEditors</string>
+															<list>
+																<!--string>http://who.int/icd#Morbidity</string-->
+																<string>http://who.int/icd#Specialty_Adaptation_Dermatology</string>
+															</list>
+														</entry>
+													</map>
+												</entry>
+												
 												
 												<entry>
 													<string>tooltip</string>
@@ -16612,7 +16854,10 @@
 									</map>
 
 
-<!-- ICD International -> Pre-coordination (all, incl. External Causes)-->
+									<xi:include href="projectConfigurations/tabs_ICD/PostCoordination_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+
+<!-- ICD International -> Pre-coordination (all ICD, incl. External Causes)-->
 									<map>
 										<entry>
 											<string>title</string>
@@ -19869,7 +20114,9 @@
 										
 									</map>
 
-<!-- ICD International -> Terms -->
+									<xi:include href="projectConfigurations/tabs_ICD/LogicalDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+<!-- ICD International -> Terms (minus Post-Coordination Value Set, ICF and ICHI)-->
 									<map>
 										<entry>
 											<string>title</string>
@@ -19886,6 +20133,12 @@
 											<string>types_not</string>
 											<list>
 												<string>http://who.int/icd#ValueMetaClass</string>
+												<string>http://who.int/icd#ICFSection</string>
+												<string>http://who.int/icd#ICFStructuralComponentSection</string>
+												<string>http://who.int/icd#ICFQualifierSection</string>
+												<string>http://who.int/icd#ICHISection</string>
+												<string>http://who.int/icd#ICHIAxesSection</string>
+												<string>http://who.int/icd#ICHIExtensionCodeSection</string>
 											</list>
 										</entry>
 										
@@ -20244,7 +20497,7 @@
 										</entry>
 									</map>
 
-<!-- ICD International -> Terms (Post-Coordination Value Set) -->
+<!-- ICD International -> Terms (Post-Coordination Value Set - minus ICF and ICHI)-->
 									<map>
 										<entry>
 											<string>title</string>
@@ -20256,6 +20509,17 @@
 											<list>
 												<string>http://who.int/icd#TermSection</string>
 												<string>http://who.int/icd#ValueMetaClass</string>
+											</list>
+										</entry>
+										<entry>
+											<string>types_not</string>
+											<list>
+												<string>http://who.int/icd#ICFSection</string>
+												<string>http://who.int/icd#ICFStructuralComponentSection</string>
+												<string>http://who.int/icd#ICFQualifierSection</string>
+												<string>http://who.int/icd#ICHISection</string>
+												<string>http://who.int/icd#ICHIAxesSection</string>
+												<string>http://who.int/icd#ICHIExtensionCodeSection</string>
 											</list>
 										</entry>
 										
@@ -20535,6 +20799,10 @@
 										</entry>
 
 									</map>
+
+									<xi:include href="projectConfigurations/tabs_ICD/Terms_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+									<xi:include href="projectConfigurations/tabs_ICD/Terms_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 <!-- ICD International -> Clinical Description -->
 									<map>
@@ -26908,6 +27176,12 @@
 											<string>types_not</string>
 											<list>
 												<string>http://who.int/icd#ValueMetaClass</string>
+												<string>http://who.int/icd#ICFSection</string>
+												<string>http://who.int/icd#ICFStructuralComponentSection</string>
+												<string>http://who.int/icd#ICFQualifierSection</string>
+												<string>http://who.int/icd#ICHISection</string>
+												<string>http://who.int/icd#ICHIAxesSection</string>
+												<string>http://who.int/icd#ICHIExtensionCodeSection</string>
 											</list>
 										</entry>
 										
@@ -27678,6 +27952,186 @@
 	</tab>
 
 	<tab>
+		<name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
+		<label>ICF</label>
+		<properties>
+			<entry>
+				<string>closable</string>
+				<boolean>false</boolean>
+			</entry>
+		      <entry>
+		        <string>headerCssClass</string>
+		        <string>spec-tab-header3</string>
+		      </entry>
+		      <entry>
+		        <string>showOnlyForGroups</string>
+		        <list>
+		          <string>AdminGroup</string>
+		          <string>Stanford</string>
+		          <string>WHOTeam</string>
+		          <string>ICFEditors</string>
+		        </list>
+		      </entry>
+		</properties>
+
+		<columns>
+			<column>
+				<width>0.40</width>
+				<portlets>
+					<portlet>
+						<name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.SuperclassesPortlet</name>
+						<height>96</height>
+						<width>100</width>
+					</portlet>
+					<portlet>
+						<name>edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet</name>
+						<height>533</height><!-- why does 600 not render properly and we have to add 13 px per component? -->
+						<width>100</width>
+						<properties>
+							<entry>
+								<string>topClass</string>
+								<string>@root_class_icf@</string>
+							</entry>
+							<entry>
+								<string>label</string>
+								<string>@class_hierarchy_label_icf@</string>
+							</entry>
+						</properties>
+					</portlet>
+				</portlets>
+			</column>
+			<!-- column>
+				<width>0.60</width>
+				<portlets>
+					<portlet>
+						<name>edu.stanford.bmir.protege.web.client.ui.ontology.notes.NotesTreePortlet</name>
+						<height>600</height>
+						<width>0</width>
+					</portlet>
+				</portlets>
+			</column-->
+			
+			<column>
+				<width>0.60</width>
+				<portlets>
+					<portlet>
+						<name>edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.PropertyFieldPortlet</name>
+						<height>600</height>
+						<width>0</width>
+						<properties>
+							<entry>
+								<string>tabs</string>
+								<list>
+
+									<xi:include href="projectConfigurations/tabs_ICD/TitleAndDefinition_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+									<xi:include href="projectConfigurations/tabs_ICD/Linearization_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+									<xi:include href="projectConfigurations/tabs_ICD/Terms_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+								</list>
+							</entry>
+						</properties>
+					</portlet>
+				</portlets>
+			</column>
+		</columns>
+		<controllingPortlet reference="../columns/column/portlets/portlet[2]" />
+	</tab>
+
+	<tab>
+		<name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
+		<label>ICHI</label>
+		<properties>
+			<entry>
+				<string>closable</string>
+				<boolean>false</boolean>
+			</entry>
+		      <entry>
+		        <string>headerCssClass</string>
+		        <string>spec-tab-header7</string>
+		      </entry>
+		      <entry>
+		        <string>showOnlyForGroups</string>
+		        <list>
+		          <string>AdminGroup</string>
+		          <string>Stanford</string>
+		          <string>WHOTeam</string>
+		          <string>ICHIEditors</string>
+		        </list>
+		      </entry>
+		</properties>
+
+		<columns>
+			<column>
+				<width>0.40</width>
+				<portlets>
+					<portlet>
+						<name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.SuperclassesPortlet</name>
+						<height>96</height>
+						<width>100</width>
+					</portlet>
+					<portlet>
+						<name>edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet</name>
+						<height>533</height><!-- why does 600 not render properly and we have to add 13 px per component? -->
+						<width>100</width>
+						<properties>
+							<entry>
+								<string>topClass</string>
+								<string>@root_class_ichi@</string>
+							</entry>
+							<entry>
+								<string>label</string>
+								<string>@class_hierarchy_label_ichi@</string>
+							</entry>
+						</properties>
+					</portlet>
+				</portlets>
+			</column>
+			<!-- column>
+				<width>0.60</width>
+				<portlets>
+					<portlet>
+						<name>edu.stanford.bmir.protege.web.client.ui.ontology.notes.NotesTreePortlet</name>
+						<height>600</height>
+						<width>0</width>
+					</portlet>
+				</portlets>
+			</column-->
+			
+			<column>
+				<width>0.60</width>
+				<portlets>
+					<portlet>
+						<name>edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.PropertyFieldPortlet</name>
+						<height>600</height>
+						<width>0</width>
+						<properties>
+							<entry>
+								<string>tabs</string>
+								<list>
+
+									<xi:include href="projectConfigurations/tabs_ICD/TitleAndDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+									<xi:include href="projectConfigurations/tabs_ICD/Linearization_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+									<xi:include href="projectConfigurations/tabs_ICD/PostCoordination_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+									<xi:include href="projectConfigurations/tabs_ICD/LogicalDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+									<xi:include href="projectConfigurations/tabs_ICD/Terms_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+								</list>
+							</entry>
+						</properties>
+					</portlet>
+				</portlets>
+			</column>
+		</columns>
+		<controllingPortlet reference="../columns/column/portlets/portlet[2]" />
+	</tab>
+
+	<tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.ontology.notes.NotesTab</name>
 		<label>Notes</label>
 		<properties>
@@ -27717,7 +28171,7 @@
 				<width>0.60</width>
 				<portlets>
 					<portlet>
-						<!-- <name>edu.stanford.bmir.protege.web.client.ui.ontology.notes.NotesTreePortlet</name>  -->
+						<!-- <name>edu.stanford.bmir.protege.web.client.ui.ontology.notes.NotesTreePortlet</name> -->
 						<name>edu.stanford.bmir.protege.web.client.ui.icd.ICDNotesPortlet</name>
 						<height>600</height>
 						<width>0</width>
@@ -27727,7 +28181,7 @@
 		</columns>
 		<controllingPortlet reference="../columns/column/portlets/portlet[2]" />
 	</tab>
-
+      
 	<!--tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.ontology.reviews.ReviewsTab</name>
 		<label>Reviews</label>
@@ -27824,7 +28278,8 @@
 			</column>
 		</columns>
 		<controllingPortlet reference="../columns/column/portlets/portlet[2]" ></controllingPortlet>
-	</tab>	
+	</tab>
+
 	<tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.ontology.hierarchy.ManageHierarchyTab</name>
 		<label>Manage Hierarchy</label>
@@ -27885,7 +28340,7 @@
 		<controllingPortlet reference="../columns/column/portlets/portlet[2]"/>
 	</tab>
 	
-		<tab>
+	<tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.tab.UserDefinedTab</name>
 		<label>Export and Import</label>
 		<properties>
@@ -27933,6 +28388,8 @@
 		</columns>
 		<controllingPortlet reference="../columns/column/portlets/portlet[2]" ></controllingPortlet>
 	</tab>	
+
+
 
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
@@ -28169,6 +28626,7 @@
 			</column>
 		</columns>
 	</tab>
+
 
   </tabs>
 </project>
