@@ -131,21 +131,26 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
 				" and user: " + userName + ": " + f.getAbsolutePath());
 
 		if (!f.exists()) {
-			Log.getLogger().severe("Installation misconfigured: Default project configuration file missing: " + f);
-			throw new IllegalStateException("Misconfiguration");
+			Log.getLogger().severe("Project configuration file missing: " + f.getAbsolutePath());
+			throw new IllegalStateException("Missing project configuration for: " + projectName);
 		}
-
 		
 		try {
 			Reader configReader = getXMLConfigReader(f);
 			config = convertXMLToConfiguration(configReader);
 			configReader.close();
-		} catch (java.io.FileNotFoundException e) {
-			config = new ProjectConfiguration();
 		} catch (Exception e) {
-			Log.getLogger().log(Level.WARNING, "Failed to read from config file at server. ", e);
+			Log.getLogger().log(Level.SEVERE, "Error while reading project configuration for " + projectName +
+					" and user: " + userName + ". Configuration file: " + f.getAbsolutePath() +
+					". Error message: " + e.getMessage(), e);
 		}
-
+		
+		if (config == null) {
+			Log.getLogger().severe("Project configuration is null for " + projectName + "  and user: " + userName);
+			throw new IllegalStateException("Error while reading the project configuration for " + projectName);
+		}
+		
+		
 		config.setOntologyName(projectName);
 
 		return config;
