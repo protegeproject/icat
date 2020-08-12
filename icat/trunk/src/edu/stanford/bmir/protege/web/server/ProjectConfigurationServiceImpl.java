@@ -1,6 +1,5 @@
 package edu.stanford.bmir.protege.web.server;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -12,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.nio.file.FileSystems;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -30,6 +28,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
+import org.xml.sax.EntityResolver;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -215,7 +215,6 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
 									IOException, ParserConfigurationException, TransformerException {
 
 		Log.getLogger().info("Working Directory = " + System.getProperty("user.dir"));
-      	Log.getLogger().info("Working Directory2 = " + FileSystems.getDefault().getPath(".").toAbsolutePath().toString());
       	
 		// document parser
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -223,6 +222,16 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
         factory.setNamespaceAware(true);
         
         final DocumentBuilder docBuilder = factory.newDocumentBuilder();
+        
+        docBuilder.setEntityResolver(new EntityResolver() {
+			
+			@Override
+			public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
+				Log.getLogger().info("Looking for: " + systemId);
+				return null;
+			}
+		});
+        
         Document doc = docBuilder.parse(new FileInputStream(xmlFile));
         
         // print result in output stream
@@ -241,10 +250,10 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
 	
 	
 	public static void main(String[] args) throws Exception {
-		File configXML = new File("/Users/ttania/work/eclipse-workspace/icat/war/projectConfigurations/configuration_Pizza.xml");
+		File configXML = new File("/Users/ttania/work/eclipse-workspace/icat/war/projectConfigurations/configuration_ICD.xml");
 		Reader r = getXMLConfigReader(configXML);
 		
-		BufferedReader csvReader = null;
+/*		BufferedReader csvReader = null;
 		
 		csvReader = new BufferedReader(r);
 		
@@ -258,7 +267,7 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
 			e.printStackTrace();
 		}
 		csvReader.close();
-		
+		*/
 	}
 	
 }
