@@ -1,5 +1,6 @@
 package edu.stanford.bmir.protege.web.server;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.file.FileSystems;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -209,18 +211,21 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
 	 * @throws ParserConfigurationException 
 	 * @throws TransformerException 
 	 */
-	private Reader getXMLConfigReader(File xmlFile) throws FileNotFoundException, SAXException, 
+	public static Reader getXMLConfigReader(File xmlFile) throws FileNotFoundException, SAXException, 
 									IOException, ParserConfigurationException, TransformerException {
 	    // document parser
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setXIncludeAware(true);
         factory.setNamespaceAware(true);
         
-        DocumentBuilder docBuilder = factory.newDocumentBuilder();
+        final DocumentBuilder docBuilder = factory.newDocumentBuilder();
         Document doc = docBuilder.parse(new FileInputStream(xmlFile));
         
+      	Log.getLogger().info("Working Directory = " + System.getProperty("user.dir"));
+      	Log.getLogger().info("Working Directory2 = " + FileSystems.getDefault().getPath(".").toAbsolutePath().toString());
+      	
         // print result in output stream
-        DOMSource source = new DOMSource(doc);
+        final DOMSource source = new DOMSource(doc);
         
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         StreamResult result = new StreamResult(os);
@@ -231,6 +236,28 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
         
         InputStream inputStream = new ByteArrayInputStream(os.toByteArray());
         return new InputStreamReader(inputStream);
+	}
+	
+	
+	public static void main(String[] args) throws Exception {
+		File configXML = new File("/Users/ttania/work/eclipse-workspace/icat/war/projectConfigurations/configuration_Pizza.xml");
+		Reader r = getXMLConfigReader(configXML);
+		
+		BufferedReader csvReader = null;
+		
+		csvReader = new BufferedReader(r);
+		
+		String row = null;
+		try {
+			while (( row = csvReader.readLine()) != null) {
+				System.out.println(row);
+				
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		csvReader.close();
+		
 	}
 	
 }
