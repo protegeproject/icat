@@ -1,7 +1,7 @@
 <project>
 <tabs>
 
-  <xi:include href="projectConfigurations/clsesTab.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="clsesTab.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
   
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.properties.PropertiesTab</name>
