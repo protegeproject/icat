@@ -213,7 +213,11 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
 	 */
 	public static Reader getXMLConfigReader(File xmlFile) throws FileNotFoundException, SAXException, 
 									IOException, ParserConfigurationException, TransformerException {
-	    // document parser
+
+		Log.getLogger().info("Working Directory = " + System.getProperty("user.dir"));
+      	Log.getLogger().info("Working Directory2 = " + FileSystems.getDefault().getPath(".").toAbsolutePath().toString());
+      	
+		// document parser
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setXIncludeAware(true);
         factory.setNamespaceAware(true);
@@ -221,9 +225,6 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
         final DocumentBuilder docBuilder = factory.newDocumentBuilder();
         Document doc = docBuilder.parse(new FileInputStream(xmlFile));
         
-      	Log.getLogger().info("Working Directory = " + System.getProperty("user.dir"));
-      	Log.getLogger().info("Working Directory2 = " + FileSystems.getDefault().getPath(".").toAbsolutePath().toString());
-      	
         // print result in output stream
         final DOMSource source = new DOMSource(doc);
         
