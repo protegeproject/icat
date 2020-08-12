@@ -232,7 +232,7 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
 			}
 		});
         
-        Document doc = docBuilder.parse(new FileInputStream(xmlFile));
+        Document doc = docBuilder.parse(new FileInputStream(xmlFile), xmlFile.getAbsoluteFile().toURI().toString());
         
         // print result in output stream
         final DOMSource source = new DOMSource(doc);
@@ -250,7 +250,7 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
 	
 	
 	public static void main(String[] args) throws Exception {
-		File configXML = new File("/Users/ttania/work/eclipse-workspace/icat/war/projectConfigurations/configuration_ICD.xml");
+		File configXML = new File("/Users/ttania/work/eclipse-workspace/icat/war/projectConfigurations/configuration_Pizza.xml");
 		Reader r = getXMLConfigReader(configXML);
 		
 /*		BufferedReader csvReader = null;
