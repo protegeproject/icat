@@ -211,11 +211,9 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
 	 * @throws ParserConfigurationException 
 	 * @throws TransformerException 
 	 */
-	public static Reader getXMLConfigReader(File xmlFile) throws FileNotFoundException, SAXException, 
+	private Reader getXMLConfigReader(File xmlFile) throws FileNotFoundException, SAXException, 
 									IOException, ParserConfigurationException, TransformerException {
 
-		Log.getLogger().info("Working Directory = " + System.getProperty("user.dir"));
-      	
 		// document parser
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setXIncludeAware(true);
@@ -227,7 +225,7 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
 			
 			@Override
 			public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
-				Log.getLogger().info("Looking for: " + systemId);
+				Log.getLogger().fine("Looking for included xml config file: " + systemId);
 				return null;
 			}
 		});
@@ -246,28 +244,6 @@ public class ProjectConfigurationServiceImpl extends RemoteServiceServlet implem
         
         InputStream inputStream = new ByteArrayInputStream(os.toByteArray());
         return new InputStreamReader(inputStream);
-	}
-	
-	
-	public static void main(String[] args) throws Exception {
-		File configXML = new File("/Users/ttania/work/eclipse-workspace/icat/war/projectConfigurations/configuration_Pizza.xml");
-		Reader r = getXMLConfigReader(configXML);
-		
-/*		BufferedReader csvReader = null;
-		
-		csvReader = new BufferedReader(r);
-		
-		String row = null;
-		try {
-			while (( row = csvReader.readLine()) != null) {
-				System.out.println(row);
-				
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		csvReader.close();
-		*/
 	}
 	
 }
