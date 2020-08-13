@@ -81,19 +81,19 @@
 		</entry>
 		<entry>
 			<string>root_class</string>
-			<string>http://who.int/icd#Substances</string>
+			<string>http://who.int/icd#ICHIEntity</string>
 		</entry>
 		<entry>
 			<string>class_hierarchy_label</string>
-			<string>Substances</string>
+			<string>ICHI Entities</string>
 		</entry>
 		<entry>
-			<string>root_class</string>
-			<string>@root_class_ichi@</string>
+			<string>root_class_icf</string>
+			<string>http://who.int/icd#ICFEntity</string>
 		</entry>
 		<entry>
-			<string>class_hierarchy_label</string>
-			<string>@class_hierarchy_label_ichi@</string>
+			<string>class_hierarchy_label_icf</string>
+			<string>ICF Entities</string>
 		</entry>
 		<entry>
 			<string>root_class_ichi</string>
