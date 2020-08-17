@@ -97,7 +97,7 @@ public class IndividualsListPortlet extends AbstractEntityPortlet {
     };
 
     public IndividualsListPortlet(Project project) {
-        super(project);
+        super(project, true);
     }
     
     public IndividualsListPortlet(Project project, final boolean showToolbar) {
@@ -116,9 +116,10 @@ public class IndividualsListPortlet extends AbstractEntityPortlet {
 
         initConfiguration();
 
-        if (showToolbar) {
+        //TODO: enabling it always, because there is some bug if we try to configure it, should fix at some point
+        //if (showToolbar) {
         	addToolbarButtons();
-        }
+        //}
 
         if (preconfiguredClass != null) {
             setEntity(preconfiguredClass);
@@ -290,6 +291,7 @@ public class IndividualsListPortlet extends AbstractEntityPortlet {
             toolbar.addText("&nbsp<i>Search</i>:&nbsp&nbsp");
             toolbar.addElement(searchField.getElement());
         }
+        
     }
 
     protected void onWatchIndividual() {

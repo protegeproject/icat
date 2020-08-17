@@ -32,9 +32,6 @@ public class LocalMetaProjectManager extends AbstractMetaProjectManager {
     private MetaProject metaproject;
     boolean runsInClientServerMode;
 
-    //cache for performance reasons
-    private ArrayList<ProjectData> projectData;
-
     private int _saveIntervalMsec = edu.stanford.bmir.protege.web.server.ApplicationProperties.NO_SAVE;
     //thread that save periodically the projects for local mode
     private Thread _updateThread;
@@ -86,15 +83,11 @@ public class LocalMetaProjectManager extends AbstractMetaProjectManager {
     }
 
     public ArrayList<ProjectData> getProjectsData(String userName) {
-        if (projectData != null) {
-            return projectData;
-        }
-
         if (userName == null) {
             userName = "Guest";
         }
         //TODO: check with Tim if it needs synchronization
-        projectData = new ArrayList<ProjectData>();
+        ArrayList<ProjectData> projectData = new ArrayList<ProjectData>();
 
         Policy policy = metaproject.getPolicy();
         User user = policy.getUserByName(userName);

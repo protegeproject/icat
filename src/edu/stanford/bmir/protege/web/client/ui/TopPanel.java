@@ -54,8 +54,10 @@ public class TopPanel extends Panel {
     private final Images images = (Images) GWT.create(Images.class);
     private HorizontalPanel optionsLinks;
     private MenuBar verticalOptionsMenu;
+    
     private MenuItem addUserMenuItem;
     private MenuItem signInAsMenuItem;
+    private MenuItem editAccessRightsMenuItem;
 
     public interface Images extends ImageBundle {
         public AbstractImagePrototype iCatLogo();
@@ -138,9 +140,12 @@ public class TopPanel extends Panel {
                     if (operations.contains(PermissionConstants.SIGN_IN_AS)) {
                     	addSignInAsMenuItem();
                     }
+                    if (operations.contains(PermissionConstants.ADMINISTER_SERVER)) {
+                    	addEditAccessRightsMenuItem();
+                    }
                 }
 
-                public void onFailure(Throwable caught) {
+				public void onFailure(Throwable caught) {
                     GWT.log("Could not get server permission from server", caught);
                 }
             });
@@ -291,6 +296,17 @@ public class TopPanel extends Panel {
         verticalOptionsMenu.addItem(signInAsMenuItem);
     }
 
+    
+    private void addEditAccessRightsMenuItem() {
+        editAccessRightsMenuItem = new MenuItem("Manage access rights", new Command() {
+            public void execute() {
+                EditMetaprojecyUtil util = new EditMetaprojecyUtil();
+                util.editMetaProject();
+            }
+        });
+        verticalOptionsMenu.addItem(editAccessRightsMenuItem);
+	}
+    
     protected String getUserNameText() {
         String name = GlobalSettings.getGlobalSettings().getUserName();
         return name == null ? "You&nbsp;are&nbsp;signed&nbsp;out." : name;
