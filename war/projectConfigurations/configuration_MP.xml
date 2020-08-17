@@ -1,0 +1,70 @@
+<project>
+<tabs>
+ 
+  <tab>
+    <name>edu.stanford.bmir.protege.web.client.ui.ontology.individuals.IndividualsTab</name>
+    <label>Metaproject classes and instances</label>
+    <columns>
+      <column>
+        <width>0.25</width>
+        <portlets>
+          <portlet>
+            <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet</name>
+            <height>600</height>
+            <width>0</width>
+          </portlet>
+        </portlets>
+      </column>
+      <column>
+        <width>0.25</width>
+        <portlets>
+          <portlet>
+            <name>edu.stanford.bmir.protege.web.client.ui.ontology.individuals.IndividualsListPortlet</name>
+            <height>600</height>
+            <width>0</width>
+          </portlet>
+        </portlets>
+      </column>
+      <column>
+        <width>0.50</width>
+        <portlets>
+          <portlet>
+            <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.AllPropertiesPortlet</name>
+            <height>600</height>
+            <width>0</width>
+          </portlet>
+        </portlets>
+      </column>
+    </columns>
+  </tab>
+  
+  <tab>
+    <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
+    <label>Classes</label>
+    <columns>
+      <column>      
+        <width>0.33</width>
+        <portlets>
+          <portlet>
+            <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet</name>
+            <height>600</height>
+            <width>200</width>
+          </portlet>
+        </portlets>
+      </column>
+      <column>
+        <width>0.66</width>
+        <portlets>
+          <portlet>
+            <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.AllPropertiesPortlet</name>
+            <height>600</height>
+            <width>0</width>
+          </portlet>
+        </portlets>
+      </column>
+    </columns>
+    <controllingPortlet reference="../columns/column/portlets/portlet"/>
+  </tab>
+
+  </tabs>  
+</project>
