@@ -16,5 +16,8 @@ public class PermissionConstants {
     
     //Must match the edu.stanford.bmir.protege.web.server.AbstractMetaProjectManager.SIGN_IS_AS_OP
     public static final String SIGN_IN_AS = "SignInAs";
+    
+    //Name must match: edu.stanford.smi.protege.server.metaproject.OPERATION_ADMINISTER_SERVER
+    public static final String ADMINISTER_SERVER = "AdministerServer";
 
 }
