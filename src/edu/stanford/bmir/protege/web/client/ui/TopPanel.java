@@ -300,7 +300,7 @@ public class TopPanel extends Panel {
     private void addEditAccessRightsMenuItem() {
         editAccessRightsMenuItem = new MenuItem("Manage access rights", new Command() {
             public void execute() {
-                EditMetaprojecyUtil util = new EditMetaprojecyUtil();
+                EditMetaprojectUtil util = new EditMetaprojectUtil();
                 util.editMetaProject();
             }
         });

@@ -14,7 +14,7 @@ import com.gwtext.client.widgets.layout.FitLayout;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.ProjectData;
 
-public class EditMetaprojecyUtil {
+public class EditMetaprojectUtil {
 
 	private final static String METAPROJECT_PROJECT_NAME = "MP";
 
@@ -63,7 +63,7 @@ public class EditMetaprojecyUtil {
 		win.setTitle("Edit metaproject");
 		win.setClosable(true);
 		win.setWidth(800);
-		win.setHeight(500);
+		win.setHeight(600);
 		win.setPaddings(7);
 		win.setModal(true);
 		win.setCloseAction(Window.CLOSE);
