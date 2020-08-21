@@ -22,4 +22,6 @@
 	<servlet path="/hierarchy" class="edu.stanford.bmir.protege.web.server.HierarchyServiceImpl"/>
 	<servlet path="/openid" class="edu.stanford.bmir.protege.web.server.OpenIdServiceImpl"/>
 	<servlet path="/bpaccess" class="edu.stanford.bmir.protege.web.server.bioportal.BioPortalAccessImpl" />
+	<servlet path="/scripting" class="edu.stanford.bmir.protege.web.server.scripting.ScriptingServiceImpl" />
+   
 </module>
