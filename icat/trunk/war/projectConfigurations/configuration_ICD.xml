@@ -28600,6 +28600,7 @@
     </columns>
     <controllingPortlet reference="../columns/column/portlets/portlet[2]"/>
   </tab>
+  
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.individuals.IndividualsTab</name>
     <label>Individuals</label>
@@ -28653,6 +28654,7 @@
       </column>
     </columns>
   </tab>
+  
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.individuals.IndividualsTab</name>
     <label>Scales</label>
@@ -28741,6 +28743,35 @@
             		</list>
             	</entry>
             </properties>
+          </portlet>
+        </portlets>
+      </column>
+    </columns>
+  </tab>
+  
+  <tab>
+    <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
+    <label>Python Scripting</label>
+    <properties>
+      <entry>
+        <string>headerCssClass</string>
+        <string>spec-tab-header5</string>
+      </entry>
+      <entry>
+        <string>showOnlyForGroups</string>
+        <list>
+          <string>AdminGroup</string>
+        </list>
+      </entry>
+	</properties>
+    <columns>
+      <column>
+        <width>1</width>
+        <portlets>          
+          <portlet>
+            <name>edu.stanford.bmir.protege.web.client.ui.ontology.scripting.PythonScriptingPortlet</name>
+            <height>600</height>
+            <width>0</width>
           </portlet>
         </portlets>
       </column>
