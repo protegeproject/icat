@@ -23,6 +23,9 @@
 	<property name = "lib"              location = "${war.template}/WEB-INF/lib"/>
 	<property name = "test.lib"         location = "test-lib"/>
 
+	<property name = "etc"              location = "./etc"/>
+	<property name = "jetty-base-files" location = "${etc}/jetty-base-files"/>
+	
 	<property name = "build"            location = "./build"/>
 	<property name = "war"              location = "${build}/war"/>
 	<property name = "classes"          location = "${build}/classes"/>
@@ -95,6 +98,8 @@
 			<pathelement location="${standard.lib}"/>
 			<pathelement location="${gwt.dir}/gwt-user.jar"/>
 			<pathelement location="${gwt.dir}/gwt-dev.jar"/>
+			<pathelement location="${gwt.dir}/validation-api-1.0.0.GA.jar"/>
+			<pathelement location="${gwt.dir}/validation-api-1.0.0.GA-sources.jar"/>
 			<pathelement location="${bioportal1.lib}"/>
 			<pathelement location="${bioportal2.lib}"/>
 			<pathelement location="${lucene1.lib}"/>
@@ -427,15 +432,83 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
 			</classpath>
 			<jvmarg value="-agentlib:jdwp=transport=dt_socket,address=8100,server=y,suspend=n"/>
 			<jvmarg value = "-Dlog4j.configuration=file:${protege.home}/log4j.xml"/>
+			<jvmarg value="-Dpython.home=${python.home}" />
 			<jvmarg value = "${extra.hosted.jvm.arg}"/>
 			<arg value = "-war"/>
 			<arg value = "${war}"/>
 			<arg value = "edu.stanford.bmir.protege.web.WebProtege"/>
 			<arg value = "-startupUrl"/>
-			<arg value = "WebProtege.html"/>
+			<arg value = "${gwt.html.target}"/>
 		</java>
 	</target>
 
+	<target name = "hosted.wp.ns" 
+	           depends = "webprotege.lib,stage.war,compile.draft.js">
+		<copy todir="${war}/WEB-INF/lib" file="${gwt.dir}/gwt-user.jar"/>
+		
+		<java classname = "com.google.gwt.dev.DevMode" 
+	           fork = "true" failonerror="true" maxmemory = "${hosted.memory}"
+	           dir="${war}">
+			<classpath>
+				<path refid="project.classpath"/>
+				<pathelement path="${classes}"/>
+				<pathelement path="${src}"/>
+				<pathelement location="${gwt.dir}/gwt-codeserver.jar"/>
+			</classpath>
+			
+			<jvmarg value = "-Dlog4j.configuration=file:${protege.home}/log4j.xml"/>
+			<!-- <jvmarg value="-Dpython.home=${python.home}" /> -->
+			<jvmarg value = "${extra.hosted.jvm.arg}"/>
+			
+			<arg value = "-startupUrl"/>
+			<arg value = "${gwt.html.target}"/>
+			
+			<arg value = "-war"/>
+			<arg value = "${war}"/>
+			
+			<arg value = "-noserver"/>
+			
+			<arg value = "edu.stanford.bmir.protege.web.WebProtege"/>
+		</java>
+	</target>
+	
+	<target name = "hosted.wp.ns.jetty">
+		<parallel>
+			<sequential>
+				<antcall target="hosted.wp.ns" />
+			</sequential>
+		  <sequential>
+		  		<antcall target="jetty.start" />
+		  </sequential>
+		</parallel>
+	</target>
+	
+	
+	<!-- Jetty scripts used if running the hosted mode with an external Jetty server, such as hosted.wp.ns -->
+	
+	<target name="jetty.copy.base.files">
+		<!-- copy all of war into jetty webabbs-->
+		<copy todir="${war}">
+			<fileset dir="${jetty-base-files}"/>
+		</copy>
+	</target>
+	
+	<target name="jetty.start" depends="jetty.copy.base.files">
+		<java dir="${war}"
+		      jar="${jetty.home}/start.jar"
+		      fork="true"
+		      failonerror="true"
+		      maxmemory="1g">
+			<!-- <jvmarg value="-Dpython.home=${python.home}" /> -->
+			<jvmarg value="-Dicat.built.war=${war}" />
+			<jvmarg value="-agentlib:jdwp=transport=dt_socket,address=8100,server=y,suspend=n"/>
+		</java>
+	</target>
+	
+	<!-- End Jetty targets -->
+	
+	<!-- Test targets -->
+	
 	<target name = "test.server" depends="compile,compile.tests">
 		<mkdir dir="${test-results}"/>
 		<echo message="${test-results}"/>
@@ -445,7 +518,6 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
 			<batchtest todir="${test-results}">
 				<fileset dir="test" includes="**/server/**/*Test.java" excludes="**/*PortletTest*"/>
 				<formatter type="plain" usefile="false"/>
-
 			</batchtest>
 		</junit>
 
