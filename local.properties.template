@@ -48,9 +48,20 @@ war.name=webprotege
 
 # ============= OPTIONAL PROPERTIES IF YOU RUN HOSTED MODE =====================
 
+===== JETTY PROPERTIES IF YOU RUN HOSTED MODE WITH EXTERNAL JETTY SERVER =====
+
+# Distribution folder of jetty
+# jetty.home=/Users/ttania/work/tools/jetty-distribution-9.4.9.v20180320
+
+
+# ===== OTHER PROPERTIES IF YOU RUN HOSTED MODE =====
+
 
 # The name of the html file to show. Only needed if you run hosted most from the build script.
 gwt.html.target=WebProtege.html
+
+# When running with external Jetty, use this url:
+# gwt.html.target=http://127.0.0.1:8080/WebProtege.html
 
 #
 # osx users must use the second version of the 
