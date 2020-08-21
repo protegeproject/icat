@@ -25,6 +25,8 @@
 
 
 	<!-- WebProtege servlets -->
+	
+	 <!-- ************** Servlet definitions ************** -->
 
     <servlet>
         <servlet-name>AdminServiceImpl</servlet-name>
@@ -132,6 +134,16 @@
     	<load-on-startup>1</load-on-startup>
   	</servlet>
   
+    <servlet>
+        <servlet-name>ScriptingServiceImpl</servlet-name>
+        <servlet-class>edu.stanford.bmir.protege.web.server.scripting.ScriptingServiceImpl</servlet-class>
+    </servlet>
+  
+  
+  
+    <!-- ************** Servlet mappings ************** -->
+    
+  
   	<servlet-mapping>
     	<servlet-name>FileUpload</servlet-name>
     	<url-pattern>/rest/*</url-pattern>
@@ -233,6 +245,15 @@
         <servlet-name>BioPortalAccessImpl</servlet-name>
         <url-pattern>/webprotege/bpaccess</url-pattern>
     </servlet-mapping>
+    
+    
+    <servlet-mapping>
+        <servlet-name>ScriptingServiceImpl</servlet-name>
+        <url-pattern>/webprotege/scripting</url-pattern>
+    </servlet-mapping>
+
+
+ 	<!-- ************** Other configurations ************** -->
 
     <security-constraint>
         <display-name>excluded</display-name>
@@ -246,9 +267,9 @@
         </user-data-constraint>
     </security-constraint>
     
-        <!-- Default page to serve -->
+    <!-- Default page to serve -->
     <welcome-file-list>
-        <welcome-file>WebProtege.html</welcome-file>
+        <welcome-file>iCat.html</welcome-file>
     </welcome-file-list>
 
 </web-app>

@@ -45,6 +45,7 @@ import edu.stanford.bmir.protege.web.client.ui.ontology.restrictions.HTMLRestric
 import edu.stanford.bmir.protege.web.client.ui.ontology.restrictions.RestrictionsPortlet;
 import edu.stanford.bmir.protege.web.client.ui.ontology.reviews.ReviewsPortlet;
 import edu.stanford.bmir.protege.web.client.ui.ontology.reviews.ReviewsTab;
+import edu.stanford.bmir.protege.web.client.ui.ontology.scripting.PythonScriptingPortlet;
 import edu.stanford.bmir.protege.web.client.ui.ontology.search.BioPortalSearchPortlet;
 import edu.stanford.bmir.protege.web.client.ui.ontology.search.OtherTerminologiesTab;
 import edu.stanford.bmir.protege.web.client.ui.portlet.EntityPortlet;
@@ -170,6 +171,8 @@ public class UIFactory {
         	return new ICDChangesPortlet(project);
         } else if (portletJavaClassName.equals(ICDNotesPortlet.class.getName())) {
         	return new ICDNotesPortlet(project);
+        } else if (portletJavaClassName.equals(PythonScriptingPortlet.class.getName())) {
+        	return new PythonScriptingPortlet(project);
         }
         return null;
     }
@@ -206,7 +209,8 @@ public class UIFactory {
                 NotesTreePortlet.class.getName(),
                 BioPortalProposalsPortlet.class.getName(),
                 ICDChangesPortlet.class.getName(),
-                ICDNotesPortlet.class.getName()};
+                ICDNotesPortlet.class.getName(),
+                PythonScriptingPortlet.class.getName()};
 
         List<String> portletsList = Arrays.asList(portlets);
         Collections.sort(portletsList, new Comparator<String>() {
