@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.gwtext.client.widgets.layout.AnchorLayout;
 import com.gwtext.client.widgets.layout.AnchorLayoutData;
@@ -26,7 +30,8 @@ import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
 
 public class PythonScriptingPortlet extends AbstractEntityPortlet {
 	
-	private TextArea resultArea;
+	private HTML resultArea;
+	private ScrollPanel resultAreaScrollPanel;
 	private TextArea commandLine;
 	
 	private List<String> cmdHistory = new ArrayList<String>();
@@ -41,32 +46,36 @@ public class PythonScriptingPortlet extends AbstractEntityPortlet {
 		setTitle("Phyton Scripting");
 		
 		setLayout(new AnchorLayout());
-		setAutoScroll(true);
+		//setAutoScroll(true);
 
 		HorizontalPanel actionPanel = new HorizontalPanel();
 		actionPanel.add(createClearResultsAnchor());
+		actionPanel.setStylePrimaryName("script-action-panel");
+		actionPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		
-		resultArea = new TextArea();
-		resultArea.setStylePrimaryName("condition_editor");
-		resultArea.setReadOnly(true);
+		resultArea = new HTML();
+		resultArea.setStylePrimaryName("script-result-area");
+		resultAreaScrollPanel = new ScrollPanel(resultArea);
+		//resultArea.setReadOnly(true);
 		
 		commandLine = new TextArea();
 		commandLine.addKeyUpHandler(getKeyUpHandler());
 		
 		add(actionPanel, new AnchorLayoutData("100% 5%"));
-		add(resultArea, new AnchorLayoutData("100% 75%"));
+		add(resultAreaScrollPanel, new AnchorLayoutData("100% 75%"));
 		add(commandLine, new AnchorLayoutData("100% 20%"));
 	}
 	
 	private Anchor createClearResultsAnchor() {
-		Anchor clearResultsAnchor = new Anchor("Clear");
+		Anchor clearResultsAnchor = new Anchor("Clear results");
 		clearResultsAnchor.addClickHandler(new ClickHandler() {
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				resultArea.setText("");
+				resultArea.setHTML("");
 			}
 		});
+		clearResultsAnchor.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		return clearResultsAnchor;
 	}
 	
@@ -78,7 +87,10 @@ public class PythonScriptingPortlet extends AbstractEntityPortlet {
 			public void onKeyUp(KeyUpEvent event) {
 				int keyCode = event.getNativeKeyCode();
 				if (keyCode == KeyCodes.KEY_ENTER) {
-					executeCommand();
+					if (event.isControlKeyDown() || event.isShiftKeyDown()) { //just let it add a new line
+					} else {
+						executeCommand();
+					}
 				} else if (event.isDownArrow()) {
 					event.preventDefault();
 					event.stopPropagation();
@@ -105,7 +117,7 @@ public class PythonScriptingPortlet extends AbstractEntityPortlet {
 		addToCmdHistory(cmd);
 		currentHistoryIndex = 0;
 		
-		appendResult("> " + cmd);
+		appendResult("> " + commandDisplayText(cmd));
 		commandLine.setText("");
 		commandLine.setFocus(true);
 		
@@ -114,7 +126,9 @@ public class PythonScriptingPortlet extends AbstractEntityPortlet {
 				new ScriptCommand(cmd), new ExecutePythonScript());
 	}
 	
-	
+	private String commandDisplayText(String cmd) {
+		return "<b>" + cmd + "</b>";
+	}
 	
 	private void addToCmdHistory(String cmd) {
 		cmdHistory.add(0, cmd);
@@ -142,25 +156,33 @@ public class PythonScriptingPortlet extends AbstractEntityPortlet {
 	}
 
 	private void appendResult(String text) {
+		appendResult(text, false);
+	}
+	
+	private void appendResult(String text, boolean isError) {
 		if (text == null || text.length() == 0) {
 			return;
 		}
 		
 		text = text.trim();
+		text = text.replaceAll("\\n", "<br />");
 		
-		String oldText = resultArea.getText();
-		text = (oldText == null || oldText.length() == 0) ? text : oldText + "\n" + text;
+		if (isError == true) {
+			text = "<font color=\"red\">" + text + "</font>"; 
+		}
 		
-		resultArea.setText(text);
-		resultArea.setCursorPos(text.length());
+		String oldText = resultArea.getHTML();
+		text = (oldText == null || oldText.length() == 0) ? text : oldText + "<br />" + text;
 		
-		resultArea.getElement().setScrollTop(resultArea.getElement().getScrollHeight());
+		resultArea.setHTML(text);
+		resultAreaScrollPanel.scrollToBottom();
 	}
 
 	private String getCommand() {
 		String cmd = commandLine.getText();
-		cmd = cmd.replaceAll("\\n", "");
+		//cmd = cmd.replaceAll("\\n", "");
 		cmd = cmd.trim();
+		GWT.log("Command: " + cmd);
 		return cmd;
 	}
 	
@@ -171,14 +193,14 @@ public class PythonScriptingPortlet extends AbstractEntityPortlet {
 
 	@Override
 	public void reload() {
-		// TODO Auto-generated method stub
+		//does nothing for now; maybe reinit jython engine?
 	}
 
 	class ExecutePythonScript extends AbstractAsyncHandler<ScriptResult> {
 
 		@Override
 		public void handleFailure(Throwable caught) {
-			appendResult("Error at execution: " + caught.getMessage());
+			appendResult("Error at execution: " + caught.getMessage(), true);
 		}
 
 		@Override
@@ -188,7 +210,7 @@ public class PythonScriptingPortlet extends AbstractEntityPortlet {
 			} 
 			
 			if (result.hasError()) {
-				appendResult(result.getError());
+				appendResult(result.getError(), true);
 			}
 			
 		}
