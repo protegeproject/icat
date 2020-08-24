@@ -753,3 +753,16 @@ GWT popup list
   font: 11px tahoma,arial,helvetica,sans-serif;
   color: #15428B;		
 }
+
+/********************
+Scripting portlet
+*********************/
+.script-result-area {
+	font-size: 11px;
+}
+
+.script-action-panel {
+	background-color: aliceblue;
+	text-align: right;
+}
+
