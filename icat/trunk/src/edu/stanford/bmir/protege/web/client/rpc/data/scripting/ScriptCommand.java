@@ -20,4 +20,9 @@ public class ScriptCommand implements Serializable {
 		this.command = command;
 	}
 	
+	@Override
+	public String toString() {
+		return command;
+	}
+	
 }
