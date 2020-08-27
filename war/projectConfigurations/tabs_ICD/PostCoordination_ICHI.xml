@@ -323,7 +323,7 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Specific Anatomic Detail</string>
+															<string>Specific Anatomic&lt;BR&gt;Detail</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
@@ -622,7 +622,7 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Essential PathologyTest</string>
+															<string>Essential Pathology&lt;BR&gt;Test</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
@@ -757,7 +757,7 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Additional&lt;BR&gt;Descr. Information</string>
+															<string>Additional Descriptive&lt;BR&gt;Information</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
