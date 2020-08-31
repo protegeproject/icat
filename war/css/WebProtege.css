@@ -766,3 +766,33 @@ Scripting portlet
 	text-align: right;
 }
 
+.cell:hover {
+    border-color: #afd2fd;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #e1eefd;
+    color: black;
+}
+
+.cell{
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
+    /*padding: 3px 29px 3px 10px;*/
+      
+    font-size: 11px;
+    padding: 3px 61px 3px 41px;
+}
+
+.contextMenu {
+    background-color: white;
+    border-color: #979797;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 2px 3px 5px -3px black;
+    padding: 3px;
+    bottom: 20px;
+    overflow: auto;
+}
+
+
