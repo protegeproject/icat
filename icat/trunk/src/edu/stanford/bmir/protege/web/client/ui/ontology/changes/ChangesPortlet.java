@@ -95,6 +95,12 @@ public class ChangesPortlet extends AbstractEntityPortlet {
 		proxy.resetParams();
 		proxy.setProjectName(projectName);
 		proxy.setEntityName(entityName);
+		
+		if (entity != null) {
+			changesGrid.setLoadMask("Loading change history for " + UIUtil.getDisplayText(getEntity()));
+		} else {
+			changesGrid.setLoadMask("Reseting change history (nothing selected)");
+		}
 
 		PagingToolbar pToolbar = (PagingToolbar) changesGrid.getBottomToolbar();
 		store.load(0, pToolbar.getPageSize());
@@ -135,6 +141,8 @@ public class ChangesPortlet extends AbstractEntityPortlet {
 		}
 
 		setTitle("Changes");
+		changesGrid.setLoadMask(true);
+		changesGrid.setLoadMask("Loading change history");
 
 		//TODO: Uncomment this code after the patch to set entityName for a newly created portlet is set
 		//reload();
