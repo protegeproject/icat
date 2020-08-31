@@ -23,6 +23,15 @@
         <listener-class>edu.stanford.bmir.protege.web.server.LifeCycleListener</listener-class>
     </listener>
 
+    <!-- Listeners for cleaning up Python interpreters --> 
+    <listener>
+        <listener-class>edu.stanford.bmir.protege.web.server.scripting.ScriptingHttpSessionListener</listener-class>
+    </listener>
+    
+    <listener>
+        <listener-class>edu.stanford.bmir.protege.web.server.scripting.ScriptingHttpSessionAttributeListener</listener-class>
+    </listener>
+    
 
 	<!-- WebProtege servlets -->
 	

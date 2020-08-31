@@ -1,0 +1,25 @@
+.cellListWidget {
+
+}
+
+.cellListEvenItem {
+  cursor: pointer;
+  zoom: 1;
+}
+
+.cellListOddItem {
+  cursor: pointer;
+  zoom: 1;
+}
+
+.cellListKeyboardSelectedItem {
+  background: white;
+}
+
+@sprite .cellListSelectedItem {
+  gwt-image: 'cellListSelectedBackground';
+  background-color: white;
+  color: white;
+  height: auto;
+}
+

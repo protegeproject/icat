@@ -23,10 +23,14 @@ import edu.stanford.smi.protegex.owl.model.OWLModel;
  *
  */
 public class PythonInterpreterManager {
-	//TODO: figure out how to clean up when session expires
-	
+
 	private static PythonInterpreterManager manager;
 	
+	//TODO: using session as a key is not the best idea, as even if the user signs out
+	//the session object is still the same. We have listeners to handle that, but
+	//it is not an ideal situation.
+	//TODO: We also need a good solution for user log out and sessions. We likely need 
+	//a custom listerner for login/out events on the server side
 	private Map<HttpSession, Map<KnowledgeBase, PythonInterpreter>> session2Kb2InterpMap = new HashMap<HttpSession, Map<KnowledgeBase, PythonInterpreter>>();
 	
 	private PythonInterpreterManager() {}
@@ -37,6 +41,7 @@ public class PythonInterpreterManager {
 		}
 		return manager;
 	}
+
 	
 	public PythonInterpreter getInterpreter(HttpSession session, KnowledgeBase kb) {
 		Map<KnowledgeBase, PythonInterpreter> kb2InterpMap = session2Kb2InterpMap.get(session);
@@ -78,6 +83,7 @@ public class PythonInterpreterManager {
 		if (kb2InterpMap != null) {
 			for (PythonInterpreter interp : kb2InterpMap.values()) {
 				interp.close();
+				Log.getLogger().info("Removed Python interpreter for session: " + session);
 			}
 		}
 		

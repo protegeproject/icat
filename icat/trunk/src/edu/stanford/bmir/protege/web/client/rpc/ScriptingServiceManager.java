@@ -1,5 +1,7 @@
 package edu.stanford.bmir.protege.web.client.rpc;
 
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -27,4 +29,7 @@ public class ScriptingServiceManager {
 		proxy.executePythonScript(projectName, user, cmd, cb);
 	}
 	
+	public void getCodeCompletion(String projectName, String cmdSubstr,  AsyncCallback<List<String>> cb) {
+		proxy.getCodeCompletion(projectName, cmdSubstr, cb);
+	}
 }
