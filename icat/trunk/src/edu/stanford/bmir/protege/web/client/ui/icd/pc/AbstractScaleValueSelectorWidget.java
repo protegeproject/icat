@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.gwtext.client.widgets.Component;
 import com.gwtext.client.widgets.Panel;
@@ -29,7 +30,6 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 	
 	public AbstractScaleValueSelectorWidget(Project project) {
 		super(project);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 	
 	
 	public void onSelectionChanged(final EntityData oldValue, final EntityData newValue) {
-		System.out.println("abs. sc. val. sel changed");
+		GWT.log("abs. sc. val. sel changed");
 		//TODO
 		ICDServiceManager.getInstance().setPrecoordinationPropertyValue(
 				getProject().getProjectName(), getSubject().getName(), getProperty().getName(), 
@@ -110,7 +110,7 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 
 					@Override
 					public void onFailure(Throwable arg0) {
-						System.out.println("failed to change value");
+						GWT.log("failed to change value");
 						//TODO reset value to old value
 						updateFieldValue(oldValue);
 					}
@@ -120,10 +120,10 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 						updateFieldValue(newValue);
 
 						if (success) {
-							System.out.println("value for property " + getProperty() + " was changed successfully");
+							GWT.log("value for property " + getProperty() + " was changed successfully");
 						}
 						else {
-							System.out.println("Could not find property " + getProperty() + " in class expression. " +
+							GWT.log("Could not find property " + getProperty() + " in class expression. " +
 									"Value was not changed succesfully");
 						}
 					}
@@ -162,9 +162,9 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 
 		@Override
 		public void onCheck(Checkbox field, final boolean checked) {
-			System.out.println("on check: " + checked);
+			GWT.log("on check: " + checked);
 			if (isDefinitional == checked) {
-				System.out.println("not a user change. do nothing");
+				GWT.log("not a user change. do nothing");
 				return;
 			}
 			if ( ! isWriteOperationAllowed() ) {
@@ -177,8 +177,7 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 
 						@Override
 						public void onFailure(Throwable arg0) {
-							// TODO Auto-generated method stub
-							System.out.println("failed to change isDefinitional flag");
+							GWT.log("failed to change isDefinitional flag");
 							
 							checkboxDefinitional.setValue(!checked);
 						}
@@ -188,10 +187,10 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 							isDefinitional = checked;
 							
 							if (success) {
-								System.out.println("isDefinitional flag was changed successfully");
+								GWT.log("isDefinitional flag was changed successfully");
 							}
 							else {
-								System.out.println("Could not find property " + getProperty() + " in class expression. " +
+								GWT.log("Could not find property " + getProperty() + " in class expression. " +
 										"Definitional flag was not changed succesfully");
 							}
 						}
