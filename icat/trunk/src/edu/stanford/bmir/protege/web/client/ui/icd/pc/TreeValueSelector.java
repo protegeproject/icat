@@ -3,6 +3,7 @@ package edu.stanford.bmir.protege.web.client.ui.icd.pc;
 import java.util.Collection;
 import java.util.List;
 
+import com.google.gwt.core.client.GWT;
 import com.gwtext.client.widgets.Component;
 
 import edu.stanford.bmir.protege.web.client.model.Project;
@@ -20,21 +21,19 @@ public class TreeValueSelector extends AbstractScaleValueSelectorWidget implemen
 
 	@Override
 	public void fillValues() {
-		// TODO Auto-generated method stub
+		//don't take the values from the server; values will be set by the Precoord..WidgetController with setValues
 		//super.fillValues();
 	}
 
 	@Override
 	public void setValues(Collection<EntityData> values) {
 		beforeSetValues(values);
-		// TODO Auto-generated method stub
-		System.out.println("Set values for tree: " + getProperty() + " " + values);
+		GWT.log("Set values for tree: " + getProperty() + " " + values);
 		valueSelWidget.setValues(values);
 	}
 
 	@Override
 	public String getSelectedValue() {
-		// TODO Auto-generated method stub
 		return valueSelWidget.getField().getValueAsString();
 	}
 	
