@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.gwtext.client.widgets.Panel;
 
@@ -22,15 +23,16 @@ public class PreCoordinationWidgetController extends WidgetController {
 
 	private Project project;
 	private Collection<PropertyWidget> widgets = null;
-	private List<String> customScaleProperties = null;
+	
 	private List<String> treeValueProperties = null;
+	//FIXME: delete the following two lists; all properties have now hiearchical values
+	private List<String> customScaleProperties = null;
 	private List<String> fixedScaleProperties = null;
 
 	public PreCoordinationWidgetController(Project project, Panel tabPanel,
 			FormGenerator formGenerator) {
 		super(tabPanel, formGenerator);
 		this.project = project;
-		// TODO Auto-generated constructor stub
 	}
 
 	
@@ -78,10 +80,10 @@ public class PreCoordinationWidgetController extends WidgetController {
 		}
 		else {
 			if (widget == null) {
-				System.out.println("Null widget! Can't initialize property list.");
+				GWT.log("Null widget! Can't initialize property list.");
 			}
 			else {
-				System.out.println("Unrecognized value selector type " + widget.getClass() + " for property " + widget.getProperty());
+				GWT.log("Unrecognized value selector type " + widget.getClass() + " for property " + widget.getProperty());
 			}
 		}
 	}
@@ -109,7 +111,8 @@ public class PreCoordinationWidgetController extends WidgetController {
 	private void getPossiblePostcoordinationAxes(EntityData superclass) {
 		hideAllWidgets();
 		ICDServiceManager.getInstance().getListOfSelectedPostCoordinationAxes(
-				project.getProjectName(), superclass.getName(), (List<String>) null, new GetPostCoordinationAxesHandler());
+				project.getProjectName(), superclass.getName(), (List<String>) null, 
+				new GetPostCoordinationAxesHandler());
 		
 	}
 	
@@ -117,13 +120,13 @@ public class PreCoordinationWidgetController extends WidgetController {
 
 		@Override
 		public void handleFailure(Throwable caught) {
-			// TODO Auto-generated method stub
-			System.out.println("failure");
+			GWT.log("Failure on GetPostCoordinationAxesHandler");
 		}
 
 		@Override
 		public void handleSuccess(List<String> result) {
-			System.out.println(result.size() + " props: " + result);
+			GWT.log("GetPostCoordinationAxesHandler: " + result.size() + " props: " + result);
+			
 			for (String prop : result) {
 				for (String relProp : getAllRelatedProperties(prop)) {
 					showWidgetForProperty(relProp);
@@ -147,26 +150,22 @@ public class PreCoordinationWidgetController extends WidgetController {
 
 	private void getSuperclassValue() {
 		// TODO Auto-generated method stub
-		
 	}
 
 
 	private void getPropertyValues(EntityData subject) {
 		ICDServiceManager.getInstance().getPreCoordinationClassExpressions(
-				project.getProjectName(), subject.getName(), 
-						//Arrays.asList("http://who.int/icd#hasSeverity", "http://who.int/icd#timeInLife", "http://who.int/icd#infectiousAgent", "http://who.int/icd#specificAnatomy"),
-						getAllProperties(),
+				project.getProjectName(), subject.getName(), getAllProperties(),
 				new AsyncCallback<List<PrecoordinationClassExpressionData>>() {
 					
 					@Override
 					public void onSuccess(List<PrecoordinationClassExpressionData> res) {
-						System.out.println(res);
 						updateWidgetContents(res);
 					}
 					
 					@Override
 					public void onFailure(Throwable arg0) {
-						System.out.println("Failed getPreCoordinationClassExpressions");
+						GWT.log("Failed getPreCoordinationClassExpressions");
 						
 					}
 				});
@@ -212,20 +211,18 @@ public class PreCoordinationWidgetController extends WidgetController {
 	private void getPossiblePropertyValues(EntityData subject) {
 		ICDServiceManager.getInstance().getAllowedPostCoordinationValues(
 				project.getProjectName(), subject.getName(), 
-						//Arrays.asList("http://who.int/icd#hasSeverity", "http://who.int/icd#timeInLife", "http://who.int/icd#infectiousAgent", "http://who.int/icd#specificAnatomy"),
 						customScaleProperties, treeValueProperties, fixedScaleProperties,
 				new AsyncCallback<List<AllowedPostcoordinationValuesData>>() {
 					
 					@Override
 					public void onSuccess(List<AllowedPostcoordinationValuesData> res) {
-						System.out.println("Result of getAllowedPostCoordinationValues: " + res);
+						GWT.log("Result of getAllowedPostCoordinationValues: " + res);
 						updateWidgetDrop(res);
 					}
 					
 					@Override
 					public void onFailure(Throwable arg0) {
-						System.out.println("Failed getAllowedPostCoordinationValues");
-						
+						GWT.log("Failed getAllowedPostCoordinationValues");
 					}
 				});
 	}
