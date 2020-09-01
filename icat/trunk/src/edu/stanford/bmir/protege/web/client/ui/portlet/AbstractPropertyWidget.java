@@ -22,6 +22,9 @@ import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 public abstract class AbstractPropertyWidget implements PropertyWidget {
 
     private static final String PART_OF_WRITE_ACCESS_GROUP_SESSION_PROP = "partOfWriteAccessGroup";
+    
+    public static final String LOADING_ICON_HTML = "<img src=\"images/loading.gif\" />";
+    public static final String NOT_LOADING_ICON_HTML = "<img src=\"images/invisible12.png\" />";
 
     private Project project;
     private EntityData subject;
@@ -29,6 +32,7 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
     private Map<String, Object> widgetConfiguration;
 
     private EntityData oldDisplayedSubject; //Optimization: only load values if new subject, and widget is visible
+   
     private boolean isLoading;
 
 
@@ -237,7 +241,7 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
         isLoading = loading;
     }
 
-    protected void setOldDisplayedSubject(EntityData oldSubject) {
+	protected void setOldDisplayedSubject(EntityData oldSubject) {
         oldDisplayedSubject = oldSubject;
     }
 
