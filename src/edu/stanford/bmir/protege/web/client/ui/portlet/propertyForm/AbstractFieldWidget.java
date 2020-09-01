@@ -335,7 +335,9 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
     @Override
     public void setLoadingStatus(boolean loading) {
         super.setLoadingStatus(loading);
-         updateLoadingIcon();
+        updateLoadingIcon();
+        
+        field.setReadOnly(loading);
     }
     
 	protected void updateLoadingIcon() {
@@ -349,7 +351,7 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
 		currentLabel = currentLabel.replaceAll(AbstractPropertyWidget.LOADING_ICON_HTML, "");
 		currentLabel = currentLabel.replaceAll(AbstractPropertyWidget.NOT_LOADING_ICON_HTML, "");
 		
-		currentLabel = currentLabel + loadingIconStr;
+		currentLabel = (isLoading() ? "Loading " : "") + currentLabel + loadingIconStr;
 		
 		GWT.log("New field label: " + currentLabel);
 		field.setLabel(currentLabel);
