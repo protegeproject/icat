@@ -30,7 +30,6 @@ import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
-import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidgetWithNotes;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
@@ -352,6 +351,8 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
     }
     
 	protected void updateLoadingIcon() {
+		//FIXME: Can't change field label after initial render. Not sure why. Figure out at some point.
+/*
 		if (field == null) {
 			return;
 		}
@@ -366,6 +367,7 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
 		
 		//GWT.log("New field label: " + currentLabel);
 		field.setLabel(currentLabel);
+*/
 	}
 
     @Override
