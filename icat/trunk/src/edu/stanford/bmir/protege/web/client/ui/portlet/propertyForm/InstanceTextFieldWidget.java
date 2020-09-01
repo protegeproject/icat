@@ -219,6 +219,13 @@ public class InstanceTextFieldWidget extends TextFieldWidget {
         }
 
         @Override
+        public void handleFailure(Throwable caught) {
+        	super.handleFailure(caught);
+        	setLoadingStatus(false);
+        	getField().setReadOnly(false);
+        }
+        
+        @Override
         public void handleSuccess(Void result) {
             GWT.log("Success at setting value for " + getProperty().getBrowserText() + " and "
                     + subject.getBrowserText() + " (" + changeSubject.getBrowserText() + ")", null);
@@ -226,6 +233,8 @@ public class InstanceTextFieldWidget extends TextFieldWidget {
                 valuesToDisplayValuesMap.put(changeSubject, newEntityData);
                 displayValues();    //FIXME: either delete or fix the local override, or add parameters to this call
             }
+            setLoadingStatus(false);
+            getField().setReadOnly(false);
         }
     }
 
