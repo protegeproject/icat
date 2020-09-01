@@ -9,9 +9,11 @@ import java.util.Map;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Widget;
+import com.gwtext.client.core.EventObject;
 import com.gwtext.client.widgets.Component;
 import com.gwtext.client.widgets.MessageBox;
 import com.gwtext.client.widgets.Panel;
@@ -30,6 +32,7 @@ import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
+import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidgetWithNotes;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
@@ -47,6 +50,7 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
     private Collection<EntityData> values;
     protected PropertyValueUtil propertyValueUtil;
     protected List<String> allowedValueNames;
+    
 
     public AbstractFieldWidget(Project project) {
         super(project);
@@ -160,6 +164,18 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
             @Override
             public void onChange(Field field, Object newVal, Object oldVal) {
                 onChangeValue(getSubject(), oldVal, newVal);
+            }
+            
+            @Override
+            public void onSpecialKey(Field field, EventObject e) {
+            	if (e.getKey() == KeyCodes.KEY_ENTER) {
+            		
+            		if (values != null && values.size() == 1) {
+            			EntityData oldVal = values.iterator().next();
+            			String newVal = field.getValueAsString();
+            			onChangeValue(getSubject(), oldVal.getBrowserText(), newVal);
+            		}
+            	}
             }
         });
     }
@@ -308,13 +324,36 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
     }
 
     public void setLabel(String label, String helpURL, String tooltip) {
-       //FIXME: workarounfd! Field should never be null!!
+       //FIXME: Workaround. Field should never be null. It might be during initialization
         if (field != null) {
             field.setLabel(getLabelHtml(label, helpURL, tooltip));
             field.setLabelSeparator(AbstractFieldWidget.LABEL_SEPARATOR);
         }
 
     }
+    
+    @Override
+    public void setLoadingStatus(boolean loading) {
+        super.setLoadingStatus(loading);
+         updateLoadingIcon();
+    }
+    
+	protected void updateLoadingIcon() {
+		if (field == null) {
+			return;
+		}
+		
+		String loadingIconStr = isLoading() ? AbstractPropertyWidget.LOADING_ICON_HTML : AbstractPropertyWidget.NOT_LOADING_ICON_HTML;
+
+		String currentLabel = field.getFieldLabel();
+		currentLabel = currentLabel.replaceAll(AbstractPropertyWidget.LOADING_ICON_HTML, "");
+		currentLabel = currentLabel.replaceAll(AbstractPropertyWidget.NOT_LOADING_ICON_HTML, "");
+		
+		currentLabel = currentLabel + loadingIconStr;
+		
+		GWT.log("New field label: " + currentLabel);
+		field.setLabel(currentLabel);
+	}
 
     @Override
     public void setup(Map<String, Object> widgetConfiguration, PropertyEntityData propertyEntityData) {

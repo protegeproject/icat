@@ -76,8 +76,11 @@ public class InstanceTextFieldWidget extends TextFieldWidget {
     @Override
     protected void fillValues(List<String> subjects, List<String> props) {
         displayValues(null);
+        
         List<String> reifiedProps = new ArrayList<String>();
         reifiedProps.add(property);
+        
+        setLoadingStatus(true);
         OntologyServiceManager.getInstance().getEntityTriples(getProject().getProjectName(), subjects, props, reifiedProps,
                 new GetTriplesHandler(getSubject()));
     }
@@ -98,6 +101,7 @@ public class InstanceTextFieldWidget extends TextFieldWidget {
         @Override
         public void handleFailure(Throwable caught) {
             GWT.log("Instance Text Field Widget: Error at getting triples for " + mySubject, caught);
+            setLoadingStatus(false);
         }
 
         @Override
