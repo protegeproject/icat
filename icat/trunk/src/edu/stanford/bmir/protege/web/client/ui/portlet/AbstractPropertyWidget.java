@@ -16,7 +16,6 @@ import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.Triple;
-import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
@@ -56,14 +55,17 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
 
     protected String getLabelHtml(String label, String helpURL, String tooltip) {
         String labelHtml = label;
+        
         if (label != null) {
             tooltip = (tooltip == null ? "" : tooltip.replaceAll("\"", "&quot;"));
+            
             String helpImage = "";
             if (helpURL != null && helpURL.length() > 0) {
                 helpImage = UIUtil.getHelpImageHtml(helpURL, "Help");
                 String tooltipSuffix = "&#10;&#13;(click on the 'HELP' icon to learn more)";
                 tooltip += tooltipSuffix;
             }
+            
             labelHtml = "<span title=\"" + tooltip + "\">" + label + helpImage + "</span>";
         }
         return labelHtml;
