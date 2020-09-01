@@ -9,11 +9,9 @@ import java.util.Map;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Widget;
-import com.gwtext.client.core.EventObject;
 import com.gwtext.client.widgets.Component;
 import com.gwtext.client.widgets.MessageBox;
 import com.gwtext.client.widgets.Panel;
@@ -163,9 +161,13 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
         field.addListener(new TextFieldListenerAdapter() {
             @Override
             public void onChange(Field field, Object newVal, Object oldVal) {
+            	GWT.log("Listener on field change " + getProperty() + ": " + oldVal + " -> " + newVal);
                 onChangeValue(getSubject(), oldVal, newVal);
+                
             }
-            
+       
+            //FIXME: the change event fires twice, once on onChange, once onSpecialKey, no time to figure it out now
+            /*
             @Override
             public void onSpecialKey(Field field, EventObject e) {
             	if (e.getKey() == KeyCodes.KEY_ENTER) {
@@ -173,10 +175,13 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
             		if (values != null && values.size() == 1) {
             			EntityData oldVal = values.iterator().next();
             			String newVal = field.getValueAsString();
+            			
+            			GWT.log("Listener on enter " + getProperty() + ": " + oldVal + " -> " + newVal);
             			onChangeValue(getSubject(), oldVal.getBrowserText(), newVal);
             		}
             	}
             }
+            */
         });
     }
 
