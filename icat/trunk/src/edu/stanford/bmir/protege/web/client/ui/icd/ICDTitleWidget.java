@@ -2,6 +2,7 @@ package edu.stanford.bmir.protege.web.client.ui.icd;
 
 import java.util.Collection;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.gwtext.client.core.Position;
 import com.gwtext.client.widgets.MessageBox;
@@ -18,6 +19,13 @@ import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.AbstractFiel
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.InstanceTextFieldWidget;
 
 public class ICDTitleWidget extends InstanceTextFieldWidget {
+	
+	private final static String CONFIRM_RENAME = "You should change the title of an entity "
+			+ "only if you are NOT changing the current meaning of the title\n"
+			+ "(for example if there is a typo in the existing title or there is "
+			+ "a better or more commonly accepted name for this category).\n\n"
+			
+			+ "Would you like to proceed with changing the title?";
 
     public ICDTitleWidget(Project project) {
         super(project);
@@ -41,47 +49,35 @@ public class ICDTitleWidget extends InstanceTextFieldWidget {
 	protected void replacePropertyValue(final EntityData subject, final String propName, final ValueType propValueType,
 			final EntityData oldEntityData, final EntityData newEntityData, final Object oldDisplayedValue,
 			final String operationDescription) {
-
 		
-		MessageBox.confirm("Change Title Warning",
-				"<DIV>"
-						+ "You should change the title of an entity "
-						+ "only if you are <b>not changing the current meaning</b> of the title "
-						+ "(for example if there is a typo in the existing title or there is "
-						+ "a better or more commonly accepted name for this category).<BR /><BR />"
-						
-						+ "<b>Does the modified title preserve the current meaning of the category?</b></DIV>",
-				new MessageBox.ConfirmCallback() {
-					public void execute(String btnID) {
-						if (btnID.equalsIgnoreCase("Yes")) {
-							EntityData oldInstanceEntityData = findInstanceForValue(oldEntityData);
-							
-							//should never happen
-							if (oldInstanceEntityData == null) {
-								if (subject.equals(getSubject())) {
-									displayValues();
-								}
-								return;
-							}
+		boolean proceed = Window.confirm(CONFIRM_RENAME);
+		
+		if (proceed == false) {
+			if (subject.equals(getSubject())) {
+				displayValues();
+			}
+			return;
+		}
+		
+		EntityData reifiedInst = findInstanceForValue(oldEntityData);
+		
+		//should never happen
+		if (reifiedInst == null) {
+			if (subject.equals(getSubject())) {
+				displayValues();
+			}
+			return;
+		}
 
-							setLoadingStatus(true);
-							getField().setReadOnly(true);
-							
-							propertyValueUtil.replacePropertyValue(getProject().getProjectName(), oldInstanceEntityData.getName(),
-									getDisplayProperty(), null, oldEntityData.toString(), newEntityData.toString(),
-									false, GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
-									new ReplaceTitleHandler(subject, oldInstanceEntityData,
-											oldEntityData, newEntityData, getValues()));
-							
-							requestComment(oldInstanceEntityData);
-							
-						} else {
-							if (subject.equals(getSubject())) {
-								displayValues();
-							}
-						}
-					}
-				});
+		setLoadingStatus(true);
+		
+		propertyValueUtil.replacePropertyValue(getProject().getProjectName(), reifiedInst.getName(),
+				getDisplayProperty(), null, oldEntityData.toString(), newEntityData.toString(),
+				false, GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
+				new ReplaceTitleHandler(subject, reifiedInst,
+						oldEntityData, newEntityData, getValues()));
+		
+		requestComment(reifiedInst);
 	}
 
     private void requestComment(EntityData entity) {
@@ -115,6 +111,7 @@ public class ICDTitleWidget extends InstanceTextFieldWidget {
                 new EntityData(annotEntityName), window);
         nip.setSubject("[Reason for title change] ");
         nip.setNoteType("Explanation");
+       
         window.add(nip);
         window.show();
     }
