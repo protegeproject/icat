@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Window;
 import com.gwtext.client.widgets.MessageBox;
 import com.gwtext.client.widgets.form.Field;
 import com.gwtext.client.widgets.form.TextField;
@@ -75,12 +76,14 @@ public class InstanceTextFieldWidget extends TextFieldWidget {
 
     @Override
     protected void fillValues(List<String> subjects, List<String> props) {
-        displayValues(null);
+        //displayValues(null);
         
         List<String> reifiedProps = new ArrayList<String>();
         reifiedProps.add(property);
         
         setLoadingStatus(true);
+        getField().setValue("(loading...)");
+        
         OntologyServiceManager.getInstance().getEntityTriples(getProject().getProjectName(), subjects, props, reifiedProps,
                 new GetTriplesHandler(getSubject()));
     }
@@ -101,6 +104,10 @@ public class InstanceTextFieldWidget extends TextFieldWidget {
         @Override
         public void handleFailure(Throwable caught) {
             GWT.log("Instance Text Field Widget: Error at getting triples for " + mySubject, caught);
+            Window.alert("There was an error retrieving the value for " + getProperty());
+            
+            displayValues(null);
+            
             setLoadingStatus(false);
         }
 
@@ -121,6 +128,9 @@ public class InstanceTextFieldWidget extends TextFieldWidget {
                     valuesToDisplayValuesMap.put(triple.getEntity(), triple.getValue());
                 }
             }
+            
+            GWT.log("Got values for " + mySubject + "." + getProperty() + ": " + subjects);
+            
             setOldDisplayedSubject(mySubject);
             setValues(subjects);
             setLoadingStatus(false);
