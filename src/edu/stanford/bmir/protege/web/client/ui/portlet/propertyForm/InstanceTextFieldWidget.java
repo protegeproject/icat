@@ -102,6 +102,12 @@ public class InstanceTextFieldWidget extends TextFieldWidget {
 
         @Override
         public void handleSuccess(List<Triple> triples) {
+        	/*
+             * This check is necessary because of the async nature of the call.
+             * We should never add values to a widget, if the subject has already changed.
+             */
+            if (!UIUtil.equals(mySubject, getSubject())) {  return; }
+        	
             valuesToDisplayValuesMap.clear();
             Set<EntityData> subjects = null;
             if (triples != null) {
