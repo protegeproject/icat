@@ -185,7 +185,10 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
             displayValues();
             return;
         }
-        GWT.log("on change before invoke " + field.getFieldLabel(), null);
+       
+        setLoadingStatus(true);
+        
+        GWT.log("On change value: " + subj + "." + getProperty() + ": " + oldVal + " -> " + newVal + "; isLoading: " + isLoading());
 
         //fix oldVal if it was the display text of a collection of more than 1 values
         //      (i.e. if it contained '{' or other special characters)
@@ -338,6 +341,9 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
         updateLoadingIcon();
         
         field.setReadOnly(loading);
+        field.setDisabled(loading);
+ 
+        GWT.log("Set " + getProperty() + " isLoading: " + loading);
     }
     
 	protected void updateLoadingIcon() {
@@ -351,9 +357,9 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
 		currentLabel = currentLabel.replaceAll(AbstractPropertyWidget.LOADING_ICON_HTML, "");
 		currentLabel = currentLabel.replaceAll(AbstractPropertyWidget.NOT_LOADING_ICON_HTML, "");
 		
-		currentLabel = (isLoading() ? "Loading " : "") + currentLabel + loadingIconStr;
+		currentLabel = currentLabel + loadingIconStr;
 		
-		GWT.log("New field label: " + currentLabel);
+		//GWT.log("New field label: " + currentLabel);
 		field.setLabel(currentLabel);
 	}
 
@@ -398,6 +404,8 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
     public void setValues(Collection<EntityData> values) {
         this.values = values != null ? values : new ArrayList<EntityData>();
         displayValues();
+        
+        setLoadingStatus(false);
     }
 
     protected void displayValues() {
