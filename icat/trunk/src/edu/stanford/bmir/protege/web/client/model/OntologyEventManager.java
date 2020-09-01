@@ -71,6 +71,16 @@ public class OntologyEventManager {
     public void removeOntologyListener(OntologyListener ontologyListener) {
         ontologyListeners.remove(ontologyListener);
     }
+    
+    
+    /**
+     * This method is used to fire an event locally, without polling the server
+     * This method is used to update the UI faster, before the event gets back from the server.
+     * @param event
+     */
+    public void fireEvent(OntologyEvent event) {
+    	dispatchEvent(event);
+    }
 
     private void dispatchEvents(List<OntologyEvent> events) {
         for (Iterator<OntologyEvent> iterator = events.iterator(); iterator.hasNext();) {

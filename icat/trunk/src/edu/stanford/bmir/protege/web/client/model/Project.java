@@ -1,5 +1,6 @@
 package edu.stanford.bmir.protege.web.client.model;
 
+import edu.stanford.bmir.protege.web.client.model.event.OntologyEvent;
 import edu.stanford.bmir.protege.web.client.model.listener.OntologyListener;
 import edu.stanford.bmir.protege.web.client.rpc.data.ProjectData;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.ProjectConfiguration;
@@ -61,6 +62,10 @@ public class Project {
 
     public void forceGetEvents() {
         eventManager.getEventsFromServer();
+    }
+    
+    public void fireOntologyEvent(OntologyEvent event) {
+    	eventManager.fireEvent(event);
     }
 
     public void setProjectConfiguration(ProjectConfiguration projectConfiguration) {
