@@ -3,6 +3,7 @@ package edu.stanford.bmir.protege.web.client.ui.icd.pc;
 import java.util.Collection;
 import java.util.Map;
 
+import com.google.gwt.core.client.GWT;
 import com.gwtext.client.data.DataProxy;
 import com.gwtext.client.data.MemoryProxy;
 
@@ -28,31 +29,28 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 	@Override
 	public void setup(Map<String, Object> widgetConfiguration,
 			PropertyEntityData propertyEntityData) {
-		System.out.println("Print setup superclass widget for subject: " + getSubject());
+		GWT.log("Print setup superclass widget for subject: " + getSubject());
 		super.setup(widgetConfiguration, propertyEntityData);
 	}
 	
 	@Override
-	public void setSubject(EntityData subject) {
-		super.setSubject(subject);
-		System.out.println("Set subject: " + subject );
+	public void fillValues() {
+		if (isSameSubject() == true) {
+			return;
+		}
+		
+		super.fillValues();
+		
 		setLoadingStatus(true);
 		ICDServiceManager.getInstance().getAllSuperEntities(getProject().getProjectName(), getSubject(), getFillValuesHandler());
-		widgetController.onSubjectChanged(subject);
-	}
-	
-	@Override
-	public void fillValues() {
-		// TODO Auto-generated method stub
-		super.fillValues();
-//		selectionChanged(firstValue);
+		widgetController.onSubjectChanged(getSubject());
 	}
 
 	@Override
 	public void setValues(Collection<EntityData> values) {
 		Collection<EntityData> oldValues = getValues();
 		super.setValues(values);
-		System.out.println("Set values for superclass, subject: " + getSubject() + ", values: " + values);
+		GWT.log("Set values for superclass, subject: " + getSubject() + ", values: " + values);
 		EntityData firstValue = null;
 		if ( ! values.isEmpty()) {
 			firstValue = values.iterator().next();
@@ -93,12 +91,6 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 		}
 	}
 	
-	@Override
-	public void refresh() {
-		System.out.println("refresh");
-		super.refresh();
-		//TODO maybe add this selectionChanged(getSelection());
-	}
 	
 	private FillAllowedValuesCacheHandler getFillValuesHandler() {
 		if (fillValuesHandler != null) {
@@ -159,9 +151,11 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 
 	@Override
 	protected void cacheAllowedValues() {
-		System.out.println("Cache allowed values for: " + getSubject());
-		setLoadingStatus(true);
-		ICDServiceManager.getInstance().getAllSuperEntities(getProject().getProjectName(), getSubject(), getFillValuesHandler());
+		//TT - do nothing
+		
+		//System.out.println("Cache allowed values for: " + getSubject());
+		//setLoadingStatus(true);
+		//ICDServiceManager.getInstance().getAllSuperEntities(getProject().getProjectName(), getSubject(), getFillValuesHandler());
 	}
 	
 	
