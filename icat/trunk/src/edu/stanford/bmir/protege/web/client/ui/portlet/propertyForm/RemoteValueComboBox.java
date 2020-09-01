@@ -210,11 +210,13 @@ public abstract class RemoteValueComboBox extends AbstractFieldWidget {
 		@Override
         public void handleFailure(Throwable caught) {
             GWT.log("Could not retrieve allowed values for combobox " + getProperty(), caught);
+            setLoadingStatus(false);
         }
 
         @Override
         public void handleSuccess(List<EntityData> superclses) {
         	loadDropDownValues(superclses);
+        	setLoadingStatus(false);
         }
     }
     
