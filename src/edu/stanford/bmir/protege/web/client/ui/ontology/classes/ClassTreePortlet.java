@@ -870,12 +870,12 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
     }
 
     protected void onClassRename(final EntityData entity, final String oldName) {
-        final TreeNode oldNode = findTreeNode(oldName);
-        if (oldNode == null) {
+        final TreeNode node = findTreeNode(oldName);
+        if (node == null) {
             return;
         }
-        final TreeNode newNode = createTreeNode(entity);
-        oldNode.getParentNode().replaceChild(newNode, oldNode);
+        node.setUserObject(entity);
+        node.setText(createNodeRenderText(node));
     }
 
     protected void insertNodeInTree(final TreeNode parentNode, final EntityData child) {
