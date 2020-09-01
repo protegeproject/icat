@@ -10,6 +10,7 @@ import com.gwtext.client.widgets.layout.FitLayout;
 
 import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
 import edu.stanford.bmir.protege.web.client.model.Project;
+import edu.stanford.bmir.protege.web.client.model.event.EntityRenameEvent;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 import edu.stanford.bmir.protege.web.client.ui.ontology.notes.NoteInputPanel;
@@ -36,40 +37,52 @@ public class ICDTitleWidget extends InstanceTextFieldWidget {
                 });
     }
 
-    @Override
-    protected void replacePropertyValue(final EntityData subject, final String propName, final ValueType propValueType,
-            final EntityData oldEntityData, final EntityData newEntityData, final Object oldDisplayedValue, final String operationDescription) {
-        final EntityData oldInstanceEntityData = findInstanceForValue(oldEntityData);
+	@Override
+	protected void replacePropertyValue(final EntityData subject, final String propName, final ValueType propValueType,
+			final EntityData oldEntityData, final EntityData newEntityData, final Object oldDisplayedValue,
+			final String operationDescription) {
 
-        MessageBox.confirm("Change Title Warning",
-            "<DIV style=\"text-align: center\">" +
-            "<SPAN style=\"color:BLACK\"><b>WARNING! You should change the title of a category " +
-            "only if you are NOT CHANGING the original meaning of the title " +
-            "(for example if there is a typo in the existing title or there is " +
-            "a better or more commonly accepted name for this category).</b><BR></SPAN><BR>" +
-            "To create or retire a category, or to reorganize the category hierarchy, " +
-            "please use the <b>\"Manage Hierachy\"</b> tab!<BR><BR>" +
-            "Does the modified title preserve the old meaning of the category?</DIV>",
-            new MessageBox.ConfirmCallback() {
-                public void execute(String btnID) {
-                    if (btnID.equalsIgnoreCase("Yes")) {
-                        if (oldInstanceEntityData != null) {
-                            propertyValueUtil.replacePropertyValue(getProject().getProjectName(), oldInstanceEntityData.getName(),
-                                    getDisplayProperty(), null, oldEntityData.toString(), newEntityData.toString(), false,
-                                    GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
-                                    new ReplaceInstancePropertyValueHandler(subject, oldInstanceEntityData,
-                                            oldEntityData, newEntityData, getValues()));
-                            requestComment(oldInstanceEntityData);
-                        }
-                    }
-                    else {
-                        if (subject.equals(getSubject())) {
-                            displayValues();
-                        }
-                    }
-                }
-            });
-    }
+		
+		MessageBox.confirm("Change Title Warning",
+				"<DIV>"
+						+ "You should change the title of an entity "
+						+ "only if you are <b>not changing the current meaning</b> of the title "
+						+ "(for example if there is a typo in the existing title or there is "
+						+ "a better or more commonly accepted name for this category).<BR /><BR />"
+						
+						+ "<b>Does the modified title preserve the current meaning of the category?</b></DIV>",
+				new MessageBox.ConfirmCallback() {
+					public void execute(String btnID) {
+						if (btnID.equalsIgnoreCase("Yes")) {
+							EntityData oldInstanceEntityData = findInstanceForValue(oldEntityData);
+							
+							//should never happen
+							if (oldInstanceEntityData == null) {
+								if (subject.equals(getSubject())) {
+									displayValues();
+								}
+								return;
+							}
+
+							setLoadingStatus(true);
+							getField().setReadOnly(true);
+							
+							propertyValueUtil.replacePropertyValue(getProject().getProjectName(), oldInstanceEntityData.getName(),
+									getDisplayProperty(), null, oldEntityData.toString(), newEntityData.toString(),
+									false, GlobalSettings.getGlobalSettings().getUserName(), operationDescription,
+									new ReplaceTitleHandler(subject, oldInstanceEntityData,
+											oldEntityData, newEntityData, getValues()));
+							
+							requestComment(oldInstanceEntityData);
+							
+						} else {
+							if (subject.equals(getSubject())) {
+								displayValues();
+							}
+						}
+					}
+				});
+	}
 
     private void requestComment(EntityData entity) {
         Collection<EntityData> values = getValues();
@@ -96,8 +109,9 @@ public class ICDTitleWidget extends InstanceTextFieldWidget {
 
         //window.setCloseAction(Window.HIDE);
         window.setPlain(true);
+        window.setModal(true);
 
-        NoteInputPanel nip = new NoteInputPanel(getProject(), "Please enter a reason for your change:", false,
+        NoteInputPanel nip = new NoteInputPanel(getProject(), "Please enter the rationale for changing the title:", false,
                 new EntityData(annotEntityName), window);
         nip.setSubject("[Reason for title change] ");
         nip.setNoteType("Explanation");
@@ -113,5 +127,26 @@ public class ICDTitleWidget extends InstanceTextFieldWidget {
         deleteLink.setHeight("22px");
         deleteLink.setTitle("Delete title value is not allowed");
         return deleteLink;
+    }
+    
+    
+    //*********** Async calls ************/
+    protected class ReplaceTitleHandler extends ReplaceInstancePropertyValueHandler {
+
+		public ReplaceTitleHandler(EntityData subject, EntityData changeSubject, EntityData oldEntityData,
+				EntityData newEntityData, Collection<EntityData> oldValues) {
+			super(subject, changeSubject, oldEntityData, newEntityData, oldValues);
+		}
+		
+		@Override
+		public void onSuccess(Void result) {
+			super.onSuccess(result);
+			
+			subject.setBrowserText(newEntityData.getName());
+			
+			//fire rename to update class tree
+			getProject().fireOntologyEvent(new EntityRenameEvent(subject, subject.getName(), GlobalSettings.getGlobalSettings().getUserName(), 0 ));
+		}
+    	
     }
 }
