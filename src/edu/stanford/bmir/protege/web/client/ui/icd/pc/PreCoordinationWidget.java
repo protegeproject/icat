@@ -11,7 +11,6 @@ import com.gwtext.client.widgets.Panel;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
-import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
@@ -23,7 +22,7 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
 	private Panel wrappingPanel;
 	private SuperclassSelectorWidget superclassSelector;
 	//TODO delete this class if we don't use it here
-	private MultipleScaleValueSelector scaleValueSelector;
+	//private MultipleScaleValueSelector scaleValueSelector;
 	private List<AbstractScaleValueSelectorWidget> valueSelWidgets;
 
     private PreCoordinationWidgetController widgetController;
@@ -142,8 +141,9 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
 	public void setSubject(EntityData subject) {
 		super.setSubject(subject);
 		for (AbstractScaleValueSelectorWidget valueSelector : valueSelWidgets) {
-			valueSelector.setSubject(subject);
+			valueSelector.setSubject(subject); //TODO: check if it makes remote call; shouldn't
 		}
+		
 		superclassSelector.setSubject(subject);
 	}
     
@@ -162,11 +162,10 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
     	// TODO Do nothing for now.
     	// This widget does not have values itself, only its component widgets, 
     	// which will have their values set through different mechanisms
-    	System.out.println("Test: DELETE THIS");
+    	//System.out.println("Test: DELETE THIS");
     }
 
 	public void onSuperclassChanged(EntityData newSuperclass) {
-		// TODO Auto-generated method stub
 		widgetController.onSuperclassChanged(newSuperclass);
 	}
 }
