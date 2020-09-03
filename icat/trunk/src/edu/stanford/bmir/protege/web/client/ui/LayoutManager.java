@@ -37,6 +37,18 @@ public class LayoutManager {
 		return tabs;
 	}
 	
+	public TabConfiguration getTabConfiguration(ProjectConfiguration projectConfig, String tabName) {
+		List<TabConfiguration> tabConfigs = projectConfig.getTabs();
+		for (TabConfiguration tabConfig : tabConfigs) {
+			String configTabName = tabConfig.getName();
+            configTabName = configTabName.substring(configTabName.lastIndexOf(".") + 1);
+            if (configTabName.equalsIgnoreCase(tabName)) {
+            	return tabConfig;
+            }
+		}
+		return null;
+	}
+	
 	public AbstractTab createTab(String javaClassName) {
 		AbstractTab tab = UIFactory.createTab(project, javaClassName);
 		return tab;
