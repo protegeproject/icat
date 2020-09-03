@@ -13,6 +13,7 @@ import edu.stanford.bmir.protege.web.client.ui.icd.ICDChangesPortlet;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDExportImportPortlet;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDNotesPortlet;
+import edu.stanford.bmir.protege.web.client.ui.icd.SearchPortlet;
 import edu.stanford.bmir.protege.web.client.ui.ontology.changeanalysis.ChangeAnalysisTab;
 import edu.stanford.bmir.protege.web.client.ui.ontology.changeanalysis.ChangeTablePortlet;
 import edu.stanford.bmir.protege.web.client.ui.ontology.changeanalysis.ChangeTreePortlet;
@@ -173,6 +174,8 @@ public class UIFactory {
         	return new ICDNotesPortlet(project);
         } else if (portletJavaClassName.equals(PythonScriptingPortlet.class.getName())) {
         	return new PythonScriptingPortlet(project);
+        } else if (portletJavaClassName.equals(SearchPortlet.class.getName())) {
+        	return new SearchPortlet(project);
         }
         return null;
     }
@@ -210,7 +213,8 @@ public class UIFactory {
                 BioPortalProposalsPortlet.class.getName(),
                 ICDChangesPortlet.class.getName(),
                 ICDNotesPortlet.class.getName(),
-                PythonScriptingPortlet.class.getName()};
+                PythonScriptingPortlet.class.getName(),
+                SearchPortlet.class.getName()};
 
         List<String> portletsList = Arrays.asList(portlets);
         Collections.sort(portletsList, new Comparator<String>() {
