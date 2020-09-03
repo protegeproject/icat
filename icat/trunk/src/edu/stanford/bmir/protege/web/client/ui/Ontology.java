@@ -244,6 +244,8 @@ public class Ontology extends TabPanel {
 
 			@Override
 			public void onSuccess(EntityData entity) {
+				GlobalSelectionManager.setGlobalSelection(project.getProjectName(), UIUtil.createCollection(entity));
+
 				List<EntityPortlet> portlets = tab.getPortlets();
 		        for (EntityPortlet portlet : portlets) {
 					portlet.setEntity(entity);
