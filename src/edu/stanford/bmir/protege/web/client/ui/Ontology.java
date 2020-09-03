@@ -45,6 +45,7 @@ import edu.stanford.bmir.protege.web.client.model.listener.SystemListener;
 import edu.stanford.bmir.protege.web.client.model.listener.SystemListenerAdapter;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.ChAOServiceManager;
+import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.ProjectConfigurationServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.ProjectConfiguration;
@@ -181,7 +182,79 @@ public class Ontology extends TabPanel {
     }
 
     protected void createOntolgyForm() {
-        List<AbstractTab> tabs = project.getLayoutManager().createTabs(project.getProjectConfiguration());
+    	final String contentOnly = com.google.gwt.user.client.Window.Location.getParameter("contentOnly");
+    	
+    	if ("true".equalsIgnoreCase(contentOnly)) {
+    		createContentOnlyTab();
+    	} else {
+    		createFullOntologyyForm();
+    	}
+    }
+
+    protected void createContentOnlyTab() {
+    	final String tabName = com.google.gwt.user.client.Window.Location.getParameter("tab");
+    	
+    	if (tabName == null) {
+    		createFullOntologyyForm();
+    	}
+    	
+    	LayoutManager layoutManager = project.getLayoutManager();
+    	
+		TabConfiguration tabConfig = layoutManager.getTabConfiguration(project.getProjectConfiguration(), tabName);
+    	if (tabConfig == null) {
+    		createFullOntologyyForm();
+    	}
+    	
+    	//remove all other columns, keep only column 1 = the middle or right, that usually has the actual content
+    	tabConfig.keepOnlyColumn(1);
+    	//make the only column spread the entire width of the screen
+    	tabConfig.setColumnWidth(0, 1);
+    	
+		AbstractTab tab = layoutManager.createTab(tabConfig.getName());
+		
+		if (tab == null) {
+			createFullOntologyyForm();
+		}
+		
+		layoutManager.setupTab(tab, tabConfig);
+		
+		addTab(tab);
+		activate(0);
+		
+		setInitialSelectionForContentOnlyTab(tab);
+	}
+
+    private void setInitialSelectionForContentOnlyTab(AbstractTab tab) {
+        String selection = com.google.gwt.user.client.Window.Location.getParameter("id");
+        
+        if (selection == null) {
+        	return;
+        }
+        
+        selection = URL.decodeQueryString(selection);
+        
+        final String entityName = selection;
+        
+        OntologyServiceManager.getInstance().getEntity(project.getProjectName(), entityName, new AsyncCallback<EntityData>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				com.google.gwt.user.client.Window.alert("Could not retrieve entity: " + entityName);
+			}
+
+			@Override
+			public void onSuccess(EntityData entity) {
+				List<EntityPortlet> portlets = tab.getPortlets();
+		        for (EntityPortlet portlet : portlets) {
+					portlet.setEntity(entity);
+					portlet.setSelection(UIUtil.createCollection(entity));
+				}
+			}
+		});
+    }
+
+	protected void createFullOntologyyForm() {
+    	List<AbstractTab> tabs = project.getLayoutManager().createTabs(project.getProjectConfiguration());
         for (AbstractTab tab : tabs) {
             addTab(tab);
             updateTabStyle(tab);
@@ -194,7 +267,6 @@ public class Ontology extends TabPanel {
         }
         doLayout();
     }
-
 
     private void updateTabStyle(AbstractTab tab) {
         String tabHeaderClass = tab.getHeaderClass();
