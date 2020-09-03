@@ -204,17 +204,20 @@ public abstract class AbstractTab extends Portal {
     }
 
     public void setSelection(Collection<EntityData> selection) {
-        if (controllingPortlet != null) {
-            Collection<EntityData> currentSel = controllingPortlet.getSelection();
+    	if (controllingPortlet == null) {
+    		return;
+    	}
 
-            if (currentSel == null) {
-                if (selection == null) {
-                    return;
-                } // else do nothing here
-            } else if (currentSel.equals(selection)) {
+        Collection<EntityData> currentSel = controllingPortlet.getSelection();
+
+        if (currentSel == null) {
+            if (selection == null) {
                 return;
-            }
+            } // else do nothing here
+        } else if (currentSel.equals(selection)) {
+            return;
         }
+        
         controllingPortlet.setSelection(selection);
     }
 
