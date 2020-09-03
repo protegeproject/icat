@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.google.gwt.core.client.GWT;
+
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 
 public class TabConfiguration extends GenericConfiguration implements Serializable{
@@ -65,5 +67,36 @@ public class TabConfiguration extends GenericConfiguration implements Serializab
 				}
 			}
 		}
+	}
+	
+	public void removeColumn(int colIndex) {
+		if (colIndex >= columns.size()) {
+			GWT.log("Cannot remove column " + colIndex + " from tab configuration " + getName());
+			return;
+		}
+		
+		columns.remove(colIndex);
+	}
+	
+	public void keepOnlyColumn(int colIndex) {
+		if (colIndex >= columns.size()) {
+			GWT.log("Cannot keep only column " + colIndex + " from tab configuration " + getName());
+			return;
+		}
+		
+		List<TabColumnConfiguration> newColumns = new ArrayList<TabColumnConfiguration>();
+		newColumns.add(columns.get(colIndex));
+		
+		columns = newColumns;
+	}
+	
+	public void setColumnWidth(int colIndex, float width) {
+		TabColumnConfiguration tabColConfig = columns.get(colIndex);
+		
+		if (tabColConfig == null) {
+			return;
+		}
+		
+		tabColConfig.setWidth(width);
 	}
 }
