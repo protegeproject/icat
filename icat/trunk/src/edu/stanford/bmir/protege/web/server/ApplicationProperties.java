@@ -61,7 +61,7 @@ public class ApplicationProperties {
     /*
      * Open id Authentication setting
      */
-    private static final boolean WEBPROTEGE_AUTHENTICATE_WITH_OPENID_DEFAULT = true;
+    private static final boolean WEBPROTEGE_AUTHENTICATE_WITH_OPENID_DEFAULT = false;
     private static final boolean LOGIN_WITH_HTTPS_DEFAULT = false;
 
     /*
