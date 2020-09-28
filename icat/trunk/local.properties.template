@@ -20,9 +20,12 @@ gwt.dev.jar=${gwt.dir}/gwt-dev.jar
 
 # The full name of the module to compile. Compulsory (usually you would not change this)
 gwt.xml.target=edu.stanford.bmir.protege.web.WebProtege
+# gwt.xml.target=edu.stanford.bmir.protege.web.WebProtege_dev
+# gwt.xml.target=edu.stanford.bmir.protege.web.iCat
 
 # The full name of the authentication module to compile. Compulsory (usually you would not change this)
 gwt.xml.target.authenticate=edu.stanford.bmir.protege.web.authenticate
+# gwt.xml.target.authenticate=edu.stanford.bmir.protege.web.authenticate_dev
 
 # The name of the war file to generate. Compulsory.
 war.name=webprotege
