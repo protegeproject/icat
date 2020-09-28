@@ -263,7 +263,7 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
           -->
 		<java classname = "com.google.gwt.dev.Compiler" 
              fork = "true" 
-             maxmemory = "500M">
+             maxmemory = "1500M">
 			<classpath>
 				<path refid="project.classpath"/>
 				<pathelement path="${classes}"/>
@@ -301,7 +301,7 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
 	          -->
 		<java classname = "com.google.gwt.dev.Compiler" 
 	             fork = "true" 
-	             maxmemory = "500M">
+	             maxmemory = "1500M">
 			<classpath>
 				<path refid="project.classpath"/>
 				<pathelement path="${classes}"/>
@@ -310,13 +310,18 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
 			<jvmarg value="-Xss100M"/>
 
 			<arg line="-draftCompile" />
+			
+			<arg line = "-incremental"/>
+						
+			<arg line = "-localWorkers"/>
+			<arg line = "2" />
 
 			<arg line = "-war"/>
 			<arg line = "${war}"/>
 
 			<arg line = "-style"/>
 			<arg line = "OBF"/>
-
+			
 			<arg line = "-logLevel"/>
 			<arg line = "INFO"/>
 
@@ -345,6 +350,14 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
      -->
 
 	<target name = "tomcat" depends="webprotege.lib,compile.js">
+		<delete file="${war}/WEB-INF/lib/gwt-user.jar"/>
+		<copy  file="${gwt.dir}/gwt-servlet.jar" 
+            todir="${war}/WEB-INF/lib"/>
+		<war destfile="${build}/${war.name}.war"
+          basedir = "${war}" />
+	</target>
+	
+	<target name = "tomcat-dev" depends="webprotege.lib,compile.draft.js">
 		<delete file="${war}/WEB-INF/lib/gwt-user.jar"/>
 		<copy  file="${gwt.dir}/gwt-servlet.jar" 
             todir="${war}/WEB-INF/lib"/>
