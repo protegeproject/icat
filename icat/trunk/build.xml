@@ -357,7 +357,7 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
           basedir = "${war}" />
 	</target>
 	
-	<target name = "tomcat-dev" depends="webprotege.lib,compile.draft.js">
+	<target name = "tomcat.dev" depends="webprotege.lib,compile.draft.js">
 		<delete file="${war}/WEB-INF/lib/gwt-user.jar"/>
 		<copy  file="${gwt.dir}/gwt-servlet.jar" 
             todir="${war}/WEB-INF/lib"/>
