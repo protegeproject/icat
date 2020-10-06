@@ -7,10 +7,9 @@ import com.gwtext.client.widgets.Component;
 
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
-import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 
 /**
- * The interface for widgets used to display the value of a property at a
+ * The interface for widgets used to display the values of a property at a
  * instance (or class, or property).
  *
  * The property widget has its own workflow:
