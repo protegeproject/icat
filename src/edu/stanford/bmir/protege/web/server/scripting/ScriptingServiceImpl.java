@@ -59,7 +59,7 @@ public class ScriptingServiceImpl extends RemoteServiceServlet implements Script
 		}
 		
 		if (canRunPythonScript(projectName, user) == false) {
-			return new ScriptResult("", user + " not authorized to run Python script on project " + projectName);
+			return new ScriptResult("", user + " is not authorized to run Python scripts on project " + projectName);
 		}
 		
 		
