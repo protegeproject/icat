@@ -19,5 +19,8 @@ public class PermissionConstants {
     
     //Name must match: edu.stanford.smi.protege.server.metaproject.OPERATION_ADMINISTER_SERVER
     public static final String ADMINISTER_SERVER = "AdministerServer";
+    
+    //Name must match: edu.stanford.bmir.protege.web.server.scripting.ScriptingServiceImpl.RUN_PYTHON_SCRIPT
+    public static final String RUN_PYTHON_SCRIPT = "RunPythonScript";
 
 }

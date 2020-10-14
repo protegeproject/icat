@@ -32,6 +32,8 @@ public interface MetaProjectManager {
     public Collection<Operation> getAllowedOperations(String project, String userName);
 
     public Collection<Operation> getAllowedServerOperations(String userName);
+
+    public boolean isOperationAllowed(String projectName, String userName, String operation);
     
     public boolean isServerOperationAllowed(String userName, String operation);
 
