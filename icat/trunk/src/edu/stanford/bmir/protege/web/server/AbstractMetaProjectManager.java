@@ -159,6 +159,7 @@ public abstract class AbstractMetaProjectManager implements MetaProjectManager {
         return allowedOps;
     }
 
+    @Override
     public boolean isServerOperationAllowed(String userName, String operation) {
      if (userName == null) {
          return false;
@@ -184,6 +185,34 @@ public abstract class AbstractMetaProjectManager implements MetaProjectManager {
      }
      
      return policy.isOperationAuthorized(user, op, firstServerInstance);
+    }
+    
+    @Override
+    public boolean isOperationAllowed(String projectName, String userName, String operation) {
+        if (userName == null) {
+            return false;
+        }
+        
+        final MetaProject metaProject = getMetaProject();
+        if (metaProject == null) {
+            throw new IllegalStateException("Metaproject is set to null");
+        }
+        
+        Operation op = metaProject.getOperation(operation);
+        
+        if (op == null) {
+       	 return false;
+        }
+        
+        Policy policy = metaProject.getPolicy();
+        User user = policy.getUserByName(userName);
+        ProjectInstance project = getMetaProject().getPolicy().getProjectInstanceByName(projectName);
+       
+        if (user == null || project == null) {
+            return false;
+        }
+        
+        return policy.isOperationAuthorized(user, op, project);
     }
     
     

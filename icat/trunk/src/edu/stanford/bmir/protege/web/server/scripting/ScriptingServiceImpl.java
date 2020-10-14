@@ -16,7 +16,10 @@ import edu.stanford.bmir.protege.web.client.rpc.ScriptingService;
 import edu.stanford.bmir.protege.web.client.rpc.iCATException;
 import edu.stanford.bmir.protege.web.client.rpc.data.scripting.ScriptCommand;
 import edu.stanford.bmir.protege.web.client.rpc.data.scripting.ScriptResult;
+import edu.stanford.bmir.protege.web.client.ui.login.constants.AuthenticationConstants;
+import edu.stanford.bmir.protege.web.server.MetaProjectManager;
 import edu.stanford.bmir.protege.web.server.ProjectManagerFactory;
+import edu.stanford.bmir.protege.web.server.Protege3ProjectManager;
 import edu.stanford.smi.protege.model.KnowledgeBase;
 import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.util.Log;
@@ -24,6 +27,8 @@ import edu.stanford.smi.protege.util.Log;
 public class ScriptingServiceImpl extends RemoteServiceServlet implements ScriptingService {
 	
 	private static final long serialVersionUID = -3950687775803438561L;
+	
+	private static final String RUN_PYTHON_SCRIPT = "RunPythonScript";
 
 
 	protected KnowledgeBase getKb(String projectName) {
@@ -31,8 +36,20 @@ public class ScriptingServiceImpl extends RemoteServiceServlet implements Script
         return prj == null ? null : prj.getKnowledgeBase();
     }
     
+	private boolean canRunPythonScript(String projectName, String user) {
+		if (user == null) {
+			return false;
+		}
+		
+		MetaProjectManager mm =  Protege3ProjectManager.getProjectManager().getMetaProjectManager();
+		return mm.isOperationAllowed(projectName, user, RUN_PYTHON_SCRIPT);
+	}
 	
-    
+	private String getUser() {
+        final HttpSession session = getThreadLocalRequest().getSession();
+        return (String) session.getAttribute(AuthenticationConstants.USER);
+	}
+	
 	@Override
 	public ScriptResult executePythonScript(String projectName, String user, ScriptCommand cmd) {
 		KnowledgeBase kb = getKb(projectName);
@@ -40,6 +57,11 @@ public class ScriptingServiceImpl extends RemoteServiceServlet implements Script
 		if (kb == null) {
 			return new ScriptResult("", "Could not find project: " + projectName);
 		}
+		
+		if (canRunPythonScript(projectName, user) == false) {
+			return new ScriptResult("", user + " not authorized to run Python script on project " + projectName);
+		}
+		
 		
 		if (cmd == null || cmd.getCommand().length() == 0) {
 			return new ScriptResult("", "No command specified");
@@ -101,7 +123,12 @@ public class ScriptingServiceImpl extends RemoteServiceServlet implements Script
 
 	@Override
 	public List<String> getCodeCompletion(String projectName, String cmdSubstr) {
+		
 		List<String> compls = new ArrayList<String>();
+		
+		if (canRunPythonScript(projectName, getUser()) == false) {
+			return compls;
+		}
 		
 		cmdSubstr = cmdSubstr.trim();
 		
