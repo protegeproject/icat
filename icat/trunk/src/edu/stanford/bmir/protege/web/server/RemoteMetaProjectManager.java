@@ -198,7 +198,7 @@ public class RemoteMetaProjectManager extends AbstractMetaProjectManager {
             synchronized (this) {
                 if (metaproject == null) {
                     //this is kind of cheating
-                    RemoteSession session = new Session(ApplicationProperties.getProtegeServerUser(), null, false);
+                    RemoteSession session = new Session(ApplicationProperties.getProtegeServerUser(), null, true);
                     RemoteServer server = getServer();
                     if (server == null) {
                         return null;
