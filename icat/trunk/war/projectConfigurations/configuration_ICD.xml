@@ -28601,8 +28601,7 @@
 
 
 	<tab>
-		<name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab
-		</name>
+		<name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
 		<label>Python Scripting</label>
 		<properties>
 			<entry>
@@ -28621,8 +28620,7 @@
 				<width>1</width>
 				<portlets>
 					<portlet>
-						<name>edu.stanford.bmir.protege.web.client.ui.ontology.scripting.PythonScriptingPortlet
-						</name>
+						<name>edu.stanford.bmir.protege.web.client.ui.ontology.scripting.PythonScriptingPortlet</name>
 						<height>600</height>
 						<width>0</width>
 					</portlet>
