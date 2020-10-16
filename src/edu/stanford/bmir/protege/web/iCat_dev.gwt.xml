@@ -1,0 +1,11 @@
+<!--  This is the dev version of the iCat module that can be used -->
+<!--  to speed up GWT compilation time. It will only compile for Safari and Chrome, -->
+<!--  but other browsers can be easily added. -->
+<module rename-to="webprotege">
+
+  <inherits name="edu.stanford.bmir.protege.web.iCat"/>
+  
+  <!-- Compile only for Safari and Chrome to speed up compiling -->
+  <set-property name="user.agent" value="safari"/>
+  
+</module>

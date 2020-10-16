@@ -22,6 +22,7 @@ gwt.dev.jar=${gwt.dir}/gwt-dev.jar
 gwt.xml.target=edu.stanford.bmir.protege.web.WebProtege
 # gwt.xml.target=edu.stanford.bmir.protege.web.WebProtege_dev
 # gwt.xml.target=edu.stanford.bmir.protege.web.iCat
+# gwt.xml.target=edu.stanford.bmir.protege.web.iCat_dev
 
 # The full name of the authentication module to compile. Compulsory (usually you would not change this)
 gwt.xml.target.authenticate=edu.stanford.bmir.protege.web.authenticate
