@@ -3,6 +3,8 @@
 	<!-- Inherit the core Google Web Toolkit stuff -->
 	<inherits name="com.google.gwt.user.User"/>
 	
+	<inherits name="com.google.gwt.resources.Resources" />
+	
 	<!-- Inherit the GWT-Ext Toolkit stff -->
 	<inherits name='com.gwtext.GwtExt' />
 	<inherits name="com.google.gwt.http.HTTP"/>
