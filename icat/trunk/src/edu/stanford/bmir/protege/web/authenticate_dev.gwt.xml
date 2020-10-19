@@ -1,7 +1,7 @@
-<!--  This is the dev version of the authenticate module that can be used 
-----  to speed up GWT compilation time. It will only compile for Safari and Chrome,
-----  but other browsers can be easily added.
--->
+<!--  This is the dev version of the authenticate module that can be used -->
+<!--  to speed up GWT compilation time. It will only compile for Safari and Chrome, -->
+<!--  but other browsers can be easily added. -->
+
 <module rename-to="authenticate">
 
   <inherits name="edu.stanford.bmir.protege.web.authenticate"/>
