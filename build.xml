@@ -455,7 +455,7 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
 		</java>
 	</target>
 
-	<target name = "hosted.wp.ns" 
+	<target name = "hosted.ns" 
 	           depends = "webprotege.lib,stage.war,compile.draft.js">
 		<copy todir="${war}/WEB-INF/lib" file="${gwt.dir}/gwt-user.jar"/>
 		
@@ -481,14 +481,14 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
 			
 			<arg value = "-noserver"/>
 			
-			<arg value = "edu.stanford.bmir.protege.web.WebProtege"/>
+			<arg value = "${gwt.xml.target}" />
 		</java>
 	</target>
 	
-	<target name = "hosted.wp.ns.jetty">
+	<target name = "hosted.ns.jetty">
 		<parallel>
 			<sequential>
-				<antcall target="hosted.wp.ns" />
+				<antcall target="hosted.ns" />
 			</sequential>
 		  <sequential>
 		  		<antcall target="jetty.start" />
