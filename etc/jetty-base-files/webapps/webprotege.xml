@@ -1,6 +1,14 @@
 <?xml version="1.0"  encoding="ISO-8859-1"?>
 <!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
 <Configure class="org.eclipse.jetty.webapp.WebAppContext">
+   
     <Set name="contextPath">/</Set>
+    
+    <!-- Set war to the absolute path of your icat/build/war directory -->
     <Set name="war">/Users/ttania/work/eclipse-workspace/icat/build/war</Set>
+   
+    <!-- If running on Windows, uncomment the following line setting the copyWebDir -->
+    <!-- Details here: https://www.eclipse.org/jetty/documentation/current/troubleshooting-locked-files-on-windows.html-->
+    <!-- <Set name="copyWebDir">true</Set> -->
+    
 </Configure>
