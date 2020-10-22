@@ -2,6 +2,8 @@ package edu.stanford.bmir.protege.web.client.ui.icd;
 
 import java.util.Collection;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.gwtext.client.core.EventObject;
 import com.gwtext.client.data.ArrayReader;
 import com.gwtext.client.data.FieldDef;
@@ -19,6 +21,7 @@ import com.gwtext.client.widgets.form.event.ComboBoxListenerAdapter;
 import com.gwtext.client.widgets.layout.FitLayout;
 
 import edu.stanford.bmir.protege.web.client.model.Project;
+import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
@@ -59,8 +62,8 @@ public class SearchPortlet extends AbstractEntityPortlet {
         searchCb.setDisplayField("browserText");
         searchCb.setTypeAhead(false);
         searchCb.setLoadingText("Searching...");
-        searchCb.setListWidth(400);
-        searchCb.setWidth(150);
+        //searchCb.setListWidth(400);
+        //searchCb.setWidth(150);
         searchCb.setPageSize(10);
         searchCb.setMinChars(3);
         searchCb.setQueryDelay(500);
@@ -91,7 +94,7 @@ public class SearchPortlet extends AbstractEntityPortlet {
                 
                 comboBox.setValue(UIUtil.getDisplayText(currentSelection).trim());
                 
-                notifySelectionListeners(new SelectionEvent(SearchPortlet.this));
+                notifyOfSelectionChange();
             }
             
             @Override
@@ -128,6 +131,7 @@ public class SearchPortlet extends AbstractEntityPortlet {
     
 	@Override
 	public void reload() {
+		//maybe this is not ideal; we can also just leave the value as it is
 		EntityData entity = getEntity();
 		if (entity != null) {
 			searchCb.setValue(UIUtil.getDisplayText(entity));
@@ -139,5 +143,25 @@ public class SearchPortlet extends AbstractEntityPortlet {
 		return currentSelection == null ? null : UIUtil.createCollection(currentSelection);
 	}
 
+	private void notifyOfSelectionChange() {
+		if (currentSelection == null) {
+			return;
+		}
+		
+		OntologyServiceManager.getInstance().getEntity(getProject().getProjectName(), currentSelection.getName(), 
+				new AsyncCallback<EntityData>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						GWT.log("Could not retrieve from server the details of " + currentSelection);
+					}
+
+					@Override
+					public void onSuccess(EntityData entity) {
+						currentSelection = entity;
+						notifySelectionListeners(new SelectionEvent(SearchPortlet.this));
+					}
+		});
+	}
 
 }
