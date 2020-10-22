@@ -48,10 +48,12 @@ import edu.stanford.bmir.protege.web.client.rpc.ChAOServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.ProjectConfigurationServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.ProjectConfiguration;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.TabColumnConfiguration;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.TabConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.generated.UIFactory;
+import edu.stanford.bmir.protege.web.client.ui.icd.SearchPortlet;
 import edu.stanford.bmir.protege.web.client.ui.portlet.EntityPortlet;
 import edu.stanford.bmir.protege.web.client.ui.tab.AbstractTab;
 import edu.stanford.bmir.protege.web.client.ui.tab.UserDefinedTab;
@@ -65,7 +67,10 @@ import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
  * @author Tania Tudorache <tudorache@stanford.edu>
  */
 public class Ontology extends TabPanel {
-    public static final String SHOW_ONTOLOGY_TOOLBAR = "showOntologyToolbar";
+	
+    public static final String CONTENT_ONLY_ARG = "contentOnly";
+
+	public static final String SHOW_ONTOLOGY_TOOLBAR = "showOntologyToolbar";
 
     protected Project project;
 
@@ -94,7 +99,6 @@ public class Ontology extends TabPanel {
             public void onRemove(Container self, Component component) {
                 GWT.log("Ont on remove" );
             }
-
         });
     }
 
@@ -182,7 +186,7 @@ public class Ontology extends TabPanel {
     }
 
     protected void createOntolgyForm() {
-    	final String contentOnly = com.google.gwt.user.client.Window.Location.getParameter("contentOnly");
+    	final String contentOnly = com.google.gwt.user.client.Window.Location.getParameter(CONTENT_ONLY_ARG);
     	
     	if ("true".equalsIgnoreCase(contentOnly)) {
     		createContentOnlyTab();
@@ -205,10 +209,7 @@ public class Ontology extends TabPanel {
     		createFullOntologyyForm();
     	}
     	
-    	//remove all other columns, keep only column 1 = the middle or right, that usually has the actual content
-    	tabConfig.keepOnlyColumn(1);
-    	//make the only column spread the entire width of the screen
-    	tabConfig.setColumnWidth(0, 1);
+    	adjustContentOnlyTab(tabConfig);
     	
 		AbstractTab tab = layoutManager.createTab(tabConfig.getName());
 		
@@ -220,9 +221,29 @@ public class Ontology extends TabPanel {
 		
 		addTab(tab);
 		activate(0);
+		doLayout();
 		
 		setInitialSelectionForContentOnlyTab(tab);
 	}
+    
+    protected void adjustContentOnlyTab(TabConfiguration tabConfig) {
+    	//remove all other columns, keep only column 1 = the middle or right, that usually has the actual content
+    	tabConfig.keepOnlyColumn(1);
+    	//make the only column spread the entire width of the screen
+    	tabConfig.setColumnWidth(0, 1);
+    	
+    	//FIXME: maybe it is not ideal to introduce here a reference to a specific portlet
+    	//adds the search portlet on top of the content portlet
+    	PortletConfiguration searchPortletConfig = new PortletConfiguration();
+    	searchPortletConfig.setName(SearchPortlet.class.getName());
+    	searchPortletConfig.setHeight(55);
+    	//searchPortletConfig.setIndex("1");
+    	
+    	TabColumnConfiguration col = tabConfig.getColumns().iterator().next();
+    	col.addPortelt(searchPortletConfig, 1);
+    	
+    	tabConfig.setControllingPortlet(searchPortletConfig);
+    }
 
     private void setInitialSelectionForContentOnlyTab(AbstractTab tab) {
         String selection = com.google.gwt.user.client.Window.Location.getParameter("id");
