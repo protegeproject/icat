@@ -89,10 +89,22 @@ public class UIUtil {
             if (browserText == null) {
                 browserText = ((EntityData) object).getName();
             }
-            return browserText == null ? "" : browserText;
+            return removeSingleQuotes(browserText);
         } else {
             return object.toString();
         }
+    }
+    
+    public static String removeSingleQuotes(String str) {
+    	if (str == null) {
+    		return null;
+    	}
+    	
+    	if (str.startsWith("'") && str.endsWith("'")) {
+    		return str.substring(1, str.length() - 1);
+    	}
+    	
+    	return str;
     }
 
     public static String getNiceNoteCountText(final int noteCount) {
