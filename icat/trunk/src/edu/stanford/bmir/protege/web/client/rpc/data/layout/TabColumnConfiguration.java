@@ -38,5 +38,13 @@ public class TabColumnConfiguration implements Serializable {
 	public float getWidth() {
 		return width;
 	}
+
+	public void addPortlet(PortletConfiguration portletConfiguration) {
+		portlets.add(portletConfiguration);
+	}
+	
+	public void insertPortlet(PortletConfiguration portletConfiguration, int index) {
+		portlets.add(index, portletConfiguration);
+	}
 	
 }
