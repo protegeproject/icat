@@ -27661,7 +27661,7 @@
 											</list>
 										</entry>
 										
-										<entry>
+										<!-- entry>
 											<string>EDTAGResponsabilityRuler</string>
 											<map>
 												<entry>
@@ -27847,7 +27847,7 @@
 													</map>
 												</entry>
 											</map>
-										</entry>
+										</entry -->
 										
 										<!-- Here comes the inherited one -->
 										
