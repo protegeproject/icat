@@ -12,6 +12,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PaginationData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 import edu.stanford.bmir.protege.web.client.ui.util.GWTProxy;
+import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public class SearchResultsProxyImpl extends GWTProxy {
 
@@ -99,7 +100,7 @@ public class SearchResultsProxyImpl extends GWTProxy {
             }
 
             private Object[] getRow(EntityData ed) {
-                return new Object[] { ed, getHighlight(ed.getBrowserText(), searchText) };
+                return new Object[] { ed, getHighlight(UIUtil.getDisplayText(ed), searchText) };
             }
         });
     }
