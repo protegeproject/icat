@@ -15,7 +15,7 @@ import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ImportsData;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
-import edu.stanford.bmir.protege.web.client.ui.selection.SelectionEvent;
+import edu.stanford.bmir.protege.web.client.ui.selection.EntitySelectionEvent;
 
 /**
  * @author Jennifer Vendetti <vendetti@stanford.edu>
@@ -45,8 +45,9 @@ public class ImportsTreePortlet extends AbstractEntityPortlet {
 		importsTree.addListener(new TreePanelListenerAdapter() {
 			public void onClick(TreeNode node, EventObject e) {
 				currentSelection = new ArrayList<EntityData>();
-				currentSelection.add((EntityData) node.getUserObject());
-				notifySelectionListeners(new SelectionEvent(ImportsTreePortlet.this));
+				EntityData sel = (EntityData) node.getUserObject();
+				currentSelection.add(sel);
+				notifySelectionListeners(new EntitySelectionEvent(ImportsTreePortlet.this, sel));
 			}
 		});
 		

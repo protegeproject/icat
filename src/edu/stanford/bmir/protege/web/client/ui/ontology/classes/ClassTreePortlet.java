@@ -79,6 +79,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration
 import edu.stanford.bmir.protege.web.client.ui.ontology.notes.NoteInputPanel;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
 import edu.stanford.bmir.protege.web.client.ui.search.SearchUtil;
+import edu.stanford.bmir.protege.web.client.ui.selection.EntitySelectionEvent;
 import edu.stanford.bmir.protege.web.client.ui.selection.SelectionEvent;
 import edu.stanford.bmir.protege.web.client.ui.selection.SelectionListener;
 import edu.stanford.bmir.protege.web.client.ui.util.GlobalSelectionManager;
@@ -396,12 +397,14 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             ((DefaultSelectionModel) selModel).addSelectionModelListener(new DefaultSelectionModelListenerAdapter() {
                 @Override
                 public void onSelectionChange(final DefaultSelectionModel sm, final TreeNode node) {
-                    notifySelectionListeners(new SelectionEvent(ClassTreePortlet.this));
+                	EntityData sel = (EntityData) node.getUserObject();
+                    notifySelectionListeners(new EntitySelectionEvent(ClassTreePortlet.this, sel));
                 }
             });
         } else if (selModel instanceof MultiSelectionModel) {
             ((MultiSelectionModel) selModel).addSelectionModelListener(new MultiSelectionModelListener() {
                 public void onSelectionChange(final MultiSelectionModel sm, final TreeNode[] nodes) {
+                	//TODO: maybe send an entity selection event
                     notifySelectionListeners(new SelectionEvent(ClassTreePortlet.this));
                 }
             });
@@ -1243,6 +1246,9 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
 
         GWT.log("Select in class tree: " + selection, null);
         final EntityData data = selection.iterator().next();
+        
+        setEntity(data);
+        notifySelectionListeners(new EntitySelectionEvent(this, data));
 
         // FIXME: just takes first element in selection for now; support multiple selections
         getPathToRoot(data);

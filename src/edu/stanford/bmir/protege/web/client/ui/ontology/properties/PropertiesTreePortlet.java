@@ -36,7 +36,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.PropertyType;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
-import edu.stanford.bmir.protege.web.client.ui.selection.SelectionEvent;
+import edu.stanford.bmir.protege.web.client.ui.selection.EntitySelectionEvent;
 
 // TODO: add action descriptions and labels in the config similar to the ClassTreePortlet
 public class PropertiesTreePortlet extends AbstractEntityPortlet {
@@ -76,8 +76,9 @@ public class PropertiesTreePortlet extends AbstractEntityPortlet {
             @Override
             public void onClick(TreeNode node, EventObject e) {
                 currentSelection = new ArrayList<EntityData>();
-                currentSelection.add((EntityData) node.getUserObject());
-                notifySelectionListeners(new SelectionEvent(PropertiesTreePortlet.this));
+                EntityData sel = (EntityData) node.getUserObject();
+                currentSelection.add(sel);
+                notifySelectionListeners(new EntitySelectionEvent(PropertiesTreePortlet.this, sel));
             }
 
             @Override
