@@ -37,7 +37,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ProjectData;
 import edu.stanford.bmir.protege.web.client.ui.ClientApplicationPropertiesCache;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
-import edu.stanford.bmir.protege.web.client.ui.selection.SelectionEvent;
+import edu.stanford.bmir.protege.web.client.ui.selection.EntitySelectionEvent;
 
 /**
  * @author Jennifer Vendetti <vendetti@stanford.edu>
@@ -112,9 +112,10 @@ public class OntologiesPortlet extends AbstractEntityPortlet {
 
                 if (col.equals("name")) {
                     currentSelection = new ArrayList<EntityData>();
-                    currentSelection.add(new EntityData(projectName));
+                    EntityData sel = new EntityData(projectName);
+                    currentSelection.add(sel);
 
-                    notifySelectionListeners(new SelectionEvent(OntologiesPortlet.this));
+                    notifySelectionListeners(new EntitySelectionEvent(OntologiesPortlet.this, sel));
                 } else if (col.equals("download")) {
                     if (!isDownloading(record)) {
                         onDownload(projectName, record);

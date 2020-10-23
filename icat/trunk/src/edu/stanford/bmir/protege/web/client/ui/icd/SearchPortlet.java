@@ -26,7 +26,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
 import edu.stanford.bmir.protege.web.client.ui.search.SearchResultsProxyImpl;
-import edu.stanford.bmir.protege.web.client.ui.selection.SelectionEvent;
+import edu.stanford.bmir.protege.web.client.ui.selection.EntitySelectionEvent;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public class SearchPortlet extends AbstractEntityPortlet {
@@ -159,7 +159,7 @@ public class SearchPortlet extends AbstractEntityPortlet {
 					@Override
 					public void onSuccess(EntityData entity) {
 						currentSelection = entity;
-						notifySelectionListeners(new SelectionEvent(SearchPortlet.this));
+						notifySelectionListeners(new EntitySelectionEvent(SearchPortlet.this, entity));
 					}
 		});
 	}

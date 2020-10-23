@@ -27,6 +27,7 @@ import edu.stanford.bmir.protege.web.client.ui.generated.UIFactory;
 import edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
 import edu.stanford.bmir.protege.web.client.ui.portlet.EntityPortlet;
+import edu.stanford.bmir.protege.web.client.ui.selection.EntitySelectionEvent;
 import edu.stanford.bmir.protege.web.client.ui.selection.SelectionEvent;
 import edu.stanford.bmir.protege.web.client.ui.selection.SelectionListener;
 import edu.stanford.bmir.protege.web.client.ui.util.GlobalSelectionManager;
@@ -167,8 +168,18 @@ public abstract class AbstractTab extends Portal {
         if (selectionControllingListener == null) {
             this.selectionControllingListener = new SelectionListener() {
                 public void selectionChanged(final SelectionEvent event) {
-                    onSelectionChange(event.getSelectable().getSelection());
-                    GlobalSelectionManager.setGlobalSelection(project.getProjectName(), event.getSelectable().getSelection());
+                	
+                	Collection<EntityData> selection = null;
+                	
+                	if (event instanceof EntitySelectionEvent) { //not very nice
+                		selection = new ArrayList<EntityData>();
+                		selection.add(((EntitySelectionEvent) event).getSelectedEntity());
+                	} else {
+                		selection = event.getSelectable().getSelection();
+                	}
+                	
+                    onSelectionChange(selection);
+                    GlobalSelectionManager.setGlobalSelection(project.getProjectName(), selection);
                 }
             };
         }

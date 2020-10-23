@@ -47,6 +47,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.search.SearchUtil;
+import edu.stanford.bmir.protege.web.client.ui.selection.EntitySelectionEvent;
 import edu.stanford.bmir.protege.web.client.ui.selection.SelectionEvent;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
@@ -182,7 +183,7 @@ public class IndividualsListPortlet extends AbstractEntityPortlet {
             gridRowListener = new GridRowListenerAdapter() {
                 @Override
                 public void onRowClick(GridPanel grid, int rowIndex, EventObject e) {
-                    notifySelectionListeners(new SelectionEvent(IndividualsListPortlet.this));
+                    notifySelectionListeners(new EntitySelectionEvent(IndividualsListPortlet.this, getSingleSelection()));
                     super.onRowClick(grid, rowIndex, e);
                 }
             };
@@ -505,7 +506,7 @@ public class IndividualsListPortlet extends AbstractEntityPortlet {
             Record record = recordDef.createRecord(new Object[] { individualEntity, false });
             store.add(record);
             individualsGrid.getSelectionModel().selectRecords(record);
-            notifySelectionListeners(new SelectionEvent(IndividualsListPortlet.this));
+            notifySelectionListeners(new EntitySelectionEvent(IndividualsListPortlet.this, individualEntity));
         }
     }
 
