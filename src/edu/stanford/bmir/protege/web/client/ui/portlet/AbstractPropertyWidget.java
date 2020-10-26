@@ -17,9 +17,11 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.Triple;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
+import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.GetEntityTripleHandler;
+import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.HasGetEntityTripleHandler;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
-public abstract class AbstractPropertyWidget implements PropertyWidget {
+public abstract class AbstractPropertyWidget implements PropertyWidget, HasGetEntityTripleHandler {
 
     private static final String PART_OF_WRITE_ACCESS_GROUP_SESSION_PROP = "partOfWriteAccessGroup";
     
@@ -34,6 +36,8 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
     private EntityData oldDisplayedSubject; //Optimization: only load values if new subject, and widget is visible
    
     private boolean isLoading;
+    
+    private GetEntityTripleHandler entityTripleHandler;
 
 
     public AbstractPropertyWidget(Project project) {
@@ -98,6 +102,11 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
         return (getComponent()).getEl() != null && getComponent().getEl().isVisible(true);
     }
 
+    @Override
+    public void beforeFillValues() {
+    	setLoadingStatus(true);
+    }
+    
     /**
      * Load new values only if the new subject is different than the old subject and the widget is currently displayed.
      */
@@ -119,8 +128,51 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
     }
 
     protected void fillValues(List<String> subjects, List<String> props) {
-        OntologyServiceManager.getInstance().getEntityTriples(getProject().getProjectName(), subjects, props,
+    	
+    	//if the entityTripleHandler is set, then get the values from there (setPreloadedValues will be called when the values are available) 
+    	//if not set, do it the regular/old way with a remote call
+    	
+    	if (entityTripleHandler == null) {
+    		OntologyServiceManager.getInstance().getEntityTriples(getProject().getProjectName(), subjects, props,
                 new GetValuesHandler(getSubject()));
+    	}
+    }
+    
+    
+    /* This method is called by the GetEntityTripleHandler, after it did a bulk call to
+     * retrieve the values for several widgets that implement HasGetEntityTripleHandlers.
+     * 
+     * (non-Javadoc)
+     * @see edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.HasGetEntityTripleHandler#setPreloadedValues(edu.stanford.bmir.protege.web.client.rpc.data.EntityData, java.util.List)
+     */
+    @Override
+    public void setPreloadedValues(EntityData subject, List<Triple> triples) {
+    	setWidgetValues(subject, triples);
+    }
+    
+    //This is an internal call, that will trigger the calling of setValues with the actual widget values
+    protected void setWidgetValues(EntityData mySubject, List<Triple> triples) {
+    	
+    	if (mySubject == null) { //TODO: empty widget, or something
+    		return;
+    	}
+    	/*
+         * This check is necessary because of the async nature of the call.
+         * We should never add values to a widget, if the subject has already changed.
+         */
+        if (!UIUtil.equals(mySubject, getSubject())) {  return; }
+        Collection<EntityData> values = new ArrayList<EntityData>();
+        if (triples != null) {
+            for (Triple triple : triples) {
+                if (triple.getValue() != null) {
+                    values.add(triple.getValue());
+                }
+            }
+        }
+        setValues(values);
+
+        setOldDisplayedSubject(mySubject);
+        setLoadingStatus(false);
     }
 
     protected boolean isSameSubject() {
@@ -259,6 +311,7 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
         fillValues();
     }
 
+
     /*
      * Remote calls
      */
@@ -279,23 +332,7 @@ public abstract class AbstractPropertyWidget implements PropertyWidget {
         }
 
         public void handleSuccess(List<Triple> triples) { //TODO - make a call to get only the prop values
-            /*
-             * This check is necessary because of the async nature of the call.
-             * We should never add values to a widget, if the subject has already changed.
-             */
-            if (!UIUtil.equals(mySubject, getSubject())) {  return; }
-            Collection<EntityData> values = new ArrayList<EntityData>();
-            if (triples != null) {
-                for (Triple triple : triples) {
-                    if (triple.getValue() != null) {
-                        values.add(triple.getValue());
-                    }
-                }
-            }
-            setValues(values);
-
-            setOldDisplayedSubject(mySubject);
-            setLoadingStatus(false);
+            setWidgetValues(mySubject, triples);
         }
     }
 

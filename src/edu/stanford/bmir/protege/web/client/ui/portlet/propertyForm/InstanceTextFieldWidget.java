@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Set;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.Window;
 import com.gwtext.client.widgets.MessageBox;
 import com.gwtext.client.widgets.form.Field;
 import com.gwtext.client.widgets.form.TextField;
@@ -24,7 +23,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.Triple;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
-public class InstanceTextFieldWidget extends TextFieldWidget {
+public class InstanceTextFieldWidget extends TextFieldWidget implements HasReifiedProperties {
 	private String property;
 	private Map<EntityData, EntityData> valuesToDisplayValuesMap;
 
@@ -73,69 +72,47 @@ public class InstanceTextFieldWidget extends TextFieldWidget {
         }
         super.displayValues(dispValues);
     }
-
+    
     @Override
-    protected void fillValues(List<String> subjects, List<String> props) {
-        //displayValues(null);
-        
-        List<String> reifiedProps = new ArrayList<String>();
-        reifiedProps.add(property);
-        
-        setLoadingStatus(true);
-        getField().setValue("(loading...)");
-        
-        OntologyServiceManager.getInstance().getEntityTriples(getProject().getProjectName(), subjects, props, reifiedProps,
-                new GetTriplesHandler(getSubject()));
+    public void beforeFillValues() {
+    	setLoadingStatus(true);
+        //getField().setValue("(loading...)");
     }
 
+    // This method is not called anymore, as the values are retrieved 
+    // with a bulk call by the GetEntityTriplesHandler.
+    @Override
+    protected void fillValues(List<String> subjects, List<String> props) {
+       
+    }
+
+    protected void setWidgetValues(EntityData mySubject, List<Triple> triples) {
+    	/*
+         * This check is necessary because of the async nature of the call.
+         * We should never add values to a widget, if the subject has already changed.
+         */
+        if (!UIUtil.equals(mySubject, getSubject())) {  return; }
+    	
+        valuesToDisplayValuesMap.clear();
+        Set<EntityData> subjects = null;
+        if (triples != null) {
+            subjects = new HashSet<EntityData>();
+            for (Triple triple : triples) {
+                subjects.add(triple.getEntity());
+                valuesToDisplayValuesMap.put(triple.getEntity(), triple.getValue());
+            }
+        }
+        
+        GWT.log("Got values for " + mySubject + "." + getProperty() + ": " + subjects);
+        
+        setOldDisplayedSubject(mySubject);
+        setValues(subjects);
+        setLoadingStatus(false);
+    }
 
     /*
      * Remote calls
      */
-
-    class GetTriplesHandler extends AbstractAsyncHandler<List<Triple>> {
-
-        private EntityData mySubject;
-
-        public GetTriplesHandler(EntityData subject) {
-            this.mySubject = subject;
-        }
-
-        @Override
-        public void handleFailure(Throwable caught) {
-            GWT.log("Instance Text Field Widget: Error at getting triples for " + mySubject, caught);
-            Window.alert("There was an error retrieving the value for " + getProperty());
-            
-            displayValues(null);
-            
-            setLoadingStatus(false);
-        }
-
-        @Override
-        public void handleSuccess(List<Triple> triples) {
-        	/*
-             * This check is necessary because of the async nature of the call.
-             * We should never add values to a widget, if the subject has already changed.
-             */
-            if (!UIUtil.equals(mySubject, getSubject())) {  return; }
-        	
-            valuesToDisplayValuesMap.clear();
-            Set<EntityData> subjects = null;
-            if (triples != null) {
-                subjects = new HashSet<EntityData>();
-                for (Triple triple : triples) {
-                    subjects.add(triple.getEntity());
-                    valuesToDisplayValuesMap.put(triple.getEntity(), triple.getValue());
-                }
-            }
-            
-            GWT.log("Got values for " + mySubject + "." + getProperty() + ": " + subjects);
-            
-            setOldDisplayedSubject(mySubject);
-            setValues(subjects);
-            setLoadingStatus(false);
-        }
-    }
 
 
     protected EntityData findInstanceForValue(EntityData displayValueEntityData) {
@@ -206,6 +183,13 @@ public class InstanceTextFieldWidget extends TextFieldWidget {
         		subject.getName(), propName, new PropertyEntityData(property), newEntityData,
         		GlobalSettings.getGlobalSettings().getUserName(), operationDescription, 
         		new AddInstanceValueWithPropertyValueHandler(subject, newEntityData, getValues()));
+    }
+    
+    @Override
+    public List<String> getReifiedProperties() {
+    	List<String> reifiedProps = new ArrayList<String>();
+    	reifiedProps.add(property);
+    	return reifiedProps;
     }
 
     /*

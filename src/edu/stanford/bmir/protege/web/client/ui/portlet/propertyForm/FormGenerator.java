@@ -2,6 +2,7 @@ package edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -58,7 +59,11 @@ public class FormGenerator {
     private Map<Panel, Collection<String>> tab2TypesAny;
     private Map<Panel, Collection<String>> tab2TypesAll;
     private Map<Panel, Collection<String>> tab2TypesNot;
+    
+    private Map<Panel, GetEntityTripleHandler> tab2entitiesTripleHandler = new HashMap<Panel, GetEntityTripleHandler>();
+    private Map<Panel, GetEntityPropertyValuesHandler> tab2entitiespropValuesHandler = new HashMap<Panel, GetEntityPropertyValuesHandler>();
 
+    
     public FormGenerator(Project project, Map<String, Object> formConfiguration) {
         this.project = project;
         this.formConf = formConfiguration;
@@ -174,8 +179,8 @@ public class FormGenerator {
     protected Panel createInnerPanel(Map panelConf) {
         Panel panel = new Panel();
         panel.setLayout(new FormLayout()); // TODO
-        panel.setPaddings(5);
-        panel.setBorder(false);
+        panel.setPaddings(10);
+        //panel.setBorder(true);
         panel.setAutoScroll(true);
 
         tab2TypesAny.put(panel, (Collection<String>) panelConf.get(FormConstants.TYPES_ANY));
@@ -185,6 +190,8 @@ public class FormGenerator {
 
         createInnerPanelComponents(panel, panelConf);
 
+        panel.doLayout();
+        
         return panel;
     }
 
@@ -214,12 +221,20 @@ public class FormGenerator {
                     PropertyWidget widget = null;
                     if (component_type.equals(FormConstants.TEXTFIELD)) {
                         widget = createTextField(configMap, prop);
+                        
+                        addWidgetToEntitiesTripleHandler(panel, widget);
                     } else if (component_type.equals(FormConstants.TEXTAREA)) {
                         widget = createTextArea(configMap, prop);
+                        
+                        addWidgetToEntitiesTripleHandler(panel, widget);
                     } else if (component_type.equals(FormConstants.CHECKBOX)) {
                         widget = createCheckBox(configMap, prop);
+                        
+                        addWidgetToEntitiesTripleHandler(panel, widget);
                     } else if (component_type.equals(FormConstants.COMBOBOX)) {
                         widget = createComboBox(configMap, prop);
+                        
+                        addWidgetToEntitiesTripleHandler(panel, widget);
                     } else if (component_type.equals(FormConstants.HTMLEDITOR)) {
                         widget = createHtmlEditor(configMap, prop);
                     } else if (component_type.equals(FormConstants.FIELDSET)) {
@@ -228,12 +243,16 @@ public class FormGenerator {
                         widget = createMultiTextField(configMap, prop);
                     } else if (component_type.equals(FormConstants.INSTANCETEXTFIELD)) {
                     	widget = createInstanceTextField(configMap, prop);
+                    	
+                    	addWidgetToEntitiesTripleHandler(panel, widget);
                     }  else if (component_type.equals(FormConstants.INSTANCEREFERENCE)) {
                     	widget = createInstanceReferenceField(configMap, prop);
                     } else if (component_type.equals(FormConstants.INTERNALREFERENCE)) {
                     	widget = createInternalReferenceField(configMap, prop);
                     }else if (component_type.equals(FormConstants.GRID)) {
                         widget = createGrid(configMap, prop);
+                        
+                        addWidgetToEntityPropertyValuesHandler(panel, widget);
                     } else if (component_type.equals(FormConstants.EXTERNALREFERENCE)) {
                         widget = createExternalReference(configMap, prop);
                     } else if (component_type.equals(FormConstants.CLASS_SELECTION_FIELD)) {
@@ -244,12 +263,20 @@ public class FormGenerator {
                         widget = createHtmlMessage((Map<String, Object>) configMap, prop);
                     } else if (component_type.equals(FormConstants.INSTANCE_CHECKBOX)) {
                         widget = createInstanceCheckBox(configMap, prop);
+                        
+                        addWidgetToEntitiesTripleHandler(panel, widget);
                     } else if (component_type.equals(FormConstants.INSTANCE_RADIOBUTTON)) {
                         widget = createInstanceRadioButton(configMap, prop);
+                        
+                        addWidgetToEntitiesTripleHandler(panel, widget);
                     } else if (component_type.equals(FormConstants.INSTANCE_COMBOBOX)) {
                         widget = createInstanceComboBox(configMap, prop);
+                        
+                        addWidgetToEntitiesTripleHandler(panel, widget);
                     } else if (component_type.equals(FormConstants.ICDTITLE_TEXTFIELD)) { //ICD specific
                         widget = createICDTitleTextField(configMap, prop);
+                        
+                        addWidgetToEntitiesTripleHandler(panel, widget);
                     } else if (component_type.equals(FormConstants.ICDLINEARIZATION_GRID)) { //ICD specific
                         widget = createICDLinearizationGrid(configMap, prop);
                     } else if (component_type.equals(FormConstants.ICDINHERITEDTAG_GRID)) { //ICD specific
@@ -287,6 +314,7 @@ public class FormGenerator {
                     if (widget != null && widget.getComponent() != null && showWidgetForUser) {
                         widgets.add(widget);
                         panel.add(widget.getComponent());
+                        panel.setAutoScroll(true);
                         addToMap(panel, widget);
                     }
                 }
@@ -295,7 +323,17 @@ public class FormGenerator {
     }
 
 
-    protected void addToMap(Panel tabPanel, PropertyWidget propWidget) {
+    private void addWidgetToEntitiesTripleHandler(Panel panel, PropertyWidget widget) {
+    	GetEntityTripleHandler handler = getOrCreateEntitiesTripleHandler(panel);
+        handler.addWidget(widget);
+	}
+    
+    private void addWidgetToEntityPropertyValuesHandler(Panel panel, PropertyWidget widget) {
+    	GetEntityPropertyValuesHandler handler = getOrCreateEntityPropertyValuesHandler(panel);
+        handler.addWidget(widget);
+	}
+
+	protected void addToMap(Panel tabPanel, PropertyWidget propWidget) {
         Collection<PropertyWidget> widgets = tab2PropWidgets.get(tabPanel);
         if (widgets == null) {
             widgets = new ArrayList<PropertyWidget>();
@@ -545,11 +583,74 @@ public class FormGenerator {
     	return scaleValueSelectorWidget;
     }
 
-
+    
+    // ***** Entity Triple Handler *****
+    
+    private GetEntityTripleHandler getOrCreateEntitiesTripleHandler(Panel tab) {
+    	GetEntityTripleHandler handler = tab2entitiesTripleHandler.get(tab);
+    	if (handler == null) {
+    		handler = new GetEntityTripleHandler(project.getProjectName());
+    		tab2entitiesTripleHandler.put(tab, handler);
+    	}
+    	return handler;
+    }
+    
+    public GetEntityTripleHandler getEntityTripleHandler(Panel tab) {
+    	return tab2entitiesTripleHandler.get(tab);
+    }
+    
+    public boolean hasEntityTripleHandler(Panel tab, PropertyWidget widget) {
+    	GetEntityTripleHandler handler = getEntityTripleHandler(tab);
+    	if (handler == null) {
+    		return false;
+    	}
+    	return handler.isHandledWidget(widget);
+    }
+    
+    // ***** Entity Property Values Handler *****
+    
+    private GetEntityPropertyValuesHandler getOrCreateEntityPropertyValuesHandler(Panel tab) {
+    	GetEntityPropertyValuesHandler handler = tab2entitiespropValuesHandler.get(tab);
+    	if (handler == null) {
+    		handler = new GetEntityPropertyValuesHandler(project.getProjectName());
+    		tab2entitiespropValuesHandler.put(tab, handler);
+    	}
+    	return handler;
+    }
+    
+    public GetEntityPropertyValuesHandler getEntityPropertyValuesHandler(Panel tab) {
+    	return tab2entitiespropValuesHandler.get(tab);
+    }
+    
+    public boolean hasEntityPropertyValuesHandler(Panel tab, PropertyWidget widget) {
+    	GetEntityPropertyValuesHandler handler = getEntityPropertyValuesHandler(tab);
+    	if (handler == null) {
+    		return false;
+    	}
+    	return handler.isHandledWidget(widget);
+    }
+    
+    
+    //TODO: call dispose
     public void dispose() {
         //formConf.clear();
         //TODO: dispose all widgets
+    	
+    	for (GetEntityTripleHandler handler: tab2entitiesTripleHandler.values()) {
+    		handler.dispose();
+    	}
+    	
+    	for (GetEntityPropertyValuesHandler handler: tab2entitiespropValuesHandler.values()) {
+    		handler.dispose();
+    	}
+    	
         widgets.clear();
         tab2PropWidgets.clear();
+        tab2entitiesTripleHandler.clear();
+        tab2entitiespropValuesHandler.clear();
+        
+        tab2TypesAll.clear();
+        tab2TypesAny.clear();
+        tab2TypesNot.clear();
     }
 }

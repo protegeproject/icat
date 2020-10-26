@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -28,6 +29,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.ImportsData;
 import edu.stanford.bmir.protege.web.client.rpc.data.MetricData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PaginationData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.PropertyPairs;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyType;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.Triple;
@@ -678,11 +680,13 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
             triples.addAll(getTriples(inst, owlModel.getRDFSLabelProperty()));
             triples.addAll(getTriples(inst, owlModel.getSystemFrames().getRdfsSeeAlsoProperty()));
             triples.addAll(getTriples(inst, owlModel.getSystemFrames().getRdfsIsDefinedByProperty()));
+            triples.addAll(getTriples(inst, owlModel.getRDFSSubClassOfProperty()));
 
             triples.addAll(getTriples(inst, owlModel.getSystemFrames().getOwlVersionInfoProperty()));
             triples.addAll(getTriples(inst, owlModel.getSystemFrames().getOwlBackwardCompatibleWithProperty()));
             triples.addAll(getTriples(inst, owlModel.getSystemFrames().getOwlIncompatibleWithProperty()));
             triples.addAll(getTriples(inst, owlModel.getSystemFrames().getOwlPriorVersionProperty()));
+            triples.addAll(getTriples(inst, owlModel.getSystemFrames().getOwlEquivalentClassProperty()));
 
             // domain and range should not be necessarily retrieved
             triples.addAll(getTriples(inst, owlModel.getRDFSDomainProperty()));
@@ -759,6 +763,23 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         }
         return triples.size() == 0 ? null : triples;
     }
+    
+    public Map<String, List<Triple>> getEntityTriples(String projectName, List<String> entities, Map<String, List<String>> id2simpleTriples, Map<String, PropertyPairs> id2reifiedPropPairs) {
+    	Map<String, List<Triple>> result = new HashMap<String, List<Triple>>();
+    	
+    	for (String id : id2simpleTriples.keySet()) {
+    		List<Triple> simpleTriples = getEntityTriples(projectName, entities, id2simpleTriples.get(id));
+			result.put(id, simpleTriples);
+		}
+    	
+    	for (String id : id2reifiedPropPairs.keySet()) {
+    		List<Triple> reifiedTriples = getEntityTriples(projectName, entities, id2reifiedPropPairs.get(id).getProperties(), id2reifiedPropPairs.get(id).getReifiedProperties());
+    		result.put(id, reifiedTriples);
+    	}
+    	
+    	return result;
+    }
+
 
 
     public List<EntityPropertyValues> getEntityPropertyValues(String projectName, List<String> entities, List<String> properties, List<String> reifiedProperties) {
@@ -798,6 +819,18 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         }
         return entityPropValues.size() == 0 ? null : entityPropValues;
     }
+    
+    public Map<String, List<EntityPropertyValues>> getEntityPropertyValues(String prjName, List<String> subjects, Map<String, PropertyPairs> reifiedPropMap) {
+    	Map<String, List<EntityPropertyValues>> result = new HashMap<String, List<EntityPropertyValues>>();
+    
+    	for (String id : reifiedPropMap.keySet()) {
+    		PropertyPairs propPairs = reifiedPropMap.get(id);
+			result.put(id, getEntityPropertyValues(prjName, subjects, propPairs.getProperties(), propPairs.getReifiedProperties()));
+		}
+    	
+    	return result;
+    }
+    
 
     /**
      * This method returns a list of {@link EntityPropertyValuesList}s,
@@ -1171,15 +1204,23 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
     }
 
     public static List<EntityData> createEntityList(Collection list) {
+    	return createEntityList(list, false);
+    }
+    
+    public static List<EntityData> createEntityList(Collection list, boolean computeTypes) {
         ArrayList<EntityData> edList = new ArrayList<EntityData>();
         for (Object element : list) {
             Object obj = element;
-            edList.add(createEntityData(obj));
+            edList.add(createEntityData(obj, true, computeTypes));
         }
         return edList;
     }
-
+    
     public static EntityData createEntityData(Object object, boolean computeAnnotations) {
+    	return createEntityData(object, computeAnnotations, false);
+    }
+
+    public static EntityData createEntityData(Object object, boolean computeAnnotations, boolean computeTypes) {
         if (object == null) {
             return null;
         }
@@ -1187,6 +1228,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         if (object instanceof Frame) {
             Frame objFrame = (Frame) object;
             EntityData entityData;
+            
             if (objFrame instanceof Slot) {
                 entityData = new PropertyEntityData(objFrame.getName(), getBrowserText(objFrame), null);
                 if (computeAnnotations) {
@@ -1196,7 +1238,15 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
                 ((PropertyEntityData) entityData).setPropertyType(OntologyServiceImpl.getPropertyType((Slot) objFrame));
                 entityData.setValueType(edu.stanford.bmir.protege.web.client.rpc.data.ValueType.Property);
             } else {
-                entityData = new EntityData(objFrame.getName(), getBrowserText(objFrame), null);
+            	
+            	Collection<EntityData> dirTypes = null;
+            	
+            	if (computeTypes == true) {
+            		dirTypes = createEntityList(((Instance) objFrame).getDirectTypes());
+            	}
+            	
+                entityData = new EntityData(objFrame.getName(), getBrowserText(objFrame), dirTypes);
+                
                 if (computeAnnotations) {
                     entityData.setChildrenAnnotationsCount(HasAnnotationCache.getChildrenAnnotationCount(objFrame));
                     entityData.setLocalAnnotationsCount(HasAnnotationCache.getAnnotationCount(objFrame));
@@ -2625,7 +2675,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
 		// Collections.sort(sortedFrames, new FrameComparator());
 
-		return createEntityList(sortedFrames);
+		return createEntityList(sortedFrames, true);
 	}
 	
     private List<EntityData> searchWithLucene(KnowledgeBase kb, QueryConfiguration qConf, String searchString) {
@@ -2654,7 +2704,18 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 
 		// search in the browser text first
 		for (String browserText : browerTextToFrameNameMap.keySet()) {
-			searchResults.add(new EntityData(browerTextToFrameNameMap.get(browserText), browserText));
+			EntityData entityData = null;
+			
+			String frameName = browerTextToFrameNameMap.get(browserText);
+			Frame frame = kb.getFrame(frameName);
+			
+			if (frame instanceof Cls || frame instanceof SimpleInstance) {
+				entityData = new EntityData(frameName, browserText, createEntityList(((Instance)frame).getDirectTypes()));
+			} else {
+				entityData = new EntityData(frameName, browserText);
+			}
+			
+			searchResults.add(entityData);
 		}
 
 		return searchResults;
@@ -2681,7 +2742,7 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
 		try {
 			
 			Collection<Frame> resultFrames = IndexUtilities.searchLuceneOwnSlots(kb, searchableSlots, searchString);
-			searchResults.addAll(createEntityList(resultFrames));
+			searchResults.addAll(createEntityList(resultFrames, true));
 		} catch (Exception e) {
 			//if (Log.getLogger().getLevel() == Level.FINE) {
 				Log.getLogger().log(Level.WARNING, "Could not execute Lucene query " + searchString, e);
