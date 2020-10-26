@@ -1,0 +1,15 @@
+@url loading loadingImage;
+@url notloading notLoadingImage;
+
+.loading {
+    background-image: loading;
+    height: 12px;
+    width: 12px;
+}
+
+.notloading {
+	background-image: notLoading;
+	height: 12px;
+    width: 12px;
+}
+

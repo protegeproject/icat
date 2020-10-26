@@ -78,12 +78,13 @@ import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 import edu.stanford.bmir.protege.web.client.ui.ontology.search.DefaultSearchStringTypeEnum;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidgetWithNotes;
+import edu.stanford.bmir.protege.web.client.ui.resources.iCatResource;
 import edu.stanford.bmir.protege.web.client.ui.util.SelectionUtil;
 import edu.stanford.bmir.protege.web.client.ui.util.SelectionUtil.SelectionCallback;
 import edu.stanford.bmir.protege.web.client.ui.util.UIConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
-public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
+public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implements HasReifiedProperties, HasGetEntityPropertyValueHandler {
 
     protected static String FIELD_NAME_INDEX_SEPARATOR = "@";
     protected static String INSTANCE_FIELD_NAME = "@instance@";
@@ -155,6 +156,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     public InstanceGridWidget(Project project) {
         super(project);
         propertyValueUtil = new PropertyValueUtil();
+        
+        //todo: find a better place
+        iCatResource.INSTANCE.css().ensureInjected();
     }
 
     @Override
@@ -201,8 +205,12 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         Label label = new Label();
         label.setHtml(getLabelHtml(labelText, getHelpURL(), getTooltipText()) + AbstractFieldWidget.LABEL_SEPARATOR);
         horizLabelPanel.add(label);
-        loadingIcon = new HTML("<img src=\"images/invisible12.png\"/>");
-        loadingIcon.setStyleName("loading-img");
+        //loadingIcon = new HTML("<img src=\"images/invisible12.png\"/>");
+        //loadingIcon.setStyleName("loading-img");
+        
+        loadingIcon = new HTML("");
+        loadingIcon.setStyleName("loading");
+        
         horizLabelPanel.add(loadingIcon);
         horizLabelPanel.setStyleName("form_label");
 
@@ -1640,14 +1648,46 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
         //the widget values and makes an optimized call.
     }
 
+    
+    @Override
+    public void beforeFillValues() {
+    	 store.removeAll();
+         shadowStore.removeAll();
+    }
+    
+    //This method is not called anymore. The values of the widget are filled
+    //with a bulk remote call by GetEntityPropertyValueHandler.
     @Override
     protected void fillValues(List<String> subjects, List<String> props) {
-        store.removeAll();
-        shadowStore.removeAll();
-        OntologyServiceManager.getInstance().getEntityPropertyValues(getProject().getProjectName(), subjects, props, properties,
-                new GetTriplesHandler(getSubject()));
+    }
+    
+    @Override
+    public void setPreloadedPropertyValues(EntityData subject, List<EntityPropertyValues> propValues) {
+    	setWidgetPropertyValues(subject, propValues);
     }
 
+	protected void setWidgetPropertyValues(EntityData mySubject, List<EntityPropertyValues> entityPropertyValues) {
+		 if (!UIUtil.equals(mySubject, getSubject())) {  return; }
+        
+        //store.removeAll();
+        //shadowStore.removeAll();
+        removeAllValuesFromStores();
+
+        if (entityPropertyValues != null) {
+            fillStores(entityPropertyValues);
+            
+            if (fieldNameSorted != null) {
+            	//WARNING! This seems to be slow
+                store.sort(fieldNameSorted, SortDir.ASC);
+            }
+        }
+
+        setOldDisplayedSubject(getSubject());
+
+        updateActionLinks(isReplace());
+        setLoadingStatus(false);
+	}
+    
     /**
      * Fills the extra column values for a data row, based on an EntityPropertyValues.
      * <B>Important note:</B> Please make sure that both this method and all the
@@ -1741,7 +1781,9 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     @Override
     public void setLoadingStatus(boolean loading) {
         super.setLoadingStatus(loading);
-        loadingIcon.setHTML(loading ? "<img src=\"images/loading.gif\"/>" : "<img src=\"images/invisible12.png\"/>");
+        //loadingIcon.setText(loading ? "l" : "nl");
+        loadingIcon.setStyleName(loading ? iCatResource.INSTANCE.css().loading() : iCatResource.INSTANCE.css().notloading());
+        //loadingIcon.setHTML(loading ? "<img src=\"images/loading.gif\"/>" : "<img src=\"images/invisible12.png\"/>");
     }
 
 
@@ -1812,6 +1854,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
      * Remote calls
      */
 
+	//called only by subclasses
     protected class GetTriplesHandler extends AbstractAsyncHandler<List<EntityPropertyValues>> {
 
         private EntityData mySubject = null;
@@ -1828,25 +1871,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 
         @Override
         public void handleSuccess(List<EntityPropertyValues> entityPropertyValues) {
-            if (!UIUtil.equals(mySubject, getSubject())) {  return; }
-           
-            //store.removeAll();
-            //shadowStore.removeAll();
-            removeAllValuesFromStores();
-
-            if (entityPropertyValues != null) {
-                fillStores(entityPropertyValues);
-                
-                if (fieldNameSorted != null) {
-                	//WARNING! This seems to be slow
-                    store.sort(fieldNameSorted, SortDir.ASC);
-                }
-            }
-
-            setOldDisplayedSubject(getSubject());
-
-            updateActionLinks(isReplace());
-            setLoadingStatus(false);
+           setWidgetPropertyValues(mySubject, entityPropertyValues);
         }
     }
 
@@ -1865,8 +1890,8 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
 			addRecord(realRec);
 		}
 	}
-	
-	
+
+
 	protected void removeAllValuesFromStores() {
 		store.removeAll();
 		shadowStore.removeAll();
@@ -1906,6 +1931,14 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
     protected String getCellText(EntityPropertyValues epv, PropertyEntityData ped) {
         return UIUtil.prettyPrintList(epv.getPropertyValues(ped));
     }
+    
+    
+    @Override
+    public List<String> getReifiedProperties() {
+    	return new ArrayList<String>(properties);
+    }
+    
+    // ****************** Listeners *******************
 
     protected class InstanceGridCellMouseListener extends GridCellListenerAdapter {
         double timeOfLastClick = 0;
@@ -1969,7 +2002,10 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes {
             }
         }
     }
+    
 
+    // *********** Remote calls ***************
+    
     
     protected class RemovePropertyValueHandler extends AbstractAsyncHandler<Void> {
         private int removeInd;

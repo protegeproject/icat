@@ -13,7 +13,6 @@ import com.gwtext.client.widgets.event.PanelListenerAdapter;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
-import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 
 /**
@@ -56,10 +55,10 @@ public class PropertyFieldPortlet extends AbstractEntityPortlet {
         setTitle("Details");
         wrappingPanel = new TabPanel();
         wrappingPanel.setBorder(false);
-        wrappingPanel.setHeight(700);
-        wrappingPanel.setStyleName("tabpanel-multirow");
-       // wrappingPanel.setEnableTabScroll(true);
-       // wrappingPanel.setDeferredRender(false); //not clear this is needed
+       
+        //wrappingPanel.setStyleName("tabpanel-multirow");
+        wrappingPanel.setEnableTabScroll(true);
+        wrappingPanel.setAutoScroll(true);
         add(wrappingPanel);
     }
 
@@ -114,10 +113,28 @@ public class PropertyFieldPortlet extends AbstractEntityPortlet {
         if (activeTab != null) {
             Collection<PropertyWidget> widgets = formGenerator.getWidgetsInTab(activeTab);
             if (widgets == null) { return; }
+            
+            fillWidgetValuesWithBulkCall(activeTab);
+            
             for (PropertyWidget widget : widgets) {
-                widget.fillValues();
+            	if (formGenerator.hasEntityTripleHandler(activeTab, widget) == false &&
+            			formGenerator.hasEntityPropertyValuesHandler(activeTab, widget) == false) {
+            		widget.fillValues();
+            	}
             }
         }
+    }
+    
+    protected void fillWidgetValuesWithBulkCall(Panel activeTab) {
+    	 GetEntityTripleHandler entityTripleHandler = formGenerator.getEntityTripleHandler(activeTab);
+         if (entityTripleHandler != null) {
+         	entityTripleHandler.fillValues(_currentEntity); //bulk getEntityTriples call
+         }
+         
+         GetEntityPropertyValuesHandler entityPropertyValuesHandler = formGenerator.getEntityPropertyValuesHandler(activeTab);
+         if (entityPropertyValuesHandler != null) {
+        	 entityPropertyValuesHandler.fillValues(_currentEntity);
+         }
     }
 
     protected void setSubject(EntityData subject) {
@@ -249,6 +266,11 @@ public class PropertyFieldPortlet extends AbstractEntityPortlet {
         formGenerator = new FormGenerator(project, properties);
         formGenerator.addFormToTabPanel(wrappingPanel);
         attachPanelListenerToTabs();
+        
+        //this is a hack to display all the widgets and the scrollbar..
+        //the heights in the configuration.xml should be fixed
+        wrappingPanel.setHeight(wrappingPanel.getHeight() - 70);
+        
         wrappingPanel.activate(0);
         wrappingPanel.doLayout();
         return formGenerator;

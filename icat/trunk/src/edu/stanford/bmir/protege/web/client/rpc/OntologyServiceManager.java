@@ -1,6 +1,7 @@
 package edu.stanford.bmir.protege.web.client.rpc;
 
 import java.util.List;
+import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -16,6 +17,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.ImportsData;
 import edu.stanford.bmir.protege.web.client.rpc.data.MetricData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PaginationData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.PropertyPairs;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.Triple;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
@@ -86,10 +88,21 @@ public class OntologyServiceManager {
         proxy.getEntityTriples(projectName, entities, properties, reifiedProperties, cb);
     }
 
+    public void getEntityTriples(String projectName, List<String> entities, Map<String, List<String>> id2simpleTriples, Map<String, PropertyPairs> id2reifiedPropPairs,
+    		AsyncCallback<Map<String, List<Triple>>> cb) {
+    	proxy.getEntityTriples(projectName, entities, id2simpleTriples, id2reifiedPropPairs, cb);
+    }
+    
+    
     public void getEntityPropertyValues(String projectName, List<String> entities, List<String> properties, List<String> reifiedProps,
             AsyncCallback<List<EntityPropertyValues>> cb) {
         proxy.getEntityPropertyValues(projectName, entities, properties, reifiedProps, cb);
     }
+    
+    public void getEntityPropertyValues(String prjName, List<String> subjects, Map<String, PropertyPairs> reifiedPropMap,
+			AsyncCallback<Map<String, List<EntityPropertyValues>>> cb) {
+		proxy.getEntityPropertyValues(prjName, subjects, reifiedPropMap, cb);
+	}
 
 	public void getMultilevelEntityPropertyValues(String projectName,
 			List<String> entities, String property, List<String> reifiedProperties,
@@ -308,5 +321,6 @@ public class OntologyServiceManager {
     public void getDirectTypes(String projectName, String instanceName, AsyncCallback<List<EntityData>> cb){
         proxy.getDirectTypes(projectName, instanceName, cb);
     }
+
 
 }

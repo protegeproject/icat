@@ -1,6 +1,7 @@
 package edu.stanford.bmir.protege.web.client.rpc;
 
 import java.util.List;
+import java.util.Map;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
@@ -16,6 +17,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.ImportsData;
 import edu.stanford.bmir.protege.web.client.rpc.data.MetricData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PaginationData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.PropertyPairs;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.Triple;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
@@ -63,9 +65,21 @@ public interface OntologyService extends RemoteService {
 
     public List<Triple> getEntityTriples(String projectName, List<String> entities, List<String> properties, List<String> reifiedProps);
 
+    /**
+     * This is a bulk method call that can get the triples for multiple widgets at the same time.
+     */
+    public Map<String, List<Triple>> getEntityTriples(String projectName, List<String> entities,Map<String, List<String>> id2simpleTriples, Map<String, PropertyPairs> id2reifiedPropPairs);
+
+    
     public List<EntityPropertyValues> getEntityPropertyValues(String projectName, List<String> entities, List<String> properties, List<String> reifiedProps);
 
-	public List<EntityPropertyValuesList> getMultilevelEntityPropertyValues(
+    /**
+     * This is a bulk method call that can get the triples for multiple widgets at the same time.
+     */
+    public Map<String, List<EntityPropertyValues>> getEntityPropertyValues(String prjName, List<String> subjects, Map<String, PropertyPairs> reifiedPropMap);
+    
+    
+    public List<EntityPropertyValuesList> getMultilevelEntityPropertyValues(
 			String projectName, List<String> entities, String property,
 			List<String> reifiedProperties, int[] subjectEntityIndexes);
 
