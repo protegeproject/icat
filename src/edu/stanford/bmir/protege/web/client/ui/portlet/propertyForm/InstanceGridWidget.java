@@ -201,17 +201,15 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
 
     protected com.google.gwt.user.client.ui.Panel createLabelPanel() {
         HorizontalPanel horizLabelPanel = new HorizontalPanel();
+      
         labelText = UIUtil.getStringConfigurationProperty(getWidgetConfiguration(), FormConstants.LABEL, getProperty().getBrowserText());
         Label label = new Label();
         label.setHtml(getLabelHtml(labelText, getHelpURL(), getTooltipText()) + AbstractFieldWidget.LABEL_SEPARATOR);
         horizLabelPanel.add(label);
-        //loadingIcon = new HTML("<img src=\"images/invisible12.png\"/>");
-        //loadingIcon.setStyleName("loading-img");
         
         loadingIcon = new HTML("");
-        loadingIcon.setStyleName("loading");
-        
         horizLabelPanel.add(loadingIcon);
+       
         horizLabelPanel.setStyleName("form_label");
 
         labelPanel = new VerticalPanel();
