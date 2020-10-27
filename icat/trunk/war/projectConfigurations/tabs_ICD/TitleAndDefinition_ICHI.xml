@@ -195,7 +195,7 @@
 												</entry>
 												<entry>
 													<string>height</string>
-													<string>155</string>
+													<string>100</string>
 												</entry>
 												<entry>
 													<string>Column1</string>
@@ -338,7 +338,7 @@
 												</entry>
 												<entry>
 													<string>height</string>
-													<string>150</string>
+													<string>100</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -663,3 +663,4 @@
 											</map>
 										</entry>
 									</map>
+
