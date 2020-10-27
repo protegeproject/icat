@@ -344,9 +344,14 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
         super.setLoadingStatus(loading);
         updateLoadingIcon();
         
-        field.setReadOnly(loading);
-        field.setDisabled(loading);
- 
+        if (loading == true) { //disable everything while loading
+        	field.setReadOnly(true);
+        	field.setDisabled(true);
+        } else { //if not loading, revert to prior state
+        	field.setReadOnly(isReadOnly());
+        	field.setDisabled(isDisabled());
+        }
+        
         //GWT.log("Set " + getProperty() + " isLoading: " + loading);
     }
     
