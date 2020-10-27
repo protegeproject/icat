@@ -21,6 +21,9 @@ public class FormConstants {
 	public static final String TITLE = "title";
 	public static final String HEADER_CSS_CLASS = "headerCssClass";	//we should not use camel case in property names
 
+	//this applies to the PropertyFieldPortlet and controls if the tabs are shown in a row, or in multiple rows 
+	public static final String MULTIROW_TABS = "multiRowTabs";  
+	
 	//portlet configuration constants
     public static final String ALLOWED_NEW_PROPERTIES = "allowed_new_properties";
     public static final String VISIBLE_PROPERTIES = "visible_properties";

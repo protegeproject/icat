@@ -12,6 +12,7 @@ import com.gwtext.client.widgets.event.PanelListenerAdapter;
 
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractEntityPortlet;
 import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 
@@ -55,13 +56,10 @@ public class PropertyFieldPortlet extends AbstractEntityPortlet {
         setTitle("Details");
         wrappingPanel = new TabPanel();
         wrappingPanel.setBorder(false);
-       
-        //wrappingPanel.setStyleName("tabpanel-multirow");
-        wrappingPanel.setEnableTabScroll(true);
         wrappingPanel.setAutoScroll(true);
         add(wrappingPanel);
     }
-
+    
     protected PanelListener getPanelListener() {
         if (panelListener == null) {
             panelListener = new PanelListenerAdapter() {
@@ -275,5 +273,23 @@ public class PropertyFieldPortlet extends AbstractEntityPortlet {
         wrappingPanel.doLayout();
         return formGenerator;
     }
+    
+    @Override
+    public void setPortletConfiguration(PortletConfiguration portletConfiguration) {
+    	super.setPortletConfiguration(portletConfiguration);
+    	
+    	//this code is here because of initialization problems
+    	//this code can be called only after the portletConfiguration has been set
+    	if(hasMultiRowTabs() == true) {
+        	wrappingPanel.setStyleName("tabpanel-multirow");
+        } else {
+        	wrappingPanel.setEnableTabScroll(true);
+        }
+    }
 
+    private boolean hasMultiRowTabs() {
+    	return getPortletConfiguration().getBooleanProperty(FormConstants.MULTIROW_TABS, false);
+    }
+
+    
 }
