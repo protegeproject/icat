@@ -606,7 +606,7 @@
 											</map>
 										</entry>
 										
-										<entry>
+										<!--entry>
 											<string>http://who.int/icd#editorialStatusDefinition</string>
 											<map>
 												<entry>
@@ -663,7 +663,7 @@
 													<string>8</string>
 												</entry>
 											</map>
-										</entry>
+										</entry-->
 									</map>
 
 <!-- ICD International -> Definition (Post-Coordination Value Set - minus ICECI, ICF and ICHI) -->
