@@ -374,5 +374,84 @@
 											</map>
 										</entry>
 
+										<entry>
+											<string>http://who.int/icd#icfReference</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>IcfReference</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#ICFReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>ICF Reference</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>Reference term to create mapping to the corresponding ICF entiry.</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#icfReference</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>grid</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>@entity@</string>
+												</entry>
+												<entry>
+													<string>show_add_new</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>show_add_existing</string>
+													<boolean>false</boolean>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>3</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>100</string>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Reference</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedCategory</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>class_selector</string>
+														</entry>
+														<entry>
+															<string>top_class</string>
+															<string>@root_class_icf@</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+
 									</map>
 
