@@ -370,7 +370,7 @@
 												</entry>
 												<entry>
 													<string>height</string>
-													<string>155</string>
+													<string>100</string>
 												</entry>
 												<entry>
 													<string>Column1</string>
@@ -513,7 +513,7 @@
 												</entry>
 												<entry>
 													<string>height</string>
-													<string>150</string>
+													<string>100</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -606,7 +606,7 @@
 											</map>
 										</entry>
 										
-										<entry>
+										<!--entry>
 											<string>http://who.int/icd#editorialStatusDefinition</string>
 											<map>
 												<entry>
@@ -663,7 +663,7 @@
 													<string>8</string>
 												</entry>
 											</map>
-										</entry>
+										</entry-->
 									</map>
 
 <!-- ICD International -> Definition (Post-Coordination Value Set - minus ICECI, ICF and ICHI) -->
@@ -867,7 +867,7 @@
 												</entry>
 												<entry>
 													<string>height</string>
-													<string>155</string>
+													<string>100</string>
 												</entry>
 												<entry>
 													<string>Column1</string>
@@ -1010,7 +1010,7 @@
 												</entry>
 												<entry>
 													<string>height</string>
-													<string>150</string>
+													<string>100</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -1284,7 +1284,7 @@
 												</entry>
 												<entry>
 													<string>height</string>
-													<string>150</string>
+													<string>100</string>
 												</entry>
 												<entry>
 													<string>Column2</string>
@@ -1525,7 +1525,7 @@
 												</entry>
 												<entry>
 													<string>height</string>
-													<string>155</string>
+													<string>100</string>
 												</entry>
 												<entry>
 													<string>Column1</string>
@@ -1668,7 +1668,7 @@
 												</entry>
 												<entry>
 													<string>height</string>
-													<string>150</string>
+													<string>100</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -1942,7 +1942,7 @@
 												</entry>
 												<entry>
 													<string>height</string>
-													<string>150</string>
+													<string>100</string>
 												</entry>
 												<entry>
 													<string>Column2</string>
@@ -4199,9 +4199,16 @@
 										<entry>
 											<string>types_any</string>
 											<list>
-												<string>http://who.int/icd#ClinicalDescriptionSection</string>
+												<!--string>http://who.int/icd#ClinicalDescriptionSection</string-->
 												<!--string>http://who.int/icd#LinearizationSection</string-->
-												<!--string>http://who.int/icd#PostcoordinationSection</string-->
+												<string>http://who.int/icd#PostcoordinationSection</string>
+											</list>
+										</entry>
+										
+										<entry>
+											<string>types_not</string>
+											<list>
+												<string>http://who.int/icd#ExternalCauseSection</string>
 											</list>
 										</entry>
 										
@@ -9768,11 +9775,11 @@
 										</entry>
 										
 										<entry>
-											<string>types_any</string>
+											<string>types_all</string>
 											<list>
 												<string>http://who.int/icd#ExternalCauseSection</string>
 												<!--string>http://who.int/icd#LinearizationSection</string-->
-												<!--string>http://who.int/icd#PostcoordinationSection</string-->
+												<string>http://who.int/icd#PostcoordinationSection</string>
 											</list>
 										</entry>
 										
@@ -10167,11 +10174,11 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Object or Substance&lt;BR&gt;prod. Injury</string>
+															<string>Object or Substance &lt;BR&gt;Producing Injury</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
-															<string>Object or Substance Producing Injury</string>
+															<string>Object, Living Thing or Substance Producing Injury</string>
 														</entry>
 														<entry>
 															<string>headerCssClass</string>
@@ -12131,11 +12138,11 @@
 												</entry>
 												<entry>
 													<string>label</string>
-													<string>Object or Substance Producing Injury</string>
+													<string>Object, Living Thing or Substance Producing Injury</string>
 												</entry>
 												<entry>
 													<string>tooltip</string>
-													<string>Choose a value for the 'object or substance producing injury' property</string>
+													<string>Choose a value for the 'object, living thing or substance producing injury' property</string>
 												</entry>
 												<entry>
 													<string>help</string>
@@ -17523,11 +17530,11 @@
 																</entry>
 																<entry>
 																	<string>label</string>
-																	<string>Object or Substance Producing Injury</string>
+																	<string>Object, Living Thing or Substance Producing Injury</string>
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for the 'object or substance producing injury' property</string>
+																	<string>Choose a value for the 'object, living thing or substance producing injury' property</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -27654,7 +27661,7 @@
 											</list>
 										</entry>
 										
-										<entry>
+										<!-- entry>
 											<string>EDTAGResponsabilityRuler</string>
 											<map>
 												<entry>
@@ -27840,7 +27847,7 @@
 													</map>
 												</entry>
 											</map>
-										</entry>
+										</entry -->
 										
 										<!-- Here comes the inherited one -->
 										
@@ -28387,9 +28394,7 @@
 			</column>
 		</columns>
 		<controllingPortlet reference="../columns/column/portlets/portlet[2]" ></controllingPortlet>
-	</tab>	
-
-
+	</tab>
 
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
@@ -28446,6 +28451,7 @@
     </columns>
     <controllingPortlet reference="../columns/column/portlets/portlet[2]"/>
   </tab>
+  
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.individuals.IndividualsTab</name>
     <label>Individuals</label>
@@ -28499,6 +28505,7 @@
       </column>
     </columns>
   </tab>
+  
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.individuals.IndividualsTab</name>
     <label>Scales</label>
@@ -28593,8 +28600,36 @@
     </columns>
   </tab>
   
-  
   <tab>
+    <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
+    <label>Python Scripting</label>
+    <properties>
+      <entry>
+        <string>headerCssClass</string>
+        <string>spec-tab-header5</string>
+      </entry>
+      <entry>
+        <string>showOnlyForGroups</string>
+        <list>
+          <string>AdminGroup</string>
+        </list>
+      </entry>
+	</properties>
+    <columns>
+      <column>
+        <width>1</width>
+        <portlets>
+          <portlet>
+            <name>edu.stanford.bmir.protege.web.client.ui.ontology.scripting.PythonScriptingPortlet</name>
+            <height>600</height>
+            <width>0</width>
+          </portlet>
+        </portlets>
+      </column>
+    </columns>
+  </tab>
+  
+	<tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.ontology.home.MyICDTab</name>
 		<label>Help</label>
 		<properties>
