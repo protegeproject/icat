@@ -22,8 +22,8 @@ public class EntityData implements Serializable {
     
     private Map<String, String> properties;
     
-    private Boolean isSystem;
-    private Boolean isReleased;
+    private boolean isSystem = false;
+    private boolean isReleased = false;
 
     public EntityData() {
         this(null, null);
