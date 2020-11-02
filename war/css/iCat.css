@@ -99,6 +99,11 @@
 	background-color:#FFFFFF !important;
 }
 
+.pec-tab-header-white span.x-tab-strip-text {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
 
 .spec-tab-headerCPT {    /*CPT*/
 	background-color:#D4A00F !important;
@@ -155,6 +160,10 @@
 
 .red-display-status-icon {
     background-image: url(../images/no.png) !important;   
+}
+
+.released-icon {
+    background-image: url(../images/released.png) !important;   
 }
 
 /*
