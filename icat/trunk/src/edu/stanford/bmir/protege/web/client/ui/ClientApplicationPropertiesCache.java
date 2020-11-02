@@ -64,7 +64,11 @@ public class ClientApplicationPropertiesCache {
         return cache.get(ApplicationPropertyNames.OLD_NOTES_BASE_URL);
     }
     
-
+    public static String getApplicationName() {
+        final String o = cache.get(ApplicationPropertyNames.APPLICATION_NAME_PROP);
+        return o == null ? "WebProtege" : o;
+    }
+    
     public static void initialize(final AsyncCallback<Map<String, String>> callback){
         ApplicationPropertiesServiceManager.getInstance().initialize(new AsyncCallback<Map<String, String>>(){
             public void onFailure(Throwable caught) {
