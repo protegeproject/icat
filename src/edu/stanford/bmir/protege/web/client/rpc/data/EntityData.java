@@ -157,7 +157,7 @@ public class EntityData implements Serializable {
     }
     
     public boolean isReleased() {
-    	return isReleased();
+    	return isReleased;
     }
     
     public void setReleased(boolean released) {
