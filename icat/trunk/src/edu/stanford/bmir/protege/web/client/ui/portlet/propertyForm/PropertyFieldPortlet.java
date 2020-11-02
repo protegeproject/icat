@@ -288,7 +288,7 @@ public class PropertyFieldPortlet extends AbstractEntityPortlet {
     }
 
     private boolean hasMultiRowTabs() {
-    	return getPortletConfiguration().getBooleanProperty(FormConstants.MULTIROW_TABS, false);
+    	return getPortletConfiguration().getBooleanProperty(FormConstants.MULTIROW_TABS, true);
     }
 
     
