@@ -336,6 +336,11 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
 
     @Override
     public void setTreeNodeIcon(TreeNode node, EntityData entityData) {
+    	if (entityData.isReleased() == true) {
+    		node.setIconCls("released-icon");
+    		return;
+    	}
+    	
         String status = entityData.getProperty("status");
         if (status == null) {
             node.setIconCls(null);
@@ -343,7 +348,7 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
             node.setIconCls( "blue-display-status-icon");
         } else if (status.equals(DisplayStatus.Y.toString())) {
             node.setIconCls( "yellow-display-status-icon");
-        }else if (status.equals(DisplayStatus.R.toString())) {
+        } else if (status.equals(DisplayStatus.R.toString())) {
             node.setIconCls( "red-display-status-icon");
         }
     }
@@ -351,6 +356,7 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
     @Override
     protected String createNodeText(EntityData entityData) {
         String browserText = super.createNodeText(entityData);
+        
         if ("true".equals(entityData.getProperty("obsolete"))) {
            browserText = "<span style=\"font-style:italic; text-decoration: line-through;\">" + browserText + "</span>";
         }
@@ -360,9 +366,15 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
     @Override
     public void setTreeNodeTooltip(TreeNode node, EntityData entityData) {
         String tooltip = UIUtil.getDisplayText(entityData);
+        
         if ("true".equals(entityData.getProperty("obsolete"))) {
             tooltip = tooltip + " is obsolete.";
+        } 
+        
+        if (entityData.isReleased() == true) {
+        	tooltip = tooltip + " is released.";
         }
+        
         node.setTooltip(tooltip);
     }
 
