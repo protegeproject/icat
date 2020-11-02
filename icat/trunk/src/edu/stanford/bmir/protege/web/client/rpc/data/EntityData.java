@@ -11,13 +11,19 @@ public class EntityData implements Serializable {
     private static final long serialVersionUID = 8012327979110652428L;
     private String name;
     private String browserText;
+    
     private int localAnnotationsCount;
     private int childrenAnnotationsCount;
+    
     private Collection<EntityData> types;
     private ValueType valueType;
+    
     private Watch watch;
+    
     private Map<String, String> properties;
+    
     private Boolean isSystem;
+    private Boolean isReleased;
 
     public EntityData() {
         this(null, null);
@@ -148,6 +154,14 @@ public class EntityData implements Serializable {
 
     public void setIsSystem(boolean isSystem) {
         this.isSystem = isSystem;
+    }
+    
+    public boolean isReleased() {
+    	return isReleased();
+    }
+    
+    public void setReleased(boolean released) {
+    	this.isReleased = released;
     }
 
     public Map<String, String> getProperties() {
