@@ -32,7 +32,6 @@ import edu.stanford.bmir.whofic.WHOFICContentModel;
 import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
 import edu.stanford.bmir.whofic.icd.ICDContentModel;
 import edu.stanford.bmir.whofic.icd.ICDContentModelConstants;
-import edu.stanford.smi.protege.collab.util.HasAnnotationCache;
 import edu.stanford.smi.protege.exception.ProtegeException;
 import edu.stanford.smi.protege.model.Cls;
 import edu.stanford.smi.protege.model.Instance;
@@ -522,47 +521,56 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		Project project = getProject(projectName);
 		OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
 
-		ArrayList<SubclassEntityData> subclassesData = new ArrayList<SubclassEntityData>();
+		ArrayList<SubclassEntityData> subclsesData = new ArrayList<SubclassEntityData>();
 
 		RDFSNamedClass superCls = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(owlModel, className);
 		if (superCls == null) {
-			return subclassesData;
+			return subclsesData;
 		}
 
 		WHOFICContentModel cm = getContentModel(owlModel);
-		RDFProperty displayStatusProp = cm.getDisplayStatusProperty();
-		RDFProperty isObsoleteProp = cm.getIsObsoleteProperty();
-		RDFProperty publicIdProp = cm.getPublicIdProperty();
-
+		
 		List<RDFSNamedClass> subclasses = cm.getOrderedChildren(superCls);
 
-		for (Cls subcls : subclasses) {
-			if (!subcls.isSystem()) {
-				SubclassEntityData subclassEntityData = new SubclassEntityData(subcls.getName(), getBrowserText(subcls),
-						createEntityList(subcls.getDirectTypes()), subcls.getVisibleDirectSubclassCount());
-				subclassesData.add(subclassEntityData);
-				subclassEntityData.setLocalAnnotationsCount(HasAnnotationCache.getAnnotationCount(subcls));
-				subclassEntityData.setChildrenAnnotationsCount(HasAnnotationCache.getChildrenAnnotationCount(subcls));
-				setDisplayStatus(subcls, displayStatusProp, subclassEntityData, cm);
-				setObsoleteStatus(subcls, isObsoleteProp, subclassEntityData);
-				subclassEntityData.setProperty(ICDClassTreePortlet.PUBLIC_ID_PROP,
-						(String) subcls.getOwnSlotValue(publicIdProp));
-
-				String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
-				if (user != null) {
-					subclassEntityData
-							.setWatch(WatchedEntitiesCache.getCache(project).getWatchType(user, subcls.getName()));
-				}
+		for (RDFSNamedClass subcls : subclasses) {
+			if (subcls.isSystem() == true) {
+				continue;
 			}
+			
+			SubclassEntityData entity = new SubclassEntityData(subcls.getName(), getBrowserText(subcls),
+					createEntityList(subcls.getDirectTypes()), subcls.getVisibleDirectSubclassCount());
+			
+			//subclassEntityData.setLocalAnnotationsCount(HasAnnotationCache.getAnnotationCount(subcls));
+			//subclassEntityData.setChildrenAnnotationsCount(HasAnnotationCache.getChildrenAnnotationCount(subcls));
+			
+			setObsoleteStatus(subcls, entity, cm);
+			boolean isReleased = setReleasedStatus(subcls, entity, cm);
+			
+			if (isReleased == false) { //optimization
+				setDisplayStatus(subcls, entity, cm);
+			}
+			
+			entity.setProperty(ICDClassTreePortlet.PUBLIC_ID_PROP, cm.getPublicId(subcls));
+
+			String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
+			if (user != null) {
+				entity.setWatch(WatchedEntitiesCache.getCache(project).getWatchType(user, subcls.getName()));
+			}
+			
+			subclsesData.add(entity);
+		
 		}
-		return subclassesData;
+		return subclsesData;
 	}
 
-	private void setDisplayStatus(Cls cls, Slot displayStatusSlot, EntityData entity, WHOFICContentModel cm) {
-		RDFResource status = (RDFResource) cls.getOwnSlotValue(displayStatusSlot);
+
+	private void setDisplayStatus(RDFSNamedClass cls, EntityData entity, WHOFICContentModel cm) {
+		RDFResource status = cm.getDisplayStatus(cls);
+		
 		if (status == null) {
 			return;
 		}
+		
 		String prop = "status";
 		if (status.equals(cm.getDisplayStatusBlueInst())) {
 			entity.setProperty(prop, DisplayStatus.B.toString());
@@ -573,11 +581,19 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		}
 	}
 
-	private void setObsoleteStatus(Cls cls, Slot obsoleteSlot, EntityData entity) {
-		Boolean isObsolete = (Boolean) cls.getOwnSlotValue(obsoleteSlot);
-		if (isObsolete != null && isObsolete == true) {
+	private void setObsoleteStatus(RDFSNamedClass cls, EntityData entity, WHOFICContentModel cm) {
+		boolean isObsolete = cm.isObsoleteCls(cls);
+		if (isObsolete == true) {
 			entity.setProperty("obsolete", "true");
 		}
+	}
+	
+	private boolean setReleasedStatus(RDFSNamedClass cls, EntityData entity, WHOFICContentModel cm) {
+		boolean isReleased = cm.isReleased(cls);
+		if (isReleased == true) {
+			entity.setReleased(true);
+		}
+		return isReleased;
 	}
 
 	class InheritedTagEpvComparator implements Comparator<EntityPropertyValues> {
