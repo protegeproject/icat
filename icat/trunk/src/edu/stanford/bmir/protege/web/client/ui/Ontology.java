@@ -9,6 +9,7 @@ import java.util.Map;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.Window.Location;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.gwtext.client.core.EventObject;
 import com.gwtext.client.widgets.Button;
@@ -23,6 +24,7 @@ import com.gwtext.client.widgets.ToolbarButton;
 import com.gwtext.client.widgets.ToolbarMenuButton;
 import com.gwtext.client.widgets.Window;
 import com.gwtext.client.widgets.event.ButtonListenerAdapter;
+import com.gwtext.client.widgets.event.PanelListenerAdapter;
 import com.gwtext.client.widgets.event.TabPanelListenerAdapter;
 import com.gwtext.client.widgets.form.Field;
 import com.gwtext.client.widgets.form.FormPanel;
@@ -223,10 +225,32 @@ public class Ontology extends TabPanel {
 		activate(0);
 		doLayout();
 		
+		addFullUILink();
+		
 		setInitialSelectionForContentOnlyTab(tab);
 	}
     
-    protected void adjustContentOnlyTab(TabConfiguration tabConfig) {
+    private void addFullUILink() {
+		Panel panel = new Panel();
+		panel.setTitle("Go to full " + ClientApplicationPropertiesCache.getApplicationName());
+		add(panel);
+		
+	    Element tabEl = getTabEl(panel);
+	    tabEl.addClassName("spec-tab-header-white");
+	    
+	    panel.addListener(new PanelListenerAdapter() {
+	    	@Override
+	    	public void onActivate(Panel panel) {
+	    		String href = Location.getHref();
+	    		href = href.replaceAll("&contentOnly=true", "");
+	    		GWT.log("Full icat link: " + href);
+	    		com.google.gwt.user.client.Window.Location.replace(href);
+	    	}
+	    });
+	}
+
+
+	protected void adjustContentOnlyTab(TabConfiguration tabConfig) {
     	//remove all other columns, keep only column 1 = the middle or right, that usually has the actual content
     	tabConfig.keepOnlyColumn(1);
     	//make the only column spread the entire width of the screen

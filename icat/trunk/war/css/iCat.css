@@ -95,6 +95,11 @@
 	color: #8B4513;
 }
 
+.spec-tab-header-white {    /*WHITE*/
+	background-color:#FFFFFF !important;
+}
+
+
 .spec-tab-headerCPT {    /*CPT*/
 	background-color:#D4A00F !important;
 }
