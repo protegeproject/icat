@@ -161,8 +161,8 @@ public class InternalReferenceFieldWidget extends ReferenceFieldWidget {
 	}
 
 	protected String getTransactionString() {
-		return UIUtil.getAppliedToTransactionString("Added internal reference " + UIUtil.getDisplayText(getSubject())
-				+ ", for property: " + getWidgetConfiguration().get(FormConstants.LABEL) + " and class: " + getSubject().getBrowserText(),
+		return UIUtil.getAppliedToTransactionString("Added '" + UIUtil.getDisplayText(getSubject())
+				+ "' as a '" + getWidgetConfiguration().get(FormConstants.LABEL) + "' for '" + getSubject().getBrowserText() + "'",
 				getSubject().getName());
 	}
 	
