@@ -61,6 +61,8 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
     private int colIndexIsPart = -1;
     private String fieldNameIsAuxAxisChild = null;
     private int colIndexIsAuxAxisChild = -1;
+    
+    private String fieldLinearizationView = null;
 
     private Record currentRecord;
     private Record currentShadowStoreRecord;
@@ -120,7 +122,7 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
                 }
             });
 
-        }
+        } 
 
         //set special columns name and column index:
         String colName = colConfig.getHeader().toLowerCase();
@@ -131,6 +133,8 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
         else if (colName.contains("aux") && colName.contains("child")) {
         	fieldNameIsAuxAxisChild = colConfig.getDataIndex();
         	colIndexIsAuxAxisChild = index;
+        } else if ("linearization".equals(colName)) {
+        	fieldLinearizationView = colConfig.getDataIndex();
         }
         
         return colConfig;
@@ -289,16 +293,56 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
                 (newValue instanceof EntityData) ? ((EntityData)newValue).getName() : newValue.toString();
 
             propertyValueUtil.replacePropertyValue(getProject().getProjectName(), selSubject,
-                    properties .get(colIndex), valueType, (String)oldValueId, (String)newValueId, 
+                    properties.get(colIndex), valueType, (String)oldValueId, (String)newValueId, 
                     getCopyIfTemplateOption(),
                     GlobalSettings.getGlobalSettings().getUserName(),
-                    getReplaceValueOperationDescription(colIndex, oldValue, newValue),	//TODO create a better op. description that contains the linearization name (see if there are similar messages to be updated) 
+                    getReplaceValueOperationDescription(record, colIndex, oldValue, newValue),	//TODO create a better op. description that contains the linearization name (see if there are similar messages to be updated) 
                     new ReplacePropertyValueHandlerForICDLinearizationWidget(new EntityData(
                             newValue == null ? null : newValue.toString(),
                                     newValue == null ? null : newValue.toString()), updateLinParentName));
         }
     }
 
+    @Override
+	protected String getReplaceValueOperationDescription(Record record, int colIndex, Object oldValue, Object newValue) {
+		String header = getHeaderForColIndex(colIndex);
+		header = header == null ? "(no header)" : header;
+
+		oldValue = UIUtil.getDisplayText(oldValue);
+		oldValue = ((String) oldValue).length() == 0 ? "(empty)" : oldValue;
+		newValue = UIUtil.getDisplayText(newValue);
+		newValue = ((String) newValue).length() == 0 ? "(empty)" : newValue;
+
+		String linView = getLinearizationView(record);
+		linView = linView == null ? "(linearization)" : linView;
+		
+		return UIUtil.getAppliedToTransactionString(
+				"Changed '" + header + "' for '" + linView + "' of "
+						+ getSubject().getBrowserText() + ". Old value: " + oldValue + ". New value: " + newValue,
+				getSubject().getName());
+	}
+    
+    @Override
+	protected String getCreateInstanceOperationDescription(Record record, int colIndex) {
+    	String header = getHeaderForColIndex(colIndex);
+		header = header == null ? "(no header)" : header;
+		
+		String linView = getLinearizationView(record);
+		linView = linView == null ? "(linearization)" : linView;
+
+        return UIUtil.getAppliedToTransactionString("Created a new '" + header + "' for '"
+                + linView + "' of " + getSubject().getBrowserText(),
+                getSubject().getName());
+    }
+	
+	private String getLinearizationView(Record record) {
+		if (fieldLinearizationView == null || record == null) {
+			return null;
+		}
+		return record.getAsString(fieldLinearizationView);
+	}
+	
+	
     class ReplacePropertyValueHandlerForICDLinearizationWidget extends ReplacePropertyValueHandler {
         private boolean updateLinParentName;
 
