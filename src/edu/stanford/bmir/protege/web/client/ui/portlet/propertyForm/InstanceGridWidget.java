@@ -476,7 +476,12 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
                 getSubject().getName());
     }
 
+    //for backward compatibility reasons
     protected String getReplaceValueOperationDescription(int colIndex, Object oldValue, Object newValue) {
+    	return getReplaceValueOperationDescription(null, colIndex, oldValue, newValue);
+    }
+    
+    protected String getReplaceValueOperationDescription(Record record, int colIndex, Object oldValue, Object newValue) {
         String header = grid.getColumnModel().getColumnHeader(colIndex);
         header = header == null ? "(no header)" : header;
 
@@ -997,7 +1002,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
 		                getStringValue(newValue),
 		        		getCopyIfTemplateOption(),
 		                GlobalSettings.getGlobalSettings().getUserName(),
-		                getReplaceValueOperationDescription(colIndex, oldValue, newValue),
+		                getReplaceValueOperationDescription(store.getAt(rowIndex), colIndex, oldValue, newValue),
 		                new ReplacePropertyValueHandler(newEntityData));
 	}
 	
@@ -1011,16 +1016,20 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
 		return realRec == null ? null : getShadowRecord(realRec);
 	}
 	
-	private void createPropertyValueSubjectsAndReplacePropertyValue(final Record record, final Object newValue, final Object oldValue, 
-			final int rowIndex, final int colIndex, final String fieldValueType) {
+	private void createPropertyValueSubjectsAndReplacePropertyValue(final Record record, 
+			final Object newValue, final Object oldValue, 
+			final int rowIndex, final int colIndex, 
+			final String fieldValueType) {
+		
 		ArrayList<String> propertiesList = new ArrayList<String>();
 		ArrayList<String> typesList = new ArrayList<String>();
 		EntityData rootSubject = extractPropertyChainFromFirstNonNullSubjectAndReturnRootSubject(record, rowIndex, colIndex, propertiesList, typesList);
+		
 		propertyValueUtil.createPropertyValueInstances(getProject().getProjectName(), rootSubject, 
 				propertiesList.toArray(new String[0]), 
 				typesList.toArray(new String[0]), 
 				GlobalSettings.getGlobalSettings().getUserName(),
-                getReplaceValueOperationDescription(colIndex, oldValue, newValue),
+				getCreateInstanceOperationDescription(record, colIndex),
                 new CreatePropertyValueSubjectsHandler(rowIndex, colIndex, new Function() {
 			@Override
 			public void execute() {
@@ -1028,7 +1037,18 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
 						getSubjectOfPropertyValue(record, rowIndex, colIndex));
 			}
 		}));
+		
 	}
+	
+	
+	protected String getCreateInstanceOperationDescription(Record record, int colIndex) {
+        String header = grid.getColumnModel().getColumnHeader(colIndex);
+        header = header == null ? "(no header)" : header;
+
+        return UIUtil.getAppliedToTransactionString("Created a new '" + header + "' for '"
+                + UIUtil.getDisplayText(getProperty()) + "' of " + getSubject().getBrowserText(),
+                getSubject().getName());
+    }
 
 	/**
 	 * This method is implemented here only demonstratively, for the theoretical case that there is a row in 
@@ -1332,6 +1352,10 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
 		return index;
 	}
     
+	protected String getHeaderForColIndex(int colIndex) {
+		return grid.getColumnModel().getColumnHeader(colIndex);
+	}
+	
     private void initializeCloneColumnRenderer(int origColIndex, Map<String, Object> columnConfig, ColumnConfig gridColConfig) {
     	String fieldType = (String) columnConfig.get(FormConstants.FIELD_TYPE);
     	gridColConfig.setRenderer(createCloneColumnRenderer(origColIndex, fieldType, columnConfig));
