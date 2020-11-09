@@ -25,9 +25,6 @@ public class PreCoordinationWidgetController extends WidgetController {
 	private Collection<PropertyWidget> widgets = null;
 	
 	private List<String> treeValueProperties = null;
-	//FIXME: delete the following two lists; all properties have now hiearchical values
-	private List<String> customScaleProperties = null;
-	private List<String> fixedScaleProperties = null;
 
 	public PreCoordinationWidgetController(Project project, Panel tabPanel,
 			FormGenerator formGenerator) {
@@ -38,10 +35,7 @@ public class PreCoordinationWidgetController extends WidgetController {
 	
 	public void initWidgets() {
 		this.widgets = new ArrayList<PropertyWidget>();
-		
-		this.customScaleProperties = new ArrayList<String>();
 		this.treeValueProperties = new ArrayList<String>();
-		this.fixedScaleProperties = new ArrayList<String>();
 	}
 
 	public void setWidgets(Collection<PropertyWidget> widgets) {
@@ -69,16 +63,9 @@ public class PreCoordinationWidgetController extends WidgetController {
 	}
 
 	private void updatePropertiesLists(PropertyWidget widget) {
-		if (widget instanceof FixedScaleValueSelector){
-			fixedScaleProperties.add(widget.getProperty().getName());
-		}
-		else if (widget instanceof TreeValueSelector){
+		if (widget instanceof TreeValueSelector){
 			treeValueProperties.add(widget.getProperty().getName());
-		}
-		else if (widget instanceof CustomScaleValueSelector){
-			customScaleProperties.add(widget.getProperty().getName());
-		}
-		else {
+		} else {
 			if (widget == null) {
 				GWT.log("Null widget! Can't initialize property list.");
 			}
@@ -211,7 +198,7 @@ public class PreCoordinationWidgetController extends WidgetController {
 	private void getPossiblePropertyValues(EntityData subject) {
 		ICDServiceManager.getInstance().getAllowedPostCoordinationValues(
 				project.getProjectName(), subject.getName(), 
-						customScaleProperties, treeValueProperties, fixedScaleProperties,
+						null, treeValueProperties, null,
 				new AsyncCallback<List<AllowedPostcoordinationValuesData>>() {
 					
 					@Override
