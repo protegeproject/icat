@@ -515,8 +515,8 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
         }
         deletedValueDesc = deletedValueDesc + ")";
 
-        return UIUtil.getAppliedToTransactionString("Deleted " + UIUtil.getShortName(getProperty().getBrowserText())
-                + " from " + getSubject().getBrowserText() + ". Deleted value: "
+        return UIUtil.getAppliedToTransactionString("Deleted '" + UIUtil.getShortName(getProperty().getBrowserText())
+                + "' from '" + getSubject().getBrowserText() + "'. Deleted value: "
                 + (value == null || value.toString().length() == 0 ? "(empty)" : deletedValueDesc), getSubject()
                 .getName());
     }
@@ -662,7 +662,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
         });
     }
 
-	protected InstanceGridCellMouseListener getGridMouseListener() {
+	protected InstanceGridCellMouseListener getGridMouseListener() { 
 		return new InstanceGridCellMouseListener();
 	}
 
