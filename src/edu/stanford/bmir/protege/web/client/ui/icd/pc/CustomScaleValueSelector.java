@@ -9,6 +9,7 @@ import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 
+@Deprecated
 public class CustomScaleValueSelector extends AbstractScaleValueSelectorWidget implements ValueSelectorComponent {
 
 	private PreCoordinationPropertyValueComboBox valueCombobox;
