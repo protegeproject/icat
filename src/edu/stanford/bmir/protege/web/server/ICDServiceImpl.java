@@ -79,7 +79,8 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 			throw new RuntimeException("A class with the same name '" + clsName + "' already exists in the model.");
 		}
 
-		boolean eventsEnabled = kb.setGenerateEventsEnabled(false);
+		
+		boolean eventsEnabled = WebProtegeKBUtil.setEventGenerationForRemotePrj(kb, false);
 
 		boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
 		synchronized (kb) {
@@ -124,7 +125,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 				throw new RuntimeException("Error at creating class " + clsName + ". Message: " + e.getMessage(), e);
 			} finally {
 				WebProtegeKBUtil.restoreUser(kb);
-				kb.setGenerateDeletingFrameEventsEnabled(eventsEnabled);
+				WebProtegeKBUtil.setEventGenerationForRemotePrj(kb, eventsEnabled);
 			}
 		}
 
@@ -1394,28 +1395,19 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 			return res;
 		}
 
-		List<String> allProperties = new ArrayList<String>(customScaleProperties);
-		allProperties.addAll(treeValueProperties);
-		allProperties.addAll(fixedScaleProperties);
+		List<String> allProperties = new ArrayList<String>(treeValueProperties);
 
 		List<String> relevantProperties = (List<String>) getListOfSelectedPostCoordinationAxes(projectName,
 				precoordSuperclass.getName(), allProperties);
-		List<String> relevantFixedScaleProperties = new ArrayList<String>(fixedScaleProperties);
-		relevantFixedScaleProperties.retainAll(relevantProperties);
-		Map<String, List<EntityData>> allowedFixedScaleValuesMap = getAllowedFixedScaleValues(projectName, owlModel,
-				precoordSuperclass, relevantFixedScaleProperties);
+		
 		for (String propName : relevantProperties) {
-			AllowedPostcoordinationValuesData allowedPostcoordinationValuesData = new AllowedPostcoordinationValuesData(
-					propName);
+			AllowedPostcoordinationValuesData allowedPostcoordinationValuesData = new AllowedPostcoordinationValuesData(propName);
 			List<EntityData> propertyValues = null;
-			if (customScaleProperties.contains(propName)) {
-				propertyValues = getAllowedCustomScaleValues(cm, owlModel, precoordSuperclass, propName);
-			} else if (treeValueProperties.contains(propName)) {
+			
+			if (treeValueProperties.contains(propName)) {
 				propertyValues = getAllowedTreeNodeValues(cm, owlModel, precoordSuperclass, propName);
-			} else if (fixedScaleProperties.contains(propName)) {
-				propertyValues = allowedFixedScaleValuesMap.get(propName);
 			}
-
+			
 			if (propertyValues == null) {
 				allowedPostcoordinationValuesData.setValues(null);
 			} else {
@@ -1544,7 +1536,8 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
 		boolean returnValue = false;
 
-		boolean eventsEnabled = kb.setGenerateEventsEnabled(false);
+		boolean eventsEnabled = WebProtegeKBUtil.setEventGenerationForRemotePrj(kb, false);
+		
 		boolean runsInTransaction = WebProtegeKBUtil.shouldRunInTransaction(operationDescription);
 		synchronized (kb) {
 			WebProtegeKBUtil.morphUser(kb, user);
@@ -1569,7 +1562,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 						+ cls + ". Message: " + e.getMessage(), e);
 			} finally {
 				WebProtegeKBUtil.restoreUser(kb);
-				kb.setGenerateEventsEnabled(eventsEnabled);
+				WebProtegeKBUtil.setEventGenerationForRemotePrj(kb, eventsEnabled);
 			}
 		}
 
@@ -1581,11 +1574,44 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 			boolean isDefinitionalFlag) {
 
 		Project project = getProject(projectName);
-		OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
-		WHOFICContentModel cm = getContentModel(owlModel);
+		OWLModel kb = (OWLModel) project.getKnowledgeBase();
+		WHOFICContentModel cm = getContentModel(kb);
 
 		RDFSNamedClass cls = cm.getICDCategory(entity);
-		return cm.changeIsDefinitionalFlag(cls, property, isDefinitionalFlag);
+		RDFProperty prop = kb.getRDFProperty(property);
+		
+		String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
+		String operationDescription = "Changed the logical definition to " +
+				(isDefinitionalFlag == true ? "defining" : "non-defining") +
+				" on property " + prop.getBrowserText() +
+				" for class " + cls.getBrowserText() + 
+				" -- Apply to: " + cls.getName();
+		
+		boolean result = false;
+		
+		boolean eventsEnabled = WebProtegeKBUtil.setEventGenerationForRemotePrj(kb, false);
+		synchronized (kb) {
+			WebProtegeKBUtil.morphUser(kb, user);
+			try {
+				kb.beginTransaction(operationDescription);
+		
+				//FIXME: this method should rather throw exceptions than return false.. this way we can
+				//record false changes
+				result = cm.changeIsDefinitionalFlag(cls, property, isDefinitionalFlag);
+		
+				kb.commitTransaction();
+			} catch (Exception e) {
+				Log.getLogger().log(Level.SEVERE,
+						"Error at editing the logical definition in " + projectName + " class: " + cls, e);
+				kb.rollbackTransaction();
+				throw new RuntimeException("Error at editing the logical definition in " + projectName + " class: "
+						+ cls + ". Message: " + e.getMessage(), e);
+			} finally {
+				WebProtegeKBUtil.restoreUser(kb);
+				WebProtegeKBUtil.setEventGenerationForRemotePrj(kb, eventsEnabled);
+			}
+		}
+		return result;
 	}
 
 	@Override
@@ -1615,7 +1641,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 
 		boolean success = false;
 
-		boolean eventsEnabled = owlModel.setGenerateEventsEnabled(false);
+		boolean eventsEnabled = WebProtegeKBUtil.setEventGenerationForRemotePrj(owlModel, false);
 		synchronized (owlModel) {
 			WebProtegeKBUtil.morphUser(owlModel, user);
 			try {
@@ -1630,7 +1656,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 				throw new RuntimeException("Error on operation: " + opDescription, e);
 			} finally {
 				WebProtegeKBUtil.restoreUser(owlModel);
-				owlModel.setGenerateEventsEnabled(eventsEnabled);
+				WebProtegeKBUtil.setEventGenerationForRemotePrj(owlModel, eventsEnabled);
 			}
 
 			return success;
