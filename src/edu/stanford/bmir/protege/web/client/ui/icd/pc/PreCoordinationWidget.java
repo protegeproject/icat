@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gwt.core.client.GWT;
 import com.gwtext.client.widgets.Component;
 import com.gwtext.client.widgets.Panel;
 
@@ -21,8 +22,6 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
 
 	private Panel wrappingPanel;
 	private SuperclassSelectorWidget superclassSelector;
-	//TODO delete this class if we don't use it here
-	//private MultipleScaleValueSelector scaleValueSelector;
 	private List<AbstractScaleValueSelectorWidget> valueSelWidgets;
 
     private PreCoordinationWidgetController widgetController;
@@ -110,7 +109,7 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
 	            }
 			}
 			else {
-				System.out.println("Wrong configuration for property " + prop + " (expecting a map)");
+				GWT.log("Wrong configuration for property " + prop + " (expecting a map)");
 			}
 		}
 		return propertyValuePanel;
@@ -118,9 +117,11 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
 	
 	private AbstractScaleValueSelectorWidget createScaleValueSelectorWidget(
 				Map<String, Object> configMap, String prop, Panel containerPanel) {
+		
 		FormGenerator formGenerator = widgetController.getFormGenerator();
         String component_type = (String) configMap.get(FormConstants.COMPONENT_TYPE);
         AbstractScaleValueSelectorWidget widget = null;
+        
 		if (component_type.equals(FormConstants.PRECOORDINATION_CUST_SCALE_VALUE_SELECTOR)) { //ICD specific
         	widget = formGenerator.createPreCoordinationCustomScaleValueSelectorWidget(configMap, prop);
         } else if (component_type.equals(FormConstants.PRECOORDINATION_FIX_SCALE_VALUE_SELECTOR)) { //ICD specific
@@ -153,7 +154,6 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
 		//to be filled in this widget, but we should fill in the value for the 
 		//superclass selector (and as a consequence????) also for the other
 		//scale value selector widgets.
-		//NO NEED FOR THIS: super.fillValues();    (which means that setValues() won't be called, therefore TODO: It is OK to delete it)
 		superclassSelector.fillValues();
 	}
 	
@@ -162,7 +162,6 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
     	// TODO Do nothing for now.
     	// This widget does not have values itself, only its component widgets, 
     	// which will have their values set through different mechanisms
-    	//System.out.println("Test: DELETE THIS");
     }
 
 	public void onSuperclassChanged(EntityData newSuperclass) {
