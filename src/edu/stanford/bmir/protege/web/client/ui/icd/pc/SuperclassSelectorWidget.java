@@ -13,6 +13,7 @@ import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.RemoteValueComboBox;
+import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public class SuperclassSelectorWidget extends RemoteValueComboBox {
 
@@ -152,11 +153,37 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 	@Override
 	protected void cacheAllowedValues() {
 		//TT - do nothing
+	}
+	
+	@Override
+	protected String getReplaceValueOperationDescription(EntityData subject, Object oldValue, Object newValue) {
+		String oldValueText = oldValue == null || oldValue.toString().length() == 0 ? 
+				"(empty)" : UIUtil.getDisplayText(oldValue);
+		String newValueText = newValue == null || newValue.toString().length() == 0 ? 
+				"(empty)" : UIUtil.getDisplayText(newValue);
 		
-		//System.out.println("Cache allowed values for: " + getSubject());
-		//setLoadingStatus(true);
-		//ICDServiceManager.getInstance().getAllSuperEntities(getProject().getProjectName(), getSubject(), getFillValuesHandler());
+		return UIUtil.getAppliedToTransactionString("Edited logical definition for class '" + UIUtil.getDisplayText(subject) + "'." +
+			" Replaced the precoordination superclass." +
+			" Old value: " + oldValueText +
+			", new value: " + newValueText,
+			subject.getName());
 	}
 	
 	
+	@Override
+	protected String getDeleteValueOperationDescription() {
+		return UIUtil.getAppliedToTransactionString("Edited logical definition for class '" + UIUtil.getDisplayText(getSubject()) + "'." +
+			" Removed the precoordination superclass " +
+			UIUtil.getDisplayText(getValues()),
+			getSubject().getName());
+		
+	}
+	
+	@Override
+	protected String getAddValueOperationDescription(EntityData subject, EntityData newVal) {
+		 return UIUtil.getAppliedToTransactionString("Edited logical definition for class '" + UIUtil.getDisplayText(getSubject()) + "'." +
+					" Set the precoordination superclass to '" +
+					UIUtil.getDisplayText(newVal) + "'",
+					getSubject().getName());
+	}
 }
