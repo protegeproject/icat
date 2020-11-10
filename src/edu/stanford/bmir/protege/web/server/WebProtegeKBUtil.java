@@ -39,6 +39,10 @@ public class WebProtegeKBUtil {
 	
 	/************** User and remote things methods *******************/
     
+    public static boolean isMultiUser(KnowledgeBase kb) {
+    	return kb.getProject().isMultiUserClient();
+    }
+    
     public static void morphUser(KnowledgeBase kb, String user) {
         if (kb.getProject().isMultiUserClient()) {
             Session s = (Session) RemoteClientFrameStore.getCurrentSession(kb);
@@ -85,6 +89,21 @@ public class WebProtegeKBUtil {
         return null;
     }
 
+    /**
+     * This method will enable/disable the event generation for client-server projects.
+     * It will do nothing for local projects.
+     * 
+     * @param kb
+     * @param enabled 
+     * @return The previous state before setting the event generation
+     */
+    public static boolean setEventGenerationForRemotePrj(KnowledgeBase kb, boolean enabled) {
+    	if (kb.getProject().isMultiUserClient() == true) {
+    		return kb.setGenerateEventsEnabled(enabled);
+    	}
+    	return kb.getGenerateEventsEnabled();
+    }
+    
     /**************** Collection methods ***************/
     
     @SuppressWarnings("unchecked")
