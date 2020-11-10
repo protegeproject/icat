@@ -136,17 +136,16 @@ public class InternalReferenceFieldWidget extends ReferenceFieldWidget {
 						MessageBox.alert("No selection", "No class selected. Please select a class from the tree.");
 						return;
 					}
-					final Collection<EntityData> selected = selectable.getSelection();
 
-					for (EntityData data : selected) {
+					for (EntityData selectedEntityData : selection) {
 						ICDServiceManager.getInstance().createInternalReference(getProject().getProjectName(),
 								getSubject(), 
 								InternalReferenceFieldWidget.this.termClass,
 								InternalReferenceFieldWidget.this.getProperty().getName(),
 								InternalReferenceFieldWidget.this.referencedValueProperty, 
-								data, 
+								selectedEntityData, 
 								GlobalSettings.getGlobalSettings().getUserName(),
-								getTransactionString(), new ImportInternalReferenceHandler(selectWindow));
+								getTransactionString(selectedEntityData), new ImportInternalReferenceHandler(selectWindow));
 					}
 
 					selectWindow.hide();
@@ -160,8 +159,8 @@ public class InternalReferenceFieldWidget extends ReferenceFieldWidget {
 		return selectWindow;
 	}
 
-	protected String getTransactionString() {
-		return UIUtil.getAppliedToTransactionString("Added '" + UIUtil.getDisplayText(getSubject())
+	protected String getTransactionString(EntityData scaleValue) {
+		return UIUtil.getAppliedToTransactionString("Added '" + UIUtil.getDisplayText(scaleValue)
 				+ "' as a '" + getWidgetConfiguration().get(FormConstants.LABEL) + "' for '" + getSubject().getBrowserText() + "'",
 				getSubject().getName());
 	}
