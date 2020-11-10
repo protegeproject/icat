@@ -143,9 +143,16 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 	
 	private String getEditOperationDescription(EntityData subject, PropertyEntityData prop, 
 			EntityData oldValue, EntityData newValue) {
-		String text = "Edited logical definition. Property: " + UIUtil.getDisplayText(prop) + 
-				", Old value: " + UIUtil.getDisplayText(oldValue) + 
-				", New value: " + UIUtil.getDisplayText(newValue);
+		
+		String oldValueText = oldValue == null || oldValue.getName() == null ? 
+				"(empty)" : UIUtil.getDisplayText(oldValue);
+		String newValueText = newValue == null || newValue.getName() == null ? 
+				"(empty)" : UIUtil.getDisplayText(newValue);
+		
+		String text = "Edited logical definition for class '" + UIUtil.getDisplayText(subject) + "'" +
+				". Changed property '" + UIUtil.getDisplayText(prop) + "'" + 
+				". Old value: '" +  oldValueText + "'" +
+				", new value: '" + newValueText + "'";
 		return UIUtil.getAppliedToTransactionString(text, subject.getName());
 	}
 	
