@@ -88,6 +88,10 @@ public class UIUtil {
             String browserText = ((EntityData) object).getBrowserText();
             if (browserText == null) {
                 browserText = ((EntityData) object).getName();
+                
+                if (browserText == null) {
+                	return "";
+                }
             }
             return removeSingleQuotes(browserText);
         } else {
