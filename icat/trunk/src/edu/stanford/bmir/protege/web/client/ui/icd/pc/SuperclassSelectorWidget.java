@@ -158,14 +158,14 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 	@Override
 	protected String getReplaceValueOperationDescription(EntityData subject, Object oldValue, Object newValue) {
 		String oldValueText = oldValue == null || oldValue.toString().length() == 0 ? 
-				"(empty)" : UIUtil.getDisplayText(oldValue);
+				"(empty)" : "'" + UIUtil.getDisplayText(oldValue) + "'";
 		String newValueText = newValue == null || newValue.toString().length() == 0 ? 
-				"(empty)" : UIUtil.getDisplayText(newValue);
+				"(empty)" : "'" + UIUtil.getDisplayText(newValue) + "'";
 		
 		return UIUtil.getAppliedToTransactionString("Edited logical definition for class '" + UIUtil.getDisplayText(subject) + "'." +
 			" Replaced the precoordination superclass." +
 			" Old value: " + oldValueText +
-			", new value: " + newValueText,
+			". New value: " + newValueText,
 			subject.getName());
 	}
 	
