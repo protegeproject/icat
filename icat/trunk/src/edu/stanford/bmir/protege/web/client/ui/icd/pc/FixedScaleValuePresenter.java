@@ -20,6 +20,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
+@Deprecated
 public class FixedScaleValuePresenter extends AbstractPropertyWidget {
 
 	private Panel wrappingPanel;
