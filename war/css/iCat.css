@@ -132,7 +132,18 @@
 	background-color: red;
 }
 
-.x-tree-node-icon{
+.x-tree-node-el {
+    line-height: 15px;
+}
+.x-tree-icon,.x-tree-ec-icon,.x-tree-elbow-line,
+.x-tree-elbow,.x-tree-elbow-end,.x-tree-elbow-plus,
+.x-tree-elbow-minus,.x-tree-elbow-end-plus,.x-tree-elbow-end-minus{
+	height: 18px;
+}
+.x-tree-node a {
+    vertical-align: -webkit-baseline-middle;
+}
+.x-tree-node-icon {
 	background-image:none;
 	width:0px;
 }
