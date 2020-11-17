@@ -16,6 +16,7 @@ import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.Triple;
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.GetEntityTripleHandler;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.HasGetEntityTripleHandler;
@@ -50,10 +51,10 @@ public abstract class AbstractPropertyWidget implements PropertyWidget, HasGetEn
 
         createComponent();
         
-//        boolean isHidden = new WidgetConfiguration(widgetConfiguration).getBooleanProperty(FormConstants.HIDDEN, false);
-//        if (isHidden) {
-//        	getComponent().hide();
-//        }
+        boolean isHidden = new WidgetConfiguration(widgetConfiguration).getBooleanProperty(FormConstants.HIDDEN, false);
+        if (isHidden) {
+        	getComponent().hide();
+        }
     }
 
 
