@@ -4326,7 +4326,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column31</string>
+													<string>Column33</string>
 													<map>
 														<entry>
 															<string>clone_of</string>
@@ -4334,7 +4334,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>30</string>
+															<string>32</string>
 														</entry>
 													</map>
 												</entry>
@@ -5313,11 +5313,11 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Custom Burn Scale</string>
+															<string>Extent of Burn&lt;BR&gt;by Body Surface</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
-															<string>Injury specific -&gt; Custom Burn Scale Value</string>
+															<string>Injury specific -&gt; Custom Burn Scale Value -&gt; Extent of Burn by Body Surface</string>
 														</entry>
 														<entry>
 															<string>headerCssClass</string>
@@ -5333,7 +5333,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#burnQualifier</string>
+															<string>http://who.int/icd#extentOfBurnByBodySurface</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -5347,10 +5347,104 @@
 															<string>field_align</string>
 															<string>center</string>
 														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>ivory</string>
+														</entry>
 													</map>
 												</entry>
 												<entry>
 													<string>Column26</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Ext. of Full Thickness&lt;BR&gt;Burn by Body Surface</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Injury specific -&gt; Custom Burn Scale Value -&gt; Extent of Full Thickness Burn by Body Surface</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#extentOfFullThicknessBurnByBodySurface</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>25</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>ivory</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column27</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Outcome of Full&lt;BR&gt;Thickness Burn</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Injury specific -&gt; Custom Burn Scale Value -&gt; Outcome of Full Thickness Burn</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#outcomeOfFullThicknessBurn</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>26</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>ivory</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column28</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -5378,7 +5472,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>25</string>
+															<string>27</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -5395,7 +5489,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column27</string>
+													<string>Column29</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -5423,7 +5517,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>26</string>
+															<string>28</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -5440,7 +5534,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column28</string>
+													<string>Column30</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -5468,7 +5562,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>27</string>
+															<string>29</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -5530,7 +5624,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column29</string>
+													<string>Column31</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -5558,7 +5652,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>28</string>
+															<string>30</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -5575,7 +5669,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column30</string>
+													<string>Column32</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -5603,7 +5697,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>29</string>
+															<string>31</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -10531,7 +10625,7 @@
 												</entry>
 												
 												<entry>
-													<string>Column45</string>
+													<string>Column47</string>
 													<map>
 														<entry>
 															<string>clone_of</string>
@@ -10539,7 +10633,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>44</string>
+															<string>46</string>
 														</entry>
 													</map>
 												</entry>
@@ -11518,11 +11612,11 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Custom Burn Scale</string>
+															<string>Extent of Burn&lt;BR&gt;by Body Surface</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
-															<string>Injury specific -&gt; Custom Burn Scale Value</string>
+															<string>Injury specific -&gt; Custom Burn Scale Value -&gt; Extent of Burn by Body Surface</string>
 														</entry>
 														<entry>
 															<string>headerCssClass</string>
@@ -11538,7 +11632,7 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#burnQualifier</string>
+															<string>http://who.int/icd#extentOfBurnByBodySurface</string>
 														</entry>
 														<entry>
 															<string>index</string>
@@ -11552,10 +11646,104 @@
 															<string>field_align</string>
 															<string>center</string>
 														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>ivory</string>
+														</entry>
 													</map>
 												</entry>
 												<entry>
 													<string>Column40</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Ext. of Full Thickness&lt;BR&gt;Burn by Body Surface</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Injury specific -&gt; Custom Burn Scale Value -&gt; Extent of Full Thickness Burn by Body Surface</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#extentOfFullThicknessBurnByBodySurface</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>39</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>ivory</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column41</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Outcome of Full&lt;BR&gt;Thickness Burn</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Injury specific -&gt; Custom Burn Scale Value -&gt; Outcome of Full Thickness Burn</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#outcomeOfFullThicknessBurn</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>40</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>ivory</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column42</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -11583,7 +11771,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>39</string>
+															<string>41</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -11600,7 +11788,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column41</string>
+													<string>Column43</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -11628,7 +11816,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>40</string>
+															<string>42</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -11645,7 +11833,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column42</string>
+													<string>Column44</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -11673,7 +11861,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>41</string>
+															<string>43</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -11735,7 +11923,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column43</string>
+													<string>Column45</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -11763,7 +11951,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>42</string>
+															<string>44</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -11780,7 +11968,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column44</string>
+													<string>Column46</string>
 													<map>
 														<entry>
 															<string>header</string>
@@ -11808,7 +11996,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>43</string>
+															<string>45</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
