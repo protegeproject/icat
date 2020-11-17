@@ -283,6 +283,8 @@ public class FormGenerator {
                         widget = createICDInheritedTagGrid(configMap, prop);
                     } else if (component_type.equals(FormConstants.ICDINDEX_GRID)) { //ICD specific
                         widget = createICDIndexGrid(configMap, prop);
+                        
+                        addWidgetToEntityPropertyValuesHandler(panel, widget);
                     } else if (component_type.equals(FormConstants.ICDINCLUSION_GRID)) { //ICD specific
                         widget = createICDInclusionGrid(configMap, prop);
                     } else if (component_type.equals(FormConstants.POSTCOORDINATION_GRID)) { //ICD specific
