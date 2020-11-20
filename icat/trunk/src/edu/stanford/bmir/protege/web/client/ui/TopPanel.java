@@ -71,10 +71,10 @@ public class TopPanel extends Panel {
         // Outer panel to house logo and inner panel
         HorizontalPanel outer = new HorizontalPanel();
         outer.setHorizontalAlignment(HorizontalPanel.ALIGN_RIGHT);
-        //final Image logo = getImage();
-        //outer.add(logo);
+        final Image logo = getImage();
+        outer.add(logo);
 
-        //outer.setCellHorizontalAlignment(logo, HorizontalPanel.ALIGN_LEFT);
+        outer.setCellHorizontalAlignment(logo, HorizontalPanel.ALIGN_LEFT);
 
         //add notification panel, if configured
         Panel notificationPanel = getNotificationMessagePanel();
