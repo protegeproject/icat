@@ -200,7 +200,7 @@ public class ICat implements EntryPoint {
         htmlTextComponentProperties.put(FormConstants.LOAD_URL, FILE_PRE_LOGIN_HTML_MESSAGE);
         htmlIntroMessage.setConfigProperties(htmlTextComponentProperties);
 
-        Anchor signInAnchor = new Anchor("<span style=\"padding:20px\">If you don't see the sign in pop-up, you may also sign in here.</span>", true);
+        Anchor signInAnchor = new Anchor("<span style=\"padding:20px;font-size:small;\">If you don't see the sign in pop-up, you may also sign in here.</span>", true);
         signInAnchor.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 signIn();
