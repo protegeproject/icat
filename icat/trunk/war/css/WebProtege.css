@@ -245,7 +245,7 @@ ul.x-tab-strip-top {
  *****************************************************************/
 .footer {
 	color: #AE5B12; /* burnt orange */
-	font-size: 70%; ! important;
+	font-size: 70% !important;
 	text-align: center;
 }
 
@@ -259,7 +259,7 @@ ul.x-tab-strip-top {
 .header-right {
 	right: 5px;
 	top: 5px;
-	font-size: 70%; ! important;
+	font-size: 70% !important;
 	vertical-align: top;
 	text-align: right;
 }
@@ -267,7 +267,7 @@ ul.x-tab-strip-top {
 .header-left {
 	right: 5px;
 	top: 5px;
-	font-size: 70%; ! important;
+	font-size: 70% !important;
 	vertical-align: top;
 	text-align: left;
 }
@@ -289,7 +289,7 @@ Styles for the ontology container
 .userName {
 	right: 5px;
 	top: 5px;
-	font-size: 70%; ! important;
+	font-size: 70% !important;
 	vertical-align: top;
 	text-align: right;
 	font-weight: bold;
@@ -335,8 +335,8 @@ Styles for the ontology container
 
 .restriction_table {
 	font-family: arial, tahoma, helvetica, sans-serif;
-	background-color: #FFFFFF; !
-	important padding: 5px 5px 5px 5px;
+	background-color: #FFFFFF !important;
+	padding: 5px 5px 5px 5px;
 }
 
 .restiction_title {
@@ -529,7 +529,7 @@ Styles for the hierarchy management tab
 }
 
 .parents {
-	background: #FFFFFF url(../images/default/form/text-bg.gif) repeat-x scroll 0 0;
+	background: #FFFFFF url(../images/text-bg.gif) repeat-x scroll 0 0;
 	border: 1px solid #B5B8C8;
 	padding: 2px 3px;
 	overflow: auto;
@@ -537,7 +537,7 @@ Styles for the hierarchy management tab
 }
 
 .parents-no-border {
-	background: #FFFFFF url(../images/default/form/text-bg.gif) repeat-x scroll 0 0;
+	background: #FFFFFF url(../images/text-bg.gif) repeat-x scroll 0 0;
 	padding: 2px 3px;
 }
 
@@ -562,8 +562,8 @@ Styles for the hierarchy management tab
 
 .parent-column-right {
     font-family: arial, tahoma, helvetica, sans-serif;
-	background-color: #FFFFFF; !
-	important padding: 5px 5px 5px 5px;
+	background-color: #FFFFFF !important;
+	padding: 5px 5px 5px 5px;
 	text-align: right;
 }
 
@@ -628,7 +628,7 @@ Styles for the hierarchy management tab
 
 /*Scrollbar for vertical menues*/
 ul.x-menu-list {
-  height: expression( this.scrollHeight > 350 ? "350px" : "auto" ); /* sets max-height for IE */ 
+  /* height: expression( this.scrollHeight > 350 ? "350px" : "auto" ); sets max-height for IE */ 
   max-height: 350px;  
   overflow-y: auto;
 }
