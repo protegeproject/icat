@@ -5,7 +5,7 @@ package edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm;
  * the layout of forms in WebProtege.<br><br>
  * 
  * Modification to this class should be reflected in the user documentation,
- * available on the Protégé Wiki through pages like 
+ * available on the Protege Wiki through pages like 
  * <a href="http://protegewiki.stanford.edu/wiki/InstanceGridWidget">http://protegewiki.stanford.edu/wiki/InstanceGridWidget</a>
  * 
  * @author csnyulas
