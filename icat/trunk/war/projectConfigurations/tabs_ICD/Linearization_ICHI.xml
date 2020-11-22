@@ -365,6 +365,7 @@
 												    <list>
 														<string>LinearizationEditors</string>
 														<string>WHOTeam</string>
+														<string>ICHIEditors</string>
 												    </list>
 											    </entry>
 												<entry>
@@ -383,6 +384,7 @@
 															<string>World</string>
 															<list>
 																<string>http://who.int/icd#Morbidity</string>
+																<string>http://who.int/icd#ICHILinearizationView</string>
 															</list>
 														</entry>
 													</map>
@@ -680,7 +682,7 @@
 												<entry>
 													<string>writeAccessGroups</string>
 													<list>
-														<string>DermatologyLinearizationEditors</string>
+														<string>ICHIEditors</string>
 														<string>Stanford</string>
 													</list>
 												</entry>
