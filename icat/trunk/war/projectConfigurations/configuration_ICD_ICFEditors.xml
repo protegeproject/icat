@@ -20663,6 +20663,10 @@
 															<string>2</string>
 														</entry>
 														<entry>
+															<string>hidden</string>
+															<string>true</string>
+														</entry>
+														<entry>
 															<string>field_type</string>
 															<string>combobox</string>
 														</entry>
@@ -20963,6 +20967,10 @@
 														<entry>
 															<string>index</string>
 															<string>2</string>
+														</entry>
+														<entry>
+															<string>hidden</string>
+															<string>true</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
