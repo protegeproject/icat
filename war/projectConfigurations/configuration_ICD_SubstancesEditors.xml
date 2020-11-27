@@ -430,7 +430,7 @@
 												</entry>
 												<entry>
 													<string>label</string>
-													<string>Short Definition</string>
+													<string>Short Description</string>
 												</entry>
 												<entry>
 													<string>tooltip</string>
@@ -497,7 +497,7 @@
 												</entry>
 												<entry>
 													<string>label</string>
-													<string>Detailed Definition</string>
+													<string>Additional Information</string>
 												</entry>
 												<entry>
 													<string>tooltip</string>
@@ -927,7 +927,7 @@
 												</entry>
 												<entry>
 													<string>label</string>
-													<string>Short Definition</string>
+													<string>Short Description</string>
 												</entry>
 												<entry>
 													<string>tooltip</string>
@@ -994,7 +994,7 @@
 												</entry>
 												<entry>
 													<string>label</string>
-													<string>Detailed Definition</string>
+													<string>Additional Information</string>
 												</entry>
 												<entry>
 													<string>tooltip</string>
@@ -1585,7 +1585,7 @@
 												</entry>
 												<entry>
 													<string>label</string>
-													<string>Short Definition</string>
+													<string>Short Description</string>
 												</entry>
 												<entry>
 													<string>tooltip</string>
@@ -1652,7 +1652,7 @@
 												</entry>
 												<entry>
 													<string>label</string>
-													<string>Detailed Definition</string>
+													<string>Additional Information</string>
 												</entry>
 												<entry>
 													<string>tooltip</string>
