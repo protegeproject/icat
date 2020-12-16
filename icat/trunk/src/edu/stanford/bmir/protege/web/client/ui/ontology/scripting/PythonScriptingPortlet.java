@@ -103,8 +103,16 @@ public class PythonScriptingPortlet extends AbstractEntityPortlet {
 				if (keyCode == KeyCodes.KEY_ENTER) {
 					if (event.isControlKeyDown() || event.isShiftKeyDown()) { // just let it add a new line
 					} else {
+						event.preventDefault();
+						event.stopPropagation();
+						
+						commandLine.cancelKey();
+						
 						executeCommand();
 					}
+				} else if (keyCode == KeyCodes.KEY_TAB) { // just let it add a tab
+					event.preventDefault();
+					event.stopPropagation();
 				} else if (keyCode == KeyCodes.KEY_SPACE && event.isControlKeyDown()) {
 					int x = commandLine.getAbsoluteLeft() + 9 * commandLine.getText().length();
 					int y = commandLine.getAbsoluteTop() + 14;
