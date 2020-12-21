@@ -116,7 +116,7 @@ public class CreateClassPanel extends FormPanel implements Selectable {
         explanation2Html.setStylePrimaryName("explanation");
         add(explanation2Html);
 
-        add(new HTML("<b>Possible duplicate entities:</b>"));
+        add(new HTML("<b>Potential duplicate entities:</b>"));
 
         searchGridPanel = new SearchUtil(project, searchDblClickSelectable).getSearchGridPanel();
         searchGridPanel.setHeight(160);
