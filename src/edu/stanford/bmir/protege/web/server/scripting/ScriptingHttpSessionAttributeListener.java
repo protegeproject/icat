@@ -30,7 +30,14 @@ public class ScriptingHttpSessionAttributeListener implements HttpSessionAttribu
 			return;
 		}
 		
-		String authUser = (String) session.getAttribute(AuthenticationConstants.USER); //the new value for user
+		String authUser = null;
+		
+		try {
+			authUser =  (String) session.getAttribute(AuthenticationConstants.USER); //the new value for user
+		} catch (IllegalStateException e) { //session is already invalidated
+			// do nothing, likely the python interpreter was already cleaned up by the session listener
+		}
+		
 		if (authUser == null) {
 			Log.getLogger().info("Removing Python interpreter for user: " + value);
 			PythonInterpreterManager.getManager().removeSession(session);
