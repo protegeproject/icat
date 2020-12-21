@@ -68,19 +68,19 @@ public class CreateClassPanel extends FormPanel implements Selectable {
         setPaddings(5, 7, 0, 0);
         setAutoScroll(true);
 
-        Label title = new Label("CREATE NEW CATEGORY");
+        Label title = new Label("CREATE NEW ENTITY");
         title.setStylePrimaryName("hierarchy-title");
         add(title, new AnchorLayoutData("98%"));
 
-        HTML explanationHtml = new HTML("Please enter a <b>title</b> and a sorting label (optional) for the new category.<br />" +
-                "Select one or more <b>parents</b> for the category by clicking on the &nbsp <img src=\"../images/add.png\"></img> &nbsp icon in the <i>Parents</i> field.<br />" +
+        HTML explanationHtml = new HTML("Please enter a <b>title</b> for the new entity.<br />" +
+                "Select one or more <b>parents</b> for the entity by clicking on the &nbsp <img src=\"../images/add.png\"></img> &nbsp icon in the <i>Parents</i> field.<br />" +
                 "Operations are performed only after clicking on the <i>Create</i> button.");
         explanationHtml.setStylePrimaryName("explanation");
         add(explanationHtml);
 
         titleField = new TextField("Title", "name");
         titleField.setAllowBlank(false);
-        titleField.setEmptyText("Enter title of new category");
+        titleField.setEmptyText("Enter title of new entity");
         titleField.addListener(new TextFieldListenerAdapter() {
             @Override
             public void onValid(Field field) {
@@ -111,12 +111,12 @@ public class CreateClassPanel extends FormPanel implements Selectable {
         ((TextArea)reasonField.getFieldComponent()).setHeight(60);
         add(reasonField, new AnchorLayoutData("98%"));
 
-        HTML explanation2Html = new HTML("<b>Before creating a new category, please search for the term to ensure that you are not creating duplicates.</b><br />" +
+        HTML explanation2Html = new HTML("<b>Before creating a new entity, please search for the term to ensure that you are not creating duplicates.</b><br />" +
         		"After you typed 4 characters in the Title field, automatic searches will show you possible matches.");
         explanation2Html.setStylePrimaryName("explanation");
         add(explanation2Html);
 
-        add(new HTML("<b>Possible duplicate categories:</b>"));
+        add(new HTML("<b>Possible duplicate entities:</b>"));
 
         searchGridPanel = new SearchUtil(project, searchDblClickSelectable).getSearchGridPanel();
         searchGridPanel.setHeight(160);
