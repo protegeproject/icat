@@ -78,7 +78,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 			throw new RuntimeException("A class with the same name '" + clsName + "' already exists in the model.");
 		}
 
-		Log.getLogger().info("Create class: Start create at " + new Date());
+		//Log.getLogger().info("Create class: Start create at " + new Date());
 		
 		boolean eventsEnabled = WebProtegeKBUtil.setEventGenerationForRemotePrj(kb, false);
 
@@ -91,14 +91,14 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 				}
 
 				// TODO: get index, if valid, pass some arg to the second call
-				Log.getLogger().info("Create class: Start check index at " + new Date());
+				//Log.getLogger().info("Create class: Start check index at " + new Date());
 				boolean isSiblingIndexValid = checkAndRecreateIndex((OWLModel) kb, superClsNames, false);
-				Log.getLogger().info("Create class: End check index. Start create ICD Cat at " + new Date());
+				//Log.getLogger().info("Create class: End check index. Start create ICD Cat at " + new Date());
 
 				// createICDSpecificEntities flag is disregarded. Always create them.
 				cls = cm.createICDCategory(clsName, superClsNames);
 
-				Log.getLogger().info("Create class: End create ICD Cat. Start creating terms at " + new Date());
+				//Log.getLogger().info("Create class: End create ICD Cat. Start creating terms at " + new Date());
 				
 				if (clsName != null) {
 					cls.addPropertyValue(cm.getIcdCodeProperty(), clsName);
@@ -112,21 +112,21 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 					cls.setPropertyValue(cm.getSortingLabelProperty(), sortingLabel);
 				}
 				
-				Log.getLogger().info("Create class: End create term. Start add child to index at " + new Date());
+				//Log.getLogger().info("Create class: End create term. Start add child to index at " + new Date());
 
 				addChildToIndex(cls, superClsNames, isSiblingIndexValid);
 
-				Log.getLogger().info("Create class: End add child to index. Start proposal util update at " + new Date());
+				//Log.getLogger().info("Create class: End add child to index. Start proposal util update at " + new Date());
 
 				ImportProposalsUtil.getLookupUtil(cm).addCategoryIDTitlePair(cls.getName(), title);
 
-				Log.getLogger().info("Create class: End proposal util update. Start commit transaction at " + new Date());
+				//Log.getLogger().info("Create class: End proposal util update. Start commit transaction at " + new Date());
 
 				if (runsInTransaction) {
 					kb.commitTransaction();
 				}
 				
-				Log.getLogger().info("Create class: End commit transaction at " + new Date());
+				//Log.getLogger().info("Create class: End commit transaction at " + new Date());
 
 			} catch (Exception e) {
 				Log.getLogger().log(Level.SEVERE, "Error at creating class in " + projectName + " class: " + clsName,
@@ -162,13 +162,13 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		
 		//entityData.setProperty(ICDClassTreePortlet.PUBLIC_ID_PROP, publicId);
 
-		Log.getLogger().info("Create class: Ended create class at " + new Date());
+		//Log.getLogger().info("Create class: Ended create class at " + new Date());
 		return entityData;
 	}
 
 	
 	public String retrievePublicId(String projectName, String clsName) {
-		Log.getLogger().info("Retrieve public id: Start add public id at " + new Date());
+		//Log.getLogger().info("Retrieve public id: Start add public id at " + new Date());
 
 		Project project = getProject(projectName);
 		KnowledgeBase kb = project.getKnowledgeBase();
@@ -194,7 +194,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 			Log.getLogger().log(Level.WARNING, "Could not add public ID in " + projectName + " for class: " + clsName, e);
 		}
 		
-		Log.getLogger().info("Retrieve public id: End add public at " + new Date());
+		//Log.getLogger().info("Retrieve public id: End add public at " + new Date());
 		
 		return publicId;
 	}
