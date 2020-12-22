@@ -73,7 +73,6 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		ICDContentModel cm = new ICDContentModel((OWLModel) kb);
 
 		RDFSNamedClass cls = null;
-		String publicId = null;
 
 		if (clsName != null && edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass( ((OWLModel) kb), clsName) != null) {
 			throw new RuntimeException("A class with the same name '" + clsName + "' already exists in the model.");
@@ -141,31 +140,7 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 				WebProtegeKBUtil.setEventGenerationForRemotePrj(kb, eventsEnabled);
 			}
 		}
-
-		Log.getLogger().info("Create class: Start add public id at " + new Date());
-
 		
-		/*
-		 * Add the public ID - before used to be in create class transaction, but now it
-		 * is done as a separate operation, because it often fails, and because of an
-		 * impossible to diagnose ClassNotFound for the
-		 * org.apache.http.client.ClientProtocolException
-		 */
-		try {
-			publicId = ICDIDUtil.getPublicId(cls.getName());
-			if (publicId == null) {
-				Log.getLogger().warning("Could not get public ID for newly created class: " + cls.getName());
-			} else {
-				cls.setPropertyValue(cm.getPublicIdProperty(), publicId);
-			}
-			// TT - 2016.04.23 - Throwable because of the ClassNotFound error, which we
-			// could not diagnose
-		} catch (Throwable e) {
-			Log.getLogger().log(Level.WARNING, "Could not add public ID in " + projectName + " for class: " + clsName,
-					e);
-		}
-		
-		Log.getLogger().info("Create class: End add public at " + new Date());
 		
 		// TODO: If the class creation fails for some reason, and the code makes it so
 		// far, then we
@@ -181,12 +156,49 @@ public class ICDServiceImpl extends OntologyServiceImpl implements ICDService {
 		}
 
 		entityData.setTypes(createEntityList(cls.getDirectTypes()));
-		entityData.setProperty(ICDClassTreePortlet.PUBLIC_ID_PROP, publicId);
+		
+		//Retrieving the public id from the WHO ID server is done now with a separate remote call,
+		//retrievePublicId, to speed up class creation
+		
+		//entityData.setProperty(ICDClassTreePortlet.PUBLIC_ID_PROP, publicId);
 
 		Log.getLogger().info("Create class: Ended create class at " + new Date());
 		return entityData;
 	}
 
+	
+	public String retrievePublicId(String projectName, String clsName) {
+		Log.getLogger().info("Retrieve public id: Start add public id at " + new Date());
+
+		Project project = getProject(projectName);
+		KnowledgeBase kb = project.getKnowledgeBase();
+
+		RDFSNamedClass cls = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass( ((OWLModel) kb), clsName);
+		if (cls == null) {
+			Log.getLogger().severe("Could not retrieve public id for class: " + clsName + " because class is null.");
+			return null;
+		}
+		
+		ICDContentModel cm = new ICDContentModel((OWLModel) kb);
+		String publicId = null;
+		
+		try {
+			publicId = ICDIDUtil.getPublicId(cls.getName());
+			if (publicId == null) {
+				Log.getLogger().warning("Could not get public ID for class: " + cls.getName());
+			} else {
+				cls.setPropertyValue(cm.getPublicIdProperty(), publicId);
+			}
+			// TT - 2016.04.23 - Throwable because of the ClassNotFound error, which we could not diagnose
+		} catch (Throwable e) {
+			Log.getLogger().log(Level.WARNING, "Could not add public ID in " + projectName + " for class: " + clsName, e);
+		}
+		
+		Log.getLogger().info("Retrieve public id: End add public at " + new Date());
+		
+		return publicId;
+	}
+	
 	private boolean checkAndRecreateIndex(OWLModel owlModel, Collection<String> superClsNames, boolean recreateIndex) {
 		boolean success = true;
 		for (String superclsname : superClsNames) {
