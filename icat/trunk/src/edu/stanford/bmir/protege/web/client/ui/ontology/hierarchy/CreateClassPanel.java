@@ -315,12 +315,12 @@ public class CreateClassPanel extends FormPanel implements Selectable {
             
             GWT.log("Fire subclass added. Subclass: " + entityData.getBrowserText() + ", parent: "  + parentsField.getClsValue().getBrowserText());
             
-            List<EntityData> parents = new ArrayList<EntityData>();
-            parents.add(parentsField.getClsValue());
+            List<EntityData> subclsList = new ArrayList<EntityData>();
+            subclsList.add(entityData);
             
             //fire rename to update class tree
-            project.fireOntologyEvent(new EntityCreateEvent(entityData,EventType.SUBCLASS_ADDED, 
-            		GlobalSettings.getGlobalSettings().getUserName(), parents, 0));
+            project.fireOntologyEvent(new EntityCreateEvent(parentsField.getClsValue(),EventType.SUBCLASS_ADDED, 
+            		GlobalSettings.getGlobalSettings().getUserName(), subclsList, 0));
         }
 
 		private void retrievePublicId(EntityData entityData) {
