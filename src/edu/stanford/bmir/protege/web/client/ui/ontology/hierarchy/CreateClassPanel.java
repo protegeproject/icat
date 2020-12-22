@@ -1,6 +1,8 @@
 package edu.stanford.bmir.protege.web.client.ui.ontology.hierarchy;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Timer;
@@ -21,6 +23,8 @@ import com.gwtext.client.widgets.layout.AnchorLayoutData;
 import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
 import edu.stanford.bmir.protege.web.client.model.PermissionConstants;
 import edu.stanford.bmir.protege.web.client.model.Project;
+import edu.stanford.bmir.protege.web.client.model.event.EntityCreateEvent;
+import edu.stanford.bmir.protege.web.client.model.event.EventType;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.ChAOServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
@@ -297,9 +301,6 @@ public class CreateClassPanel extends FormPanel implements Selectable {
             if (entityData != null) {
                 createNote(entityData, getOperationDescription(), getReasonForChange()); //create note
                 titleField.reset();
-                
-                //retrieve the public id
-                retrievePublicId(entityData);
             } else {
                 GWT.log("Problem at creating class", null);
                 MessageBox.alert("Class creation failed. Please try again later.");
@@ -307,10 +308,26 @@ public class CreateClassPanel extends FormPanel implements Selectable {
             if (asyncCallback != null) {
                 asyncCallback.onSuccess(entityData);
             }
-            refreshFromServer();
+            
+            retrievePublicId(entityData);
+            
+            //refreshFromServer();
+            
+            GWT.log("Fire subclass added. Subclass: " + entityData.getBrowserText() + ", parent: "  + parentsField.getClsValue().getBrowserText());
+            
+            List<EntityData> parents = new ArrayList<EntityData>();
+            parents.add(parentsField.getClsValue());
+            
+            //fire rename to update class tree
+            project.fireOntologyEvent(new EntityCreateEvent(entityData,EventType.SUBCLASS_ADDED, 
+            		GlobalSettings.getGlobalSettings().getUserName(), parents, 0));
         }
 
 		private void retrievePublicId(EntityData entityData) {
+			if (entityData == null) {
+				return;
+			}
+			
 			String clsName = entityData.getName();
 			if (clsName == null) {
 				return;
