@@ -27,6 +27,10 @@ public class ICDServiceManager extends WHOFICServiceManager {
                boolean createICDSpecificEntities, String user, String operationDescription, String reasonForChange, AsyncCallback<EntityData> cb) {
         proxy.createICDCls(projectName, clsName, superClsNames, title, sortingLabel, createICDSpecificEntities, user, operationDescription, reasonForChange, cb);
     }
+    
+    public void retrievePublicId(String projectName, String clsName, AsyncCallback<String> cb) {
+    	proxy.retrievePublicId(projectName, clsName, cb);
+    }
 
     public void exportICDBranch(String projectName, String topNode, String userName,  AsyncCallback<String> cb){
         proxy.exportICDBranch(projectName, topNode, userName, cb);

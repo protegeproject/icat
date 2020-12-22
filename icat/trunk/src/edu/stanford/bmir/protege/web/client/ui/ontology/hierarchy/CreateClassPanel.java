@@ -297,6 +297,9 @@ public class CreateClassPanel extends FormPanel implements Selectable {
             if (entityData != null) {
                 createNote(entityData, getOperationDescription(), getReasonForChange()); //create note
                 titleField.reset();
+                
+                //retrieve the public id
+                retrievePublicId(entityData);
             } else {
                 GWT.log("Problem at creating class", null);
                 MessageBox.alert("Class creation failed. Please try again later.");
@@ -306,6 +309,28 @@ public class CreateClassPanel extends FormPanel implements Selectable {
             }
             refreshFromServer();
         }
+
+		private void retrievePublicId(EntityData entityData) {
+			String clsName = entityData.getName();
+			if (clsName == null) {
+				return;
+			}
+			
+			ICDServiceManager.getInstance().retrievePublicId(project.getProjectName(), clsName, 
+					new AsyncCallback<String>() {
+
+				@Override
+				public void onFailure(Throwable caught) {
+					GWT.log("Could not retrieve public id for class: " + clsName + ". Title: " + entityData.getBrowserText());
+				}
+
+				@Override
+				public void onSuccess(String publicId) {
+					entityData.setProperty(ICDClassTreePortlet.PUBLIC_ID_PROP, publicId);
+				}
+			});
+			
+		}
 
     }
 }
