@@ -25284,7 +25284,7 @@
 														</entry>
 														<entry>
 															<string>field_editor</string>
-															<string>html</string>
+															<string>multiline</string>
 														</entry>
 													</map>
 												</entry>
