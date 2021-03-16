@@ -1248,6 +1248,7 @@
 												    <string>showOnlyForGroups</string>
 												    <list>
 													    <string>WHOTeam</string>
+													    <string>ExternalReferencesEditors</string>
 												    </list>
 											    </entry>
 												<entry>
@@ -1906,6 +1907,7 @@
 												    <string>showOnlyForGroups</string>
 												    <list>
 													    <string>WHOTeam</string>
+													    <string>ExternalReferencesEditors</string>
 												    </list>
 											    </entry>
 												<entry>
