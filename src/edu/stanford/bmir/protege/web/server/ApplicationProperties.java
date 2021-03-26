@@ -102,7 +102,7 @@ public class ApplicationProperties {
     }
 
     public static URI getLocalMetaprojectURI() {
-        String path = edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.LOCAL_METAPROJECT_PATH_PROP);
+        String path = getApplicationOrEnvProperty(ApplicationPropertyNames.LOCAL_METAPROJECT_PATH_PROP);
         if (path == null) {
             path = FileUtil.getRealPath() + LOCAL_METAPROJECT_PATH_DEFAULT;
         }
@@ -111,22 +111,22 @@ public class ApplicationProperties {
     }
 
     public static String getProtegeServerHostName() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.PROTEGE_SERVER_HOSTNAME_PROP,
+        return getApplicationOrEnvProperty(ApplicationPropertyNames.PROTEGE_SERVER_HOSTNAME_PROP,
                 PROTEGE_SERVER_HOSTNAME_DEFAULT);
     }
 
     static String getProtegeServerUser() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.PROTEGE_SERVER_USER_PROP,
+        return getApplicationOrEnvProperty(ApplicationPropertyNames.PROTEGE_SERVER_USER_PROP,
                 PROTEGE_SERVER_USER_DEFAULT);
     }
 
     static String getProtegeServerPassword() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.PROTEGE_SERVER_PASSWORD_PROP,
+        return getApplicationOrEnvProperty(ApplicationPropertyNames.PROTEGE_SERVER_PASSWORD_PROP,
                 PROTEGE_SERVER_PASSWORD_DEFAULT);
     }
 
     public static boolean getLoadOntologiesFromServer() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getBooleanProperty(
+        return getBooleanProperty(
                 ApplicationPropertyNames.LOAD_ONTOLOGIES_FROM_PROTEGE_SERVER_PROP, LOAD_ONTOLOGIES_FROM_PROTEGE_SERVER_DEFAULT);
     }
 
@@ -136,59 +136,59 @@ public class ApplicationProperties {
     }
 
     public static String getSmtpHostName() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.EMAIL_SMTP_HOST_NAME_PROP, "");
+        return getApplicationOrEnvProperty(ApplicationPropertyNames.EMAIL_SMTP_HOST_NAME_PROP, "");
     }
 
     public static String getSmtpPort() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.EMAIL_SMTP_PORT_PROP, "");
+        return getApplicationOrEnvProperty(ApplicationPropertyNames.EMAIL_SMTP_PORT_PROP, "");
     }
 
     public static String getSslFactory() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.EMAIL_SSL_FACTORY_PROP, "javax.net.ssl.SSLSocketFactory");
+        return getApplicationOrEnvProperty(ApplicationPropertyNames.EMAIL_SSL_FACTORY_PROP, "javax.net.ssl.SSLSocketFactory");
     }
 
     public static String getEmailAccount() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.EMAIL_ACCOUNT_PROP, "");
+        return getApplicationOrEnvProperty(ApplicationPropertyNames.EMAIL_ACCOUNT_PROP, "");
     }
 
     public static String getEmailPassword() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.EMAIL_PASSWORD_PROP, "");
+        return getApplicationOrEnvProperty(ApplicationPropertyNames.EMAIL_PASSWORD_PROP, "");
     }
 
     public static String getApplicationName() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.APPLICATION_NAME_PROP,
+        return getApplicationOrEnvProperty(ApplicationPropertyNames.APPLICATION_NAME_PROP,
                 APPLICATION_NAME_DEFAULT);
     }
 
     public static boolean getWebProtegeAuthenticateWithOpenId() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getBooleanProperty(
+        return getBooleanProperty(
                 ApplicationPropertyNames.WEBPROTEGE_AUTHENTICATE_WITH_OPENID_PROP, WEBPROTEGE_AUTHENTICATE_WITH_OPENID_DEFAULT);
     }
 
     public static boolean getLoginWithHttps() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getBooleanProperty(
+        return getBooleanProperty(
                 ApplicationPropertyNames.LOGIN_WITH_HTTPS_PROP, LOGIN_WITH_HTTPS_DEFAULT);
     }
 
     public static String getApplicationHttpsPort() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getString(
+        return getApplicationOrEnvProperty(
                 ApplicationPropertyNames.APPLICATION_PORT_HTTPS_PROP, ApplicationPropertyDefaults.APPLICATION_PORT_HTTPS_DEFAULT);
     }
 
     public static String getICDExportDirectory() {
-        String exportPath =  edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.ICD_EXPORT_DIR_PROP, ICD_EXPORT_PATH_DEFAULT);
+        String exportPath =  getApplicationOrEnvProperty(ApplicationPropertyNames.ICD_EXPORT_DIR_PROP, ICD_EXPORT_PATH_DEFAULT);
         exportPath = exportPath.endsWith(File.separator) ? exportPath : exportPath + File.separator;
         return exportPath;
     }
 
     public static String getDownloadServerPath() {
-        String exportPath =  edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.DOWNLOAD_SERVER_PATH_PROP, ".");
+        String exportPath =  getApplicationOrEnvProperty(ApplicationPropertyNames.DOWNLOAD_SERVER_PATH_PROP, ".");
         exportPath = exportPath.endsWith(File.separator) ? exportPath : exportPath + File.separator;
         return exportPath;
     }
 
     public static String getDownloadClientRelPath() {
-        String exportPath =  edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.DOWNLOAD_CLIENT_REL__PATH_PROP, "");
+        String exportPath =  getApplicationOrEnvProperty(ApplicationPropertyNames.DOWNLOAD_CLIENT_REL__PATH_PROP, "");
         exportPath = exportPath.endsWith("/") ? exportPath : exportPath + "/";
         return exportPath;
     }
@@ -199,16 +199,16 @@ public class ApplicationProperties {
     }
 
     public static String getApplicationUrl() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.APPLICATION_URL_PROP, APPLICATION_URL_DEFAULT);
+        return getApplicationOrEnvProperty(ApplicationPropertyNames.APPLICATION_URL_PROP, APPLICATION_URL_DEFAULT);
     }
 
     public static Boolean getImmediateThreadsEnabled() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getBooleanProperty(ApplicationPropertyNames.ENABLE_IMMEDIATE_NOTIFICATION,
+        return getBooleanProperty(ApplicationPropertyNames.ENABLE_IMMEDIATE_NOTIFICATION,
                 ENABLE_IMMEDIATE_NOTIFICATION_DEFAULT);
     }
 
     public static Boolean getAllNotificationEnabled() {
-        return edu.stanford.smi.protege.util.ApplicationProperties.getBooleanProperty(ApplicationPropertyNames.ENABLE_ALL_NOTIFICATION,
+        return getBooleanProperty(ApplicationPropertyNames.ENABLE_ALL_NOTIFICATION,
                 ENABLE_ALL_NOTIFICATION_DEFAULT);
     }
 
@@ -238,9 +238,68 @@ public class ApplicationProperties {
     }
 
     public static String getUploadDirectory() {
-        String uploadDir =  edu.stanford.smi.protege.util.ApplicationProperties.getString(ApplicationPropertyNames.UPLOAD_DIR_PROP, UPLOAD_DIRECTORY_DEFAULT);
+        String uploadDir =  getApplicationOrEnvProperty(ApplicationPropertyNames.UPLOAD_DIR_PROP, UPLOAD_DIRECTORY_DEFAULT);
         uploadDir = uploadDir.endsWith(File.separator) ? uploadDir : uploadDir + File.separator;
         return uploadDir;
+    }
+    
+    
+    
+    public static String getApplicationOrEnvProperty(String name) {
+        return getApplicationOrEnvProperty(name, null);
+    }
+
+    
+    /***** Util methods ******/
+    
+    public static String getApplicationOrEnvProperty(String name, String defaultValue) {
+        String value = null;
+    
+    	try {
+    		value = System.getenv(name.replaceAll("\\.", "_"));
+		} catch (SecurityException e) {
+			// do nothing, it happens if there is a SecurityManager
+		}
+      
+        if (value == null) {
+        	value = edu.stanford.smi.protege.util.ApplicationProperties.getString(name);
+        	
+        	if (value == null) {
+        		value = defaultValue;
+        	}
+        }
+        
+        System.out.println(name + " -> " + value);
+        return value;
+    }
+    
+    public static boolean getBooleanProperty(String name, boolean defaultValue) {
+        boolean value = defaultValue;
+        String strValue = null;
+        
+        try {
+    		strValue = System.getenv(name.replaceAll("\\.", "_"));
+    		
+    		if (strValue != null) {
+    			value = Boolean.valueOf(strValue).booleanValue();
+    		}
+		} catch (Exception e) {
+			// do nothing, it happens if there is a SecurityManager
+		}
+     
+        if (strValue == null) { //property not found in the env vars, try to get it from protege.properties
+        	strValue = edu.stanford.smi.protege.util.ApplicationProperties.getApplicationProperties().getProperty(name);
+            
+        	if (strValue != null) { //found in protege.properties
+	            try {
+	                value = Boolean.valueOf(strValue).booleanValue();
+	            } catch (Exception e) {
+	                // do nothing
+	            }
+        	}
+        }
+    
+        return value;
     }
         
     public static HashMap<String, String> getPropertiesForClient(){
