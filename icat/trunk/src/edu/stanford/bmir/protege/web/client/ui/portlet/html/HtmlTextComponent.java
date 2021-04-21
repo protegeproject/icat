@@ -78,7 +78,8 @@ public class HtmlTextComponent extends Panel {
                 }
 
                 public void onError(Request request, Throwable exception) {
-                    String responseHtmlText = exception.getMessage();
+                    //String responseHtmlText = exception.getMessage();
+                	String responseHtmlText = "(Error at retrieving: " + loadURL + ")";
                     replaceHTML(responseHtmlText);
                 }
             });
