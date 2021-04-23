@@ -8,6 +8,7 @@ import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTML;
 import com.gwtext.client.widgets.Panel;
 import com.gwtext.client.widgets.layout.AnchorLayout;
@@ -70,6 +71,8 @@ public class HtmlTextComponent extends Panel {
     private RequestBuilder getURLRequester() {
         if (requestBuilder == null) {
             requestBuilder = new RequestBuilder(RequestBuilder.GET, loadURL);
+            GWT.log("Retrieving for HTML message portlet: " + requestBuilder.getUrl() + ". Host page: " + Window.Location.getHost() +
+            		". Href: " + Window.Location.getHref());
             requestBuilder.setCallback(new RequestCallback() {
 
                 public void onResponseReceived(Request request, Response response) {
