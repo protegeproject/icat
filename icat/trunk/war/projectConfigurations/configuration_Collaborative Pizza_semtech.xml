@@ -106,7 +106,7 @@
 						</entry>
 						<entry>
 							<!-- >string>load_url</string>
-							<string>../html/twitter.html</string -->
+							<string>html/twitter.html</string -->
 							<string>text</string>
 							<string>
 Twitter widget to be included...

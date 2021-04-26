@@ -26,12 +26,22 @@
             <width>0</width>
           </portlet>
           <portlet>
+            <name>edu.stanford.bmir.protege.web.client.ui.ontology.restrictions.HTMLRestrictionsPortlet</name>
+            <height>110</height>
+            <width>0</width>
+          </portlet>
+          <portlet>
             <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.AllPropertiesPortlet</name>
             <height>220</height>
+            <width>0</width>
+          </portlet>
+          <portlet>
+            <name>edu.stanford.bmir.protege.web.client.ui.icd.SearchPortlet</name>
+            <height>55</height>
             <width>0</width>
           </portlet>
         </portlets>
       </column>
     </columns>
-    <controllingPortlet reference="../columns/column/portlets/portlet"/>
+    <controllingPortlet reference="../columns/column[2]/portlets/portlet[5]"/>
   </tab>

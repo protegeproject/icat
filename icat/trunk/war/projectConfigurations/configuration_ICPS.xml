@@ -89,7 +89,7 @@
 						<!--</entry>-->
 						<!--<entry>-->
 							<!--<string>load_url</string>-->
-							<!--<string>../html/stats.html</string>-->
+							<!--<string>html/stats.html</string>-->
 						<!--</entry>-->
 					<!--</properties>-->
 					<!--</portlet>-->
@@ -104,7 +104,7 @@
 						</entry>
 						<entry>
 							<string>load_url</string>
-							<string>../html/icps-welcome.html</string>
+							<string>html/icps-welcome.html</string>
 						</entry>
 					</properties>
 					</portlet>
@@ -1178,7 +1178,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_events_relating_to_a_healthcare_provision.html</string>
+													<string>html/ruler_events_relating_to_a_healthcare_provision.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -1200,7 +1200,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_nature.html</string>
+													<string>html/ruler_nature.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -1329,7 +1329,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_discovery_detection.html</string>
+													<string>html/ruler_discovery_detection.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -1454,7 +1454,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_reporting.html</string>
+													<string>html/ruler_reporting.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -2739,7 +2739,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_personal_factors.html</string>
+													<string>html/ruler_personal_factors.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -3011,7 +3011,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_environmental_factors.html</string>
+													<string>html/ruler_environmental_factors.html</string>
 												</entry>
 											</map>
 										</entry>

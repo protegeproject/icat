@@ -107,7 +107,7 @@
 						<entry>
 							<string>load_url</string>
 							<string>html/ici-welcome.html</string>
-							<!--string>../html/ici-welcome.html</string-->
+							<!--string>html/ici-welcome.html</string-->
 						</entry>
 					</properties>
 					</portlet>
@@ -128,7 +128,7 @@
 						<entry>
 							<string>load_url</string>
 							<string>html/ici-stats.html</string>
-							<!--string>../html/ici-stats.html</string-->
+							<!--string>html/ici-stats.html</string-->
 						</entry>
 					</properties>
 					</portlet>
@@ -2677,7 +2677,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_pc_value_hierarchy.html</string>
+													<string>html/ruler_pc_value_hierarchy.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -4046,7 +4046,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_pc_fixed_scales.html</string>
+													<string>html/ruler_pc_fixed_scales.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -4168,7 +4168,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_pc_precoordination.html</string>
+													<string>html/ruler_pc_precoordination.html</string>
 												</entry>
 											</map>
 										</entry-->
