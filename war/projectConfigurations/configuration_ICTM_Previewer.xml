@@ -4225,7 +4225,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_understanding.html</string>
+													<string>html/ruler_understanding.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -4247,7 +4247,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_communication.html</string>
+													<string>html/ruler_communication.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -4269,7 +4269,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_mobility.html</string>
+													<string>html/ruler_mobility.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -4291,7 +4291,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_self-care.html</string>
+													<string>html/ruler_self-care.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -4313,7 +4313,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_interpersonal_relations.html</string>
+													<string>html/ruler_interpersonal_relations.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -4335,7 +4335,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_life_activities.html</string>
+													<string>html/ruler_life_activities.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -4357,7 +4357,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_social_participation.html</string>
+													<string>html/ruler_social_participation.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -4379,7 +4379,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_children_and_youth.html</string>
+													<string>html/ruler_children_and_youth.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -6358,7 +6358,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_legacy.html</string>
+													<string>html/ruler_legacy.html</string>
 												</entry>
 											</map>
 										</entry>

@@ -5739,7 +5739,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_pc_value_hierarchy.html</string>
+													<string>html/ruler_pc_value_hierarchy.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -6366,7 +6366,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_pc_empty.html</string>
+													<string>html/ruler_pc_empty.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -12038,7 +12038,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_pc_ec_value_hierarchy.html</string>
+													<string>html/ruler_pc_ec_value_hierarchy.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -12931,7 +12931,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_pc_value_hierarchy.html</string>
+													<string>html/ruler_pc_value_hierarchy.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -13558,7 +13558,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_pc_empty.html</string>
+													<string>html/ruler_pc_empty.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -17270,7 +17270,7 @@
 																</entry>
 																<entry>
 																	<string>load_url</string>
-																	<string>../html/ruler_ld_ec_axes.html</string>
+																	<string>html/ruler_ld_ec_axes.html</string>
 																</entry>
 															</map>
 														</entry-->
@@ -18710,7 +18710,7 @@
 																</entry>
 																<entry>
 																	<string>load_url</string>
-																	<string>../html/ruler_ld_gen_axes.html</string>
+																	<string>html/ruler_ld_gen_axes.html</string>
 																</entry>
 															</map>
 														</entry-->
@@ -22321,7 +22321,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/proxy_risk_factors.html</string>
+													<string>html/proxy_risk_factors.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -22358,7 +22358,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/under_construction.html</string>
+													<string>html/under_construction.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -22522,7 +22522,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/proxy_severity_scale.html</string>
+													<string>html/proxy_severity_scale.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -22544,7 +22544,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_severity_qualifier.html</string>
+													<string>html/ruler_severity_qualifier.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -22566,7 +22566,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/instr_severity_qualifier.html</string>
+													<string>html/instr_severity_qualifier.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -22692,7 +22692,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_understanding.html</string>
+													<string>html/ruler_understanding.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -22714,7 +22714,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_communication.html</string>
+													<string>html/ruler_communication.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -22736,7 +22736,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_mobility.html</string>
+													<string>html/ruler_mobility.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -22758,7 +22758,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_self-care.html</string>
+													<string>html/ruler_self-care.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -22780,7 +22780,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_interpersonal_relations.html</string>
+													<string>html/ruler_interpersonal_relations.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -22802,7 +22802,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_life_activities.html</string>
+													<string>html/ruler_life_activities.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -22824,7 +22824,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_social_participation.html</string>
+													<string>html/ruler_social_participation.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -22846,7 +22846,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_children_and_youth.html</string>
+													<string>html/ruler_children_and_youth.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -24865,7 +24865,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_legacy.html</string>
+													<string>html/ruler_legacy.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -25205,7 +25205,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/under_construction.html</string>
+													<string>html/under_construction.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -27876,7 +27876,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_ED_TAG_responsability.html</string>
+													<string>html/ruler_ED_TAG_responsability.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -27898,7 +27898,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/instr_TAG_responsability.html</string>
+													<string>html/instr_TAG_responsability.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -28066,7 +28066,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/ruler_ED_display_status.html</string>
+													<string>html/ruler_ED_display_status.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -28088,7 +28088,7 @@
 												</entry>
 												<entry>
 													<string>load_url</string>
-													<string>../html/instr_display_status.html</string>
+													<string>html/instr_display_status.html</string>
 												</entry>
 											</map>
 										</entry>
@@ -28851,7 +28851,7 @@
 						</entry>
 						<entry>
 							<string>load_url</string>
-							<string>../html/welcome.html</string>
+							<string>html/welcome.html</string>
 						</entry>
 					</properties>
 					</portlet>
