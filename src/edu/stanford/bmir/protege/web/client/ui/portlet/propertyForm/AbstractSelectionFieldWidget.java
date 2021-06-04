@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Anchor;
@@ -13,6 +14,7 @@ import com.gwtext.client.widgets.Button;
 import com.gwtext.client.widgets.Panel;
 import com.gwtext.client.widgets.Window;
 import com.gwtext.client.widgets.event.ButtonListenerAdapter;
+import com.gwtext.client.widgets.form.Field;
 import com.gwtext.client.widgets.layout.FitLayout;
 
 import edu.stanford.bmir.protege.web.client.model.Project;
@@ -116,4 +118,13 @@ public abstract class AbstractSelectionFieldWidget extends TextFieldWidget {
         getField().setReadOnly(true);
     }
 
+    //testing
+//    @Override
+//    protected void displayValues() {
+//    	GWT.log("called AbstractSelectionFieldWidget.displayValues");
+//    	Field f = getField();
+//    	GWT.log("Field: " + f + "; isVisible: " + f.isVisible());
+//    	
+//    	super.displayValues();
+//    }
 }

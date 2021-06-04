@@ -1,10 +1,13 @@
 package edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm;
 
+import java.util.Collection;
 import java.util.Map;
 
 import com.gwtext.client.widgets.Window;
+import com.gwtext.client.widgets.form.Field;
 
 import edu.stanford.bmir.protege.web.client.model.Project;
+import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.ui.generated.ClassTreeFactory;
 import edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet;
@@ -52,5 +55,24 @@ public class ClassSelectionFieldWidget extends AbstractSelectionFieldWidget {
 		return classTreePortlet;
 	}
 	
-	
+//	@Override
+//	public void setValues(Collection<EntityData> values) {
+//		EntityData firstValue = null;
+//		if ( ! values.isEmpty()) {
+//			firstValue = values.iterator().next();
+//		}
+//		Field field = getField();
+//		field.setValue(firstValue.getBrowserText() + "++");
+//		if ( ! field.isRendered() ) {
+//			field.render(getWrappingPanel().getElement());
+//		}
+//		//TODO likely we should comment this
+//		//super.setValues(values);
+//	}
+//	
+//	@Override
+//	public Field getField() {
+//		// TODO Auto-generated method stub
+//		return super.getField();
+//	}
 }

@@ -141,6 +141,8 @@ public class PropertyFieldPortlet extends AbstractEntityPortlet {
         for (PropertyWidget widget : widgets) {
             widget.setSubject(subject);
         }
+        
+        adjustWidgetsBasedOnType(subject);
     }
 
 
@@ -272,6 +274,16 @@ public class PropertyFieldPortlet extends AbstractEntityPortlet {
         wrappingPanel.activate(0);
         wrappingPanel.doLayout();
         return formGenerator;
+    }
+
+    protected void adjustWidgetsBasedOnType(EntityData newEntity) {
+    	Collection<PropertyWidget> widgets = formGenerator.getWidgets();
+    	Collection<EntityData> types = newEntity.getTypes();
+    	for (PropertyWidget widget : widgets) {
+    		if (widget.isTypeSensitive()) {
+    			widget.changeVisibilityBasedOnSubjectType(types);
+    		}
+    	}
     }
     
     @Override

@@ -18,7 +18,7 @@ import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstant
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormGenerator;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
-public class PreCoordinationWidget extends AbstractPropertyWidget {
+public class PreCoordinationWidget extends AbstractPropertyWidget implements SuperclassSelectorContainer {
 
 	private Panel wrappingPanel;
 	private SuperclassSelectorWidget superclassSelector;
@@ -56,9 +56,14 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
 		return wrappingPanel;
 	}
 	
-	private SuperclassSelectorWidget createSuperClassSelectorWidget() {
+	@Override
+	public SuperclassSelectorWidget createSuperClassSelectorWidget() {
 		SuperclassSelectorWidget superclassSelector = null;
 		Map<String, Object> propConfigMap = (Map<String, Object>) getWidgetConfiguration().get(FormConstants.SUPERCLASS_SELECTOR);
+		if ( propConfigMap == null ) {
+			GWT.log("Warning: there is no superclass selector widget specified in the configuration of " + this);
+			return null;
+		}
 		for (String prop : propConfigMap.keySet()) {
 			Object value = propConfigMap.get(prop);
 			if (value instanceof Map) {
@@ -68,6 +73,7 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
 						widget != null && widget.getComponent() != null && 
 						UIUtil.getIntegerConfigurationProperty(config, FormConstants.INDEX, 0) == 0) {
 					superclassSelector = widget;
+					break;
 				}
 			}
 		}
@@ -85,7 +91,7 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
 		FormGenerator formGenerator = widgetController.getFormGenerator();
 		SuperclassSelectorWidget superclassSelector = formGenerator.createPreCoordinationSuperclassWidget(configMap, prop, widgetController);
 		
-		superclassSelector.setPreCoordinationWidget(this);
+		superclassSelector.setContainerWidget(this);
 		return superclassSelector;
 	}
 
@@ -164,6 +170,7 @@ public class PreCoordinationWidget extends AbstractPropertyWidget {
     	// which will have their values set through different mechanisms
     }
 
+    @Override
 	public void onSuperclassChanged(EntityData newSuperclass) {
 		widgetController.onSuperclassChanged(newSuperclass);
 	}

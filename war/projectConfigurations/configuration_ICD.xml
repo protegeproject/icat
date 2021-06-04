@@ -17053,12 +17053,187 @@
 
 									<xi:include href="tabs_ICD/PostCoordination_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
+<!-- ICD International -> Necessary conditions -->
+									<map>
+										<entry>
+											<string>title</string>
+											<string>Logical Description</string>
+										</entry>
+
+										<entry>
+											<string>headerCssClass</string>
+											<string>spec-tab-header1</string>
+										</entry>
+										
+										<!-- entry>
+											<string>types_any</string>
+											<list>
+												<string>http://who.int/icd#PostcoordinationSection</string>
+											</list>
+										</entry-->
+												<!--string>http://who.int/icd#ClinicalDescriptionSection</string-->
+												<!--string>http://who.int/icd#ExternalCauseSection</string-->
+												<!--string>http://who.int/icd#LinearizationSection</string-->
+										
+										<entry>
+											<string>LDLogicalDefinitionRuler</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>LDLogicalDefinitionRuler</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>htmlMessage</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>0</string>
+												</entry>
+												<entry>
+													<string>load_url</string>
+													<string>html/ruler_ld_nec_and_suff_conditions.html</string>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>LogicalDefinition</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>LogicalDefinition</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Logical Definition</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#logicalDefinition</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>logical_definition_comp</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>1</string>
+												</entry>
+												<entry>
+													<string>root_class</string>
+													<string>@root_class@</string>
+												</entry>
+																				
+												<entry>
+													<string>superclass_selector</string>
+													<map>
+														<entry>
+															<string>http://who.int/icd#precoordinationSuperclass</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>PCPrecSuperclass</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Select superclass</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Precoordination superclass</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#precoord_superclass</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_superclass</string>
+																</entry>
+																<!-- entry>
+																	<string>index</string>
+																	<string>0</string>
+																</entry -->
+															</map>
+														</entry>
+													</map>
+												</entry>
+												
+												<xi:include href="tabs_ICD/LogicalDefinitionProperties.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+											</map>
+										</entry>
+														
+										<entry>
+											<string>LDNecessaryConditionsRuler</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>LDNecessaryConditionsRuler</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>htmlMessage</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>2</string>
+												</entry>
+												<entry>
+													<string>load_url</string>
+													<string>html/ruler_ld_nec_conditions.html</string>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>NecessaryConditions</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>NecessaryConditions</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Necessary Conditions</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#necessaryConditions</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>necessary_cond_comp</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>3</string>
+												</entry>
+												<entry>
+													<string>root_class</string>
+													<string>@root_class@</string>
+												</entry>
+												
+												<xi:include href="tabs_ICD/LogicalDefinitionProperties.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+											</map>
+										</entry>
+										
+									</map>
 
 <!-- ICD International -> Pre-coordination (all ICD, incl. External Causes)-->
 									<map>
 										<entry>
 											<string>title</string>
-											<string>Logical Definitions</string>
+											<string>Logical Definitions (old)</string>
 										</entry>
 
 										<entry>

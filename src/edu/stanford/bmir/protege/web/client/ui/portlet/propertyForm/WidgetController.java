@@ -71,6 +71,14 @@ public class WidgetController {
 
 	public void showWidgetForProperty(String propertyName) {
 		PropertyWidget widget = getWidgetForProperty(propertyName);
+		showWidget(widget);
+	}
+
+	public boolean isWidgetHidden(PropertyWidget widget) {
+		return widget.getComponent().isHidden();
+	}
+	
+	public void showWidget(PropertyWidget widget) {
 		if (widget != null) {
 			boolean isHidden = new WidgetConfiguration(widget.getWidgetConfiguration()).getBooleanProperty(FormConstants.HIDDEN, false);
 			if ( ! isHidden ) {
@@ -85,7 +93,10 @@ public class WidgetController {
 			initProperty2WidgetMap();
 		}
 		
-		return property2Widget.get(propertyName);
+		PropertyWidget propertyWidget = property2Widget.get(propertyName);
+		//TODO:just experimenting with this. delete it if not needed
+		//showWidget(propertyWidget);
+		return propertyWidget;
 	}
 	
 	protected List<String> getAllProperties() {

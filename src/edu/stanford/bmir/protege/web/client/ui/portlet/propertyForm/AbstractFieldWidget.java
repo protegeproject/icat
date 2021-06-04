@@ -80,8 +80,13 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
             wrappingPanel.add(widget);
         }
 
-        wrappingPanel.add(deleteLink);
-        wrappingPanel.add(commentLink);
+        if (showDeleteButton()) {
+        	wrappingPanel.add(deleteLink);
+        }
+        if (showCommentButton()) {
+        	wrappingPanel.add(commentLink);
+        }
+        
         return wrappingPanel;
     }
 
@@ -95,32 +100,27 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
         return new ArrayList<Widget>();
     }
 
+    protected boolean showDeleteButton() {
+    	return true;
+    }
+    
+    protected boolean showCommentButton() {
+    	return true;
+    }
+    
     protected Anchor createDeleteHyperlink() {
+    	if ( ! showDeleteButton() ) {
+    		deleteLink = null;
+    		return deleteLink;
+    	}
+    	
         deleteLink = new Anchor("&nbsp<img src=\"images/delete.png\" " + AbstractFieldWidget.DELETE_ICON_STYLE_STRING + "></img>", true);
         deleteLink.setWidth("22px");
         deleteLink.setHeight("22px");
         deleteLink.setTitle("Delete this value");
         deleteLink.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-            	//we have to check the read-only status at the time of the mouse click,
-            	//because at the time of the widget creation (and initialization) we don't
-            	//know the value of the read_only property (it will be set only later in the setup method)
-            	if (isReadOnly() || isDisabled()) {
-            		deleteLink.setTitle("Delete operation is not allowed!");
-            		return;
-            	}
-                if (isWriteOperationAllowed()) {
-                    MessageBox.confirm("Confirm", "Are you sure you want to delete this value?",
-                        new MessageBox.ConfirmCallback() {
-                            public void execute(String btnID) {
-                                if (btnID.equals("yes")) {
-                                    deletePropertyValue(getSubject(), getProperty().getName(),
-                                            getProperty().getValueType(), UIUtil.getFirstItem(values),
-                                            field.getRawValue(), getDeleteValueOperationDescription());
-                                }
-                            }
-                        });
-                }
+            	deleteFieldValue();
             }
         });
         return deleteLink;
@@ -133,6 +133,27 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
 		wrappingPanel.doLayout();
 	}
 
+	public void deleteFieldValue() {
+		//we have to check the read-only status at the time of the mouse click,
+    	//because at the time of the widget creation (and initialization) we don't
+    	//know the value of the read_only property (it will be set only later in the setup method)
+    	if (isReadOnly() || isDisabled()) {
+    		deleteLink.setTitle("Delete operation is not allowed!");
+    		return;
+    	}
+        if (isWriteOperationAllowed()) {
+            MessageBox.confirm("Confirm", "Are you sure you want to delete this value?",
+                new MessageBox.ConfirmCallback() {
+                    public void execute(String btnID) {
+                        if (btnID.equals("yes")) {
+                            deletePropertyValue(getSubject(), getProperty().getName(),
+                                    getProperty().getValueType(), UIUtil.getFirstItem(values),
+                                    field.getRawValue(), getDeleteValueOperationDescription());
+                        }
+                    }
+                });
+        }
+	}
 
     //TODO - check if this is ICD specific
     protected String getDeleteValueOperationDescription() {
@@ -150,7 +171,7 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
                 .getName());
     }
 
-    protected Field createField() {
+	protected Field createField() {
         field = createFieldComponent();
         attachFieldChangeListener();
         return field;
@@ -262,6 +283,11 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
     }
 
     protected Anchor createCommentHyperLink() {
+    	if ( ! showCommentButton() ) {
+    		commentLink = null;
+    		return commentLink;
+    	}
+    	
         String text = "<img src=\"images/comment.gif\" title=\""
                 + "Add a comment on this value\" " + AbstractPropertyWidgetWithNotes.COMMENT_ICON_STYLE_STRING + "></img>";
         EntityData value = UIUtil.getFirstItem(values);
@@ -327,6 +353,8 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
 
     protected Field createFieldComponent() {
         TextField textField = new TextField();
+        //testing
+//        textField.setValue("Testing. Delete this from AbstractFieldWidget line 356");
         return textField;
     }
 
@@ -383,6 +411,11 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
 
         String label = UIUtil.getStringConfigurationProperty(widgetConfiguration, FormConstants.LABEL, "");
         setLabel(label != null ? label : (propertyEntityData != null ? propertyEntityData.getBrowserText() : ""), getHelpURL(), tooltip );
+//        //testing
+//        String fieldValue = getField().getValueAsString();
+//		GWT.log("Ab.setup: field value = " + fieldValue );
+//        getField().setValue(fieldValue + " for " + label);
+//        getField().show();
 
         //If the property does not have a browserText, use the label of the field. This is experimental to see if it has the desirable behavior.
         getProperty().setBrowserText(label);
@@ -401,7 +434,7 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
         boolean disabled = isDisabled();
         getField().setDisabled(disabled);
 
-        if (readOnly || disabled) {
+        if (showDeleteButton() && (readOnly || disabled)) {
             deleteLink.setHTML("&nbsp<img src=\"images/delete_grey.png\" " + AbstractFieldWidget.DELETE_ICON_STYLE_STRING + "></img>");
             deleteLink.setTitle("Delete value is not allowed");
         }
@@ -425,14 +458,24 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
     }
 
     protected void displayValues(Collection<EntityData> values) {
+////testing
+//    	if (!field.isRendered()) {
+//    		GWT.log("field is not rendered. Render it! (field visibility set to: " + field.isVisible() + ")");
+////    		field.render(wrappingPanel.getElement());
+//    		refresh();
+//    	}
         if (values == null || values.size() == 0) {
+//        	GWT.log("setting field value for " + field + " to: " +"");
             field.setValue("");
         } else {
             if (values.size() == 1) {
                 EntityData value = values.iterator().next();
                 String displayText = UIUtil.getDisplayText(value);
+//            	GWT.log("setting field value for " + field + " to: " +displayText);
                 field.setValue(displayText);
+//                GWT.log("field value is set to: " + field.getValueAsString());
             } else {
+//            	GWT.log("setting field value for " + field + " to: " +UIUtil.prettyPrintList(values));
                 field.setValue(UIUtil.prettyPrintList(values));
             }
         }
@@ -444,6 +487,7 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
 
     @Override
     public Component getComponent() {
+    	GWT.log("called AbstractFieldWidget.getComponent() on: " + this);
         return getWrappingPanel();
     }
 
