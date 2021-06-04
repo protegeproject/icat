@@ -8,6 +8,7 @@ import com.gwtext.client.widgets.Component;
 
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.ClassSelectionFieldWidget;
 
@@ -30,6 +31,17 @@ public class TreeValueSelector extends AbstractScaleValueSelectorWidget implemen
 		beforeSetValues(values);
 		GWT.log("Set values for tree: " + getProperty() + " " + values);
 		valueSelWidget.setValues(values);
+////		//testing 
+//		//valueSelWidget.setValues(values);
+//		
+//		//try this
+//		if (values == null || values.isEmpty() ) {
+//			setFieldValue(null);
+//		}
+//		else {
+//			EntityData firstValue = values.iterator().next();
+//			setFieldValue(firstValue);
+//		}
 	}
 
 	@Override
@@ -59,14 +71,41 @@ public class TreeValueSelector extends AbstractScaleValueSelectorWidget implemen
 					//		oldDisplayedValue, operationDescription);
 					onSelectionChanged(oldEntityData, null);
 				}
+				
+				@Override
+				protected boolean showCommentButton() {
+					return false;
+				}
+				
+				@Override
+				public void deleteFieldValue() {
+					Collection<EntityData> values = getValues();
+					if ( values == null || values.isEmpty() ) {
+						TreeValueSelector.this.deletePropertyValue( getProperty(), null );
+					}
+					else {
+						EntityData value = values.iterator().next();
+						TreeValueSelector.this.deletePropertyValue(getProperty(), value);
+					}
+				}
+				
 			};
 			valueSelWidget.setup(getWidgetConfiguration(), getProperty());
 		}
 	}
-	
+
+
+	protected void deletePropertyValue(PropertyEntityData property, EntityData value) {
+		valueSelWidget.deleteFieldValue();
+	}
+
+
+
 	@Override
 	protected Component getValueSelectorComponent() {
+    	GWT.log("called TreeValueSelector.getValueSelectorComponent() on: " + this);
 		return valueSelWidget.getComponent();
+		//return super.getComponent();
 	}
 
 	@Override
@@ -77,12 +116,15 @@ public class TreeValueSelector extends AbstractScaleValueSelectorWidget implemen
 	@Override
 	public void onSelectionChanged(EntityData oldValue, EntityData newValue) {
 		setFieldValue(newValue);
+		//testing
 		super.onSelectionChanged(oldValue, newValue);
 	}
 
 	@Override
 	protected void setFieldValue(EntityData value) {
+		GWT.log("Setting value: " + value + " Browser text: " + value.getBrowserText());
 		valueSelWidget.getField().setValue(value == null ? "" : value.getBrowserText());
+//		valueSelWidget.refresh();
 	}
 
 	@Override

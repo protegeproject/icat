@@ -76,6 +76,8 @@ public class FormConstants {
 	public static final String WRITE_ACCESS_GROUPS = "writeAccessGroups";	//we should not use camel case in property names
 	public static final String SHOW_ONLY_FOR_GROUPS = "showOnlyForGroups";	//we should not use camel case in property names
 	public static final String DO_NOT_SHOW_FOR_GROUPS = "doNotShowForGroups";	//we should not use camel case in property names
+	public static final String SHOW_ONLY_FOR_TYPES = "showOnlyForTypes";	//we should not use camel case in property names
+	public static final String DO_NOT_SHOW_FOR_TYPES = "doNotShowForTypes";	//we should not use camel case in property names
 
 	/*
 	 * Instance field widget
@@ -153,6 +155,9 @@ public class FormConstants {
     public static final String PRECOORDINATION_CUST_SCALE_VALUE_SELECTOR = "precoord_custom_scale_value_selector";
     public static final String PRECOORDINATION_FIX_SCALE_VALUE_SELECTOR = "precoord_fix_scale_value_selector";
     public static final String PRECOORDINATION_TREE_VALUE_SELECTOR = "precoord_tree_value_selector";
+    public static final String NECESSARY_CONDITIONS_COMP = "necessary_cond_comp";
+    public static final String LOGICAL_DEFINITIONS_COMP = "logical_definition_comp";
+    
     
 //    public static final String VALUE_SELECTOR_TYPE = "selector_type";
 //    public static final String VALUE_SELECTOR_CUSTOM_SCALE = "custom_scale";
@@ -161,5 +166,8 @@ public class FormConstants {
     public static final String SUPERCLASS_SELECTOR = "superclass_selector";
     public static final String VALUE_SELECTORS = "value_selectors";
     public static final String SHOW_IS_DEFINED = "show_is_defined";
+    public static final String SHOW_LOGICAL_NECESSARY_SWITCH = "show_logical_necessary_switch";
+
+    public static final String LOGICAL_DEF_PROPERTIES_CONFIG = "properties_config";
 
 }

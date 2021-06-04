@@ -28,6 +28,9 @@ import edu.stanford.bmir.protege.web.client.ui.icd.InternalReferenceFieldWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.pc.CustomScaleValueSelector;
 import edu.stanford.bmir.protege.web.client.ui.icd.pc.FixedScaleValuePresenter;
 import edu.stanford.bmir.protege.web.client.ui.icd.pc.FixedScaleValueSelector;
+import edu.stanford.bmir.protege.web.client.ui.icd.pc.LogicalDefinitionWidget;
+import edu.stanford.bmir.protege.web.client.ui.icd.pc.LogicalDefinitionWidgetController;
+import edu.stanford.bmir.protege.web.client.ui.icd.pc.NecessaryConditionsWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.pc.PostCoordinationGrid;
 import edu.stanford.bmir.protege.web.client.ui.icd.pc.PostCoordinationWidgetController;
 import edu.stanford.bmir.protege.web.client.ui.icd.pc.PreCoordinationWidget;
@@ -63,6 +66,7 @@ public class FormGenerator {
     private Map<Panel, GetEntityTripleHandler> tab2entitiesTripleHandler = new HashMap<Panel, GetEntityTripleHandler>();
     private Map<Panel, GetEntityPropertyValuesHandler> tab2entitiespropValuesHandler = new HashMap<Panel, GetEntityPropertyValuesHandler>();
 
+    private Map<Panel, LogicalDefinitionWidgetController> tab2logicalDefinitionWidgetController = new HashMap<Panel, LogicalDefinitionWidgetController>();
     
     public FormGenerator(Project project, Map<String, Object> formConfiguration) {
         this.project = project;
@@ -300,7 +304,8 @@ public class FormGenerator {
                     	widget = createPreCoordinationWidget(configMap, prop, ctrl);
                     	ctrl.setControllingWidget(widget);
                     } else if (component_type.equals(FormConstants.PRECOORDINATION_SUPERCLASS)) { //ICD specific
-                    	PreCoordinationWidgetController ctrl = new PreCoordinationWidgetController(project, panel, this);
+//                    	PreCoordinationWidgetController ctrl = new PreCoordinationWidgetController(project, panel, this);
+                    	LogicalDefinitionWidgetController ctrl = getLogicalDefinitionWidgetController(panel);
                     	widget = createPreCoordinationSuperclassWidget(configMap, prop, ctrl);
                     	ctrl.setControllingWidget(widget);
                     } else if (component_type.equals(FormConstants.PRECOORDINATION_CUST_SCALE_VALUE_SELECTOR)) { //ICD specific
@@ -309,6 +314,15 @@ public class FormGenerator {
                     	widget = createPreCoordinationFixedScaleValueSelectorWidget(configMap, prop);
                     } else if (component_type.equals(FormConstants.PRECOORDINATION_TREE_VALUE_SELECTOR)) { //ICD specific
                     	widget = createPreCoordinationTreeValueSelectorWidget(configMap, prop);
+                    } else if (component_type.equals(FormConstants.NECESSARY_CONDITIONS_COMP)) { //ICD specific
+                    	LogicalDefinitionWidgetController ctrl = getLogicalDefinitionWidgetController(panel);
+                    	widget = createNecessaryConditionsWidget(configMap, prop, ctrl);
+                    	ctrl.setNecessaryConditionsWidget((NecessaryConditionsWidget) widget);
+                    } else if (component_type.equals(FormConstants.LOGICAL_DEFINITIONS_COMP)) { //ICD specific
+                    	LogicalDefinitionWidgetController ctrl = getLogicalDefinitionWidgetController(panel);
+                    	widget = createLogicalDefinitionsWidget(configMap, prop, ctrl);
+                    	//ctrl.setLogicalDefinitionWidget((LogicalDefinitionWidget) widget);
+                    	ctrl.setControllingWidget(widget);
                     }
 
                     boolean showWidgetForUser = widgetConfig.userPartOfShowGroup();
@@ -323,6 +337,18 @@ public class FormGenerator {
             }
         }
     }
+
+	private LogicalDefinitionWidgetController getLogicalDefinitionWidgetController(Panel panel) {
+		if ( tab2logicalDefinitionWidgetController == null ) {
+			tab2logicalDefinitionWidgetController = new HashMap<>();
+		}
+		LogicalDefinitionWidgetController logDefWidgetCtrl = tab2logicalDefinitionWidgetController.get(panel);
+		if ( logDefWidgetCtrl == null ) {
+			logDefWidgetCtrl = new LogicalDefinitionWidgetController(project, panel, this);
+			tab2logicalDefinitionWidgetController.put(panel, logDefWidgetCtrl);
+		}
+		return logDefWidgetCtrl;
+	}
 
 
     private void addWidgetToEntitiesTripleHandler(Panel panel, PropertyWidget widget) {
@@ -584,6 +610,22 @@ public class FormGenerator {
     	scaleValueSelectorWidget.setup(conf, new PropertyEntityData(property));
     	return scaleValueSelectorWidget;
     }
+    
+    
+    //ICD specific
+    public PropertyWidget createNecessaryConditionsWidget(Map<String, Object> conf, String property, LogicalDefinitionWidgetController ctrl) {
+    	NecessaryConditionsWidget necessaryConditionsWidget = new NecessaryConditionsWidget(project, ctrl);
+    	necessaryConditionsWidget.setup(conf, new PropertyEntityData(property));
+    	return necessaryConditionsWidget;
+    }
+    
+    
+    //ICD specific
+    public PropertyWidget createLogicalDefinitionsWidget(Map<String, Object> conf, String property, LogicalDefinitionWidgetController ctrl) {
+    	LogicalDefinitionWidget necessaryConditionsWidget = new LogicalDefinitionWidget(project, ctrl);
+    	necessaryConditionsWidget.setup(conf, new PropertyEntityData(property));
+    	return necessaryConditionsWidget;
+    }
 
     
     // ***** Entity Triple Handler *****
@@ -650,6 +692,8 @@ public class FormGenerator {
         tab2PropWidgets.clear();
         tab2entitiesTripleHandler.clear();
         tab2entitiespropValuesHandler.clear();
+        
+        tab2logicalDefinitionWidgetController.clear();
         
         tab2TypesAll.clear();
         tab2TypesAny.clear();

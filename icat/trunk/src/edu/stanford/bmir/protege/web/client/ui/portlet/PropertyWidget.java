@@ -53,5 +53,9 @@ public interface PropertyWidget {
      * Once the values come back, it will call {@link #setValues(Collection)}.
      */
     void refresh();
+    
+    boolean isTypeSensitive();
+    
+	void changeVisibilityBasedOnSubjectType(Collection<EntityData> types);
 
 }

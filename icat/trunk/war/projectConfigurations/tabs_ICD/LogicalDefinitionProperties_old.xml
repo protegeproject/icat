@@ -1,0 +1,177 @@
+												<entry>
+													<string>properties_config_FIRST_DRAFT</string>
+													<map>
+														<entry>
+															<string>http://who.int/icd#activityWhenInjured</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>ActivityWhenInjured_%parent%</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#ActivityWhenInjuredReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#ICECI_C.5</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Activity when Injured</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'activity when injured' property</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#activityWhenInjured_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<!-- entry>
+																	<string>index</string>
+																	<string>1</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry-->
+															</map>
+														</entry>
+														
+														<entry>
+															<string>http://who.int/icd#occupationalDescriptor</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>OccupationalDescriptor_%parent%</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#OccupationalDescriptorReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#ICECI_OCCUPATIONAL_MODULE</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Occupational Descriptor</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'occupational descriptor' property</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#occupationalDescriptor_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<!-- entry>
+																	<string>index</string>
+																	<string>2</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+																<entry>
+																	<string>hidden</string>
+																	<string>true</string>
+																</entry-->
+															</map>
+														</entry>
+														
+														<entry>
+															<string>http://who.int/icd#occupation</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>Occupation_%parent%</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#OccupationReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#ICECI_O.2</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Occupation</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'occupation' property</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#occupation_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<!-- entry>
+																	<string>index</string>
+																	<string>3</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry -->
+															</map>
+														</entry>
+														
+														<entry>
+															<string>http://who.int/icd#mechanismOfInjury</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>MechanismOfInjury_%parent%</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#MechanismOfInjuryReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#ICECI_C.2</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Mechanism of Injury</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for the 'mechanism of injury' property</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#mechanismOfInjury_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<!-- entry>
+																	<string>index</string>
+																	<string>5</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry-->
+															</map>
+														</entry>
+														
+													</map>
+												</entry>

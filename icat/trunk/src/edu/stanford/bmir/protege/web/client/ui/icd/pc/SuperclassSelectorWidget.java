@@ -18,7 +18,7 @@ import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 public class SuperclassSelectorWidget extends RemoteValueComboBox {
 
 	private FillAllowedValuesCacheHandler fillValuesHandler = null;
-	private PreCoordinationWidget preCoordinationWidget = null;	//reference to the PreCoordinationWidget that contains this, if any
+	private SuperclassSelectorContainer preCoordinationWidget = null;	//reference to the PreCoordinationWidget that contains this, if any
     
     private PreCoordinationWidgetController widgetController;	//external widget controller
 
@@ -32,6 +32,11 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 			PropertyEntityData propertyEntityData) {
 		GWT.log("Print setup superclass widget for subject: " + getSubject());
 		super.setup(widgetConfiguration, propertyEntityData);
+	}
+	
+	@Override
+	protected boolean showCommentButton() {
+		return false;
 	}
 	
 	@Override
@@ -56,42 +61,10 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 		if ( ! values.isEmpty()) {
 			firstValue = values.iterator().next();
 		}
-		if (differentCollections(oldValues, values)) {
+		if ( UIUtil.differentCollections(oldValues, values) ) {
 			selectionChanged(firstValue);
 		}
-	}
-	
-	private boolean differentCollections(Collection<EntityData> oldValues, Collection<EntityData> newValues) {
-		if (oldValues == null) {
-			if (newValues == null) {
-				//they are the same (both are null)
-				return false;
-			}
-			else {
-				//they are different (one is null the other is not)
-				return true;
-			}
-		}
-		else {
-			if (newValues == null) {
-				//they are different (one is null the other is not)
-				return true;
-			}
-			else {
-				if (oldValues.size() != newValues.size()) {
-					//they are different (they have different size)
-					return true;
-				}
-				else {
-					//if retaining all values in newValues in oldValues would modify oldValues
-					//(i.e. the intersection of the two collection is different from oldValues)
-					//then return true, otherwise they must be equal, so return false.
-					return oldValues.retainAll(newValues);
-				}
-			}
-		}
-	}
-	
+	}	
 	
 	private FillAllowedValuesCacheHandler getFillValuesHandler() {
 		if (fillValuesHandler != null) {
@@ -102,8 +75,7 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 		}
 	}
 
-	public void setPreCoordinationWidget(
-			PreCoordinationWidget preCoordinationWidget) {
+	public void setContainerWidget( SuperclassSelectorContainer preCoordinationWidget ) {
 		this.preCoordinationWidget  = preCoordinationWidget;
 	}
 

@@ -33,6 +33,9 @@ public abstract class AbstractPropertyWidget implements PropertyWidget, HasGetEn
     private EntityData subject;
     private PropertyEntityData property;
     private Map<String, Object> widgetConfiguration;
+    private boolean hiddenByConfig = false;
+    private List<String> showOnlyForTypes = null;
+    private List<String> doNotShowForTypes = null;
 
     private EntityData oldDisplayedSubject; //Optimization: only load values if new subject, and widget is visible
    
@@ -51,8 +54,10 @@ public abstract class AbstractPropertyWidget implements PropertyWidget, HasGetEn
 
         createComponent();
         
-        boolean isHidden = new WidgetConfiguration(widgetConfiguration).getBooleanProperty(FormConstants.HIDDEN, false);
-        if (isHidden) {
+        readTypeRestrictions();
+        
+        hiddenByConfig = new WidgetConfiguration(widgetConfiguration).getBooleanProperty(FormConstants.HIDDEN, false);
+        if (hiddenByConfig) {
         	getComponent().hide();
         }
     }
@@ -80,6 +85,31 @@ public abstract class AbstractPropertyWidget implements PropertyWidget, HasGetEn
         return labelHtml;
     }
 
+    protected void readTypeRestrictions() {
+    	showOnlyForTypes = UIUtil.getListConfigurationProperty(widgetConfiguration, FormConstants.SHOW_ONLY_FOR_TYPES, null);
+    	doNotShowForTypes = UIUtil.getListConfigurationProperty(widgetConfiguration, FormConstants.DO_NOT_SHOW_FOR_TYPES, null);
+    }
+    
+    @Override
+    public boolean isTypeSensitive() {
+    	return showOnlyForTypes != null || doNotShowForTypes !=null;
+    }
+    
+    @Override
+    public void changeVisibilityBasedOnSubjectType(Collection<EntityData> types) {
+    	if ( ! hiddenByConfig ) {
+	    	boolean isWidgetVisibleForThisTypeOfEntity = UIUtil.calculateVisibilityBasedOnSubjectType(types, showOnlyForTypes, doNotShowForTypes);
+	    	
+	    	//hide/show widget if necessary, based on value of showWidget
+	    	if ( isWidgetVisibleForThisTypeOfEntity ) {
+	    		getComponent().show();
+	    	}
+	    	else {
+	    		getComponent().hide();
+	    	}
+    	}
+    }
+    
     //TODO we should probably make this abstract
     @Override
     public Collection<EntityData> getValues() {

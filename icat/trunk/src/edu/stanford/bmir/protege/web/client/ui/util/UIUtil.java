@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.HTML;
 import com.gwtext.client.core.ExtElement;
@@ -523,6 +524,102 @@ public class UIUtil {
 
         return null;
     }
+    
+    public static boolean calculateVisibilityBasedOnSubjectType( Collection<EntityData> types,
+    		List<String> showOnlyForTypesList, List<String> doNotShowForTypesList) {
+    	
+    	//GWT.log("calculateVisibilityBasedOnSubjectType: types: " + types + " showOnlyFor: " + showOnlyForTypesList + " doNotShowFor: " + doNotShowForTypesList);
+
+    	if (types == null || types.isEmpty()) {
+    		if ( showOnlyForTypesList != null && showOnlyForTypesList.size() > 0 ) {
+    			//TODO hide this (if not already hidden)
+    			return false;
+    		}
+    		return true;
+    	}
+    	else {	// we have type information
+    		boolean foundANecessaryType = (showOnlyForTypesList == null || showOnlyForTypesList.isEmpty() ? true : false);
+    		
+    		if ( foundANecessaryType && (doNotShowForTypesList == null || doNotShowForTypesList.isEmpty()) ) {
+    			return true;
+    		}
+    		
+    		for (EntityData type : types) {
+    			String typeName = type.getName();
+    			if (doNotShowForTypesList != null && doNotShowForTypesList.contains(typeName)) {
+        			//TODO hide this (if not already hidden)
+    				return false;
+    				//break;
+    			}
+    			if (showOnlyForTypesList != null && showOnlyForTypesList.contains(typeName)) {
+    				foundANecessaryType = true;
+    				if (doNotShowForTypesList == null) {
+    					break;
+    				}
+    			}
+    		}
+    		
+    		return foundANecessaryType;
+    	}
+    }
+
+	
+//	public static <T> boolean differentCollections(Collection<T> oldValues, Collection<T> newValues) {
+//		if (oldValues == null) {
+//			if (newValues == null) {
+//				//they are the same (both are null)
+//				return false;
+//			}
+//			else {
+//				//they are different (one is null the other is not)
+//				return true;
+//			}
+//		}
+//		else {
+//			if (newValues == null) {
+//				//they are different (one is null the other is not)
+//				return true;
+//			}
+//			else {
+//				if (oldValues.size() != newValues.size()) {
+//					//they are different (they have different size)
+//					return true;
+//				}
+//				else {
+//					//if retaining all values in newValues in oldValues would modify oldValues
+//					//(i.e. the intersection of the two collection is different from oldValues)
+//					//then return true, otherwise they must be equal, so return false.
+//					return oldValues.retainAll(newValues);
+//				}
+//			}
+//		}
+//	}
+
+	
+//	private boolean listsHaveDifferentElements(List<String> first, List<String> second) {
+	public static <T> boolean differentCollections(Collection<T> first, Collection<T> second) {
+		//check whether both lists are null
+		if (first == null && second == null) {
+			//they are the same (both are null)
+			return false;
+		}
+		
+		//if we are here, then at least one of the lists is not null
+		if (first == null || second == null) {
+			//they are different (one is null, the other is not)
+			return true;
+		}
+		
+		//if we are here, then both lists are non-null
+		if ( first.size() != second.size() ) {
+			//they are different (they have different size)
+			return true;
+		}
+		
+		//if we are here, both lists are of the same size
+		//return true iff one of the collection does NOT contain all the elements of the other
+		return ! first.containsAll( second );
+	}
 
 }
 
