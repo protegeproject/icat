@@ -112,9 +112,7 @@ public abstract class AbstractPropertyWidget implements PropertyWidget, HasGetEn
     
     //TODO we should probably make this abstract
     @Override
-    public Collection<EntityData> getValues() {
-        return new ArrayList<EntityData>();
-    }
+    abstract public Collection<EntityData> getValues();
 
     @Override
     abstract public void setValues(Collection<EntityData> values);

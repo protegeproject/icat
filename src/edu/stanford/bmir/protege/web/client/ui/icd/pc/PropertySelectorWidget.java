@@ -174,7 +174,7 @@ public class PropertySelectorWidget extends AbstractPropertyWidget {
 	@Override
 	public Component createComponent() {
 		wrappingPanel = new FormPanel();
-		wrappingPanel.setLabelWidth(150);
+		wrappingPanel.setLabelWidth(160);
 		wrappingPanel.setWidth("100%");
 		wrappingPanel.setPaddings(5);
 
@@ -186,9 +186,9 @@ public class PropertySelectorWidget extends AbstractPropertyWidget {
 						+ "\">" 
 				+ "{" + LABEL_FIELD + "}" + "<div class=\"x-clear\"></div></div>"));
 		cb.setStore(cbStore);
-		cb.setLabel("Select an additional axis");
+		cb.setLabel( generateLabel() );
 		cb.setLabelSeparator(":");
-		cb.setEmptyText("Choose a property value");
+		cb.setEmptyText( getEmptyText() );
 		cb.setDisplayField(LABEL_FIELD);
 		cb.setEditable(false);
 		//cb.setWidth("80%");
@@ -200,6 +200,20 @@ public class PropertySelectorWidget extends AbstractPropertyWidget {
 		return wrappingPanel;
 	}
 
+	private String generateLabel() {
+		//TODO check this to see if has the intended effect
+		if ( FormConstants.LOGICAL_DEFINITIONS_COMP.equals( form.getFormPanelName() ) ) {
+			return "Add another axis to the logical definition";
+		}
+		else {
+			return "Add another necessary axis";
+		}
+	}
+	
+	private String getEmptyText() {
+		return "Choose an axis from the list";
+	}
+	
 	protected void createCbStore() {
 		GWT.log("createCbStore");
 		String[][] values = createDefaultCbStoreValues();
@@ -212,7 +226,7 @@ public class PropertySelectorWidget extends AbstractPropertyWidget {
 		//cbStore.removeAll();
 		cbStore.setDataProxy( new MemoryProxy( values ) );
 		cbStore.load();
-		cb.setEmptyText("Choose a property value");
+		cb.setEmptyText( getEmptyText() );
 		cb.clearValue();
 	}
 
@@ -244,6 +258,12 @@ public class PropertySelectorWidget extends AbstractPropertyWidget {
 	public void setValues(Collection<EntityData> values) {
 		// TODO Auto-generated method stub
 	}
+
+    @Override
+    public Collection<EntityData> getValues() {
+    	// return null, as this widget should not store (property) values
+    	return null;
+    }
 
 	private class PropertySelectorComboBoxListener extends ComboBoxListenerAdapter {
 		Record lastSelection = null;
@@ -278,6 +298,7 @@ public class PropertySelectorWidget extends AbstractPropertyWidget {
 					//TODO delete this, if we keep the call in form.addFieldForAxis
 					//setActiveStatusForOption(property, false);
 					lastSelection = record;
+					cb.clearValue();
 				}
 
 				//this is good but was moved to form.addFieldForAxis...
@@ -376,7 +397,7 @@ public class PropertySelectorWidget extends AbstractPropertyWidget {
 		//cbStore.removeAll();
 		cbStore.setDataProxy(new MemoryProxy(new String[][] {}));
 		cbStore.load();
-		cb.setEmptyText("Select a superclass to be able to create logical definitions");
+		cb.setEmptyText("First select a superclass, to be able to create logical definitions");
 		cb.clearValue();
 	}
 }

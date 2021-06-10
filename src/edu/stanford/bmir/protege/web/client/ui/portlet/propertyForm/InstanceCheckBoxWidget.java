@@ -181,6 +181,12 @@ public class InstanceCheckBoxWidget extends AbstractPropertyWidget {
         setLoadingStatus(false);
     }
 
+    @Override
+    public Collection<EntityData> getValues() {
+		//TODO: values should be read from the values of the radio buttons, or make sure that they are always kept in sync
+    	return values;
+    }
+    
     protected void uncheckAll() {
         for (CheckBox rb : value2checkBox.values()) {
             rb.setValue(false);

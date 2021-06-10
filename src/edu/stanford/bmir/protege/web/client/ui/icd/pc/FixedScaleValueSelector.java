@@ -31,11 +31,17 @@ public class FixedScaleValueSelector extends AbstractScaleValueSelectorWidget im
 		System.out.println("Set values for fixed scale: " + getProperty() + " " + values);
 		valueCombobox.setValues(values);
 	}
-
+	
+	@Override
+	public Collection<EntityData> getValues() {
+		//TODO tests may be needed
+		return valueCombobox.getValues();
+	}
+	
 	@Override
 	public String getSelectedValue() {
-		// TODO Auto-generated method stub
-		return null;
+		//TODO tests may be needed
+		return valueCombobox.getField().getValueAsString();
 	}
 
 	@Override

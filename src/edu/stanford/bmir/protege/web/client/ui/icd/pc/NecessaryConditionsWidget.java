@@ -127,13 +127,19 @@ public class NecessaryConditionsWidget extends AbstractPropertyWidget {
     	//System.out.println("Test: DELETE THIS");
     }
 
+    @Override
+    public Collection<EntityData> getValues() {
+    	// return null, as this widget does not store (property) values by itself, only its sub-widgets
+    	return null;
+    }
+
 	public void onSuperclassChanged(EntityData newSuperclass) {
 //		widgetController.onSuperclassChanged(newSuperclass);
 	}
 	
 	private PostCoordinationAxesForm createPostCoordinationAxesForm()  {
 		pcAxesForm = new PostCoordinationAxesForm(
-				getProject(), FormConstants.NECESSARY_CONDITIONS_COMP);
+				getProject(), FormConstants.NECESSARY_CONDITIONS_COMP, widgetController);
 		System.out.println("form panel:"  + pcAxesForm + "  adding propertySelectorWidget: " +propertySelectorWidget);
 		GWT.log("form panel:"  + pcAxesForm + "  adding propertySelectorWidget: " +propertySelectorWidget);
 		
@@ -178,6 +184,11 @@ public class NecessaryConditionsWidget extends AbstractPropertyWidget {
 //		widgetController.addWidget2PropertyMap???(getWidgetForProperty(property));
 		//TODO delete this, if we keep the call in propertiesForm.addFieldForAxis
 		//propertySelectorWidget.setActiveStatusForOption(property, false);
+	}
+
+	public void removeAxisFromForm(String property) {
+		pcAxesForm.removeFieldForAxis(property);
+		//TODO check addAxisToForm for other potential steps to be added here
 	}
 
 	public PropertyWidget getWidgetForProperty(String property) {

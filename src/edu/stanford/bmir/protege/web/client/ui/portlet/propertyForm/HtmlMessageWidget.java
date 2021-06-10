@@ -35,4 +35,9 @@ public class HtmlMessageWidget extends AbstractPropertyWidget {
     	// This widget is not intended to have values set dynamically    	
     }
 
+    @Override
+    public Collection<EntityData> getValues() {
+    	// return null, as this widget should not store (property) values
+    	return null;
+    }
 }

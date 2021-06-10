@@ -216,8 +216,7 @@ public class PreCoordinationWidgetController extends WidgetController {
 	}
 
 
-	protected void setWidgetValue(PropertyWidget widget,
-			EntityData entityData, boolean isDefinitional) {
+	protected void setWidgetValue(PropertyWidget widget, EntityData entityData, boolean isDefinitional) {
 		GWT.log("setWidgetValue: " + entityData + " isDef: " + isDefinitional);
 		if (entityData == null) {
 			widget.setValues(null);

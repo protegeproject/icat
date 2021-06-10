@@ -1670,6 +1670,13 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
         //the widget values and makes an optimized call.
     }
 
+    @Override
+    public Collection<EntityData> getValues() {
+    	// return null, as this method should not invoked by this widget. It bypasses the parent mechanism for retrieving
+        //the widget values and makes an optimized call.
+    	return null;
+    }
+
     
     @Override
     public void beforeFillValues() {

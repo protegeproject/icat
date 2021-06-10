@@ -171,6 +171,12 @@ public class PreCoordinationWidget extends AbstractPropertyWidget implements Sup
     }
 
     @Override
+    public Collection<EntityData> getValues() {
+    	// return null, as this widget does not store (property) values by itself, only its sub-widgets
+    	return null;
+    }
+
+    @Override
 	public void onSuperclassChanged(EntityData newSuperclass) {
 		widgetController.onSuperclassChanged(newSuperclass);
 	}

@@ -33,9 +33,15 @@ public class CustomScaleValueSelector extends AbstractScaleValueSelectorWidget i
 	}
 	
 	@Override
+	public Collection<EntityData> getValues() {
+		//TODO tests may be needed
+		return valueCombobox.getValues();
+	}
+	
+	@Override
 	public String getSelectedValue() {
-		// TODO Auto-generated method stub
-		return null;
+		//TODO tests may be needed
+		return valueCombobox.getField().getValueAsString();
 	}
 
 	@Override
