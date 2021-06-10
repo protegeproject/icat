@@ -34,6 +34,8 @@ public class PostCoordinationAxesForm extends Panel {
 	private int widgetCounter = 0;
 	private String formPanelName;
 	
+    private LogicalDefinitionWidgetController widgetController;
+	
 	private final String PARENT_REF = "%parent%";
 
 	/**
@@ -43,9 +45,10 @@ public class PostCoordinationAxesForm extends Panel {
 	 * @param project
 	 * @param name
 	 */
-	public PostCoordinationAxesForm(Project project, String name) {
+	public PostCoordinationAxesForm(Project project, String name, LogicalDefinitionWidgetController widgetController) {
 		this.project = project;
 		this.formPanelName = name;
+		this.widgetController = widgetController;
 	}
 
 	public void setPropertyMaps(
@@ -63,14 +66,23 @@ public class PostCoordinationAxesForm extends Panel {
 		this.propertySelector = propertySelector;
 	}
 
+	public LogicalDefinitionWidgetController getWidgetController() {
+		return widgetController;
+	}
+	
+	public String getFormPanelName() {
+		return formPanelName;
+	}
+	
 	public void addFieldForAxis(String property, String label) {
 		if ( ! fieldNames.contains(property) ) {
-				PropertyValueSelectorWidget treeValueSelector = new PropertyValueSelectorWidget(project);
+				boolean isLogicalDefinitionForm = FormConstants.LOGICAL_DEFINITIONS_COMP.equals( formPanelName );
+				PropertyValueSelectorWidget treeValueSelector = new PropertyValueSelectorWidget(project, isLogicalDefinitionForm);
 				treeValueSelector.setContainerFormPanel(this);
 				treeValueSelector.setSwitchBetweenLogicalAndNecessaryButtonType(
-						(formPanelName == FormConstants.LOGICAL_DEFINITIONS_COMP ?
+						( isLogicalDefinitionForm ?
 								SwitchButtonType.LOGICAL_TO_NECESSARY : 
-									SwitchButtonType.NECESSARY_TO_LOGICAL));
+								SwitchButtonType.NECESSARY_TO_LOGICAL ) );
 				
 				Map<String, Object> widgetConfiguration = propertyToConfigMap.get(property);
 				updateWidgetName( widgetConfiguration, formPanelName, ++widgetCounter);

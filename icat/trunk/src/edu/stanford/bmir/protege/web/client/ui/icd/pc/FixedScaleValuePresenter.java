@@ -40,6 +40,12 @@ public class FixedScaleValuePresenter extends AbstractPropertyWidget {
     	// than setting values with setValues()    	
     }
 
+    @Override
+    public Collection<EntityData> getValues() {
+    	// return null, as this widget should not store (property) values
+    	return null;
+    }
+
 	@Override
 	public Component getComponent() {
 		if (wrappingPanel == null) {

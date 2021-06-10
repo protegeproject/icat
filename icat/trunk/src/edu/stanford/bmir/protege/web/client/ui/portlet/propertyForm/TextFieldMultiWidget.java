@@ -82,8 +82,8 @@ public class TextFieldMultiWidget extends AbstractPropertyWidget {
 
 	@Override
 	public Collection<EntityData> getValues() {
-		//TODO: implement this
-		return new ArrayList<EntityData>();
+		//TODO: values should be read from the values of the widgets, or make sure that they are always kept in sync
+		return values;
 	}
 
 	@Override

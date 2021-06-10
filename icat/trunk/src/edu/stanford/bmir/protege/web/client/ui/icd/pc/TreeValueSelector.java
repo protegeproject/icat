@@ -1,6 +1,7 @@
 package edu.stanford.bmir.protege.web.client.ui.icd.pc;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
@@ -43,7 +44,12 @@ public class TreeValueSelector extends AbstractScaleValueSelectorWidget implemen
 //			setFieldValue(firstValue);
 //		}
 	}
-
+	
+	@Override
+	public Collection<EntityData> getValues() {
+		return valueSelWidget.getValues();
+	}
+	
 	@Override
 	public String getSelectedValue() {
 		return valueSelWidget.getField().getValueAsString();
@@ -123,6 +129,7 @@ public class TreeValueSelector extends AbstractScaleValueSelectorWidget implemen
 	@Override
 	protected void setFieldValue(EntityData value) {
 		GWT.log("Setting value: " + value + " Browser text: " + value.getBrowserText());
+		valueSelWidget.setValues(Collections.singleton(value));
 		valueSelWidget.getField().setValue(value == null ? "" : value.getBrowserText());
 //		valueSelWidget.refresh();
 	}

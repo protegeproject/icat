@@ -1,6 +1,6 @@
 package edu.stanford.bmir.protege.web.client.ui.icd.pc;
 
-import java.util.Collections;
+import java.util.Collection;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
@@ -79,8 +79,8 @@ public class LogicalDefinitionWidgetController extends PreCoordinationWidgetCont
 	@Override
 	public void afterWidgetVisibilityChanged(PropertyWidget widget, boolean isVisible) {
 		logicalDefinitionWidget.afterWidgetVisibilityChanged(widget, isVisible);
-		//TODO implement this as well
-		//necessaryConditionsWidget.widgetVisibilityChanged(widget, true);
+		//TODO check if this makes sense like this
+		necessaryConditionsWidget.afterWidgetVisibilityChanged(widget, true);
 	}
 
 	
@@ -88,9 +88,11 @@ public class LogicalDefinitionWidgetController extends PreCoordinationWidgetCont
 	protected PropertyWidget getWidgetForProperty(String propertyName) {
 		PropertyWidget widget = super.getWidgetForProperty(propertyName);
 		if ( widget == null ) {
-//			logicalDefinitionWidget.addAxisToForm(propertyName);
 			widget = logicalDefinitionWidget.getWidgetForProperty(propertyName);
-//			widget = createWidgetForProperty(propertyName);
+
+			if ( widget == null ) {
+				widget = necessaryConditionsWidget.getWidgetForProperty(propertyName);
+			}
 		}
 		return widget;
 	}
@@ -100,9 +102,12 @@ public class LogicalDefinitionWidgetController extends PreCoordinationWidgetCont
 		// TODO hide widgets
 		//super.hideAllWidgets();
 		logicalDefinitionWidget.removeAllAxis();
+		necessaryConditionsWidget.removeAllAxis();
 		
 		//update list of properties in properties selector
 		logicalDefinitionWidget.clearPropertiesList();
+		//TODO see if we need to call this, or something else
+		//necessaryConditionsWidget.clearPropertiesList();
 	}
 	
 	@Override
@@ -144,5 +149,36 @@ public class LogicalDefinitionWidgetController extends PreCoordinationWidgetCont
 //		}
 //	}
 
+	public void updateIsDefinitionalOfPropertyWidget(String property, PropertyValueSelectorWidget widget, boolean isDefinitional) {
+		PropertyWidget logDefWidgetForProperty = logicalDefinitionWidget.getWidgetForProperty(property);
+		PropertyWidget necCondWidgetForProperty = necessaryConditionsWidget.getWidgetForProperty(property);
+		Collection<EntityData> values = widget.getValues();
+		EntityData currValue = null;
+		if (values != null &&  ! values.isEmpty()) {
+			currValue = values.iterator().next();
+		}
+//		else {
+//			//TODO This is a hack. We should not need this if widget.getValues() would work properly. Make sure to fix  getValues, and remove this.
+//			currValue = new EntityData(widget.getSelectedValue());
+//		}
+		
+		if ( isDefinitional ) {
+			if ( widget == necCondWidgetForProperty ) {
+				necessaryConditionsWidget.removeAxisFromForm(property);
+				logicalDefinitionWidget.addAxisToForm(property);
+				setWidgetValue( logicalDefinitionWidget.getWidgetForProperty(property), currValue, isDefinitional );
+			}
+			else if ( widget == logDefWidgetForProperty ) {
+				setWidgetValue( logicalDefinitionWidget.getWidgetForProperty(property), currValue, isDefinitional );
+			}
+		}
+		else {
+			if ( widget == logDefWidgetForProperty ) {
+				logicalDefinitionWidget.removeAxisFromForm(property);
+				necessaryConditionsWidget.addAxisToForm(property);
+				setWidgetValue( necessaryConditionsWidget.getWidgetForProperty(property), currValue, isDefinitional );
+			}
+		}
+	}
 	
 }

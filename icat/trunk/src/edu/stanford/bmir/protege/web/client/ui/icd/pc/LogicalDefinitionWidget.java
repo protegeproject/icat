@@ -182,13 +182,19 @@ public class LogicalDefinitionWidget extends AbstractPropertyWidget implements S
     }
 
     @Override
+    public Collection<EntityData> getValues() {
+    	// return null, as this widget does not store (property) values by itself, only its sub-widgets
+    	return null;
+    }
+
+    @Override
 	public void onSuperclassChanged(EntityData newSuperclass) {
 		widgetController.onSuperclassChanged(newSuperclass);
 	}
 	
 	private PostCoordinationAxesForm createPostCoordinationAxesForm()  {
 		pcAxesForm = new PostCoordinationAxesForm(
-				getProject(), FormConstants.LOGICAL_DEFINITIONS_COMP);
+				getProject(), FormConstants.LOGICAL_DEFINITIONS_COMP, widgetController);
 		System.out.println("form panel:"  + pcAxesForm + "  adding propertySelectorWidget: " +propertySelectorWidget);
 		GWT.log("form panel:"  + pcAxesForm + "  adding propertySelectorWidget: " +propertySelectorWidget);
 		
@@ -235,6 +241,11 @@ public class LogicalDefinitionWidget extends AbstractPropertyWidget implements S
 		//propertySelectorWidget.setActiveStatusForOption(property, false);
 	}
 
+	public void removeAxisFromForm(String property) {
+		pcAxesForm.removeFieldForAxis(property);
+		//TODO check addAxisToForm for other potential steps to be added here
+	}
+	
 	public PropertyWidget getWidgetForProperty(String property) {
 		return pcAxesForm.getWidgetForProperty(property);
 	}

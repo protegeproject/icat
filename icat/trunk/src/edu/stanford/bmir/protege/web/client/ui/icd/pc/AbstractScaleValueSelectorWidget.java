@@ -214,16 +214,14 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 					@Override
 					public void onSuccess(Boolean success) {
 						updateFieldValue(newValue);
-//						//testing
-//						//updateFieldValue(newValue);
-//						setValues( Collections.singleton(newValue) );
+
 						if (success) {
 							GWT.log("value for property " + getProperty() + " was changed successfully");
-							//TODO reset value to old value
 						}
 						else {
 							GWT.log("Could not find property " + getProperty() + " in class expression. " +
 									"Value was not changed succesfully");
+							//TODO reset value to old value
 						}
 					}
 
@@ -286,6 +284,9 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 
 
 	protected void changeDefinitionalStatus(final boolean checked) {
+		//we update the UI first, assuming that the "change 'is definitional' flag" action will be successful.
+		afterDefinitionalStatusChanged(checked);
+		
 		ICDServiceManager.getInstance().changeIsDefinitionalFlag(
 				getProject().getProjectName(), getSubject().getName(), getProperty().getName(), 
 				checked, new AsyncCallback<Boolean>() {
@@ -297,6 +298,7 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 						if ( checkboxDefinitional != null ) {
 							checkboxDefinitional.setValue(!checked);
 						}
+						//TODO: Undo what afterDefinitionalStatusChanged() did
 					}
 
 					@Override
@@ -305,7 +307,7 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 						
 						if (success) {
 							GWT.log("isDefinitional flag was changed successfully");
-							afterDefinitionalStatusChanged();
+//							afterDefinitionalStatusChanged();
 						}
 						else {
 							GWT.log("Could not find property " + getProperty() + " in class expression. " +
@@ -315,7 +317,7 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 				});
 	}
 
-	protected void afterDefinitionalStatusChanged() {
+	protected void afterDefinitionalStatusChanged( boolean newValue ) {
 		// Do nothing here. Override it in PropertyValueSelectorWidget.
 	}
 
