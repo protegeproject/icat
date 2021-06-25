@@ -12,10 +12,11 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.ClassSelectionFieldWidget;
+import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public class TreeValueSelector extends AbstractScaleValueSelectorWidget implements ValueSelectorComponent {
 
-	private ClassSelectionFieldWidget valueSelWidget;
+	protected ClassSelectionFieldWidget valueSelWidget;
 
 	public TreeValueSelector(Project project) {
 		super(project);
@@ -73,9 +74,9 @@ public class TreeValueSelector extends AbstractScaleValueSelectorWidget implemen
 						EntityData oldEntityData, Object oldDisplayedValue,
 						String operationDescription) {
 					// TODO check this solution
-					//super.deletePropertyValue(subject, propName, propValueType, oldEntityData,
-					//		oldDisplayedValue, operationDescription);
-					onSelectionChanged(oldEntityData, null);
+//					super.deletePropertyValue(subject, propName, propValueType, oldEntityData,
+//							oldDisplayedValue, operationDescription);
+//					onSelectionChanged(oldEntityData, null);
 				}
 				
 				@Override
@@ -86,25 +87,18 @@ public class TreeValueSelector extends AbstractScaleValueSelectorWidget implemen
 				@Override
 				public void deleteFieldValue() {
 					Collection<EntityData> values = getValues();
-					if ( values == null || values.isEmpty() ) {
-						TreeValueSelector.this.deletePropertyValue( getProperty(), null );
-					}
-					else {
-						EntityData value = values.iterator().next();
-						TreeValueSelector.this.deletePropertyValue(getProperty(), value);
-					}
+					EntityData firstValue = UIUtil.getFirstItem(values);
+					//TODO try this:
+					//super.deleteFieldValue();
+					onSelectionChanged(firstValue, null);
+					
+					TreeValueSelector.this.afterDeletePropertyValue(getProperty(), firstValue);
 				}
 				
 			};
 			valueSelWidget.setup(getWidgetConfiguration(), getProperty());
 		}
 	}
-
-
-	protected void deletePropertyValue(PropertyEntityData property, EntityData value) {
-		valueSelWidget.deleteFieldValue();
-	}
-
 
 
 	@Override
@@ -118,19 +112,25 @@ public class TreeValueSelector extends AbstractScaleValueSelectorWidget implemen
 	public void setComponentSubject(EntityData subject) {
 		valueSelWidget.setSubject(subject);
 	}
-	
+
+	protected void afterDeletePropertyValue(PropertyEntityData property, EntityData value) {
+		// Do nothing here. This method can be overridden in subclasses 
+		// to do certain things that need to happen in conjunction with a value deletion.
+	}
+
 	@Override
 	public void onSelectionChanged(EntityData oldValue, EntityData newValue) {
 		setFieldValue(newValue);
-		//testing
+		//TODO testing
 		super.onSelectionChanged(oldValue, newValue);
 	}
 
 	@Override
 	protected void setFieldValue(EntityData value) {
-		GWT.log("Setting value: " + value + " Browser text: " + value.getBrowserText());
+		String stringValue = value == null ? "" : value.getBrowserText();
+		GWT.log("Setting value: " + value + " Browser text: " + stringValue);
 		valueSelWidget.setValues(Collections.singleton(value));
-		valueSelWidget.getField().setValue(value == null ? "" : value.getBrowserText());
+		valueSelWidget.getField().setValue(stringValue);
 //		valueSelWidget.refresh();
 	}
 

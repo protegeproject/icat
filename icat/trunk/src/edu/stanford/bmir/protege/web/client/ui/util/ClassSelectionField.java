@@ -82,7 +82,7 @@ public class ClassSelectionField extends TriggerField implements Selectable {
         return treePortlet;
     }
 
-    protected void onSelectEntity() {
+    public void onSelectEntity() {
         if (selectWindow == null) {
             selectWindow = new com.gwtext.client.widgets.Window();
             selectWindow.setTitle(getFieldLabel());

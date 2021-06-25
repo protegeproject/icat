@@ -39,7 +39,8 @@ public class PropertyValueSelectorWidget extends TreeValueSelector {
 	@Override
 	public void onSelectionChanged(EntityData oldValue, EntityData newValue) {
 		if ( newValue == null ) {	//delete value
-			deletePropertyValue(getProperty(), null);
+			super.onSelectionChanged(oldValue, newValue);
+			afterDeletePropertyValue(getProperty(), newValue);
 		}
 		else {
 			super.onSelectionChanged(oldValue, newValue);
@@ -52,9 +53,7 @@ public class PropertyValueSelectorWidget extends TreeValueSelector {
 	}
 	
 	@Override
-	protected void deletePropertyValue(PropertyEntityData property, EntityData value) {
-		//TODO first call this as well (perhaps do the removeField in the handleSuccess/handleFailure ???)
-		//super.deletePropertyValue(property, value);
+	protected void afterDeletePropertyValue(PropertyEntityData property, EntityData value) {
 		postCoordinationAxesFormPanel.removeFieldForAxis(getProperty().getName());
 	}
 	
@@ -63,5 +62,9 @@ public class PropertyValueSelectorWidget extends TreeValueSelector {
 		LogicalDefinitionWidgetController widgetController = postCoordinationAxesFormPanel.getWidgetController();
 		widgetController.updateIsDefinitionalOfPropertyWidget(getProperty().getName(), this, newValue);
 
+	}
+	
+	public void onSelectValue() {
+		valueSelWidget.onSelectEntity();
 	}
 }
