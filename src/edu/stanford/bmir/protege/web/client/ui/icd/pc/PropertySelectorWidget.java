@@ -294,7 +294,7 @@ public class PropertySelectorWidget extends AbstractPropertyWidget {
 				String newVal = record.getAsString(LABEL_FIELD);
 				if (newVal != null) {
 					String property = labelToPropertyMap.get(newVal);
-					form.addFieldForAxis(property, newVal);
+					form.addFieldForAxis(property, newVal, true);
 					//TODO delete this, if we keep the call in form.addFieldForAxis
 					//setActiveStatusForOption(property, false);
 					lastSelection = record;

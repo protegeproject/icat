@@ -75,6 +75,10 @@ public class PostCoordinationAxesForm extends Panel {
 	}
 	
 	public void addFieldForAxis(String property, String label) {
+		addFieldForAxis(property, label, false);
+	}
+	
+	public void addFieldForAxis(String property, String label, boolean openAfterAdd) {
 		if ( ! fieldNames.contains(property) ) {
 				boolean isLogicalDefinitionForm = FormConstants.LOGICAL_DEFINITIONS_COMP.equals( formPanelName );
 				PropertyValueSelectorWidget treeValueSelector = new PropertyValueSelectorWidget(project, isLogicalDefinitionForm);
@@ -122,6 +126,10 @@ public class PostCoordinationAxesForm extends Panel {
 //					((Panel) comp).doLayout(false);
 //					((Panel) comp).doLayout();
 //				}
+				
+				if (openAfterAdd) {
+					treeValueSelector.onSelectValue();
+				}
 		}
 		else {
 			PropertyWidget widget = getWidgetForProperty(property);

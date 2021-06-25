@@ -142,16 +142,19 @@ public abstract class AbstractFieldWidget extends AbstractPropertyWidgetWithNote
     		return;
     	}
         if (isWriteOperationAllowed()) {
-            MessageBox.confirm("Confirm", "Are you sure you want to delete this value?",
-                new MessageBox.ConfirmCallback() {
-                    public void execute(String btnID) {
-                        if (btnID.equals("yes")) {
-                            deletePropertyValue(getSubject(), getProperty().getName(),
-                                    getProperty().getValueType(), UIUtil.getFirstItem(values),
-                                    field.getRawValue(), getDeleteValueOperationDescription());
-                        }
-                    }
-                });
+//            MessageBox.confirm("Confirm", "Are you sure you want to delete this value?",
+//                new MessageBox.ConfirmCallback() {
+//                    public void execute(String btnID) {
+//                        if (btnID.equals("yes")) {
+//                            deletePropertyValue(getSubject(), getProperty().getName(),
+//                                    getProperty().getValueType(), UIUtil.getFirstItem(values),
+//                                    field.getRawValue(), getDeleteValueOperationDescription());
+//                        }
+//                    }
+//                });
+            deletePropertyValue(getSubject(), getProperty().getName(),
+                    getProperty().getValueType(), UIUtil.getFirstItem(values),
+                    field.getRawValue(), getDeleteValueOperationDescription());
         }
 	}
 

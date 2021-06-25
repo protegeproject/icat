@@ -56,7 +56,7 @@ public abstract class AbstractSelectionFieldWidget extends TextFieldWidget {
         return addLink;
     }
 
-    protected void onSelectEntity() {
+    public void onSelectEntity() {
         final Window window = new Window();
         window.setTitle("Select value");
         window.setClosable(true);
