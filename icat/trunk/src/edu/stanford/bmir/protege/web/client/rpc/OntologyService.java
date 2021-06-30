@@ -6,7 +6,6 @@ import java.util.Map;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-import edu.stanford.bmir.protege.web.client.model.event.OntologyEvent;
 import edu.stanford.bmir.protege.web.client.rpc.data.AnnotationData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionItem;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionSuggestion;
@@ -38,8 +37,6 @@ public interface OntologyService extends RemoteService {
      */
 
     public Integer loadProject(String projectName);
-
-    public List<OntologyEvent> getEvents(String projectName, long fromVersion);
 
     public Boolean hasWritePermission(String projectName, String userName);
 

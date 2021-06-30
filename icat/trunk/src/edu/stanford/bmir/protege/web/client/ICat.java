@@ -31,6 +31,7 @@ import edu.stanford.bmir.protege.web.client.rpc.AdminServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.ApplicationPropertiesServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.AuthenticateServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.ChAOServiceManager;
+import edu.stanford.bmir.protege.web.client.rpc.EventsServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.HierarchyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.NotificationServiceManager;
@@ -80,6 +81,7 @@ public class ICat implements EntryPoint {
      * Force Servlet initialization - needed when running in browsers.
      */
     protected void initServletMagagers() {
+    	EventsServiceManager.getInstance();
         AdminServiceManager.getInstance();
         ApplicationPropertiesServiceManager.getInstance();
         AuthenticateServiceManager.getInstance();

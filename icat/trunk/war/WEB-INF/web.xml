@@ -148,6 +148,10 @@
         <servlet-class>edu.stanford.bmir.protege.web.server.scripting.ScriptingServiceImpl</servlet-class>
     </servlet>
   
+    <servlet>
+        <servlet-name>EventsServiceImpl</servlet-name>
+        <servlet-class>edu.stanford.bmir.protege.web.server.EventsServiceImpl</servlet-class>
+    </servlet>
   
   
     <!-- ************** Servlet mappings ************** -->
@@ -262,7 +266,17 @@
     </servlet-mapping>
 
 
+    <servlet-mapping>
+        <servlet-name>EventsServiceImpl</servlet-name>
+        <url-pattern>/webprotege/events</url-pattern>
+    </servlet-mapping>
+
  	<!-- ************** Other configurations ************** -->
+
+    <!-- Default page to serve -->
+    <welcome-file-list>
+        <welcome-file>iCat.html</welcome-file>
+    </welcome-file-list>
 
     <security-constraint>
         <display-name>excluded</display-name>
@@ -276,9 +290,6 @@
         </user-data-constraint>
     </security-constraint>
     
-    <!-- Default page to serve -->
-    <welcome-file-list>
-        <welcome-file>iCat.html</welcome-file>
-    </welcome-file-list>
+
 
 </web-app>

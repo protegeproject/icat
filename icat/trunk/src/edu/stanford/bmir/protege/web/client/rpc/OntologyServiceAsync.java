@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import edu.stanford.bmir.protege.web.client.model.event.OntologyEvent;
 import edu.stanford.bmir.protege.web.client.rpc.data.AnnotationData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionItem;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionSuggestion;
@@ -33,8 +32,6 @@ public interface OntologyServiceAsync {
      */
 
     void loadProject(String projectName, AsyncCallback<Integer> cb);
-
-    void getEvents(String projectName, long fromVersion, AsyncCallback<List<OntologyEvent>> cb);
 
     void hasWritePermission(String projectName, String userName, AsyncCallback<Boolean> cb);
 
