@@ -6,7 +6,6 @@ import java.util.Map;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import edu.stanford.bmir.protege.web.client.model.event.OntologyEvent;
 import edu.stanford.bmir.protege.web.client.rpc.data.AnnotationData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionItem;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionSuggestion;
@@ -46,9 +45,6 @@ public class OntologyServiceManager {
         proxy.loadProject(projectName, cb);
     }
 
-    public void getEvents(String projectName, long fromVersion, AsyncCallback<List<OntologyEvent>> cb) {
-        proxy.getEvents(projectName, fromVersion, cb);
-    }
 
     public void hasWritePermission(String projectName, String userName, AsyncCallback<Boolean> cb) {
         proxy.hasWritePermission(projectName, userName, cb);

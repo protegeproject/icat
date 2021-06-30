@@ -29,6 +29,6 @@
     <servlet path="/bpUpload" class="edu.stanford.bmir.protege.web.server.bioportal.BioPortalUploadImpl" />
     <servlet path="/bpaccess" class="edu.stanford.bmir.protege.web.server.bioportal.BioPortalAccessImpl" />
     <servlet path="/scripting" class="edu.stanford.bmir.protege.web.server.scripting.ScriptingServiceImpl" />
-    
+    <servlet path="/events" class="edu.stanford.bmir.protege.web.server.EventsServiceImpl" />
     
 </module>

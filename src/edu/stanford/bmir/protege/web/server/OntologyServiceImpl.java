@@ -17,7 +17,6 @@ import java.util.logging.Level;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-import edu.stanford.bmir.protege.web.client.model.event.OntologyEvent;
 import edu.stanford.bmir.protege.web.client.rpc.OntologyService;
 import edu.stanford.bmir.protege.web.client.rpc.data.AnnotationData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ConditionItem;
@@ -1456,13 +1455,6 @@ public class OntologyServiceImpl extends RemoteServiceServlet implements Ontolog
         return (kb instanceof OWLModel) ? true : false;
     }
 
-    public List<OntologyEvent> getEvents(String projectName, long fromVersion) {
-        ServerProject<Project> serverProject = Protege3ProjectManager.getProjectManager().getServerProject(projectName, false);
-        if (serverProject == null) {
-            throw new RuntimeException("Could not get ontology: " + projectName + " from server.");
-        }
-        return serverProject.isLoaded() ? serverProject.getEvents(fromVersion) : null;
-    }
 
     public EntityData createCls(String projectName, String clsName, String superClsName, String user,
             String operationDescription) {

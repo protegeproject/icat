@@ -16,7 +16,7 @@ import edu.stanford.bmir.protege.web.client.model.event.OntologyEvent;
 import edu.stanford.bmir.protege.web.client.model.event.PropertyValueEvent;
 import edu.stanford.bmir.protege.web.client.model.listener.OntologyListener;
 import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
-import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
+import edu.stanford.bmir.protege.web.client.rpc.EventsServiceManager;
 
 /**
  * Polls the server for events every x seconds. Keeps the current version of the
@@ -151,7 +151,7 @@ public class OntologyEventManager {
      */
 
     public void getEventsFromServer() {
-        OntologyServiceManager.getInstance().getEvents(project.getProjectName(), revision, new GetEventsFromServerHandler());
+        EventsServiceManager.getInstance().getEvents(project.getProjectName(), revision, new GetEventsFromServerHandler());
     }
 
     public void dispose() {
