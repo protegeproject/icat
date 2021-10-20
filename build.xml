@@ -6,6 +6,8 @@
 	<property environment="env"/>
 	<property name="protege.home"       location = "${env.PROTEGE_HOME}"/>
 	<property name="catalina.home"      location = "${env.CATALINA_HOME}"/>
+	
+	<property name="hosted.memory"      location = "2g"/>
 
 	<property name="war.name"           value    = "webprotege"/>
 
@@ -511,7 +513,7 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
 		      jar="${jetty.home}/start.jar"
 		      fork="true"
 		      failonerror="true"
-		      maxmemory="1g">
+		      maxmemory="${hosted.memory}">
 			<!-- <jvmarg value="-Dpython.home=${python.home}" /> -->
 			<jvmarg value="-Dicat.built.war=${war}" />
 			<jvmarg value="-agentlib:jdwp=transport=dt_socket,address=8100,server=y,suspend=n"/>
