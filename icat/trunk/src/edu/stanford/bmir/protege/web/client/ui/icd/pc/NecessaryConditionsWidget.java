@@ -87,6 +87,7 @@ public class NecessaryConditionsWidget extends AbstractPropertyWidget {
 	@Override
 	public void setSubject(EntityData subject) {
 		Collection<EntityData> oldSubjectTypes = (getSubject() == null ? new ArrayList<EntityData>() : getSubject().getTypes());
+		oldSubjectTypes = (oldSubjectTypes == null ? new ArrayList<EntityData>() : oldSubjectTypes);
 		
 		super.setSubject(subject);
 
