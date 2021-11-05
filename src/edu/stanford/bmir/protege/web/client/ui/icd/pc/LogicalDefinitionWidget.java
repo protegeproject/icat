@@ -140,7 +140,10 @@ public class LogicalDefinitionWidget extends AbstractPropertyWidget implements S
 	@Override
 	public void setSubject(EntityData subject) {
 		Collection<EntityData> oldSubjectTypes = (getSubject() == null ? new ArrayList<EntityData>() : getSubject().getTypes());
-		oldSubjectTypes = (oldSubjectTypes == null ? new ArrayList<EntityData>() : oldSubjectTypes);
+		if (oldSubjectTypes == null) {
+			GWT.log("WARNING: Old subject's type is NULL. Old subject: " + getSubject());
+			oldSubjectTypes = new ArrayList<EntityData>();
+		}
 		
 		super.setSubject(subject);
 
