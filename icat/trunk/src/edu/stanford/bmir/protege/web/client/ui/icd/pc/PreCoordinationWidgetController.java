@@ -19,7 +19,7 @@ import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormGenerator;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.WidgetController;
 
-public class PreCoordinationWidgetController extends WidgetController {
+public class PreCoordinationWidgetController<ControllingWidget extends PreCoordinationWidget<?>> extends WidgetController<ControllingWidget> {
 
 	private Project project;
 	private Collection<PropertyWidget> widgets = null;
@@ -109,6 +109,8 @@ public class PreCoordinationWidgetController extends WidgetController {
 		@Override
 		public void handleFailure(Throwable caught) {
 			GWT.log("Failure on GetPostCoordinationAxesHandler");
+			
+			updateLoadingStatus(false);
 		}
 
 		@Override
@@ -116,10 +118,15 @@ public class PreCoordinationWidgetController extends WidgetController {
 			GWT.log("GetPostCoordinationAxesHandler: " + result.size() + " props: " + result);
 			
 			updatePropertyList(result);
+			updateLoadingStatus(false);
 		}
 		
 	}
 
+	protected void updateLoadingStatus(boolean isLoading) {
+		getControllingWidget().setLoadingStatus(isLoading);
+	}
+	
 	protected void updatePropertyList(List<String> result) {
 		for (String prop : result) {
 			for (String relProp : getAllRelatedProperties(prop)) {
@@ -131,7 +138,9 @@ public class PreCoordinationWidgetController extends WidgetController {
 	public void onSubjectChanged(EntityData subject) {
 		GWT.log("getPropertyValues" + subject);
 		if (subject != null) {
-			//TODO continue here hideAllWidgets();
+			//TODO continue here 
+				hideAllWidgets();
+				updateLoadingStatus(true);
 			getSuperclassValue();
 			getPropertyValues(subject);
 			getPossiblePropertyValues(subject);
@@ -156,11 +165,13 @@ public class PreCoordinationWidgetController extends WidgetController {
 					@Override
 					public void onSuccess(List<PrecoordinationClassExpressionData> res) {
 						updateWidgetContents(res);
+						updateLoadingStatus(false);
 					}
 					
 					@Override
 					public void onFailure(Throwable arg0) {
 						GWT.log("Failed getPreCoordinationClassExpressions");
+						updateLoadingStatus(false);
 						
 					}
 				});

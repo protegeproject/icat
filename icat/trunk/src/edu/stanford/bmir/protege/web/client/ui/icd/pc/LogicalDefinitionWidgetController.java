@@ -11,7 +11,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormGenerator;
 
-public class LogicalDefinitionWidgetController extends PreCoordinationWidgetController {
+public class LogicalDefinitionWidgetController<ControllingWidget extends LogicalDefinitionWidget> extends PreCoordinationWidgetController<ControllingWidget> {
 
 	private LogicalDefinitionWidget logicalDefinitionWidget;
 	private NecessaryConditionsWidget necessaryConditionsWidget;
@@ -23,7 +23,7 @@ public class LogicalDefinitionWidgetController extends PreCoordinationWidgetCont
 
 
 	@Override
-	public void setControllingWidget(PropertyWidget widget) {
+	public void setControllingWidget(ControllingWidget widget) {
 		super.setControllingWidget(widget);
 		if (widget instanceof LogicalDefinitionWidget) {
 			logicalDefinitionWidget = (LogicalDefinitionWidget) widget;
