@@ -12,11 +12,11 @@ import com.gwtext.client.widgets.Panel;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 
-public class WidgetController {
+public class WidgetController <ControllingWidget extends PropertyWidget> {
 
 	private Panel tabPanel;
 	private FormGenerator formGenerator;
-	private PropertyWidget controllingWidget;
+	private ControllingWidget controllingWidget;
 	private Map<String, PropertyWidget> property2Widget = null;
 	private Map<String, List<String>> property2PropertiesMap = new HashMap<String, List<String>>();
 
@@ -29,7 +29,7 @@ public class WidgetController {
 		return formGenerator;
 	}
 	
-	public void setControllingWidget(PropertyWidget widget) {
+	public void setControllingWidget(ControllingWidget widget) {
 		this.controllingWidget = widget;
 	}
 
@@ -108,7 +108,7 @@ public class WidgetController {
 		return new ArrayList<String>(property2Widget.keySet());
 	}
 	
-	protected PropertyWidget getControllingWidget() {
+	protected ControllingWidget getControllingWidget() {
 		return controllingWidget;
 	}
 
@@ -139,4 +139,12 @@ public class WidgetController {
 		return propList;
 	}
 
+//	public void updateLoadingStatus(boolean loadingStatus) {
+//		if (loadingStatus == true) {
+//			controllingWidget.
+//		}
+//		else {
+//			
+//		}
+//	}
 }

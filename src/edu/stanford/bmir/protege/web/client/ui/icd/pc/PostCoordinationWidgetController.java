@@ -11,7 +11,7 @@ import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstant
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormGenerator;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.WidgetController;
 
-public class PostCoordinationWidgetController extends WidgetController {
+public class PostCoordinationWidgetController extends WidgetController<PostCoordinationGrid> {
 
 	private FixedScaleValuePresenter fixedScaleValuePresenterWidget;
 	private boolean initialized = false;

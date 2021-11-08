@@ -12,26 +12,25 @@ import com.gwtext.client.widgets.Panel;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
-import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormGenerator;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
-public class LogicalDefinitionWidget extends AbstractPropertyWidget implements SuperclassSelectorContainer {
+public class LogicalDefinitionWidget extends PreCoordinationWidget<LogicalDefinitionWidget> implements SuperclassSelectorContainer {
 
 	private Panel wrappingPanel;
-	private SuperclassSelectorWidget superclassSelector;
+//	private SuperclassSelectorWidget superclassSelector;
 //	private List<AbstractScaleValueSelectorWidget> valueSelWidgets;
 	private PostCoordinationAxesForm pcAxesForm;
 	private PropertySelectorWidget propertySelectorWidget;
 	
-    private LogicalDefinitionWidgetController widgetController;
+    private LogicalDefinitionWidgetController<LogicalDefinitionWidget> widgetController;
     
     private boolean visibilityUpdateNeeded;
 
-	public LogicalDefinitionWidget(Project project, LogicalDefinitionWidgetController widgetController) {
-		super(project);
+	public LogicalDefinitionWidget(Project project, LogicalDefinitionWidgetController<LogicalDefinitionWidget> widgetController) {
+		super(project, widgetController);
 		this.widgetController = widgetController;
 	}
 
@@ -83,10 +82,12 @@ public class LogicalDefinitionWidget extends AbstractPropertyWidget implements S
 	@Override
 	public Component createComponent() {
 		wrappingPanel = new Panel();
+		createLoadingStatusIndicatorComponent();
 		superclassSelector = createSuperClassSelectorWidget();
 //		Panel propertyValuePanel = createScaleValueSelectorWidgets();
 		
 		wrappingPanel.add(superclassSelector.getComponent());
+		wrappingPanel.add(loadingStatusIndicator);
 //		wrappingPanel.add(propertyValuePanel);
 		System.out.println("createComponent: adding PostCoordinationAxesForm");
 		GWT.log("createComponent: adding PostCoordinationAxesForm");
@@ -163,7 +164,7 @@ public class LogicalDefinitionWidget extends AbstractPropertyWidget implements S
 				widget.setSubject(subject);
 			}
 		}
-		superclassSelector.setSubject(subject);
+//		superclassSelector.setSubject(subject);	//done in the super.setSubject
 		propertySelectorWidget.setSubject(subject);
 	}
     

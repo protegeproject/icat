@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
 import com.gwtext.client.widgets.Component;
+import com.gwtext.client.widgets.HTMLPanel;
 import com.gwtext.client.widgets.Panel;
 
 import edu.stanford.bmir.protege.web.client.model.Project;
@@ -18,15 +19,16 @@ import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstant
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormGenerator;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
-public class PreCoordinationWidget extends AbstractPropertyWidget implements SuperclassSelectorContainer {
+public class PreCoordinationWidget <ControllingWidget extends PreCoordinationWidget<?>> extends AbstractPropertyWidget implements SuperclassSelectorContainer {
 
 	private Panel wrappingPanel;
-	private SuperclassSelectorWidget superclassSelector;
-	private List<AbstractScaleValueSelectorWidget> valueSelWidgets;
+	protected Panel loadingStatusIndicator;
+	protected SuperclassSelectorWidget superclassSelector;
+	protected List<AbstractScaleValueSelectorWidget> valueSelWidgets;
 
-    private PreCoordinationWidgetController widgetController;
+    private PreCoordinationWidgetController<ControllingWidget> widgetController;
 	
-	public PreCoordinationWidget(Project project, PreCoordinationWidgetController widgetController) {
+    public PreCoordinationWidget(Project project, PreCoordinationWidgetController<ControllingWidget> widgetController) {
 		super(project);
 		this.widgetController = widgetController;
 	}
@@ -48,14 +50,20 @@ public class PreCoordinationWidget extends AbstractPropertyWidget implements Sup
 	@Override
 	public Component createComponent() {
 		wrappingPanel = new Panel();
+		createLoadingStatusIndicatorComponent();
 		superclassSelector = createSuperClassSelectorWidget();
 		Panel propertyValuePanel = createScaleValueSelectorWidgets();
 		
 		wrappingPanel.add(superclassSelector.getComponent());
+		wrappingPanel.add(loadingStatusIndicator);
 		wrappingPanel.add(propertyValuePanel);
 		return wrappingPanel;
 	}
-	
+
+	protected Panel createLoadingStatusIndicatorComponent() {
+		return loadingStatusIndicator = new HTMLPanel("Loading values ...");
+	}
+
 	@Override
 	public SuperclassSelectorWidget createSuperClassSelectorWidget() {
 		SuperclassSelectorWidget superclassSelector = null;
@@ -147,8 +155,10 @@ public class PreCoordinationWidget extends AbstractPropertyWidget implements Sup
 	@Override
 	public void setSubject(EntityData subject) {
 		super.setSubject(subject);
-		for (AbstractScaleValueSelectorWidget valueSelector : valueSelWidgets) {
-			valueSelector.setSubject(subject); //TODO: check if it makes remote call; shouldn't
+		if (valueSelWidgets != null) {  //check this, in case subclasses won't initialize it
+			for (AbstractScaleValueSelectorWidget valueSelector : valueSelWidgets) {
+				valueSelector.setSubject(subject); //TODO: check if it makes remote call; shouldn't
+			}
 		}
 		
 		superclassSelector.setSubject(subject);
@@ -161,6 +171,13 @@ public class PreCoordinationWidget extends AbstractPropertyWidget implements Sup
 		//superclass selector (and as a consequence????) also for the other
 		//scale value selector widgets.
 		superclassSelector.fillValues();
+	}
+	
+	@Override
+	public void setLoadingStatus(boolean loading) {
+		super.setLoadingStatus(loading);
+		GWT.log("Loading status for " + this.getClass() + " set to: " + loading);
+		loadingStatusIndicator.setVisible(loading);
 	}
 	
     @Override
