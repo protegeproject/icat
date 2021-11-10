@@ -49,7 +49,7 @@ public class LogicalDefinitionUtils {
 	public String checkLogicalDefinition(RDFSNamedClass childCls, RDFProperty prop, 
 			RDFResource filler, RDFSNamedClass parentCls) {
 		//check parent
-		RDFSNamedClass preCoordSupercls = cm.getPreecoordinationSuperclass(childCls);
+		RDFSNamedClass preCoordSupercls = cm.getPrecoordinationSuperclass(childCls);
 		if (preCoordSupercls == null) {
 			return LOG_DEF_MISSING;
 		}
