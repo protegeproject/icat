@@ -1192,7 +1192,7 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		WHOFICContentModel cm = getContentModel(owlModel);
 
 		RDFSNamedClass cls = cm.getICDCategory(entity);
-		RDFSNamedClass precoordSuperclass = cm.getPreecoordinationSuperclass(cls);
+		RDFSNamedClass precoordSuperclass = cm.getPrecoordinationSuperclass(cls);
 
 		List<AllowedPostcoordinationValuesData> res = new ArrayList<AllowedPostcoordinationValuesData>();
 		if (precoordSuperclass == null) {
