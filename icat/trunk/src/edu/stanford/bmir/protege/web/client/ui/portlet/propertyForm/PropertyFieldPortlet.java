@@ -278,7 +278,7 @@ public class PropertyFieldPortlet extends AbstractEntityPortlet {
 
     protected void adjustWidgetsBasedOnType(EntityData newEntity) {
     	Collection<PropertyWidget> widgets = formGenerator.getWidgets();
-    	Collection<EntityData> types = newEntity.getTypes();
+    	Collection<EntityData> types = (newEntity == null ? null : newEntity.getTypes());
     	for (PropertyWidget widget : widgets) {
     		if (widget.isTypeSensitive()) {
     			widget.changeVisibilityBasedOnSubjectType(types);
