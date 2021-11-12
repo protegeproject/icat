@@ -49,7 +49,7 @@ public class ICDServiceManager extends WHOFICServiceManager {
     	proxy.getClsesInRetiredTree(projectName, clses, callback);
     }
     
-    public void getFrameForPublicId(String projectName, String publicId, AsyncCallback<String> callback) {
+    public void getFrameForPublicId(String projectName, String publicId, AsyncCallback<EntityData> callback) {
     	proxy.getFrameForPublicId(projectName, publicId, callback);
     }
 }

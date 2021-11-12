@@ -22,6 +22,6 @@ public interface ICDServiceAsync extends WHOFICServiceAsync {
 	void getClsesInRetiredTree(String projectName, Collection<EntityData> clses,
 			AsyncCallback<Collection<EntityData>> callback);
 
-	void getFrameForPublicId(String projectName, String publicId, AsyncCallback<String> callback);
+	void getFrameForPublicId(String projectName, String publicId, AsyncCallback<EntityData> callback);
 	
 }
