@@ -304,14 +304,19 @@ public class ICDServiceImpl extends WHOFICServiceImpl implements ICDService {
 	}
 
 	@Override
-	public String getFrameForPublicId(String projectName, String publicId) {
+	public EntityData getFrameForPublicId(String projectName, String publicId) {
 		Project project = getProject(projectName);
 		KnowledgeBase kb = project.getKnowledgeBase();
 		
 		Collection<Frame> frames = kb.getFramesWithValue(kb.getSlot(ICDContentModelConstants.PUBLIC_ID_PROP), null, false, publicId);
 		
-		return (frames == null || frames.size() == 0) ? 
-				null : frames.iterator().next().getName();
+		if (frames == null || frames.size() == 0) {
+			return null;
+		}
+		
+		Frame frame = frames.iterator().next();
+		
+		return OntologyServiceImpl.createEntityData(frame, false, true);
 	}
 
 }
