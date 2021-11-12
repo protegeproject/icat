@@ -11,8 +11,10 @@ import edu.stanford.bmir.protege.web.client.rpc.ICDService;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.server.icd.proposals.ImportProposalsUtil;
 import edu.stanford.bmir.whofic.icd.ICDContentModel;
+import edu.stanford.bmir.whofic.icd.ICDContentModelConstants;
 import edu.stanford.smi.protege.exception.ProtegeException;
 import edu.stanford.smi.protege.model.Cls;
+import edu.stanford.smi.protege.model.Frame;
 import edu.stanford.smi.protege.model.KnowledgeBase;
 import edu.stanford.smi.protege.model.Project;
 import edu.stanford.smi.protege.util.Log;
@@ -298,8 +300,18 @@ public class ICDServiceImpl extends WHOFICServiceImpl implements ICDService {
 	}
 
 	protected ICDContentModel getContentModel(OWLModel owlModel) {
-		// return new ICIContentModel(owlModel);
 		return new ICDContentModel(owlModel);
+	}
+
+	@Override
+	public String getFrameForPublicId(String projectName, String publicId) {
+		Project project = getProject(projectName);
+		KnowledgeBase kb = project.getKnowledgeBase();
+		
+		Collection<Frame> frames = kb.getFramesWithValue(kb.getSlot(ICDContentModelConstants.PUBLIC_ID_PROP), null, false, publicId);
+		
+		return (frames == null || frames.size() == 0) ? 
+				null : frames.iterator().next().getName();
 	}
 
 }

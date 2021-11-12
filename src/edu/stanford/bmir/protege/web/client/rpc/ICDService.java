@@ -22,4 +22,6 @@ public interface ICDService extends WHOFICService  {
     
     public Collection<EntityData> getClsesInRetiredTree(String projectName, Collection<EntityData> clses);
     
+    public String getFrameForPublicId(String projectName, String publicId);
+    
 }
