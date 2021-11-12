@@ -135,9 +135,10 @@ public class LogicalDefinitionWidgetController<ControllingWidget extends Logical
 
 	@Override
 	public void showWidget(PropertyWidget widget) {
-		// TODO Auto-generated method stub
-		super.showWidget(widget);
-		afterWidgetVisibilityChanged(widget, true);
+		if (widget != null ) {
+			super.showWidget(widget);
+			afterWidgetVisibilityChanged(widget, true);
+		}
 	}
 
 //	@Override
