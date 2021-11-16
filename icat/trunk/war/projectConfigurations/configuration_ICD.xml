@@ -28376,6 +28376,10 @@
 								<string>label</string>
 								<string>@class_hierarchy_label_icf@</string>
 							</entry>
+							<entry>
+								<string>icd_search_subtree_filter</string>
+								<string>http://id.who.int/icd/entity/1405434703</string>
+							</entry>
 						</properties>
 					</portlet>
 				</portlets>
@@ -28463,6 +28467,10 @@
 							<entry>
 								<string>label</string>
 								<string>@class_hierarchy_label_ichi@</string>
+							</entry>
+							<entry>
+								<string>icd_search_subtree_filter</string>
+								<string>http://id.who.int/icd/entity/60347385</string>
 							</entry>
 						</properties>
 					</portlet>

@@ -20,7 +20,6 @@ import com.gwtext.client.data.Node;
 import com.gwtext.client.dd.DragData;
 import com.gwtext.client.dd.DragDrop;
 import com.gwtext.client.widgets.Button;
-import com.gwtext.client.widgets.Component;
 import com.gwtext.client.widgets.Container;
 import com.gwtext.client.widgets.CycleButton;
 import com.gwtext.client.widgets.MessageBox;
@@ -494,12 +493,12 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             toolbar.addElement(watchButton.getElement());
         }
 
-        final Component searchField = createSearchField();
+        final Element searchField = createSearchField();
         if (searchField != null) {
             toolbar.addSpacer();
             toolbar.addSeparator();
             toolbar.addText("&nbsp<i>Search</i>:&nbsp&nbsp");
-            toolbar.addElement(searchField.getElement());
+            toolbar.addElement((com.google.gwt.user.client.Element) searchField);
         }
     }
 
@@ -645,8 +644,10 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         }
     }
 
-    protected Component createSearchField() {
+    
+    protected Element createSearchField() {
         final TextField searchField = new TextField("Search: ", "search");
+        
         searchField.setSelectOnFocus(true);
         searchField.setAutoWidth(true);
         searchField.setEmptyText("Type search string");
@@ -661,7 +662,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
                 }
             }
         });
-        return searchField;
+        return searchField.getElement();
     }
 
     protected AsyncCallback<Boolean> getSearchAsyncCallback() {
@@ -1140,7 +1141,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             return topClass;
         }
         // TODO: move from here
-        setTitle(UIUtil.getStringConfigurationProperty(props, getProject().getProjectConfiguration(), "label", "Class Tree"));
+        setTitle(getCustomTitle());
         
         hierarchyProperty = (String) props.get("hierarchyProperty");
 
@@ -1150,7 +1151,21 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         }
         return topClass;
     }
+    
 
+    protected String getCustomTitle() {
+    	final PortletConfiguration portletConfiguration = getPortletConfiguration();
+        if (portletConfiguration == null) {
+            return getTitle();
+        }
+    	final Map<String, Object> props = portletConfiguration.getProperties();
+        if (props == null) {
+            return getTitle();
+        }
+        return UIUtil.getStringConfigurationProperty(props, getProject().getProjectConfiguration(), 
+        		"label", "Class Tree");
+    }
+    
     /**
      * To take effect, it has to be called before {@link #afterRender()}.
      *

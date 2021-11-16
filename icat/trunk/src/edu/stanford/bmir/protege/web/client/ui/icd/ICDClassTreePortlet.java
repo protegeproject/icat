@@ -1,31 +1,23 @@
 package edu.stanford.bmir.protege.web.client.ui.icd;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.http.client.URL;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.gwtext.client.core.EventObject;
-import com.gwtext.client.data.ArrayReader;
-import com.gwtext.client.data.FieldDef;
 import com.gwtext.client.data.Node;
-import com.gwtext.client.data.ObjectFieldDef;
-import com.gwtext.client.data.Record;
-import com.gwtext.client.data.RecordDef;
-import com.gwtext.client.data.Store;
-import com.gwtext.client.data.StringFieldDef;
 import com.gwtext.client.widgets.Button;
 import com.gwtext.client.widgets.Component;
 import com.gwtext.client.widgets.MessageBox;
 import com.gwtext.client.widgets.Toolbar;
 import com.gwtext.client.widgets.ToolbarButton;
+import com.gwtext.client.widgets.Window;
 import com.gwtext.client.widgets.event.ButtonListenerAdapter;
+import com.gwtext.client.widgets.event.WindowListenerAdapter;
 import com.gwtext.client.widgets.form.ComboBox;
-import com.gwtext.client.widgets.form.Field;
-import com.gwtext.client.widgets.form.event.ComboBoxCallback;
-import com.gwtext.client.widgets.form.event.ComboBoxListenerAdapter;
+import com.gwtext.client.widgets.form.FormPanel;
+import com.gwtext.client.widgets.layout.FitLayout;
 import com.gwtext.client.widgets.menu.BaseItem;
 import com.gwtext.client.widgets.menu.Menu;
 import com.gwtext.client.widgets.menu.MenuItem;
@@ -38,19 +30,22 @@ import edu.stanford.bmir.protege.web.client.rpc.HierarchyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
-import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 import edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet;
 import edu.stanford.bmir.protege.web.client.ui.ontology.hierarchy.CreateClassPanel;
-import edu.stanford.bmir.protege.web.client.ui.search.SearchResultsProxyImpl;
-import edu.stanford.bmir.protege.web.client.ui.search.SearchUtil;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
 public class ICDClassTreePortlet extends ClassTreePortlet {
+	
     public static final String CREATE_ICD_SPECIFIC_ENTITES_PROP = "create_icd_specific_entities";
     public static final boolean CREATE_ICD_SPECIFIC_ENTITES_DEFAULT = true;
+    
     public static final String PUBLIC_ID_PROP ="publicId";
+    
+    public static final String ICD_SEARCH_SUBTREE_FILTER_PROP = "icd_search_subtree_filter";
 
     private ComboBox searchCb;
+    
+    private Window searchWindow;
 
     public ICDClassTreePortlet(Project project) {
         super(project);
@@ -64,9 +59,15 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
     @Override
     public void initialize() {
         super.initialize();
+        
+        initSearchWindow();
         addSearchInWindowButton();
     }
 
+
+	protected String getICDSearchFilter() {
+	        return UIUtil.getStringConfigurationProperty(getPortletConfiguration(), ICD_SEARCH_SUBTREE_FILTER_PROP, null);
+	}
 
 	@Override
     protected void createContextMenu(final Node node, EventObject e) {
@@ -103,7 +104,7 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
         //TODO get URL base from configuration
         String baseUrl = "https://icd.who.int/dev11/f/en#/";
         String url = baseUrl + (publicId != null && publicId.length() > 0 ? URL.encodePathSegment(publicId) : "");
-        Window.open(url,  "_blank", "");
+        com.google.gwt.user.client.Window.open(url,  "_blank", "");
     }
 
     protected void addMenuItemShowPublicId(final EntityData entity, Menu contextMenu) {
@@ -132,7 +133,7 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
 	private String getPublicId(EntityData entity) {
 		return entity.getProperty(PUBLIC_ID_PROP);
 	}
-
+	
     @Override
     protected void onCreateCls() {
         final com.gwtext.client.widgets.Window selectWindow = new com.gwtext.client.widgets.Window();
@@ -240,77 +241,11 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
     }
 
     @Override
-    protected Component createSearchField() {
-        RecordDef recordDef = new RecordDef(new FieldDef[] { new ObjectFieldDef("entity"), new StringFieldDef("browserText") });
-
-        ArrayReader reader = new ArrayReader(recordDef);
-        final SearchResultsProxyImpl proxy = new SearchResultsProxyImpl();
-        proxy.setProjectName(getProject().getProjectName());
-        proxy.setValueType(ValueType.Cls);
-        final Store store = new Store(proxy, reader);
-
-        searchCb = new ComboBox();
-        searchCb.setStore(store);
-        searchCb.setDisplayField("browserText");
-        searchCb.setTypeAhead(false);
-        searchCb.setLoadingText("Searching...");
-        searchCb.setListWidth(400);
-        searchCb.setWidth(150);
-        searchCb.setPageSize(10);
-        searchCb.setMinChars(3);
-        searchCb.setQueryDelay(500);
-        searchCb.setHideTrigger(true);
-        searchCb.setHideLabel(true);
-        searchCb.setResizable(true);
-        searchCb.setEmptyText("Type search string");
-        searchCb.setValueNotFoundText("No results");
-
-        searchCb.addListener(new ComboBoxListenerAdapter() {
-            @Override
-            public boolean doBeforeQuery(ComboBox comboBox, ComboBoxCallback cb) {
-                proxy.setSearchText(searchCb.getValueAsString());
-                return true;
-            }
-            @Override
-            public void onSelect(ComboBox comboBox, Record record, int index) {
-                EntityData selection = (EntityData)record.getAsObject("entity");
-                comboBox.setValue(UIUtil.getDisplayText(selection).trim());
-                Collection<EntityData> selectionCollection = new ArrayList<EntityData>();
-                selectionCollection.add(selection);
-                setSelection(selectionCollection);
-            }
-            @Override
-            public void onSpecialKey(Field field, EventObject e) {
-                if (e.getKey() == EventObject.ENTER) {
-                    String searchText = searchCb.getValueAsString();
-                    if (searchText != null) {
-                        searchText = searchText.trim();
-                        if (searchText.length() > 0) {
-                            proxy.setSearchText(searchText);
-                            store.load(0, 10);
-                        } else {
-                            store.removeAll();
-                        }
-                    } else {
-                        store.removeAll();
-                    }
-                }
-            }
-
-            @Override
-            public void onValid(Field field) {
-                String searchText = searchCb.getValueAsString();
-                if (searchText == null || searchText.length() < 3) {
-                    store.removeAll();
-                    searchCb.collapse();
-                }
-            }
-        });
-
-        return searchCb;
+    protected Element createSearchField() {
+    	return null;
     }
 
-    //TODO: this will eventually be moved to the superclass
+
     protected void addSearchInWindowButton() {
         ToolbarButton searchInWindowButton = new ToolbarButton();
         searchInWindowButton.setCls("toolbar-button");
@@ -327,14 +262,59 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
         }
     }
 
-    private void onShowSearchWindow() {
-        SearchUtil searchUtil = new SearchUtil(project, ICDClassTreePortlet.this, getSearchAsyncCallback());
-        searchUtil.setBusyComponent(searchCb);
-        searchUtil.setSearchedValueType(ValueType.Cls);
-        searchUtil.search(searchCb.getText());
-    }
+	protected void onShowSearchWindow() {
+		searchWindow.setTitle(getCustomTitle() + " search results");
+		searchWindow.show();
+	}
 
-    @Override
+	private void initSearchWindow() {
+		searchWindow = new com.gwtext.client.widgets.Window();
+    	
+        searchWindow.setTitle("Search results");
+        searchWindow.setWidth(600);
+        searchWindow.setHeight(500);
+        searchWindow.setLayout(new FitLayout());
+        
+        FormPanel panel = new FormPanel();
+        panel.setAutoScroll(true);
+        
+        IcdApiSearchManager icdSearchManager = IcdApiSearchManager.getInstance();
+        
+		final SearchComponent searchComponent = icdSearchManager.createSearchComponent(getProject(), this);
+        searchComponent.setSubtreeSearchFilter(getICDSearchFilter());
+        searchComponent.setOnSelectCallback(new AsyncCallback<EntityData>() {
+        	@Override
+			public void onFailure(Throwable caught) {}
+        	@Override
+        	public void onSuccess(EntityData result) {
+        		searchWindow.hide();
+        	}
+		});
+		
+        Button closeButton = new Button("Close", new ButtonListenerAdapter() {
+            @Override
+            public void onClick(Button button, EventObject e) {
+                searchWindow.hide();
+            }
+        });
+
+        panel.add(searchComponent);
+        
+        panel.addButton(closeButton);
+
+        searchWindow.addListener(new WindowListenerAdapter() {
+        	@Override
+        	public void onShow(Component component) {
+        		icdSearchManager.bind(searchComponent);
+        		searchComponent.getSearchField().focus(true, 100);
+        	}
+        });
+        
+        searchWindow.add(panel);
+	}
+    
+
+	@Override
     public void setTreeNodeIcon(TreeNode node, EntityData entityData) {
     	if (entityData.isReleased() == true) {
     		node.setIconCls("released-icon");

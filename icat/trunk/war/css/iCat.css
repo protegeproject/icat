@@ -208,3 +208,62 @@ table.fixedscalevalues-table td
 	font-weight: bold;
 	text-align: center;
 }
+
+/*
+ * Styles used for ICD-API search ---- dont work, delete
+ */
+
+.found{
+	font-weight:700;
+	font-style:normal;
+	color:#d45800;
+}
+
+.nonwbe{
+	font-style:normal;
+	font-weight: 400;
+    color: #d45800
+}
+
+.x-panel-tbar .x-toolbar {
+	overflow: visible;
+}
+
+/*
+.ectComponent .browser ul.toplevel, .ectComponent .entitylist ul.toplevel {
+    list-style: none;
+    margin-left: -10px;
+}
+*/
+
+.ectComponent ul.toplevel{
+  padding-left: 40px;
+}
+
+.ectComponent .chdistro {
+   padding-left: 20px;
+}
+
+.ectComponent {
+	font-size: 11px;
+}
+
+.ectComponent .pvs {
+	font-size: 11px;
+}
+
+.ectComponent select {
+    font-size: 11px;
+}
+
+.entitylist {
+	height: 300px;
+}
+
+.ectComponent .searchresults h4 {
+	font-size: 12px;
+}
+
+.subtreeCheckbox {
+	margin-left: 5px;
+}
