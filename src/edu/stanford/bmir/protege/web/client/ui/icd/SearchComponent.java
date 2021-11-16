@@ -230,6 +230,11 @@ public class SearchComponent extends Panel {
 					@Override
 					public void onSuccess(EntityData frame) {
 						GWT.log("Selecting in cls tree: " + frame + " with public id: " + publicId);
+						
+						if (frame == null) { //means the public id is not set in iCAT
+							return;
+						}
+						
 						Collection<EntityData> selection = new ArrayList<EntityData>();
 						selection.add(frame);
 						
