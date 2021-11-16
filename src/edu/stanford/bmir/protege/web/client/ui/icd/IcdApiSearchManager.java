@@ -21,7 +21,7 @@ public class IcdApiSearchManager {
 	
 	
 	public static String ICD_API_SERVER_URL_PROP = "icd.api.server.url";
-	public static String ICD_API_SERVER_URL_DEFAULT = "https://id.who.int";
+	public static String ICD_API_SERVER_URL_DEFAULT = "https://icdapilive.azurewebsites.net";
 	
 	
 	private static IcdApiSearchManager instance;
