@@ -1,0 +1,37 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+	<g:DockLayoutPanel unit='EM' height="400px">
+	
+		<g:north size="2">
+			<g:HTMLPanel>
+				<table>
+					<tr>
+						<td>Search: </td>
+						<td>
+							<g:TextBox ui:field='searchField' styleName="ctw-input" />
+						</td>
+					</tr>
+				</table>
+			</g:HTMLPanel>
+		</g:north>
+
+		<g:center>
+			<g:TabLayoutPanel barUnit='EM' barHeight='1'>
+				<g:tab>
+					<g:header size='1.5'>Browser search</g:header>
+					<g:HTMLPanel ui:field='searchResultsDiv' styleName="ctw-window" />
+				</g:tab>
+				<g:tab>
+					<g:header size='1.5'>iCAT search</g:header>
+					<g:Label>baker</g:Label>
+				</g:tab>
+			</g:TabLayoutPanel>
+		</g:center>
+
+	</g:DockLayoutPanel>
+
+</ui:UiBinder>
+
+ 
+ 

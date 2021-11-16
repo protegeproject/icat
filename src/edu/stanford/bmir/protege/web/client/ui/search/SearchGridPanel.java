@@ -29,17 +29,22 @@ import edu.stanford.bmir.protege.web.client.ui.util.PaginationUtil;
 /**
  * The panel used for displaying the search results.
  *
- * @author Tania Tudorache <tudorache@stanford.edu>
+ * @author Tania Tudorache
  *
  */
 public class SearchGridPanel extends GridPanel {
+	
+	private static int PAGE_SIZE = 100;
+	
     private RecordDef recordDef;
     private Store store;
-    private GridRowListener gridRowListener;
     private SearchResultsProxyImpl proxy;
+    
+    private GridRowListener gridRowListener;
 
     private TextField searchField;
     private Component busyComponent;
+    
     private AsyncCallback<Boolean> asyncCallback;
 
     public SearchGridPanel(){
@@ -49,7 +54,9 @@ public class SearchGridPanel extends GridPanel {
     public SearchGridPanel(AsyncCallback<Boolean> asyncCallback){
         this.asyncCallback = asyncCallback;
         createGrid();
-        addGridRowListener(getRowListener());
+        addSearchToolbar();
+        
+        addGridRowListener(getGridRowListener());
     }
 
     public void reload(String projectName, String searchText, ValueType valueType) {
@@ -58,26 +65,35 @@ public class SearchGridPanel extends GridPanel {
         proxy.setSearchText(searchText);
         proxy.setValueType(valueType);
 
-        if (busyComponent != null) {
+        store.removeAll();
+        
+        if (busyComponent != null && busyComponent.getEl() != null) {
             busyComponent.getEl().mask("Searching...", true);
         }
-        store.load(0, ((PagingToolbar) this.getBottomToolbar()).getPageSize());
+        //store.load(0, ((PagingToolbar) this.getBottomToolbar()).getPageSize());
+        store.load(0, ((PagingToolbar) this.getTopToolbar()).getPageSize());
     }
 
-    protected GridRowListener getRowListener() {
-        if (gridRowListener == null) {
-            gridRowListener = new GridRowListenerAdapter() {
-                @Override
-                public void onRowDblClick(GridPanel grid, int rowIndex, EventObject e) {
-                    onEntityDblClick();
-                }
-            };
-        }
-        return gridRowListener;
+    
+    protected GridRowListener getGridRowListener() {
+    	if (gridRowListener == null) {
+    		gridRowListener = new GridRowListenerAdapter() {
+    			@Override
+    			public void onRowClick(GridPanel grid, int rowIndex, EventObject e) {
+    				onEntityClick();
+    			}
+    			@Override
+    			public void onRowDblClick(GridPanel grid, int rowIndex, EventObject e) {
+    				onEntityDblClick();
+    			}
+    		};
+    	}
+    	return gridRowListener;
     }
-
-    protected void onEntityDblClick() {
-    }
+    
+    protected void onEntityClick() {}
+    
+    protected void onEntityDblClick() {}
 
     protected void createGrid() {
         ColumnConfig browserTextCol = new ColumnConfig();
@@ -113,26 +129,26 @@ public class SearchGridPanel extends GridPanel {
                 if (result == false) {
                     emptyContent();
                 }
-                if (busyComponent != null) {
+                if (busyComponent != null && busyComponent.getEl() != null) {
                     busyComponent.getEl().unmask();
                 }
                 if (asyncCallback != null) {
                     asyncCallback.onSuccess(result);
                 }
+                SearchGridPanel.this.doLayout(false);
             }
         });
 
         store = new Store(proxy, reader);
         setStore(store);
-
-        PagingToolbar pToolbar = PaginationUtil.getNewPagingToolbar(store, 20);
-        setBottomToolbar(pToolbar);
-
-        addSearchToolbar();
+        
+        PagingToolbar pToolbar = PaginationUtil.getNewPagingToolbar(store, PAGE_SIZE);
+        //setBottomToolbar(pToolbar);
+        setTopToolbar(pToolbar);
 
         setStripeRows(true);
         setAutoExpandColumn("browserText");
-        setFrame(true);
+       // setFrame(true);
     }
 
 
@@ -144,24 +160,32 @@ public class SearchGridPanel extends GridPanel {
     }
 
 
-    private void addSearchToolbar() {
+    protected void addSearchToolbar() {
         setTopToolbar(new Toolbar());
         Toolbar toolbar = getTopToolbar();
-        final Component searchField = createSearchField();
+        
+        searchField = createSearchField();
         if (searchField != null) {
             toolbar.addText("<i>Search</i>:&nbsp&nbsp");
             toolbar.addElement(searchField.getElement());
         }
     }
 
-    protected Component createSearchField() {
-        searchField = new TextField("Search: ", "search");
+    protected TextField createSearchField() {
+        TextField searchField = new TextField("Search: ", "search");
         searchField.setValidateOnBlur(false);
         searchField.setSelectOnFocus(true);
         searchField.setWidth(400);
         //searchField.setAutoWidth(true);
         searchField.setEmptyText("Type search string");
-        searchField.addListener(new TextFieldListenerAdapter() {
+        
+        addSearchFieldListener();
+        
+        return searchField;
+    }
+
+    protected void addSearchFieldListener() {
+    	searchField.addListener(new TextFieldListenerAdapter() {
             @Override
             public void onSpecialKey(final Field field, final EventObject e) {
                 if (e.getKey() == EventObject.ENTER) {
@@ -180,21 +204,29 @@ public class SearchGridPanel extends GridPanel {
                 onSearchTextChange(field.getValueAsString());
             }
         });
-        return searchField;
     }
-
+    
     private void onSearchTextChange(String searchText) {
         if (searchText == null) {
+        	emptyContent();
             return;
         }
         searchText = searchText.trim();
-        if (searchText.length() > 2) {
+        if (searchText.length() > 2) { //start search after typing 3 chars
             reload(proxy.getProjectName(), searchText, proxy.getValueType());
-        } else {
-            emptyContent();
         }
     }
 
+    /*
+     * This method replaces the default search field with another provided search field.
+     * It does not update the toolbar. Most likely the toolbar should not be visible in this
+     * case, anyway
+     */
+    public void setSearchField(TextField searchField) {
+    	this.searchField = searchField;
+    	addSearchFieldListener();
+    }
+    
     public void setSearchFieldText(String text) {
         searchField.setValue(text);
     }
