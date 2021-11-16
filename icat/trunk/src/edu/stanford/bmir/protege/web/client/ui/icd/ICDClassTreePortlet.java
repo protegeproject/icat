@@ -281,7 +281,7 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
         IcdApiSearchManager icdSearchManager = IcdApiSearchManager.getInstance();
         
 		final SearchComponent searchComponent = icdSearchManager.createSearchComponent(getProject(), this);
-        searchComponent.setSubtreeSearchFilter(getICDSearchFilter());
+        searchComponent.setSubtreeSearchFilter(getICDSearchFilter()); //does not work here,because portlet config not loaded yet
         searchComponent.setOnSelectCallback(new AsyncCallback<EntityData>() {
         	@Override
 			public void onFailure(Throwable caught) {}
@@ -305,6 +305,8 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
         searchWindow.addListener(new WindowListenerAdapter() {
         	@Override
         	public void onShow(Component component) {
+        		searchComponent.setSubtreeSearchFilter(getICDSearchFilter());
+        		
         		icdSearchManager.bind(searchComponent);
         		searchComponent.getSearchField().focus(true, 100);
         	}
