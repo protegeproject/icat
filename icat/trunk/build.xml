@@ -313,6 +313,8 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
 
 			<arg line="-draftCompile" />
 			
+			<arg line="-strict" />
+			
 			<arg line = "-incremental"/>
 						
 			<arg line = "-localWorkers"/>
@@ -459,6 +461,7 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
 
 	<target name = "hosted.ns" 
 	           depends = "webprotege.lib,stage.war,compile.draft.js">
+		<echo message="Running hosted.ns"/>
 		<copy todir="${war}/WEB-INF/lib" file="${gwt.dir}/gwt-user.jar"/>
 		
 		<java classname = "com.google.gwt.dev.DevMode" 
@@ -509,6 +512,7 @@ http://groups.google.com/group/Google-Web-Toolkit/browse_thread/thread/086d288e0
 	</target>
 	
 	<target name="jetty.start" depends="jetty.copy.base.files">
+		<echo message="Starting jetty in ${war}"/>
 		<java dir="${war}"
 		      jar="${jetty.home}/start.jar"
 		      fork="true"
