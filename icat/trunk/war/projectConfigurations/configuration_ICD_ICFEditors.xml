@@ -25250,6 +25250,14 @@
 													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#diagnostic_criteria</string>
 												</entry>
 												<entry>
+													<string>writeAccessGroups</string>
+													<list>
+														<string>WHOTeam</string>
+														<string>PropertyValueEditors</string>
+														<string>DiagnosticCriteriaEditors</string>
+													</list>
+												</entry>
+												<entry>
 													<string>component_type</string>
 													<string>grid</string>
 												</entry>
