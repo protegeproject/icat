@@ -10,7 +10,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.HTML;
 import com.gwtext.client.core.ExtElement;
@@ -281,6 +280,11 @@ public class UIUtil {
             Map<String, Object> config, ProjectConfiguration projectConfiguration, String prop, String defaultValue) {
         String projectDefaultValue = getStringConfigurationProperty(projectConfiguration, prop, defaultValue);
         String localValue = getStringConfigurationProperty(config, prop, projectDefaultValue);
+        
+        if (localValue == null) {
+        	return defaultValue;
+        }
+        
         if (localValue.startsWith("@") && localValue.endsWith("@")) {
         	String projectProperty = localValue.substring(1, localValue.length() - 1);
         	return getStringConfigurationProperty(projectConfiguration, projectProperty, localValue);
