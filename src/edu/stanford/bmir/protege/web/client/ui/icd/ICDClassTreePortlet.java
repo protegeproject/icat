@@ -30,6 +30,7 @@ import edu.stanford.bmir.protege.web.client.rpc.HierarchyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet;
 import edu.stanford.bmir.protege.web.client.ui.ontology.hierarchy.CreateClassPanel;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
@@ -66,7 +67,13 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
 
 
 	protected String getICDSearchFilter() {
-	        return UIUtil.getStringConfigurationProperty(getPortletConfiguration(), ICD_SEARCH_SUBTREE_FILTER_PROP, null);
+	        PortletConfiguration portletConfiguration = getPortletConfiguration();
+	        if (portletConfiguration == null) {
+	        	return null;
+	        }
+	        
+			return UIUtil.getStringConfigurationProperty(portletConfiguration.getProperties(), project.getProjectConfiguration(),
+	        		ICD_SEARCH_SUBTREE_FILTER_PROP, null);
 	}
 
 	@Override
@@ -281,7 +288,6 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
         IcdApiSearchManager icdSearchManager = IcdApiSearchManager.getInstance();
         
 		final SearchComponent searchComponent = icdSearchManager.createSearchComponent(getProject(), this);
-        searchComponent.setSubtreeSearchFilter(getICDSearchFilter()); //does not work here,because portlet config not loaded yet
         searchComponent.setOnSelectCallback(new AsyncCallback<EntityData>() {
         	@Override
 			public void onFailure(Throwable caught) {}
