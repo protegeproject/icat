@@ -96,12 +96,20 @@
 			<string>ICF Entities</string>
 		</entry>
 		<entry>
+			<string>search_subtree_filter_icf</string>
+			<string>http://id.who.int/icd/entity/1405434703</string>
+		</entry>
+		<entry>
 			<string>root_class_ichi</string>
 			<string>http://who.int/icd#ICHIEntity</string>
 		</entry>
 		<entry>
 			<string>class_hierarchy_label_ichi</string>
 			<string>ICHI Entities</string>
+		</entry>
+		<entry>
+			<string>search_subtree_filter_ichi</string>
+			<string>http://id.who.int/icd/entity/60347385</string>
 		</entry>
 		<entry>
 			<string>sortable</string>
@@ -156,6 +164,10 @@
 							<entry>
 								<string>label</string>
 								<string>@class_hierarchy_label@</string>
+							</entry>
+							<entry>
+								<string>icd_search_subtree_filter</string>
+								<string>@search_subtree_filter_ichi@</string>
 							</entry>
 						</properties>
 					</portlet>
@@ -28209,6 +28221,10 @@
 								<string>label</string>
 								<string>@class_hierarchy_label_icf@</string>
 							</entry>
+							<entry>
+								<string>icd_search_subtree_filter</string>
+								<string>@search_subtree_filter_icf@</string>
+							</entry>
 						</properties>
 					</portlet>
 				</portlets>
@@ -28297,6 +28313,10 @@
 								<string>label</string>
 								<string>@class_hierarchy_label_ichi@</string>
 							</entry>
+							<entry>
+								<string>icd_search_subtree_filter</string>
+								<string>@search_subtree_filter_ichi@</string>
+							</entry>
 						</properties>
 					</portlet>
 				</portlets>
@@ -28375,6 +28395,10 @@
 							<entry>
 								<string>label</string>
 								<string>@class_hierarchy_label@</string>
+							</entry>
+							<entry>
+								<string>icd_search_subtree_filter</string>
+								<string>@search_subtree_filter_ichi@</string>
 							</entry>
 						</properties>
 					</portlet>
@@ -28476,6 +28500,10 @@
 								<string>label</string>
 								<string>@class_hierarchy_label@</string>
 							</entry>
+							<entry>
+								<string>icd_search_subtree_filter</string>
+								<string>@search_subtree_filter_ichi@</string>
+							</entry>
 						</properties>
 					</portlet>
 				</portlets>
@@ -28524,6 +28552,10 @@
 							<entry>
 								<string>label</string>
 								<string>@class_hierarchy_label@</string>
+							</entry>
+							<entry>
+								<string>icd_search_subtree_filter</string>
+								<string>@search_subtree_filter_ichi@</string>
 							</entry>
 						</properties>
 					</portlet>
@@ -28584,6 +28616,10 @@
 							<entry>
 								<string>label</string>
 								<string>@class_hierarchy_label@</string>
+							</entry>
+							<entry>
+								<string>icd_search_subtree_filter</string>
+								<string>@search_subtree_filter_ichi@</string>
 							</entry>
 						</properties>
 					</portlet>
