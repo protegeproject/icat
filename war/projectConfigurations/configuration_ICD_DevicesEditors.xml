@@ -88,7 +88,7 @@
 			<string>Health Devices, Equipment and Supplies</string>
 		</entry>
 		<entry>
-			<string>search_subtree_filter_devices</string>
+			<string>search_subtree_filter_default</string>
 			<string>http://id.who.int/icd/entity/1597357976</string>
 		</entry>
 		<entry>
@@ -171,7 +171,7 @@
 							</entry>
 							<entry>
 								<string>icd_search_subtree_filter</string>
-								<string>@search_subtree_filter_devices@</string>
+								<string>@search_subtree_filter_default@</string>
 							</entry>
 						</properties>
 					</portlet>
@@ -28402,7 +28402,7 @@
 							</entry>
 							<entry>
 								<string>icd_search_subtree_filter</string>
-								<string>@search_subtree_filter_devices@</string>
+								<string>@search_subtree_filter_default@</string>
 							</entry>
 						</properties>
 					</portlet>
@@ -28506,7 +28506,7 @@
 							</entry>
 							<entry>
 								<string>icd_search_subtree_filter</string>
-								<string>@search_subtree_filter_devices@</string>
+								<string>@search_subtree_filter_default@</string>
 							</entry>
 						</properties>
 					</portlet>
@@ -28559,7 +28559,7 @@
 							</entry>
 							<entry>
 								<string>icd_search_subtree_filter</string>
-								<string>@search_subtree_filter_devices@</string>
+								<string>@search_subtree_filter_default@</string>
 							</entry>
 						</properties>
 					</portlet>
@@ -28623,7 +28623,7 @@
 							</entry>
 							<entry>
 								<string>icd_search_subtree_filter</string>
-								<string>@search_subtree_filter_devices@</string>
+								<string>@search_subtree_filter_default@</string>
 							</entry>
 						</properties>
 					</portlet>
