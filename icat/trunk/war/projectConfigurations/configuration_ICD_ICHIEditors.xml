@@ -88,6 +88,10 @@
 			<string>ICHI Entities</string>
 		</entry>
 		<entry>
+			<string>search_subtree_filter_default</string>
+			<string>http://id.who.int/icd/entity/60347385</string>
+		</entry>
+		<entry>
 			<string>root_class_icf</string>
 			<string>http://who.int/icd#ICFEntity</string>
 		</entry>
@@ -167,7 +171,7 @@
 							</entry>
 							<entry>
 								<string>icd_search_subtree_filter</string>
-								<string>@search_subtree_filter_ichi@</string>
+								<string>@search_subtree_filter_default@</string>
 							</entry>
 						</properties>
 					</portlet>
@@ -28398,7 +28402,7 @@
 							</entry>
 							<entry>
 								<string>icd_search_subtree_filter</string>
-								<string>@search_subtree_filter_ichi@</string>
+								<string>@search_subtree_filter_default@</string>
 							</entry>
 						</properties>
 					</portlet>
@@ -28502,7 +28506,7 @@
 							</entry>
 							<entry>
 								<string>icd_search_subtree_filter</string>
-								<string>@search_subtree_filter_ichi@</string>
+								<string>@search_subtree_filter_default@</string>
 							</entry>
 						</properties>
 					</portlet>
@@ -28555,7 +28559,7 @@
 							</entry>
 							<entry>
 								<string>icd_search_subtree_filter</string>
-								<string>@search_subtree_filter_ichi@</string>
+								<string>@search_subtree_filter_default@</string>
 							</entry>
 						</properties>
 					</portlet>
@@ -28619,7 +28623,7 @@
 							</entry>
 							<entry>
 								<string>icd_search_subtree_filter</string>
-								<string>@search_subtree_filter_ichi@</string>
+								<string>@search_subtree_filter_default@</string>
 							</entry>
 						</properties>
 					</portlet>
