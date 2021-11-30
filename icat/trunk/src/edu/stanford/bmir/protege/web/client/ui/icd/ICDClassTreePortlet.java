@@ -15,7 +15,6 @@ import com.gwtext.client.widgets.ToolbarButton;
 import com.gwtext.client.widgets.Window;
 import com.gwtext.client.widgets.event.ButtonListenerAdapter;
 import com.gwtext.client.widgets.event.WindowListenerAdapter;
-import com.gwtext.client.widgets.form.ComboBox;
 import com.gwtext.client.widgets.form.FormPanel;
 import com.gwtext.client.widgets.layout.FitLayout;
 import com.gwtext.client.widgets.menu.BaseItem;
@@ -44,8 +43,6 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
     
     public static final String ICD_SEARCH_SUBTREE_FILTER_PROP = "icd_search_subtree_filter";
 
-    private ComboBox searchCb;
-    
     private Window searchWindow;
 
     public ICDClassTreePortlet(Project project) {
@@ -254,9 +251,10 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
 
 
     protected void addSearchInWindowButton() {
-        ToolbarButton searchInWindowButton = new ToolbarButton();
+        ToolbarButton searchInWindowButton = new ToolbarButton("Search");
         searchInWindowButton.setCls("toolbar-button");
         searchInWindowButton.setIcon("images/magnifier.png");
+        
         searchInWindowButton.addListener(new ButtonListenerAdapter() {
             @Override
             public void onClick(Button button, EventObject e) {
@@ -265,6 +263,9 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
         });
         Toolbar topToolbar = getTopToolbar();
         if (topToolbar != null) {
+        	topToolbar.addSeparator();
+        	topToolbar.addSpacer();
+        	topToolbar.addSpacer();
         	topToolbar.addButton(searchInWindowButton);
         }
     }
