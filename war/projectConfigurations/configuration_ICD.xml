@@ -85,7 +85,11 @@
 		</entry>
 		<entry>
 			<string>class_hierarchy_label</string>
-			<string>WHO-FIC Entities</string>
+			<string>Substances</string>
+		</entry>
+		<entry>
+			<string>search_subtree_filter_default</string>
+			<string></string>
 		</entry>
 		<entry>
 			<string>root_class_icf</string>
@@ -164,6 +168,10 @@
 							<entry>
 								<string>label</string>
 								<string>@class_hierarchy_label@</string>
+							</entry>
+							<entry>
+								<string>icd_search_subtree_filter</string>
+								<string>@search_subtree_filter_default@</string>
 							</entry>
 						</properties>
 					</portlet>
@@ -28567,6 +28575,10 @@
 								<string>label</string>
 								<string>@class_hierarchy_label@</string>
 							</entry>
+							<entry>
+								<string>icd_search_subtree_filter</string>
+								<string>@search_subtree_filter_default@</string>
+							</entry>
 						</properties>
 					</portlet>
 				</portlets>
@@ -28667,6 +28679,10 @@
 								<string>label</string>
 								<string>@class_hierarchy_label@</string>
 							</entry>
+							<entry>
+								<string>icd_search_subtree_filter</string>
+								<string>@search_subtree_filter_default@</string>
+							</entry>
 						</properties>
 					</portlet>
 				</portlets>
@@ -28715,6 +28731,10 @@
 							<entry>
 								<string>label</string>
 								<string>@class_hierarchy_label@</string>
+							</entry>
+							<entry>
+								<string>icd_search_subtree_filter</string>
+								<string>@search_subtree_filter_default@</string>
 							</entry>
 						</properties>
 					</portlet>
@@ -28775,6 +28795,10 @@
 							<entry>
 								<string>label</string>
 								<string>@class_hierarchy_label@</string>
+							</entry>
+							<entry>
+								<string>icd_search_subtree_filter</string>
+								<string>@search_subtree_filter_default@</string>
 							</entry>
 						</properties>
 					</portlet>
