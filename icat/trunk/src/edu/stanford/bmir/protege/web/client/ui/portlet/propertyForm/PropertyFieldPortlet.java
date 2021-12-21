@@ -91,6 +91,10 @@ public class PropertyFieldPortlet extends AbstractEntityPortlet {
        fillWidgetValues();
     }
 
+    protected void onRefresh() {
+       fillWidgetValues();
+    }
+
     @Override
     public void setEntity(EntityData newEntity) {
         checkFormGenerator(newEntity);
