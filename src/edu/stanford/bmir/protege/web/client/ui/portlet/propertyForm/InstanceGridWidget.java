@@ -1684,10 +1684,16 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
          shadowStore.removeAll();
     }
     
-    //This method is not called anymore. The values of the widget are filled
-    //with a bulk remote call by GetEntityPropertyValueHandler.
+    // This method is not called anymore to fill the values of the widget. 
+    // The values of the widget are filled
+    // with a bulk remote call by GetEntityPropertyValueHandler.
+    // This method is only called for the refresh of the widget value.
     @Override
     protected void fillValues(List<String> subjects, List<String> props) {
+    	removeAllValuesFromStores();
+ 	    OntologyServiceManager.getInstance().getEntityPropertyValues(getProject().getProjectName(), 
+ 	    		subjects, props, properties,
+ 	            new GetTriplesHandler(getSubject()));
     }
     
     @Override
