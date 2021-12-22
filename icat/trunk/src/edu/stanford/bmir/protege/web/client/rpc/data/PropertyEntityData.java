@@ -16,11 +16,11 @@ public class PropertyEntityData extends EntityData {
     static RegExp INDEX_REGEX_PATTERN = RegExp.compile("(.*)\\[\\d+\\]$");
 
     public PropertyEntityData() {
-        this(null, null);
+        this(null, null, null);
     }
 
     public PropertyEntityData(String name) {
-        this(name, name);
+        this(name, name, null);
     }
     
     public PropertyEntityData(String name, String browserText) {
