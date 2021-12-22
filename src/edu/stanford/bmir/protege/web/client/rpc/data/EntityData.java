@@ -27,11 +27,11 @@ public class EntityData implements Serializable {
     private boolean isReleased = false;
 
     public EntityData() {
-        this(null, null);
+        this(null, null, null);
     }
 
     public EntityData(String name) {
-        this(name, name);
+        this(name, name, null);
     }
 
     public EntityData(String name, String browserText) {
