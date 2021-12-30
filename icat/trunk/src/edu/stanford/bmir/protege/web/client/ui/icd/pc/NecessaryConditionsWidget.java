@@ -25,11 +25,11 @@ public class NecessaryConditionsWidget extends AbstractPropertyWidget {
 	private PostCoordinationAxesForm pcAxesForm;
 	private PropertySelectorWidget propertySelectorWidget;
 	
-    private LogicalDefinitionWidgetController widgetController;
+    private LogicalDefinitionWidgetController<?> widgetController;
     
     private boolean visibilityUpdateNeeded;
 
-	public NecessaryConditionsWidget(Project project, LogicalDefinitionWidgetController widgetController) {
+	public NecessaryConditionsWidget(Project project, LogicalDefinitionWidgetController<?> widgetController) {
 		super(project);
 		this.widgetController = widgetController;
 	}
@@ -57,6 +57,17 @@ public class NecessaryConditionsWidget extends AbstractPropertyWidget {
     	}
     }
     
+    public void updateNecessaryToLogicalDefinitionButton(boolean enabled) {
+		List<String> allProperties = widgetController.getAllProperties();
+		for ( String property : allProperties ) {
+			PropertyWidget widget = getWidgetForProperty(property);
+			if ( widget instanceof AbstractScaleValueSelectorWidget ) {
+				AbstractScaleValueSelectorWidget scValSelWidget = (AbstractScaleValueSelectorWidget)widget;
+				scValSelWidget.updateNecessaryToLogicalDefinitionButton(enabled);
+			}
+		}
+
+    }
     
 	@Override
 	public Component getComponent() {
@@ -200,7 +211,9 @@ public class NecessaryConditionsWidget extends AbstractPropertyWidget {
 	}
 	
 	public void removeAllAxis() {
+		//TODO check if this is correct: disable change 
 		pcAxesForm.removeAllFields();
+		updateNecessaryToLogicalDefinitionButton(false);
 	}
 	
 	public void afterWidgetVisibilityChanged(PropertyWidget widget, boolean isVisible) {

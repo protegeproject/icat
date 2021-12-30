@@ -1,28 +1,20 @@
 package edu.stanford.bmir.protege.web.client.ui.icd;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.ListBox;
 import com.gwtext.client.core.EventObject;
-import com.gwtext.client.core.Position;
 import com.gwtext.client.data.FieldDef;
 import com.gwtext.client.data.Record;
 import com.gwtext.client.data.Store;
-import com.gwtext.client.widgets.Button;
-import com.gwtext.client.widgets.MessageBox;
-import com.gwtext.client.widgets.Window;
-import com.gwtext.client.widgets.event.ButtonListenerAdapter;
 import com.gwtext.client.widgets.grid.CellMetadata;
 import com.gwtext.client.widgets.grid.ColumnConfig;
 import com.gwtext.client.widgets.grid.GridPanel;
 import com.gwtext.client.widgets.grid.Renderer;
 import com.gwtext.client.widgets.grid.event.GridCellListenerAdapter;
-import com.gwtext.client.widgets.layout.FitLayout;
 import com.gwtext.client.widgets.menu.BaseItem;
 import com.gwtext.client.widgets.menu.Menu;
 import com.gwtext.client.widgets.menu.MenuItem;
@@ -31,7 +23,6 @@ import com.gwtext.client.widgets.menu.event.BaseItemListenerAdapter;
 import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
-import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValuesList;
@@ -40,6 +31,8 @@ import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.MultilevelInstanceGridWidget;
+import edu.stanford.bmir.protege.web.client.ui.util.SelectionUtil;
+import edu.stanford.bmir.protege.web.client.ui.util.SelectionUtil.SelectionCallback;
 import edu.stanford.bmir.protege.web.client.ui.util.UIConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
@@ -385,109 +378,19 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
         currentRecord = record;
         currentShadowStoreRecord = shadowStoreRecord;
  
-        getParents();
-    }
-    
-    private ListBox getParents() {
-    	final ListBox lb = new ListBox();
-    	
-    	EntityData subject = getSubject();
-    	if (subject == null || subject.getName() == null) {
-    		return lb;
-    	}
-    	
-    	OntologyServiceManager.getInstance().getParents(getProject().getProjectName(), subject.getName(), true, 
-    			new AsyncCallback<List<EntityData>>() {
-			
-    		@Override
-			public void onFailure(Throwable caught) {
-				MessageBox.alert("Error", "There was an error at retrieving the direct parents.");
-			}
-    		
-			@Override
-			public void onSuccess(List<EntityData> parents) {
-				List<EntityData> directParents = new ArrayList<EntityData>();
-				
-				lb.addItem(NO_PARENT_SELECTED);
-				directParents.add(new EntityData(NO_PARENT_SELECTED, NO_PARENT_SELECTED));
-				
-				for (EntityData parent : parents) {
-					lb.addItem(UIUtil.getDisplayText(parent));
-					directParents.add(parent);
-				}
-				
-				int visibileRows = parents.size();
-				lb.setVisibleItemCount(visibileRows <= 1 ? 2: visibileRows);
-				
-				lb.setMultipleSelect(false);
-				
-				selectOldParent(lb, directParents);
-				
-				showParentsList(lb, directParents);
-			}
-			
-		});
-    	
-        return lb;
-    }
-    
-    private void selectOldParent(ListBox lb, List<EntityData> directParents) {
     	EntityData oldParent = (EntityData)currentShadowStoreRecord.getAsObject(fieldNameParent);
-    	
-    	int index = getOldParentIndex(directParents, oldParent);
-    	
-    	if (index != -1) {
-    		lb.setSelectedIndex(index);
-    		lb.setItemText(index, "* " + lb.getItemText(index));
-    	}
-  	}
-    
-    private int getOldParentIndex(List<EntityData> directParents, EntityData oldParent) {
-    	if (oldParent == null || oldParent.getName() == null) {
-    		return 0;
-    	}
-    	
-    	for (int i = 0; i < directParents.size(); i++) {
-			EntityData parent = directParents.get(i);
-			if (parent != null && parent.equals(oldParent)) {
-				return i;
-			}
-		}
-    	
-    	return -1;
-    }
+        SelectionUtil.selectNewParents(getProject(), getSubject(), oldParent, true, new SelectionCallback() {
+			
+			@Override
+			public void onSelect(Collection<EntityData> selection) {
 
-	private void showParentsList(final ListBox parentsListBox, final List<EntityData> directParents) {
-    	final Window win = createParentsSelectionWindow();
-        
-        Button cancelButton = new Button("Cancel");
-        cancelButton.addListener(new ButtonListenerAdapter() {
-            @Override
-            public void onClick(Button button, EventObject e) {
-                win.hide();
-                win.close();
-            }
-        });
-
-        Button selectButton = new Button("Select");
-        selectButton.addListener(new ButtonListenerAdapter() {
-            @Override
-            public void onClick(Button button, EventObject e) {
-            	int selectedIndex = parentsListBox.getSelectedIndex();
-                
-                if (selectedIndex == -1) {
-                    MessageBox.alert("No selection", "No class selected. Please select a parent from the list.");
-                    return;
-                }
-                
-                EntityData parent = directParents.get(selectedIndex);
-                if (NO_PARENT_SELECTED.equals(parent.getName())) { //this is a delete case
-                	parent = null;
-                }
-               
                 if (currentRecord != null) {
 
-                    EntityData oldParent = (EntityData)currentShadowStoreRecord.getAsObject(fieldNameParent);
+                    if (selection == null || selection.isEmpty()) {
+                    	return;
+                    }
+                    EntityData parent = selection.iterator().next();
+
 
                     if (fieldNameParent != null) {
                     	//this is optimistic
@@ -498,41 +401,11 @@ public class ICDLinearizationWidget extends MultilevelInstanceGridWidget {
                         updateInstanceValue(currentRecord, colIndexParent, oldParent, parent, ValueType.Instance, false); //false - because above we have already set the lin. parent name optimistically
                     }
                 }
-                              
-                win.hide();
-                win.close();
-            }
-        });
-
-        win.add(parentsListBox);
-        win.addButton(selectButton);
-        win.addButton(cancelButton);
-       
-        win.setModal(true);
-       
-        win.show();
-        win.center();
-        
-	}
-    
-    private Window createParentsSelectionWindow() {
-    	Window win = new Window();
-        win.setTitle("Select linearization parent (one of the direct Foundation parents)");
-        win.setWidth(400);
-        win.setHeight(200);
-       
-        win.setLayout(new FitLayout());
-        win.setPaddings(5);
-        win.setButtonAlign(Position.CENTER);
-
-        win.setCloseAction(Window.HIDE);
-        win.setPlain(true);
-        return win;
+				
+			}
+		});
     }
-
-
-
-
+    
     @Override
     protected boolean isAllowedValueForUser(EntityPropertyValuesList epv) {
     	if (allowedValues == null) {

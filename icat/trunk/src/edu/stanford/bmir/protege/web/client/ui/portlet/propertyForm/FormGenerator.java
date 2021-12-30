@@ -33,6 +33,7 @@ import edu.stanford.bmir.protege.web.client.ui.icd.pc.LogicalDefinitionWidgetCon
 import edu.stanford.bmir.protege.web.client.ui.icd.pc.NecessaryConditionsWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.pc.PostCoordinationGrid;
 import edu.stanford.bmir.protege.web.client.ui.icd.pc.PostCoordinationWidgetController;
+import edu.stanford.bmir.protege.web.client.ui.icd.pc.LogicalDefinitionSuperclassSelectorWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.pc.PreCoordinationWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.pc.PreCoordinationWidgetController;
 import edu.stanford.bmir.protege.web.client.ui.icd.pc.ScaleValueEditorWidget;
@@ -66,7 +67,7 @@ public class FormGenerator {
     private Map<Panel, GetEntityTripleHandler> tab2entitiesTripleHandler = new HashMap<Panel, GetEntityTripleHandler>();
     private Map<Panel, GetEntityPropertyValuesHandler> tab2entitiespropValuesHandler = new HashMap<Panel, GetEntityPropertyValuesHandler>();
 
-    private Map<Panel, LogicalDefinitionWidgetController<LogicalDefinitionWidget>> tab2logicalDefinitionWidgetController = new HashMap<Panel, LogicalDefinitionWidgetController<LogicalDefinitionWidget>>();
+    private Map<Panel, LogicalDefinitionWidgetController<LogicalDefinitionWidget<?>>> tab2logicalDefinitionWidgetController = new HashMap<Panel, LogicalDefinitionWidgetController<LogicalDefinitionWidget<?>>>();
     
     public FormGenerator(Project project, Map<String, Object> formConfiguration) {
         this.project = project;
@@ -304,25 +305,31 @@ public class FormGenerator {
                     	widget = createPreCoordinationWidget(configMap, prop, ctrl);
                     	ctrl.setControllingWidget( (PreCoordinationWidget<?>) widget );
                     } else if (component_type.equals(FormConstants.PRECOORDINATION_SUPERCLASS)) { //ICD specific
-//                    	PreCoordinationWidgetController ctrl = new PreCoordinationWidgetController(project, panel, this);
-                    	LogicalDefinitionWidgetController<LogicalDefinitionWidget> ctrl = getLogicalDefinitionWidgetController(panel);
-                    	widget = createPreCoordinationSuperclassWidget(configMap, prop, ctrl);
-                    	ctrl.setControllingWidget( (LogicalDefinitionWidget) widget );
-                    } else if (component_type.equals(FormConstants.PRECOORDINATION_CUST_SCALE_VALUE_SELECTOR)) { //ICD specific
+                    	//PreCoordinationWidgetController<PreCoordinationWidget> ctrl = new PreCoordinationWidgetController(project, panel, this);
+                    	widget = createPreCoordinationSuperclassWidget(configMap, prop);
+                    	//ctrl.setControllingWidget( (PreCoordinationWidget) widget );
+                    } else if (component_type.equals(FormConstants.PRECOORDINATION_SUPERCLASSES)) { //ICD specific
+                    	LogicalDefinitionWidgetController<LogicalDefinitionWidget<?>> ctrl = getLogicalDefinitionWidgetController(panel);
+                    	widget = createPreCoordinationSuperclassSelectorWidget(configMap, prop, ctrl);
+                    	ctrl.setControllingWidget( (LogicalDefinitionWidget<?>) widget );
+                        
+                        addWidgetToEntityPropertyValuesHandler(panel, widget);
+                   } else if (component_type.equals(FormConstants.PRECOORDINATION_CUST_SCALE_VALUE_SELECTOR)) { //ICD specific
                     	widget = createPreCoordinationCustomScaleValueSelectorWidget(configMap, prop);
                     } else if (component_type.equals(FormConstants.PRECOORDINATION_FIX_SCALE_VALUE_SELECTOR)) { //ICD specific
                     	widget = createPreCoordinationFixedScaleValueSelectorWidget(configMap, prop);
                     } else if (component_type.equals(FormConstants.PRECOORDINATION_TREE_VALUE_SELECTOR)) { //ICD specific
                     	widget = createPreCoordinationTreeValueSelectorWidget(configMap, prop);
                     } else if (component_type.equals(FormConstants.NECESSARY_CONDITIONS_COMP)) { //ICD specific
-                    	LogicalDefinitionWidgetController<LogicalDefinitionWidget> ctrl = getLogicalDefinitionWidgetController(panel);
+                    	LogicalDefinitionWidgetController<LogicalDefinitionWidget<?>> ctrl = getLogicalDefinitionWidgetController(panel);
                     	widget = createNecessaryConditionsWidget(configMap, prop, ctrl);
                     	ctrl.setNecessaryConditionsWidget((NecessaryConditionsWidget) widget);
                     } else if (component_type.equals(FormConstants.LOGICAL_DEFINITIONS_COMP)) { //ICD specific
-                    	LogicalDefinitionWidgetController<LogicalDefinitionWidget> ctrl = getLogicalDefinitionWidgetController(panel);
-                    	widget = createLogicalDefinitionsWidget(configMap, prop, ctrl);
+                    	LogicalDefinitionWidgetController<LogicalDefinitionWidget<?>> ctrl = getLogicalDefinitionWidgetController(panel);
+                    	GetEntityPropertyValuesHandler handler = getOrCreateEntityPropertyValuesHandler(panel);
+                    	widget = createLogicalDefinitionsWidget(configMap, prop, ctrl, handler);
                     	//ctrl.setLogicalDefinitionWidget((LogicalDefinitionWidget) widget);
-                    	ctrl.setControllingWidget( (LogicalDefinitionWidget) widget);
+                    	ctrl.setControllingWidget( (LogicalDefinitionWidget<?>) widget);
                     }
 
                     boolean showWidgetForUser = widgetConfig.userPartOfShowGroup();
@@ -338,13 +345,13 @@ public class FormGenerator {
         }
     }
 
-	private LogicalDefinitionWidgetController<LogicalDefinitionWidget> getLogicalDefinitionWidgetController(Panel panel) {
+	private LogicalDefinitionWidgetController<LogicalDefinitionWidget<?>> getLogicalDefinitionWidgetController(Panel panel) {
 		if ( tab2logicalDefinitionWidgetController == null ) {
 			tab2logicalDefinitionWidgetController = new HashMap<>();
 		}
-		LogicalDefinitionWidgetController<LogicalDefinitionWidget> logDefWidgetCtrl = tab2logicalDefinitionWidgetController.get(panel);
+		LogicalDefinitionWidgetController<LogicalDefinitionWidget<?>> logDefWidgetCtrl = tab2logicalDefinitionWidgetController.get(panel);
 		if ( logDefWidgetCtrl == null ) {
-			logDefWidgetCtrl = new LogicalDefinitionWidgetController<LogicalDefinitionWidget>(project, panel, this);
+			logDefWidgetCtrl = new LogicalDefinitionWidgetController<LogicalDefinitionWidget<?>>(project, panel, this);
 			tab2logicalDefinitionWidgetController.put(panel, logDefWidgetCtrl);
 		}
 		return logDefWidgetCtrl;
@@ -573,16 +580,24 @@ public class FormGenerator {
     //ICD specific
     private PreCoordinationWidget<?> createPreCoordinationWidget(Map<String, Object> conf, String property, 
     		PreCoordinationWidgetController<PreCoordinationWidget<?>> ctrl) {
-    	PreCoordinationWidget<?> preCoordinationWidget = new PreCoordinationWidget<PreCoordinationWidget<?>>(project, ctrl);
+    	PreCoordinationWidget<?> preCoordinationWidget = new PreCoordinationWidget<PreCoordinationWidgetController<?>>(project, ctrl);
     	preCoordinationWidget.setup(conf, new PropertyEntityData(property));
     	return preCoordinationWidget;
     }
     
     
     //ICD specific
-    public SuperclassSelectorWidget createPreCoordinationSuperclassWidget(Map<String, Object> conf, String property, 
-    		PreCoordinationWidgetController ctrl) {
-    	SuperclassSelectorWidget preCoordinationSuperclassWidget = new SuperclassSelectorWidget(project, ctrl);
+    public SuperclassSelectorWidget createPreCoordinationSuperclassWidget(Map<String, Object> conf, String property) {
+    	SuperclassSelectorWidget preCoordinationSuperclassWidget = new SuperclassSelectorWidget(project);
+    	preCoordinationSuperclassWidget.setup(conf, new PropertyEntityData(property));
+    	return preCoordinationSuperclassWidget;
+    }
+    
+    
+    //ICD specific
+    public LogicalDefinitionSuperclassSelectorWidget createPreCoordinationSuperclassSelectorWidget(Map<String, Object> conf, String property, 
+    		LogicalDefinitionWidgetController<?> ctrl) {
+    	LogicalDefinitionSuperclassSelectorWidget preCoordinationSuperclassWidget = new LogicalDefinitionSuperclassSelectorWidget(project, ctrl);
     	preCoordinationSuperclassWidget.setup(conf, new PropertyEntityData(property));
     	return preCoordinationSuperclassWidget;
     }
@@ -613,7 +628,7 @@ public class FormGenerator {
     
     
     //ICD specific
-    public PropertyWidget createNecessaryConditionsWidget(Map<String, Object> conf, String property, LogicalDefinitionWidgetController ctrl) {
+    public PropertyWidget createNecessaryConditionsWidget(Map<String, Object> conf, String property, LogicalDefinitionWidgetController<?> ctrl) {
     	NecessaryConditionsWidget necessaryConditionsWidget = new NecessaryConditionsWidget(project, ctrl);
     	necessaryConditionsWidget.setup(conf, new PropertyEntityData(property));
     	return necessaryConditionsWidget;
@@ -621,10 +636,12 @@ public class FormGenerator {
     
     
     //ICD specific
-    public PropertyWidget createLogicalDefinitionsWidget(Map<String, Object> conf, String property, LogicalDefinitionWidgetController ctrl) {
-    	LogicalDefinitionWidget necessaryConditionsWidget = new LogicalDefinitionWidget(project, ctrl);
-    	necessaryConditionsWidget.setup(conf, new PropertyEntityData(property));
-    	return necessaryConditionsWidget;
+    public PropertyWidget createLogicalDefinitionsWidget(Map<String, Object> conf, String property, 
+    		LogicalDefinitionWidgetController<?> ctrl, GetEntityPropertyValuesHandler handler) {
+    	LogicalDefinitionWidget<LogicalDefinitionWidgetController<?>> logicalDefinitionWidget = new LogicalDefinitionWidget<LogicalDefinitionWidgetController<?>>(project, ctrl);
+    	logicalDefinitionWidget.setGetEntityPropertyValuesHandler(handler);
+    	logicalDefinitionWidget.setup(conf, new PropertyEntityData(property));
+    	return logicalDefinitionWidget;
     }
 
     

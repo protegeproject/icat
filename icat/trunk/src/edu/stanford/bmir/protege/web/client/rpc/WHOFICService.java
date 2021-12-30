@@ -50,19 +50,28 @@ public interface WHOFICService extends RemoteService  {
 
     public List<EntityData> getAllSuperEntities(String projectName, EntityData entity);
 
+	public void removeLogicalDefinitionSuperclass(String projectName, String entity, String precoordSuperclass);
+	
+	public void removeLogicalDefinitionForSuperclass(String projectName, String entity, String precoordSuperclass);
+
+    @Deprecated
     public List<PrecoordinationClassExpressionData> getPreCoordinationClassExpressions(
 			String projectName, String entity, List<String> properties);
 
+    public List<PrecoordinationClassExpressionData> getPreCoordinationClassExpressions(
+    		String projectName, String entity, String precoordSuperclass, List<String> properties);
+
 	public List<AllowedPostcoordinationValuesData> getAllowedPostCoordinationValues(
-			String projectName, String entity,
+			String projectName, String precoordSuperclassName,
 			List<String> customScaleProperties,
 			List<String> treeValueProperties,
 			List<String> fixedScaleProperties);
 
-	public boolean setPrecoordinationPropertyValue(String projectName, String entity,
-			String property, EntityData oldValue, EntityData newValue, String user, String operationDescription);
+	boolean setPrecoordinationPropertyValue(String projectName, String entity, String property,
+			String precoordSuperclass, EntityData oldValue, EntityData newValue, boolean isDefinitional, String user,
+			String operationDescription);
 
-	public boolean changeIsDefinitionalFlag(String projectName, String entity,
+	public boolean changeIsDefinitionalFlag(String projectName, String entity, String precoordSuperclassName,
 			String property, boolean isDefinitionalFlag);
 
     public boolean reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent);

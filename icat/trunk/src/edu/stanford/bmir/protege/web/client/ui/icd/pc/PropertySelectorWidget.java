@@ -23,9 +23,7 @@ import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
-import edu.stanford.bmir.protege.web.client.ui.util.UIConstants;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
-import edu.stanford.bmir.protegex.bp.ref.WidgetConfig;
 
 public class PropertySelectorWidget extends AbstractPropertyWidget {
     private FormPanel wrappingPanel;
@@ -87,7 +85,7 @@ public class PropertySelectorWidget extends AbstractPropertyWidget {
 	 * TODO remove this method if we don't need it. Use {@link PostCoordinationAxesForm.updateListOfValidProperties} instead
 	 * @param types
 	 */
-	public void updateListOfValidPropertiesBasedOnTypes( Collection<EntityData> types, LogicalDefinitionWidgetController widgetController) {
+	public void updateListOfValidPropertiesBasedOnTypes( Collection<EntityData> types, LogicalDefinitionWidgetController<?> widgetController) {
 		//TODO delete this method
 //		validProperties = new ArrayList<String>();
 //		for (String property : allProperties) {

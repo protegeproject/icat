@@ -50,16 +50,21 @@ import com.gwtext.client.widgets.form.event.CheckboxListenerAdapter;
 import com.gwtext.client.widgets.form.event.ComboBoxCallback;
 import com.gwtext.client.widgets.form.event.ComboBoxListenerAdapter;
 import com.gwtext.client.widgets.grid.CellMetadata;
+import com.gwtext.client.widgets.grid.CellSelectionModel;
 import com.gwtext.client.widgets.grid.ColumnConfig;
 import com.gwtext.client.widgets.grid.ColumnModel;
 import com.gwtext.client.widgets.grid.EditorGridPanel;
 import com.gwtext.client.widgets.grid.GridEditor;
 import com.gwtext.client.widgets.grid.GridPanel;
 import com.gwtext.client.widgets.grid.Renderer;
+import com.gwtext.client.widgets.grid.RowSelectionModel;
+import com.gwtext.client.widgets.grid.event.CellSelectionModelListener;
+import com.gwtext.client.widgets.grid.event.CellSelectionModelListenerAdapter;
 import com.gwtext.client.widgets.grid.event.EditorGridListener;
 import com.gwtext.client.widgets.grid.event.EditorGridListenerAdapter;
 import com.gwtext.client.widgets.grid.event.GridCellListenerAdapter;
 import com.gwtext.client.widgets.grid.event.GridListenerAdapter;
+import com.gwtext.client.widgets.grid.event.RowSelectionListener;
 import com.gwtext.client.widgets.layout.ColumnLayout;
 import com.gwtext.client.widgets.layout.ColumnLayoutData;
 import com.gwtext.client.widgets.menu.BaseItem;
@@ -75,6 +80,7 @@ import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
+import edu.stanford.bmir.protege.web.client.rpc.data.Triple;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
 import edu.stanford.bmir.protege.web.client.ui.ontology.search.DefaultSearchStringTypeEnum;
 import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidgetWithNotes;
@@ -105,7 +111,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
     public static final String INST_DISPL_PROPERTY_VALUE = "inst_displ_property_value";
     
     private Panel wrappingPanel;
-    private EditorGridPanel grid;
+    protected EditorGridPanel grid;
 
     private String labelText;
     private HTML loadingIcon;
@@ -180,6 +186,8 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
 
         grid = createGrid();
         grid.addEditorGridListener(getEditorGridListener());
+    	grid.getCellSelectionModel().addListener(getSelectionModelListener());
+    	//grid.getSe
 
         wrappingPanel.add(labelPanel);
         wrappingPanel.add(grid, new ColumnLayoutData(1));
@@ -345,15 +353,22 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
                 getAddValueOperationDescription(), new AddPropertyValueHandler());
     }
 
-
+    
     protected void onAddExistingValue() {
+    	onAddExistingValue( -1 );
+    }
+    
+    protected void onAddExistingValue(int rowToReplace) {
         String type = UIUtil.getStringConfigurationProperty(getWidgetConfiguration(), FormConstants.ONT_TYPE, null);
         if (type == null) { return;  } //TODO: not type specified, maybe use range of property
 
         SelectionUtil.selectIndividuals(getProject(), UIUtil.createCollection(new EntityData(type)), 
         		getShowToolbar(), true, false, new SelectionCallback() {
             public void onSelect(Collection<EntityData> selection) {
-                addExistingValues(selection);
+                if ( rowToReplace >= 0 ) {
+                	onDelete( rowToReplace );
+                }
+            	addExistingValues(selection);
             }
         });
     }
@@ -422,13 +437,31 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
     }
 
     protected void onReplaceNewValue() {
-        onDelete(0);
+    	//TODO need to fix this, to work with CellSelectionModel instead!!!!
+    	RowSelectionModel selectionModel = grid.getSelectionModel();
+		Record selectedRec = selectionModel.getSelected();
+    	if (selectedRec != null) {
+    		onDelete(selectedRec);
+    	}
+    	else {
+    		onDelete(0);
+    	}
         onAddNewValue();
     }
 
     protected void onReplaceExisitingValue() {
-        onDelete(0);
-        onAddExistingValue();
+    	CellSelectionModel selectionModel = grid.getCellSelectionModel();
+    	int[] selRowColIndex = selectionModel.getSelectedCell();
+    	int rowToReplace = 0;
+    	if (selRowColIndex != null) {
+    		GWT.log("Row cnt: " + selRowColIndex);
+//    		onDelete(selRowColIndex[0]);
+    		rowToReplace = selRowColIndex[0];
+    	}
+//    	else {
+//    		onDelete(0);
+//    	}
+        onAddExistingValue( rowToReplace );
     }
 
     protected void onEditNotes(int index) {
@@ -449,14 +482,16 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
 
     protected void onDelete(int index) {
         Record record = store.getAt(index);
+        onDelete(record);
+    }
+    
+    protected void onDelete(Record record) {
         String value = record.getAsString(INSTANCE_FIELD_NAME);
         if (value != null) {
             propertyValueUtil.deletePropertyValue(getProject().getProjectName(), getSubject().getName(),
                     getProperty().getName(), ValueType.Instance, value, getCopyIfTemplateOption(), 
                     GlobalSettings.getGlobalSettings().getUserName(), 
-                    getDeleteValueOperationDescription(index), new RemovePropertyValueHandler(
-                            index));
-
+                    getDeleteValueOperationDescription(record), new RemovePropertyValueHandler(record));
         }
     }
 
@@ -496,9 +531,13 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
                 ". New value: " + newValue,
                 getSubject().getName());
     }
-
+    
     protected String getDeleteValueOperationDescription(int index) {
-        Record record = store.getAt(index);
+    	Record record = store.getAt(index);
+    	return getDeleteValueOperationDescription(record);
+    }
+    
+    protected String getDeleteValueOperationDescription(Record record) {
         String value = record.getAsString(INSTANCE_FIELD_NAME);
         String deletedValueDesc = new String("(");
         String[] fields = record.getFields();
@@ -551,6 +590,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
         createColumns(); //should be called before createStore
         createStore();
         attachListeners();
+        setSelectionModel();
 
         if (autoExpandColId != null) {
             grid.setAutoExpandColumn(autoExpandColId);
@@ -633,7 +673,11 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
         shadowStore.load();
     }
 
-    public GridPanel getGridPanel() {
+    protected void setSelectionModel() {
+    	//Do nothing, as by default there is a CellSelectionModel attached to the grid
+    }
+    
+    public EditorGridPanel getGridPanel() {
         return grid;
     }
 
@@ -666,6 +710,12 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
 		return new InstanceGridCellMouseListener();
 	}
 
+    protected CellSelectionModelListener getSelectionModelListener() {
+    	//Do nothing, as by default there is a CellSelectionModel attached to the grid
+    	return new CellSelectionModelListenerAdapter();
+//    	RowSelectionListener
+    }
+
     protected void onDeleteColumnClicked(final int rowIndex) {
         Record record = store.getAt(rowIndex);
         if (record != null) {
@@ -674,7 +724,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
                 return; //read only value
             }
             if (isWriteOperationAllowed()) {
-                MessageBox.confirm("Confirm", "Are you sure you want to delete this value?",
+                MessageBox.confirm("Confirm", getDeleteValueConfirmationMessage(record),
                         new MessageBox.ConfirmCallback() {
                     public void execute(String btnID) {
                         if (btnID.equals("yes")) {
@@ -685,6 +735,10 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
             }
         }
     }
+
+	protected String getDeleteValueConfirmationMessage(Record record) {
+		return "Are you sure you want to delete this value?";
+	}
 
     protected void onCommentColumnClicked(final int rowIndex) {
         Record record = store.getAt(rowIndex);
@@ -1910,6 +1964,11 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
         }
     }
 
+//    @Override
+//    protected void setWidgetValues(EntityData mySubject, List<Triple> triples) {
+//    	super.setWidgetValues(mySubject, triples);
+//    	updateActionLinks(isReplace());
+//    }
 
 	protected void fillStores(List<EntityPropertyValues> entityPropertyValues) {
 		//the stores have the same number of rows
@@ -2043,12 +2102,18 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
     
     
     protected class RemovePropertyValueHandler extends AbstractAsyncHandler<Void> {
-        private int removeInd;
+        //private int removeInd;
+		private Record removeRecord;
 
         public RemovePropertyValueHandler(int removeIndex) {
-            this.removeInd = removeIndex;
+            //this.removeInd = removeIndex;
+            removeRecord = store.getAt(removeIndex);
         }
 
+        public RemovePropertyValueHandler(Record removeRecord) {
+        	this.removeRecord = removeRecord;
+        }
+        
         @Override
         public void handleFailure(Throwable caught) {
             GWT.log("Error at removing value for " + getProperty().getBrowserText() + " and "
@@ -2062,7 +2127,23 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
         public void handleSuccess(Void result) {
     		GWT.log("Success at removing value for " + getProperty().getBrowserText() + " and "
     		        + getSubject().getBrowserText(), null);
-            removeRowFromStore(removeInd);
+    		CellSelectionModel cellSelectionModel = grid.getCellSelectionModel();
+			int[] selectedRowColIndex = cellSelectionModel.getSelectedCell();
+            //removeRowFromStore(removeInd);
+            removeRecordFromStore(removeRecord);
+
+            //update selection if necessary
+            if ( store.getCount() > 0 && selectedRowColIndex != null ) {
+            	int selectedRow = selectedRowColIndex[0];
+            	int newSelection = selectedRow;
+            	if ( selectedRow > store.getCount() - 1) {
+            		newSelection = store.getCount() - 1;
+            	}
+            	cellSelectionModel.select(newSelection, 0);
+            }
+            else {
+            	cellSelectionModel.clearSelections();
+            }
         }
     }
 
@@ -2163,6 +2244,10 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
             this.newEntityData = newEntityData;
         }
 
+        protected EntityData getNewEntityData() {
+			return newEntityData;
+		}
+        
         @Override
         public void handleFailure(Throwable caught) {
             GWT.log("Error at adding property for " + getProperty().getBrowserText() + " and "  + getSubject().getBrowserText(), caught);
@@ -2428,8 +2513,11 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
     }
     
     protected void removeRowFromStore(int removeInd) {
-		Record recordToRemove = store.getAt(removeInd);
-		
+    	Record recordToRemove = store.getAt(removeInd);
+    	removeRecordFromStore(recordToRemove);
+    }    	
+    
+    protected void removeRecordFromStore(Record recordToRemove) {
 		if (recordToRemove == null) {
 			return;
 		}
@@ -2445,7 +2533,7 @@ public class InstanceGridWidget extends AbstractPropertyWidgetWithNotes implemen
 		updateActionLinks(isReplace());
 	}
 
-	final class DeleteContextMenu extends Menu{
+	final class DeleteContextMenu extends Menu {
         public DeleteContextMenu(String menuText, String menuIcon, final Record record, final int rowIndex, final int colIndex) {
             MenuItem item = new MenuItem();
             item.setText(menuText);

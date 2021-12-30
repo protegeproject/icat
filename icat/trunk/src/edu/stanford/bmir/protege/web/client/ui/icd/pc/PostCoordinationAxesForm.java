@@ -34,7 +34,7 @@ public class PostCoordinationAxesForm extends Panel {
 	private int widgetCounter = 0;
 	private String formPanelName;
 	
-    private LogicalDefinitionWidgetController widgetController;
+    private LogicalDefinitionWidgetController<?> widgetController;
 	
 	private final String PARENT_REF = "%parent%";
 
@@ -45,7 +45,7 @@ public class PostCoordinationAxesForm extends Panel {
 	 * @param project
 	 * @param name
 	 */
-	public PostCoordinationAxesForm(Project project, String name, LogicalDefinitionWidgetController widgetController) {
+	public PostCoordinationAxesForm(Project project, String name, LogicalDefinitionWidgetController<?> widgetController) {
 		this.project = project;
 		this.formPanelName = name;
 		this.widgetController = widgetController;
@@ -66,7 +66,7 @@ public class PostCoordinationAxesForm extends Panel {
 		this.propertySelector = propertySelector;
 	}
 
-	public LogicalDefinitionWidgetController getWidgetController() {
+	public LogicalDefinitionWidgetController<?> getWidgetController() {
 		return widgetController;
 	}
 	
@@ -94,6 +94,8 @@ public class PostCoordinationAxesForm extends Panel {
 				treeValueSelector.setup( widgetConfiguration, new PropertyEntityData(property) );
 				GWT.log("Set subject: " + propertySelector.getSubject());
 				treeValueSelector.setSubject( propertySelector.getSubject() );
+				String selectedPrecoordSuperclass = widgetController.getLogicalDefinitionWidget().getSelectedPrecoordSuperclass();
+				treeValueSelector.setLogicalDefinitionSuperclass( selectedPrecoordSuperclass );
 				
 				super.insert(fieldNames.size(), treeValueSelector.getComponent());
 //				//testing
@@ -127,6 +129,10 @@ public class PostCoordinationAxesForm extends Panel {
 //					((Panel) comp).doLayout();
 //				}
 				
+				if ( !isLogicalDefinitionForm && selectedPrecoordSuperclass == null ) {
+					treeValueSelector.updateNecessaryToLogicalDefinitionButton(false);
+				}
+
 				if (openAfterAdd) {
 					treeValueSelector.onSelectValue();
 				}
@@ -178,6 +184,8 @@ public class PostCoordinationAxesForm extends Panel {
 	public void removeAllFields() {
 		for ( String fieldName : new ArrayList<>( fieldNames ) ) {
 			removeFieldForAxis(fieldName);
+			//TODO new! check if helps
+			propertySelector.setActiveStatusForOption(fieldName, true);
 		}
 		GWT.log("fieldNames count:" + fieldNames.size() + " fields: " + fieldNames);
 	}
@@ -190,7 +198,7 @@ public class PostCoordinationAxesForm extends Panel {
 	 * TODO Delete this if it turns out to be unnecessary.
 	 * 	This method was moved (back) to PropertySelectorWidget, which will call the {@link #showHideWidgetsDueToTypeChange(ArrayList, List)
 	 */
-	public void updateListOfValidProperties(Collection<EntityData> types, LogicalDefinitionWidgetController widgetController) {
+	public void updateListOfValidProperties(Collection<EntityData> types, LogicalDefinitionWidgetController<?> widgetController) {
 		GWT.log("Warning: this method should not be called, anymore");
 //		List<String> oldListOfValidProperties = new ArrayList<String>( propertySelector.getListOfValidProperties() );
 //		List<String> newListOfValidProperties = new ArrayList<String>();

@@ -34,9 +34,11 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 	
 	private Panel wrappingPanel;
 	private Checkbox checkboxDefinitional;
+	private Anchor switchButton;
 	
 	private boolean isDefinitional = false;
-	
+	private String logicalDefinitionSuperclass = null;
+
 	private SwitchButtonType switchButtonType;
 	
 	public AbstractScaleValueSelectorWidget(Project project) {
@@ -113,6 +115,16 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 			checkboxDefinitional.setValue(checked);
 		}
 	}
+	
+	public String getLogicalDefinitionSuperclass() {
+		GWT.log( "getLogicalDefinitionSuperclass for " + this + ": " +logicalDefinitionSuperclass);
+		return logicalDefinitionSuperclass;
+	}
+
+	public void setLogicalDefinitionSuperclass(String logicalDefinitionSuperclass) {
+		GWT.log( "setLogicalDefinitionSuperclass for " + this + ": " +logicalDefinitionSuperclass);
+		this.logicalDefinitionSuperclass = logicalDefinitionSuperclass;
+	}
 
 	protected abstract void createValueSelector();
 
@@ -126,7 +138,8 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 					Panel valueSelectorWrapper = new Panel();
 					valueSelectorWrapper.setLayout(new ColumnLayout());
 					valueSelectorWrapper.add(valueSelectorComponent, new ColumnLayoutData(1.0));
-					valueSelectorWrapper.add(createLogicalNecessarySwitchButton());
+					switchButton = createLogicalNecessarySwitchButton();
+					valueSelectorWrapper.add(switchButton);
 //					wrappingPanel.remove(valueSelectorComponent);
 //					wrappingPanel.insert(i, valueSelectorWrapper);
 					wrappingPanel = valueSelectorWrapper;
@@ -184,6 +197,10 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
         return addLink;
     }
 
+	public void updateNecessaryToLogicalDefinitionButton(boolean enabled) {
+		switchButton.setVisible(enabled);
+	}
+	
 	public abstract void setComponentSubject(EntityData subject);
 	
 	protected abstract void setFieldValue(EntityData value);
@@ -195,12 +212,13 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 	}
 	
 	public void onSelectionChanged(final EntityData oldValue, final EntityData newValue) {
-		GWT.log("abs. sc. val. sel changed: " + getSubject() + "." + getProperty() + "  " + oldValue + " -> " + newValue);
+		GWT.log("abs. sc. val. sel changed: " + getSubject() + "." + getProperty() + "  (" + getLogicalDefinitionSuperclass() + ")   " + oldValue + " -> " + newValue);
 		//TODO
 		ICDServiceManager.getInstance().setPrecoordinationPropertyValue(
 				getProject().getProjectName(), getSubject().getName(), getProperty().getName(), 
-				oldValue, newValue, GlobalSettings.getGlobalSettings().getUserName(), 
-				getEditOperationDescription(getSubject(), getProperty(), oldValue, newValue),
+				getLogicalDefinitionSuperclass(),
+				oldValue, newValue, isDefinitional, GlobalSettings.getGlobalSettings().getUserName(), 
+				getEditOperationDescription(getSubject(), getProperty(), oldValue, newValue, isDefinitional),
 				
 				new AsyncCallback<Boolean>() {
 
@@ -241,7 +259,7 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 	
 	
 	private String getEditOperationDescription(EntityData subject, PropertyEntityData prop, 
-			EntityData oldValue, EntityData newValue) {
+			EntityData oldValue, EntityData newValue, boolean isDefinitionalFlag) {
 		
 		String oldValueText = oldValue == null || oldValue.getName() == null ? 
 				"(empty)" : "'" + UIUtil.getDisplayText(oldValue) + "'";
@@ -251,7 +269,8 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 		String text = "Edited logical definition for class '" + UIUtil.getDisplayText(subject) + "'" +
 				". Changed property '" + UIUtil.getDisplayText(prop) + "'" + 
 				". Old value: " +  oldValueText +
-				". New value: " + newValueText ;
+				". New value: " + newValueText +
+				". Is definitional: " + isDefinitionalFlag;
 		return UIUtil.getAppliedToTransactionString(text, subject.getName());
 	}
 	
@@ -288,7 +307,8 @@ public abstract class AbstractScaleValueSelectorWidget extends AbstractPropertyW
 		afterDefinitionalStatusChanged(checked);
 		
 		ICDServiceManager.getInstance().changeIsDefinitionalFlag(
-				getProject().getProjectName(), getSubject().getName(), getProperty().getName(), 
+				getProject().getProjectName(), getSubject().getName(), 
+				getLogicalDefinitionSuperclass(), getProperty().getName(), 
 				checked, new AsyncCallback<Boolean>() {
 
 					@Override

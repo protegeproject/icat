@@ -17153,28 +17153,83 @@
 															<map>
 																<entry>
 																	<string>name</string>
-																	<string>PCPrecSuperclass</string>
+																	<string>PCPrecSuperclasses</string>
 																</entry>
 																<entry>
 																	<string>label</string>
-																	<string>Select superclass</string>
+																	<string>Logical Def. Superclass(es)</string>
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Precoordination superclass</string>
+																	<string>Precoordination superclass(es)</string>
 																</entry>
-																<entry>
+																<!--entry>
 																	<string>help</string>
-																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#precoord_superclass</string>
-																</entry>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#precoord_superclasses</string>
+																</entry-->
 																<entry>
 																	<string>component_type</string>
-																	<string>precoord_superclass</string>
+																	<string>precoord_superclasses</string>
 																</entry>
 																<!-- entry>
 																	<string>index</string>
 																	<string>0</string>
 																</entry -->
+																<entry>
+																	<string>height</string>
+																	<string>80</string>
+																</entry>
+																<entry>
+																	<string>show_add_new</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>show_add_existing</string>
+																	<boolean>true</boolean>
+																</entry>
+																<entry>
+																	<string>add_existing_value_desc</string>
+																	<string>Select superclass</string>
+																</entry>
+																<!--entry>
+																	<string>show_replace_existing</string>
+																	<boolean>false</boolean>
+																</entry-->
+																<entry>
+																	<string>replace_with_existing_value_desc</string>
+																	<string>Change superclass</string>
+																</entry>
+																
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>Column1</string>
+																	<map>
+																		<entry>
+																			<string>header</string>
+																			<string>Title</string>
+																		</entry>
+																		<entry>
+																			<string>width</string>
+																			<string>all</string>
+																		</entry>
+																		<entry>
+																			<string>property</string>
+																			<!-- string>http://who.int/icd#label</string -->
+																			<string>http://who.int/icd#icdTitle</string>
+																		</entry>
+																		<entry>
+																			<string>index</string>
+																			<string>0</string>
+																		</entry>
+																		<entry>
+																			<string>field_type</string>
+																			<string>class_browsertext</string>
+																		</entry>
+																	</map>
+																</entry>
 															</map>
 														</entry>
 													</map>
