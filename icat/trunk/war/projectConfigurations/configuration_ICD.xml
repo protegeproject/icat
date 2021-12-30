@@ -17311,6 +17311,13 @@
 											<string>headerCssClass</string>
 											<string>spec-tab-header1</string>
 										</entry>
+										<entry>
+											<string>showOnlyForGroups</string>
+											<list>
+												<string>AdminGroup</string>
+												<string>Stanford</string>
+											</list>
+										</entry>
 										
 										<entry>
 											<string>types_any</string>
