@@ -7,7 +7,7 @@
 	<property name="protege.home"       location = "${env.PROTEGE_HOME}"/>
 	<property name="catalina.home"      location = "${env.CATALINA_HOME}"/>
 	
-	<property name="hosted.memory"      location = "2g"/>
+	<property name="hosted.memory"      location = "3G"/>
 
 	<property name="war.name"           value    = "webprotege"/>
 
