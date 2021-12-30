@@ -6,42 +6,56 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.resources.css.ast.HasProperties;
 import com.gwtext.client.widgets.Component;
+import com.gwtext.client.widgets.HTMLPanel;
 import com.gwtext.client.widgets.Panel;
 
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
+import edu.stanford.bmir.protege.web.client.ui.portlet.AbstractPropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormGenerator;
+import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.GetEntityPropertyValuesHandler;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
-public class LogicalDefinitionWidget extends PreCoordinationWidget<LogicalDefinitionWidget> implements SuperclassSelectorContainer {
+public class LogicalDefinitionWidget <Controller extends LogicalDefinitionWidgetController<?>>	// ? extends LogicalDefinitionWidget<?>
+								extends AbstractPropertyWidget 
+								implements SuperclassSelectorContainer<LogicalDefinitionSuperclassSelectorWidget> {
 
 	private Panel wrappingPanel;
-//	private SuperclassSelectorWidget superclassSelector;
+	protected Panel loadingStatusIndicator;
+	private LogicalDefinitionSuperclassSelectorWidget superclassSelector;
 //	private List<AbstractScaleValueSelectorWidget> valueSelWidgets;
 	private PostCoordinationAxesForm pcAxesForm;
 	private PropertySelectorWidget propertySelectorWidget;
 	
-    private LogicalDefinitionWidgetController<LogicalDefinitionWidget> widgetController;
+    private Controller widgetController;
+    private GetEntityPropertyValuesHandler getEntityPropertyValuesHandler;
     
     private boolean visibilityUpdateNeeded;
 
-	public LogicalDefinitionWidget(Project project, LogicalDefinitionWidgetController<LogicalDefinitionWidget> widgetController) {
-		super(project, widgetController);
+	public LogicalDefinitionWidget(Project project, Controller widgetController) {
+		super(project);
 		this.widgetController = widgetController;
 	}
 
     @Override
     public void setup(Map<String, Object> widgetConfiguration, PropertyEntityData propertyEntityData) {
         super.setup(widgetConfiguration, propertyEntityData);
-//        widgetController.initializePropertyMap(widgetConfiguration);
+        // --- copied from PreCoordinationWidget
+        widgetController.initializePropertyMap(widgetConfiguration);
+        // --- 
         System.out.println("seting up propertySelectorWidget...");
         GWT.log("seting up propertySelectorWidget...");
     }
 
+    public void setGetEntityPropertyValuesHandler(GetEntityPropertyValuesHandler handler) {
+    	getEntityPropertyValuesHandler = handler;
+    }
+    
     @Override
     public boolean isTypeSensitive() {
     	return true;
@@ -97,10 +111,14 @@ public class LogicalDefinitionWidget extends PreCoordinationWidget<LogicalDefini
 		wrappingPanel.add(pcAxesForm);
 		return wrappingPanel;
 	}
+
+	protected Panel createLoadingStatusIndicatorComponent() {
+		return loadingStatusIndicator = new HTMLPanel("Loading values ...");
+	}
 	
 	@Override
-	public SuperclassSelectorWidget createSuperClassSelectorWidget() {
-		SuperclassSelectorWidget superclassSelector = null;
+	public LogicalDefinitionSuperclassSelectorWidget createSuperClassSelectorWidget() {
+		LogicalDefinitionSuperclassSelectorWidget superclassSelector = null;
 		Map<String, Object> propConfigMap = (Map<String, Object>) getWidgetConfiguration().get(FormConstants.SUPERCLASS_SELECTOR);
 		if ( propConfigMap == null ) {
 			GWT.log("Warning: there is no superclass selector widget specified in the configuration of " + this);
@@ -110,10 +128,19 @@ public class LogicalDefinitionWidget extends PreCoordinationWidget<LogicalDefini
 			Object value = propConfigMap.get(prop);
 			if (value instanceof Map) {
 				Map<String, Object> config = (Map<String, Object>)value;
-				SuperclassSelectorWidget widget = createSuperClassSelectorWidget(config, prop);
+				LogicalDefinitionSuperclassSelectorWidget widget = createSuperClassSelectorWidget(config, prop);
 				if (superclassSelector == null &&
 						widget != null && widget.getComponent() != null && 
 						UIUtil.getIntegerConfigurationProperty(config, FormConstants.INDEX, 0) == 0) {
+					
+					//widgetController.setControllingWidget(widget);
+					if (getEntityPropertyValuesHandler != null) {
+						getEntityPropertyValuesHandler.addWidget(widget);
+					}
+					else {
+						GWT.log("WARNING: getEntityPropertyValuesHandler is not set for " + this);
+					}
+					
 					superclassSelector = widget;
 					break;
 				}
@@ -122,7 +149,7 @@ public class LogicalDefinitionWidget extends PreCoordinationWidget<LogicalDefini
 		return superclassSelector;
 	}
 
-	private SuperclassSelectorWidget createSuperClassSelectorWidget(
+	private LogicalDefinitionSuperclassSelectorWidget createSuperClassSelectorWidget(
 			Map<String, Object> configMap, String prop) {
 //		SuperclassSelectorWidget superclassSelector = new SuperclassSelectorWidget(getProject(), widgetController);
 //		//superclassSelector.setup(getWidgetConfiguration(), new PropertyEntityData("http://www.w3.org/2000/01/rdf-schema#subClassOf", "Pre-coordination Parent", null));
@@ -131,7 +158,7 @@ public class LogicalDefinitionWidget extends PreCoordinationWidget<LogicalDefini
 //		//TODO check superclassSelector.createComponent();
 		
 		FormGenerator formGenerator = widgetController.getFormGenerator();
-		SuperclassSelectorWidget superclassSelector = formGenerator.createPreCoordinationSuperclassWidget(configMap, prop, widgetController);
+		LogicalDefinitionSuperclassSelectorWidget superclassSelector = formGenerator.createPreCoordinationSuperclassSelectorWidget(configMap, prop, widgetController);
 		
 		superclassSelector.setContainerWidget(this);
 		return superclassSelector;
@@ -147,11 +174,20 @@ public class LogicalDefinitionWidget extends PreCoordinationWidget<LogicalDefini
 		}
 		
 		super.setSubject(subject);
+		// --- copied from PreCoordinationWidget
+//		if (valueSelWidgets != null) {  //check this, in case subclasses won't initialize it
+//			for (AbstractScaleValueSelectorWidget valueSelector : valueSelWidgets) {
+//				valueSelector.setSubject(subject); //TODO: check if it makes remote call; shouldn't
+//			}
+//		}
+		
+		superclassSelector.setSubject(subject);
+		// --- 
 
 		Collection<EntityData> newSubjectTypes = (subject == null ? new ArrayList<EntityData>() : subject.getTypes());
 		
-		boolean sameSubjects = oldSubjectTypes.equals(newSubjectTypes);
-		visibilityUpdateNeeded = ! sameSubjects;
+		boolean sameSubjectTypes = oldSubjectTypes.equals(newSubjectTypes);
+		visibilityUpdateNeeded = ! sameSubjectTypes;
 
 		//TODO make sure to setSubject to all (visible) value selector widget
 //		for (AbstractScaleValueSelectorWidget valueSelector : valueSelWidgets) {
@@ -172,10 +208,18 @@ public class LogicalDefinitionWidget extends PreCoordinationWidget<LogicalDefini
 	public void fillValues() {
 		//This widget has no property associated, therefore there is no values 
 		//to be filled in this widget, but we should fill in the value for the 
-		//superclass selector (and as a consequence????) also for the other
+		//superclass selector and (as a consequence????) also for the other
 		//scale value selector widgets.
 		//NO NEED FOR THIS: super.fillValues();    (which means that setValues() won't be called, therefore TODO: It is OK to delete it)
 		superclassSelector.fillValues();
+	}
+	
+	//copied from PreCoordinationWidget
+    @Override
+	public void setLoadingStatus(boolean loading) {
+		super.setLoadingStatus(loading);
+		GWT.log("Loading status for " + this.getClass() + " set to: " + loading);
+		loadingStatusIndicator.setVisible(loading);
 	}
 	
     @Override
@@ -269,5 +313,9 @@ public class LogicalDefinitionWidget extends PreCoordinationWidget<LogicalDefini
 			//switch activity status
 			propertySelectorWidget.setActiveStatusForOption(property, ! isVisible);
 		}
+	}
+
+	public String getSelectedPrecoordSuperclass() {
+		return superclassSelector.getCurrentSelection();
 	}
 }

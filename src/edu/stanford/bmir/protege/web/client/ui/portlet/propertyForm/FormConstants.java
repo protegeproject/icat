@@ -152,6 +152,7 @@ public class FormConstants {
     public static final String PROPERTY_MAP = "property_map";
     public static final String PRECOORDINATION_COMP = "precoordination_comp";
     public static final String PRECOORDINATION_SUPERCLASS = "precoord_superclass";
+    public static final String PRECOORDINATION_SUPERCLASSES = "precoord_superclasses";
     public static final String PRECOORDINATION_CUST_SCALE_VALUE_SELECTOR = "precoord_custom_scale_value_selector";
     public static final String PRECOORDINATION_FIX_SCALE_VALUE_SELECTOR = "precoord_fix_scale_value_selector";
     public static final String PRECOORDINATION_TREE_VALUE_SELECTOR = "precoord_tree_value_selector";

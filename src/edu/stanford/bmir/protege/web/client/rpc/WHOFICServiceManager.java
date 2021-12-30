@@ -87,29 +87,43 @@ public class WHOFICServiceManager {
 		proxy.getAllSuperEntities(projectName, entity, cb);
 	}
 	
+	public void removeLogicalDefinitionSuperclass(String projectName, String entity, String precoordSuperclass, AsyncCallback<Void> cb) {
+		proxy.removeLogicalDefinitionSuperclass(projectName, entity, precoordSuperclass, cb);
+	}
+	
+	public void removeLogicalDefinitionForSuperclass(String projectName, String entity, String precoordSuperclass, AsyncCallback<Void> cb) {
+		proxy.removeLogicalDefinitionForSuperclass(projectName, entity, precoordSuperclass, cb);
+	}
+	
+	@Deprecated
 	public void getPreCoordinationClassExpressions(String projectName, String entity, 
 			List<String> properties, AsyncCallback<List<PrecoordinationClassExpressionData>> cb) {
 		proxy.getPreCoordinationClassExpressions(projectName, entity, properties, cb);
 	}
 	
-	public void getAllowedPostCoordinationValues(String projectName, String entity, 			 
+	public void getPreCoordinationClassExpressions(String projectName, String entity, String precoordSuperclass, 
+			List<String> properties, AsyncCallback<List<PrecoordinationClassExpressionData>> cb) {
+		proxy.getPreCoordinationClassExpressions(projectName, entity, precoordSuperclass, properties, cb);
+	}
+	
+	public void getAllowedPostCoordinationValues(String projectName, String precoordSuperclassName, 
 			List<String> customScaleProperties, List<String> treeValueProperties, List<String> fixedScaleProperties, 
 			AsyncCallback<List<AllowedPostcoordinationValuesData>> cb) {
-		proxy.getAllowedPostCoordinationValues(projectName, entity, 
+		proxy.getAllowedPostCoordinationValues(projectName, precoordSuperclassName, 
 				customScaleProperties, treeValueProperties, fixedScaleProperties, cb);
 	}
 	
 	public void setPrecoordinationPropertyValue(String projectName,
-			String entity, String property, 
+			String entity, String property, String precoordSuperclass,
 			EntityData oldValue, EntityData newValue, 
-			String user, String operationDescription, AsyncCallback<Boolean> cb) {
-		proxy.setPrecoordinationPropertyValue(projectName, entity, property, oldValue, newValue, user, 
-				operationDescription, cb);
+			boolean isDefinitional, String user, String operationDescription, AsyncCallback<Boolean> cb) {
+		proxy.setPrecoordinationPropertyValue(projectName, entity, property, precoordSuperclass, oldValue, newValue, 
+				isDefinitional, user, operationDescription, cb);
 	}
 
-	public void changeIsDefinitionalFlag(String projectName, String entity,
+	public void changeIsDefinitionalFlag(String projectName, String entity, String precoordSuperclassName,
 			String property, boolean isDefinitionalFlag, AsyncCallback<Boolean> cb) {
-		proxy.changeIsDefinitionalFlag(projectName, entity, property, isDefinitionalFlag, cb);
+		proxy.changeIsDefinitionalFlag(projectName, entity, precoordSuperclassName, property, isDefinitionalFlag, cb);
 	}
 
 	public void reorderSiblings(String projectName, String movedClass, String targetClass, boolean isBelow, String parent,

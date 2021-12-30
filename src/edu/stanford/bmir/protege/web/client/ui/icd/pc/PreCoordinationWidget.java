@@ -19,16 +19,17 @@ import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstant
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormGenerator;
 import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 
-public class PreCoordinationWidget <ControllingWidget extends PreCoordinationWidget<?>> extends AbstractPropertyWidget implements SuperclassSelectorContainer {
+public class PreCoordinationWidget <Controller extends PreCoordinationWidgetController<?>> 
+									extends AbstractPropertyWidget implements SuperclassSelectorContainer<SuperclassSelectorWidget> {
 
 	private Panel wrappingPanel;
 	protected Panel loadingStatusIndicator;
 	protected SuperclassSelectorWidget superclassSelector;
 	protected List<AbstractScaleValueSelectorWidget> valueSelWidgets;
 
-    private PreCoordinationWidgetController<ControllingWidget> widgetController;
+    private Controller widgetController;
 	
-    public PreCoordinationWidget(Project project, PreCoordinationWidgetController<ControllingWidget> widgetController) {
+    public PreCoordinationWidget(Project project, Controller widgetController) {
 		super(project);
 		this.widgetController = widgetController;
 	}
@@ -97,7 +98,8 @@ public class PreCoordinationWidget <ControllingWidget extends PreCoordinationWid
 //		//TODO check superclassSelector.createComponent();
 		
 		FormGenerator formGenerator = widgetController.getFormGenerator();
-		SuperclassSelectorWidget superclassSelector = formGenerator.createPreCoordinationSuperclassWidget(configMap, prop, widgetController);
+		SuperclassSelectorWidget superclassSelector = formGenerator.createPreCoordinationSuperclassWidget(configMap, prop);
+		superclassSelector.setWidgetController(widgetController);
 		
 		superclassSelector.setContainerWidget(this);
 		return superclassSelector;

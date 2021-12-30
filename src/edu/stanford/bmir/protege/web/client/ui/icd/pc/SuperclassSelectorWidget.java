@@ -18,15 +18,18 @@ import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 public class SuperclassSelectorWidget extends RemoteValueComboBox {
 
 	private FillAllowedValuesCacheHandler fillValuesHandler = null;
-	private SuperclassSelectorContainer preCoordinationWidget = null;	//reference to the PreCoordinationWidget that contains this, if any
+	private SuperclassSelectorContainer<SuperclassSelectorWidget> preCoordinationWidget = null;	//reference to the PreCoordinationWidget that contains this, if any
     
-    private PreCoordinationWidgetController widgetController;	//external widget controller
+    private PreCoordinationWidgetController<?> widgetController;	//external widget controller
 
-	public SuperclassSelectorWidget(Project project, PreCoordinationWidgetController widgetController) {
+	public SuperclassSelectorWidget(Project project) {
 		super(project);
-		this.widgetController = widgetController;
 	}
 
+	public void setWidgetController(PreCoordinationWidgetController<?> widgetController) {
+		this.widgetController = widgetController;
+	}
+	
 	@Override
 	public void setup(Map<String, Object> widgetConfiguration,
 			PropertyEntityData propertyEntityData) {
@@ -75,7 +78,7 @@ public class SuperclassSelectorWidget extends RemoteValueComboBox {
 		}
 	}
 
-	public void setContainerWidget( SuperclassSelectorContainer preCoordinationWidget ) {
+	public void setContainerWidget( SuperclassSelectorContainer<SuperclassSelectorWidget> preCoordinationWidget ) {
 		this.preCoordinationWidget  = preCoordinationWidget;
 	}
 

@@ -49,22 +49,32 @@ public interface WHOFICServiceAsync {
 	void getAllSuperEntities(String projectName, EntityData entity,
 			AsyncCallback<List<EntityData>> callback);
 
+	void removeLogicalDefinitionSuperclass(String projectName, String entity, String precoordSuperclass,
+			AsyncCallback<Void> cb);
+
+	void removeLogicalDefinitionForSuperclass(String projectName, String entity, String precoordSuperclass,
+			AsyncCallback<Void> callback);
+
+	@Deprecated
 	void getPreCoordinationClassExpressions(String projectName,
 			String entity, List<String> properties,
 			AsyncCallback<List<PrecoordinationClassExpressionData>> cb);
 
-	void getAllowedPostCoordinationValues(String projectName, String entity,
+	void getPreCoordinationClassExpressions(String projectName, 
+			String entity, String precoordSuperclass, List<String> properties, 
+			AsyncCallback<List<PrecoordinationClassExpressionData>> cb);
+
+	void getAllowedPostCoordinationValues(String projectName, String precoordSuperclassName,
 			List<String> customScaleProperties,
 			List<String> treeValueProperties,
 			List<String> fixedScaleProperties,
 			AsyncCallback<List<AllowedPostcoordinationValuesData>> cb);
 
-	void setPrecoordinationPropertyValue(String projectName, String entity,
-			String property, EntityData oldValue, EntityData newValue, String user, 
-			String operationDescription,
+	void setPrecoordinationPropertyValue(String projectName, String entity, String property, String precoordSuperclass,
+			EntityData oldValue, EntityData newValue, boolean isDefinitional, String user, String operationDescription,
 			AsyncCallback<Boolean> cb);
 
-	void changeIsDefinitionalFlag(String projectName, String entity,
+	void changeIsDefinitionalFlag(String projectName, String entity, String precoordSuperclassName,
 			String property, boolean isDefinitionalFlag,
 			AsyncCallback<Boolean> cb);
 

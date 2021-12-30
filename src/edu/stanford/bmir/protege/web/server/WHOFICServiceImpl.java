@@ -22,6 +22,7 @@ import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 import edu.stanford.bmir.protege.web.client.ui.icd.DisplayStatus;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDClassTreePortlet;
 import edu.stanford.bmir.whofic.IcdIdGenerator;
+import edu.stanford.bmir.whofic.KBUtil;
 import edu.stanford.bmir.whofic.PrecoordinationDefinitionComponent;
 import edu.stanford.bmir.whofic.WHOFICContentModel;
 import edu.stanford.bmir.whofic.WHOFICContentModelConstants;
@@ -46,7 +47,7 @@ import edu.stanford.smi.protegex.owl.model.RDFSNamedClass;
 
 public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICService {
 
-	private static final long serialVersionUID = 5554025235067233870L;
+	private static final long serialVersionUID = -6721731083175643860L;
 
 	// TODO: Event generation is currently disabled for class creation, because
 	// it generates too many events and slows down significantly the class creation.
@@ -252,7 +253,7 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		}
 
 		OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
-		RDFSNamedClass cls = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(owlModel, clsName);
+		RDFSNamedClass cls = KBUtil.getRDFSNamedClass(owlModel, clsName);
 		if (cls == null) {
 			return null;
 		}
@@ -328,7 +329,7 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 
 		ArrayList<SubclassEntityData> subclsesData = new ArrayList<SubclassEntityData>();
 
-		RDFSNamedClass superCls = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(owlModel, className);
+		RDFSNamedClass superCls = KBUtil.getRDFSNamedClass(owlModel, className);
 		if (superCls == null) {
 			return subclsesData;
 		}
@@ -426,13 +427,13 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		KnowledgeBase kb = project.getKnowledgeBase();
 		WHOFICContentModel cm = getContentModel((OWLModel) kb);
 
-		Cls cls = edu.stanford.bmir.whofic.KBUtil.getCls(kb, subject);
+		Cls cls = KBUtil.getCls(kb, subject);
 		if (cls == null || (!(cls instanceof RDFResource))) {
 			return null;
 		}
 		RDFResource subjResource = (RDFResource) cls;
 
-		Instance indexInst = edu.stanford.bmir.whofic.KBUtil.getInstance(kb, indexEntity);
+		Instance indexInst = KBUtil.getInstance(kb, indexEntity);
 		if (indexInst == null) {
 			return null;
 		}
@@ -518,7 +519,7 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 
 		EntityPropertyValues res = new EntityPropertyValues(new EntityData(subject));
 		for (String reifiedPropName : reifiedProps) {
-			Slot reifiedSlot = edu.stanford.bmir.whofic.KBUtil.getSlot(kb, reifiedPropName);
+			Slot reifiedSlot = KBUtil.getSlot(kb, reifiedPropName);
 			if (reifiedSlot != null) {
 				res.addPropertyValues(new PropertyEntityData(reifiedSlot.getName()),
 						createEntityList(indexInst.getOwnSlotValues(reifiedSlot)));
@@ -537,13 +538,13 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		KnowledgeBase kb = project.getKnowledgeBase();
 		WHOFICContentModel cm = getContentModel((OWLModel) kb);
 
-		Cls cls = edu.stanford.bmir.whofic.KBUtil.getCls(kb, subject);
+		Cls cls = KBUtil.getCls(kb, subject);
 		if (cls == null || (!(cls instanceof RDFResource))) {
 			return null;
 		}
 		RDFResource subjResource = (RDFResource) cls;
 
-		Instance indexInst = edu.stanford.bmir.whofic.KBUtil.getInstance(kb, indexEntity);
+		Instance indexInst = KBUtil.getInstance(kb, indexEntity);
 		if (indexInst == null) {
 			return null;
 		}
@@ -593,7 +594,7 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 
 		EntityPropertyValues res = new EntityPropertyValues(new EntityData(subject));
 		for (String reifiedPropName : reifiedProps) {
-			Slot reifiedSlot = edu.stanford.bmir.whofic.KBUtil.getSlot(kb, reifiedPropName);
+			Slot reifiedSlot = KBUtil.getSlot(kb, reifiedPropName);
 			if (reifiedSlot != null) {
 				res.addPropertyValues(new PropertyEntityData(reifiedSlot.getName()),
 						createEntityList(indexInst.getOwnSlotValues(reifiedSlot)));
@@ -609,12 +610,12 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 			return;
 		}
 		KnowledgeBase kb = project.getKnowledgeBase();
-		Instance subject = edu.stanford.bmir.whofic.KBUtil.getInstance(kb, entityName);
+		Instance subject = KBUtil.getInstance(kb, entityName);
 		if (subject == null) {
 			return;
 		}
 
-		Instance valueInst = edu.stanford.bmir.whofic.KBUtil.getInstance(kb, value);
+		Instance valueInst = KBUtil.getInstance(kb, value);
 		if (valueInst == null) {
 			throw new RuntimeException("Cannot find index term to remove: " + value + " for entity: " + entityName);
 		}
@@ -671,7 +672,7 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 			pcAxisProperties.retainAll(reifiedProps);
 		}
 
-		Instance subjInst = edu.stanford.bmir.whofic.KBUtil.getInstance(kb, entity);
+		Instance subjInst = KBUtil.getInstance(kb, entity);
 		Collection<?> pcSpecs = subjInst.getOwnSlotValues(allowedPcAxesProperty);
 		for (Object pcSpec : pcSpecs) {
 			Instance pcSpecInst = (Instance) pcSpec;
@@ -680,7 +681,7 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 				Collection<?> requiredPcAxisPropertyValues = pcSpecInst
 						.getOwnSlotValues(requiredPcAxisPropertyProperty);
 				for (String pcAxisPropName : pcAxisProperties) {
-					Slot pcAxisProperty = edu.stanford.bmir.whofic.KBUtil.getSlot(kb, pcAxisPropName);
+					Slot pcAxisProperty = KBUtil.getSlot(kb, pcAxisPropName);
 					if (allowedPcAxisPropertyValues.contains(pcAxisProperty)
 							|| requiredPcAxisPropertyValues.contains(pcAxisProperty)) {
 						selectedPCAxisProperties.add(pcAxisPropName);
@@ -738,12 +739,12 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		if (allowedPcAxisProperty != null && pcAxisProperties != null && pcAxisProperties.size() > 0) {
 			for (EntityPropertyValues epv : entityPropValues) {
 				String instanceName = epv.getSubject().getName();
-				Instance valueInst = edu.stanford.bmir.whofic.KBUtil.getInstance(kb, instanceName);
+				Instance valueInst = KBUtil.getInstance(kb, instanceName);
 				if (valueInst != null) {
 					Collection<?> allowedPcAxisPropertyValues = valueInst.getOwnSlotValues(allowedPcAxisProperty);
 					Collection<?> requiredPcAxisPropertyValues = valueInst.getOwnSlotValues(requiredPcAxisProperty);
 					for (String pcAxisPropName : pcAxisProperties) {
-						Slot pcAxisProperty = edu.stanford.bmir.whofic.KBUtil.getSlot(kb, pcAxisPropName);
+						Slot pcAxisProperty = KBUtil.getSlot(kb, pcAxisPropName);
 						int value = 0;
 						if (allowedPcAxisPropertyValues.contains(pcAxisProperty)) {
 							value |= 1;
@@ -786,17 +787,17 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		OWLModel owlModel = (OWLModel) kb;
 		WHOFICContentModel cm = getContentModel(owlModel);
 
-		RDFResource subjResource = edu.stanford.bmir.whofic.KBUtil.getOWLNamedClass(owlModel, subject);
+		RDFResource subjResource = KBUtil.getOWLNamedClass(owlModel, subject);
 		if (subjResource == null) {
 			return false;
 		}
 
-		RDFResource postCoordInd = edu.stanford.bmir.whofic.KBUtil.getOWLIndividual(owlModel, postcoordinationEntity);
+		RDFResource postCoordInd = KBUtil.getOWLIndividual(owlModel, postcoordinationEntity);
 		if (postCoordInd == null) {
 			return false;
 		}
 
-		RDFProperty postCoordProperty = edu.stanford.bmir.whofic.KBUtil.getOWLProperty(owlModel, postcoordinationProperty);
+		RDFProperty postCoordProperty = KBUtil.getOWLProperty(owlModel, postcoordinationProperty);
 		if (postCoordProperty == null) {
 			return false;
 		}
@@ -891,17 +892,17 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		OWLModel owlModel = (OWLModel) kb;
 		WHOFICContentModel cm = getContentModel(owlModel);
 
-		RDFResource subjResource = edu.stanford.bmir.whofic.KBUtil.getOWLNamedClass(owlModel, subject);
+		RDFResource subjResource = KBUtil.getOWLNamedClass(owlModel, subject);
 		if (subjResource == null) {
 			return false;
 		}
 
-		RDFResource postCoordInd = edu.stanford.bmir.whofic.KBUtil.getOWLIndividual(owlModel, postcoordinationEntity);
+		RDFResource postCoordInd = KBUtil.getOWLIndividual(owlModel, postcoordinationEntity);
 		if (postCoordInd == null) {
 			return false;
 		}
 
-		RDFProperty postCoordProperty = edu.stanford.bmir.whofic.KBUtil.getOWLProperty(owlModel, postcoordinationProperty);
+		RDFProperty postCoordProperty = KBUtil.getOWLProperty(owlModel, postcoordinationProperty);
 		if (postCoordProperty == null) {
 			return false;
 		}
@@ -995,7 +996,6 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 	public List<ScaleInfoData> getPostCoordinationAxesScales(String projectName, List<String> properties) {
 
 		Project project = getProject(projectName);
-		KnowledgeBase kb = project.getKnowledgeBase();
 		OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
 		WHOFICContentModel cm = getContentModel(owlModel);
 
@@ -1003,7 +1003,7 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 
 		List<ScaleInfoData> res = new ArrayList<ScaleInfoData>();
 		for (String property : properties) {
-			RDFProperty prop = edu.stanford.bmir.whofic.KBUtil.getRDFProperty(owlModel, property);
+			RDFProperty prop = KBUtil.getRDFProperty(owlModel, property);
 			if (prop == null) {
 				Log.getLogger()
 						.warning("No property found with name: " + property
@@ -1071,10 +1071,10 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		RDFResource top = null;
 		if (entity instanceof PropertyEntityData) {
 			type = RDFProperty.class;
-			res = edu.stanford.bmir.whofic.KBUtil.getRDFProperty(owlModel, entity.getName());
+			res = KBUtil.getRDFProperty(owlModel, entity.getName());
 		} else {
 			type = RDFSClass.class;
-			res = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(owlModel, entity.getName());
+			res = KBUtil.getRDFSNamedClass(owlModel, entity.getName());
 			top = getTopCategoryClass(owlModel);
 		}
 
@@ -1142,6 +1142,125 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		return res;
 	}
 
+	/**
+	 * Removes the given logical definition superclass from the list of precoordination superclasses, 
+	 * and also the logical definition involving (i.e. the equivalent class expression that contains) that superclass.
+	 * 
+	 * @param projectName name of the Protege project
+	 * @param subject the class from which we want to remove the precoordination superclass
+	 * @param precoordSuperclassName the precoordination superclass to be removed
+	 */
+	public void removeLogicalDefinitionSuperclass(String projectName, String subject, String precoordSuperclassName) {
+		Project project = getProject(projectName);
+		if (project == null) {
+			return;
+		}
+		KnowledgeBase kb = project.getKnowledgeBase();
+		if (!(kb instanceof OWLModel)) {
+			assert false : "The methods of ICDServiceImpl, including removeLogicalDefinitionSuperclass, "
+					+ "are suppose to work with OWL ontologies that conform to the ICD content model";
+			return;
+		}
+		OWLModel owlModel = (OWLModel) kb;
+		WHOFICContentModel cm = getContentModel(owlModel);
+
+		RDFSNamedClass subjResource = KBUtil.getOWLNamedClass(owlModel, subject);
+		if (subjResource == null) {
+			return;
+		}
+
+		RDFSNamedClass precoordSuperclass = KBUtil.getOWLNamedClass(owlModel, precoordSuperclassName);
+		if (precoordSuperclass == null) {
+			return;
+		}
+
+		String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
+		String operationDescription = "Removed precoordination superclass " + precoordSuperclass.getBrowserText() 
+				+ " from class " + subjResource.getBrowserText() + ".";
+
+		synchronized (kb) {
+			WebProtegeKBUtil.morphUser(kb, user);
+			try {
+
+				kb.beginTransaction(operationDescription, subject);
+
+				cm.removeLogicalDefinitionSuperclass(subjResource, precoordSuperclass, true);
+
+				kb.commitTransaction();
+
+			} catch (Exception e) {
+				Log.getLogger().log(Level.SEVERE,
+						"Error at removing precoordination superclass " + precoordSuperclass + " for class " + subject + ".",
+						e);
+				kb.rollbackTransaction();
+				throw new RuntimeException("Error at removing precoordination superclass " + precoordSuperclass + 
+						" for class " + subject + ". Message: " + e.getMessage(), e);
+			} finally {
+				WebProtegeKBUtil.restoreUser(kb);
+			}
+		}
+
+	}
+	/**
+	 * Removes the logical definition involving (i.e. the equivalent class expression that contains) a given superclass.
+	 * 
+	 * @param projectName name of the Protege project
+	 * @param subject the class from which we want to remove the precoordination superclass
+	 * @param precoordSuperclassName the precoordination superclass to be removed
+	 */
+	public void removeLogicalDefinitionForSuperclass(String projectName, String subject, String precoordSuperclassName) {
+		Project project = getProject(projectName);
+		if (project == null) {
+			return;
+		}
+		KnowledgeBase kb = project.getKnowledgeBase();
+		if (!(kb instanceof OWLModel)) {
+			assert false : "The methods of ICDServiceImpl, including removeLogicalDefinitionForSuperclass, "
+					+ "are suppose to work with OWL ontologies that conform to the ICD content model";
+		return;
+		}
+		OWLModel owlModel = (OWLModel) kb;
+		WHOFICContentModel cm = getContentModel(owlModel);
+		
+		RDFSNamedClass subjResource = KBUtil.getOWLNamedClass(owlModel, subject);
+		if (subjResource == null) {
+			return;
+		}
+		
+		RDFSNamedClass precoordSuperclass = KBUtil.getOWLNamedClass(owlModel, precoordSuperclassName);
+		if (precoordSuperclass == null) {
+			return;
+		}
+		
+		String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
+		String operationDescription = "Removed precoordination superclass " + precoordSuperclass.getBrowserText() 
+		+ " from class " + subjResource.getBrowserText() + ".";
+		
+		synchronized (kb) {
+			WebProtegeKBUtil.morphUser(kb, user);
+			try {
+				
+				kb.beginTransaction(operationDescription, subject);
+				
+				cm.removeLogicalDefinitionForSuperclass(subjResource, precoordSuperclass);
+				
+				kb.commitTransaction();
+				
+			} catch (Exception e) {
+				Log.getLogger().log(Level.SEVERE,
+						"Error at removing precoordination superclass " + precoordSuperclass + " for class " + subject + ".",
+						e);
+				kb.rollbackTransaction();
+				throw new RuntimeException("Error at removing precoordination superclass " + precoordSuperclass + 
+						" for class " + subject + ". Message: " + e.getMessage(), e);
+			} finally {
+				WebProtegeKBUtil.restoreUser(kb);
+			}
+		}
+		
+	}
+	
+	@Deprecated
 	@Override
 	public List<PrecoordinationClassExpressionData> getPreCoordinationClassExpressions(String projectName,
 			String entity, List<String> properties) {
@@ -1152,6 +1271,29 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		RDFSNamedClass cls = cm.getICDCategory(entity);
 		Collection<PrecoordinationDefinitionComponent> propertyValues = cm.getPrecoordinationPropertyValues(cls,
 				properties);
+
+		return preparePreCoordinationClassExpressionsResults(owlModel, propertyValues);
+	}
+	
+	@Override
+	public List<PrecoordinationClassExpressionData> getPreCoordinationClassExpressions(String projectName,
+			String entity, String precoordSuperclassName, List<String> properties) {
+		Project project = getProject(projectName);
+		OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
+		WHOFICContentModel cm = getContentModel(owlModel);
+
+		RDFSNamedClass cls = cm.getICDCategory(entity);
+		RDFSNamedClass precoordSuperclass = 
+				(precoordSuperclassName == null ? null : cm.getICDCategory(precoordSuperclassName));
+		Collection<PrecoordinationDefinitionComponent> propertyValues = cm.getPrecoordinationPropertyValues(cls,
+				precoordSuperclass, properties);
+
+		return preparePreCoordinationClassExpressionsResults(owlModel, propertyValues);
+	}
+	
+	public List<PrecoordinationClassExpressionData> preparePreCoordinationClassExpressionsResults(
+			OWLModel owlModel, Collection<PrecoordinationDefinitionComponent> propertyValues) {
+		
 		List<PrecoordinationClassExpressionData> res = new ArrayList<PrecoordinationClassExpressionData>();
 		for (Iterator<PrecoordinationDefinitionComponent> it = propertyValues.iterator(); it.hasNext();) {
 			PrecoordinationDefinitionComponent defComp = (PrecoordinationDefinitionComponent) it.next();
@@ -1163,9 +1305,9 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 			ValueType valueType = defComp.getValueType();
 			RDFResource valueRes = null;
 			if (valueType == ValueType.INSTANCE) {
-				valueRes = edu.stanford.bmir.whofic.KBUtil.getRDFIndividual(owlModel, value);
+				valueRes = KBUtil.getRDFIndividual(owlModel, value);
 			} else if (valueType == ValueType.CLS) {
-				valueRes = edu.stanford.bmir.whofic.KBUtil.getOWLNamedClass(owlModel, value);
+				valueRes = KBUtil.getOWLNamedClass(owlModel, value);
 			}
 
 			if (valueRes != null) {
@@ -1185,14 +1327,14 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 	}
 
 	@Override
-	public List<AllowedPostcoordinationValuesData> getAllowedPostCoordinationValues(String projectName, String entity,
+	public List<AllowedPostcoordinationValuesData> getAllowedPostCoordinationValues(String projectName, String precoordSuperclassName, 
 			List<String> customScaleProperties, List<String> treeValueProperties, List<String> fixedScaleProperties) {
 		Project project = getProject(projectName);
 		OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
 		WHOFICContentModel cm = getContentModel(owlModel);
 
-		RDFSNamedClass cls = cm.getICDCategory(entity);
-		RDFSNamedClass precoordSuperclass = cm.getPrecoordinationSuperclass(cls);
+		RDFSNamedClass precoordSuperclass = 
+				(precoordSuperclassName == null ? null : cm.getICDCategory(precoordSuperclassName));
 
 		List<AllowedPostcoordinationValuesData> res = new ArrayList<AllowedPostcoordinationValuesData>();
 		if (precoordSuperclass == null) {
@@ -1228,7 +1370,7 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 	private List<EntityData> getAllowedCustomScaleValues(WHOFICContentModel cm, OWLModel owlModel,
 			RDFSNamedClass icdClass, String pcPropName) {
 		String scalePropName = ICDContentModelConstants.PC_AXIS_PROP_TO_VALUE_SET_PROP.get(pcPropName);
-		Collection<?> propertyValues = icdClass.getPropertyValues(edu.stanford.bmir.whofic.KBUtil.getRDFProperty(owlModel, scalePropName));
+		Collection<?> propertyValues = icdClass.getPropertyValues(KBUtil.getRDFProperty(owlModel, scalePropName));
 		if (propertyValues == null || propertyValues.isEmpty()) {
 			return null;
 		}
@@ -1288,7 +1430,7 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		RDFSNamedClass pcValueRefClass = cm.getPostcoordinationValueReferenceClass();
 		RDFProperty referencedValueProperty = cm.getReferencedValueProperty();
 
-		Collection<?> propertyValues = icdClass.getPropertyValues(edu.stanford.bmir.whofic.KBUtil.getRDFProperty(owlModel, pcPropName));
+		Collection<?> propertyValues = icdClass.getPropertyValues(KBUtil.getRDFProperty(owlModel, pcPropName));
 		if (propertyValues == null || propertyValues.isEmpty()) {
 			return null;
 		}
@@ -1328,15 +1470,24 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		return res;
 	}
 
+	//TODO duplicate this, with extra argument for precoordSuperclass
+//	@Override
+//	public boolean setPrecoordinationPropertyValue(String projectName, String entity, String property,
+//			EntityData oldValue, EntityData newValue, String user, String operationDescription) {
+//
+//	}
+	
 	@Override
-	public boolean setPrecoordinationPropertyValue(String projectName, String entity, String property,
-			EntityData oldValue, EntityData newValue, String user, String operationDescription) {
+	public boolean setPrecoordinationPropertyValue(String projectName, String entity, String property, String precoordSuperclassName,
+			EntityData oldValue, EntityData newValue, boolean isDefinitional, String user, String operationDescription) {
 
 		Project project = getProject(projectName);
 		OWLModel kb = (OWLModel) project.getKnowledgeBase();
 		WHOFICContentModel cm = getContentModel(kb);
 
 		RDFSNamedClass cls = cm.getICDCategory(entity);
+		RDFSNamedClass precoordSuperclass = 
+				(precoordSuperclassName == null ? null : cm.getICDCategory(precoordSuperclassName));
 
 		boolean returnValue = false;
 
@@ -1350,8 +1501,8 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 					kb.beginTransaction(operationDescription);
 				}
 
-				returnValue = cm.setPrecoordinationDefinitionPropertyValue(cls, property,
-						(oldValue == null ? null : oldValue.getName()), (newValue == null ? null : newValue.getName()));
+				returnValue = cm.setPrecoordinationDefinitionPropertyValue(cls, property, precoordSuperclass,
+						(oldValue == null ? null : oldValue.getName()), (newValue == null ? null : newValue.getName()), isDefinitional);
 
 				if (runsInTransaction) {
 					kb.commitTransaction();
@@ -1374,7 +1525,8 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 	}
 
 	@Override
-	public boolean changeIsDefinitionalFlag(String projectName, String entity, String property,
+	public boolean changeIsDefinitionalFlag(String projectName, 
+			String entity, String precoordSuperclassName, String property,
 			boolean isDefinitionalFlag) {
 
 		Project project = getProject(projectName);
@@ -1382,6 +1534,8 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		WHOFICContentModel cm = getContentModel(kb);
 
 		RDFSNamedClass cls = cm.getICDCategory(entity);
+		RDFSNamedClass precoordSuperclass = 
+				(precoordSuperclassName == null ? null : cm.getICDCategory(precoordSuperclassName));
 		RDFProperty prop = kb.getRDFProperty(property);
 		
 		String user = WebProtegeKBUtil.getUserInSession(getThreadLocalRequest());
@@ -1401,7 +1555,7 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		
 				//FIXME: this method should rather throw exceptions than return false.. this way we can
 				//record false changes
-				result = cm.changeIsDefinitionalFlag(cls, property, isDefinitionalFlag);
+				result = cm.changeIsDefinitionalFlag(cls, precoordSuperclass, property, isDefinitionalFlag);
 		
 				kb.commitTransaction();
 			} catch (Exception e) {
@@ -1431,9 +1585,9 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
 		WHOFICContentModel cm = getContentModel(owlModel);
 
-		RDFSNamedClass movedCls = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(owlModel, movedClass);
-		RDFSNamedClass targetCls = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(owlModel, targetClass);
-		RDFSNamedClass parentCls = edu.stanford.bmir.whofic.KBUtil.getRDFSNamedClass(owlModel, parent);
+		RDFSNamedClass movedCls = KBUtil.getRDFSNamedClass(owlModel, movedClass);
+		RDFSNamedClass targetCls = KBUtil.getRDFSNamedClass(owlModel, targetClass);
+		RDFSNamedClass parentCls = KBUtil.getRDFSNamedClass(owlModel, parent);
 
 		if (movedCls == null || targetClass == null || parentCls == null) {
 			return false;
@@ -1486,15 +1640,15 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		Project project = getProject(projectName);
 		KnowledgeBase kb = project.getKnowledgeBase();
 
-		Instance instance = kb instanceof OWLModel ? edu.stanford.bmir.whofic.KBUtil.getRDFResource(((OWLModel) kb), entity.getName())
-				: edu.stanford.bmir.whofic.KBUtil.getInstance(kb, entity.getName());
+		Instance instance = kb instanceof OWLModel ? KBUtil.getRDFResource(((OWLModel) kb), entity.getName())
+				: KBUtil.getInstance(kb, entity.getName());
 
 		if (instance == null) {
 			throw new RuntimeException("Failed to import reference. Entity does not exist: " + entity.getName());
 		}
 
-		Slot referenceSlot = kb instanceof OWLModel ? edu.stanford.bmir.whofic.KBUtil.getRDFProperty(((OWLModel) kb), referencePropertyName)
-				: edu.stanford.bmir.whofic.KBUtil.getSlot(kb, referencePropertyName);
+		Slot referenceSlot = kb instanceof OWLModel ? KBUtil.getRDFProperty(((OWLModel) kb), referencePropertyName)
+				: KBUtil.getSlot(kb, referencePropertyName);
 
 		if (referenceSlot == null) {
 			throw new RuntimeException("Could not create reference for " + entity.getName()
@@ -1502,8 +1656,8 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 					+ referencePropertyName);
 		}
 
-		Slot referencedValueSlot = kb instanceof OWLModel ? edu.stanford.bmir.whofic.KBUtil.getRDFProperty(((OWLModel) kb), referencedValuePropertyName)
-				: edu.stanford.bmir.whofic.KBUtil.getSlot(kb, referencedValuePropertyName);
+		Slot referencedValueSlot = kb instanceof OWLModel ? KBUtil.getRDFProperty(((OWLModel) kb), referencedValuePropertyName)
+				: KBUtil.getSlot(kb, referencedValuePropertyName);
 
 		if (referencedValueSlot == null) {
 			throw new RuntimeException("Could not create reference for " + entity.getName()
@@ -1511,14 +1665,14 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 					+ referencedValuePropertyName);
 		}
 
-		Cls refClass = edu.stanford.bmir.whofic.KBUtil.getCls(kb, referenceClassName);
+		Cls refClass = KBUtil.getCls(kb, referenceClassName);
 
 		if (refClass == null) {
 			throw new RuntimeException("Could not create reference for " + entity.getName()
 					+ " because the reference class is not part of the ontology. Class name: " + referenceClassName);
 		}
 
-		Instance refEntity = edu.stanford.bmir.whofic.KBUtil.getInstance(kb, referencedEntity.getName());
+		Instance refEntity = KBUtil.getInstance(kb, referencedEntity.getName());
 
 		if (refEntity == null) {
 			throw new RuntimeException("Could not create reference for " + entity.getName()

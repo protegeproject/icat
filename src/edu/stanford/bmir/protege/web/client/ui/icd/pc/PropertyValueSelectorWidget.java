@@ -9,11 +9,10 @@ import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 public class PropertyValueSelectorWidget extends TreeValueSelector {
 	
 	private PostCoordinationAxesForm postCoordinationAxesFormPanel;
-	private boolean isPartOfLogicalDefinition;
 
 	public PropertyValueSelectorWidget(Project project, boolean isLogicalDefinitionProperty) {
 		super(project);
-		this.isPartOfLogicalDefinition = isLogicalDefinitionProperty;
+		setIsDefinitional(isLogicalDefinitionProperty);
 	}
 
 	public void setContainerFormPanel(PostCoordinationAxesForm postCoordinationAxesFormPanel) {
@@ -44,11 +43,6 @@ public class PropertyValueSelectorWidget extends TreeValueSelector {
 		}
 		else {
 			super.onSelectionChanged(oldValue, newValue);
-			if ( isPartOfLogicalDefinition ) {
-				//set the isDefinitional flag to true
-				//postCoordinationAxesFormPanel.getWidgetController().updateIsDefinitionalOfPropertyWidget(getProperty().getName(), this, true);
-				changeDefinitionalStatus(true);
-			}
 		}
 	}
 	
@@ -59,7 +53,7 @@ public class PropertyValueSelectorWidget extends TreeValueSelector {
 	
 	@Override
 	protected void afterDefinitionalStatusChanged( boolean newValue ) {
-		LogicalDefinitionWidgetController widgetController = postCoordinationAxesFormPanel.getWidgetController();
+		LogicalDefinitionWidgetController<?> widgetController = postCoordinationAxesFormPanel.getWidgetController();
 		widgetController.updateIsDefinitionalOfPropertyWidget(getProperty().getName(), this, newValue);
 
 	}

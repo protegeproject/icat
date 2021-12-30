@@ -19,7 +19,8 @@ import edu.stanford.bmir.protege.web.client.ui.portlet.PropertyWidget;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormGenerator;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.WidgetController;
 
-public class PreCoordinationWidgetController<ControllingWidget extends PreCoordinationWidget<?>> extends WidgetController<ControllingWidget> {
+public class PreCoordinationWidgetController<ControllingWidget extends PreCoordinationWidget<?>> 
+								extends WidgetController<ControllingWidget> {
 
 	private Project project;
 	private Collection<PropertyWidget> widgets = null;
@@ -100,11 +101,16 @@ public class PreCoordinationWidgetController<ControllingWidget extends PreCoordi
 		hideAllWidgets();
 		ICDServiceManager.getInstance().getListOfSelectedPostCoordinationAxes(
 				project.getProjectName(), superclass.getName(), (List<String>) null, 
-				new GetPostCoordinationAxesHandler());
+				new GetPostCoordinationAxesHandler(superclass));
 		
 	}
 	
 	private class GetPostCoordinationAxesHandler extends AbstractAsyncHandler<List<String>> {
+		private EntityData subjectSuperclass;
+		
+		public GetPostCoordinationAxesHandler(EntityData superclass) {
+			this.subjectSuperclass =superclass;
+		}
 
 		@Override
 		public void handleFailure(Throwable caught) {
@@ -117,6 +123,9 @@ public class PreCoordinationWidgetController<ControllingWidget extends PreCoordi
 		public void handleSuccess(List<String> result) {
 			GWT.log("GetPostCoordinationAxesHandler: " + result.size() + " props: " + result);
 			
+			String subjectSuperclassName = (subjectSuperclass == null ? null : subjectSuperclass.getName());
+			//TODO we should test if the subjectSuperclassName is the same 
+			//	as the currently selected superclass, and only then do the following steps (see: LogicalDefinitionWidgetController)
 			updatePropertyList(result);
 			updateLoadingStatus(false);
 		}
@@ -244,8 +253,10 @@ public class PreCoordinationWidgetController<ControllingWidget extends PreCoordi
 
 	private void getPossiblePropertyValues(EntityData subject) {
 		GWT.log("getPossiblePropertyValues" + subject);
+		ControllingWidget controllingWidget = getControllingWidget();
+		String precoordSuperclassName = controllingWidget.superclassSelector.getSelection();
 		ICDServiceManager.getInstance().getAllowedPostCoordinationValues(
-				project.getProjectName(), subject.getName(), 
+				project.getProjectName(), precoordSuperclassName,
 						null, treeValueProperties, null,
 				new AsyncCallback<List<AllowedPostcoordinationValuesData>>() {
 					
