@@ -10,6 +10,7 @@ import com.gwtext.client.data.Node;
 import com.gwtext.client.widgets.Button;
 import com.gwtext.client.widgets.Component;
 import com.gwtext.client.widgets.MessageBox;
+import com.gwtext.client.widgets.Panel;
 import com.gwtext.client.widgets.Toolbar;
 import com.gwtext.client.widgets.ToolbarButton;
 import com.gwtext.client.widgets.Window;
@@ -316,6 +317,12 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
         		
         		icdSearchManager.bind(searchComponent);
         		searchComponent.getSearchField().focus(true, 100);
+        	}
+
+        	@Override
+        	public boolean doBeforeClose(Panel panel) {
+        		searchWindow.hide();
+        		return false;
         	}
         });
         
