@@ -74,6 +74,7 @@ public class FormConstants {
 	public static final String DISABLED = "disabled";
 	public static final String PAGE_SIZE = "page_size";
 	public static final String WRITE_ACCESS_GROUPS = "writeAccessGroups";	//we should not use camel case in property names
+	public static final String FULL_ACCESS_GROUPS = "fullAccessGroups";	//we should not use camel case in property names
 	public static final String SHOW_ONLY_FOR_GROUPS = "showOnlyForGroups";	//we should not use camel case in property names
 	public static final String DO_NOT_SHOW_FOR_GROUPS = "doNotShowForGroups";	//we should not use camel case in property names
 	public static final String SHOW_ONLY_FOR_TYPES = "showOnlyForTypes";	//we should not use camel case in property names

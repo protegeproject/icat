@@ -6,6 +6,7 @@ package edu.stanford.bmir.protege.web.client.ui.icd.pc;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
 import com.gwtext.client.core.EventObject;
@@ -22,9 +23,12 @@ import edu.stanford.bmir.protege.web.client.rpc.AbstractAsyncHandler;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityPropertyValues;
+import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
+import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.InstanceGridWidget;
 import edu.stanford.bmir.protege.web.client.ui.util.SelectionUtil;
+import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 import edu.stanford.bmir.protege.web.client.ui.util.SelectionUtil.SelectionCallback;
 
 /**
@@ -44,7 +48,7 @@ public class LogicalDefinitionSuperclassSelectorWidget extends InstanceGridWidge
 
     private Record currentRecord;
     private Record currentShadowStoreRecord;
-    private int currentRow;
+    private boolean isMultiValueAllowed;
 
 	private SuperclassSelectorContainer<LogicalDefinitionSuperclassSelectorWidget> logicalDefWidget = null;	//reference to the LogicalDefinitionWidget that contains this, if any
     
@@ -62,6 +66,13 @@ public class LogicalDefinitionSuperclassSelectorWidget extends InstanceGridWidge
 		this.logicalDefWidget = logicalDefinitionWidget; 
 	}
 
+	@Override
+	public void setup(Map<String, Object> widgetConfiguration, PropertyEntityData propertyEntityData) {
+		super.setup(widgetConfiguration, propertyEntityData);
+		boolean multiValue = UIUtil.getBooleanConfigurationProperty(widgetConfiguration, FormConstants.MULTIPLE_VALUES_ALLOWED, true);
+		this.isMultiValueAllowed = multiValue || userPartOfFullAccessGroup();
+	}
+	
     protected void setSelectionModel() { 
     	//TODO see if we keep this, or rather just go with the default CellSelectionModel
     	//grid.setSelectionModel(new RowSelectionModel(false));
@@ -94,6 +105,11 @@ public class LogicalDefinitionSuperclassSelectorWidget extends InstanceGridWidge
         return OFFSET_MAX_COLUMN + 1; //1 for the instance field
     }
 
+    @Override
+    protected boolean isMultiValue() {
+    	return isMultiValueAllowed;
+    }
+    
     @Override
     protected void onContextMenuClicked(int rowIndex, int colIndex, EventObject e) {
     	//do nothing, as we don't want to allow modification of the field values (e.g. deletion of entity title)
@@ -198,7 +214,6 @@ public class LogicalDefinitionSuperclassSelectorWidget extends InstanceGridWidge
                 //TODO temporary solution. Delete it
                 int colIndexParent = 0;
                 
-                currentRow = rowIndex;
             	EntityData oldParent = new EntityData(currentRecord.getAsString(INSTANCE_FIELD_NAME));
                 SelectionUtil.selectSuperclass(getProject(), getSubject(), oldParent, false, new SelectionCallback() {
 					
