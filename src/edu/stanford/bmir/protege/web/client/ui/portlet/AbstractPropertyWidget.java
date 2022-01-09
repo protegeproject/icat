@@ -25,6 +25,7 @@ import edu.stanford.bmir.protege.web.client.ui.util.UIUtil;
 public abstract class AbstractPropertyWidget implements PropertyWidget, HasGetEntityTripleHandler {
 
     private static final String PART_OF_WRITE_ACCESS_GROUP_SESSION_PROP = "partOfWriteAccessGroup";
+    private static final String PART_OF_FULL_ACCESS_GROUP_SESSION_PROP = "partOfFullAccessGroup";
     
     public static final String LOADING_ICON_HTML = "<img src=\"images/loading.gif\" />";
     public static final String NOT_LOADING_ICON_HTML = "<img src=\"images/invisible12.png\" />";
@@ -244,6 +245,10 @@ public abstract class AbstractPropertyWidget implements PropertyWidget, HasGetEn
 
         List<String> writeAccessGroups = UIUtil.getListConfigurationProperty(widgetConfiguration, getProject().getProjectConfiguration(), FormConstants.WRITE_ACCESS_GROUPS, null);
         if (writeAccessGroups == null) {
+        	//if configuration does not specify any value for the WRITE_ACCESS_GROUPS property, 
+        	//we will consider this user as part of the write access group for this widget 
+        	//(i.e. by default all users have write access to all widgets, except to those widgets 
+        	//for which the write access is restricted to certain groups).
             setPartOfWriteAccessGroup(true);
             return true;
         }
@@ -293,6 +298,51 @@ public abstract class AbstractPropertyWidget implements PropertyWidget, HasGetEn
          }
          return hasWriteAccess;
     }
+
+
+    public boolean userPartOfFullAccessGroup() {
+        if (!GlobalSettings.getGlobalSettings().isLoggedIn()) {
+            return false;
+        }
+        //checked if this is cached
+        String isPartOfUsers = GlobalSettings.getGlobalSettings().getSessionProperty(getSessionFullAccessProperty());
+        if (isPartOfUsers != null) {
+            return Boolean.valueOf(isPartOfUsers);
+        }
+
+        List<String> fullAccessGroups = UIUtil.getListConfigurationProperty(widgetConfiguration, getProject().getProjectConfiguration(), FormConstants.FULL_ACCESS_GROUPS, null);
+        if (fullAccessGroups == null) {
+        	//if configuration does not specify any value for the FULL_ACCESS_GROUPS property, 
+        	//we will NOT consider this user as part of the full access group for this widget 
+        	//(i.e. by default all users have standard access to all widgets, except to those widgets 
+        	//for which full access is granted to certain groups).
+            setPartOfFullAccessGroup(false);
+            return false;
+        }
+        Collection<String> userGroups = GlobalSettings.getGlobalSettings().getUser().getGroups();
+        if (userGroups == null) {
+            setPartOfFullAccessGroup(false);
+            return false;
+        }
+        for (String fullAccessGroup : fullAccessGroups) {
+            if (userGroups.contains(fullAccessGroup)) {
+                setPartOfFullAccessGroup(true);
+                return true;
+            }
+        }
+        setPartOfFullAccessGroup(false);
+        return false;
+    }
+
+    private void setPartOfFullAccessGroup(Boolean isPartOfFullAccessGroup) {
+        GlobalSettings.getGlobalSettings().setSessionProperty(getSessionFullAccessProperty(), isPartOfFullAccessGroup.toString());
+    }
+
+    private String getSessionFullAccessProperty() {
+        String id = getComponent().getElement().getId();
+        return PART_OF_FULL_ACCESS_GROUP_SESSION_PROP + id;
+    }
+
 
     public boolean isReadOnly() {
         return UIUtil.getBooleanConfigurationProperty(widgetConfiguration, FormConstants.READ_ONLY, false);

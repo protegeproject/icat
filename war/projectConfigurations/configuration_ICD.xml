@@ -17168,6 +17168,12 @@
 																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#precoord_superclasses</string>
 																</entry-->
 																<entry>
+																	<string>fullAccessGroups</string>
+																	<list>
+																		<string>AdvancedLogicalDefinitionEditors</string>
+																	</list>
+																</entry>
+																<entry>
 																	<string>component_type</string>
 																	<string>precoord_superclasses</string>
 																</entry>
