@@ -1574,7 +1574,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
      * ************ Remote procedure calls *****************
      */
 
-    class GetRootClassHandler extends AbstractAsyncHandler<EntityData> {
+    public class GetRootClassHandler extends AbstractAsyncHandler<EntityData> {
 
         @Override
         public void handleFailure(final Throwable caught) {

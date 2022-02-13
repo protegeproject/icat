@@ -23,7 +23,6 @@ import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.ProjectConfiguration;
-import edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassTreePortlet;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.FormConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.InstanceGridWidgetConstants;
 import edu.stanford.bmir.protege.web.client.ui.portlet.propertyForm.ReferenceFieldWidget;
@@ -168,13 +167,16 @@ public class InternalReferenceFieldWidget extends ReferenceFieldWidget {
 	
 	public Selectable getSelectable() {
 		if (selectable == null) {
-			ClassTreePortlet selectableTree = new ICDClassTreePortlet(getProject(), true, false, false, true, topClass);
+			ICDClassTreePortlet selectableTree = new ICDClassTreePortlet(getProject(), true, false, false, true, topClass);
 			selectableTree.disableCreate();
 			selectableTree.setDraggable(false);
 			selectableTree.setClosable(false);
 			selectableTree.setCollapsible(false);
 			selectableTree.setHeight(300);
 			selectableTree.setWidth(450);
+			
+			selectableTree.setEnableSearchInTreeByDefault(true);
+			
 			selectable = selectableTree;
 		}
 		return selectable;
