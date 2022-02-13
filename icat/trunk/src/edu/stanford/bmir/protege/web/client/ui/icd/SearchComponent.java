@@ -99,33 +99,45 @@ public class SearchComponent extends Panel {
 	}
 	
 	private Checkbox createSearchCheckBox() {
-		Checkbox checkbox = new Checkbox("Search only in selected subtree (works only in Browser search)");
+		Checkbox checkbox = new Checkbox("Search only in selected subtree");
 		checkbox.setCls("subtreeCheckbox"); 
 		
 		checkbox.addListener(new CheckboxListenerAdapter() {
 			@Override
 			public void onCheck(Checkbox field, boolean checked) {
-				String query = searchField.getText();
-
-				setSearchSubtreeFilter();
 				
-				triggerSearch(iNo, query);
+				if (searchOnlyInSelectedSubtree() == false) {
+					searchSelectedSubtreeCheckBox.setBoxLabel("Search only in selected subtree");
+				}
+				
+				setSearchSubtreeFilter();
 			}
 		});
 		return checkbox;
 	}
 	
 	
-	private void setSearchSubtreeFilter() {
+	public void setSelectedSubtreeCheckBoxChecked(boolean checked) {
+		searchSelectedSubtreeCheckBox.setChecked(checked);
+	}
+	
+	public void setSearchSubtreeFilter() {
 		IcdApiSearchManager icdSearchManager = IcdApiSearchManager.getInstance();
 		
 		if (searchOnlyInSelectedSubtree() == true && selectable != null) {
 			Collection<EntityData> selection = (List<EntityData>)selectable.getSelection();
 			
 			if (selection != null && selection.size() > 0) {
-				String selectedPublicId = selection.iterator().next().getProperty(ICDClassTreePortlet.PUBLIC_ID_PROP);
+				EntityData selectionOne = selection.iterator().next();
+				String selectedPublicId = selectionOne.getProperty(ICDClassTreePortlet.PUBLIC_ID_PROP);
 				if (selectedPublicId != null) {
+					searchSelectedSubtreeCheckBox.setBoxLabel("Search only in selected subtree: " + selectionOne.getBrowserText());
 					icdSearchManager.setSubtreeFilter(this, selectedPublicId);
+					
+					//trigger the search
+					String query = searchField.getText();
+					triggerSearch(iNo, query);
+					
 					return;
 				}
 			}

@@ -28,6 +28,8 @@ import edu.stanford.bmir.protege.web.client.model.GlobalSettings;
 import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.HierarchyServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.ICDServiceManager;
+import edu.stanford.bmir.protege.web.client.rpc.OntologyServiceManager;
+import edu.stanford.bmir.protege.web.client.rpc.WHOFICServiceManager;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.SubclassEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.PortletConfiguration;
@@ -45,6 +47,7 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
     public static final String ICD_SEARCH_SUBTREE_FILTER_PROP = "icd_search_subtree_filter";
 
     private Window searchWindow;
+    private boolean enableSearchInTreeByDefault = false;
 
     public ICDClassTreePortlet(Project project) {
         super(project);
@@ -63,6 +66,17 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
         addSearchInWindowButton();
     }
 
+    public void getRootCls() {
+        final String rootClsName = getRootClsName();
+        if (rootClsName != null) {
+            WHOFICServiceManager.getInstance().getEntity(project.getProjectName(), rootClsName,
+                    new GetRootClassHandler());
+        } else {
+            OntologyServiceManager.getInstance().getRootEntity(project.getProjectName(), 
+            		new GetRootClassHandler());
+        }
+    }
+    
 
 	protected String getICDSearchFilter() {
 	        PortletConfiguration portletConfiguration = getPortletConfiguration();
@@ -315,6 +329,13 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
         	public void onShow(Component component) {
         		searchComponent.setSubtreeSearchFilter(getICDSearchFilter());
         		
+        		if (isEnableSearchInTreeByDefault() == true) {
+        			searchComponent.setSelectedSubtreeCheckBoxChecked(true);
+        		}
+        		
+        		//if "Search in selected subtree" is enabled, set that filter
+        		searchComponent.setSearchSubtreeFilter();
+        		
         		icdSearchManager.bind(searchComponent);
         		searchComponent.getSearchField().focus(true, 100);
         	}
@@ -329,6 +350,14 @@ public class ICDClassTreePortlet extends ClassTreePortlet {
         searchWindow.add(panel);
 	}
     
+	public void setEnableSearchInTreeByDefault(boolean enableSearchInTreeByDefault) {
+		this.enableSearchInTreeByDefault = enableSearchInTreeByDefault;
+	}
+	
+	public boolean isEnableSearchInTreeByDefault() {
+		return enableSearchInTreeByDefault;
+	}
+	
 
 	@Override
     public void setTreeNodeIcon(TreeNode node, EntityData entityData) {
