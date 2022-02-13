@@ -49,6 +49,24 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 
 	private static final long serialVersionUID = -6721731083175643860L;
 
+	
+	@Override
+	public EntityData getEntity(String projectName, String entityName) {
+		Project project = getProject(projectName);
+		OWLModel owlModel = (OWLModel) project.getKnowledgeBase();
+		WHOFICContentModel cm = getContentModel(owlModel);
+		
+		EntityData entity = super.getEntity(projectName, entityName);
+		
+		if(entity == null) {
+			return null;
+		}
+		
+		entity.setProperty(ICDClassTreePortlet.PUBLIC_ID_PROP, cm.getPublicId(entity.getName()));
+		
+		return entity;
+	}
+	
 	// TODO: Event generation is currently disabled for class creation, because
 	// it generates too many events and slows down significantly the class creation.
 	// The effect is that some other class trees do not get the event, and will not
