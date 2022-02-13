@@ -13,6 +13,8 @@ import edu.stanford.bmir.protege.web.client.rpc.data.icd.PrecoordinationClassExp
 import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 
 public interface WHOFICServiceAsync {
+	
+	void getEntity(String projectName, String entityName, AsyncCallback<EntityData> cb);
 
     void getEntityPropertyValuesForLinearization(String projectName, List<String> entities, String property,
             List<String> reifiedProps, int[] subjectEntityColumns, AsyncCallback<List<EntityPropertyValuesList>> cb);

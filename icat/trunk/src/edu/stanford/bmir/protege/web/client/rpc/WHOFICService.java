@@ -15,6 +15,8 @@ import edu.stanford.bmir.protege.web.client.rpc.data.icd.ScaleInfoData;
 
 @RemoteServiceRelativePath("who-fic")
 public interface WHOFICService extends RemoteService  {
+	
+	public EntityData getEntity(String projectName, String entityName);
 
     public List<EntityPropertyValuesList> getEntityPropertyValuesForLinearization(String projectName, List<String> entities, String property,
             List<String> reifiedProps, int[] subjectEntityColumns);

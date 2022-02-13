@@ -28,6 +28,10 @@ public class WHOFICServiceManager {
     protected WHOFICServiceManager() {
         proxy = GWT.create(WHOFICService.class);
     }
+    
+    public void getEntity(String projectName, String entityName, AsyncCallback<EntityData> cb) {
+    	proxy.getEntity(projectName, entityName, cb);
+    }
 
     public void getEntityPropertyValuesForLinearization(String projectName, List<String> entities, String property,
             List<String> reifiedProps, int[] subjectEntityColumns, AsyncCallback<List<EntityPropertyValuesList>> cb) {
