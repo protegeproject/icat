@@ -144,6 +144,10 @@ public class SearchComponent extends Panel {
 		} 
 		
 		icdSearchManager.setSubtreeFilter(this, subtreeSearchFilter);
+		
+		//trigger the search
+		String query = searchField.getText();
+		triggerSearch(iNo, query);
 	}
 	
 	
