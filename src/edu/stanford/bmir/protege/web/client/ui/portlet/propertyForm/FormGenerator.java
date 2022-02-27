@@ -18,6 +18,7 @@ import edu.stanford.bmir.protege.web.client.model.Project;
 import edu.stanford.bmir.protege.web.client.rpc.data.EntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.PropertyEntityData;
 import edu.stanford.bmir.protege.web.client.rpc.data.ValueType;
+import edu.stanford.bmir.protege.web.client.rpc.data.layout.GenericConfiguration;
 import edu.stanford.bmir.protege.web.client.rpc.data.layout.WidgetConfiguration;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDInclusionWidget;
 import edu.stanford.bmir.protege.web.client.ui.icd.ICDIndexWidget;
@@ -93,6 +94,12 @@ public class FormGenerator {
                 Object tabObj = iterator.next();
                 if (tabObj instanceof Map) {
                     Map tabMap = (Map) tabObj;
+                    GenericConfiguration conf = new GenericConfiguration();
+                    conf.setProperties(tabMap);
+                    if ( ! conf.userPartOfShowGroup() ) {
+                    	//we can skip creating this tab because the user is not part of the tab's "show" groupss
+                    	continue;
+                    }
                     Panel tab = createInnerPanel(tabMap);
                     tab.setVisible(false);
                     setTabVisible(tab, false);
