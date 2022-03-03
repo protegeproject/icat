@@ -70,8 +70,9 @@ public class SearchGridPanel extends GridPanel {
         if (busyComponent != null && busyComponent.getEl() != null) {
             busyComponent.getEl().mask("Searching...", true);
         }
-        //store.load(0, ((PagingToolbar) this.getBottomToolbar()).getPageSize());
-        store.load(0, ((PagingToolbar) this.getTopToolbar()).getPageSize());
+        
+        store.load(0, ((PagingToolbar) this.getBottomToolbar()).getPageSize());
+        //store.load(0, ((PagingToolbar) this.getTopToolbar()).getPageSize());
     }
 
     
@@ -143,8 +144,8 @@ public class SearchGridPanel extends GridPanel {
         setStore(store);
         
         PagingToolbar pToolbar = PaginationUtil.getNewPagingToolbar(store, PAGE_SIZE);
-        //setBottomToolbar(pToolbar);
-        setTopToolbar(pToolbar);
+        setBottomToolbar(pToolbar);
+        //setTopToolbar(pToolbar);
 
         setStripeRows(true);
         setAutoExpandColumn("browserText");
@@ -179,12 +180,12 @@ public class SearchGridPanel extends GridPanel {
         //searchField.setAutoWidth(true);
         searchField.setEmptyText("Type search string");
         
-        addSearchFieldListener();
-        
+        addSearchFieldListener(searchField);
+       
         return searchField;
     }
 
-    protected void addSearchFieldListener() {
+    protected void addSearchFieldListener(TextField searchField) {
     	searchField.addListener(new TextFieldListenerAdapter() {
             @Override
             public void onSpecialKey(final Field field, final EventObject e) {
@@ -224,7 +225,7 @@ public class SearchGridPanel extends GridPanel {
      */
     public void setSearchField(TextField searchField) {
     	this.searchField = searchField;
-    	addSearchFieldListener();
+    	addSearchFieldListener(searchField);
     }
     
     public void setSearchFieldText(String text) {
