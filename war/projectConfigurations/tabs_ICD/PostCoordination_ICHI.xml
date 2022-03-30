@@ -1159,5 +1159,73 @@
 												</entry>
 											</map>
 										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#specificAnatomicDetail</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>SpecificAnatomicDetail</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#SpecificAnatomyReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<!--string>http://who.int/icd#SpecificAnatomicLocation</string-->
+													<string>http://who.int/icd#SpecificAnatomicLocation_1000</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Specific Anatomic Detail</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#specificspecificAnatomicDetail</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>6</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
 									</map>
 

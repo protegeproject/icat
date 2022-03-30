@@ -293,6 +293,49 @@
 											</map>
 										</entry>
 										
+										<entry>
+											<string>http://who.int/icd#specificAnatomicDetail</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>SpecificAnatomicDetail</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#SpecificAnatomyReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<!--string>http://who.int/icd#SpecificAnatomicLocation</string-->
+													<string>http://who.int/icd#SpecificAnatomicLocation_1000</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Specific Anatomic Detail</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>Choose a value for 'specific anatomic detail'</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#specificspecificAnatomicDetail_value</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>precoord_tree_value_selector</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>5</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>20</string>
+												</entry>
+											</map>
+										</entry>
+										
 														
 														<!--entry>
 															<string>http://who.int/icd#activityWhenInjured</string>
