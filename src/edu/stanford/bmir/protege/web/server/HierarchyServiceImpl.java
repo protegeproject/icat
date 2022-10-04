@@ -2,8 +2,10 @@ package edu.stanford.bmir.protege.web.server;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -31,9 +33,10 @@ import edu.stanford.smi.protegex.owl.model.RDFSNamedClass;
  */
 public class HierarchyServiceImpl extends RemoteServiceServlet implements HierarchyService {
 
-    private static final long serialVersionUID = -2929819058734836756L;
+	private static final long serialVersionUID = -2929819058734836756L;
 
     public static final String RETIRED_CLASSES = "Retired";
+    private static final String REASON_FOR_CHANGE = "[Reason for change]: ";
 
     protected Project getProject(String projectName) {
         return ProjectManagerFactory.getProtege3ProjectManager().getProject(projectName);
@@ -67,25 +70,30 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
                     kb.beginTransaction(operationDescription);
                 }
 
-                for (Cls parent : parentClsesToAdd) {
-                    if (!cls.hasDirectSuperclass(parent)) {
-                        boolean isSiblingIndexValid = cm.checkIndexAndRecreate((RDFSNamedClass) parent, false);
-                        cls.addDirectSuperclass(parent);
-                        cm.addChildToIndex((RDFSNamedClass) parent, (RDFSNamedClass) cls, isSiblingIndexValid);
-                    }
-                }
+				for (Cls parent : parentClsesToAdd) {
+					if (cls.hasDirectSuperclass(parent) == false) {
+						boolean isSiblingIndexValid = cm.checkIndexAndRecreate((RDFSNamedClass) parent, false);
+						cls.addDirectSuperclass(parent);
+						cm.addChildToIndex((RDFSNamedClass) parent, (RDFSNamedClass) cls, isSiblingIndexValid);
+					}
+				}
 
+                
                 for (Cls parent: parentClsesToRemove) {
-                    if (cls.hasDirectSuperclass(parent)) {
+                    if (cls.hasDirectSuperclass(parent) == true) {
                         boolean isSiblingIndexValid = cm.checkIndexAndRecreate((RDFSNamedClass) parent, false);
                         cls.removeDirectSuperclass(parent);
                         cm.removeChildFromIndex((RDFSNamedClass) parent, (RDFSNamedClass) cls, isSiblingIndexValid);
                     }
                 }
+                
+                //This method assumes that the parents have been changed already.
+                //It works with Repeatable Read and upper Transaction Isolation Levels.
+                updateMetaclses((RDFSNamedClass)cls);
 
-                //if the operation has created an orphan cycle add root class as a parent
+                //if the operation has created an orphan cycle add orphan class as a parent
                 if (!cls.getSuperclasses().contains(kb.getRootCls())) {
-                    cls.addDirectSuperclass(kb.getRootCls());
+                    cls.addDirectSuperclass(cm.getOrphanClass());
                 }
 
                 if (runsInTransaction) {
@@ -130,7 +138,7 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
             notesData.setAuthor(user);
             notesData.setBody(reasonForChange);
             notesData.setAnnotatedEntity(new EntityData(className));
-            notesData.setSubject("[Reason for change]: " + operationDescription);
+            notesData.setSubject(REASON_FOR_CHANGE + operationDescription);
             chaoService.createNote(project, notesData, false);
         }
 
@@ -138,7 +146,56 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
     }
     
     
-    private boolean checkNonRetireableClsHasRetiredNewParent(OWLModel owlModel, Cls cls, Collection<Cls> parents) {
+    /**
+     * Updates metaclasses for cls and children based on the new parents.
+     * 
+     * It makes the union of the metaclasses of all updated parents.
+     * The metaclasses to add are the difference between this union and the metaclasses of the cls,
+     * and the metaclasses to remove are the difference between the metaclasses of the class and 
+     * the union of the parent metaclasses.
+     *
+     * @param cls
+     */
+    @SuppressWarnings("deprecation")
+	private void updateMetaclses(RDFSNamedClass cls) {
+    	//these are the new parents
+    	Collection<RDFSNamedClass> directParents = cls.getNamedSuperclasses(false);
+    	
+    	Set<Cls> parentDirectMetaclasses = new HashSet<Cls>();
+    	for (Cls parent : directParents) {
+			parentDirectMetaclasses.addAll(parent.getDirectTypes());
+		}
+    	
+    	Set<Cls> clsDirectMetaclasses = new HashSet<Cls>(cls.getDirectTypes());
+    	
+    	Set<Cls> metaclassesToAdd = new HashSet<Cls>(parentDirectMetaclasses);
+    	metaclassesToAdd.removeAll(clsDirectMetaclasses); //add only the metaclasses that are in the parents but not in the cls
+    	
+    	Set<Cls> metaclassesToRemove = new HashSet<Cls>(clsDirectMetaclasses);
+    	metaclassesToRemove.removeAll(parentDirectMetaclasses); //remove only metaclasses that are only in the cls, but not the parents
+    	
+    	//apply these metaclasses to the entire branch with topcls cls
+    	Set<RDFSNamedClass> clses = new HashSet<RDFSNamedClass>(cls.getNamedSubclasses(true));
+    	clses.add(cls);
+    	
+    	for (RDFSNamedClass clsToUpdate : clses) {
+			//add metaclses
+    		for (Cls metaclsToAdd : metaclassesToAdd) {
+				if (clsToUpdate.hasDirectType(metaclsToAdd) == false) {
+					clsToUpdate.addDirectType(metaclsToAdd);
+				}
+			}
+    		
+    		//remove metaclses
+    		for(Cls metaclsToRemove : metaclassesToRemove) {
+    			if (clsToUpdate.hasDirectType(metaclsToRemove) == true) {
+    				clsToUpdate.removeDirectType(metaclsToRemove);
+    			}
+    		}
+		}
+	}
+
+	private boolean checkNonRetireableClsHasRetiredNewParent(OWLModel owlModel, Cls cls, Collection<Cls> parents) {
     	
     	if (cls instanceof RDFSNamedClass == false) {
     		return false;
@@ -190,7 +247,7 @@ public class HierarchyServiceImpl extends RemoteServiceServlet implements Hierar
                         notesData.setAuthor(user);
                         notesData.setBody(reasonForChange);
                         notesData.setAnnotatedEntity(new EntityData(cls.getName()));
-                        notesData.setSubject("[Reason for change]: " + operationDescription);
+                        notesData.setSubject(REASON_FOR_CHANGE + operationDescription);
                         chaoService.createNote(project, notesData, false);
                     }
                 }
