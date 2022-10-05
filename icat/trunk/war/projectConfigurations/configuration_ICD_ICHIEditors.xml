@@ -28831,7 +28831,8 @@
 		</columns>
 		<controllingPortlet reference="../columns/column/portlets/portlet[2]"/>
 	</tab>
-	
+
+<!--  
 	<tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.tab.UserDefinedTab</name>
 		<label>Export and Import</label>
@@ -28884,6 +28885,7 @@
 		</columns>
 		<controllingPortlet reference="../columns/column/portlets/portlet[2]" ></controllingPortlet>
 	</tab>
+-->
 
   <tab>
     <name>edu.stanford.bmir.protege.web.client.ui.ontology.classes.ClassesTab</name>
