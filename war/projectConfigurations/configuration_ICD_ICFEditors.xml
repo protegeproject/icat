@@ -17081,12 +17081,12 @@
 											<string>spec-tab-header1</string>
 										</entry>
 										
-										<!-- entry>
+										<entry>
 											<string>types_any</string>
 											<list>
 												<string>http://who.int/icd#PostcoordinationSection</string>
 											</list>
-										</entry-->
+										</entry>
 												<!--string>http://who.int/icd#ClinicalDescriptionSection</string-->
 												<!--string>http://who.int/icd#ExternalCauseSection</string-->
 												<!--string>http://who.int/icd#LinearizationSection</string-->
