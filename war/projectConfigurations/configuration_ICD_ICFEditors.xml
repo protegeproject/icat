@@ -1351,6 +1351,64 @@
 												</entry>
 											</map>
 										</entry>
+										
+ <!--  External Reference -->
+										
+										<entry>
+											<string>VS_Original_Code_Ruler</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>VS_Original_Code_Ruler</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>htmlMessage</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>6</string>
+												</entry>
+												<entry>
+													<string>load_url</string>
+													<string>html/ruler_value_set_original_code.html</string>
+												</entry>
+											</map>
+										</entry> <!-- Original code ruler -->								
+																
+										<entry>
+											<string>http://who.int/icd#icdCode</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>icdCode</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Original Code</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>Original code as imported intially. Just for information purposes. Do not use.</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#ichi_code</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>textfield</string>
+												</entry>
+												<entry>
+													<string>disabled</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>7</string>
+												</entry>
+											</map>
+										</entry>											
 									</map>
 
 <!-- ICD International -> Definition (Post-Coordination Value Set - ICECI subtree) -->
@@ -3224,10 +3282,10 @@
 											<list>
 												<string>http://who.int/icd#ICFSection</string>
 												<string>http://who.int/icd#ICFStructuralComponentSection</string>
-												<string>http://who.int/icd#ICFQualifierSection</string>
+												<!-- <string>http://who.int/icd#ICFQualifierSection</string> -->
 												<string>http://who.int/icd#ICHISection</string>
 												<string>http://who.int/icd#ICHIAxesSection</string>
-												<string>http://who.int/icd#ICHIExtensionCodeSection</string>
+												<!-- <string>http://who.int/icd#ICHIExtensionCodeSection</string> -->
 											</list>
 										</entry>
 										
@@ -20957,7 +21015,7 @@
 										</entry>
 									</map>
 
-<!-- ICD International -> Terms (Post-Coordination Value Set - minus ICF and ICHI)-->
+<!-- ICD International -> Terms (Post-Coordination Value Set)-->
 									<map>
 										<entry>
 											<string>title</string>
@@ -20976,10 +21034,10 @@
 											<list>
 												<string>http://who.int/icd#ICFSection</string>
 												<string>http://who.int/icd#ICFStructuralComponentSection</string>
-												<string>http://who.int/icd#ICFQualifierSection</string>
+												<!-- <string>http://who.int/icd#ICFQualifierSection</string> -->
 												<string>http://who.int/icd#ICHISection</string>
 												<string>http://who.int/icd#ICHIAxesSection</string>
-												<string>http://who.int/icd#ICHIExtensionCodeSection</string>
+												<!-- <string>http://who.int/icd#ICHIExtensionCodeSection</string> -->
 											</list>
 										</entry>
 										
@@ -21260,7 +21318,205 @@
 													</map>
 												</entry>
 											</map>
+										</entry> <!-- End base exclusions -->
+										
+										<entry>
+											<string>VS_ICHI_Only_Ruler</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>VS_ICHI_Only_Ruler</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>htmlMessage</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>3</string>
+												</entry>
+												<entry>
+													<string>load_url</string>
+													<string>html/ruler_value_set_ichi_only.html</string>
+												</entry>
+											</map>
 										</entry>
+										
+										<entry>
+											<string>http://who.int/icd#icfReference</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>IcfReference</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#ICFReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>ICF Reference</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>Reference term to create mapping to the corresponding ICF entiry.</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#icfReference</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>grid</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>@entity@</string>
+												</entry>
+												<entry>
+													<string>show_add_new</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>show_add_existing</string>
+													<boolean>false</boolean>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>4</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>100</string>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Reference</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedCategory</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>class_selector</string>
+														</entry>
+														<entry>
+															<string>top_class</string>
+															<string>@root_class_icf@</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry> <!-- End ICF Reference for ICHI only -->																		
+
+										<entry>
+											<string>VS_ICF_Only_Ruler</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>VS_ICF_Only_Ruler</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>htmlMessage</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>5</string>
+												</entry>
+												<entry>
+													<string>load_url</string>
+													<string>html/ruler_value_set_icf_only.html</string>
+												</entry>
+											</map>
+										</entry>
+
+										<entry>
+											<string>http://who.int/icd#relatedImpairment</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>RelatedImpairment</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#RelatedImpairmentTerm</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Related Impairment</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>Related Impairment</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#relatedImpairment</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>grid</string>
+												</entry>
+												<entry>
+													<string>show_add_new</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>show_add_existing</string>
+													<boolean>false</boolean>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>6</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>100</string>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>label</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#label</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+														<entry>
+															<string>field_editor</string>
+															<string>inline</string>
+														</entry>
+														<entry>
+															<string>sorted</string>
+															<boolean>true</boolean>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry> <!-- End Related Impairment for ICF only -->
 
 									</map>
 
