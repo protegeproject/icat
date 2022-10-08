@@ -15,7 +15,7 @@
 											<string>types_any</string>
 											<list>
 												<string>http://who.int/icd#ICFStructuralComponentSection</string>
-												<string>http://who.int/icd#ICFQualifierSection</string>
+												<!-- <string>http://who.int/icd#ICFQualifierSection</string> -->
 											</list>
 										</entry>
 										
