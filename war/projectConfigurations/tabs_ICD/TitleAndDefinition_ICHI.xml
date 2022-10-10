@@ -18,7 +18,7 @@
 											<list>
 												<string>http://who.int/icd#ICHISection</string>
 												<string>http://who.int/icd#ICHIAxesSection</string>
-												<string>http://who.int/icd#ICHIExtensionCodeSection</string>
+												<!-- <string>http://who.int/icd#ICHIExtensionCodeSection</string> -->
 											</list>
 										</entry>
 										
