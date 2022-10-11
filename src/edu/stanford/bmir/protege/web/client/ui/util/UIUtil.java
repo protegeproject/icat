@@ -411,7 +411,7 @@ public class UIUtil {
 
         if (checkWritePermission && project.hasPermission(PermissionConstants.WRITE) == false) {
             if (showUserAlerts) {
-                MessageBox.alert("Warning", "You do not have write permission.");
+                MessageBox.alert("Warning", "Your user account does not have write permission.");
             }
             return false;
         }
