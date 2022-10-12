@@ -28756,10 +28756,16 @@
 								<list>
 
 									<xi:include href="tabs_ICD/TitleAndDefinition_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-
+									
+									<xi:include href="tabs_ICD/TitleAndDefinition_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									
 									<xi:include href="tabs_ICD/Linearization_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+								
+									<xi:include href="tabs_ICD/Linearization_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 									<xi:include href="tabs_ICD/Terms_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+								
+									<xi:include href="tabs_ICD/Terms_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 								</list>
 							</entry>
@@ -28849,13 +28855,19 @@
 
 									<xi:include href="tabs_ICD/TitleAndDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
+									<xi:include href="tabs_ICD/TitleAndDefinition_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									
 									<xi:include href="tabs_ICD/Linearization_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-
+									
+									<xi:include href="tabs_ICD/Linearization_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									
 									<xi:include href="tabs_ICD/PostCoordination_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 									<xi:include href="tabs_ICD/LogicalDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 									<xi:include href="tabs_ICD/Terms_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									
+									<xi:include href="tabs_ICD/Terms_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 								</list>
 							</entry>
