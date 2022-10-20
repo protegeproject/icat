@@ -65,12 +65,12 @@ public class ParentsPanel extends Panel {
 
     public ParentsPanel(Project project) {
         this(project, true, true, true, true, false);
-        setHeight(70);
+        setHeight(120);
     }
 
     public ParentsPanel(Project project, boolean showAdd, boolean showRemove) {
         this(project, showAdd, showRemove, true, true, false);
-        setHeight(70);
+        setHeight(120);
     }
 
     public ParentsPanel(Project project, boolean showAdd, boolean showRemove, boolean showLabel, boolean showBorder, boolean clickableParents) {
@@ -212,7 +212,7 @@ public class ParentsPanel extends Panel {
 
     protected HTML getHTML(EntityData parent) {
         String buffer = new String();
-        buffer += "<table width=\"100%\" border=\"0\" cellspacing=\"3\"  class=\"restriction_table\">";
+        buffer += "<table width=\"100%\" border=\"0\"  class=\"restriction_table\">"; //cellspacing=\"3\"
         buffer += "<tr>";
         if (clickableParents) {
             buffer += "<td class=\"parent-link\"><a href=\"";
