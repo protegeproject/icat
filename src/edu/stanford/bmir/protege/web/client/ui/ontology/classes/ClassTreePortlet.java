@@ -108,6 +108,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
 
     protected ToolbarButton createButton;
     protected ToolbarButton deleteButton;
+    protected ToolbarButton collapseAllButton;
 
     protected CycleButton watchButton;
     private CheckItem lastSelectedWatchType;
@@ -220,7 +221,7 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         if (showToolbar) {
             addToolbarButtons();
         }
-
+        
         final Panel bogusPanel = new Panel();
         bogusPanel.setId(PLACE_HOLDER_PANEL);
         bogusPanel.setHeight(560);
@@ -477,6 +478,11 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         if (toolbar == null) {
         	return;
         }
+        
+        collapseAllButton = createCollapseAllButton();
+        if (collapseAllButton != null) {
+        	toolbar.addButton(collapseAllButton);
+        }
 
         createButton = createCreateButton();
         if (createButton != null) {
@@ -500,6 +506,8 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
             toolbar.addText("&nbsp<i>Search</i>:&nbsp&nbsp");
             toolbar.addElement((com.google.gwt.user.client.Element) searchField);
         }
+        
+   
     }
 
     protected boolean isCreateEnabled() {
@@ -544,6 +552,26 @@ public class ClassTreePortlet extends AbstractEntityPortlet {
         deleteButton.setDisabled(!project.hasWritePermission(GlobalSettings.getGlobalSettings().getUserName()));
         deleteButton.setDisabled(!isDeleteEnabled());
         return deleteButton;
+    }
+    
+    protected ToolbarButton createCollapseAllButton() {
+    	collapseAllButton = new ToolbarButton();
+    	collapseAllButton.setCls("toolbar-button");
+    	collapseAllButton.setIcon("images/tree/icons8-collapse-48-blue.png");
+    	collapseAllButton.setTooltip("Collapse all nodes to top level.");
+    	
+    	collapseAllButton.addListener(new ButtonListenerAdapter() {
+    		@Override
+    		public void onClick(Button button, EventObject e) {
+    			treePanel.collapseAll();
+    			
+    			TreeNode rootNode = treePanel.getRootNode();
+    			if (rootNode != null) {
+    				rootNode.expand();
+    			}
+    		}
+    	});
+    	return collapseAllButton;
     }
 
     protected CycleButton createWatchButton() {
