@@ -545,7 +545,7 @@ Styles for the hierarchy management tab
 	clear: left;
 	display: block;
 	float: left;
-	padding: 3px 0px 3px 0px;
+	padding: 2px 0px 2px 0px;
 	margin-right: 6px;
 	position: relative;
 	z-index: 2;
@@ -562,7 +562,7 @@ Styles for the hierarchy management tab
 .parent-column-right {
     font-family: arial, tahoma, helvetica, sans-serif;
 	background-color: #FFFFFF !important;
-	padding: 5px 5px 5px 5px;
+	padding: 2px 3px 2px 3px;
 	text-align: right;
 }
 
