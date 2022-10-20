@@ -375,6 +375,12 @@ public class ParentsPanel extends Panel {
     		return;
     	}
     	
+    	removeSelfParent(allNewParents);
+    	
+    	if (allNewParents.isEmpty() == true) {
+    		return;
+    	}
+    	
     	ICDServiceManager.getInstance().isNonRetireableClass(project.getProjectName(), getClsEntity().getName(), 
     			new AsyncCallback<Boolean>() {
 			
@@ -417,7 +423,31 @@ public class ParentsPanel extends Panel {
     	
     }
     
-    private void removeNonRetiredParents(Collection<EntityData> allNewParents,
+    //In case one of the parents is the class itself, then remove it
+    private void removeSelfParent(Collection<EntityData> allNewParents) {
+    	EntityData clsEntityData = getClsEntity();
+    	String clsName = clsEntityData.getName();
+    	
+    	if (clsEntityData == null || clsName == null) {
+    		return;
+    	}
+    	
+    	Set<EntityData> parentsToRemove = new HashSet<EntityData>();
+    	for (EntityData parent : allNewParents) {
+			if (clsName.equals(parent.getName()) == true) {
+				parentsToRemove.add(parent);
+			}
+		}
+    	
+    	if (parentsToRemove.size() > 0) {
+    		MessageBox.alert("Warning", "Cannot add the class as its own parent, because it creates a cycle in the hierarchy.<br /><br />'"
+    				+ clsEntityData.getBrowserText() + "' will not be added as a new parent." );
+    		allNewParents.removeAll(parentsToRemove);
+    	}
+	}
+    
+
+	private void removeNonRetiredParents(Collection<EntityData> allNewParents,
 			Collection<EntityData> retiredParents, Window selectionWindow) {
 		
 		MessageBox.alert("Retired parents", "Some of the selected parents are in a retired tree, and the class <b>" + 
