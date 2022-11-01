@@ -1343,12 +1343,11 @@
 										</entry>
 									</map>
 
-								<xi:include href="tabs_ICD/TitleAndDefinition_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/> 
+									<xi:include href="tabs_ICD/TitleAndDefinition_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-								<xi:include href="tabs_ICD/TitleAndDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="tabs_ICD/TitleAndDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-								<xi:include href="tabs_ICD/TitleAndDefinition_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-
+									<xi:include href="tabs_ICD/TitleAndDefinition_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 <!-- ICD International -> Linearization (minus Post-Coordination Value Set, ICF and ICHI)-->
 									<map>
@@ -2535,11 +2534,11 @@
 										</entry>
 									</map>
 
-								  <xi:include href="tabs_ICD/Linearization_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="tabs_ICD/Linearization_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-								  <xi:include href="tabs_ICD/Linearization_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="tabs_ICD/Linearization_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-								  <xi:include href="tabs_ICD/Linearization_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="tabs_ICD/Linearization_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 
 <!-- ICD International -> Post-coordination -->
@@ -19300,11 +19299,11 @@
 
 
 
-								<xi:include href="tabs_ICD/Terms_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-								
-								<xi:include href="tabs_ICD/Terms_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="tabs_ICD/Terms_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-								<xi:include href="tabs_ICD/Terms_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+									<xi:include href="tabs_ICD/Terms_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+									<xi:include href="tabs_ICD/Terms_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 <!-- ICD International -> Clinical Description -->
 									<map>
@@ -26542,11 +26541,11 @@
 									<xi:include href="tabs_ICD/TitleAndDefinition_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 									
 									<xi:include href="tabs_ICD/Linearization_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-								
+									
 									<xi:include href="tabs_ICD/Linearization_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-
+									
 									<xi:include href="tabs_ICD/Terms_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-								
+									
 									<xi:include href="tabs_ICD/Terms_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 								</list>
@@ -26650,7 +26649,7 @@
 									<xi:include href="tabs_ICD/Terms_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 									
 									<xi:include href="tabs_ICD/Terms_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-	
+									
 								</list>
 							</entry>
 						</properties>
@@ -26882,7 +26881,7 @@
 		<controllingPortlet reference="../columns/column/portlets/portlet[2]"/>
 	</tab>
 
-<!--  	
+<!--  
 	<tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.tab.UserDefinedTab</name>
 		<label>Export and Import</label>

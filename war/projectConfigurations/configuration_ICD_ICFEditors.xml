@@ -1375,7 +1375,8 @@
 												</entry>
 											</map>
 										</entry> <!-- Original code ruler -->								
-																
+										
+										
 										<entry>
 											<string>http://who.int/icd#icdCode</string>
 											<map>
@@ -1408,7 +1409,7 @@
 													<string>7</string>
 												</entry>
 											</map>
-										</entry>											
+										</entry>
 									</map>
 
 <!-- ICD International -> Definition (Post-Coordination Value Set - ICECI subtree) -->
@@ -28760,11 +28761,11 @@
 									<xi:include href="tabs_ICD/TitleAndDefinition_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 									
 									<xi:include href="tabs_ICD/Linearization_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-								
+									
 									<xi:include href="tabs_ICD/Linearization_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 									<xi:include href="tabs_ICD/Terms_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-								
+									
 									<xi:include href="tabs_ICD/Terms_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 								</list>
@@ -28868,7 +28869,7 @@
 									<xi:include href="tabs_ICD/Terms_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 									
 									<xi:include href="tabs_ICD/Terms_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-
+									
 								</list>
 							</entry>
 						</properties>
@@ -29099,6 +29100,7 @@
 		</columns>
 		<controllingPortlet reference="../columns/column/portlets/portlet[2]"/>
 	</tab>
+
 <!--  
 	<tab>
 		<name>edu.stanford.bmir.protege.web.client.ui.tab.UserDefinedTab</name>
