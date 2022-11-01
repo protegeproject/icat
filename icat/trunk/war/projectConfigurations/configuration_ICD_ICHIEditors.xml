@@ -1409,7 +1409,7 @@
 													<string>7</string>
 												</entry>
 											</map>
-										</entry>											
+										</entry>
 									</map>
 
 <!-- ICD International -> Definition (Post-Coordination Value Set - ICECI subtree) -->
@@ -2074,7 +2074,7 @@
 									<xi:include href="tabs_ICD/TitleAndDefinition_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 									<xi:include href="tabs_ICD/TitleAndDefinition_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-							
+
 									<xi:include href="tabs_ICD/TitleAndDefinition_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 <!-- ICD International -> Linearization (minus Post-Coordination Value Set, ICF and ICHI)-->
@@ -3260,8 +3260,8 @@
 												</entry>
 											</map>
 										</entry>
--->										
-										
+-->
+
 									</map>
 
 									<xi:include href="tabs_ICD/Linearization_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
@@ -3269,7 +3269,6 @@
 									<xi:include href="tabs_ICD/Linearization_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 									<xi:include href="tabs_ICD/Linearization_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-
 
 
 <!-- ICD International -> Post-coordination -->
@@ -20530,7 +20529,6 @@
 											</map>
 										</entry> <!-- End Related Impairment for ICF only -->
 
-
 									</map>
 
 									<xi:include href="tabs_ICD/Terms_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
@@ -27773,11 +27771,11 @@
 									<xi:include href="tabs_ICD/TitleAndDefinition_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 									
 									<xi:include href="tabs_ICD/Linearization_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-								
+									
 									<xi:include href="tabs_ICD/Linearization_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 									<xi:include href="tabs_ICD/Terms_ICF.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-								
+									
 									<xi:include href="tabs_ICD/Terms_ValueSet.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 								</list>
