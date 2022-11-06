@@ -17,12 +17,12 @@
 										<entry>
 											<string>types_not</string>
 											<list>
-												<string>http://who.int/icd#ICECIMetaClass</string>
+												<!-- string>http://who.int/icd#ICECIMetaClass</string -->
 												<string>http://who.int/icd#ICFStructuralComponentSection</string>
-												<!-- <string>http://who.int/icd#ICFQualifierSection</string> -->
+												<!-- string>http://who.int/icd#ICFQualifierSection</string -->
 												<string>http://who.int/icd#ICHISection</string>
 												<string>http://who.int/icd#ICHIAxesSection</string>
-												<!-- <string>http://who.int/icd#ICHIExtensionCodeSection</string> -->
+												<!-- string>http://who.int/icd#ICHIExtensionCodeSection</string -->
 											</list>
 										</entry>
 										
@@ -666,7 +666,7 @@
 													</map>
 												</entry>
 											</map>
-										</entry> <!--  External Reference -->
+										</entry>
 										
 										<entry>
 											<string>VS_Original_Code_Ruler</string>
@@ -723,5 +723,44 @@
 													<string>7</string>
 												</entry>
 											</map>
-										</entry>										
+										</entry>
+										<entry>
+											<string>http://who.int/icd#iceciCode</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>iceciCode</string>
+												</entry>
+												<entry>
+													<string>showOnlyForTypes</string>
+												    <list>
+														<string>http://who.int/icd#ICECIMetaClass</string>
+												    </list>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>ICECI Code</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>ICECI code (as imported from ICECI v1.2)</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#iceci_code</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>textfield</string>
+												</entry>
+												<entry>
+													<string>disabled</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>8</string>
+												</entry>
+											</map>
+										</entry>
 									</map>
