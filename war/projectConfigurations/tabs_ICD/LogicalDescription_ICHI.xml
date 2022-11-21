@@ -1,0 +1,244 @@
+<!-- ICD International -> Necessary conditions (ICHI Interventions)-->
+									<map>
+										<entry>
+											<string>title</string>
+											<string>Logical Description</string>
+										</entry>
+
+										<entry>
+											<string>headerCssClass</string>
+											<string>spec-tab-header1</string>
+										</entry>
+										
+										<entry>
+											<string>types_any</string>
+											<list>
+												<string>http://who.int/icd#ICHIPostcoordinationSection</string>
+											</list>
+										</entry>
+												<!--string>http://who.int/icd#ClinicalDescriptionSection</string-->
+												<!--string>http://who.int/icd#ExternalCauseSection</string-->
+												<!--string>http://who.int/icd#LinearizationSection</string-->
+										
+										<entry>
+											<string>LDLogicalDefinitionRuler</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>LDLogicalDefinitionRuler</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>htmlMessage</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>0</string>
+												</entry>
+												<entry>
+													<string>load_url</string>
+													<string>html/ruler_ld_nec_and_suff_conditions.html</string>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>LogicalDefinition</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>LogicalDefinition</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Logical Definition</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#logicalDefinition</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>logical_definition_comp</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>1</string>
+												</entry>
+												<entry>
+													<string>root_class</string>
+													<string>@root_class@</string>
+												</entry>
+																				
+												<entry>
+													<string>superclass_selector</string>
+													<map>
+														<entry>
+															<string>http://who.int/icd#precoordinationSuperclass</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>PCPrecSuperclasses</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Logical Def. Superclass(es)</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Precoordination superclass(es)</string>
+																</entry>
+																<!--entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#precoord_superclasses</string>
+																</entry-->
+																<entry>
+																	<string>fullAccessGroups</string>
+																	<list>
+																		<string>AdvancedLogicalDefinitionEditors</string>
+																	</list>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_superclasses</string>
+																</entry>
+																<!-- entry>
+																	<string>index</string>
+																	<string>0</string>
+																</entry -->
+																<entry>
+																	<string>height</string>
+																	<string>80</string>
+																</entry>
+																<entry>
+																	<string>show_add_new</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>show_add_existing</string>
+																	<boolean>true</boolean>
+																</entry>
+																<entry>
+																	<string>add_existing_value_desc</string>
+																	<string>Select superclass</string>
+																</entry>
+																<!--entry>
+																	<string>show_replace_existing</string>
+																	<boolean>false</boolean>
+																</entry-->
+																<entry>
+																	<string>replace_with_existing_value_desc</string>
+																	<string>Change superclass</string>
+																</entry>
+																
+																<entry>
+																	<string>multiple_values_allowed</string>
+																	<boolean>false</boolean>
+																</entry>
+																<entry>
+																	<string>Column1</string>
+																	<map>
+																		<entry>
+																			<string>header</string>
+																			<string>Title</string>
+																		</entry>
+																		<entry>
+																			<string>width</string>
+																			<string>all</string>
+																		</entry>
+																		<entry>
+																			<string>property</string>
+																			<!-- string>http://who.int/icd#label</string -->
+																			<string>http://who.int/icd#icdTitle</string>
+																		</entry>
+																		<entry>
+																			<string>index</string>
+																			<string>0</string>
+																		</entry>
+																		<entry>
+																			<string>field_type</string>
+																			<string>class_browsertext</string>
+																		</entry>
+																	</map>
+																</entry>
+															</map>
+														</entry>
+													</map>
+												</entry>
+												
+												<entry>
+													<string>properties_config</string>
+													<!-- xi:include href="tabs_ICD/LogicalDefinitionProperties.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/ -->
+													<xi:include href="LogicalDefinitionProperties_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+												</entry>
+
+											</map>
+										</entry>
+														
+										<entry>
+											<string>LDNecessaryConditionsRuler</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>LDNecessaryConditionsRuler</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>htmlMessage</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>2</string>
+												</entry>
+												<entry>
+													<string>load_url</string>
+													<string>html/ruler_ld_nec_conditions.html</string>
+												</entry>
+											</map>
+										</entry>
+										
+										<entry>
+											<string>NecessaryConditions</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>NecessaryConditions</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Necessary Conditions</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#necessaryConditions</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>necessary_cond_comp</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>3</string>
+												</entry>
+												<entry>
+													<string>root_class</string>
+													<string>@root_class@</string>
+												</entry>
+												
+												<entry>
+													<string>properties_config</string>
+													<!-- xi:include href="tabs_ICD/LogicalDefinitionProperties.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/ -->
+													<xi:include href="LogicalDefinitionProperties_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+												</entry>
+											</map>
+										</entry>
+										
+									</map>
