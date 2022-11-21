@@ -2,14 +2,21 @@
 									<map>
 										<entry>
 											<string>title</string>
-											<string>Logical Definitions</string>
+											<string>Logical Definitions (old)</string>
 										</entry>
 
 										<entry>
 											<string>headerCssClass</string>
-											<string>spec-tab-header1</string>
+											<string>spec-tab-header5</string>
 										</entry>
 										
+										<entry>
+											<string>showOnlyForGroups</string>
+											<list>
+												<string>AdminGroup</string>
+												<string>Stanford</string>
+											</list>
+										</entry>
 										<entry>
 											<string>types_any</string>
 											<list>
@@ -76,11 +83,40 @@
 								            		<string>property_map</string>
 													<map>
 														<entry>
-															<string>http://who.int/icd#aspectsOfArmedConflict</string>
+															<string>http://who.int/icd#quantifier</string>
 															<list>
-																<string>http://who.int/icd#typeOfArmedConflict</string>
-																<string>http://who.int/icd#roleOfInjuredPersonInArmedConflict</string>
+																<string>http://who.int/icd#quantifier</string>
+																<string>http://who.int/icd#numberOfAnatomicalStructuresAnInterventionIsPerformedOn</string>
+																<string>http://who.int/icd#numberOfInterventionsPerformed</string>
+										            			<string>http://who.int/icd#numberOfTherapeuticProductsInserted</string>
 															</list>
+														</entry>
+														<entry>
+															<string>http://who.int/icd#telehealth</string>
+															<list>
+																<string>http://who.int/icd#telehealth</string>
+																<string>http://who.int/icd#interventionPerformedWithAdviceOrAssistanceProvidedFromADistantLocation</string>
+																<string>http://who.int/icd#interventionProvidedToRecipientInADistantLocation</string>
+										            			<string>http://who.int/icd#interventionsDeliveredViaTechnologyWithoutDirectInvolvementOfAHumanProvider</string>
+															</list>
+														</entry>
+														<entry>
+															<string>http://who.int/icd#additionalDescriptiveInformationForIntervention</string>
+															<list>
+																<string>http://who.int/icd#additionalDescriptiveInformationForIntervention</string>
+																<string>http://who.int/icd#administrativeSystemLevelAtWhichInterventionDirected</string>
+																<string>http://who.int/icd#clientOrRecipient</string>
+																<string>http://who.int/icd#creativeTherapy</string>
+																<string>http://who.int/icd#enablingFactorsForBehaviourChange</string>
+																<string>http://who.int/icd#initiatingOrMaintainingOrDiscontinuingOrResuming</string>
+																<string>http://who.int/icd#relationshipToOtherIntervention</string>
+																<string>http://who.int/icd#specificSkillsAndTechnique</string>
+																<string>http://who.int/icd#standardisationOrStructure</string>
+																<string>http://who.int/icd#temporaryIntervention</string>
+																<string>http://who.int/icd#tissueFlap</string>
+																<string>http://who.int/icd#tissueGraft</string>
+																<string>http://who.int/icd#unplanned</string>
+																<string>http://who.int/icd#useOfEquipmentOrChallenge</string>															</list>
 														</entry>
 													</map>
 								            	</entry>
@@ -122,389 +158,8 @@
 														
 												<entry>
 													<string>value_selectors</string>
-													<map>
-
-
-										<entry>
-											<string>http://who.int/icd#hasTarget</string>
-											<map>
-												<entry>
-													<string>name</string>
-													<string>HasTarget</string>
-												</entry>
-												<entry>
-													<string>ont_type</string>
-													<string>http://who.int/icd#SeverityReferenceTerm</string>
-												</entry>
-												<entry>
-													<string>top_class</string>
-													<string>http://who.int/icd#Target</string>
-												</entry>
-												<entry>
-													<string>label</string>
-													<string>Target</string>
-												</entry>
-												<entry>
-													<string>tooltip</string>
-													<string>Choose a value for 'target'</string>
-												</entry>
-												<entry>
-													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasTarget_value</string>
-												</entry>
-												<entry>
-													<string>component_type</string>
-													<string>precoord_tree_value_selector</string>
-												</entry>
-												<entry>
-													<string>index</string>
-													<string>1</string>
-												</entry>
-												<entry>
-													<string>height</string>
-													<string>20</string>
-												</entry>
-											</map>
-										</entry>
-										
-										<entry>
-											<string>http://who.int/icd#hasAction</string>
-											<map>
-												<entry>
-													<string>name</string>
-													<string>HasAction</string>
-												</entry>
-												<entry>
-													<string>ont_type</string>
-													<string>http://who.int/icd#CausingConditionReferenceTerm</string>
-												</entry>
-												<entry>
-													<string>top_class</string>
-													<string>http://who.int/icd#Action</string>
-												</entry>
-												<entry>
-													<string>label</string>
-													<string>Action</string>
-												</entry>
-												<entry>
-													<string>tooltip</string>
-													<string>Choose a value for 'action'</string>
-												</entry>
-												<entry>
-													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasAction_value</string>
-												</entry>
-												<entry>
-													<string>component_type</string>
-													<string>precoord_tree_value_selector</string>
-												</entry>
-												<entry>
-													<string>index</string>
-													<string>2</string>
-												</entry>
-												<entry>
-													<string>height</string>
-													<string>20</string>
-												</entry>
-											</map>
-										</entry>
-										
-										<entry>
-											<string>http://who.int/icd#hasMeans</string>
-											<map>
-												<entry>
-													<string>name</string>
-													<string>HasMeans</string>
-												</entry>
-												<entry>
-													<string>ont_type</string>
-													<string>http://who.int/icd#ManifestingConditionReferenceTerm</string>
-												</entry>
-												<entry>
-													<string>top_class</string>
-													<string>http://who.int/icd#Means</string>
-												</entry>
-												<entry>
-													<string>label</string>
-													<string>Means</string>
-												</entry>
-												<entry>
-													<string>tooltip</string>
-													<string>Choose a value for 'means'</string>
-												</entry>
-												<entry>
-													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasMeans_value</string>
-												</entry>
-												<entry>
-													<string>component_type</string>
-													<string>precoord_tree_value_selector</string>
-												</entry>
-												<entry>
-													<string>index</string>
-													<string>3</string>
-												</entry>
-												<entry>
-													<string>height</string>
-													<string>20</string>
-												</entry>
-											</map>
-										</entry>
-										
-										<entry>
-											<string>http://who.int/icd#additionalTarget</string>
-											<map>
-												<entry>
-													<string>name</string>
-													<string>AdditionalTarget</string>
-												</entry>
-												<entry>
-													<string>ont_type</string>
-													<string>http://who.int/icd#AssociatedWithReferenceTerm</string>
-												</entry>
-												<entry>
-													<string>top_class</string>
-													<string>http://who.int/icd#Target</string>
-												</entry>
-												<entry>
-													<string>label</string>
-													<string>Additional Target</string>
-												</entry>
-												<entry>
-													<string>tooltip</string>
-													<string>Choose a value for 'additional target'</string>
-												</entry>
-												<entry>
-													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#additionalTarget_value</string>
-												</entry>
-												<entry>
-													<string>component_type</string>
-													<string>precoord_tree_value_selector</string>
-												</entry>
-												<entry>
-													<string>index</string>
-													<string>4</string>
-												</entry>
-												<entry>
-													<string>height</string>
-													<string>20</string>
-												</entry>
-											</map>
-										</entry>
-										
-										<entry>
-											<string>http://who.int/icd#specificAnatomicDetail</string>
-											<map>
-												<entry>
-													<string>name</string>
-													<string>SpecificAnatomicDetail</string>
-												</entry>
-												<entry>
-													<string>ont_type</string>
-													<string>http://who.int/icd#SpecificAnatomyReferenceTerm</string>
-												</entry>
-												<entry>
-													<string>top_class</string>
-													<!--string>http://who.int/icd#SpecificAnatomicLocation</string-->
-													<string>http://who.int/icd#SpecificAnatomicLocation_1000</string>
-												</entry>
-												<entry>
-													<string>label</string>
-													<string>Specific Anatomic Detail</string>
-												</entry>
-												<entry>
-													<string>tooltip</string>
-													<string>Choose a value for 'specific anatomic detail'</string>
-												</entry>
-												<entry>
-													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#specificspecificAnatomicDetail_value</string>
-												</entry>
-												<entry>
-													<string>component_type</string>
-													<string>precoord_tree_value_selector</string>
-												</entry>
-												<entry>
-													<string>index</string>
-													<string>5</string>
-												</entry>
-												<entry>
-													<string>height</string>
-													<string>20</string>
-												</entry>
-											</map>
-										</entry>
-										
-														
-														<!--entry>
-															<string>http://who.int/icd#activityWhenInjured</string>
-															<map>
-																<entry>
-																	<string>name</string>
-																	<string>ActivityWhenInjured</string>
-																</entry>
-																<entry>
-																	<string>ont_type</string>
-																	<string>http://who.int/icd#ActivityWhenInjuredReferenceTerm</string>
-																</entry>
-																<entry>
-																	<string>top_class</string>
-																	<string>http://who.int/icd#ICECI_C.5</string>
-																</entry>
-																<entry>
-																	<string>label</string>
-																	<string>Activity when Injured</string>
-																</entry>
-																<entry>
-																	<string>tooltip</string>
-																	<string>Choose a value for the 'activity when injured' property</string>
-																</entry>
-																<entry>
-																	<string>help</string>
-																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#activityWhenInjured_value</string>
-																</entry>
-																<entry>
-																	<string>component_type</string>
-																	<string>precoord_tree_value_selector</string>
-																</entry>
-																<entry>
-																	<string>index</string>
-																	<string>1</string>
-																</entry>
-																<entry>
-																	<string>height</string>
-																	<string>20</string>
-																</entry>
-															</map>
-														</entry>
-																												
-														<entry>
-															<string>http://who.int/icd#hasCausingCondition</string>
-															<map>
-																<entry>
-																	<string>name</string>
-																	<string>HasCausingCondition</string>
-																</entry>
-																<entry>
-																	<string>ont_type</string>
-																	<string>http://who.int/icd#CausingConditionReferenceTerm</string>
-																</entry>
-																<entry>
-																	<string>top_class</string>
-																	<string>http://who.int/icd#ICDCategory</string>
-																</entry>
-																<entry>
-																	<string>label</string>
-																	<string>Has Causing Condition</string>
-																</entry>
-																<entry>
-																	<string>tooltip</string>
-																	<string>Choose a value for 'has causing condition'</string>
-																</entry>
-																<entry>
-																	<string>help</string>
-																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasCausingCondition_value</string>
-																</entry>
-																<entry>
-																	<string>component_type</string>
-																	<string>precoord_tree_value_selector</string>
-																</entry>
-																<entry>
-																	<string>index</string>
-																	<string>68</string>
-																</entry>
-																<entry>
-																	<string>height</string>
-																	<string>20</string>
-																</entry>
-															</map>
-														</entry>
-														
-														<entry>
-															<string>http://who.int/icd#hasManifestation</string>
-															<map>
-																<entry>
-																	<string>name</string>
-																	<string>HasManifestation</string>
-																</entry>
-																<entry>
-																	<string>ont_type</string>
-																	<string>http://who.int/icd#ManifestingConditionReferenceTerm</string>
-																</entry>
-																<entry>
-																	<string>top_class</string>
-																	<string>http://who.int/icd#ICDCategory</string>
-																</entry>
-																<entry>
-																	<string>label</string>
-																	<string>Has Manifestation</string>
-																</entry>
-																<entry>
-																	<string>tooltip</string>
-																	<string>Choose a value for 'has manifestation'</string>
-																</entry>
-																<entry>
-																	<string>help</string>
-																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#hasManifestation_value</string>
-																</entry>
-																<entry>
-																	<string>component_type</string>
-																	<string>precoord_tree_value_selector</string>
-																</entry>
-																<entry>
-																	<string>index</string>
-																	<string>69</string>
-																</entry>
-																<entry>
-																	<string>height</string>
-																	<string>20</string>
-																</entry>
-															</map>
-														</entry>
-														
-														<entry>
-															<string>http://who.int/icd#associatedWith</string>
-															<map>
-																<entry>
-																	<string>name</string>
-																	<string>AssociatedWith</string>
-																</entry>
-																<entry>
-																	<string>ont_type</string>
-																	<string>http://who.int/icd#AssociatedWithReferenceTerm</string>
-																</entry>
-																<entry>
-																	<string>top_class</string>
-																	<string>http://who.int/icd#ICDCategory</string>
-																</entry>
-																<entry>
-																	<string>label</string>
-																	<string>Associated With</string>
-																</entry>
-																<entry>
-																	<string>tooltip</string>
-																	<string>Choose a value for 'associated with'</string>
-																</entry>
-																<entry>
-																	<string>help</string>
-																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#associatedWith_value</string>
-																</entry>
-																<entry>
-																	<string>component_type</string>
-																	<string>precoord_tree_value_selector</string>
-																</entry>
-																<entry>
-																	<string>index</string>
-																	<string>70</string>
-																</entry>
-																<entry>
-																	<string>height</string>
-																	<string>20</string>
-																</entry>
-															</map>
-														</entry-->
-													</map>
+													<!-- xi:include href="tabs_ICD/LogicalDefinitionProperties.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/ -->
+													<xi:include href="LogicalDefinitionProperties_ICHI.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 												</entry>
 
 											</map>
