@@ -1086,18 +1086,18 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 
 		Class<? extends RDFResource> type = null;
 		RDFResource res = null;
-		RDFResource top = null;
+		List<RDFResource> topClasses = null;
 		if (entity instanceof PropertyEntityData) {
 			type = RDFProperty.class;
 			res = KBUtil.getRDFProperty(owlModel, entity.getName());
 		} else {
 			type = RDFSClass.class;
 			res = KBUtil.getRDFSNamedClass(owlModel, entity.getName());
-			top = getTopCategoryClass(owlModel);
+			topClasses = getTopCategoryClasses(owlModel);
 		}
 
 		if (type != null && res != null) {
-			List<RDFResource> superResources = getAllSuperEntities(owlModel, res, type, top);
+			List<RDFResource> superResources = getAllSuperEntities(owlModel, res, type, topClasses);
 			for (RDFResource superRes : superResources) {
 				if (RDFProperty.class.equals(type)) {
 					superEntities.add(new PropertyEntityData(superRes.getName(), superRes.getBrowserText(), null));
@@ -1111,17 +1111,17 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 	}
 
 	private List<RDFResource> getAllSuperEntities(OWLModel owlModel, RDFResource res, Class<? extends RDFResource> type,
-			RDFResource top) {
+			List<RDFResource> topClasses) {
 		List<RDFResource> result = new ArrayList<RDFResource>();
 
-		collectAllSuperEntities(owlModel, res, type, top, result);
+		collectAllSuperEntities(owlModel, res, type, topClasses, result);
 
 		return result;
 	}
 
 	private void collectAllSuperEntities(OWLModel owlModel, RDFResource res, Class<? extends RDFResource> type,
-			RDFResource top, List<RDFResource> result) {
-		if (res.equals(top)) {
+			List<RDFResource> topClasses, List<RDFResource> result) {
+		if (topClasses.contains(res)) {
 			return;
 		}
 
@@ -1135,7 +1135,7 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		}
 
 		for (RDFResource parent : toBeVisited) {
-			collectAllSuperEntities(owlModel, parent, type, top, result);
+			collectAllSuperEntities(owlModel, parent, type, topClasses, result);
 		}
 	}
 
@@ -1644,9 +1644,14 @@ public class WHOFICServiceImpl extends OntologyServiceImpl implements WHOFICServ
 		return new ICDContentModel(owlModel);
 	}
 
-	protected RDFResource getTopCategoryClass(OWLModel owlModel) {
+	protected List<RDFResource> getTopCategoryClasses(OWLModel owlModel) {
 		// return new ICIContentModel(owlModel).getICICategoryClass();
-		return new ICDContentModel(owlModel).getICDCategoryClass();
+		ICDContentModel cm = new ICDContentModel(owlModel);
+		ArrayList<RDFResource> res = new ArrayList<RDFResource>();
+		res.add(cm.getICDCategoryClass());
+		//res.add(cm.getICFCategoryClass());
+		res.add(cm.getHealthInterventionClass());
+		return res;
 	}
 
 	/**** Internal reference ***/
