@@ -135,7 +135,7 @@
 																</entry>
 																<entry>
 																	<string>ont_type</string>
-																	<string>http://who.int/icd#TargetReferenceTerm</string>
+																	<string>http://who.int/icd#AdditionalTargetReferenceTerm</string>
 																</entry>
 																<entry>
 																	<string>top_class</string>
@@ -232,7 +232,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'laterality'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -274,7 +274,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'relational'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -318,7 +318,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'medicament'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -362,7 +362,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'therapeutic product'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -406,7 +406,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for assistive product''</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -490,7 +490,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'number of anatomical structures an intervention is performed on'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -532,7 +532,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'number of interventions performed'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -574,7 +574,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'number of therapeutic products inserted'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -616,7 +616,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'telehealth'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -638,7 +638,7 @@
 														</entry>
 														
 														<entry>
-															<string>http://who.int/icd#additionalDescriptiveInformationForIntervention</string>
+															<string>http://who.int/icd#additionalDescriptiveInformationForIntervention_RULER</string>
 															<map>
 																<entry>
 																	<string>name</string>
@@ -680,7 +680,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'initiating or maintaining or discontinuing or resuming'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -702,15 +702,15 @@
 														</entry>
 														
 														<entry>
-															<string>http://who.int/icd#relationshipToOtherIntervention</string>
+															<string>http://who.int/icd#relationshipToOtherInterventions</string>
 															<map>
 																<entry>
 																	<string>name</string>
-																	<string>RelationshipToOtherIntervention_%parent%</string>
+																	<string>RelationshipToOtherInterventions_%parent%</string>
 																</entry>
 																<entry>
 																	<string>ont_type</string>
-																	<string>http://who.int/icd#RelationshipToOtherInterventionReferenceTerm</string>
+																	<string>http://who.int/icd#RelationshipToOtherInterventionsReferenceTerm</string>
 																</entry>
 																<entry>
 																	<string>top_class</string>
@@ -718,15 +718,15 @@
 																</entry>
 																<entry>
 																	<string>label</string>
-																	<string>Relationship to Other Intervention</string>
+																	<string>Relationship to Other Intervention(s)</string>
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'relationship to other interventions'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
-																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#relationshipToOtherIntervention_value</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#relationshipToOtherInterventions_value</string>
 																</entry>
 																<entry>
 																	<string>component_type</string>
@@ -744,6 +744,48 @@
 														</entry>
 														
 														<entry>
+															<string>http://who.int/icd#natureOfIntervention</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>NatureOfIntervention_%parent%</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#NatureOfInterventionReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#91_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Nature of Intervention</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for 'nature of intervention'</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#natureOfIntervention_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>19</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+															</map>
+														</entry>
+														
+														<!-- entry>
 															<string>http://who.int/icd#unplanned</string>
 															<map>
 																<entry>
@@ -764,7 +806,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'unplanned'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -806,7 +848,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'standardisation or structure'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -825,7 +867,7 @@
 																	<string>20</string>
 																</entry>
 															</map>
-														</entry>
+														</entry -->
 														
 														<entry>
 															<string>http://who.int/icd#useOfEquipmentOrChallenge</string>
@@ -848,7 +890,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'use of equipment or challenge'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -860,7 +902,7 @@
 																</entry>
 																<entry>
 																	<string>index</string>
-																	<string>21</string>
+																	<string>20</string>
 																</entry>
 																<entry>
 																	<string>height</string>
@@ -869,7 +911,7 @@
 															</map>
 														</entry>
 														
-														<entry>
+														<!-- entry>
 															<string>http://who.int/icd#enablingFactorsForBehaviourChange</string>
 															<map>
 																<entry>
@@ -890,7 +932,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'enabling factors for behaviour change'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -902,133 +944,7 @@
 																</entry>
 																<entry>
 																	<string>index</string>
-																	<string>22</string>
-																</entry>
-																<entry>
-																	<string>height</string>
-																	<string>20</string>
-																</entry>
-															</map>
-														</entry>
-														
-														<entry>
-															<string>http://who.int/icd#clientOrRecipient</string>
-															<map>
-																<entry>
-																	<string>name</string>
-																	<string>ClientOrRecipient_%parent%</string>
-																</entry>
-																<entry>
-																	<string>ont_type</string>
-																	<string>http://who.int/icd#ClientOrRecipientReferenceTerm</string>
-																</entry>
-																<entry>
-																	<string>top_class</string>
-																	<string>http://who.int/icd#166_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
-																</entry>
-																<entry>
-																	<string>label</string>
-																	<string>Client or Recipient</string>
-																</entry>
-																<entry>
-																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
-																</entry>
-																<entry>
-																	<string>help</string>
-																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#clientOrRecipient_value</string>
-																</entry>
-																<entry>
-																	<string>component_type</string>
-																	<string>precoord_tree_value_selector</string>
-																</entry>
-																<entry>
-																	<string>index</string>
-																	<string>23</string>
-																</entry>
-																<entry>
-																	<string>height</string>
-																	<string>20</string>
-																</entry>
-															</map>
-														</entry>
-														
-														<entry>
-															<string>http://who.int/icd#creativeTherapy</string>
-															<map>
-																<entry>
-																	<string>name</string>
-																	<string>CreativeTherapy_%parent%</string>
-																</entry>
-																<entry>
-																	<string>ont_type</string>
-																	<string>http://who.int/icd#CreativeTherapyReferenceTerm</string>
-																</entry>
-																<entry>
-																	<string>top_class</string>
-																	<string>http://who.int/icd#245_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
-																</entry>
-																<entry>
-																	<string>label</string>
-																	<string>Creative Therapy</string>
-																</entry>
-																<entry>
-																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
-																</entry>
-																<entry>
-																	<string>help</string>
-																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#creativeTherapy_value</string>
-																</entry>
-																<entry>
-																	<string>component_type</string>
-																	<string>precoord_tree_value_selector</string>
-																</entry>
-																<entry>
-																	<string>index</string>
-																	<string>24</string>
-																</entry>
-																<entry>
-																	<string>height</string>
-																	<string>20</string>
-																</entry>
-															</map>
-														</entry>
-														
-														<entry>
-															<string>http://who.int/icd#specificSkillsAndTechnique</string>
-															<map>
-																<entry>
-																	<string>name</string>
-																	<string>SpecificSkillsAndTechnique_%parent%</string>
-																</entry>
-																<entry>
-																	<string>ont_type</string>
-																	<string>http://who.int/icd#SpecificSkillsAndTechniqueReferenceTerm</string>
-																</entry>
-																<entry>
-																	<string>top_class</string>
-																	<string>http://who.int/icd#264_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
-																</entry>
-																<entry>
-																	<string>label</string>
-																	<string>Specific Skills and Technique</string>
-																</entry>
-																<entry>
-																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
-																</entry>
-																<entry>
-																	<string>help</string>
-																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#specificSkillsAndTechnique_value</string>
-																</entry>
-																<entry>
-																	<string>component_type</string>
-																	<string>precoord_tree_value_selector</string>
-																</entry>
-																<entry>
-																	<string>index</string>
-																	<string>25</string>
+																	<string>21</string>
 																</entry>
 																<entry>
 																	<string>height</string>
@@ -1058,7 +974,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'temporary intervention'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -1070,7 +986,133 @@
 																</entry>
 																<entry>
 																	<string>index</string>
-																	<string>26</string>
+																	<string>25</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+															</map>
+														</entry -->
+														
+														<entry>
+															<string>http://who.int/icd#recipient</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>Recipient_%parent%</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#RecipientReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#166_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Recipient</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for 'recipient'</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#recipient_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>21</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+															</map>
+														</entry>
+														
+														<entry>
+															<string>http://who.int/icd#creativeTherapy</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>CreativeTherapy_%parent%</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#CreativeTherapyReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#245_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Creative Therapy</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for 'creative therapy'</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#creativeTherapy_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>22</string>
+																</entry>
+																<entry>
+																	<string>height</string>
+																	<string>20</string>
+																</entry>
+															</map>
+														</entry>
+														
+														<entry>
+															<string>http://who.int/icd#specificSkillsAndTechnique</string>
+															<map>
+																<entry>
+																	<string>name</string>
+																	<string>SpecificSkillsAndTechnique_%parent%</string>
+																</entry>
+																<entry>
+																	<string>ont_type</string>
+																	<string>http://who.int/icd#SpecificSkillsAndTechniqueReferenceTerm</string>
+																</entry>
+																<entry>
+																	<string>top_class</string>
+																	<string>http://who.int/icd#264_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
+																</entry>
+																<entry>
+																	<string>label</string>
+																	<string>Specific Skills and Technique</string>
+																</entry>
+																<entry>
+																	<string>tooltip</string>
+																	<string>Choose a value for 'specific skills and technique'</string>
+																</entry>
+																<entry>
+																	<string>help</string>
+																	<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#specificSkillsAndTechnique_value</string>
+																</entry>
+																<entry>
+																	<string>component_type</string>
+																	<string>precoord_tree_value_selector</string>
+																</entry>
+																<entry>
+																	<string>index</string>
+																	<string>23</string>
 																</entry>
 																<entry>
 																	<string>height</string>
@@ -1100,7 +1142,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'tissue flap'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -1112,7 +1154,7 @@
 																</entry>
 																<entry>
 																	<string>index</string>
-																	<string>27</string>
+																	<string>24</string>
 																</entry>
 																<entry>
 																	<string>height</string>
@@ -1142,7 +1184,7 @@
 																</entry>
 																<entry>
 																	<string>tooltip</string>
-																	<string>Choose a value for ''</string>
+																	<string>Choose a value for 'tissue graft'</string>
 																</entry>
 																<entry>
 																	<string>help</string>
@@ -1154,7 +1196,7 @@
 																</entry>
 																<entry>
 																	<string>index</string>
-																	<string>28</string>
+																	<string>25</string>
 																</entry>
 																<entry>
 																	<string>height</string>
@@ -1163,7 +1205,7 @@
 															</map>
 														</entry>
 														
-														<entry>
+														<!-- entry>
 															<string>http://who.int/icd#administrativeSystemLevelAtWhichInterventionDirected</string>
 															<map>
 																<entry>
@@ -1176,7 +1218,7 @@
 																</entry>
 																<entry>
 																	<string>top_class</string>
-																	<!-- update this -->
+																	< ! - - update this - - >
 																	<string>http://who.int/icd#Target</string>
 																</entry>
 																<entry>
@@ -1204,6 +1246,6 @@
 																	<string>20</string>
 																</entry>
 															</map>
-														</entry>
+														</entry -->
 													</map>
 
