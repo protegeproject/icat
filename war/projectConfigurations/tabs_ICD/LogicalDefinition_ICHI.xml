@@ -95,28 +95,38 @@
 															<string>http://who.int/icd#telehealth</string>
 															<list>
 																<string>http://who.int/icd#telehealth</string>
-																<string>http://who.int/icd#interventionPerformedWithAdviceOrAssistanceProvidedFromADistantLocation</string>
+																<!-- string>http://who.int/icd#interventionPerformedWithAdviceOrAssistanceProvidedFromADistantLocation</string>
 																<string>http://who.int/icd#interventionProvidedToRecipientInADistantLocation</string>
-										            			<string>http://who.int/icd#interventionsDeliveredViaTechnologyWithoutDirectInvolvementOfAHumanProvider</string>
+										            			<string>http://who.int/icd#interventionsDeliveredViaTechnologyWithoutDirectInvolvementOfAHumanProvider</string -->
 															</list>
 														</entry>
-														<entry>
+														<!-- entry>
 															<string>http://who.int/icd#additionalDescriptiveInformationForIntervention</string>
 															<list>
 																<string>http://who.int/icd#additionalDescriptiveInformationForIntervention</string>
 																<string>http://who.int/icd#administrativeSystemLevelAtWhichInterventionDirected</string>
-																<string>http://who.int/icd#clientOrRecipient</string>
+																<string>http://who.int/icd#recipient</string>
 																<string>http://who.int/icd#creativeTherapy</string>
 																<string>http://who.int/icd#enablingFactorsForBehaviourChange</string>
 																<string>http://who.int/icd#initiatingOrMaintainingOrDiscontinuingOrResuming</string>
-																<string>http://who.int/icd#relationshipToOtherIntervention</string>
+																<string>http://who.int/icd#relationshipToOtherInterventions</string>
 																<string>http://who.int/icd#specificSkillsAndTechnique</string>
 																<string>http://who.int/icd#standardisationOrStructure</string>
 																<string>http://who.int/icd#temporaryIntervention</string>
 																<string>http://who.int/icd#tissueFlap</string>
 																<string>http://who.int/icd#tissueGraft</string>
 																<string>http://who.int/icd#unplanned</string>
-																<string>http://who.int/icd#useOfEquipmentOrChallenge</string>															</list>
+																<string>http://who.int/icd#useOfEquipmentOrChallenge</string>
+															</list>
+														</entry -->
+														<entry>
+															<string>http://who.int/icd#natureOfIntervention</string>
+															<list>
+																<string>http://who.int/icd#natureOfIntervention</string>
+																<!-- string>http://who.int/icd#standardisationOrStructure</string>
+																<string>http://who.int/icd#temporaryIntervention</string>
+																<string>http://who.int/icd#unplanned</string -->
+															</list>
 														</entry>
 													</map>
 								            	</entry>

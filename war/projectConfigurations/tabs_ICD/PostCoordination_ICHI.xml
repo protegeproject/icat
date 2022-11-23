@@ -91,28 +91,38 @@
 															<string>http://who.int/icd#telehealth</string>
 															<list>
 																<string>http://who.int/icd#telehealth</string>
-																<string>http://who.int/icd#interventionPerformedWithAdviceOrAssistanceProvidedFromADistantLocation</string>
+																<!-- string>http://who.int/icd#interventionPerformedWithAdviceOrAssistanceProvidedFromADistantLocation</string>
 																<string>http://who.int/icd#interventionProvidedToRecipientInADistantLocation</string>
-										            			<string>http://who.int/icd#interventionsDeliveredViaTechnologyWithoutDirectInvolvementOfAHumanProvider</string>
+										            			<string>http://who.int/icd#interventionsDeliveredViaTechnologyWithoutDirectInvolvementOfAHumanProvider</string -->
 															</list>
 														</entry>
-														<entry>
+														<!-- entry>
 															<string>http://who.int/icd#additionalDescriptiveInformationForIntervention</string>
 															<list>
 																<string>http://who.int/icd#additionalDescriptiveInformationForIntervention</string>
 																<string>http://who.int/icd#administrativeSystemLevelAtWhichInterventionDirected</string>
-																<string>http://who.int/icd#clientOrRecipient</string>
+																<string>http://who.int/icd#recipient</string>
 																<string>http://who.int/icd#creativeTherapy</string>
 																<string>http://who.int/icd#enablingFactorsForBehaviourChange</string>
 																<string>http://who.int/icd#initiatingOrMaintainingOrDiscontinuingOrResuming</string>
-																<string>http://who.int/icd#relationshipToOtherIntervention</string>
+																<string>http://who.int/icd#relationshipToOtherInterventions</string>
 																<string>http://who.int/icd#specificSkillsAndTechnique</string>
 																<string>http://who.int/icd#standardisationOrStructure</string>
 																<string>http://who.int/icd#temporaryIntervention</string>
 																<string>http://who.int/icd#tissueFlap</string>
 																<string>http://who.int/icd#tissueGraft</string>
 																<string>http://who.int/icd#unplanned</string>
-																<string>http://who.int/icd#useOfEquipmentOrChallenge</string>															</list>
+																<string>http://who.int/icd#useOfEquipmentOrChallenge</string>
+															</list>
+														</entry -->
+														<entry>
+															<string>http://who.int/icd#natureOfIntervention</string>
+															<list>
+																<string>http://who.int/icd#natureOfIntervention</string>
+																<!-- string>http://who.int/icd#standardisationOrStructure</string>
+																<string>http://who.int/icd#temporaryIntervention</string>
+																<string>http://who.int/icd#unplanned</string -->
+															</list>
 														</entry>
 													</map>
 								            	</entry>
@@ -146,7 +156,7 @@
 													</map>
 												</entry>
 												<entry>
-													<string>Column17</string>
+													<string>Column25</string>
 													<map>
 														<entry>
 															<string>clone_of</string>
@@ -154,7 +164,7 @@
 														</entry>
 														<entry>
 															<string>index</string>
-															<string>16</string>
+															<string>24</string>
 														</entry>
 													</map>
 												</entry>
@@ -777,11 +787,11 @@
 													<map>
 														<entry>
 															<string>header</string>
-															<string>Additional Descriptive&lt;BR&gt;Information</string>
+															<string>Initiating/Maintaining/&lt;BR&gt;Discont./Res. __</string>
 														</entry>
 														<entry>
 															<string>tooltip</string>
-															<string>Additional Descriptive Information for Intervention</string>
+															<string>Additional Descriptive Information -&gt; Initiating or Maintaining or Discontinuing or Resuming</string>
 														</entry>
 														<entry>
 															<string>headerCssClass</string>
@@ -797,11 +807,371 @@
 														</entry>
 														<entry>
 															<string>property</string>
-															<string>http://who.int/icd#additionalDescriptiveInformationForIntervention</string>
+															<string>http://who.int/icd#initiatingOrMaintainingOrDiscontinuingOrResuming</string>
 														</entry>
 														<entry>
 															<string>index</string>
 															<string>15</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column17</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Relationship to Other&lt;BR&gt;Interventions</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Additional Descriptive Information -&gt; Relationship to Other Intervention(s)</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#relationshipToOtherInterventions</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>16</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column18</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Nature of Intervention</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Additional Descriptive Information -&gt; Nature of Intervention</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#natureOfIntervention</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>17</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column19</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Use of Equipment&lt;BR&gt;or Challenge</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Additional Descriptive Information -&gt; Use of Equipment or Challenge</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#useOfEquipmentOrChallenge</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>18</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column20</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Recipient</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Additional Descriptive Information -&gt; Recipient</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#recipient</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>19</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column21</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Creative Therapy</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Additional Descriptive Information -&gt; Creative Therapy</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#creativeTherapy</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>20</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column22</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Specific Skills and&lt;BR&gt;Technique</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Additional Descriptive Information -&gt; Specific Skills and Technique</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#specificSkillsAndTechnique</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>21</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column23</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Tissue Flap</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Additional Descriptive Information -&gt; Tissue Flap</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#tissueFlap</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>22</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>checkbox_important</string>
+														</entry>
+														<entry>
+															<string>field_align</string>
+															<string>center</string>
+														</entry>
+														<entry>
+															<string>field_bg_color</string>
+															<string>lightgray</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column24</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Tissue Graft</string>
+														</entry>
+														<entry>
+															<string>tooltip</string>
+															<string>Additional Descriptive Information -&gt; Tissue Graft</string>
+														</entry>
+														<entry>
+															<string>headerCssClass</string>
+															<string>rotated-table-header1</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>45</string>
+														</entry>
+														<entry>
+															<string>height</string>
+															<string>100</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#tissueGraft</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>23</string>
 														</entry>
 														<entry>
 															<string>field_type</string>
@@ -1226,7 +1596,7 @@
 												</entry>
 												<entry>
 													<string>ont_type</string>
-													<string>http://who.int/icd#TargetReferenceTerm</string>
+													<string>http://who.int/icd#AdditionalTargetReferenceTerm</string>
 												</entry>
 												<entry>
 													<string>top_class</string>
@@ -2474,15 +2844,15 @@
 										</entry>
 										
 										<entry>
-											<string>http://who.int/icd#relationshipToOtherIntervention</string>
+											<string>http://who.int/icd#relationshipToOtherInterventions</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>RelationshipToOtherIntervention</string>
+													<string>RelationshipToOtherInterventions</string>
 												</entry>
 												<entry>
 													<string>ont_type</string>
-													<string>http://who.int/icd#RelationshipToOtherInterventionReferenceTerm</string>
+													<string>http://who.int/icd#RelationshipToOtherInterventionsReferenceTerm</string>
 												</entry>
 												<entry>
 													<string>top_class</string>
@@ -2490,7 +2860,7 @@
 												</entry>
 												<entry>
 													<string>label</string>
-													<string>Relationship to Other Intervention</string>
+													<string>Relationship to Other Intervention(s)</string>
 												</entry>
 												<entry>
 													<string>tooltip</string>
@@ -2498,7 +2868,7 @@
 												</entry>
 												<entry>
 													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#relationshipToOtherIntervention</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#relationshipToOtherInterventions</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -2599,6 +2969,131 @@
 										</entry>
 										
 										<entry>
+											<string>http://who.int/icd#natureOfIntervention</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>NatureOfIntervention</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#NatureOfInterventionReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#91_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Nature of Intervention</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#natureOfIntervention</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>20</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>160</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>class_browsertext</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column2</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Definition (inst) Ref. Value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>50</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#definition</string>
+														</entry>
+														<entry>
+															<string>subject_column_index</string>
+															<string>1</string>
+														</entry>
+														<entry>
+															<string>hidden</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>1</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column3</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>definition</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#label</string>
+														</entry>
+														<entry>
+															<string>subject_column_index</string>
+															<string>2</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>2</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry>
+										
+										<!-- entry>
 											<string>http://who.int/icd#unplanned</string>
 											<map>
 												<entry>
@@ -2849,23 +3344,23 @@
 										</entry>
 										
 										<entry>
-											<string>http://who.int/icd#useOfEquipmentOrChallenge</string>
+											<string>http://who.int/icd#temporaryIntervention</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>UseOfEquipmentOrChallenge</string>
+													<string>TemporaryIntervention</string>
 												</entry>
 												<entry>
 													<string>ont_type</string>
-													<string>http://who.int/icd#UseOfEquipmentOrChallengeReferenceTerm</string>
+													<string>http://who.int/icd#TemporaryInterventionReferenceTerm</string>
 												</entry>
 												<entry>
 													<string>top_class</string>
-													<string>http://who.int/icd#115_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
+													<string>http://who.int/icd#334_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
 												</entry>
 												<entry>
 													<string>label</string>
-													<string>Use of Equipment or Challenge</string>
+													<string>Temporary Intervention</string>
 												</entry>
 												<entry>
 													<string>tooltip</string>
@@ -2873,7 +3368,7 @@
 												</entry>
 												<entry>
 													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#useOfEquipmentOrChallenge</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#temporaryIntervention</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -2971,26 +3466,26 @@
 													</map>
 												</entry>
 											</map>
-										</entry>
+										</entry -->
 										
 										<entry>
-											<string>http://who.int/icd#enablingFactorsForBehaviourChange</string>
+											<string>http://who.int/icd#useOfEquipmentOrChallenge</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>EnablingFactorsForBehaviourChange</string>
+													<string>UseOfEquipmentOrChallenge</string>
 												</entry>
 												<entry>
 													<string>ont_type</string>
-													<string>http://who.int/icd#EnablingFactorsForBehaviourChangeReferenceTerm</string>
+													<string>http://who.int/icd#UseOfEquipmentOrChallengeReferenceTerm</string>
 												</entry>
 												<entry>
 													<string>top_class</string>
-													<string>http://who.int/icd#146_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
+													<string>http://who.int/icd#115_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
 												</entry>
 												<entry>
 													<string>label</string>
-													<string>Enabling Factors for Behaviour Change</string>
+													<string>Use of Equipment or Challenge</string>
 												</entry>
 												<entry>
 													<string>tooltip</string>
@@ -2998,7 +3493,7 @@
 												</entry>
 												<entry>
 													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#enablingFactorsForBehaviourChange</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#useOfEquipmentOrChallenge</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -3006,7 +3501,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>23</string>
+													<string>21</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -3098,24 +3593,24 @@
 											</map>
 										</entry>
 										
-										<entry>
-											<string>http://who.int/icd#clientOrRecipient</string>
+										<!-- entry>
+											<string>http://who.int/icd#enablingFactorsForBehaviourChange</string>
 											<map>
 												<entry>
 													<string>name</string>
-													<string>ClientOrRecipient</string>
+													<string>EnablingFactorsForBehaviourChange</string>
 												</entry>
 												<entry>
 													<string>ont_type</string>
-													<string>http://who.int/icd#ClientOrRecipientReferenceTerm</string>
+													<string>http://who.int/icd#EnablingFactorsForBehaviourChangeReferenceTerm</string>
 												</entry>
 												<entry>
 													<string>top_class</string>
-													<string>http://who.int/icd#166_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
+													<string>http://who.int/icd#146_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
 												</entry>
 												<entry>
 													<string>label</string>
-													<string>Client or Recipient</string>
+													<string>Enabling Factors for Behaviour Change</string>
 												</entry>
 												<entry>
 													<string>tooltip</string>
@@ -3123,7 +3618,7 @@
 												</entry>
 												<entry>
 													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#clientOrRecipient</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#enablingFactorsForBehaviourChange</string>
 												</entry>
 												<entry>
 													<string>component_type</string>
@@ -3131,7 +3626,132 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>24</string>
+													<string>22</string>
+												</entry>
+												<entry>
+													<string>height</string>
+													<string>120</string>
+												</entry>
+												<entry>
+													<string>multiple_values_allowed</string>
+													<boolean>true</boolean>
+												</entry>
+												<entry>
+													<string>Column1</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>160</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#referencedValue</string>
+														</entry>
+														<entry>
+															<string>field_type</string>
+															<string>class_browsertext</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>0</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column2</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>Definition (inst) Ref. Value</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>50</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#definition</string>
+														</entry>
+														<entry>
+															<string>subject_column_index</string>
+															<string>1</string>
+														</entry>
+														<entry>
+															<string>hidden</string>
+															<string>true</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>1</string>
+														</entry>
+													</map>
+												</entry>
+												<entry>
+													<string>Column3</string>
+													<map>
+														<entry>
+															<string>header</string>
+															<string>definition</string>
+														</entry>
+														<entry>
+															<string>width</string>
+															<string>all</string>
+														</entry>
+														<entry>
+															<string>property</string>
+															<string>http://who.int/icd#label</string>
+														</entry>
+														<entry>
+															<string>subject_column_index</string>
+															<string>2</string>
+														</entry>
+														<entry>
+															<string>index</string>
+															<string>2</string>
+														</entry>
+													</map>
+												</entry>
+											</map>
+										</entry -->
+										
+										<entry>
+											<string>http://who.int/icd#recipient</string>
+											<map>
+												<entry>
+													<string>name</string>
+													<string>Recipient</string>
+												</entry>
+												<entry>
+													<string>ont_type</string>
+													<string>http://who.int/icd#RecipientReferenceTerm</string>
+												</entry>
+												<entry>
+													<string>top_class</string>
+													<string>http://who.int/icd#166_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
+												</entry>
+												<entry>
+													<string>label</string>
+													<string>Recipient</string>
+												</entry>
+												<entry>
+													<string>tooltip</string>
+													<string>...</string>
+												</entry>
+												<entry>
+													<string>help</string>
+													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#recipient</string>
+												</entry>
+												<entry>
+													<string>component_type</string>
+													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>index</string>
+													<string>22</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -3256,7 +3876,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>25</string>
+													<string>23</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -3381,132 +4001,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>26</string>
-												</entry>
-												<entry>
-													<string>height</string>
-													<string>120</string>
-												</entry>
-												<entry>
-													<string>multiple_values_allowed</string>
-													<boolean>true</boolean>
-												</entry>
-												<entry>
-													<string>Column1</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>value</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>160</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#referencedValue</string>
-														</entry>
-														<entry>
-															<string>field_type</string>
-															<string>class_browsertext</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>0</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column2</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>Definition (inst) Ref. Value</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>50</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#definition</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>1</string>
-														</entry>
-														<entry>
-															<string>hidden</string>
-															<string>true</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>1</string>
-														</entry>
-													</map>
-												</entry>
-												<entry>
-													<string>Column3</string>
-													<map>
-														<entry>
-															<string>header</string>
-															<string>definition</string>
-														</entry>
-														<entry>
-															<string>width</string>
-															<string>all</string>
-														</entry>
-														<entry>
-															<string>property</string>
-															<string>http://who.int/icd#label</string>
-														</entry>
-														<entry>
-															<string>subject_column_index</string>
-															<string>2</string>
-														</entry>
-														<entry>
-															<string>index</string>
-															<string>2</string>
-														</entry>
-													</map>
-												</entry>
-											</map>
-										</entry>
-										
-										<entry>
-											<string>http://who.int/icd#temporaryIntervention</string>
-											<map>
-												<entry>
-													<string>name</string>
-													<string>TemporaryIntervention</string>
-												</entry>
-												<entry>
-													<string>ont_type</string>
-													<string>http://who.int/icd#TemporaryInterventionReferenceTerm</string>
-												</entry>
-												<entry>
-													<string>top_class</string>
-													<string>http://who.int/icd#334_bfdc5bfd_508c_4341_981a_49384b51cdc2</string>
-												</entry>
-												<entry>
-													<string>label</string>
-													<string>Temporary Intervention</string>
-												</entry>
-												<entry>
-													<string>tooltip</string>
-													<string>...</string>
-												</entry>
-												<entry>
-													<string>help</string>
-													<string>http://apps.who.int/classifications/apps/icd/icatfiles/iCAT_Glossary.html#temporaryIntervention</string>
-												</entry>
-												<entry>
-													<string>component_type</string>
-													<string>internalreference</string>
-												</entry>
-												<entry>
-													<string>index</string>
-													<string>27</string>
+													<string>24</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -3631,7 +4126,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>28</string>
+													<string>25</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -3756,7 +4251,7 @@
 												</entry>
 												<entry>
 													<string>index</string>
-													<string>29</string>
+													<string>26</string>
 												</entry>
 												<entry>
 													<string>height</string>
@@ -3848,7 +4343,7 @@
 											</map>
 										</entry>
 										
-										<entry>
+										<!-- entry>
 											<string>http://who.int/icd#administrativeSystemLevelAtWhichInterventionDirected</string>
 											<map>
 												<entry>
@@ -3861,7 +4356,7 @@
 												</entry>
 												<entry>
 													<string>top_class</string>
-													<!-- update this -->
+													< ! - - TODO: update this - - >
 													<string>http://who.int/icd#Target</string>
 												</entry>
 												<entry>
@@ -3976,6 +4471,6 @@
 													</map>
 												</entry>
 											</map>
-										</entry>
+										</entry -->
 									</map>
 
