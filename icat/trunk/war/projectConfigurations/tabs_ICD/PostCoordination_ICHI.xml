@@ -81,7 +81,7 @@
 														<entry>
 															<string>http://who.int/icd#quantifier</string>
 															<list>
-																<string>http://who.int/icd#quantifier</string>
+																<!-- string>http://who.int/icd#quantifier</string -->
 																<string>http://who.int/icd#numberOfAnatomicalStructuresAnInterventionIsPerformedOn</string>
 																<string>http://who.int/icd#numberOfInterventionsPerformed</string>
 										            			<string>http://who.int/icd#numberOfTherapeuticProductsInserted</string>
@@ -2259,6 +2259,10 @@
 												<entry>
 													<string>component_type</string>
 													<string>internalreference</string>
+												</entry>
+												<entry>
+													<string>hidden</string>
+													<string>true</string>
 												</entry>
 												<entry>
 													<string>index</string>
