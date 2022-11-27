@@ -459,6 +459,10 @@
 																	<string>precoord_tree_value_selector</string>
 																</entry>
 																<entry>
+																	<string>hidden</string>
+																	<string>true</string>
+																</entry>
+																<entry>
 																	<string>index</string>
 																	<string>11</string>
 																</entry>
